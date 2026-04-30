@@ -1,0 +1,51 @@
+import type { StorybookConfig } from '@storybook/react-vite';
+import path from 'node:path';
+
+const config: StorybookConfig = {
+  stories: ['../src/**/*.stories.@(ts|tsx)'],
+  addons: ['@storybook/addon-docs', '@storybook/addon-a11y'],
+  framework: {
+    name: '@storybook/react-vite',
+    options: {},
+  },
+  typescript: { reactDocgen: 'react-docgen-typescript' },
+  viteFinal: async (config) => {
+    config.resolve = config.resolve ?? {};
+    const existingAlias = config.resolve.alias ?? {};
+    const aliasArray = Array.isArray(existingAlias)
+      ? existingAlias
+      : Object.entries(existingAlias).map(([find, replacement]) => ({
+          find,
+          replacement: replacement as string,
+        }));
+    config.resolve.alias = [
+      { find: /^react-native$/, replacement: 'react-native-web' },
+      ...aliasArray,
+    ];
+    config.resolve.extensions = [
+      '.web.tsx',
+      '.web.ts',
+      '.web.jsx',
+      '.web.js',
+      '.tsx',
+      '.ts',
+      '.jsx',
+      '.js',
+      ...(config.resolve.extensions ?? []),
+    ];
+    config.define = {
+      ...(config.define ?? {}),
+      __DEV__: 'true',
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV ?? 'development'),
+    };
+    config.optimizeDeps = config.optimizeDeps ?? {};
+    config.optimizeDeps.include = [
+      ...(config.optimizeDeps.include ?? []),
+      'react-native-web',
+      'styled-components',
+    ];
+    return config;
+  },
+};
+
+export default config;

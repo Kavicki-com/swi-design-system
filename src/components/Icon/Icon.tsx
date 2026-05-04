@@ -12,6 +12,8 @@ import type { IconProps } from './Icon.types';
 export const Icon = ({
   name,
   size = 24,
+  width,
+  height,
   color = 'currentColor',
   testID,
   accessibilityLabel,
@@ -19,17 +21,20 @@ export const Icon = ({
   const icon = iconPaths[name];
   if (!icon) return null;
 
+  const w = width ?? size;
+  const h = height ?? size;
+
   return (
     <Svg
-      width={size}
-      height={size}
+      width={w}
+      height={h}
       viewBox={icon.viewBox}
       fill={color}
       testID={testID}
       accessibilityLabel={accessibilityLabel}
       accessibilityRole={accessibilityLabel ? 'image' : undefined}
     >
-      <Path d={icon.d} fill={color} />
+      <Path d={icon.d} fill={color} fillRule={icon.fillRule ?? 'nonzero'} />
     </Svg>
   );
 };

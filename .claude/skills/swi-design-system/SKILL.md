@@ -87,6 +87,25 @@ These are non-negotiable. Violations cause downstream pain in the consumer apps.
 
 8. **The web Storybook is a deliverable, not an artifact.** It will be hosted on a client-controlled URL and is the official channel where designers, PMs and QA validate components. This means: a PR that breaks `npm run storybook:build` does not merge. Stories that render blank, throw warnings in console, or look visibly broken are bugs even if the component itself works. Treat Storybook output with the same rigor as the lib's public API. Always run `storybook:build` locally before considering a component done.
 
+9. **Storybook section structure (three top-level groups under stories):**
+   - **`Core Components/`** — primitives that are reusable across many features and contexts: Button, Input, Checkbox, Radio, Chip, Surface, Text, Title, Tabs, Accordion, ImageUploader, ChatBubble, Icon, ProgressBar, Combobox, SearchInput, Toast, Image, etc. These are the universal building blocks. Designs come from the `SWI-library` Figma file.
+   - **`Components/`** — composite components built on top of the primitives, used in app contexts: `activities-overview-card`, `workers-info-card`, `header`, `side-menu`, `weather-timeline`, `step-bar`, `smartband-status`, `exam-info-card`, etc. Designs come from the `SWI - UI` Figma file (web + mobile pages). Some have web and mobile visual adaptations — see rule 10.
+   - **`Charts/`** — universal chart and data-visualization components: status-chart, line/bar/donut charts, gauges, heatmaps, and other graphical data displays. Same universality and composition rules as `Components/` — they are React Native components (using `react-native-svg`, `View`, `Text`) that render identically on web (via RN Web) and mobile, and they should reuse Core Components where it makes sense (Title/Text for axis labels, Icon for legend markers, etc.). Charts go here regardless of whether their design lives in `SWI-library` or `SWI - UI`.
+
+   Set the story title accordingly: `title: 'Core Components/Button'` for primitives, `title: 'Components/ActivitiesOverviewCard'` for composites, `title: 'Charts/StatusChart'` for charts. The sort order is set in `.storybook/preview.tsx`.
+
+10. **Cross-platform layout adaptations: one component, variant prop, never Platform.OS.** When a composite component has different web and mobile layouts in Figma (e.g., the web variant is a wide horizontal card with extra icons, the mobile variant is a compact vertical card with fewer affordances), model it as a **single universal component** with a `variant` (or `layout` / `density`) prop the consumer picks. Both variants live in the same `.tsx` file, share types, share styles where it makes sense, branch only on the structural differences. **Do not** use `Platform.OS`, `.web.tsx`/`.native.tsx` splits, or duplicate components for this — the skill's hard rule on universality applies to composites too. A `swi-app` consumer can still pick `variant="wide"`; a `swi-admin` consumer can pick `variant="compact"`. The platform of origin is just informational context, not a runtime gate.
+
+11. **Composites compose Core Components — never re-implement primitives.** Before creating new styled components inside a `Components/` entry, scan the public exports in `src/index.ts` and the `Core Components/` Storybook section for primitives that already do the job: `Button`, `Icon`, `ProgressBar`, `Surface`, `Title`, `Text`, `Chip`, `Image`, `Tabs`, `Accordion`, `Input`, `MenuItem`, etc. Compose them. Example: `SideMenu` is a `View` + a list of `MenuItem`s — no new menu-item styling. `ActivitiesOverviewCard` should reuse `ProgressBar` for the progress indicator and `Image` (or a small Avatar primitive) for the worker avatars rather than reinventing them.
+
+   **Why:** keeps the bundle small (single source of styles per concern), keeps look-and-feel consistent across the system, propagates token / state changes automatically (a `ProgressBar` color tweak fixes every composite that uses it), and reduces test surface.
+
+   **How to apply:**
+   - When you spot styling that duplicates a primitive (a circle clip for an avatar, a rounded progress track, a label-with-icon pressable), stop and use the primitive instead.
+   - If the primitive's API is *almost* right but missing a knob, **extend the primitive** (add a prop, default it to current behavior) rather than forking the styling into the composite.
+   - If the design genuinely needs a new low-level building block that more than one composite will use, propose adding it to `Core Components/` first, then build composites on top.
+   - The only styling a composite should own is the **layout** that arranges its children (the row/column flex, gaps, alignment, container surface).
+
 ---
 
 ## Tokens — three tiers

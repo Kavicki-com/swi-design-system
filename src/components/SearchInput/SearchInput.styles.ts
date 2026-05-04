@@ -66,6 +66,7 @@ export const FocusRing = styled(View)`
 
 export const StyledInput = styled(TextInput)<{ $disabled: boolean }>`
   flex: 1;
+  min-width: 0;
   font-family: ${({ theme }) => theme.fontFamily.body};
   font-weight: ${({ theme }) => theme.fontWeight.regular};
   font-size: 14px;
@@ -74,6 +75,13 @@ export const StyledInput = styled(TextInput)<{ $disabled: boolean }>`
   margin: 0;
   outline-width: 0;
   outline-style: none;
+`;
+
+export const IconSlot = styled(View)`
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const IconButton = styled(Pressable)`

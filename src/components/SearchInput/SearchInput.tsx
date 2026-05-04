@@ -1,11 +1,12 @@
 import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { type TextInput as RNTextInput } from 'react-native';
+import { Icon } from '../Icon';
 import { useTheme } from '../../theme';
-import { CloseIcon, SearchIcon } from './SearchInput.icons';
 import {
   Container,
   HoverOverlay,
   IconButton,
+  IconSlot,
   Row,
   StyledInput,
 } from './SearchInput.styles';
@@ -49,7 +50,7 @@ export const SearchInput = forwardRef<RNTextInput, SearchInputProps>(
       innerRef.current?.focus();
     };
 
-    const showClose = !disabled && (hasValue || focused);
+    const showClose = !disabled && hasValue;
     const iconColor = disabled ? theme.content.disable : theme.content.dark;
 
     return (
@@ -88,10 +89,12 @@ export const SearchInput = forwardRef<RNTextInput, SearchInputProps>(
               accessibilityRole="button"
               accessibilityLabel="Clear search"
             >
-              <CloseIcon color={iconColor} />
+              <Icon name="close" size={24} color={iconColor} />
             </IconButton>
           ) : (
-            <SearchIcon color={iconColor} />
+            <IconSlot>
+              <Icon name="search" size={24} color={iconColor} />
+            </IconSlot>
           )}
           {hovered && !focused && !disabled ? <HoverOverlay /> : null}
         </Row>

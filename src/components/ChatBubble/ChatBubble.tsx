@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
-import { Image as RNImage, type View } from 'react-native';
+import { type View } from 'react-native';
+import { Avatar } from '../Avatar';
 import { Icon } from '../Icon';
 import { useTheme } from '../../theme';
 import { elevation } from '../../tokens';
@@ -31,13 +32,7 @@ export const ChatBubble = forwardRef<View, ChatBubbleProps>(
     const theme = useTheme();
     const isLeft = position === 'left';
 
-    const avatar = avatarUri ? (
-      <RNImage
-        source={{ uri: avatarUri }}
-        style={{ width: 40, height: 40, borderRadius: 999 }}
-        accessibilityRole="image"
-      />
-    ) : null;
+    const avatar = avatarUri ? <Avatar uri={avatarUri} size="m" /> : null;
 
     const menu = onMenuPress ? (
       <MenuButton

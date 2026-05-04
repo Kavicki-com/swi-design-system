@@ -6,7 +6,7 @@ import type { ProgressBarProps } from './ProgressBar.types';
 const clamp = (n: number, min: number, max: number) => Math.min(Math.max(n, min), max);
 
 export const ProgressBar = forwardRef<View, ProgressBarProps>(
-  ({ value, disabled = false, accessibilityLabel, testID }, ref) => {
+  ({ value, disabled = false, color, trackColor, accessibilityLabel, testID }, ref) => {
     const pct = clamp(value, 0, 100);
     return (
       <Track
@@ -17,8 +17,12 @@ export const ProgressBar = forwardRef<View, ProgressBarProps>(
         accessibilityState={{ disabled }}
         accessibilityValue={{ min: 0, max: 100, now: pct }}
         testID={testID}
+        style={trackColor ? { backgroundColor: trackColor } : undefined}
       >
-        <Fill $disabled={disabled} style={{ width: `${pct}%` }} />
+        <Fill
+          $disabled={disabled}
+          style={{ width: `${pct}%`, ...(color ? { backgroundColor: color } : null) }}
+        />
       </Track>
     );
   },

@@ -4,7 +4,7 @@ import { Text, View } from 'react-native';
 import { Chip } from './Chip';
 
 const meta: Meta<typeof Chip> = {
-  title: 'Components/Chip',
+  title: 'Core Components/Chip',
   component: Chip,
   args: {
     label: 'Filtro',

@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { Toast } from './Toast';
 
 const meta: Meta<typeof Toast> = {
-  title: 'Components/Toast',
+  title: 'Core Components/Toast',
   component: Toast,
   args: {
     variant: 'info',

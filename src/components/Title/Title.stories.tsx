@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { Title } from './Title';
 
 const meta: Meta<typeof Title> = {
-  title: 'Components/Title',
+  title: 'Core Components/Title',
   component: Title,
   args: {
     children: 'The quick brown fox',

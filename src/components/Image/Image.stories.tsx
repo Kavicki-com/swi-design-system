@@ -6,7 +6,7 @@ import { Image } from './Image';
 const SAMPLE = 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?w=600&q=60';
 
 const meta: Meta<typeof Image> = {
-  title: 'Components/Image',
+  title: 'Core Components/Image',
   component: Image,
   args: {
     source: SAMPLE,

@@ -4,7 +4,7 @@ import { Text, View } from 'react-native';
 import { ChipGroup } from './ChipGroup';
 
 const meta: Meta<typeof ChipGroup> = {
-  title: 'Components/ChipGroup',
+  title: 'Core Components/ChipGroup',
   component: ChipGroup,
   args: {
     options: ['Label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5'],

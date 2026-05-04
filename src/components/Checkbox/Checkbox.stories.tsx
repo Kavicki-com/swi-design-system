@@ -5,7 +5,7 @@ import { useArgs } from 'storybook/preview-api';
 import { Checkbox } from './Checkbox';
 
 const meta: Meta<typeof Checkbox> = {
-  title: 'Components/Checkbox',
+  title: 'Core Components/Checkbox',
   component: Checkbox,
   args: {
     label: 'label',

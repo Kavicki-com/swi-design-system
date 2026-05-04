@@ -5,7 +5,7 @@ import { useArgs } from 'storybook/preview-api';
 import { SearchInput } from './SearchInput';
 
 const meta: Meta<typeof SearchInput> = {
-  title: 'Components/SearchInput',
+  title: 'Core Components/SearchInput',
   component: SearchInput,
   args: {
     placeholder: 'input-text',

@@ -4,7 +4,7 @@ import { Text, View } from 'react-native';
 import { ProgressBar } from './ProgressBar';
 
 const meta: Meta<typeof ProgressBar> = {
-  title: 'Components/ProgressBar',
+  title: 'Core Components/ProgressBar',
   component: ProgressBar,
   args: { value: 46, disabled: false },
   argTypes: {

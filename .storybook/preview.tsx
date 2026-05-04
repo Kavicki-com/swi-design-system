@@ -26,7 +26,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ['Tokens', ['Primitive', 'Semantic'], 'Components'],
+        order: ['Tokens', ['Primitive', 'Semantic'], 'Core Components'],
       },
     },
   },

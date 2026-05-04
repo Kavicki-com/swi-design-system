@@ -18,6 +18,14 @@ Universal React Native component library for `swi-admin` (web via React Native W
 
 Pin to a tag, never to `main`.
 
+### Peer dependencies
+
+Install these in the consumer app alongside the lib:
+
+```sh
+npm install react react-native react-native-svg react-native-web styled-components
+```
+
 ### App root
 
 ```tsx

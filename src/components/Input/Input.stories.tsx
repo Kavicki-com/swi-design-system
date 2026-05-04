@@ -9,7 +9,7 @@ const PlaceholderIcon = () => (
 );
 
 const meta: Meta<typeof Input> = {
-  title: 'Components/Input',
+  title: 'Core Components/Input',
   component: Input,
   args: {
     label: 'label',

@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { Text } from './Text';
 
 const meta: Meta<typeof Text> = {
-  title: 'Components/Text',
+  title: 'Core Components/Text',
   component: Text,
   args: {
     children: 'The quick brown fox jumps over the lazy dog',

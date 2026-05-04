@@ -15,7 +15,7 @@ const PlaceholderIcon = () => (
 );
 
 const meta: Meta<typeof Button> = {
-  title: 'Components/Button',
+  title: 'Core Components/Button',
   component: Button,
   args: {
     label: 'button',

@@ -11,7 +11,7 @@ const sampleOptions = [
 ];
 
 const meta: Meta<typeof Combobox> = {
-  title: 'Components/Combobox',
+  title: 'Core Components/Combobox',
   component: Combobox,
   args: {
     label: 'label',

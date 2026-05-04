@@ -5,7 +5,7 @@ import { useArgs } from 'storybook/preview-api';
 import { Radio } from './Radio';
 
 const meta: Meta<typeof Radio> = {
-  title: 'Components/Radio',
+  title: 'Core Components/Radio',
   component: Radio,
   args: {
     label: 'label',

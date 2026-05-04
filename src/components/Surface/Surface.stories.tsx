@@ -6,7 +6,7 @@ import { Title } from '../Title';
 import { Surface } from './Surface';
 
 const meta: Meta<typeof Surface> = {
-  title: 'Components/Surface',
+  title: 'Core Components/Surface',
   component: Surface,
   args: {
     variant: 'standard',

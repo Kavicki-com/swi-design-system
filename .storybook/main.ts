@@ -49,7 +49,17 @@ const config: StorybookConfig = {
       ...(config.optimizeDeps.include ?? []),
       'react-native-web',
       'styled-components',
+      'styled-components/native',
     ];
+    // styled-components/native ESM bundle mixes ESM `import` syntax with a
+    // literal `require("react-native")`. Without this flag Rollup's commonjs
+    // plugin skips mixed files, leaving the require call in the production
+    // bundle (which then crashes at runtime with "require is not defined").
+    config.build = config.build ?? {};
+    config.build.commonjsOptions = {
+      ...(config.build.commonjsOptions ?? {}),
+      transformMixedEsModules: true,
+    };
     return config;
   },
 };

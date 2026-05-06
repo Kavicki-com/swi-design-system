@@ -10,6 +10,7 @@
  */
 import React from 'react';
 import { iconPaths } from '../../icons';
+import type { IconPath } from '../../icons/paths';
 import type { IconProps } from './Icon.types';
 
 export const Icon = ({
@@ -21,7 +22,7 @@ export const Icon = ({
   testID,
   accessibilityLabel,
 }: IconProps) => {
-  const icon = iconPaths[name];
+  const icon: IconPath | undefined = iconPaths[name];
   if (!icon) return null;
 
   const w = width ?? size;

@@ -11,7 +11,7 @@ export const Button = forwardRef<View, ButtonProps>(
       variant = 'contained',
       iconLeft,
       iconRight,
-      disabled = false,
+      disabled: disabledProp = false,
       fullWidth = false,
       onPress,
       onLongPress,
@@ -24,6 +24,7 @@ export const Button = forwardRef<View, ButtonProps>(
     const [hovered, setHovered] = useState(false);
     const [pressed, setPressed] = useState(false);
 
+    const disabled = disabledProp ?? false;
     const showDropShadow = variant === 'contained' && !disabled && !pressed;
     const showHoverOverlay = variant === 'contained' && hovered && !pressed && !disabled;
     const showPressedOverlay = pressed && !disabled;

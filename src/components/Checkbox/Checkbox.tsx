@@ -10,13 +10,14 @@ export const Checkbox = forwardRef<View, CheckboxProps>(
       onChange,
       label,
       size = 'm',
-      disabled = false,
+      disabled: disabledProp = false,
       accessibilityLabel,
       accessibilityHint,
       testID,
     },
     ref,
   ) => {
+    const disabled = disabledProp ?? false;
     const handlePress = () => {
       if (disabled) return;
       onChange?.(!checked);

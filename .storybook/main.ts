@@ -9,7 +9,13 @@ const config: StorybookConfig = {
     options: {},
   },
   typescript: { reactDocgen: 'react-docgen-typescript' },
-  viteFinal: async (config) => {
+  viteFinal: async (config, { configType }) => {
+    // GitHub Pages serves project sites from /<repo-name>/. Set the base path
+    // for production builds so asset URLs resolve correctly when hosted there.
+    // Override via STORYBOOK_BASE_URL env var if hosting elsewhere.
+    if (configType === 'PRODUCTION') {
+      config.base = process.env.STORYBOOK_BASE_URL ?? '/swi-design-system/';
+    }
     config.resolve = config.resolve ?? {};
     const existingAlias = config.resolve.alias ?? {};
     const aliasArray = Array.isArray(existingAlias)

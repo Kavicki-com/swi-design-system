@@ -42,6 +42,13 @@ export { Header } from './components/Header';
 export type { HeaderProps } from './components/Header';
 export { HeaderUserInfo } from './components/HeaderUserInfo';
 export type { HeaderUserInfoProps } from './components/HeaderUserInfo';
+export { HeartrateStatus } from './components/HeartrateStatus';
+export type {
+  HeartrateStatusProps,
+  HeartrateStatusCondition,
+} from './components/HeartrateStatus';
+export { HeartStatus } from './components/HeartStatus';
+export type { HeartStatusProps, HeartStatusCondition } from './components/HeartStatus';
 export { Radio } from './components/Radio';
 export type { RadioProps, RadioSize } from './components/Radio';
 export { Checkbox } from './components/Checkbox';
@@ -116,6 +123,8 @@ export type {
 } from './components/WorkersInfoCard';
 export { Text } from './components/Text';
 export type { TextProps, TextVariant } from './components/Text';
+export { StatusChart } from './components/StatusChart';
+export type { StatusChartProps, StatusChartCondition } from './components/StatusChart';
 export { StatusTag } from './components/StatusTag';
 export type { StatusTagProps, StatusTagStatus } from './components/StatusTag';
 export { Surface, useSurfaceTone, isLightBgVariant } from './components/Surface';

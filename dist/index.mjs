@@ -3040,8 +3040,10 @@ var containerBackground2 = ({
   $active,
   $hovered,
   $disabled,
+  $variant,
   theme: theme2
 }) => {
+  if ($variant === "compact") return "transparent";
   if ($disabled) return theme2.surface.disable;
   if ($active) return theme2.surface.standard;
   if ($hovered) return theme2.surface.standard;
@@ -3058,21 +3060,34 @@ var accentColor = ({
   if ($hovered) return theme2.content.dark;
   return theme2.content.medium;
 };
+var dividerColor = ({
+  $active,
+  $hovered,
+  $disabled,
+  $variant,
+  theme: theme2
+}) => {
+  if ($variant === "compact") {
+    return $active ? theme2.content.primary : "transparent";
+  }
+  return accentColor({ $active, $hovered, $disabled, theme: theme2 });
+};
 var Container13 = styled36(Pressable)`
-  height: 64px;
+  height: ${({ $variant }) => $variant === "compact" ? "44px" : "64px"};
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  padding-left: ${({ theme: theme2 }) => theme2.padding.m}px;
+  justify-content: ${({ $variant }) => $variant === "compact" ? "flex-start" : "space-between"};
+  gap: ${({ $variant, theme: theme2 }) => $variant === "compact" ? `${theme2.gap.s}px` : "0px"};
+  padding-left: ${({ $variant, theme: theme2 }) => $variant === "compact" ? `${theme2.padding.s}px` : `${theme2.padding.m}px`};
   padding-right: ${({ theme: theme2 }) => theme2.padding.s}px;
   padding-vertical: ${({ theme: theme2 }) => theme2.padding.s}px;
-  border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
+  border-radius: ${({ $variant, theme: theme2 }) => $variant === "compact" ? "0px" : `${theme2.border.radius.m}px`};
   background-color: ${(props) => containerBackground2(props)};
 `;
 var HoverOverlay5 = styled36(View)`
   position: absolute;
   inset: 0;
-  border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
+  border-radius: ${({ $variant, theme: theme2 }) => $variant === "compact" ? "0px" : `${theme2.border.radius.m}px`};
   background-color: ${({ theme: theme2 }) => theme2.surface.hover};
   pointer-events: none;
 `;
@@ -3090,14 +3105,16 @@ var IconSlot6 = styled36(View)`
 var Label8 = styled36.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
-  font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
+  font-size: ${({ $variant, theme: theme2 }) => $variant === "compact" ? `${theme2.fontSize.s}px` : `${theme2.fontSize.m}px`};
   color: ${(props) => accentColor(props)};
+  text-transform: ${({ $variant }) => $variant === "compact" ? "uppercase" : "none"};
+  letter-spacing: ${({ $variant }) => $variant === "compact" ? "0.6px" : "normal"};
 `;
 var Divider4 = styled36(View)`
   width: 2px;
   height: 100%;
   border-radius: 2px;
-  background-color: ${(props) => accentColor(props)};
+  background-color: ${(props) => dividerColor(props)};
 `;
 var MenuItem = forwardRef(
   ({
@@ -3105,6 +3122,7 @@ var MenuItem = forwardRef(
     icon,
     active = false,
     disabled = false,
+    variant = "default",
     onPress,
     fullWidth = false,
     accessibilityLabel,
@@ -3114,13 +3132,18 @@ var MenuItem = forwardRef(
     const [hovered, setHovered] = useState(false);
     const accentColor2 = disabled ? theme2.content.disable : active ? theme2.content.primary : hovered ? theme2.content.dark : theme2.content.medium;
     const showHoverOverlay = hovered && !disabled && !active;
+    const isCompact = variant === "compact";
+    const stateProps = {
+      $active: active,
+      $hovered: hovered,
+      $disabled: disabled,
+      $variant: variant
+    };
     return /* @__PURE__ */ jsxs(
       Container13,
       {
         ref,
-        $active: active,
-        $hovered: hovered,
-        $disabled: disabled,
+        ...stateProps,
         disabled,
         onPress: disabled ? void 0 : onPress,
         onHoverIn: () => setHovered(true),
@@ -3131,12 +3154,13 @@ var MenuItem = forwardRef(
         testID,
         style: fullWidth ? { alignSelf: "stretch", width: "100%" } : { alignSelf: "flex-start", width: 224 },
         children: [
+          isCompact ? /* @__PURE__ */ jsx(Divider4, { ...stateProps }) : null,
           /* @__PURE__ */ jsxs(LabelGroup, { children: [
-            icon ? /* @__PURE__ */ jsx(IconSlot6, { children: /* @__PURE__ */ jsx(Icon, { name: icon, size: 22, color: accentColor2 }) }) : null,
-            /* @__PURE__ */ jsx(Label8, { $active: active, $hovered: hovered, $disabled: disabled, children: label })
+            icon ? /* @__PURE__ */ jsx(IconSlot6, { children: /* @__PURE__ */ jsx(Icon, { name: icon, size: isCompact ? 18 : 22, color: accentColor2 }) }) : null,
+            /* @__PURE__ */ jsx(Label8, { ...stateProps, children: label })
           ] }),
-          /* @__PURE__ */ jsx(Divider4, { $active: active, $hovered: hovered, $disabled: disabled }),
-          showHoverOverlay ? /* @__PURE__ */ jsx(HoverOverlay5, {}) : null
+          !isCompact ? /* @__PURE__ */ jsx(Divider4, { ...stateProps }) : null,
+          showHoverOverlay ? /* @__PURE__ */ jsx(HoverOverlay5, { $variant: variant }) : null
         ]
       }
     );
@@ -3154,6 +3178,7 @@ var SideMenu = forwardRef(
     value: controlledValue,
     defaultValue,
     onChange,
+    variant,
     fullWidth = false,
     accessibilityLabel,
     testID
@@ -3185,6 +3210,7 @@ var SideMenu = forwardRef(
             icon: item.icon,
             active: item.value === value,
             disabled: item.disabled,
+            variant: item.variant ?? variant,
             onPress: () => handlePress(item.value),
             fullWidth: true
           },

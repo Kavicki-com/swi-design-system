@@ -19,6 +19,7 @@ export const MenuItem = forwardRef<View, MenuItemProps>(
       icon,
       active = false,
       disabled = false,
+      variant = 'default',
       onPress,
       fullWidth = false,
       accessibilityLabel,
@@ -38,13 +39,19 @@ export const MenuItem = forwardRef<View, MenuItemProps>(
           : theme.content.medium;
 
     const showHoverOverlay = hovered && !disabled && !active;
+    const isCompact = variant === 'compact';
+
+    const stateProps = {
+      $active: active,
+      $hovered: hovered,
+      $disabled: disabled,
+      $variant: variant,
+    };
 
     return (
       <Container
         ref={ref}
-        $active={active}
-        $hovered={hovered}
-        $disabled={disabled}
+        {...stateProps}
         disabled={disabled}
         onPress={disabled ? undefined : onPress}
         onHoverIn={() => setHovered(true)}
@@ -59,18 +66,17 @@ export const MenuItem = forwardRef<View, MenuItemProps>(
             : { alignSelf: 'flex-start', width: 224 }
         }
       >
+        {isCompact ? <Divider {...stateProps} /> : null}
         <LabelGroup>
           {icon ? (
             <IconSlot>
-              <Icon name={icon} size={22} color={accentColor} />
+              <Icon name={icon} size={isCompact ? 18 : 22} color={accentColor} />
             </IconSlot>
           ) : null}
-          <Label $active={active} $hovered={hovered} $disabled={disabled}>
-            {label}
-          </Label>
+          <Label {...stateProps}>{label}</Label>
         </LabelGroup>
-        <Divider $active={active} $hovered={hovered} $disabled={disabled} />
-        {showHoverOverlay ? <HoverOverlay /> : null}
+        {!isCompact ? <Divider {...stateProps} /> : null}
+        {showHoverOverlay ? <HoverOverlay $variant={variant} /> : null}
       </Container>
     );
   },

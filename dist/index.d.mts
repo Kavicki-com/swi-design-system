@@ -1093,11 +1093,13 @@ interface MapControlProps {
 
 declare const MapControl: React$1.ForwardRefExoticComponent<MapControlProps & React$1.RefAttributes<View>>;
 
+type MenuItemVariant = 'default' | 'compact';
 interface MenuItemProps {
     label: string;
     icon?: IconName;
     active?: boolean;
     disabled?: boolean;
+    variant?: MenuItemVariant;
     onPress?: () => void;
     fullWidth?: boolean;
     accessibilityLabel?: string;
@@ -1111,12 +1113,14 @@ interface SideMenuItem {
     label: string;
     icon?: IconName;
     disabled?: boolean;
+    variant?: MenuItemVariant;
 }
 interface SideMenuProps {
     items: SideMenuItem[];
     value?: string;
     defaultValue?: string;
     onChange?: (value: string) => void;
+    variant?: MenuItemVariant;
     fullWidth?: boolean;
     accessibilityLabel?: string;
     testID?: string;

@@ -1007,7 +1007,7 @@ var Container2 = styled36(Pressable)`
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
   padding: ${({ theme: theme2 }) => theme2.padding.sm}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
-  border-width: ${({ $variant, theme: theme2 }) => $variant === "outline" ? theme2.border.size.m : 0}px;
+  border-width: ${({ theme: theme2 }) => theme2.border.size.m}px;
   border-color: ${(props) => containerBorderColor(props)};
   background-color: ${(props) => containerBackground(props)};
   ${({ $fullWidth }) => $fullWidth ? "align-self: stretch; width: 100%;" : ""};

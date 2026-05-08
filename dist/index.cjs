@@ -1003,11 +1003,10 @@ var containerBackground = ({
 };
 var containerBorderColor = ({
   $variant,
-  $disabled,
   theme: theme2
 }) => {
   if ($variant !== "outline") return "transparent";
-  return $disabled ? theme2.content.primaryLight : theme2.content.primary;
+  return theme2.content.primaryLight;
 };
 var Container2 = styled36__default.default(reactNative.Pressable)`
   flex-direction: row;
@@ -1043,7 +1042,7 @@ var labelColor = ({
   if ($variant === "contained") return theme2.content.light;
   if ($disabled) return theme2.content.primaryLight;
   if ($variant === "ghost" && $hovered) return theme2.content.dark;
-  return theme2.content.primary;
+  return theme2.content.primaryLight;
 };
 var Label2 = styled36__default.default.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
@@ -3065,7 +3064,7 @@ var accentColor = ({
   if ($disabled) return theme2.content.disable;
   if ($active) return theme2.content.primary;
   if ($hovered) return theme2.content.dark;
-  return theme2.content.lightGrey;
+  return theme2.content.medium;
 };
 var Container13 = styled36__default.default(reactNative.Pressable)`
   height: 64px;
@@ -3121,7 +3120,7 @@ var MenuItem = React34.forwardRef(
   }, ref) => {
     const theme2 = useTheme();
     const [hovered, setHovered] = React34.useState(false);
-    const accentColor2 = disabled ? theme2.content.disable : active ? theme2.content.primary : hovered ? theme2.content.dark : theme2.content.lightGrey;
+    const accentColor2 = disabled ? theme2.content.disable : active ? theme2.content.primary : hovered ? theme2.content.dark : theme2.content.medium;
     const showHoverOverlay = hovered && !disabled && !active;
     return /* @__PURE__ */ jsxRuntime.jsxs(
       Container13,

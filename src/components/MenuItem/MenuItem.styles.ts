@@ -28,7 +28,7 @@ const accentColor = ({
   if ($disabled) return theme.content.disable;
   if ($active) return theme.content.primary;
   if ($hovered) return theme.content.dark;
-  return theme.content.lightGrey;
+  return theme.content.medium;
 };
 
 export const Container = styled(Pressable)<StateProps>`

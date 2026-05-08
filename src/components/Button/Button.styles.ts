@@ -32,11 +32,10 @@ const containerBackground = ({
 
 const containerBorderColor = ({
   $variant,
-  $disabled,
   theme,
 }: StateProps & { theme: DefaultTheme }) => {
   if ($variant !== 'outline') return 'transparent';
-  return $disabled ? theme.content.primaryLight : theme.content.primary;
+  return theme.content.primaryLight;
 };
 
 export const Container = styled(Pressable)<StateProps>`
@@ -83,7 +82,7 @@ const labelColor = ({
   if ($variant === 'contained') return theme.content.light;
   if ($disabled) return theme.content.primaryLight;
   if ($variant === 'ghost' && $hovered) return theme.content.dark;
-  return theme.content.primary;
+  return theme.content.primaryLight;
 };
 
 export const Label = styled.Text<{

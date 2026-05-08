@@ -35,7 +35,7 @@ export const MenuItem = forwardRef<View, MenuItemProps>(
         ? theme.content.primary
         : hovered
           ? theme.content.dark
-          : theme.content.lightGrey;
+          : theme.content.medium;
 
     const showHoverOverlay = hovered && !disabled && !active;
 

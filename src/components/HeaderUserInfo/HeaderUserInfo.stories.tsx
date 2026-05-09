@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { Text, View } from 'react-native';
+import { useTheme } from '../../theme';
 import { HeaderUserInfo } from './HeaderUserInfo';
 
 const AVATAR = 'https://i.pravatar.cc/200?img=12';
@@ -49,6 +50,40 @@ export const LowProgress: Story = { args: { progress: 15 } };
 export const HighProgress: Story = { args: { progress: 90 } };
 export const HighBpm: Story = { args: { bpm: 142, pressure: '14/9', progress: 80 } };
 export const NoAvatar: Story = { args: { avatarUri: undefined } };
+
+export const FigmaIcons: Story = {
+  name: 'Figma icons (heart_filled + vitals_pulse)',
+  args: {
+    heartIconName: 'heart_filled',
+    pressureIconName: 'vitals_pulse',
+  },
+};
+
+export const NoBorder: Story = {
+  name: 'No avatar border',
+  args: { bordered: false },
+};
+
+export const BorderMatchesDarkBg: Story = {
+  name: 'Border matches dark bg (invisible ring)',
+  parameters: { controls: { disable: true }, actions: { disable: true } },
+  render: () => {
+    const theme = useTheme();
+    return (
+      <View style={{ padding: 24, backgroundColor: theme.background }}>
+        <HeaderUserInfo
+          bpm={99}
+          pressure="12/8"
+          progress={50}
+          avatarUri={AVATAR}
+          heartIconName="heart_filled"
+          pressureIconName="vitals_pulse"
+          borderColor={theme.background}
+        />
+      </View>
+    );
+  },
+};
 
 export const Overview: Story = {
   name: 'Overview — varied vitals',

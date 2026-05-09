@@ -24,6 +24,7 @@ const meta: Meta<typeof SideMenu> = {
   },
   argTypes: {
     fullWidth: { control: 'boolean' },
+    variant: { control: { type: 'inline-radio' }, options: ['default', 'compact'] },
     onChange: { action: 'change' },
   },
   decorators: [
@@ -72,6 +73,12 @@ export const WithDisabledItem: Story = {
 export const FullWidth: Story = {
   args: { fullWidth: true },
   decorators: [(StoryComp) => <View style={{ width: 320, padding: 16 }}><StoryComp /></View>],
+};
+
+export const Compact: Story = {
+  name: 'Compact (S1.7 dashboard sidebar)',
+  args: { variant: 'compact', defaultValue: 'home' },
+  decorators: [(StoryComp) => <View style={{ width: 200, padding: 16 }}><StoryComp /></View>],
 };
 
 export const Controlled: Story = {

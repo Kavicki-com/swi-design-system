@@ -25,6 +25,10 @@ export const HeaderUserInfo = forwardRef<View, HeaderUserInfoProps>(
       bpmUnit = 'bpm',
       accessibilityLabel,
       testID,
+      heartIconName = 'favorite',
+      pressureIconName = 'monitor_heart',
+      bordered = true,
+      borderColor,
     },
     ref,
   ) => {
@@ -39,14 +43,14 @@ export const HeaderUserInfo = forwardRef<View, HeaderUserInfoProps>(
         <VitalsCard>
           <StatsRow>
             <StatItem>
-              <Icon name="favorite" size={20} color={theme.content.dark} />
+              <Icon name={heartIconName} size={20} color={theme.content.dark} />
               <StatText>
                 <StatValueBold>{bpm} </StatValueBold>
                 {bpmUnit}
               </StatText>
             </StatItem>
             <StatItem>
-              <Icon name="monitor_heart" size={20} color={theme.content.dark} />
+              <Icon name={pressureIconName} size={20} color={theme.content.dark} />
               <StatValueBold>{pressure}</StatValueBold>
             </StatItem>
           </StatsRow>
@@ -54,7 +58,7 @@ export const HeaderUserInfo = forwardRef<View, HeaderUserInfoProps>(
             <ProgressBar value={progress} />
           </ProgressSlot>
         </VitalsCard>
-        <Avatar uri={avatarUri} size="l" bordered />
+        <Avatar uri={avatarUri} size="l" bordered={bordered} borderColor={borderColor} />
       </Row>
     );
   },

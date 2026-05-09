@@ -1,3 +1,5 @@
+import type { IconName } from '../../icons';
+
 export interface HeaderUserInfoProps {
   bpm: number;
   pressure: string;
@@ -6,4 +8,8 @@ export interface HeaderUserInfoProps {
   bpmUnit?: string;
   accessibilityLabel?: string;
   testID?: string;
+  heartIconName?: IconName;
+  pressureIconName?: IconName;
+  bordered?: boolean;
+  borderColor?: string;
 }

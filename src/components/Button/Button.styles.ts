@@ -32,11 +32,10 @@ const containerBackground = ({
 
 const containerBorderColor = ({
   $variant,
-  $disabled,
   theme,
 }: StateProps & { theme: DefaultTheme }) => {
   if ($variant !== 'outline') return 'transparent';
-  return $disabled ? theme.content.primaryLight : theme.content.primary;
+  return theme.content.primaryLight;
 };
 
 export const Container = styled(Pressable)<StateProps>`
@@ -46,8 +45,7 @@ export const Container = styled(Pressable)<StateProps>`
   gap: ${({ theme }) => theme.gap.xs}px;
   padding: ${({ theme }) => theme.padding.sm}px;
   border-radius: ${({ theme }) => theme.border.radius.m}px;
-  border-width: ${({ $variant, theme }) =>
-    $variant === 'outline' ? theme.border.size.m : 0}px;
+  border-width: ${({ theme }) => theme.border.size.m}px;
   border-color: ${(props) => containerBorderColor(props)};
   background-color: ${(props) => containerBackground(props)};
   ${({ $fullWidth }) =>
@@ -83,7 +81,7 @@ const labelColor = ({
   if ($variant === 'contained') return theme.content.light;
   if ($disabled) return theme.content.primaryLight;
   if ($variant === 'ghost' && $hovered) return theme.content.dark;
-  return theme.content.primary;
+  return theme.content.primaryLight;
 };
 
 export const Label = styled.Text<{

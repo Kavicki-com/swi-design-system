@@ -38,4 +38,10 @@ export interface ButtonProps
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
   fullWidth?: boolean;
+  /**
+   * Render the label with an underline. Primarily intended for `variant="ghost"`
+   * link-style buttons (e.g. "Política de privacidade & Termos de uso" on the
+   * Mobile sign-up screen, Figma `213:13784`). Default `false`.
+   */
+  underline?: boolean;
 }

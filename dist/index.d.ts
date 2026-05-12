@@ -863,6 +863,12 @@ interface ButtonProps extends Pick<PressableProps, 'onPress' | 'onLongPress' | '
     iconLeft?: ReactNode;
     iconRight?: ReactNode;
     fullWidth?: boolean;
+    /**
+     * Render the label with an underline. Primarily intended for `variant="ghost"`
+     * link-style buttons (e.g. "Política de privacidade & Termos de uso" on the
+     * Mobile sign-up screen, Figma `213:13784`). Default `false`.
+     */
+    underline?: boolean;
 }
 
 declare const Button: React$1.ForwardRefExoticComponent<ButtonProps & React$1.RefAttributes<View>>;
@@ -1059,9 +1065,18 @@ interface CheckboxProps extends Pick<PressableProps, 'disabled' | 'accessibility
 
 declare const Checkbox: React$1.ForwardRefExoticComponent<CheckboxProps & React$1.RefAttributes<View>>;
 
+/**
+ * Color variant for the description slot below the input.
+ * - `default`: neutral content.dark (default behavior — backwards-compatible)
+ * - `success`: content.success — used for confirmation messages ("As senhas são iguais ✓")
+ * - `error`: content.error — used for validation errors
+ * - `warning`: content.warning — used for non-blocking warnings
+ */
+type InputDescriptionVariant = 'default' | 'success' | 'error' | 'warning';
 interface InputProps extends Omit<TextInputProps, 'editable' | 'style' | 'placeholderTextColor'> {
     label?: string;
     description?: string;
+    descriptionVariant?: InputDescriptionVariant;
     iconRight?: ReactNode;
     disabled?: boolean;
 }

@@ -1141,6 +1141,7 @@ var Label2 = styled36__default.default.Text`
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: 14px;
   color: ${(props) => labelColor(props)};
+  ${({ $underline }) => $underline ? "text-decoration-line: underline;" : ""}
 `;
 var IconSlot3 = styled36__default.default(reactNative.View)`
   width: 24px;
@@ -1158,6 +1159,7 @@ var Button = React34.forwardRef(
     iconRight,
     disabled: disabledProp = false,
     fullWidth = false,
+    underline = false,
     onPress,
     onLongPress,
     accessibilityLabel,
@@ -1195,7 +1197,7 @@ var Button = React34.forwardRef(
         testID,
         children: [
           iconLeft ? /* @__PURE__ */ jsxRuntime.jsx(IconSlot3, { children: iconLeft }) : null,
-          /* @__PURE__ */ jsxRuntime.jsx(Label2, { $variant: variant, $hovered: hovered, $disabled: disabled, children: label }),
+          /* @__PURE__ */ jsxRuntime.jsx(Label2, { $variant: variant, $hovered: hovered, $disabled: disabled, $underline: underline, children: label }),
           iconRight ? /* @__PURE__ */ jsxRuntime.jsx(IconSlot3, { children: iconRight }) : null,
           showHoverOverlay ? /* @__PURE__ */ jsxRuntime.jsx(HoverOverlay, {}) : null,
           showPressedOverlay ? /* @__PURE__ */ jsxRuntime.jsx(PressedOverlay, { style: elevation.negative }) : null
@@ -2450,6 +2452,17 @@ var Checkbox = React34.forwardRef(
   }
 );
 Checkbox.displayName = "Checkbox";
+var descriptionColor = ({
+  $disabled,
+  $variant,
+  theme: theme2
+}) => {
+  if ($disabled) return theme2.content.disable;
+  if ($variant === "success") return theme2.content.success;
+  if ($variant === "error") return theme2.content.error;
+  if ($variant === "warning") return theme2.content.warning;
+  return theme2.content.dark;
+};
 var rowBackground2 = ({ $focused, $hovered, $disabled, theme: theme2 }) => {
   if ($disabled) return theme2.surface.disable;
   if ($focused || $hovered) return theme2.surface.medium;
@@ -2518,12 +2531,13 @@ var Description = styled36__default.default.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: 12px;
-  color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
+  color: ${(props) => descriptionColor(props)};
 `;
 var Input = React34.forwardRef(
   ({
     label,
     description,
+    descriptionVariant = "default",
     iconRight,
     disabled = false,
     onFocus,
@@ -2575,7 +2589,7 @@ var Input = React34.forwardRef(
           ]
         }
       ),
-      description ? /* @__PURE__ */ jsxRuntime.jsx(Description, { $disabled: disabled, children: description }) : null
+      description ? /* @__PURE__ */ jsxRuntime.jsx(Description, { $disabled: disabled, $variant: descriptionVariant, children: description }) : null
     ] });
   }
 );

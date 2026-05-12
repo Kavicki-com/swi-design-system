@@ -100,11 +100,13 @@ export const Label = styled.Text<{
   $variant: ButtonVariant;
   $hovered: boolean;
   $disabled: boolean;
+  $underline: boolean;
 }>`
   font-family: ${({ theme }) => theme.fontFamily.title};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   font-size: 14px;
   color: ${(props) => labelColor(props)};
+  ${({ $underline }) => ($underline ? 'text-decoration-line: underline;' : '')}
 `;
 
 export const IconSlot = styled(View)`

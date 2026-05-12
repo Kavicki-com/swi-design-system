@@ -17,6 +17,7 @@ export const Input = forwardRef<RNTextInput, InputProps>(
     {
       label,
       description,
+      descriptionVariant = 'default',
       iconRight,
       disabled = false,
       onFocus,
@@ -67,7 +68,11 @@ export const Input = forwardRef<RNTextInput, InputProps>(
           {iconRight ? <IconSlot>{iconRight}</IconSlot> : null}
           {hovered && !focused && !disabled ? <HoverOverlay /> : null}
         </Row>
-        {description ? <Description $disabled={disabled}>{description}</Description> : null}
+        {description ? (
+          <Description $disabled={disabled} $variant={descriptionVariant}>
+            {description}
+          </Description>
+        ) : null}
       </Container>
     );
   },

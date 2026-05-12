@@ -14,6 +14,7 @@ export const Button = forwardRef<View, ButtonProps>(
       iconRight,
       disabled: disabledProp = false,
       fullWidth = false,
+      underline = false,
       onPress,
       onLongPress,
       accessibilityLabel,
@@ -54,7 +55,7 @@ export const Button = forwardRef<View, ButtonProps>(
         testID={testID}
       >
         {iconLeft ? <IconSlot>{iconLeft}</IconSlot> : null}
-        <Label $variant={variant} $hovered={hovered} $disabled={disabled}>
+        <Label $variant={variant} $hovered={hovered} $disabled={disabled} $underline={underline}>
           {label}
         </Label>
         {iconRight ? <IconSlot>{iconRight}</IconSlot> : null}

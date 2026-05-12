@@ -24,6 +24,7 @@ export const MenuItem = forwardRef<View, MenuItemProps>(
       variant = 'default',
       badge,
       iconSize,
+      badgePosition = 'overlay',
       onPress,
       fullWidth = false,
       accessibilityLabel,
@@ -83,7 +84,7 @@ export const MenuItem = forwardRef<View, MenuItemProps>(
         {!isCompact && !isMinimal ? <Divider {...stateProps} /> : null}
         {showHoverOverlay ? <HoverOverlay $variant={variant} /> : null}
         {badge !== undefined ? (
-          <BadgeOverlay>
+          <BadgeOverlay $position={badgePosition}>
             <BadgeText>{String(badge)}</BadgeText>
           </BadgeOverlay>
         ) : null}

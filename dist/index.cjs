@@ -3292,7 +3292,7 @@ var Divider4 = styled37__default.default(reactNative.View)`
 var BadgeOverlay = styled37__default.default(reactNative.View)`
   position: absolute;
   top: 0;
-  left: 0;
+  left: ${({ $position }) => $position === "outside-left" ? "-14px" : "0"};
   width: 28px;
   height: 28px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -3317,6 +3317,7 @@ var MenuItem = React35.forwardRef(
     variant = "default",
     badge,
     iconSize,
+    badgePosition = "overlay",
     onPress,
     fullWidth = false,
     accessibilityLabel,
@@ -3356,7 +3357,7 @@ var MenuItem = React35.forwardRef(
           ] }),
           !isCompact && !isMinimal ? /* @__PURE__ */ jsxRuntime.jsx(Divider4, { ...stateProps }) : null,
           showHoverOverlay ? /* @__PURE__ */ jsxRuntime.jsx(HoverOverlay5, { $variant: variant }) : null,
-          badge !== void 0 ? /* @__PURE__ */ jsxRuntime.jsx(BadgeOverlay, { children: /* @__PURE__ */ jsxRuntime.jsx(BadgeText2, { children: String(badge) }) }) : null
+          badge !== void 0 ? /* @__PURE__ */ jsxRuntime.jsx(BadgeOverlay, { $position: badgePosition, children: /* @__PURE__ */ jsxRuntime.jsx(BadgeText2, { children: String(badge) }) }) : null
         ]
       }
     );
@@ -3377,6 +3378,7 @@ var SideMenu = React35.forwardRef(
     variant,
     fullWidth = false,
     iconSize,
+    badgePosition,
     accessibilityLabel,
     testID
   }, ref) => {
@@ -3410,6 +3412,7 @@ var SideMenu = React35.forwardRef(
             variant: item.variant ?? variant,
             badge: item.badge,
             iconSize,
+            badgePosition,
             onPress: () => handlePress(item.value),
             fullWidth: true
           },

@@ -23,6 +23,10 @@ export interface SideMenuProps {
    *  to each MenuItem via its `iconSize` prop. Defaults to MenuItem default
    *  (18 for compact, 22 otherwise). */
   iconSize?: number;
+  /** Where badges sit relative to each item bbox. Forwarded to MenuItem.
+   *  Defaults to `overlay` (inside top-left). Use `outside-left` for map
+   *  side menus where Figma pops the +9 chip out to the left of the column. */
+  badgePosition?: 'overlay' | 'outside-left';
   accessibilityLabel?: string;
   testID?: string;
 }

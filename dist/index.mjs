@@ -3284,7 +3284,7 @@ var Divider4 = styled37(View)`
 var BadgeOverlay = styled37(View)`
   position: absolute;
   top: 0;
-  left: 0;
+  left: ${({ $position }) => $position === "outside-left" ? "-14px" : "0"};
   width: 28px;
   height: 28px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -3309,6 +3309,7 @@ var MenuItem = forwardRef(
     variant = "default",
     badge,
     iconSize,
+    badgePosition = "overlay",
     onPress,
     fullWidth = false,
     accessibilityLabel,
@@ -3348,7 +3349,7 @@ var MenuItem = forwardRef(
           ] }),
           !isCompact && !isMinimal ? /* @__PURE__ */ jsx(Divider4, { ...stateProps }) : null,
           showHoverOverlay ? /* @__PURE__ */ jsx(HoverOverlay5, { $variant: variant }) : null,
-          badge !== void 0 ? /* @__PURE__ */ jsx(BadgeOverlay, { children: /* @__PURE__ */ jsx(BadgeText2, { children: String(badge) }) }) : null
+          badge !== void 0 ? /* @__PURE__ */ jsx(BadgeOverlay, { $position: badgePosition, children: /* @__PURE__ */ jsx(BadgeText2, { children: String(badge) }) }) : null
         ]
       }
     );
@@ -3369,6 +3370,7 @@ var SideMenu = forwardRef(
     variant,
     fullWidth = false,
     iconSize,
+    badgePosition,
     accessibilityLabel,
     testID
   }, ref) => {
@@ -3402,6 +3404,7 @@ var SideMenu = forwardRef(
             variant: item.variant ?? variant,
             badge: item.badge,
             iconSize,
+            badgePosition,
             onPress: () => handlePress(item.value),
             fullWidth: true
           },

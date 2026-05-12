@@ -14,6 +14,7 @@ export const SideMenu = forwardRef<View, SideMenuProps>(
       variant,
       fullWidth = false,
       iconSize,
+      badgePosition,
       accessibilityLabel,
       testID,
     },
@@ -55,6 +56,7 @@ export const SideMenu = forwardRef<View, SideMenuProps>(
             variant={item.variant ?? variant}
             badge={item.badge}
             iconSize={iconSize}
+            badgePosition={badgePosition}
             onPress={() => handlePress(item.value)}
             fullWidth
           />

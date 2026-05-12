@@ -17,6 +17,13 @@ export interface MenuItemProps {
    *  a smaller glyph inside the standard MenuItem chrome (e.g. compact map
    *  side-menus where the design calls for 20px icons). */
   iconSize?: number;
+  /** Where the badge sits relative to the item bbox.
+   *  - `overlay` (default): badge anchored to top-left INSIDE the item (the
+   *    classic notification chip overlapping the icon's top-left corner).
+   *  - `outside-left`: badge half-overlaps the LEFT EDGE of the item (Figma
+   *    165:21150 — map side menus where the +9 chip pops out beyond the
+   *    icon column). Half-overlap = left:-14 with badge width 28. */
+  badgePosition?: 'overlay' | 'outside-left';
   onPress?: () => void;
   fullWidth?: boolean;
   accessibilityLabel?: string;

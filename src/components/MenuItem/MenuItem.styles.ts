@@ -129,13 +129,16 @@ export const Divider = styled(View)<StateProps>`
   background-color: ${(props) => dividerColor(props)};
 `;
 
-/* Badge — red pill (28×28) overlaid on the top-left of the menu item, used for
-   unread counts (alerts, reports, messages). Position: top:0 left:0 of the item;
-   z-index above icon so the count is always readable. */
-export const BadgeOverlay = styled(View)`
+/* Badge — red pill (28×28) for unread counts (alerts, reports, messages).
+   - `overlay` (default): top:0 left:0 INSIDE the item — chip overlaps the
+     icon's top-left corner.
+   - `outside-left`: top:0 left:-14 — chip half-overlaps the item's left
+     edge, popping out to the left of the icon column (Figma 165:21150
+     map-side-menu pattern). */
+export const BadgeOverlay = styled(View)<{ $position?: 'overlay' | 'outside-left' }>`
   position: absolute;
   top: 0;
-  left: 0;
+  left: ${({ $position }) => ($position === 'outside-left' ? '-14px' : '0')};
   width: 28px;
   height: 28px;
   border-radius: ${({ theme }) => theme.border.radius.pill}px;

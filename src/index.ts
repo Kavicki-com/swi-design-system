@@ -131,6 +131,8 @@ export { StatusTag } from './components/StatusTag';
 export type { StatusTagProps, StatusTagStatus } from './components/StatusTag';
 export { Surface, useSurfaceTone, isLightBgVariant } from './components/Surface';
 export type { SurfaceProps, SurfaceVariant, SurfacePadding, SurfaceRadius } from './components/Surface';
+export { SuccessBadge } from './components/SuccessBadge';
+export type { SuccessBadgeProps } from './components/SuccessBadge';
 export { Tabs } from './components/Tabs';
 export type { TabsProps, TabItem } from './components/Tabs';
 export { Toast } from './components/Toast';

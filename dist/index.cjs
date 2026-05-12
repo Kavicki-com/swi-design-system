@@ -582,6 +582,10 @@ var iconPaths = {
     viewBox: "0 0 39 31",
     d: "M13.6522 0.00581244C14.5173 0.0719033 15.2411 0.688579 15.4442 1.53216L20.1492 21.0779L22.574 12.4588L22.6258 12.2996C22.9154 11.5234 23.6597 10.9998 24.4998 10.9998H36.4996C37.6042 10.9998 38.4996 11.8953 38.4996 12.9998C38.4996 14.1044 37.6042 14.9998 36.4996 14.9998H26.0154L21.9256 29.5407C21.6792 30.4168 20.8717 31.0169 19.9617 30.9996C19.0518 30.9823 18.2685 30.3522 18.0555 29.4674L13.0048 8.4901L10.8515 13.7567C10.544 14.5083 9.81202 14.9998 8.99991 14.9998H1.99998C0.895422 14.9998 0 14.1044 0 12.9998C0 11.8953 0.895422 10.9998 1.99998 10.9998H7.65715L11.6483 1.2431C11.9769 0.43989 12.7869 -0.0601108 13.6522 0.00581244Z"
   },
+  check: {
+    viewBox: MATERIAL_VIEWBOX,
+    d: "M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"
+  },
   visibility: {
     viewBox: MATERIAL_VIEWBOX,
     d: "M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T48-500q46-137 166-218.5T480-800q146 0 266 81.5T912-500q-46 137-166 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z"
@@ -5060,6 +5064,58 @@ var StatusChart = ({
   );
 };
 StatusChart.displayName = "StatusChart";
+var SuccessBadge = ({
+  size = 96,
+  iconName = "check",
+  iconSize,
+  colors,
+  iconColor,
+  testID,
+  accessibilityLabel
+}) => {
+  const theme2 = useTheme();
+  const rawId = React35.useId();
+  const gradientId = `success-badge-grad-${rawId.replace(/:/g, "-")}`;
+  const resolvedIconSize = iconSize ?? Math.round(size * 0.583);
+  const [c1, c2] = colors ?? [theme2.surface.primary, theme2.surface.secondary];
+  const ic = iconColor ?? theme2.content.dark;
+  return /* @__PURE__ */ jsxRuntime.jsxs(
+    reactNative.View,
+    {
+      style: [
+        {
+          width: size,
+          height: size,
+          alignItems: "center",
+          justifyContent: "center"
+        },
+        elevation.md
+      ],
+      testID,
+      accessibilityLabel,
+      accessibilityRole: accessibilityLabel ? "image" : void 0,
+      children: [
+        /* @__PURE__ */ jsxRuntime.jsxs(
+          Svg__default.default,
+          {
+            width: size,
+            height: size,
+            style: { position: "absolute", top: 0, left: 0 },
+            children: [
+              /* @__PURE__ */ jsxRuntime.jsx(Svg.Defs, { children: /* @__PURE__ */ jsxRuntime.jsxs(Svg.LinearGradient, { id: gradientId, x1: "0", y1: "0", x2: "0", y2: "1", children: [
+                /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: c1 }),
+                /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: c2 })
+              ] }) }),
+              /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx: size / 2, cy: size / 2, r: size / 2, fill: `url(#${gradientId})` })
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: iconName, size: resolvedIconSize, color: ic })
+      ]
+    }
+  );
+};
+SuccessBadge.displayName = "SuccessBadge";
 var Container18 = styled37__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
@@ -5331,6 +5387,7 @@ exports.SideMenu = SideMenu;
 exports.Silhouette = Silhouette;
 exports.StatusChart = StatusChart;
 exports.StatusTag = StatusTag;
+exports.SuccessBadge = SuccessBadge;
 exports.Surface = Surface;
 exports.SwiThemeProvider = SwiThemeProvider;
 exports.Tabs = Tabs;

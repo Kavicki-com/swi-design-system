@@ -5,6 +5,9 @@ export interface SideMenuItem {
   value: string;
   label: string;
   icon?: IconName;
+  /** Optional badge (count/status) overlaid on the top-left of the item — e.g.
+   *  unread message counts. Forwarded as-is to MenuItem.badge. */
+  badge?: string | number;
   disabled?: boolean;
   variant?: MenuItemVariant;
 }

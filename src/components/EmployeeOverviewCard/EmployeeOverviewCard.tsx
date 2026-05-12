@@ -53,7 +53,7 @@ export const EmployeeOverviewCard = forwardRef<View, EmployeeOverviewCardProps>(
       >
         <LeftCluster>
           <UserInfo>
-            <Avatar uri={employee.avatarUri} customSize={56} />
+            <Avatar uri={employee.avatarUri} customSize={56} bordered />
             <TextStack>
               <Name>{employee.name}</Name>
               <Sector>{employee.sector}</Sector>
@@ -65,11 +65,11 @@ export const EmployeeOverviewCard = forwardRef<View, EmployeeOverviewCardProps>(
           <Divider />
           <HealthOverview>
             <Stat>
-              <Icon name="favorite" size={24} color={theme.surface.error} />
+              <Icon name="favorite_filled" size={24} color={theme.surface.error} />
               <StatText>{`${bpm} ${bpmUnit}`}</StatText>
             </Stat>
             <Stat>
-              <Icon name="monitor_heart" size={24} color={theme.surface.success} />
+              <Icon name="pressure_wheel_filled" size={24} color={theme.surface.primary} />
               <StatText>{pressure}</StatText>
             </Stat>
           </HealthOverview>
@@ -79,7 +79,7 @@ export const EmployeeOverviewCard = forwardRef<View, EmployeeOverviewCardProps>(
           accessibilityRole="button"
           accessibilityLabel="Localização"
         >
-          <Icon name="location_on" size={24} color={theme.content.dark} />
+          <Icon name="location_on_filled" size={24} color={theme.content.dark} />
         </LocationButton>
       </Card>
     );

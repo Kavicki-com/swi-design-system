@@ -1,9 +1,10 @@
 import { Pressable, View } from 'react-native';
 import styled, { type DefaultTheme } from 'styled-components/native';
-import type { ButtonVariant } from './Button.types';
+import type { ButtonSize, ButtonVariant } from './Button.types';
 
 export interface StateProps {
   $variant: ButtonVariant;
+  $size: ButtonSize;
   $hovered: boolean;
   $pressed: boolean;
   $disabled: boolean;
@@ -21,6 +22,7 @@ const containerBackground = ({
     return $variant === 'contained' ? theme.surface.primaryLight : 'transparent';
   }
   if ($variant === 'contained') return theme.surface.primary;
+  if ($variant === 'surface') return theme.surface.standard;
   if ($variant === 'outline') {
     return $hovered || $pressed ? theme.surface.primaryLight : 'transparent';
   }
@@ -43,11 +45,19 @@ export const Container = styled(Pressable)<StateProps>`
   align-items: center;
   justify-content: center;
   gap: ${({ theme }) => theme.gap.xs}px;
-  padding: ${({ theme }) => theme.padding.sm}px;
+  /* small: 8px vertical / 12px horizontal — pairs visually with Tabs (~32px tall).
+     default: 12px all sides — full-size CTA. */
+  padding-vertical: ${({ $size, theme }) =>
+    $size === 'small' ? theme.padding.s : theme.padding.sm}px;
+  padding-horizontal: ${({ theme }) => theme.padding.sm}px;
   border-radius: ${({ theme }) => theme.border.radius.m}px;
   border-width: ${({ theme }) => theme.border.size.m}px;
   border-color: ${(props) => containerBorderColor(props)};
   background-color: ${(props) => containerBackground(props)};
+  /* Surface variant carries elevation md per Figma 32:2502 — lifts the button
+     visually off unpredictable backgrounds (satellite maps, photos, etc.). */
+  box-shadow: ${({ $variant }) =>
+    $variant === 'surface' ? '0px 4px 8px rgba(29, 29, 29, 0.16)' : 'none'};
   ${({ $fullWidth }) =>
     $fullWidth ? 'align-self: stretch; width: 100%;' : ''};
 `;
@@ -79,6 +89,8 @@ const labelColor = ({
   theme: DefaultTheme;
 }) => {
   if ($variant === 'contained') return theme.content.light;
+  // Surface: dark bg → use light content for readable text/icons.
+  if ($variant === 'surface') return theme.content.dark;
   if ($disabled) return theme.content.primaryLight;
   if ($variant === 'ghost' && $hovered) return theme.content.dark;
   return theme.content.primaryLight;

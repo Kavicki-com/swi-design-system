@@ -18,6 +18,9 @@ const containerBackground = ({
 }: StateProps & { theme: DefaultTheme }) => {
   // Compact: transparent at all states (active is signalled by left bar + text color only).
   if ($variant === 'compact') return 'transparent';
+  // Minimal: 60×60 square card on theme.background, no per-state bg swap — active is
+  // signalled by icon color only (Figma node 165:21149 map-side-menu).
+  if ($variant === 'minimal') return theme.background;
   if ($disabled) return theme.surface.disable;
   if ($active) return theme.surface.standard;
   if ($hovered) return theme.surface.standard;
@@ -28,9 +31,16 @@ const accentColor = ({
   $active,
   $hovered,
   $disabled,
+  $variant,
   theme,
 }: StateProps & { theme: DefaultTheme }) => {
   if ($disabled) return theme.content.disable;
+  // Minimal: active item shows the icon in `content.dark` (light/whitish), inactive
+  // stays `content.medium` (gray). No green primary — Figma 165:21149 uses contrast,
+  // not color, to denote the active map-screen.
+  if ($variant === 'minimal') {
+    return $active ? theme.content.dark : theme.content.medium;
+  }
   if ($active) return theme.content.primary;
   if ($hovered) return theme.content.dark;
   return theme.content.medium;
@@ -50,15 +60,29 @@ const dividerColor = ({
   return accentColor({ $active, $hovered, $disabled, $variant, theme });
 };
 
+/* Container dimensions per variant:
+   default: 64px tall, full-width (224px non-fullWidth), left-aligned content.
+   compact: 44px tall, narrow, left-aligned with divider bar at left edge.
+   minimal: 60px tall, square (fullWidth in narrow parent), centered icon-only,
+            padding 8 all sides, border-radius 8 — Figma 165:21149 map-side-menu. */
 export const Container = styled(Pressable)<StateProps>`
-  height: ${({ $variant }) => ($variant === 'compact' ? '44px' : '64px')};
+  height: ${({ $variant }) =>
+    $variant === 'compact' ? '44px' : $variant === 'minimal' ? '60px' : '64px'};
   flex-direction: row;
   align-items: center;
   justify-content: ${({ $variant }) =>
-    $variant === 'compact' ? 'flex-start' : 'space-between'};
+    $variant === 'compact'
+      ? 'flex-start'
+      : $variant === 'minimal'
+        ? 'center'
+        : 'space-between'};
   gap: ${({ $variant, theme }) => ($variant === 'compact' ? `${theme.gap.s}px` : '0px')};
   padding-left: ${({ $variant, theme }) =>
-    $variant === 'compact' ? `${theme.padding.s}px` : `${theme.padding.m}px`};
+    $variant === 'compact'
+      ? `${theme.padding.s}px`
+      : $variant === 'minimal'
+        ? `${theme.padding.s}px`
+        : `${theme.padding.m}px`};
   padding-right: ${({ theme }) => theme.padding.s}px;
   padding-vertical: ${({ theme }) => theme.padding.s}px;
   border-radius: ${({ $variant, theme }) =>
@@ -103,4 +127,28 @@ export const Divider = styled(View)<StateProps>`
   height: 100%;
   border-radius: 2px;
   background-color: ${(props) => dividerColor(props)};
+`;
+
+/* Badge — red pill (28×28) overlaid on the top-left of the menu item, used for
+   unread counts (alerts, reports, messages). Position: top:0 left:0 of the item;
+   z-index above icon so the count is always readable. */
+export const BadgeOverlay = styled(View)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: ${({ theme }) => theme.border.radius.pill}px;
+  background-color: ${({ theme }) => theme.surface.error};
+  align-items: center;
+  justify-content: center;
+  padding: ${({ theme }) => theme.padding.s}px;
+  z-index: 2;
+`;
+
+export const BadgeText = styled.Text`
+  font-family: ${({ theme }) => theme.fontFamily.body};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  font-size: 12px;
+  color: ${({ theme }) => theme.content.dark};
 `;

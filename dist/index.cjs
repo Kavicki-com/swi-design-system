@@ -372,6 +372,10 @@ var iconPaths = {
     viewBox: MATERIAL_VIEWBOX,
     d: "M440-440ZM120-120q-33 0-56.5-23.5T40-200v-480q0-33 23.5-56.5T120-760h126l74-80h240v80H355l-73 80H120v480h640v-360h80v360q0 33-23.5 56.5T760-120H120Zm640-560v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80ZM440-260q75 0 127.5-52.5T620-440q0-75-52.5-127.5T440-620q-75 0-127.5 52.5T260-440q0 75 52.5 127.5T440-260Zm0-80q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29Z"
   },
+  assignment: {
+    viewBox: MATERIAL_VIEWBOX,
+    d: "M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h168q13-36 43.5-58t68.5-22q38 0 68.5 22t43.5 58h168q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560h-80v120H280v-120h-80v560Zm280-560q17 0 28.5-11.5T520-800q0-17-11.5-28.5T480-840q-17 0-28.5 11.5T440-800q0 17 11.5 28.5T480-760ZM360-280h240v-80H360v80Zm0-160h240v-80H360v80Zm0-160h240v-80H360v80Zm120 320Z"
+  },
   build: {
     viewBox: MATERIAL_VIEWBOX,
     d: "M686-132 444-376q-20 8-40.5 12t-43.5 4q-100 0-170-70t-70-170q0-36 10-68.5t28-61.5l146 146 72-72-146-146q29-18 61.5-28t68.5-10q100 0 170 70t70 170q0 23-4 43.5T584-516l244 242q12 12 12 29t-12 29l-84 84q-12 12-29 12t-29-12Zm29-85 27-27-256-256q18-20 26-46.5t8-53.5q0-60-38.5-104.5T386-758l74 74q12 12 12 28t-12 28L332-500q-12 12-28 12t-28-12l-74-74q9 57 53.5 95.5T360-440q26 0 52-8t47-25l256 256ZM472-488Z"
@@ -541,6 +545,42 @@ var iconPaths = {
   settings_filled: {
     viewBox: "0 0 22 22",
     d: "M9.92292 20.1666C9.51042 20.1666 9.15536 20.0291 8.85775 19.7541C8.56014 19.4791 8.38047 19.143 8.31875 18.7458L8.1125 17.2333C7.91389 17.1569 7.72689 17.0653 7.5515 16.9583C7.37611 16.8514 7.20408 16.7368 7.03542 16.6146L5.61458 17.2104C5.23264 17.3785 4.85069 17.3937 4.46875 17.2562C4.0868 17.1187 3.78889 16.8743 3.575 16.5229L2.49792 14.6437C2.28403 14.2923 2.22292 13.918 2.31458 13.5208C2.40625 13.1236 2.6125 12.7951 2.93333 12.5354L4.14792 11.6187C4.13264 11.5118 4.125 11.4085 4.125 11.3089V10.6901C4.125 10.5911 4.13264 10.4882 4.14792 10.3812L2.93333 9.46456C2.6125 9.20484 2.40625 8.87637 2.31458 8.47915C2.22292 8.08192 2.28403 7.70762 2.49792 7.35623L3.575 5.47706C3.78889 5.12567 4.0868 4.88123 4.46875 4.74373C4.85069 4.60623 5.23264 4.62151 5.61458 4.78956L7.03542 5.3854C7.20347 5.26317 7.37917 5.14859 7.5625 5.04165C7.74583 4.9347 7.92917 4.84304 8.1125 4.76665L8.31875 3.25415C8.37986 2.85692 8.55953 2.52081 8.85775 2.24581C9.15597 1.97081 9.51103 1.83331 9.92292 1.83331H12.0771C12.4896 1.83331 12.8449 1.97081 13.1432 2.24581C13.4414 2.52081 13.6207 2.85692 13.6812 3.25415L13.8875 4.76665C14.0861 4.84304 14.2734 4.9347 14.4494 5.04165C14.6254 5.14859 14.7971 5.26317 14.9646 5.3854L16.3854 4.78956C16.7674 4.62151 17.1493 4.60623 17.5312 4.74373C17.9132 4.88123 18.2111 5.12567 18.425 5.47706L19.5021 7.35623C19.716 7.70762 19.7771 8.08192 19.6854 8.47915C19.5938 8.87637 19.3875 9.20484 19.0667 9.46456L17.8521 10.3812C17.8674 10.4882 17.875 10.5915 17.875 10.6911V11.3089C17.875 11.4085 17.8597 11.5118 17.8292 11.6187L19.0437 12.5354C19.3646 12.7951 19.5708 13.1236 19.6625 13.5208C19.7542 13.918 19.6931 14.2923 19.4792 14.6437L18.3792 16.5229C18.1653 16.8743 17.8674 17.1187 17.4854 17.2562C17.1035 17.3937 16.7215 17.3785 16.3396 17.2104L14.9646 16.6146C14.7965 16.7368 14.6208 16.8514 14.4375 16.9583C14.2542 17.0653 14.0708 17.1569 13.8875 17.2333L13.6812 18.7458C13.6201 19.143 13.4408 19.4791 13.1432 19.7541C12.8456 20.0291 12.4902 20.1666 12.0771 20.1666H9.92292ZM10.0833 18.3333H11.8937L12.2146 15.9041C12.6882 15.7819 13.1276 15.6026 13.5327 15.3661C13.9379 15.1296 14.3082 14.843 14.6437 14.5062L16.9125 15.4458L17.8062 13.8875L15.8354 12.3979C15.9118 12.184 15.9653 11.9588 15.9958 11.7223C16.0264 11.4858 16.0417 11.245 16.0417 11C16.0417 10.7549 16.0264 10.5145 15.9958 10.2786C15.9653 10.0427 15.9118 9.81717 15.8354 9.60206L17.8062 8.11248L16.9125 6.55415L14.6437 7.51665C14.3076 7.16526 13.9373 6.87131 13.5327 6.63481C13.1282 6.39831 12.6888 6.21865 12.2146 6.09581L11.9167 3.66665H10.1062L9.78542 6.09581C9.3118 6.21804 8.87272 6.3977 8.46817 6.63481C8.06361 6.87192 7.69297 7.15823 7.35625 7.49373L5.0875 6.55415L4.19375 8.11248L6.16458 9.57915C6.08819 9.80831 6.03472 10.0375 6.00417 10.2666C5.97361 10.4958 5.95833 10.7403 5.95833 11C5.95833 11.2444 5.97361 11.4812 6.00417 11.7104C6.03472 11.9396 6.08819 12.1687 6.16458 12.3979L4.19375 13.8875L5.0875 15.4458L7.35625 14.4833C7.69236 14.8347 8.063 15.129 8.46817 15.3661C8.87333 15.6032 9.31242 15.7825 9.78542 15.9041L10.0833 18.3333ZM11.0458 14.2083C11.9319 14.2083 12.6882 13.8951 13.3146 13.2687C13.941 12.6423 14.2542 11.8861 14.2542 11C14.2542 10.1139 13.941 9.35762 13.3146 8.73123C12.6882 8.10484 11.9319 7.79165 11.0458 7.79165C10.1444 7.79165 9.38453 8.10484 8.76608 8.73123C8.14764 9.35762 7.83811 10.1139 7.8375 11C7.83689 11.8861 8.14642 12.6423 8.76608 13.2687C9.38575 13.8951 10.1457 14.2083 11.0458 14.2083Z"
+  },
+  account_circle_filled: {
+    viewBox: "0 0 24 24",
+    d: "M5.85 17.1C6.7 16.45 7.65 15.9375 8.7 15.5625C9.75 15.1875 10.85 15 12 15C13.15 15 14.25 15.1875 15.3 15.5625C16.35 15.9375 17.3 16.45 18.15 17.1C18.7333 16.4167 19.1875 15.6417 19.5125 14.775C19.8375 13.9083 20 12.9833 20 12C20 9.78333 19.2208 7.89583 17.6625 6.3375C16.1042 4.77917 14.2167 4 12 4C9.78333 4 7.89583 4.77917 6.3375 6.3375C4.77917 7.89583 4 9.78333 4 12C4 12.9833 4.1625 13.9083 4.4875 14.775C4.8125 15.6417 5.26667 16.4167 5.85 17.1ZM9.5125 11.9875C8.8375 11.3125 8.5 10.4833 8.5 9.5C8.5 8.51667 8.8375 7.6875 9.5125 7.0125C10.1875 6.3375 11.0167 6 12 6C12.9833 6 13.8125 6.3375 14.4875 7.0125C15.1625 7.6875 15.5 8.51667 15.5 9.5C15.5 10.4833 15.1625 11.3125 14.4875 11.9875C13.8125 12.6625 12.9833 13 12 13C11.0167 13 10.1875 12.6625 9.5125 11.9875ZM12 22C10.6167 22 9.31667 21.7375 8.1 21.2125C6.88333 20.6875 5.825 19.975 4.925 19.075C4.025 18.175 3.3125 17.1167 2.7875 15.9C2.2625 14.6833 2 13.3833 2 12C2 10.6167 2.2625 9.31667 2.7875 8.1C3.3125 6.88333 4.025 5.825 4.925 4.925C5.825 4.025 6.88333 3.3125 8.1 2.7875C9.31667 2.2625 10.6167 2 12 2C13.3833 2 14.6833 2.2625 15.9 2.7875C17.1167 3.3125 18.175 4.025 19.075 4.925C19.975 5.825 20.6875 6.88333 21.2125 8.1C21.7375 9.31667 22 10.6167 22 12C22 13.3833 21.7375 14.6833 21.2125 15.9C20.6875 17.1167 19.975 18.175 19.075 19.075C18.175 19.975 17.1167 20.6875 15.9 21.2125C14.6833 21.7375 13.3833 22 12 22Z"
+  },
+  employee_filled: {
+    viewBox: "0 0 24 24",
+    d: "M9.175 10.825C8.39167 10.0417 8 9.1 8 8C8 6.9 8.39167 5.95833 9.175 5.175C9.95833 4.39167 10.9 4 12 4C13.1 4 14.0417 4.39167 14.825 5.175C15.6083 5.95833 16 6.9 16 8C16 9.1 15.6083 10.0417 14.825 10.825C14.0417 11.6083 13.1 12 12 12C10.9 12 9.95833 11.6083 9.175 10.825ZM16 20V13.6C16.4167 13.7333 16.825 13.875 17.225 14.025C17.625 14.175 18.0167 14.35 18.4 14.55C18.9 14.8 19.2917 15.1625 19.575 15.6375C19.8583 16.1125 20 16.6333 20 17.2V20H16ZM10 16.5V13.15C10.3333 13.1 10.6667 13.0625 11 13.0375C11.3333 13.0125 11.6667 13 12 13C12.3333 13 12.6667 13.0125 13 13.0375C13.3333 13.0625 13.6667 13.1 14 13.15V16.5H10ZM4 20V17.2C4 16.6333 4.14167 16.1125 4.425 15.6375C4.70833 15.1625 5.1 14.8 5.6 14.55C5.98333 14.35 6.375 14.175 6.775 14.025C7.175 13.875 7.58333 13.7333 8 13.6V20H4Z"
+  },
+  report_filled: {
+    viewBox: "0 0 24 24",
+    d: "M5 22C4.45 22 3.97917 21.8042 3.5875 21.4125C3.19583 21.0208 3 20.55 3 20V6C3 5.45 3.19583 4.97917 3.5875 4.5875C3.97917 4.19583 4.45 4 5 4H9.2C9.41667 3.4 9.77917 2.91667 10.2875 2.55C10.7958 2.18333 11.3667 2 12 2C12.6333 2 13.2042 2.18333 13.7125 2.55C14.2208 2.91667 14.5833 3.4 14.8 4H19C19.55 4 20.0208 4.19583 20.4125 4.5875C20.8042 4.97917 21 5.45 21 6V20C21 20.55 20.8042 21.0208 20.4125 21.4125C20.0208 21.8042 19.55 22 19 22H5ZM7 18H14V16H7V18ZM7 14H17V12H7V14ZM7 10H17V8H7V10ZM12.5375 5.0375C12.6792 4.89583 12.75 4.71667 12.75 4.5C12.75 4.28333 12.6792 4.10417 12.5375 3.9625C12.3958 3.82083 12.2167 3.75 12 3.75C11.7833 3.75 11.6042 3.82083 11.4625 3.9625C11.3208 4.10417 11.25 4.28333 11.25 4.5C11.25 4.71667 11.3208 4.89583 11.4625 5.0375C11.6042 5.17917 11.7833 5.25 12 5.25C12.2167 5.25 12.3958 5.17917 12.5375 5.0375Z"
+  },
+  video_camera_filled: {
+    viewBox: "0 0 24 24",
+    d: "M4 20C3.45 20 2.97917 19.8042 2.5875 19.4125C2.19583 19.0208 2 18.55 2 18V6C2 5.45 2.19583 4.97917 2.5875 4.5875C2.97917 4.19583 3.45 4 4 4H16C16.55 4 17.0208 4.19583 17.4125 4.5875C17.8042 4.97917 18 5.45 18 6V10.5L22 6.5V17.5L18 13.5V18C18 18.55 17.8042 19.0208 17.4125 19.4125C17.0208 19.8042 16.55 20 16 20H4Z"
+  },
+  favorite_filled: {
+    viewBox: "0 0 20 19",
+    d: "M10 18.35L8.55 17.05C6.86667 15.5333 5.475 14.225 4.375 13.125C3.275 12.025 2.4 11.0375 1.75 10.1625C1.1 9.2875 0.645833 8.48333 0.3875 7.75C0.129167 7.01667 0 6.26667 0 5.5C0 3.93333 0.525 2.625 1.575 1.575C2.625 0.525 3.93333 0 5.5 0C6.36667 0 7.19167 0.183333 7.975 0.55C8.75833 0.916667 9.43333 1.43333 10 2.1C10.5667 1.43333 11.2417 0.916667 12.025 0.55C12.8083 0.183333 13.6333 0 14.5 0C16.0667 0 17.375 0.525 18.425 1.575C19.475 2.625 20 3.93333 20 5.5C20 6.26667 19.8708 7.01667 19.6125 7.75C19.3542 8.48333 18.9 9.2875 18.25 10.1625C17.6 11.0375 16.725 12.025 15.625 13.125C14.525 14.225 13.1333 15.5333 11.45 17.05L10 18.35Z"
+  },
+  pressure_wheel_filled: {
+    viewBox: "0 0 20 20",
+    d: "M6.125 19.2125C4.90833 18.6875 3.84583 17.9708 2.9375 17.0625C2.02917 16.1542 1.3125 15.0917 0.7875 13.875C0.2625 12.6583 0 11.3625 0 9.9875C0 8.6125 0.2625 7.32083 0.7875 6.1125C1.3125 4.90417 2.02917 3.84583 2.9375 2.9375C3.84583 2.02917 4.90833 1.3125 6.125 0.7875C7.34167 0.2625 8.6375 0 10.0125 0C11.3875 0 12.6792 0.2625 13.8875 0.7875C15.0958 1.3125 16.1542 2.02917 17.0625 2.9375C17.9708 3.84583 18.6875 4.90417 19.2125 6.1125C19.7375 7.32083 20 8.6125 20 9.9875C20 11.3625 19.7375 12.6583 19.2125 13.875C18.6875 15.0917 17.9708 16.1542 17.0625 17.0625C16.1542 17.9708 15.0958 18.6875 13.8875 19.2125C12.6792 19.7375 11.3875 20 10.0125 20C8.6375 20 7.34167 19.7375 6.125 19.2125ZM5.7125 8.7125C5.90417 8.52083 6 8.28333 6 8C6 7.71667 5.90417 7.47917 5.7125 7.2875C5.52083 7.09583 5.28333 7 5 7C4.71667 7 4.47917 7.09583 4.2875 7.2875C4.09583 7.47917 4 7.71667 4 8C4 8.28333 4.09583 8.52083 4.2875 8.7125C4.47917 8.90417 4.71667 9 5 9C5.28333 9 5.52083 8.90417 5.7125 8.7125ZM8.7125 5.7125C8.90417 5.52083 9 5.28333 9 5C9 4.71667 8.90417 4.47917 8.7125 4.2875C8.52083 4.09583 8.28333 4 8 4C7.71667 4 7.47917 4.09583 7.2875 4.2875C7.09583 4.47917 7 4.71667 7 5C7 5.28333 7.09583 5.52083 7.2875 5.7125C7.47917 5.90417 7.71667 6 8 6C8.28333 6 8.52083 5.90417 8.7125 5.7125ZM15.7125 8.7125C15.9042 8.52083 16 8.28333 16 8C16 7.71667 15.9042 7.47917 15.7125 7.2875C15.5208 7.09583 15.2833 7 15 7C14.7167 7 14.4792 7.09583 14.2875 7.2875C14.0958 7.47917 14 7.71667 14 8C14 8.28333 14.0958 8.52083 14.2875 8.7125C14.4792 8.90417 14.7167 9 15 9C15.2833 9 15.5208 8.90417 15.7125 8.7125ZM11.4125 11.4125C11.8042 11.0208 12 10.55 12 10C12 9.78333 11.9667 9.57083 11.9 9.3625C11.8333 9.15417 11.7333 8.96667 11.6 8.8L12.95 5.4C13.0667 5.13333 13.0708 4.87083 12.9625 4.6125C12.8542 4.35417 12.6667 4.16667 12.4 4.05C12.15 3.93333 11.8958 3.92917 11.6375 4.0375C11.3792 4.14583 11.2 4.33333 11.1 4.6L9.75 8C9.25 8.08333 8.83333 8.3125 8.5 8.6875C8.16667 9.0625 8 9.5 8 10C8 10.55 8.19583 11.0208 8.5875 11.4125C8.97917 11.8042 9.45 12 10 12C10.55 12 11.0208 11.8042 11.4125 11.4125ZM6.15 17C6.73333 16.6667 7.35 16.4167 8 16.25C8.65 16.0833 9.31667 16 10 16C10.6833 16 11.35 16.0833 12 16.25C12.65 16.4167 13.2667 16.6667 13.85 17L15.6 15.7C14.7667 15.15 13.875 14.7292 12.925 14.4375C11.975 14.1458 11 14 10 14C9 14 8.025 14.1458 7.075 14.4375C6.125 14.7292 5.23333 15.15 4.4 15.7L6.15 17Z"
+  },
+  build_filled: {
+    viewBox: "0 0 24 24",
+    d: "M17.15 20.7L11.1 14.6C10.7667 14.7333 10.4292 14.8333 10.0875 14.9C9.74583 14.9667 9.38333 15 9 15C7.33333 15 5.91667 14.4167 4.75 13.25C3.58333 12.0833 3 10.6667 3 9C3 8.4 3.08333 7.82917 3.25 7.2875C3.41667 6.74583 3.65 6.23333 3.95 5.75L7.6 9.4L9.4 7.6L5.75 3.95C6.23333 3.65 6.74583 3.41667 7.2875 3.25C7.82917 3.08333 8.4 3 9 3C10.6667 3 12.0833 3.58333 13.25 4.75C14.4167 5.91667 15 7.33333 15 9C15 9.38333 14.9667 9.74583 14.9 10.0875C14.8333 10.4292 14.7333 10.7667 14.6 11.1L20.7 17.15C20.9 17.35 21 17.5917 21 17.875C21 18.1583 20.9 18.4 20.7 18.6L18.6 20.7C18.4 20.9 18.1583 21 17.875 21C17.5917 21 17.35 20.9 17.15 20.7Z"
+  },
+  location_on_filled: {
+    viewBox: "0 0 24 24",
+    d: "M13.4125 11.4125C13.8042 11.0208 14 10.55 14 10C14 9.45 13.8042 8.97917 13.4125 8.5875C13.0208 8.19583 12.55 8 12 8C11.45 8 10.9792 8.19583 10.5875 8.5875C10.1958 8.97917 10 9.45 10 10C10 10.55 10.1958 11.0208 10.5875 11.4125C10.9792 11.8042 11.45 12 12 12C12.55 12 13.0208 11.8042 13.4125 11.4125ZM12 22C9.31667 19.7167 7.3125 17.5958 5.9875 15.6375C4.6625 13.6792 4 11.8667 4 10.2C4 7.7 4.80417 5.70833 6.4125 4.225C8.02083 2.74167 9.88333 2 12 2C14.1167 2 15.9792 2.74167 17.5875 4.225C19.1958 5.70833 20 7.7 20 10.2C20 11.8667 19.3375 13.6792 18.0125 15.6375C16.6875 17.5958 14.6833 19.7167 12 22Z"
+  },
+  heartbeat_filled: {
+    viewBox: "0 0 39 31",
+    d: "M13.6522 0.00581244C14.5173 0.0719033 15.2411 0.688579 15.4442 1.53216L20.1492 21.0779L22.574 12.4588L22.6258 12.2996C22.9154 11.5234 23.6597 10.9998 24.4998 10.9998H36.4996C37.6042 10.9998 38.4996 11.8953 38.4996 12.9998C38.4996 14.1044 37.6042 14.9998 36.4996 14.9998H26.0154L21.9256 29.5407C21.6792 30.4168 20.8717 31.0169 19.9617 30.9996C19.0518 30.9823 18.2685 30.3522 18.0555 29.4674L13.0048 8.4901L10.8515 13.7567C10.544 14.5083 9.81202 14.9998 8.99991 14.9998H1.99998C0.895422 14.9998 0 14.1044 0 12.9998C0 11.8953 0.895422 10.9998 1.99998 10.9998H7.65715L11.6483 1.2431C11.9769 0.43989 12.7869 -0.0601108 13.6522 0.00581244Z"
   }
 };
 var Icon = ({
@@ -1030,6 +1070,7 @@ var containerBackground = ({
     return $variant === "contained" ? theme2.surface.primaryLight : "transparent";
   }
   if ($variant === "contained") return theme2.surface.primary;
+  if ($variant === "surface") return theme2.surface.standard;
   if ($variant === "outline") {
     return $hovered || $pressed ? theme2.surface.primaryLight : "transparent";
   }
@@ -1049,11 +1090,17 @@ var Container2 = styled36__default.default(reactNative.Pressable)`
   align-items: center;
   justify-content: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
-  padding: ${({ theme: theme2 }) => theme2.padding.sm}px;
+  /* small: 8px vertical / 12px horizontal — pairs visually with Tabs (~32px tall).
+     default: 12px all sides — full-size CTA. */
+  padding-vertical: ${({ $size, theme: theme2 }) => $size === "small" ? theme2.padding.s : theme2.padding.sm}px;
+  padding-horizontal: ${({ theme: theme2 }) => theme2.padding.sm}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   border-width: ${({ theme: theme2 }) => theme2.border.size.m}px;
   border-color: ${(props) => containerBorderColor(props)};
   background-color: ${(props) => containerBackground(props)};
+  /* Surface variant carries elevation md per Figma 32:2502 — lifts the button
+     visually off unpredictable backgrounds (satellite maps, photos, etc.). */
+  box-shadow: ${({ $variant }) => $variant === "surface" ? "0px 4px 8px rgba(29, 29, 29, 0.16)" : "none"};
   ${({ $fullWidth }) => $fullWidth ? "align-self: stretch; width: 100%;" : ""};
 `;
 var HoverOverlay = styled36__default.default(reactNative.View)`
@@ -1076,6 +1123,7 @@ var labelColor = ({
   theme: theme2
 }) => {
   if ($variant === "contained") return theme2.content.light;
+  if ($variant === "surface") return theme2.content.dark;
   if ($disabled) return theme2.content.primaryLight;
   if ($variant === "ghost" && $hovered) return theme2.content.dark;
   return theme2.content.primaryLight;
@@ -1097,6 +1145,7 @@ var Button = React34.forwardRef(
   ({
     label,
     variant = "contained",
+    size = "default",
     iconLeft,
     iconRight,
     disabled: disabledProp = false,
@@ -1118,6 +1167,7 @@ var Button = React34.forwardRef(
       {
         ref,
         $variant: variant,
+        $size: size,
         $hovered: hovered,
         $pressed: pressed,
         $disabled: disabled,
@@ -1872,7 +1922,7 @@ var EmployeeOverviewCard = React34.forwardRef(
         children: [
           /* @__PURE__ */ jsxRuntime.jsxs(LeftCluster, { children: [
             /* @__PURE__ */ jsxRuntime.jsxs(UserInfo, { children: [
-              /* @__PURE__ */ jsxRuntime.jsx(Avatar, { uri: employee.avatarUri, customSize: 56 }),
+              /* @__PURE__ */ jsxRuntime.jsx(Avatar, { uri: employee.avatarUri, customSize: 56, bordered: true }),
               /* @__PURE__ */ jsxRuntime.jsxs(TextStack2, { children: [
                 /* @__PURE__ */ jsxRuntime.jsx(Name2, { children: employee.name }),
                 /* @__PURE__ */ jsxRuntime.jsx(Sector, { children: employee.sector }),
@@ -1882,11 +1932,11 @@ var EmployeeOverviewCard = React34.forwardRef(
             /* @__PURE__ */ jsxRuntime.jsx(Divider2, {}),
             /* @__PURE__ */ jsxRuntime.jsxs(HealthOverview, { children: [
               /* @__PURE__ */ jsxRuntime.jsxs(Stat, { children: [
-                /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: "favorite", size: 24, color: theme2.surface.error }),
+                /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: "favorite_filled", size: 24, color: theme2.surface.error }),
                 /* @__PURE__ */ jsxRuntime.jsx(StatText, { children: `${bpm} ${bpmUnit}` })
               ] }),
               /* @__PURE__ */ jsxRuntime.jsxs(Stat, { children: [
-                /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: "monitor_heart", size: 24, color: theme2.surface.success }),
+                /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: "pressure_wheel_filled", size: 24, color: theme2.surface.primary }),
                 /* @__PURE__ */ jsxRuntime.jsx(StatText, { children: pressure })
               ] })
             ] })
@@ -1897,7 +1947,7 @@ var EmployeeOverviewCard = React34.forwardRef(
               onPress: onLocationPress,
               accessibilityRole: "button",
               accessibilityLabel: "Localiza\xE7\xE3o",
-              children: /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: "location_on", size: 24, color: theme2.content.dark })
+              children: /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: "location_on_filled", size: 24, color: theme2.content.dark })
             }
           )
         ]
@@ -3092,6 +3142,7 @@ var containerBackground2 = ({
   theme: theme2
 }) => {
   if ($variant === "compact") return "transparent";
+  if ($variant === "minimal") return theme2.background;
   if ($disabled) return theme2.surface.disable;
   if ($active) return theme2.surface.standard;
   if ($hovered) return theme2.surface.standard;
@@ -3101,9 +3152,13 @@ var accentColor = ({
   $active,
   $hovered,
   $disabled,
+  $variant,
   theme: theme2
 }) => {
   if ($disabled) return theme2.content.disable;
+  if ($variant === "minimal") {
+    return $active ? theme2.content.dark : theme2.content.medium;
+  }
   if ($active) return theme2.content.primary;
   if ($hovered) return theme2.content.dark;
   return theme2.content.medium;
@@ -3118,15 +3173,15 @@ var dividerColor = ({
   if ($variant === "compact") {
     return $active ? theme2.content.primary : "transparent";
   }
-  return accentColor({ $active, $hovered, $disabled, theme: theme2 });
+  return accentColor({ $active, $hovered, $disabled, $variant, theme: theme2 });
 };
 var Container13 = styled36__default.default(reactNative.Pressable)`
-  height: ${({ $variant }) => $variant === "compact" ? "44px" : "64px"};
+  height: ${({ $variant }) => $variant === "compact" ? "44px" : $variant === "minimal" ? "60px" : "64px"};
   flex-direction: row;
   align-items: center;
-  justify-content: ${({ $variant }) => $variant === "compact" ? "flex-start" : "space-between"};
+  justify-content: ${({ $variant }) => $variant === "compact" ? "flex-start" : $variant === "minimal" ? "center" : "space-between"};
   gap: ${({ $variant, theme: theme2 }) => $variant === "compact" ? `${theme2.gap.s}px` : "0px"};
-  padding-left: ${({ $variant, theme: theme2 }) => $variant === "compact" ? `${theme2.padding.s}px` : `${theme2.padding.m}px`};
+  padding-left: ${({ $variant, theme: theme2 }) => $variant === "compact" ? `${theme2.padding.s}px` : $variant === "minimal" ? `${theme2.padding.s}px` : `${theme2.padding.m}px`};
   padding-right: ${({ theme: theme2 }) => theme2.padding.s}px;
   padding-vertical: ${({ theme: theme2 }) => theme2.padding.s}px;
   border-radius: ${({ $variant, theme: theme2 }) => $variant === "compact" ? "0px" : `${theme2.border.radius.m}px`};
@@ -3164,6 +3219,25 @@ var Divider4 = styled36__default.default(reactNative.View)`
   border-radius: 2px;
   background-color: ${(props) => dividerColor(props)};
 `;
+var BadgeOverlay = styled36__default.default(reactNative.View)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
+  background-color: ${({ theme: theme2 }) => theme2.surface.error};
+  align-items: center;
+  justify-content: center;
+  padding: ${({ theme: theme2 }) => theme2.padding.s}px;
+  z-index: 2;
+`;
+var BadgeText2 = styled36__default.default.Text`
+  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
+  font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
+  font-size: 12px;
+  color: ${({ theme: theme2 }) => theme2.content.dark};
+`;
 var MenuItem = React34.forwardRef(
   ({
     label,
@@ -3171,6 +3245,7 @@ var MenuItem = React34.forwardRef(
     active = false,
     disabled = false,
     variant = "default",
+    badge,
     onPress,
     fullWidth = false,
     accessibilityLabel,
@@ -3181,6 +3256,7 @@ var MenuItem = React34.forwardRef(
     const accentColor2 = disabled ? theme2.content.disable : active ? theme2.content.primary : hovered ? theme2.content.dark : theme2.content.medium;
     const showHoverOverlay = hovered && !disabled && !active;
     const isCompact = variant === "compact";
+    const isMinimal = variant === "minimal";
     const stateProps = {
       $active: active,
       $hovered: hovered,
@@ -3205,10 +3281,11 @@ var MenuItem = React34.forwardRef(
           isCompact ? /* @__PURE__ */ jsxRuntime.jsx(Divider4, { ...stateProps }) : null,
           /* @__PURE__ */ jsxRuntime.jsxs(LabelGroup, { children: [
             icon ? /* @__PURE__ */ jsxRuntime.jsx(IconSlot6, { children: /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: icon, size: isCompact ? 18 : 22, color: accentColor2 }) }) : null,
-            /* @__PURE__ */ jsxRuntime.jsx(Label8, { ...stateProps, children: label })
+            !isMinimal ? /* @__PURE__ */ jsxRuntime.jsx(Label8, { ...stateProps, children: label }) : null
           ] }),
-          !isCompact ? /* @__PURE__ */ jsxRuntime.jsx(Divider4, { ...stateProps }) : null,
-          showHoverOverlay ? /* @__PURE__ */ jsxRuntime.jsx(HoverOverlay5, { $variant: variant }) : null
+          !isCompact && !isMinimal ? /* @__PURE__ */ jsxRuntime.jsx(Divider4, { ...stateProps }) : null,
+          showHoverOverlay ? /* @__PURE__ */ jsxRuntime.jsx(HoverOverlay5, { $variant: variant }) : null,
+          badge !== void 0 ? /* @__PURE__ */ jsxRuntime.jsx(BadgeOverlay, { children: /* @__PURE__ */ jsxRuntime.jsx(BadgeText2, { children: String(badge) }) }) : null
         ]
       }
     );
@@ -3259,6 +3336,7 @@ var SideMenu = React34.forwardRef(
             active: item.value === value,
             disabled: item.disabled,
             variant: item.variant ?? variant,
+            badge: item.badge,
             onPress: () => handlePress(item.value),
             fullWidth: true
           },
@@ -3756,7 +3834,7 @@ WeatherEventChip.displayName = "WeatherEventChip";
 var Stack = styled36__default.default(reactNative.View)`
   flex-direction: column;
   align-items: flex-start;
-  gap: ${({ theme: theme2 }) => theme2.gap.s}px;
+  gap: ${({ theme: theme2 }) => theme2.gap.l}px;
 `;
 var IconRow = styled36__default.default(reactNative.View)`
   flex-direction: row;
@@ -3783,26 +3861,28 @@ var WeatherTimelineEntry = React34.forwardRef(
 );
 WeatherTimelineEntry.displayName = "WeatherTimelineEntry";
 var Stack2 = styled36__default.default(reactNative.View)`
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
+`;
+var Pole = styled36__default.default(reactNative.View)`
+  width: 3px;
+  height: ${({ $height }) => $height}px;
+  background-color: ${({ theme: theme2 }) => theme2.content.dark};
 `;
 var Flag = styled36__default.default(reactNative.View)`
-  padding-horizontal: ${({ theme: theme2 }) => theme2.padding.s}px;
-  padding-vertical: ${({ theme: theme2 }) => theme2.padding.xs}px;
-  border-bottom-left-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
-  border-bottom-right-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
+  width: 80px;
+  height: 30px;
   background-color: ${({ theme: theme2 }) => theme2.content.dark};
+  align-items: center;
+  justify-content: center;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
 `;
 var FlagText = styled36__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.light};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
-  font-size: ${({ theme: theme2 }) => theme2.fontSize.s}px;
+  font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
-`;
-var Pole = styled36__default.default(reactNative.View)`
-  width: 2px;
-  height: ${({ $height }) => $height}px;
-  background-color: ${({ theme: theme2 }) => theme2.content.dark};
 `;
 var NowMarker = React34.forwardRef(
   ({ label = "AGORA", height = 80, accessibilityLabel, testID }, ref) => {
@@ -3813,8 +3893,8 @@ var NowMarker = React34.forwardRef(
         accessibilityLabel: accessibilityLabel ?? label,
         testID,
         children: [
-          /* @__PURE__ */ jsxRuntime.jsx(Flag, { children: /* @__PURE__ */ jsxRuntime.jsx(FlagText, { children: label }) }),
-          /* @__PURE__ */ jsxRuntime.jsx(Pole, { $height: height })
+          /* @__PURE__ */ jsxRuntime.jsx(Pole, { $height: height }),
+          /* @__PURE__ */ jsxRuntime.jsx(Flag, { children: /* @__PURE__ */ jsxRuntime.jsx(FlagText, { children: label }) })
         ]
       }
     );
@@ -4004,7 +4084,24 @@ var ReportCard = React34.forwardRef(
 ReportCard.displayName = "ReportCard";
 var Container16 = styled36__default.default(reactNative.View)`
   flex-direction: column;
-  gap: ${({ theme: theme2 }) => theme2.gap.s}px;
+  position: relative;
+`;
+var RulerRow = styled36__default.default(reactNative.View)`
+  position: absolute;
+  top: 64px;
+  left: 0;
+  right: 0;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 20px;
+  z-index: 1;
+`;
+var RulerLine = styled36__default.default(reactNative.View)`
+  width: 1px;
+  height: ${({ $major }) => $major ? 20 : 12}px;
+  background-color: ${({ theme: theme2 }) => theme2.content.dark};
+  opacity: 0.4;
 `;
 var EventsRow = styled36__default.default(reactNative.View)`
   flex-direction: row;
@@ -4013,6 +4110,7 @@ var EventsRow = styled36__default.default(reactNative.View)`
 `;
 var EventColumn = styled36__default.default(reactNative.View)`
   flex: 1;
+  min-width: 200px;
   align-items: flex-start;
   position: relative;
 `;
@@ -4023,34 +4121,58 @@ styled36__default.default(reactNative.View)`
 `;
 var NowFloat = styled36__default.default(reactNative.View)`
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  align-items: center;
+  top: 40px;
   z-index: 2;
 `;
 var IntensityRow = styled36__default.default(reactNative.View)`
   flex-direction: row;
-  height: 8px;
+  height: 12px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   overflow: hidden;
   align-self: stretch;
+  margin-top: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
 var IntensitySegmentView = styled36__default.default(reactNative.View)`
   flex: ${({ $flex }) => $flex};
   background-color: ${({ $bg }) => $bg};
 `;
-var NOW_HEIGHT = 132;
+var ScrollTrack = styled36__default.default(reactNative.View)`
+  height: 8px;
+  border-radius: ${({ theme: theme2 }) => theme2.border.radius.l}px;
+  background-color: ${({ theme: theme2 }) => theme2.surface.medium};
+  margin-top: ${({ theme: theme2 }) => theme2.gap.m}px;
+  flex-direction: row;
+`;
+var ScrollThumb = styled36__default.default(reactNative.View)`
+  height: 8px;
+  border-radius: ${({ theme: theme2 }) => theme2.border.radius.l}px;
+  background-color: ${({ theme: theme2 }) => theme2.surface.high};
+`;
+var RULER_LINES = Array.from(
+  { length: 17 },
+  (_, i) => ({ id: `ruler-${i}`, major: i % 4 === 0 })
+);
+var NOW_POLE_HEIGHT = 100;
 var WeatherTimeline = React34.forwardRef(
   ({
     events,
     intensitySegments,
     nowLabel = "AGORA",
+    nowAtPercent,
+    scrollbar,
     fullWidth = true,
     accessibilityLabel,
     testID
   }, ref) => {
     const theme2 = useTheme();
+    const scrollViewRef = React34.useRef(null);
+    const [scrollMetrics, setScrollMetrics] = React34.useState({
+      contentWidth: 0,
+      containerWidth: 0,
+      scrollX: 0
+    });
+    const metricsRef = React34.useRef(scrollMetrics);
+    metricsRef.current = scrollMetrics;
     const intensityColor = (c) => {
       switch (c) {
         case "rain":
@@ -4073,6 +4195,78 @@ var WeatherTimeline = React34.forwardRef(
       )
     }));
     const segments = intensitySegments ? intensitySegments.map((s) => ({ ...s, color: intensityColor(s.color) })) : fallbackSegments;
+    const computedNowPercent = (() => {
+      if (typeof nowAtPercent === "number") return nowAtPercent;
+      const idx = events.findIndex((e) => e.isNow);
+      if (idx >= 0 && events.length > 0) {
+        return (idx + 0.5) / events.length * 100;
+      }
+      return void 0;
+    })();
+    const scrollEnabled = !!scrollbar;
+    const scrollbarRender = (() => {
+      if (!scrollbar) return null;
+      const { containerWidth, contentWidth, scrollX } = scrollMetrics;
+      if (containerWidth > 0 && contentWidth > containerWidth) {
+        const thumbPercent = containerWidth / contentWidth * 100;
+        const maxScroll = contentWidth - containerWidth;
+        const thumbStartPercent = maxScroll > 0 ? scrollX / maxScroll * (100 - thumbPercent) : 0;
+        return { thumbPercent, thumbStartPercent };
+      }
+      return {
+        thumbPercent: scrollbar.thumbPercent,
+        thumbStartPercent: scrollbar.thumbStartPercent ?? 0
+      };
+    })();
+    const handleScroll = (e) => {
+      const { contentOffset, contentSize, layoutMeasurement } = e.nativeEvent;
+      setScrollMetrics({
+        contentWidth: contentSize.width,
+        containerWidth: layoutMeasurement.width,
+        scrollX: contentOffset.x
+      });
+    };
+    const dragInitialScrollRef = React34.useRef(null);
+    const thumbPanResponder = React34.useRef(
+      reactNative.PanResponder.create({
+        onStartShouldSetPanResponder: () => true,
+        onMoveShouldSetPanResponder: () => true,
+        onPanResponderGrant: () => {
+          dragInitialScrollRef.current = metricsRef.current.scrollX;
+        },
+        onPanResponderMove: (_e, gesture) => {
+          if (dragInitialScrollRef.current === null || !scrollViewRef.current) return;
+          const { containerWidth, contentWidth } = metricsRef.current;
+          if (containerWidth <= 0 || contentWidth <= containerWidth) return;
+          const thumbWidthPx = containerWidth / contentWidth * containerWidth;
+          const trackTravelPx = containerWidth - thumbWidthPx;
+          if (trackTravelPx <= 0) return;
+          const maxScroll = contentWidth - containerWidth;
+          const next = dragInitialScrollRef.current + gesture.dx / trackTravelPx * maxScroll;
+          const clamped = Math.max(0, Math.min(maxScroll, next));
+          scrollViewRef.current.scrollTo({ x: clamped, animated: false });
+        },
+        onPanResponderRelease: () => {
+          dragInitialScrollRef.current = null;
+        },
+        onPanResponderTerminate: () => {
+          dragInitialScrollRef.current = null;
+        }
+      })
+    ).current;
+    const innerContent = /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx(EventsRow, { children: events.map((event) => /* @__PURE__ */ jsxRuntime.jsx(EventColumn, { children: /* @__PURE__ */ jsxRuntime.jsx(
+        WeatherTimelineEntry,
+        {
+          condition: event.condition,
+          time: event.time,
+          label: event.label
+        }
+      ) }, event.id)) }),
+      /* @__PURE__ */ jsxRuntime.jsx(IntensityRow, { children: segments.map((seg) => /* @__PURE__ */ jsxRuntime.jsx(IntensitySegmentView, { $flex: seg.flex, $bg: seg.color }, seg.id)) }),
+      /* @__PURE__ */ jsxRuntime.jsx(RulerRow, { children: RULER_LINES.map((line) => /* @__PURE__ */ jsxRuntime.jsx(RulerLine, { $major: line.major }, line.id)) }),
+      computedNowPercent !== void 0 ? /* @__PURE__ */ jsxRuntime.jsx(NowFloat, { style: { left: `${computedNowPercent}%` }, children: /* @__PURE__ */ jsxRuntime.jsx(NowMarker, { label: nowLabel, height: NOW_POLE_HEIGHT }) }) : null
+    ] });
     return /* @__PURE__ */ jsxRuntime.jsxs(
       Container16,
       {
@@ -4081,18 +4275,44 @@ var WeatherTimeline = React34.forwardRef(
         testID,
         style: fullWidth ? { alignSelf: "stretch", width: "100%" } : { alignSelf: "flex-start" },
         children: [
-          /* @__PURE__ */ jsxRuntime.jsx(EventsRow, { children: events.map((event) => /* @__PURE__ */ jsxRuntime.jsxs(EventColumn, { children: [
-            event.isNow ? /* @__PURE__ */ jsxRuntime.jsx(NowFloat, { children: /* @__PURE__ */ jsxRuntime.jsx(NowMarker, { label: nowLabel, height: NOW_HEIGHT }) }) : null,
-            /* @__PURE__ */ jsxRuntime.jsx(
-              WeatherTimelineEntry,
-              {
-                condition: event.condition,
-                time: event.time,
-                label: event.label
+          scrollEnabled ? /* @__PURE__ */ jsxRuntime.jsx(
+            reactNative.ScrollView,
+            {
+              ref: scrollViewRef,
+              horizontal: true,
+              showsHorizontalScrollIndicator: false,
+              scrollEventThrottle: 16,
+              onScroll: handleScroll,
+              onLayout: (e) => setScrollMetrics((prev) => ({
+                ...prev,
+                containerWidth: e.nativeEvent.layout.width
+              })),
+              onContentSizeChange: (width) => setScrollMetrics((prev) => ({ ...prev, contentWidth: width })),
+              style: { alignSelf: "stretch" },
+              contentContainerStyle: { flexGrow: 1 },
+              children: /* @__PURE__ */ jsxRuntime.jsx(
+                reactNative.View,
+                {
+                  style: {
+                    flex: 1,
+                    alignSelf: "stretch",
+                    position: "relative"
+                  },
+                  children: innerContent
+                }
+              )
+            }
+          ) : innerContent,
+          scrollbarRender ? /* @__PURE__ */ jsxRuntime.jsx(ScrollTrack, { children: /* @__PURE__ */ jsxRuntime.jsx(
+            ScrollThumb,
+            {
+              ...thumbPanResponder.panHandlers,
+              style: {
+                width: `${scrollbarRender.thumbPercent}%`,
+                marginLeft: `${scrollbarRender.thumbStartPercent}%`
               }
-            )
-          ] }, event.id)) }),
-          /* @__PURE__ */ jsxRuntime.jsx(IntensityRow, { children: segments.map((seg) => /* @__PURE__ */ jsxRuntime.jsx(IntensitySegmentView, { $flex: seg.flex, $bg: seg.color }, seg.id)) })
+            }
+          ) }) : null
         ]
       }
     );

@@ -9,6 +9,7 @@ export const Button = forwardRef<View, ButtonProps>(
     {
       label,
       variant = 'contained',
+      size = 'default',
       iconLeft,
       iconRight,
       disabled: disabledProp = false,
@@ -33,6 +34,7 @@ export const Button = forwardRef<View, ButtonProps>(
       <Container
         ref={ref}
         $variant={variant}
+        $size={size}
         $hovered={hovered}
         $pressed={pressed}
         $disabled={disabled}

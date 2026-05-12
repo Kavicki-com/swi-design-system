@@ -57,7 +57,10 @@ export const SuccessBadge = ({
         </defs>
         <circle cx={size / 2} cy={size / 2} r={size / 2} fill={`url(#${gradientId})`} />
       </svg>
-      <Icon name={iconName} size={resolvedIconSize} color={ic} />
+      {/* zIndex: 1 keeps the icon above the absolute-positioned <svg> backdrop. */}
+      <View style={{ zIndex: 1 }}>
+        <Icon name={iconName} size={resolvedIconSize} color={ic} />
+      </View>
     </View>
   );
 };

@@ -5112,7 +5112,7 @@ var SuccessBadge = ({
             ]
           }
         ),
-        /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: iconName, size: resolvedIconSize, color: ic })
+        /* @__PURE__ */ jsxRuntime.jsx(reactNative.View, { style: { zIndex: 1 }, children: /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: iconName, size: resolvedIconSize, color: ic }) })
       ]
     }
   );

@@ -57,7 +57,11 @@ export const SuccessBadge = ({
         </Defs>
         <Circle cx={size / 2} cy={size / 2} r={size / 2} fill={`url(#${gradientId})`} />
       </Svg>
-      <Icon name={iconName} size={resolvedIconSize} color={ic} />
+      {/* zIndex: 1 keeps the icon above the absolute-positioned Svg backdrop
+          (without this, RN-Web stacks the gradient over the icon on web). */}
+      <View style={{ zIndex: 1 }}>
+        <Icon name={iconName} size={resolvedIconSize} color={ic} />
+      </View>
     </View>
   );
 };

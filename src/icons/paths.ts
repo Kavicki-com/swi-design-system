@@ -242,6 +242,12 @@ export const iconPaths = {
     viewBox: MATERIAL_VIEWBOX,
     d: 'M644-428 532-540q12-7 24.5-9.5T580-552q42 0 71 29t29 71q0 12-2.5 24.5T668-403L644-428Zm114 114L646-426q11-19 17.5-41t6.5-45q0-79-55.5-134.5T480-702q-23 0-44.5 5.5T393-680l-86-86q42-18 86-26t87-8q146 0 263 81.5T912-510q-21 56-58 102.5T758-314Zm46 258L658-202q-37 14-79.5 22T480-172q-148 0-264.5-82T48-462q21-50 56.5-94.5T184-642L60-768l44-46 740 740-40 18ZM240-580q-30 25-55.5 56.5T144-462q34 80 132 138t204 58q31 0 60-3.5t60-12.5l-39-37q-19 5-37.5 7.5T480-308q-79 0-134.5-55.5T290-498q0-12 1.5-24t6.5-24l-58-34Zm285 116Zm-99-44Z',
   },
+  // Map location-pin tail — downward-pointing triangle. Used by LocationPin.
+  // Approximates Figma polygon1 (16.454×14.25) inscribed in a 16×14 box.
+  pin_tail: {
+    viewBox: '0 0 16 14',
+    d: 'M0 0 L16 0 L8 14 Z',
+  },
 } as const satisfies Record<string, IconPath>;
 
 export type IconName = keyof typeof iconPaths;

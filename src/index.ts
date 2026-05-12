@@ -79,6 +79,8 @@ export type {
   MapControlVariant,
   MapControlOption,
 } from './components/MapControl';
+export { LocationPin } from './components/LocationPin';
+export type { LocationPinProps, LocationPinStatus } from './components/LocationPin';
 export { MenuItem } from './components/MenuItem';
 export type { MenuItemProps } from './components/MenuItem';
 export { SideMenu } from './components/SideMenu';

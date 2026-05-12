@@ -139,6 +139,8 @@ export { GenderSelector } from './components/GenderSelector';
 export type { GenderSelectorProps } from './components/GenderSelector';
 export { Surface, useSurfaceTone, isLightBgVariant } from './components/Surface';
 export type { SurfaceProps, SurfaceVariant, SurfacePadding, SurfaceRadius } from './components/Surface';
+export { SmartbandStatus } from './components/SmartbandStatus';
+export type { SmartbandStatusProps } from './components/SmartbandStatus';
 export { SuccessBadge } from './components/SuccessBadge';
 export type { SuccessBadgeProps } from './components/SuccessBadge';
 export { Tabs } from './components/Tabs';

@@ -19,6 +19,10 @@ export interface SideMenuProps {
   onChange?: (value: string) => void;
   variant?: MenuItemVariant;
   fullWidth?: boolean;
+  /** Override the icon size (in px) for every item in this menu. Forwarded
+   *  to each MenuItem via its `iconSize` prop. Defaults to MenuItem default
+   *  (18 for compact, 22 otherwise). */
+  iconSize?: number;
   accessibilityLabel?: string;
   testID?: string;
 }

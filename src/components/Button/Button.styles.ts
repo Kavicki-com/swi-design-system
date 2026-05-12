@@ -109,10 +109,15 @@ export const Label = styled.Text<{
   ${({ $underline }) => ($underline ? 'text-decoration-line: underline;' : '')}
 `;
 
+/* IconSlot — 24×24 container that matches Figma button specs (e.g. 32:2502).
+   No internal padding: the icon (rendered at size:24) fills the slot directly,
+   relying on the Container gap (theme.gap.xs = 4) for label↔icon spacing.
+   Earlier versions added 4px of internal padding here, which inflated the
+   surface-variant button by ~8px horizontal and broke Figma fidelity for
+   compact contexts like the maps "Voltar ao dashboard" CTA. */
 export const IconSlot = styled(View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
-  padding: ${({ theme }) => theme.padding.xs}px;
 `;

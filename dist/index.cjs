@@ -1158,7 +1158,6 @@ var IconSlot3 = styled37__default.default(reactNative.View)`
   height: 24px;
   align-items: center;
   justify-content: center;
-  padding: ${({ theme: theme2 }) => theme2.padding.xs}px;
 `;
 var Button = React35.forwardRef(
   ({
@@ -3313,6 +3312,7 @@ var MenuItem = React35.forwardRef(
     disabled = false,
     variant = "default",
     badge,
+    iconSize,
     onPress,
     fullWidth = false,
     accessibilityLabel,
@@ -3347,7 +3347,7 @@ var MenuItem = React35.forwardRef(
         children: [
           isCompact ? /* @__PURE__ */ jsxRuntime.jsx(Divider4, { ...stateProps }) : null,
           /* @__PURE__ */ jsxRuntime.jsxs(LabelGroup, { children: [
-            icon ? /* @__PURE__ */ jsxRuntime.jsx(IconSlot6, { children: /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: icon, size: isCompact ? 18 : 22, color: accentColor2 }) }) : null,
+            icon ? /* @__PURE__ */ jsxRuntime.jsx(IconSlot6, { children: /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: icon, size: iconSize ?? (isCompact ? 18 : 22), color: accentColor2 }) }) : null,
             !isMinimal ? /* @__PURE__ */ jsxRuntime.jsx(Label8, { ...stateProps, children: label }) : null
           ] }),
           !isCompact && !isMinimal ? /* @__PURE__ */ jsxRuntime.jsx(Divider4, { ...stateProps }) : null,
@@ -3372,6 +3372,7 @@ var SideMenu = React35.forwardRef(
     onChange,
     variant,
     fullWidth = false,
+    iconSize,
     accessibilityLabel,
     testID
   }, ref) => {
@@ -3404,6 +3405,7 @@ var SideMenu = React35.forwardRef(
             disabled: item.disabled,
             variant: item.variant ?? variant,
             badge: item.badge,
+            iconSize,
             onPress: () => handlePress(item.value),
             fullWidth: true
           },

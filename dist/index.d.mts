@@ -1253,6 +1253,11 @@ interface MenuItemProps {
      *  top-left of the item. Use for navigation entries that carry pending
      *  counts (alerts, reports, messages). Stringified for display. */
     badge?: string | number;
+    /** Override the rendered icon size (in px). Defaults to 18 for `compact`
+     *  and 22 for all other variants. Use this when a tight Figma spec wants
+     *  a smaller glyph inside the standard MenuItem chrome (e.g. compact map
+     *  side-menus where the design calls for 20px icons). */
+    iconSize?: number;
     onPress?: () => void;
     fullWidth?: boolean;
     accessibilityLabel?: string;
@@ -1278,6 +1283,10 @@ interface SideMenuProps {
     onChange?: (value: string) => void;
     variant?: MenuItemVariant;
     fullWidth?: boolean;
+    /** Override the icon size (in px) for every item in this menu. Forwarded
+     *  to each MenuItem via its `iconSize` prop. Defaults to MenuItem default
+     *  (18 for compact, 22 otherwise). */
+    iconSize?: number;
     accessibilityLabel?: string;
     testID?: string;
 }

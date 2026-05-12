@@ -23,6 +23,7 @@ export const MenuItem = forwardRef<View, MenuItemProps>(
       disabled = false,
       variant = 'default',
       badge,
+      iconSize,
       onPress,
       fullWidth = false,
       accessibilityLabel,
@@ -74,7 +75,7 @@ export const MenuItem = forwardRef<View, MenuItemProps>(
         <LabelGroup>
           {icon ? (
             <IconSlot>
-              <Icon name={icon} size={isCompact ? 18 : 22} color={accentColor} />
+              <Icon name={icon} size={iconSize ?? (isCompact ? 18 : 22)} color={accentColor} />
             </IconSlot>
           ) : null}
           {!isMinimal ? <Label {...stateProps}>{label}</Label> : null}

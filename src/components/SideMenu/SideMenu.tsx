@@ -13,6 +13,7 @@ export const SideMenu = forwardRef<View, SideMenuProps>(
       onChange,
       variant,
       fullWidth = false,
+      iconSize,
       accessibilityLabel,
       testID,
     },
@@ -53,6 +54,7 @@ export const SideMenu = forwardRef<View, SideMenuProps>(
             disabled={item.disabled}
             variant={item.variant ?? variant}
             badge={item.badge}
+            iconSize={iconSize}
             onPress={() => handlePress(item.value)}
             fullWidth
           />

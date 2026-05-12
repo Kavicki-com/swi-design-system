@@ -1150,7 +1150,6 @@ var IconSlot3 = styled37(View)`
   height: 24px;
   align-items: center;
   justify-content: center;
-  padding: ${({ theme: theme2 }) => theme2.padding.xs}px;
 `;
 var Button = forwardRef(
   ({
@@ -3305,6 +3304,7 @@ var MenuItem = forwardRef(
     disabled = false,
     variant = "default",
     badge,
+    iconSize,
     onPress,
     fullWidth = false,
     accessibilityLabel,
@@ -3339,7 +3339,7 @@ var MenuItem = forwardRef(
         children: [
           isCompact ? /* @__PURE__ */ jsx(Divider4, { ...stateProps }) : null,
           /* @__PURE__ */ jsxs(LabelGroup, { children: [
-            icon ? /* @__PURE__ */ jsx(IconSlot6, { children: /* @__PURE__ */ jsx(Icon, { name: icon, size: isCompact ? 18 : 22, color: accentColor2 }) }) : null,
+            icon ? /* @__PURE__ */ jsx(IconSlot6, { children: /* @__PURE__ */ jsx(Icon, { name: icon, size: iconSize ?? (isCompact ? 18 : 22), color: accentColor2 }) }) : null,
             !isMinimal ? /* @__PURE__ */ jsx(Label8, { ...stateProps, children: label }) : null
           ] }),
           !isCompact && !isMinimal ? /* @__PURE__ */ jsx(Divider4, { ...stateProps }) : null,
@@ -3364,6 +3364,7 @@ var SideMenu = forwardRef(
     onChange,
     variant,
     fullWidth = false,
+    iconSize,
     accessibilityLabel,
     testID
   }, ref) => {
@@ -3396,6 +3397,7 @@ var SideMenu = forwardRef(
             disabled: item.disabled,
             variant: item.variant ?? variant,
             badge: item.badge,
+            iconSize,
             onPress: () => handlePress(item.value),
             fullWidth: true
           },

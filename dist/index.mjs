@@ -5104,7 +5104,7 @@ var SuccessBadge = ({
             ]
           }
         ),
-        /* @__PURE__ */ jsx(Icon, { name: iconName, size: resolvedIconSize, color: ic })
+        /* @__PURE__ */ jsx(View, { style: { zIndex: 1 }, children: /* @__PURE__ */ jsx(Icon, { name: iconName, size: resolvedIconSize, color: ic }) })
       ]
     }
   );

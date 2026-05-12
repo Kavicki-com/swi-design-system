@@ -3,6 +3,8 @@ import { type View } from 'react-native';
 import { Icon } from '../Icon';
 import { useTheme } from '../../theme';
 import {
+  BadgeOverlay,
+  BadgeText,
   Container,
   Divider,
   HoverOverlay,
@@ -20,6 +22,7 @@ export const MenuItem = forwardRef<View, MenuItemProps>(
       active = false,
       disabled = false,
       variant = 'default',
+      badge,
       onPress,
       fullWidth = false,
       accessibilityLabel,
@@ -40,6 +43,7 @@ export const MenuItem = forwardRef<View, MenuItemProps>(
 
     const showHoverOverlay = hovered && !disabled && !active;
     const isCompact = variant === 'compact';
+    const isMinimal = variant === 'minimal';
 
     const stateProps = {
       $active: active,
@@ -73,10 +77,15 @@ export const MenuItem = forwardRef<View, MenuItemProps>(
               <Icon name={icon} size={isCompact ? 18 : 22} color={accentColor} />
             </IconSlot>
           ) : null}
-          <Label {...stateProps}>{label}</Label>
+          {!isMinimal ? <Label {...stateProps}>{label}</Label> : null}
         </LabelGroup>
-        {!isCompact ? <Divider {...stateProps} /> : null}
+        {!isCompact && !isMinimal ? <Divider {...stateProps} /> : null}
         {showHoverOverlay ? <HoverOverlay $variant={variant} /> : null}
+        {badge !== undefined ? (
+          <BadgeOverlay>
+            <BadgeText>{String(badge)}</BadgeText>
+          </BadgeOverlay>
+        ) : null}
       </Container>
     );
   },

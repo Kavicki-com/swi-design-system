@@ -11,10 +11,10 @@ export const NowMarker = forwardRef<View, NowMarkerProps>(
         accessibilityLabel={accessibilityLabel ?? label}
         testID={testID}
       >
+        <Pole $height={height} />
         <Flag>
           <FlagText>{label}</FlagText>
         </Flag>
-        <Pole $height={height} />
       </Stack>
     );
   },

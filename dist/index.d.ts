@@ -770,6 +770,14 @@ declare const iconPaths: {
         readonly viewBox: "0 -960 960 960";
         readonly d: "M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-760h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z";
     };
+    readonly female: {
+        readonly viewBox: "0 -960 960 960";
+        readonly d: "M440-120v-80h-80v-80h80v-87q-79-14-129.5-75.5T260-585q0-92 64-156t156-64q92 0 156 64t64 156q0 81-50.5 142.5T520-367v87h80v80h-80v80h-80Zm40-327q57 0 98.5-41.5T620-585q0-57-41.5-98.5T480-725q-57 0-98.5 41.5T340-585q0 57 41.5 98.5T480-447Z";
+    };
+    readonly male: {
+        readonly viewBox: "0 -960 960 960";
+        readonly d: "M520-440q-79 0-134.5-55.5T330-630q0-79 55.5-134.5T520-820q66 0 117 39t68 101l122-122-30-30q-9-9-9-21.5t9-21.5q9-9 21.5-9t21.5 9l141 141q9 9 9 21.5t-9 21.5q-9 9-21.5 9t-21.5-9l-29-29-122 122q19 27 29.5 58.5T855-490q3 24-12 42t-39 18q-19 0-32-12.5T753-475q-7-55-46-94.5T613-617q-23-9-46-12-9 28-13 56.5t-4 57.5q0 79-55.5 134.5T520-440Zm0-80q46 0 78-32t32-78q0-46-32-78t-78-32q-46 0-78 32t-32 78q0 46 32 78t78 32ZM320-40q-17 0-28.5-11.5T280-80v-160H140q-25 0-42.5-17.5T80-300v-100h80v100h120v-160q0-25 17.5-42.5T340-520h80v80h-60v160h220q33 0 56.5 23.5T660-200v80q0 33-23.5 56.5T580-40H320Zm20-80h200v-40H340v40Z";
+    };
     readonly visibility: {
         readonly viewBox: "0 -960 960 960";
         readonly d: "M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T48-500q46-137 166-218.5T480-800q146 0 266 81.5T912-500q-46 137-166 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z";
@@ -1569,6 +1577,80 @@ declare const StatusChart: {
     displayName: string;
 };
 
+type StepState = 'default' | 'current' | 'done';
+interface StepProps {
+    /** Visual state of the step. */
+    state: StepState;
+    /**
+     * 1-based step number displayed when `state === 'default'`. Required for
+     * default state; ignored for `current` (renders ●) and `done` (renders ✓).
+     */
+    number?: number;
+    testID?: string;
+    accessibilityLabel?: string;
+}
+
+declare const Step: {
+    ({ state, number, testID, accessibilityLabel }: StepProps): react_jsx_runtime.JSX.Element;
+    displayName: string;
+};
+
+interface StepBarProps {
+    /** Total number of steps in the flow. */
+    total: number;
+    /**
+     * 1-based current step index. Steps before `current` render as `done`,
+     * the step at `current` renders as `current`, and steps after render as
+     * `default` with their number.
+     */
+    current: number;
+    testID?: string;
+    accessibilityLabel?: string;
+}
+
+declare const StepBar: {
+    ({ total, current, testID, accessibilityLabel }: StepBarProps): react_jsx_runtime.JSX.Element;
+    displayName: string;
+};
+
+type GenderValue = 'female' | 'male';
+interface GenderSelectionCardProps {
+    /** Which gender this card represents — drives icon + accessibility. */
+    gender: GenderValue;
+    /** Display label below the icon (e.g. "Feminino", "Masculino"). */
+    label: string;
+    /** Whether the card is the selected one in its group. */
+    selected: boolean;
+    onPress: () => void;
+    /**
+     * Override the icon shown inside the card. Defaults to `female` / `male`
+     * from the DS registry based on `gender`.
+     */
+    iconName?: IconName;
+    testID?: string;
+    accessibilityLabel?: string;
+}
+
+declare const GenderSelectionCard: {
+    ({ gender, label, selected, onPress, iconName, testID, accessibilityLabel, }: GenderSelectionCardProps): react_jsx_runtime.JSX.Element;
+    displayName: string;
+};
+
+interface GenderSelectorProps {
+    /** Currently selected gender, or `null` if nothing is selected yet. */
+    value: GenderValue | null;
+    onChange: (value: GenderValue) => void;
+    /** Custom labels for each card. Defaults match Figma. */
+    femaleLabel?: string;
+    maleLabel?: string;
+    testID?: string;
+}
+
+declare const GenderSelector: {
+    ({ value, onChange, femaleLabel, maleLabel, testID, }: GenderSelectorProps): react_jsx_runtime.JSX.Element;
+    displayName: string;
+};
+
 type SurfaceVariant = keyof typeof semantic.surface;
 type SurfacePadding = keyof typeof semantic.padding;
 type SurfaceRadius = keyof typeof semantic.border.radius;
@@ -1648,4 +1730,4 @@ interface ToastProps {
 
 declare const Toast: React$1.ForwardRefExoticComponent<ToastProps & React$1.RefAttributes<View>>;
 
-export { Accordion, type AccordionProps, ActivitiesOverviewCard, type ActivitiesOverviewCardProps, Avatar, AvatarGroup, type AvatarGroupItem, type AvatarGroupProps, type AvatarProps, type AvatarSize, BigNumbersCard, type BigNumbersCardProps, Button, type ButtonProps, CaloriesTag, type CaloriesTagProps, ChatBubble, type ChatBubblePosition, type ChatBubbleProps, ChatSection, type ChatSectionProps, type ChatSectionUser, ChatUserCard, type ChatUserCardProps, Checkbox, type CheckboxProps, type CheckboxSize, Chip, ChipGroup, type ChipGroupMode, type ChipGroupProps, type ChipProps, type ChipState, Combobox, type ComboboxOption, type ComboboxProps, DonutChart, type DonutChartProps, type DonutChartSize, type DonutGradient, EmployeeOverviewCard, type EmployeeOverviewCardEmployee, type EmployeeOverviewCardProps, ExamInfoCard, type ExamInfoCardProps, Header, type HeaderProps, HeaderUserInfo, type HeaderUserInfoProps, HeartStatus, type HeartStatusCondition, type HeartStatusProps, HeartrateStatus, type HeartrateStatusCondition, type HeartrateStatusProps, Icon, type IconName, type IconProps, Image, type ImageProps, type ImageResizeMode, ImageUploader, type ImageUploaderProps, type ImageUploaderValue, Input, type InputProps, type IntensityColor, type IntensitySegment, LineCaloriesChart, type LineCaloriesChartProps, type LineCaloriesPoint, LocationPin, type LocationPinProps, type LocationPinStatus, Logo, type LogoProps, type LogoSize, type LogoType, MapControl, type MapControlOption, type MapControlProps, type MapControlVariant, MenuItem, type MenuItemProps, NowMarker, type NowMarkerProps, ProgressBar, type ProgressBarProps, Radio, type RadioProps, type RadioSize, ReportCard, type ReportCardAuthor, type ReportCardProps, SearchInput, type SearchInputProps, SideMenu, type SideMenuItem, type SideMenuProps, Silhouette, type SilhouetteGender, type SilhouetteProps, StatusChart, type StatusChartCondition, type StatusChartProps, StatusTag, type StatusTagProps, type StatusTagStatus, SuccessBadge, type SuccessBadgeProps, Surface, type SurfacePadding, type SurfaceProps, type SurfaceRadius, type SurfaceVariant, SwiThemeProvider, type SwiThemeProviderProps, type TabItem, Tabs, type TabsProps, Text, type TextProps, type TextVariant, type Theme, TimeStamp, type TimeStampProps, Title, type TitleProps, type TitleVariant, Toast, type ToastProps, type ToastVariant, Toggle, type ToggleProps, type TypographyVariant, type WeatherCondition, WeatherEventChip, type WeatherEventChipProps, WeatherIcon, type WeatherIconProps, type WeatherIconSize, WeatherTimeline, WeatherTimelineEntry, type WeatherTimelineEntryProps, type WeatherTimelineEvent, type WeatherTimelineProps, WorkersInfoCard, type WorkersInfoCardAlert, type WorkersInfoCardEmployee, type WorkersInfoCardProps, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
+export { Accordion, type AccordionProps, ActivitiesOverviewCard, type ActivitiesOverviewCardProps, Avatar, AvatarGroup, type AvatarGroupItem, type AvatarGroupProps, type AvatarProps, type AvatarSize, BigNumbersCard, type BigNumbersCardProps, Button, type ButtonProps, CaloriesTag, type CaloriesTagProps, ChatBubble, type ChatBubblePosition, type ChatBubbleProps, ChatSection, type ChatSectionProps, type ChatSectionUser, ChatUserCard, type ChatUserCardProps, Checkbox, type CheckboxProps, type CheckboxSize, Chip, ChipGroup, type ChipGroupMode, type ChipGroupProps, type ChipProps, type ChipState, Combobox, type ComboboxOption, type ComboboxProps, DonutChart, type DonutChartProps, type DonutChartSize, type DonutGradient, EmployeeOverviewCard, type EmployeeOverviewCardEmployee, type EmployeeOverviewCardProps, ExamInfoCard, type ExamInfoCardProps, GenderSelectionCard, type GenderSelectionCardProps, GenderSelector, type GenderSelectorProps, type GenderValue, Header, type HeaderProps, HeaderUserInfo, type HeaderUserInfoProps, HeartStatus, type HeartStatusCondition, type HeartStatusProps, HeartrateStatus, type HeartrateStatusCondition, type HeartrateStatusProps, Icon, type IconName, type IconProps, Image, type ImageProps, type ImageResizeMode, ImageUploader, type ImageUploaderProps, type ImageUploaderValue, Input, type InputProps, type IntensityColor, type IntensitySegment, LineCaloriesChart, type LineCaloriesChartProps, type LineCaloriesPoint, LocationPin, type LocationPinProps, type LocationPinStatus, Logo, type LogoProps, type LogoSize, type LogoType, MapControl, type MapControlOption, type MapControlProps, type MapControlVariant, MenuItem, type MenuItemProps, NowMarker, type NowMarkerProps, ProgressBar, type ProgressBarProps, Radio, type RadioProps, type RadioSize, ReportCard, type ReportCardAuthor, type ReportCardProps, SearchInput, type SearchInputProps, SideMenu, type SideMenuItem, type SideMenuProps, Silhouette, type SilhouetteGender, type SilhouetteProps, StatusChart, type StatusChartCondition, type StatusChartProps, StatusTag, type StatusTagProps, type StatusTagStatus, Step, StepBar, type StepBarProps, type StepProps, type StepState, SuccessBadge, type SuccessBadgeProps, Surface, type SurfacePadding, type SurfaceProps, type SurfaceRadius, type SurfaceVariant, SwiThemeProvider, type SwiThemeProviderProps, type TabItem, Tabs, type TabsProps, Text, type TextProps, type TextVariant, type Theme, TimeStamp, type TimeStampProps, Title, type TitleProps, type TitleVariant, Toast, type ToastProps, type ToastVariant, Toggle, type ToggleProps, type TypographyVariant, type WeatherCondition, WeatherEventChip, type WeatherEventChipProps, WeatherIcon, type WeatherIconProps, type WeatherIconSize, WeatherTimeline, WeatherTimelineEntry, type WeatherTimelineEntryProps, type WeatherTimelineEvent, type WeatherTimelineProps, WorkersInfoCard, type WorkersInfoCardAlert, type WorkersInfoCardEmployee, type WorkersInfoCardProps, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };

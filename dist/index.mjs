@@ -1,7 +1,7 @@
 import styled37, { css, useTheme as useTheme$1, ThemeProvider } from 'styled-components/native';
 import { Platform, View, Pressable, Image as Image$1, TextInput, ScrollView, Text as Text$1, PanResponder } from 'react-native';
 import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
-import React35, { forwardRef, useState, useCallback, useRef, useImperativeHandle, createContext, useId, useContext, useEffect } from 'react';
+import React35, { forwardRef, useState, useCallback, useRef, useImperativeHandle, createContext, useId, useContext, useEffect, Fragment as Fragment$1 } from 'react';
 import Svg, { Path, Defs, LinearGradient, Stop, RadialGradient, Circle, G, ClipPath } from 'react-native-svg';
 
 // src/theme/ThemeProvider.tsx
@@ -581,6 +581,14 @@ var iconPaths = {
   mail: {
     viewBox: MATERIAL_VIEWBOX,
     d: "M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-760h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z"
+  },
+  female: {
+    viewBox: MATERIAL_VIEWBOX,
+    d: "M440-120v-80h-80v-80h80v-87q-79-14-129.5-75.5T260-585q0-92 64-156t156-64q92 0 156 64t64 156q0 81-50.5 142.5T520-367v87h80v80h-80v80h-80Zm40-327q57 0 98.5-41.5T620-585q0-57-41.5-98.5T480-725q-57 0-98.5 41.5T340-585q0 57 41.5 98.5T480-447Z"
+  },
+  male: {
+    viewBox: MATERIAL_VIEWBOX,
+    d: "M520-440q-79 0-134.5-55.5T330-630q0-79 55.5-134.5T520-820q66 0 117 39t68 101l122-122-30-30q-9-9-9-21.5t9-21.5q9-9 21.5-9t21.5 9l141 141q9 9 9 21.5t-9 21.5q-9 9-21.5 9t-21.5-9l-29-29-122 122q19 27 29.5 58.5T855-490q3 24-12 42t-39 18q-19 0-32-12.5T753-475q-7-55-46-94.5T613-617q-23-9-46-12-9 28-13 56.5t-4 57.5q0 79-55.5 134.5T520-440Zm0-80q46 0 78-32t32-78q0-46-32-78t-78-32q-46 0-78 32t-32 78q0 46 32 78t78 32ZM320-40q-17 0-28.5-11.5T280-80v-160H140q-25 0-42.5-17.5T80-300v-100h80v100h120v-160q0-25 17.5-42.5T340-520h80v80h-60v160h220q33 0 56.5 23.5T660-200v80q0 33-23.5 56.5T580-40H320Zm20-80h200v-40H340v40Z"
   },
   visibility: {
     viewBox: MATERIAL_VIEWBOX,
@@ -5065,6 +5073,166 @@ var StatusChart = ({
   );
 };
 StatusChart.displayName = "StatusChart";
+var dotBackground = ({ $state, theme: theme2 }) => {
+  if ($state === "current" || $state === "done") return theme2.content.primary;
+  return theme2.content.medium;
+};
+var Dot2 = styled37(View)`
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  background-color: ${dotBackground};
+`;
+var Label13 = styled37.Text`
+  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
+  font-weight: ${({ $state, theme: theme2 }) => $state === "current" ? theme2.fontWeight.bold : theme2.fontWeight.regular};
+  font-size: 12px;
+  color: ${({ theme: theme2 }) => theme2.content.light};
+  line-height: 12px;
+`;
+var renderContent = (state, number) => {
+  if (state === "current") return "\u25CF";
+  if (state === "done") return "\u2713";
+  return number != null ? String(number) : "";
+};
+var Step = ({ state, number, testID, accessibilityLabel }) => /* @__PURE__ */ jsx(
+  Dot2,
+  {
+    $state: state,
+    testID,
+    accessibilityLabel,
+    accessibilityRole: accessibilityLabel ? "image" : void 0,
+    children: /* @__PURE__ */ jsx(Label13, { $state: state, children: renderContent(state, number) })
+  }
+);
+Step.displayName = "Step";
+var Container18 = styled37(View)`
+  flex-direction: row;
+  align-items: center;
+  align-self: stretch;
+`;
+var Connector = styled37(View)`
+  flex: 1;
+  height: 1px;
+  background-color: ${({ $reached, theme: theme2 }) => $reached ? theme2.content.primary : theme2.content.medium};
+`;
+var stateFor = (stepNum, current) => {
+  if (stepNum < current) return "done";
+  if (stepNum === current) return "current";
+  return "default";
+};
+var StepBar = ({ total, current, testID, accessibilityLabel }) => /* @__PURE__ */ jsx(
+  Container18,
+  {
+    testID,
+    accessibilityLabel: accessibilityLabel ?? `Etapa ${current} de ${total}`,
+    accessibilityRole: "progressbar",
+    children: Array.from({ length: total }, (_, idx) => {
+      const stepNum = idx + 1;
+      const state = stateFor(stepNum, current);
+      return /* @__PURE__ */ jsxs(Fragment$1, { children: [
+        /* @__PURE__ */ jsx(Step, { state, number: state === "default" ? stepNum : void 0 }),
+        idx < total - 1 ? /* @__PURE__ */ jsx(Connector, { $reached: stepNum < current }) : null
+      ] }, stepNum);
+    })
+  }
+);
+StepBar.displayName = "StepBar";
+var Container19 = styled37(Pressable)`
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
+  padding-vertical: ${({ theme: theme2 }) => theme2.padding.s}px;
+  padding-horizontal: ${({ theme: theme2 }) => theme2.padding.xs}px;
+  background-color: ${({ theme: theme2 }) => theme2.surface.standard};
+  border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
+  border-width: ${({ $selected, theme: theme2 }) => $selected ? theme2.border.size.m : 0}px;
+  border-color: ${({ theme: theme2 }) => theme2.content.primary};
+`;
+var IconSlot7 = styled37(View)`
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+`;
+var Label14 = styled37.Text`
+  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
+  font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
+  font-size: 12px;
+  color: ${({ $selected, theme: theme2 }) => $selected ? theme2.content.dark : theme2.content.medium};
+`;
+var GenderSelectionCard = ({
+  gender,
+  label,
+  selected,
+  onPress,
+  iconName,
+  testID,
+  accessibilityLabel
+}) => {
+  const theme2 = useTheme();
+  const resolvedIcon = iconName ?? gender;
+  return /* @__PURE__ */ jsxs(
+    Container19,
+    {
+      $selected: selected,
+      onPress,
+      accessibilityRole: "radio",
+      accessibilityState: { selected },
+      accessibilityLabel: accessibilityLabel ?? label,
+      testID,
+      children: [
+        /* @__PURE__ */ jsx(IconSlot7, { children: /* @__PURE__ */ jsx(
+          Icon,
+          {
+            name: resolvedIcon,
+            size: 24,
+            color: selected ? theme2.content.dark : theme2.content.medium
+          }
+        ) }),
+        /* @__PURE__ */ jsx(Label14, { $selected: selected, children: label })
+      ]
+    }
+  );
+};
+GenderSelectionCard.displayName = "GenderSelectionCard";
+var Row8 = styled37(View)`
+  flex-direction: row;
+  align-items: center;
+  gap: ${({ theme: theme2 }) => theme2.gap.s}px;
+  align-self: stretch;
+`;
+var GenderSelector = ({
+  value,
+  onChange,
+  femaleLabel = "Feminino",
+  maleLabel = "Masculino",
+  testID
+}) => /* @__PURE__ */ jsxs(Row8, { testID, accessibilityRole: "radiogroup", children: [
+  /* @__PURE__ */ jsx(
+    GenderSelectionCard,
+    {
+      gender: "female",
+      label: femaleLabel,
+      selected: value === "female",
+      onPress: () => onChange("female")
+    }
+  ),
+  /* @__PURE__ */ jsx(
+    GenderSelectionCard,
+    {
+      gender: "male",
+      label: maleLabel,
+      selected: value === "male",
+      onPress: () => onChange("male")
+    }
+  )
+] });
+GenderSelector.displayName = "GenderSelector";
 var SuccessBadge = ({
   size = 96,
   iconName = "check",
@@ -5117,7 +5285,7 @@ var SuccessBadge = ({
   );
 };
 SuccessBadge.displayName = "SuccessBadge";
-var Container18 = styled37(View)`
+var Container20 = styled37(View)`
   flex-direction: row;
   align-items: center;
 `;
@@ -5169,7 +5337,7 @@ var Tabs = forwardRef(
       [disabled, isControlled, onChange]
     );
     return /* @__PURE__ */ jsx(
-      Container18,
+      Container20,
       {
         ref,
         style: fullWidth ? { alignSelf: "stretch", width: "100%" } : { alignSelf: "flex-start" },
@@ -5285,7 +5453,7 @@ var variantBackground = ({
       return theme2.surface.infoLight;
   }
 };
-var Container19 = styled37(View)`
+var Container21 = styled37(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
@@ -5320,7 +5488,7 @@ var Toast = forwardRef(
   ({ variant = "info", title, message, onClose, accessibilityLabel, testID }, ref) => {
     const theme2 = useTheme();
     return /* @__PURE__ */ jsxs(
-      Container19,
+      Container21,
       {
         ref,
         $variant: variant,
@@ -5349,6 +5517,6 @@ var Toast = forwardRef(
 );
 Toast.displayName = "Toast";
 
-export { Accordion, ActivitiesOverviewCard, Avatar, AvatarGroup, BigNumbersCard, Button, CaloriesTag, ChatBubble, ChatSection, ChatUserCard, Checkbox, Chip, ChipGroup, Combobox, DonutChart, EmployeeOverviewCard, ExamInfoCard, Header2 as Header, HeaderUserInfo, HeartStatus, HeartrateStatus, Icon, Image, ImageUploader, Input, LineCaloriesChart, LocationPin, Logo, MapControl, MenuItem, NowMarker, ProgressBar, Radio, ReportCard, SearchInput, SideMenu, Silhouette, StatusChart, StatusTag, SuccessBadge, Surface, SwiThemeProvider, Tabs, Text, TimeStamp, Title2 as Title, Toast, Toggle, WeatherEventChip, WeatherIcon, WeatherTimeline, WeatherTimelineEntry, WorkersInfoCard, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
+export { Accordion, ActivitiesOverviewCard, Avatar, AvatarGroup, BigNumbersCard, Button, CaloriesTag, ChatBubble, ChatSection, ChatUserCard, Checkbox, Chip, ChipGroup, Combobox, DonutChart, EmployeeOverviewCard, ExamInfoCard, GenderSelectionCard, GenderSelector, Header2 as Header, HeaderUserInfo, HeartStatus, HeartrateStatus, Icon, Image, ImageUploader, Input, LineCaloriesChart, LocationPin, Logo, MapControl, MenuItem, NowMarker, ProgressBar, Radio, ReportCard, SearchInput, SideMenu, Silhouette, StatusChart, StatusTag, Step, StepBar, SuccessBadge, Surface, SwiThemeProvider, Tabs, Text, TimeStamp, Title2 as Title, Toast, Toggle, WeatherEventChip, WeatherIcon, WeatherTimeline, WeatherTimelineEntry, WorkersInfoCard, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
 //# sourceMappingURL=index.mjs.map
 //# sourceMappingURL=index.mjs.map

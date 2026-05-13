@@ -804,7 +804,7 @@ var Frame = styled37(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   overflow: hidden;
   background-color: ${({ $bg }) => $bg};
-  ${({ $bordered, $borderColor }) => $bordered ? `border-width: 2px; border-style: solid; border-color: ${$borderColor};` : ""};
+  ${({ $bordered, $borderWidth, $borderColor }) => $bordered ? `border-width: ${$borderWidth}px; border-style: solid; border-color: ${$borderColor};` : ""};
 `;
 var SIZE_MAP = {
   s: 24,
@@ -817,6 +817,7 @@ var Avatar = forwardRef(
     size = "m",
     customSize,
     bordered = false,
+    borderWidth = 2,
     borderColor: borderColor2,
     fallbackBackgroundColor,
     testID,
@@ -830,6 +831,7 @@ var Avatar = forwardRef(
         ref,
         $size: px,
         $bordered: bordered,
+        $borderWidth: borderWidth,
         $borderColor: borderColor2 ?? theme2.content.dark,
         $bg: fallbackBackgroundColor ?? theme2.surface.medium,
         testID,

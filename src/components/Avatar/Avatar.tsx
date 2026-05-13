@@ -17,6 +17,7 @@ export const Avatar = forwardRef<View, AvatarProps>(
       size = 'm',
       customSize,
       bordered = false,
+      borderWidth = 2,
       borderColor,
       fallbackBackgroundColor,
       testID,
@@ -31,6 +32,7 @@ export const Avatar = forwardRef<View, AvatarProps>(
         ref={ref}
         $size={px}
         $bordered={bordered}
+        $borderWidth={borderWidth}
         $borderColor={borderColor ?? theme.content.dark}
         $bg={fallbackBackgroundColor ?? theme.surface.medium}
         testID={testID}

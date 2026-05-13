@@ -3184,6 +3184,18 @@ var Container13 = styled37(View)`
 var TailWrapper = styled37(View)`
   margin-top: -2px;
 `;
+var CameraBody = styled37(View)`
+  ${({ $size, theme: theme2 }) => css`
+    width: ${$size}px;
+    height: ${$size}px;
+    border-radius: ${Math.round($size * 0.18)}px;
+    background-color: ${theme2.surface.primary};
+    border-width: 2px;
+    border-color: #41955e;
+    align-items: center;
+    justify-content: center;
+  `}
+`;
 var STATUS_BORDER = {
   good: "#10b981",
   alert: "#f59e0b",
@@ -3191,16 +3203,32 @@ var STATUS_BORDER = {
   offline: "#6b7280"
 };
 var LocationPin = forwardRef(
-  ({ avatarUri, status = "good", borderColor: borderColor2, size = 40, name, tailColor, testID }, ref) => {
+  ({
+    variant = "avatar",
+    avatarUri,
+    status = "good",
+    borderColor: borderColor2,
+    size = 40,
+    name,
+    tailColor,
+    testID
+  }, ref) => {
     const theme2 = useTheme();
     const resolvedBorder = borderColor2 ?? STATUS_BORDER[status];
-    const resolvedTail = tailColor ?? theme2.background;
+    const resolvedTail = tailColor ?? (variant === "camera" ? theme2.surface.primary : theme2.background);
     const tailSize = Math.round(size * 0.41);
     return /* @__PURE__ */ jsxs(Container13, { ref, testID, accessibilityLabel: name, children: [
-      /* @__PURE__ */ jsx(
+      variant === "camera" ? /* @__PURE__ */ jsx(CameraBody, { $size: size, accessibilityLabel: name, children: /* @__PURE__ */ jsx(
+        Icon,
+        {
+          name: "video_camera_back",
+          color: theme2.content.dark,
+          size: Math.round(size * 0.55)
+        }
+      ) }) : /* @__PURE__ */ jsx(
         Avatar,
         {
-          uri: avatarUri,
+          uri: avatarUri ?? "",
           customSize: size,
           bordered: true,
           borderColor: resolvedBorder,

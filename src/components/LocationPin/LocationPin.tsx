@@ -3,7 +3,7 @@ import { type View } from 'react-native';
 import { Avatar } from '../Avatar';
 import { Icon } from '../Icon';
 import { useTheme } from '../../theme';
-import { Container, TailWrapper } from './LocationPin.styles';
+import { CameraBody, Container, TailWrapper } from './LocationPin.styles';
 import type { LocationPinProps, LocationPinStatus } from './LocationPin.types';
 
 /* Status → border color presets. Mirrors Figma employee-pin status indicators
@@ -17,23 +17,45 @@ const STATUS_BORDER: Record<LocationPinStatus, string> = {
 
 export const LocationPin = forwardRef<View, LocationPinProps>(
   (
-    { avatarUri, status = 'good', borderColor, size = 40, name, tailColor, testID },
+    {
+      variant = 'avatar',
+      avatarUri,
+      status = 'good',
+      borderColor,
+      size = 40,
+      name,
+      tailColor,
+      testID,
+    },
     ref,
   ) => {
     const theme = useTheme();
     const resolvedBorder = borderColor ?? STATUS_BORDER[status];
-    const resolvedTail = tailColor ?? theme.background;
+    /* Default tail: dark drop indicator for avatar pins (theme.background),
+       green primary for camera pins so the tail blends into the body color. */
+    const resolvedTail =
+      tailColor ?? (variant === 'camera' ? theme.surface.primary : theme.background);
     const tailSize = Math.round(size * 0.41);
 
     return (
       <Container ref={ref} testID={testID} accessibilityLabel={name}>
-        <Avatar
-          uri={avatarUri}
-          customSize={size}
-          bordered
-          borderColor={resolvedBorder}
-          accessibilityLabel={name}
-        />
+        {variant === 'camera' ? (
+          <CameraBody $size={size} accessibilityLabel={name}>
+            <Icon
+              name="video_camera_back"
+              color={theme.content.dark}
+              size={Math.round(size * 0.55)}
+            />
+          </CameraBody>
+        ) : (
+          <Avatar
+            uri={avatarUri ?? ''}
+            customSize={size}
+            bordered
+            borderColor={resolvedBorder}
+            accessibilityLabel={name}
+          />
+        )}
         <TailWrapper>
           <Icon name="pin_tail" color={resolvedTail} size={tailSize} />
         </TailWrapper>

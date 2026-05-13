@@ -1241,18 +1241,22 @@ interface MapControlProps {
 declare const MapControl: React$1.ForwardRefExoticComponent<MapControlProps & React$1.RefAttributes<View>>;
 
 type LocationPinStatus = 'good' | 'alert' | 'low' | 'offline';
+type LocationPinVariant = 'avatar' | 'camera';
 type LocationPinProps = {
-    /** Avatar image URI. */
-    avatarUri: string;
-    /** Status color preset for the avatar border. Default 'good'. */
+    /** Visual variant. 'avatar' renders an Avatar circle (worker pin);
+     *  'camera' renders a green square card with a camera icon. Default 'avatar'. */
+    variant?: LocationPinVariant;
+    /** Avatar image URI. Required when variant='avatar'; ignored when variant='camera'. */
+    avatarUri?: string;
+    /** Status color preset for the avatar border. Default 'good'. Ignored for variant='camera'. */
     status?: LocationPinStatus;
     /** Override the status-derived border color. */
     borderColor?: string;
-    /** Avatar diameter in px. Default 40. */
+    /** Body diameter (avatar) or side length (camera) in px. Default 40. */
     size?: number;
-    /** Accessible label, typically the operator name. */
+    /** Accessible label, typically the operator or camera name. */
     name?: string;
-    /** Tail color. Defaults to theme.background (dark drop indicator). */
+    /** Tail color. Defaults to theme.background (avatar variant) or theme.surface.primary (camera variant). */
     tailColor?: string;
     testID?: string;
 };

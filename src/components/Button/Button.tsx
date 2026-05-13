@@ -10,6 +10,7 @@ export const Button = forwardRef<View, ButtonProps>(
       label,
       variant = 'contained',
       size = 'default',
+      shape = 'rounded',
       iconLeft,
       iconRight,
       disabled: disabledProp = false,
@@ -30,12 +31,14 @@ export const Button = forwardRef<View, ButtonProps>(
     const showDropShadow = variant === 'contained' && !disabled && !pressed;
     const showHoverOverlay = variant === 'contained' && hovered && !pressed && !disabled;
     const showPressedOverlay = pressed && !disabled;
+    const hasLabel = typeof label === 'string' && label.length > 0;
 
     return (
       <Container
         ref={ref}
         $variant={variant}
         $size={size}
+        $shape={shape}
         $hovered={hovered}
         $pressed={pressed}
         $disabled={disabled}
@@ -55,12 +58,16 @@ export const Button = forwardRef<View, ButtonProps>(
         testID={testID}
       >
         {iconLeft ? <IconSlot>{iconLeft}</IconSlot> : null}
-        <Label $variant={variant} $hovered={hovered} $disabled={disabled} $underline={underline}>
-          {label}
-        </Label>
+        {hasLabel ? (
+          <Label $variant={variant} $hovered={hovered} $disabled={disabled} $underline={underline}>
+            {label}
+          </Label>
+        ) : null}
         {iconRight ? <IconSlot>{iconRight}</IconSlot> : null}
-        {showHoverOverlay ? <HoverOverlay /> : null}
-        {showPressedOverlay ? <PressedOverlay style={elevation.negative} /> : null}
+        {showHoverOverlay ? <HoverOverlay $shape={shape} /> : null}
+        {showPressedOverlay ? (
+          <PressedOverlay $shape={shape} style={elevation.negative} />
+        ) : null}
       </Container>
     );
   },

@@ -1168,6 +1168,12 @@ var BigNumbersCard = React35.forwardRef(
   }
 );
 BigNumbersCard.displayName = "BigNumbersCard";
+var padding = (size, theme2) => {
+  if (size === "small") return theme2.padding.s;
+  if (size === "large") return theme2.padding.m;
+  return theme2.padding.sm;
+};
+var radius = (shape, theme2) => shape === "pill" ? theme2.border.radius.pill : theme2.border.radius.m;
 var containerBackground = ({
   $variant,
   $hovered,
@@ -1200,10 +1206,11 @@ var Container2 = styled37__default.default(reactNative.Pressable)`
   justify-content: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
   /* small: 8px vertical / 12px horizontal — pairs visually with Tabs (~32px tall).
-     default: 12px all sides — full-size CTA. */
-  padding-vertical: ${({ $size, theme: theme2 }) => $size === "small" ? theme2.padding.s : theme2.padding.sm}px;
-  padding-horizontal: ${({ theme: theme2 }) => theme2.padding.sm}px;
-  border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
+     default: 12px all sides — full-size CTA.
+     large: 16px all sides — round icon-only action buttons (Dashboard). */
+  padding-vertical: ${({ $size, theme: theme2 }) => padding($size, theme2)}px;
+  padding-horizontal: ${({ $size, theme: theme2 }) => $size === "large" ? padding($size, theme2) : theme2.padding.sm}px;
+  border-radius: ${({ $shape, theme: theme2 }) => radius($shape, theme2)}px;
   border-width: ${({ theme: theme2 }) => theme2.border.size.m}px;
   border-color: ${(props) => containerBorderColor(props)};
   background-color: ${(props) => containerBackground(props)};
@@ -1215,14 +1222,14 @@ var Container2 = styled37__default.default(reactNative.Pressable)`
 var HoverOverlay = styled37__default.default(reactNative.View)`
   position: absolute;
   inset: 0;
-  border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
+  border-radius: ${({ $shape, theme: theme2 }) => radius($shape, theme2)}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.hover};
   pointer-events: none;
 `;
 var PressedOverlay = styled37__default.default(reactNative.View)`
   position: absolute;
   inset: 0;
-  border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
+  border-radius: ${({ $shape, theme: theme2 }) => radius($shape, theme2)}px;
   pointer-events: none;
 `;
 var labelColor = ({
@@ -1255,6 +1262,7 @@ var Button = React35.forwardRef(
     label,
     variant = "contained",
     size = "default",
+    shape = "rounded",
     iconLeft,
     iconRight,
     disabled: disabledProp = false,
@@ -1272,12 +1280,14 @@ var Button = React35.forwardRef(
     const showDropShadow = variant === "contained" && !disabled && !pressed;
     const showHoverOverlay = variant === "contained" && hovered && !pressed && !disabled;
     const showPressedOverlay = pressed && !disabled;
+    const hasLabel = typeof label === "string" && label.length > 0;
     return /* @__PURE__ */ jsxRuntime.jsxs(
       Container2,
       {
         ref,
         $variant: variant,
         $size: size,
+        $shape: shape,
         $hovered: hovered,
         $pressed: pressed,
         $disabled: disabled,
@@ -1297,10 +1307,10 @@ var Button = React35.forwardRef(
         testID,
         children: [
           iconLeft ? /* @__PURE__ */ jsxRuntime.jsx(IconSlot3, { children: iconLeft }) : null,
-          /* @__PURE__ */ jsxRuntime.jsx(Label2, { $variant: variant, $hovered: hovered, $disabled: disabled, $underline: underline, children: label }),
+          hasLabel ? /* @__PURE__ */ jsxRuntime.jsx(Label2, { $variant: variant, $hovered: hovered, $disabled: disabled, $underline: underline, children: label }) : null,
           iconRight ? /* @__PURE__ */ jsxRuntime.jsx(IconSlot3, { children: iconRight }) : null,
-          showHoverOverlay ? /* @__PURE__ */ jsxRuntime.jsx(HoverOverlay, {}) : null,
-          showPressedOverlay ? /* @__PURE__ */ jsxRuntime.jsx(PressedOverlay, { style: elevation.negative }) : null
+          showHoverOverlay ? /* @__PURE__ */ jsxRuntime.jsx(HoverOverlay, { $shape: shape }) : null,
+          showPressedOverlay ? /* @__PURE__ */ jsxRuntime.jsx(PressedOverlay, { $shape: shape, style: elevation.negative }) : null
         ]
       }
     );
@@ -3853,7 +3863,7 @@ var isLightBgVariant = (variant) => toneForVariant(variant) === "light";
 var SurfaceContext = React35.createContext({ tone: "dark" });
 var useSurfaceTone = () => React35.useContext(SurfaceContext);
 var Surface = React35.forwardRef(
-  ({ variant = "standard", padding = "m", radius = "m", children, style, ...rest }, ref) => {
+  ({ variant = "standard", padding: padding2 = "m", radius: radius2 = "m", children, style, ...rest }, ref) => {
     const theme2 = useTheme();
     const tone = toneForVariant(variant);
     return /* @__PURE__ */ jsxRuntime.jsx(
@@ -3863,8 +3873,8 @@ var Surface = React35.forwardRef(
         style: [
           {
             backgroundColor: theme2.surface[variant],
-            padding: theme2.padding[padding],
-            borderRadius: theme2.border.radius[radius]
+            padding: theme2.padding[padding2],
+            borderRadius: theme2.border.radius[radius2]
           },
           style
         ],

@@ -1,15 +1,25 @@
 import { Pressable, View } from 'react-native';
 import styled, { type DefaultTheme } from 'styled-components/native';
-import type { ButtonSize, ButtonVariant } from './Button.types';
+import type { ButtonShape, ButtonSize, ButtonVariant } from './Button.types';
 
 export interface StateProps {
   $variant: ButtonVariant;
   $size: ButtonSize;
+  $shape: ButtonShape;
   $hovered: boolean;
   $pressed: boolean;
   $disabled: boolean;
   $fullWidth: boolean;
 }
+
+const padding = (size: ButtonSize, theme: DefaultTheme) => {
+  if (size === 'small') return theme.padding.s;
+  if (size === 'large') return theme.padding.m;
+  return theme.padding.sm;
+};
+
+const radius = (shape: ButtonShape, theme: DefaultTheme) =>
+  shape === 'pill' ? theme.border.radius.pill : theme.border.radius.m;
 
 const containerBackground = ({
   $variant,
@@ -46,11 +56,12 @@ export const Container = styled(Pressable)<StateProps>`
   justify-content: center;
   gap: ${({ theme }) => theme.gap.xs}px;
   /* small: 8px vertical / 12px horizontal — pairs visually with Tabs (~32px tall).
-     default: 12px all sides — full-size CTA. */
-  padding-vertical: ${({ $size, theme }) =>
-    $size === 'small' ? theme.padding.s : theme.padding.sm}px;
-  padding-horizontal: ${({ theme }) => theme.padding.sm}px;
-  border-radius: ${({ theme }) => theme.border.radius.m}px;
+     default: 12px all sides — full-size CTA.
+     large: 16px all sides — round icon-only action buttons (Dashboard). */
+  padding-vertical: ${({ $size, theme }) => padding($size, theme)}px;
+  padding-horizontal: ${({ $size, theme }) =>
+    $size === 'large' ? padding($size, theme) : theme.padding.sm}px;
+  border-radius: ${({ $shape, theme }) => radius($shape, theme)}px;
   border-width: ${({ theme }) => theme.border.size.m}px;
   border-color: ${(props) => containerBorderColor(props)};
   background-color: ${(props) => containerBackground(props)};
@@ -62,18 +73,18 @@ export const Container = styled(Pressable)<StateProps>`
     $fullWidth ? 'align-self: stretch; width: 100%;' : ''};
 `;
 
-export const HoverOverlay = styled(View)`
+export const HoverOverlay = styled(View)<{ $shape: ButtonShape }>`
   position: absolute;
   inset: 0;
-  border-radius: ${({ theme }) => theme.border.radius.m}px;
+  border-radius: ${({ $shape, theme }) => radius($shape, theme)}px;
   background-color: ${({ theme }) => theme.surface.hover};
   pointer-events: none;
 `;
 
-export const PressedOverlay = styled(View)`
+export const PressedOverlay = styled(View)<{ $shape: ButtonShape }>`
   position: absolute;
   inset: 0;
-  border-radius: ${({ theme }) => theme.border.radius.m}px;
+  border-radius: ${({ $shape, theme }) => radius($shape, theme)}px;
   pointer-events: none;
 `;
 

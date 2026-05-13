@@ -909,12 +909,26 @@ type ButtonVariant = 'contained' | 'outline' | 'ghost' | 'surface';
  * - `default`: 12px padding all sides; full-size CTA.
  * - `small`: 8px vertical, 12px horizontal padding (~32px tall) — pairs
  *   visually with `Tabs` in compact filter rows.
+ * - `large`: 16px padding all sides. Used for round icon-only action buttons
+ *   on the Dashboard (Figma `245:23280` — location, camera, work, etc.).
  */
-type ButtonSize = 'default' | 'small';
+type ButtonSize = 'default' | 'small' | 'large';
+/**
+ * Button shape:
+ * - `rounded`: 8px corner radius (default; matches form/CTA buttons).
+ * - `pill`: full pill radius (999px). Used for round icon-only action
+ *   buttons (Dashboard map controls, etc.).
+ */
+type ButtonShape = 'rounded' | 'pill';
 interface ButtonProps extends Pick<PressableProps, 'onPress' | 'onLongPress' | 'disabled' | 'accessibilityLabel' | 'accessibilityHint' | 'testID'> {
-    label: string;
+    /**
+     * Button label. Optional — omit for icon-only buttons (pass `iconLeft`
+     * and/or `iconRight`). When omitted, the label slot is not rendered.
+     */
+    label?: string;
     variant?: ButtonVariant;
     size?: ButtonSize;
+    shape?: ButtonShape;
     iconLeft?: ReactNode;
     iconRight?: ReactNode;
     fullWidth?: boolean;

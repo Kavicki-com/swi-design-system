@@ -14,6 +14,7 @@ export const Silhouette = ({
   gender = 'male',
   height,
   showHeart = true,
+  heatGradient = false,
   testID,
   accessibilityLabel,
 }: SilhouetteProps) => {
@@ -21,7 +22,7 @@ export const Silhouette = ({
   const data = SILHOUETTE_PATHS[gender];
   const h = height ?? data.height;
   const w = (h * data.width) / data.height;
-  const gradientId = `silhouette-gradient-${gender}`;
+  const gradientId = `silhouette-gradient-${gender}-${heatGradient ? 'heat' : 'primary'}`;
 
   return (
     <Svg
@@ -34,8 +35,17 @@ export const Silhouette = ({
     >
       <Defs>
         <LinearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
-          <Stop offset="0" stopColor={theme.content.primary} />
-          <Stop offset="1" stopColor={theme.surface.accent} />
+          {heatGradient
+            ? [
+                <Stop key="heat-0" offset="0" stopColor="#ef4444" />,
+                <Stop key="heat-1" offset="0.33" stopColor="#f97316" />,
+                <Stop key="heat-2" offset="0.66" stopColor="#facc15" />,
+                <Stop key="heat-3" offset="1" stopColor="#22c55e" />,
+              ]
+            : [
+                <Stop key="primary-0" offset="0" stopColor={theme.content.primary} />,
+                <Stop key="primary-1" offset="1" stopColor={theme.surface.accent} />,
+              ]}
         </LinearGradient>
       </Defs>
       <Path d={data.body} fill={`url(#${gradientId})`} />

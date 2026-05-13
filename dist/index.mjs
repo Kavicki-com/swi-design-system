@@ -3479,6 +3479,7 @@ var Silhouette = ({
   gender = "male",
   height,
   showHeart = true,
+  heatGradient = false,
   testID,
   accessibilityLabel
 }) => {
@@ -3486,7 +3487,7 @@ var Silhouette = ({
   const data = SILHOUETTE_PATHS[gender];
   const h = height ?? data.height;
   const w = h * data.width / data.height;
-  const gradientId = `silhouette-gradient-${gender}`;
+  const gradientId = `silhouette-gradient-${gender}-${heatGradient ? "heat" : "primary"}`;
   return /* @__PURE__ */ jsxs(
     Svg,
     {
@@ -3497,9 +3498,14 @@ var Silhouette = ({
       accessibilityLabel: accessibilityLabel ?? `silhouette ${gender}`,
       accessibilityRole: "image",
       children: [
-        /* @__PURE__ */ jsx(Defs, { children: /* @__PURE__ */ jsxs(LinearGradient, { id: gradientId, x1: "0", y1: "0", x2: "0", y2: "1", children: [
-          /* @__PURE__ */ jsx(Stop, { offset: "0", stopColor: theme2.content.primary }),
-          /* @__PURE__ */ jsx(Stop, { offset: "1", stopColor: theme2.surface.accent })
+        /* @__PURE__ */ jsx(Defs, { children: /* @__PURE__ */ jsx(LinearGradient, { id: gradientId, x1: "0", y1: "0", x2: "0", y2: "1", children: heatGradient ? [
+          /* @__PURE__ */ jsx(Stop, { offset: "0", stopColor: "#ef4444" }, "heat-0"),
+          /* @__PURE__ */ jsx(Stop, { offset: "0.33", stopColor: "#f97316" }, "heat-1"),
+          /* @__PURE__ */ jsx(Stop, { offset: "0.66", stopColor: "#facc15" }, "heat-2"),
+          /* @__PURE__ */ jsx(Stop, { offset: "1", stopColor: "#22c55e" }, "heat-3")
+        ] : [
+          /* @__PURE__ */ jsx(Stop, { offset: "0", stopColor: theme2.content.primary }, "primary-0"),
+          /* @__PURE__ */ jsx(Stop, { offset: "1", stopColor: theme2.surface.accent }, "primary-1")
         ] }) }),
         /* @__PURE__ */ jsx(Path, { d: data.body, fill: `url(#${gradientId})` }),
         showHeart ? /* @__PURE__ */ jsx(Path, { d: data.heart, fill: theme2.content.dark }) : null

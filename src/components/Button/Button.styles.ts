@@ -18,6 +18,7 @@ export interface StateProps {
 const padding = (size: ButtonSize, theme: DefaultTheme) => {
   if (size === 'small') return theme.padding.s;
   if (size === 'large') return theme.padding.m;
+  if (size === 'xlarge') return theme.padding.ml;
   return theme.padding.sm;
 };
 
@@ -67,7 +68,7 @@ export const Container = styled(Pressable)<StateProps>`
      large: 16px all sides — round icon-only action buttons (Dashboard). */
   padding-vertical: ${({ $size, theme }) => padding($size, theme)}px;
   padding-horizontal: ${({ $size, theme }) =>
-    $size === 'large' ? padding($size, theme) : theme.padding.sm}px;
+    $size === 'large' || $size === 'xlarge' ? padding($size, theme) : theme.padding.sm}px;
   border-radius: ${({ $shape, theme }) => radius($shape, theme)}px;
   border-width: ${({ $borderWidth, theme }) =>
     $borderWidth === 's' ? theme.border.size.s : theme.border.size.m}px;

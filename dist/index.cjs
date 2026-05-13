@@ -1195,6 +1195,7 @@ BigNumbersCard.displayName = "BigNumbersCard";
 var padding = (size, theme2) => {
   if (size === "small") return theme2.padding.s;
   if (size === "large") return theme2.padding.m;
+  if (size === "xlarge") return theme2.padding.ml;
   return theme2.padding.sm;
 };
 var radius = (shape, theme2) => shape === "pill" ? theme2.border.radius.pill : theme2.border.radius.m;
@@ -1236,7 +1237,7 @@ var Container2 = styled37__default.default(reactNative.Pressable)`
      default: 12px all sides — full-size CTA.
      large: 16px all sides — round icon-only action buttons (Dashboard). */
   padding-vertical: ${({ $size, theme: theme2 }) => padding($size, theme2)}px;
-  padding-horizontal: ${({ $size, theme: theme2 }) => $size === "large" ? padding($size, theme2) : theme2.padding.sm}px;
+  padding-horizontal: ${({ $size, theme: theme2 }) => $size === "large" || $size === "xlarge" ? padding($size, theme2) : theme2.padding.sm}px;
   border-radius: ${({ $shape, theme: theme2 }) => radius($shape, theme2)}px;
   border-width: ${({ $borderWidth, theme: theme2 }) => $borderWidth === "s" ? theme2.border.size.s : theme2.border.size.m}px;
   border-color: ${(props) => containerBorderColor(props)};

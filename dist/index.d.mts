@@ -933,8 +933,10 @@ type ButtonVariant = 'contained' | 'outline' | 'ghost' | 'surface';
  *   visually with `Tabs` in compact filter rows.
  * - `large`: 16px padding all sides. Used for round icon-only action buttons
  *   on the Dashboard (Figma `245:23280` — location, camera, work, etc.).
+ * - `xlarge`: 20px padding all sides. Used for the prominent Chat action
+ *   on the Dashboard (Figma `304:2742`).
  */
-type ButtonSize = 'default' | 'small' | 'large';
+type ButtonSize = 'default' | 'small' | 'large' | 'xlarge';
 /**
  * Button shape:
  * - `rounded`: 8px corner radius (default; matches form/CTA buttons).

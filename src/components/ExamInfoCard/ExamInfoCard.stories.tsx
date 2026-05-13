@@ -77,3 +77,45 @@ export const Stacked: Story = {
     </View>
   ),
 };
+
+export const Compact: Story = {
+  name: 'Compact — sidebar row',
+  args: {
+    year: 2027,
+    date: '05 Mar',
+    examName: 'Exame de reciclagem técnica',
+    compact: true,
+    fullWidth: true,
+  },
+};
+
+export const CompactStacked: Story = {
+  name: 'Compact — admin profile history',
+  parameters: { controls: { disable: true }, actions: { disable: true } },
+  render: () => (
+    <View style={{ width: 300, gap: 8 }}>
+      <Caption>Histórico de exames</Caption>
+      <ExamInfoCard
+        year={2027}
+        date="05 Mar"
+        examName="Exame de reciclagem técnica"
+        compact
+        fullWidth
+      />
+      <ExamInfoCard
+        year={2029}
+        date="19 Nov"
+        examName="Avaliação de segurança"
+        compact
+        fullWidth
+      />
+      <ExamInfoCard
+        year={2031}
+        date="14 Jul"
+        examName="Certificação em normas ISO"
+        compact
+        fullWidth
+      />
+    </View>
+  ),
+};

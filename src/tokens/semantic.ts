@@ -26,6 +26,7 @@ export const semantic = {
     error: primitive.red[400],
     errorLight: primitive.red[200],
     errorExtraLight: primitive.red[50],
+    danger: '#c0152d',
     success: primitive.lime[700],
     successLight: primitive.lime[200],
     successExtraLight: primitive.lime[50],

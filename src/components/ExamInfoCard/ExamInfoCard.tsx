@@ -1,8 +1,10 @@
 import React, { forwardRef } from 'react';
 import { type View } from 'react-native';
 import { Button } from '../Button';
+import { Icon } from '../Icon';
 import {
   Card,
+  CompactActionButton,
   DateText,
   ExamLink,
   ExamLinkText,
@@ -21,6 +23,7 @@ export const ExamInfoCard = forwardRef<View, ExamInfoCardProps>(
       onActionPress,
       actionDisabled = false,
       fullWidth = false,
+      compact = false,
       accessibilityLabel,
       testID,
     },
@@ -29,6 +32,7 @@ export const ExamInfoCard = forwardRef<View, ExamInfoCardProps>(
     return (
       <Card
         ref={ref}
+        $compact={compact}
         accessibilityLabel={accessibilityLabel ?? `${examName} ${date} ${year}`}
         testID={testID}
         style={
@@ -37,21 +41,42 @@ export const ExamInfoCard = forwardRef<View, ExamInfoCardProps>(
             : { alignSelf: 'flex-start' }
         }
       >
-        <YearText>{year}</YearText>
-        <DateText>{date}</DateText>
+        <YearText numberOfLines={compact ? 1 : undefined}>{year}</YearText>
+        <DateText $compact={compact} numberOfLines={compact ? 1 : undefined}>
+          {date}
+        </DateText>
         <ExamLink
+          $compact={compact}
           onPress={onExamPress}
           accessibilityRole={onExamPress ? 'link' : undefined}
           accessibilityLabel={onExamPress ? examName : undefined}
         >
-          <ExamLinkText>{examName}</ExamLinkText>
+          <ExamLinkText
+            $compact={compact}
+            numberOfLines={compact ? 1 : undefined}
+            ellipsizeMode={compact ? 'tail' : undefined}
+          >
+            {examName}
+          </ExamLinkText>
         </ExamLink>
-        <Button
-          label={actionLabel}
-          variant="contained"
-          onPress={onActionPress}
-          disabled={actionDisabled}
-        />
+        {compact ? (
+          <CompactActionButton
+            onPress={actionDisabled ? undefined : onActionPress}
+            disabled={actionDisabled}
+            accessibilityRole="button"
+            accessibilityLabel={actionLabel ?? `Baixar ${examName}`}
+            accessibilityState={{ disabled: actionDisabled }}
+          >
+            <Icon name="download" size={16} color="#171717" />
+          </CompactActionButton>
+        ) : (
+          <Button
+            label={actionLabel}
+            variant="contained"
+            onPress={onActionPress}
+            disabled={actionDisabled}
+          />
+        )}
       </Card>
     );
   },

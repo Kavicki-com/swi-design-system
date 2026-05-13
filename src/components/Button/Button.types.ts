@@ -50,6 +50,18 @@ export interface ButtonProps
   variant?: ButtonVariant;
   size?: ButtonSize;
   shape?: ButtonShape;
+  /**
+   * Override the outline color. Only meaningful when `variant === 'outline'`.
+   * Defaults to `theme.content.primaryLight`.
+   */
+  borderColor?: string;
+  /**
+   * Outline thickness. Only meaningful when `variant === 'outline'`.
+   * - `'s'`: 1px (default; matches `border.size.s`).
+   * - `'m'`: 2px (matches `border.size.m`). Used for emphasized outline
+   *   buttons like the Dashboard "Work" CTA (Figma `304:2685`).
+   */
+  borderWidth?: 's' | 'm';
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
   fullWidth?: boolean;

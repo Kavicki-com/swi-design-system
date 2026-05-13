@@ -929,6 +929,18 @@ interface ButtonProps extends Pick<PressableProps, 'onPress' | 'onLongPress' | '
     variant?: ButtonVariant;
     size?: ButtonSize;
     shape?: ButtonShape;
+    /**
+     * Override the outline color. Only meaningful when `variant === 'outline'`.
+     * Defaults to `theme.content.primaryLight`.
+     */
+    borderColor?: string;
+    /**
+     * Outline thickness. Only meaningful when `variant === 'outline'`.
+     * - `'s'`: 1px (default; matches `border.size.s`).
+     * - `'m'`: 2px (matches `border.size.m`). Used for emphasized outline
+     *   buttons like the Dashboard "Work" CTA (Figma `304:2685`).
+     */
+    borderWidth?: 's' | 'm';
     iconLeft?: ReactNode;
     iconRight?: ReactNode;
     fullWidth?: boolean;
@@ -992,6 +1004,15 @@ interface ChatUserCardProps {
 declare const ChatUserCard: React$1.ForwardRefExoticComponent<ChatUserCardProps & React$1.RefAttributes<View>>;
 
 type DonutChartSize = 'default' | 'small';
+/**
+ * Visual treatment of the donut.
+ * - `bevel` (default): dark 3D ring with bezel + inner well + tracked arc.
+ *   Use on dashboards where the donut sits over an unrelated background.
+ * - `flat`: minimal arc on transparent background — no bezel, no inner
+ *   well, very subtle track. Use on screens that already have their own
+ *   container (e.g. admin profile right column, Figma `159:14140`).
+ */
+type DonutChartAppearance = 'bevel' | 'flat';
 type DonutGradient = readonly [from: string, to: string];
 interface DonutChartProps {
     title: string;
@@ -1005,6 +1026,7 @@ interface DonutChartProps {
     icon?: IconName;
     iconColor?: string;
     size?: DonutChartSize;
+    appearance?: DonutChartAppearance;
     onLocationPress?: () => void;
     locationIcon?: IconName;
     accessibilityLabel?: string;
@@ -1206,9 +1228,20 @@ interface ProgressBarProps {
 declare const ProgressBar: React$1.ForwardRefExoticComponent<ProgressBarProps & React$1.RefAttributes<View>>;
 
 type ChipState = 'default' | 'active' | 'disable';
+/**
+ * Chip visual variant.
+ * - `outline` (default): filter-style chip with primary-colored border and
+ *   text on a transparent background. Used in filter rows where the chip
+ *   acts as a toggle.
+ * - `filled`: solid badge with `surface.primary` background and dark text,
+ *   small radius. Used for read-only tag lists (e.g. allergies on the
+ *   admin profile, Figma `159:14138`).
+ */
+type ChipVariant = 'outline' | 'filled';
 interface ChipProps extends Pick<PressableProps, 'accessibilityLabel' | 'accessibilityHint' | 'testID'> {
     label: string;
     state?: ChipState;
+    variant?: ChipVariant;
     onPress?: () => void;
 }
 

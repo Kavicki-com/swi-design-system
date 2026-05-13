@@ -1187,10 +1187,11 @@ var containerBackground = ({
 };
 var containerBorderColor = ({
   $variant,
+  $borderColor,
   theme: theme2
 }) => {
   if ($variant !== "outline") return "transparent";
-  return theme2.content.primaryLight;
+  return $borderColor ?? theme2.content.primaryLight;
 };
 var Container2 = styled37(Pressable)`
   flex-direction: row;
@@ -1203,7 +1204,7 @@ var Container2 = styled37(Pressable)`
   padding-vertical: ${({ $size, theme: theme2 }) => padding($size, theme2)}px;
   padding-horizontal: ${({ $size, theme: theme2 }) => $size === "large" ? padding($size, theme2) : theme2.padding.sm}px;
   border-radius: ${({ $shape, theme: theme2 }) => radius($shape, theme2)}px;
-  border-width: ${({ theme: theme2 }) => theme2.border.size.m}px;
+  border-width: ${({ $borderWidth, theme: theme2 }) => $borderWidth === "s" ? theme2.border.size.s : theme2.border.size.m}px;
   border-color: ${(props) => containerBorderColor(props)};
   background-color: ${(props) => containerBackground(props)};
   /* Surface variant carries elevation md per Figma 32:2502 — lifts the button
@@ -1255,6 +1256,8 @@ var Button = forwardRef(
     variant = "contained",
     size = "default",
     shape = "rounded",
+    borderColor: borderColor2,
+    borderWidth,
     iconLeft,
     iconRight,
     disabled: disabledProp = false,
@@ -1280,6 +1283,8 @@ var Button = forwardRef(
         $variant: variant,
         $size: size,
         $shape: shape,
+        $borderColor: borderColor2,
+        $borderWidth: borderWidth,
         $hovered: hovered,
         $pressed: pressed,
         $disabled: disabled,
@@ -1721,7 +1726,8 @@ var DonutArc = ({
   strokeWidth,
   progress,
   gradient,
-  trackColor
+  trackColor,
+  appearance = "bevel"
 }) => {
   const pct = clamp2(progress, 0, 100);
   const cx = size / 2;
@@ -1729,7 +1735,8 @@ var DonutArc = ({
   const outerR = size / 2;
   const ringBand = strokeWidth * 2;
   const innerR = outerR - ringBand;
-  const arcR = outerR - strokeWidth;
+  const arcStroke = appearance === "flat" ? Math.max(2, Math.round(strokeWidth / 2)) : strokeWidth;
+  const arcR = outerR - arcStroke;
   const circumference = 2 * Math.PI * arcR;
   const dash = pct / 100 * circumference;
   const id = useId().replace(/:/g, "");
@@ -1737,24 +1744,29 @@ var DonutArc = ({
   const wellId = `donut-well-${id}`;
   const arcId = `donut-arc-${id}`;
   const [arcFrom, arcTo] = gradient;
+  const isFlat = appearance === "flat";
   return /* @__PURE__ */ jsxs(Svg, { width: size, height: size, viewBox: `0 0 ${size} ${size}`, children: [
     /* @__PURE__ */ jsxs(Defs, { children: [
-      /* @__PURE__ */ jsxs(LinearGradient, { id: bezelId, x1: "0.5", y1: "0", x2: "0.5", y2: "1", children: [
-        /* @__PURE__ */ jsx(Stop, { offset: "0", stopColor: "#3a3a3a", stopOpacity: "1" }),
-        /* @__PURE__ */ jsx(Stop, { offset: "0.55", stopColor: "#1f1f1f", stopOpacity: "1" }),
-        /* @__PURE__ */ jsx(Stop, { offset: "1", stopColor: "#141414", stopOpacity: "1" })
-      ] }),
-      /* @__PURE__ */ jsxs(RadialGradient, { id: wellId, cx: "0.5", cy: "0.5", rx: "0.55", ry: "0.55", fx: "0.5", fy: "0.5", children: [
-        /* @__PURE__ */ jsx(Stop, { offset: "0", stopColor: "#1c1c1c", stopOpacity: "1" }),
-        /* @__PURE__ */ jsx(Stop, { offset: "1", stopColor: "#0c0c0c", stopOpacity: "1" })
+      isFlat ? null : /* @__PURE__ */ jsxs(Fragment, { children: [
+        /* @__PURE__ */ jsxs(LinearGradient, { id: bezelId, x1: "0.5", y1: "0", x2: "0.5", y2: "1", children: [
+          /* @__PURE__ */ jsx(Stop, { offset: "0", stopColor: "#3a3a3a", stopOpacity: "1" }),
+          /* @__PURE__ */ jsx(Stop, { offset: "0.55", stopColor: "#1f1f1f", stopOpacity: "1" }),
+          /* @__PURE__ */ jsx(Stop, { offset: "1", stopColor: "#141414", stopOpacity: "1" })
+        ] }),
+        /* @__PURE__ */ jsxs(RadialGradient, { id: wellId, cx: "0.5", cy: "0.5", rx: "0.55", ry: "0.55", fx: "0.5", fy: "0.5", children: [
+          /* @__PURE__ */ jsx(Stop, { offset: "0", stopColor: "#1c1c1c", stopOpacity: "1" }),
+          /* @__PURE__ */ jsx(Stop, { offset: "1", stopColor: "#0c0c0c", stopOpacity: "1" })
+        ] })
       ] }),
       /* @__PURE__ */ jsxs(LinearGradient, { id: arcId, x1: "0.5", y1: "0", x2: "0.5", y2: "1", children: [
         /* @__PURE__ */ jsx(Stop, { offset: "0", stopColor: arcFrom, stopOpacity: "1" }),
         /* @__PURE__ */ jsx(Stop, { offset: "1", stopColor: arcTo, stopOpacity: "1" })
       ] })
     ] }),
-    /* @__PURE__ */ jsx(Circle, { cx, cy, r: outerR, fill: `url(#${bezelId})` }),
-    /* @__PURE__ */ jsx(Circle, { cx, cy, r: innerR, fill: `url(#${wellId})` }),
+    isFlat ? null : /* @__PURE__ */ jsxs(Fragment, { children: [
+      /* @__PURE__ */ jsx(Circle, { cx, cy, r: outerR, fill: `url(#${bezelId})` }),
+      /* @__PURE__ */ jsx(Circle, { cx, cy, r: innerR, fill: `url(#${wellId})` })
+    ] }),
     /* @__PURE__ */ jsx(
       Circle,
       {
@@ -1762,9 +1774,9 @@ var DonutArc = ({
         cy,
         r: arcR,
         stroke: trackColor,
-        strokeWidth,
+        strokeWidth: arcStroke,
         fill: "transparent",
-        opacity: 0.35
+        opacity: isFlat ? 0.15 : 0.35
       }
     ),
     /* @__PURE__ */ jsx(G, { transform: `rotate(-90 ${cx} ${cy})`, children: /* @__PURE__ */ jsx(
@@ -1774,7 +1786,7 @@ var DonutArc = ({
         cy,
         r: arcR,
         stroke: `url(#${arcId})`,
-        strokeWidth,
+        strokeWidth: arcStroke,
         fill: "transparent",
         strokeDasharray: `${dash} ${circumference}`,
         strokeLinecap: "round"
@@ -1883,6 +1895,7 @@ var DonutChart = forwardRef(
     icon = "vital_signs",
     iconColor,
     size = "default",
+    appearance = "bevel",
     onLocationPress,
     locationIcon = "location_on",
     accessibilityLabel,
@@ -1908,7 +1921,8 @@ var DonutChart = forwardRef(
                 strokeWidth: dims.stroke,
                 progress,
                 gradient: progressGradient,
-                trackColor: arcTrackColor
+                trackColor: arcTrackColor,
+                appearance
               }
             ) }),
             /* @__PURE__ */ jsxs(Center, { children: [
@@ -2877,15 +2891,36 @@ var Combobox = forwardRef(
   }
 );
 Combobox.displayName = "Combobox";
-var borderColor = ({ $state, theme: theme2 }) => {
+var borderColor = ({
+  $state,
+  $variant,
+  theme: theme2
+}) => {
+  if ($variant === "filled") return "transparent";
   if ($state === "disable") return theme2.content.disable;
   return theme2.content.primary;
 };
-var backgroundColor = ({ $state, theme: theme2 }) => {
+var backgroundColor = ({
+  $state,
+  $variant,
+  theme: theme2
+}) => {
+  if ($variant === "filled") {
+    if ($state === "disable") return theme2.surface.disable;
+    return theme2.surface.primary;
+  }
   if ($state === "active") return `${theme2.surface.primaryLight}14`;
   return "transparent";
 };
-var textColor = ({ $state, theme: theme2 }) => {
+var textColor = ({
+  $state,
+  $variant,
+  theme: theme2
+}) => {
+  if ($variant === "filled") {
+    if ($state === "disable") return theme2.content.disable;
+    return theme2.content.light;
+  }
   if ($state === "disable") return theme2.content.disable;
   return theme2.content.primary;
 };
@@ -2897,11 +2932,11 @@ var Body = styled37(View)`
   align-items: center;
   justify-content: center;
   padding-vertical: ${({ theme: theme2 }) => theme2.padding.xs}px;
-  padding-horizontal: ${({ theme: theme2 }) => theme2.padding.sm}px;
-  border-width: 1px;
+  padding-horizontal: ${({ $variant, theme: theme2 }) => $variant === "filled" ? theme2.padding.s : theme2.padding.sm}px;
+  border-width: ${({ $variant }) => $variant === "filled" ? 0 : 1}px;
   border-color: ${(props) => borderColor(props)};
   background-color: ${(props) => backgroundColor(props)};
-  border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
+  border-radius: ${({ $variant, theme: theme2 }) => $variant === "filled" ? theme2.border.radius.s : theme2.border.radius.m}px;
   overflow: hidden;
 `;
 var Label7 = styled37.Text`
@@ -2917,7 +2952,15 @@ var HoverOverlay4 = styled37(View)`
   pointer-events: none;
 `;
 var Chip = forwardRef(
-  ({ label, state = "default", onPress, accessibilityLabel, accessibilityHint, testID }, ref) => {
+  ({
+    label,
+    state = "default",
+    variant = "outline",
+    onPress,
+    accessibilityLabel,
+    accessibilityHint,
+    testID
+  }, ref) => {
     const [hovered, setHovered] = useState(false);
     const [pressed, setPressed] = useState(false);
     const isDisabled = state === "disable";
@@ -2926,6 +2969,7 @@ var Chip = forwardRef(
       {
         ref,
         $state: state,
+        $variant: variant,
         disabled: isDisabled,
         onPress: isDisabled ? void 0 : onPress,
         onPressIn: () => setPressed(true),
@@ -2937,8 +2981,8 @@ var Chip = forwardRef(
         accessibilityLabel: accessibilityLabel ?? label,
         accessibilityHint,
         testID,
-        children: /* @__PURE__ */ jsxs(Body, { $state: state, children: [
-          /* @__PURE__ */ jsx(Label7, { $state: state, children: label }),
+        children: /* @__PURE__ */ jsxs(Body, { $state: state, $variant: variant, children: [
+          /* @__PURE__ */ jsx(Label7, { $state: state, $variant: variant, children: label }),
           !isDisabled && (hovered || pressed) ? /* @__PURE__ */ jsx(HoverOverlay4, {}) : null
         ] })
       }

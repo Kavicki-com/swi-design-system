@@ -6,6 +6,8 @@ export interface StateProps {
   $variant: ButtonVariant;
   $size: ButtonSize;
   $shape: ButtonShape;
+  $borderColor?: string;
+  $borderWidth?: 's' | 'm';
   $hovered: boolean;
   $pressed: boolean;
   $disabled: boolean;
@@ -44,10 +46,11 @@ const containerBackground = ({
 
 const containerBorderColor = ({
   $variant,
+  $borderColor,
   theme,
 }: StateProps & { theme: DefaultTheme }) => {
   if ($variant !== 'outline') return 'transparent';
-  return theme.content.primaryLight;
+  return $borderColor ?? theme.content.primaryLight;
 };
 
 export const Container = styled(Pressable)<StateProps>`
@@ -62,7 +65,8 @@ export const Container = styled(Pressable)<StateProps>`
   padding-horizontal: ${({ $size, theme }) =>
     $size === 'large' ? padding($size, theme) : theme.padding.sm}px;
   border-radius: ${({ $shape, theme }) => radius($shape, theme)}px;
-  border-width: ${({ theme }) => theme.border.size.m}px;
+  border-width: ${({ $borderWidth, theme }) =>
+    $borderWidth === 's' ? theme.border.size.s : theme.border.size.m}px;
   border-color: ${(props) => containerBorderColor(props)};
   background-color: ${(props) => containerBackground(props)};
   /* Surface variant carries elevation md per Figma 32:2502 — lifts the button

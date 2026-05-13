@@ -53,6 +53,12 @@ export interface ButtonProps
   size?: ButtonSize;
   shape?: ButtonShape;
   /**
+   * Drop-shadow elevation token. Defaults to `'sm'` for `variant === 'contained'`
+   * (current behavior). Use `'lg'` for prominent CTAs (Dashboard Location/Chat/Help)
+   * or `'none'` to disable. Outline/ghost variants ignore this.
+   */
+  elevation?: 'sm' | 'md' | 'lg' | 'none';
+  /**
    * Override the container background color. Most useful with
    * `variant === 'contained'`, where the default is `theme.surface.primary`.
    * Used by Dashboard's Chat (surface.success) and Help (surface.danger)

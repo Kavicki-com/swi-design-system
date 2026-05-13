@@ -11,6 +11,7 @@ export const Button = forwardRef<View, ButtonProps>(
       variant = 'contained',
       size = 'default',
       shape = 'rounded',
+      elevation: elevationProp = 'sm',
       backgroundColor,
       borderColor,
       borderWidth,
@@ -31,7 +32,10 @@ export const Button = forwardRef<View, ButtonProps>(
     const [pressed, setPressed] = useState(false);
 
     const disabled = disabledProp ?? false;
-    const showDropShadow = variant === 'contained' && !disabled && !pressed;
+    const showDropShadow =
+      variant === 'contained' && !disabled && !pressed && elevationProp !== 'none';
+    const shadowStyle =
+      elevationProp === 'none' ? undefined : elevation[elevationProp as 'sm' | 'md' | 'lg'];
     const showHoverOverlay = variant === 'contained' && hovered && !pressed && !disabled;
     const showPressedOverlay = pressed && !disabled;
     const hasLabel = typeof label === 'string' && label.length > 0;
@@ -49,7 +53,7 @@ export const Button = forwardRef<View, ButtonProps>(
         $pressed={pressed}
         $disabled={disabled}
         $fullWidth={fullWidth}
-        style={showDropShadow ? elevation.sm : undefined}
+        style={showDropShadow ? shadowStyle : undefined}
         disabled={disabled}
         onPress={disabled ? undefined : onPress}
         onLongPress={disabled ? undefined : onLongPress}

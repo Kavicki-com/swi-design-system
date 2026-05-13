@@ -1293,6 +1293,7 @@ var Button = React35.forwardRef(
     variant = "contained",
     size = "default",
     shape = "rounded",
+    elevation: elevationProp = "sm",
     backgroundColor: backgroundColor2,
     borderColor: borderColor2,
     borderWidth,
@@ -1310,7 +1311,8 @@ var Button = React35.forwardRef(
     const [hovered, setHovered] = React35.useState(false);
     const [pressed, setPressed] = React35.useState(false);
     const disabled = disabledProp ?? false;
-    const showDropShadow = variant === "contained" && !disabled && !pressed;
+    const showDropShadow = variant === "contained" && !disabled && !pressed && elevationProp !== "none";
+    const shadowStyle = elevationProp === "none" ? void 0 : elevation[elevationProp];
     const showHoverOverlay = variant === "contained" && hovered && !pressed && !disabled;
     const showPressedOverlay = pressed && !disabled;
     const hasLabel = typeof label === "string" && label.length > 0;
@@ -1328,7 +1330,7 @@ var Button = React35.forwardRef(
         $pressed: pressed,
         $disabled: disabled,
         $fullWidth: fullWidth,
-        style: showDropShadow ? elevation.sm : void 0,
+        style: showDropShadow ? shadowStyle : void 0,
         disabled,
         onPress: disabled ? void 0 : onPress,
         onLongPress: disabled ? void 0 : onLongPress,

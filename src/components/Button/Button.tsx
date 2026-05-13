@@ -11,6 +11,7 @@ export const Button = forwardRef<View, ButtonProps>(
       variant = 'contained',
       size = 'default',
       shape = 'rounded',
+      backgroundColor,
       borderColor,
       borderWidth,
       iconLeft,
@@ -41,6 +42,7 @@ export const Button = forwardRef<View, ButtonProps>(
         $variant={variant}
         $size={size}
         $shape={shape}
+        $backgroundColor={backgroundColor}
         $borderColor={borderColor}
         $borderWidth={borderWidth}
         $hovered={hovered}

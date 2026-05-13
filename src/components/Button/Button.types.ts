@@ -51,6 +51,13 @@ export interface ButtonProps
   size?: ButtonSize;
   shape?: ButtonShape;
   /**
+   * Override the container background color. Most useful with
+   * `variant === 'contained'`, where the default is `theme.surface.primary`.
+   * Used by Dashboard's Chat (surface.success) and Help (surface.danger)
+   * buttons per Figma `245:23280`.
+   */
+  backgroundColor?: string;
+  /**
    * Override the outline color. Only meaningful when `variant === 'outline'`.
    * Defaults to `theme.content.primaryLight`.
    */

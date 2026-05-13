@@ -6,6 +6,7 @@ export interface StateProps {
   $variant: ButtonVariant;
   $size: ButtonSize;
   $shape: ButtonShape;
+  $backgroundColor?: string;
   $borderColor?: string;
   $borderWidth?: 's' | 'm';
   $hovered: boolean;
@@ -25,6 +26,7 @@ const radius = (shape: ButtonShape, theme: DefaultTheme) =>
 
 const containerBackground = ({
   $variant,
+  $backgroundColor,
   $hovered,
   $pressed,
   $disabled,
@@ -33,8 +35,10 @@ const containerBackground = ({
   if ($disabled) {
     return $variant === 'contained' ? theme.surface.primaryLight : 'transparent';
   }
-  if ($variant === 'contained') return theme.surface.primary;
-  if ($variant === 'surface') return theme.surface.standard;
+  // Explicit override wins for non-overlay states.
+  if ($backgroundColor && !$hovered && !$pressed) return $backgroundColor;
+  if ($variant === 'contained') return $backgroundColor ?? theme.surface.primary;
+  if ($variant === 'surface') return $backgroundColor ?? theme.surface.standard;
   if ($variant === 'outline') {
     return $hovered || $pressed ? theme.surface.primaryLight : 'transparent';
   }

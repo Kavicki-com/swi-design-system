@@ -8,7 +8,7 @@ export interface StateProps {
   $shape: ButtonShape;
   $backgroundColor?: string;
   $borderColor?: string;
-  $borderWidth?: 's' | 'm';
+  $borderWidth?: 's' | 'm' | number;
   $hovered: boolean;
   $pressed: boolean;
   $disabled: boolean;
@@ -54,8 +54,17 @@ const containerBorderColor = ({
   $borderColor,
   theme,
 }: StateProps & { theme: DefaultTheme }) => {
-  if ($variant !== 'outline') return 'transparent';
-  return $borderColor ?? theme.content.primaryLight;
+  // Explicit override always wins — opts non-outline variants into a visible
+  // border (e.g. two-tone FABs).
+  if ($borderColor) return $borderColor;
+  if ($variant === 'outline') return theme.content.primaryLight;
+  return 'transparent';
+};
+
+const borderWidthPx = ($borderWidth: 's' | 'm' | number | undefined, theme: DefaultTheme) => {
+  if (typeof $borderWidth === 'number') return $borderWidth;
+  if ($borderWidth === 's') return theme.border.size.s;
+  return theme.border.size.m;
 };
 
 export const Container = styled(Pressable)<StateProps>`
@@ -70,8 +79,7 @@ export const Container = styled(Pressable)<StateProps>`
   padding-horizontal: ${({ $size, theme }) =>
     $size === 'large' || $size === 'xlarge' ? padding($size, theme) : theme.padding.sm}px;
   border-radius: ${({ $shape, theme }) => radius($shape, theme)}px;
-  border-width: ${({ $borderWidth, theme }) =>
-    $borderWidth === 's' ? theme.border.size.s : theme.border.size.m}px;
+  border-width: ${({ $borderWidth, theme }) => borderWidthPx($borderWidth, theme)}px;
   border-color: ${(props) => containerBorderColor(props)};
   background-color: ${(props) => containerBackground(props)};
   /* Surface variant carries elevation md per Figma 32:2502 — lifts the button

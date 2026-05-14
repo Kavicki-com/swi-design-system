@@ -54,9 +54,13 @@ const BUTTON_INSET_SHADOW: ViewStyle | undefined = Platform.OS === 'web'
   ? ({ boxShadow: 'inset 0px 2.178px 4.356px rgba(0,0,0,0.59)' } as unknown as ViewStyle)
   : undefined;
 
+// Compact preset scale factor: 289.733 / 360 = 0.80481 (Figma 342:9420).
+const COMPACT_SCALE = 289.733 / STATUS_CHART_CANVAS.width;
+
 export const StatusChart = ({
   condition = 'good',
   progress = 1,
+  size = 'default',
   onPressHeartRate,
   testID,
   accessibilityLabel,
@@ -64,7 +68,11 @@ export const StatusChart = ({
   const theme = useTheme();
   const p = palette(theme, condition);
 
-  return (
+  const scale = size === 'compact' ? COMPACT_SCALE : 1;
+  const outerW = STATUS_CHART_CANVAS.width * scale;
+  const outerH = STATUS_CHART_CANVAS.height * scale;
+
+  const chartBody = (
     <View
       style={{
         width: STATUS_CHART_CANVAS.width,
@@ -216,6 +224,28 @@ export const StatusChart = ({
           />
         </View>
       </Pressable>
+    </View>
+  );
+
+  if (scale === 1) return chartBody;
+
+  // Compact preset: outer box sized to scaled dimensions, inner 360×374
+  // chart body shrunk via transform with top-left origin so the visible
+  // footprint exactly matches the Figma 342:9420 compact canvas.
+  return (
+    <View style={{ width: outerW, height: outerH, overflow: 'hidden' }}>
+      <View
+        style={
+          {
+            width: STATUS_CHART_CANVAS.width,
+            height: STATUS_CHART_CANVAS.height,
+            transform: [{ scale }],
+            transformOrigin: '0 0',
+          } as unknown as ViewStyle
+        }
+      >
+        {chartBody}
+      </View>
     </View>
   );
 };

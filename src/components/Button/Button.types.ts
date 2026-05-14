@@ -66,8 +66,12 @@ export interface ButtonProps
    */
   backgroundColor?: string;
   /**
-   * Override the outline color. Only meaningful when `variant === 'outline'`.
-   * Defaults to `theme.content.primaryLight`.
+   * Override the border color. Applies to any variant — for non-outline
+   * variants the default border is transparent, so setting this opts in to a
+   * visible border on `contained`/`ghost`/`surface` (e.g. the two-tone
+   * mobile my-stats Home FAB, Figma `348:10334`: light bg + thick dark
+   * border + pill shape). For `variant === 'outline'`, defaults to
+   * `theme.content.primaryLight`.
    */
   borderColor?: string;
   /**
@@ -78,12 +82,17 @@ export interface ButtonProps
    */
   labelColor?: string;
   /**
-   * Outline thickness. Only meaningful when `variant === 'outline'`.
-   * - `'s'`: 1px (default; matches `border.size.s`).
-   * - `'m'`: 2px (matches `border.size.m`). Used for emphasized outline
-   *   buttons like the Dashboard "Work" CTA (Figma `304:2685`).
+   * Border thickness. Token-based or arbitrary pixel value.
+   * - `'s'`: 1px (matches `border.size.s`).
+   * - `'m'`: 2px (default; matches `border.size.m`). Used for emphasized
+   *   outline buttons like the Dashboard "Work" CTA (Figma `304:2685`).
+   * - `number`: explicit width in pixels — required for non-token thicknesses
+   *   like the my-stats Home FAB's 10.286px (Figma `348:10334`).
+   *
+   * Pair with `borderColor` to make the border visible on non-outline
+   * variants (default border color is transparent off-outline).
    */
-  borderWidth?: 's' | 'm';
+  borderWidth?: 's' | 'm' | number;
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
   fullWidth?: boolean;

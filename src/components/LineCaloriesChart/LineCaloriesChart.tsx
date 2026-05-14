@@ -1,9 +1,9 @@
 /**
  * Native LineCaloriesChart implementation. Web build picks the .web.tsx variant.
  */
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useId } from 'react';
 import { type View } from 'react-native';
-import Svg, { Path } from 'react-native-svg';
+import Svg, { Defs, LinearGradient, Path, Stop } from 'react-native-svg';
 import { CaloriesTag } from '../CaloriesTag';
 import { TimeStamp } from '../TimeStamp';
 import { useTheme } from '../../theme';
@@ -41,6 +41,7 @@ export const LineCaloriesChart = forwardRef<View, LineCaloriesChartProps>(
     const theme = useTheme();
     const laid = layoutPoints(points, width, height);
     const d = linePath(laid);
+    const gradId = `calories-stroke-${useId().replace(/:/g, '')}`;
 
     return (
       <ChartFrame
@@ -60,10 +61,17 @@ export const LineCaloriesChart = forwardRef<View, LineCaloriesChartProps>(
             viewBox={`0 0 ${width} ${height}`}
             preserveAspectRatio="none"
           >
+            <Defs>
+              <LinearGradient id={gradId} x1="0" y1="0" x2="1" y2="0">
+                <Stop offset="0" stopColor={theme.surface.primary} stopOpacity="1" />
+                <Stop offset="0.5" stopColor={theme.surface.secondary} stopOpacity="1" />
+                <Stop offset="1" stopColor={theme.surface.warning} stopOpacity="1" />
+              </LinearGradient>
+            </Defs>
             <Path
               d={d}
               fill="none"
-              stroke={theme.content.secondary}
+              stroke={`url(#${gradId})`}
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"

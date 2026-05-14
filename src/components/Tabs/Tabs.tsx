@@ -12,6 +12,7 @@ export const Tabs = forwardRef<View, TabsProps>(
       onChange,
       fullWidth = false,
       disabled = false,
+      variant = 'segmented',
       accessibilityLabel,
       testID,
     },
@@ -35,6 +36,7 @@ export const Tabs = forwardRef<View, TabsProps>(
     return (
       <Container
         ref={ref}
+        $separated={variant === 'separated'}
         style={
           fullWidth
             ? { alignSelf: 'stretch', width: '100%' }
@@ -55,6 +57,7 @@ export const Tabs = forwardRef<View, TabsProps>(
               $last={idx === tabs.length - 1}
               $fullWidth={fullWidth}
               $disabled={isDisabled}
+              $separated={variant === 'separated'}
               disabled={isDisabled}
               onPress={() => handlePress(tab.value)}
               accessibilityRole="tab"

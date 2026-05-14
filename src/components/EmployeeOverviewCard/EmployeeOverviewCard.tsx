@@ -31,6 +31,8 @@ export const EmployeeOverviewCard = forwardRef<View, EmployeeOverviewCardProps>(
       onLocationPress,
       onPress,
       fullWidth = false,
+      actionElement,
+      borderColor,
       accessibilityLabel,
       testID,
     },
@@ -45,6 +47,7 @@ export const EmployeeOverviewCard = forwardRef<View, EmployeeOverviewCardProps>(
         accessibilityRole={onPress ? 'button' : undefined}
         accessibilityLabel={accessibilityLabel ?? employee.name}
         testID={testID}
+        $borderColor={borderColor}
         style={
           fullWidth
             ? { alignSelf: 'stretch', width: '100%' }
@@ -74,13 +77,15 @@ export const EmployeeOverviewCard = forwardRef<View, EmployeeOverviewCardProps>(
             </Stat>
           </HealthOverview>
         </LeftCluster>
-        <LocationButton
-          onPress={onLocationPress}
-          accessibilityRole="button"
-          accessibilityLabel="Localização"
-        >
-          <Icon name="location_on_filled" size={24} color={theme.content.dark} />
-        </LocationButton>
+        {actionElement ?? (
+          <LocationButton
+            onPress={onLocationPress}
+            accessibilityRole="button"
+            accessibilityLabel="Localização"
+          >
+            <Icon name="location_on_filled" size={24} color={theme.content.dark} />
+          </LocationButton>
+        )}
       </Card>
     );
   },

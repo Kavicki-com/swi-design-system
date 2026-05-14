@@ -29,3 +29,16 @@ export const CameraBody = styled(View)<{ $size: number }>`
     justify-content: center;
   `}
 `;
+
+/* Badge-variant body: solid status-colored circle with a centered glyph
+   (rendered by the component). Mirrors Figma 100:5611 alert map pins. */
+export const BadgeBody = styled(View)<{ $size: number; $fill: string }>`
+  ${({ $size, $fill }) => css`
+    width: ${$size}px;
+    height: ${$size}px;
+    border-radius: ${$size / 2}px;
+    background-color: ${$fill};
+    align-items: center;
+    justify-content: center;
+  `}
+`;

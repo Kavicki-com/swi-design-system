@@ -3,7 +3,7 @@ import { type View } from 'react-native';
 import { Avatar } from '../Avatar';
 import { Icon } from '../Icon';
 import { useTheme } from '../../theme';
-import { CameraBody, Container, TailWrapper } from './LocationPin.styles';
+import { BadgeBody, CameraBody, Container, TailWrapper } from './LocationPin.styles';
 import type { LocationPinProps, LocationPinStatus } from './LocationPin.types';
 
 /* Status → border color presets. Mirrors Figma employee-pin status indicators
@@ -12,6 +12,15 @@ const STATUS_BORDER: Record<LocationPinStatus, string> = {
   good: '#10b981',
   alert: '#f59e0b',
   low: '#ef4444',
+  offline: '#6b7280',
+};
+
+/* Status → solid fill for badge variant. Hex values come from the Figma
+   alert-pin SVG exports (Badge.svg, Badge-1.svg, Polygon 1-2.svg). */
+const STATUS_BADGE_FILL: Record<LocationPinStatus, string> = {
+  good: '#3EAB2E',
+  alert: '#EF8600',
+  low: '#F5667A',
   offline: '#6b7280',
 };
 
@@ -31,10 +40,14 @@ export const LocationPin = forwardRef<View, LocationPinProps>(
   ) => {
     const theme = useTheme();
     const resolvedBorder = borderColor ?? STATUS_BORDER[status];
-    /* Default tail: dark drop indicator for avatar pins (theme.background),
-       green primary for camera pins so the tail blends into the body color. */
+    const badgeFill = borderColor ?? STATUS_BADGE_FILL[status];
     const resolvedTail =
-      tailColor ?? (variant === 'camera' ? theme.surface.primary : theme.background);
+      tailColor ??
+      (variant === 'camera'
+        ? theme.surface.primary
+        : variant === 'badge'
+          ? badgeFill
+          : theme.background);
     const tailSize = Math.round(size * 0.41);
 
     return (
@@ -47,6 +60,14 @@ export const LocationPin = forwardRef<View, LocationPinProps>(
               size={Math.round(size * 0.55)}
             />
           </CameraBody>
+        ) : variant === 'badge' ? (
+          <BadgeBody $size={size} $fill={badgeFill} accessibilityLabel={name}>
+            <Icon
+              name={status === 'good' ? 'check_circle' : 'error'}
+              color="#F5F5F5"
+              size={size}
+            />
+          </BadgeBody>
         ) : (
           <Avatar
             uri={avatarUri ?? ''}

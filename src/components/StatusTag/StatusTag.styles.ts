@@ -14,6 +14,8 @@ const surfaceForStatus = ({
       return theme.surface.success;
     case 'pending':
       return theme.surface.warning;
+    case 'info':
+      return theme.surface.secondary;
     case 'canceled':
     default:
       return theme.surface.error;

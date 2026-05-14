@@ -7,6 +7,7 @@ const DEFAULT_LABELS: Record<StatusTagStatus, string> = {
   canceled: 'Cancelado',
   pending: 'Pendente',
   accept: 'Aceito',
+  info: 'Em andamento',
 };
 
 export const StatusTag = forwardRef<View, StatusTagProps>(

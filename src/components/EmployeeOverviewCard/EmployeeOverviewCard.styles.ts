@@ -1,7 +1,7 @@
 import { Pressable, View } from 'react-native';
 import styled from 'styled-components/native';
 
-export const Card = styled(Pressable)`
+export const Card = styled(Pressable)<{ $borderColor?: string }>`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -9,6 +9,8 @@ export const Card = styled(Pressable)`
   padding-vertical: ${({ theme }) => theme.padding.sm}px;
   border-radius: ${({ theme }) => theme.border.radius.m}px;
   background-color: ${({ theme }) => theme.surface.standard};
+  ${({ $borderColor }) =>
+    $borderColor ? `border-width: 1px; border-color: ${$borderColor};` : ''}
 `;
 
 export const LeftCluster = styled(View)`

@@ -58,9 +58,22 @@ export const Chevron = styled.Text<{ $disabled: boolean }>`
 `;
 
 export const Panel = styled(View)`
-  background-color: ${({ theme }) => theme.surface.standard};
-  border-radius: ${({ theme }) => theme.border.radius.s}px;
+  /* Float above siblings instead of pushing them down. */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: ${({ theme }) => theme.gap.xs}px;
+  z-index: 50;
+  min-width: 160px;
+  /* surface.high is a touch lighter than the chart card behind it
+   * (surface.medium), giving the floating panel a visible silhouette. */
+  background-color: ${({ theme }) => theme.surface.high};
+  border-radius: ${({ theme }) => theme.border.radius.m}px;
+  border-width: 1px;
+  border-color: ${({ theme }) => theme.content.medium};
   padding: ${({ theme }) => theme.padding.s}px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
 `;
 
 export const OptionsList = styled(View)`

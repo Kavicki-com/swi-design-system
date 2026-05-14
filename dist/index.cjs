@@ -369,6 +369,51 @@ var useTheme = styled37.useTheme;
 // src/icons/paths.ts
 var MATERIAL_VIEWBOX = "0 -960 960 960";
 var iconPaths = {
+  add: {
+    // Material Symbols `add` (plus sign). Used for "Atribuir responsáveis"
+    // on /reports/new (Figma 105:11725).
+    viewBox: MATERIAL_VIEWBOX,
+    d: "M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"
+  },
+  priority_high: {
+    // Material Symbols `priority_high` (exclamation mark). Used inside the
+    // LocationPin badge variant for alert/critical pins (Figma 100:5611).
+    viewBox: MATERIAL_VIEWBOX,
+    d: "M480-240q-25 0-42.5-17.5T420-300q0-25 17.5-42.5T480-360q25 0 42.5 17.5T540-300q0 25-17.5 42.5T480-240Zm0-200q-17 0-28.5-11.5T440-480v-200q0-17 11.5-28.5T480-720q17 0 28.5 11.5T520-680v200q0 17-11.5 28.5T480-440Z"
+  },
+  check_circle: {
+    // Figma SVG export (alerts map Badge.svg inner glyph) — checkmark inside
+    // an outlined circle ring. Used inside the LocationPin badge variant for
+    // 'good' pins (Figma 100:5611). Drawing at 100% of the badge body
+    // produces the colored body + white ring + white check shown in Figma.
+    viewBox: "0 0 40 40",
+    d: "M17.6666 22.9999L14.0833 19.4166C13.7777 19.111 13.3888 18.9583 12.9166 18.9583C12.4444 18.9583 12.0555 19.111 11.7499 19.4166C11.4444 19.7221 11.2916 20.111 11.2916 20.5833C11.2916 21.0555 11.4444 21.4444 11.7499 21.7499L16.4999 26.4999C16.8333 26.8333 17.2221 26.9999 17.6666 26.9999C18.111 26.9999 18.4999 26.8333 18.8333 26.4999L28.2499 17.0833C28.5555 16.7777 28.7083 16.3888 28.7083 15.9166C28.7083 15.4444 28.5555 15.0555 28.2499 14.7499C27.9444 14.4444 27.5555 14.2916 27.0833 14.2916C26.611 14.2916 26.2221 14.4444 25.9166 14.7499L17.6666 22.9999ZM19.9999 36.6666C17.6944 36.6666 15.5277 36.2288 13.4999 35.3533C11.4721 34.4777 9.70825 33.2905 8.20825 31.7916C6.70825 30.2927 5.52103 28.5288 4.64659 26.4999C3.77214 24.471 3.33437 22.3044 3.33325 19.9999C3.33214 17.6955 3.76992 15.5288 4.64659 13.4999C5.52325 11.471 6.71048 9.70714 8.20825 8.20825C9.70603 6.70936 11.4699 5.52214 13.4999 4.64659C15.5299 3.77103 17.6966 3.33325 19.9999 3.33325C22.3033 3.33325 24.4699 3.77103 26.4999 4.64659C28.5299 5.52214 30.2938 6.70936 31.7916 8.20825C33.2894 9.70714 34.4771 11.471 35.3549 13.4999C36.2327 15.5288 36.6699 17.6955 36.6666 19.9999C36.6633 22.3044 36.2255 24.471 35.3533 26.4999C34.481 28.5288 33.2938 30.2927 31.7916 31.7916C30.2894 33.2905 28.5255 34.4783 26.4999 35.3549C24.4744 36.2316 22.3077 36.6688 19.9999 36.6666ZM19.9999 33.3333C23.7221 33.3333 26.8749 32.0416 29.4583 29.4583C32.0416 26.8749 33.3333 23.7221 33.3333 19.9999C33.3333 16.2777 32.0416 13.1249 29.4583 10.5416C26.8749 7.95825 23.7221 6.66659 19.9999 6.66659C16.2777 6.66659 13.1249 7.95825 10.5416 10.5416C7.95825 13.1249 6.66659 16.2777 6.66659 19.9999C6.66659 23.7221 7.95825 26.8749 10.5416 29.4583C13.1249 32.0416 16.2777 33.3333 19.9999 33.3333Z"
+  },
+  error: {
+    // Figma SVG export (alerts map Badge-1.svg inner glyph) — exclamation
+    // inside an outlined circle ring. Used inside the LocationPin badge
+    // variant for 'alert'/'low' pins (Figma 100:5611).
+    viewBox: "0 0 40 40",
+    d: "M19.9999 28.3333C20.4721 28.3333 20.8683 28.1733 21.1883 27.8533C21.5083 27.5333 21.6677 27.1377 21.6666 26.6666C21.6655 26.1955 21.5055 25.7999 21.1866 25.4799C20.8677 25.1599 20.4721 24.9999 19.9999 24.9999C19.5277 24.9999 19.1321 25.1599 18.8133 25.4799C18.4944 25.7999 18.3344 26.1955 18.3333 26.6666C18.3321 27.1377 18.4921 27.5338 18.8133 27.8549C19.1344 28.176 19.5299 28.3355 19.9999 28.3333ZM19.9999 21.6666C20.4721 21.6666 20.8683 21.5066 21.1883 21.1866C21.5083 20.8666 21.6677 20.471 21.6666 19.9999V13.3333C21.6666 12.861 21.5066 12.4655 21.1866 12.1466C20.8666 11.8277 20.471 11.6677 19.9999 11.6666C19.5288 11.6655 19.1333 11.8255 18.8133 12.1466C18.4933 12.4677 18.3333 12.8633 18.3333 13.3333V19.9999C18.3333 20.4721 18.4933 20.8683 18.8133 21.1883C19.1333 21.5083 19.5288 21.6677 19.9999 21.6666ZM19.9999 36.6666C17.6944 36.6666 15.5277 36.2288 13.4999 35.3533C11.4721 34.4777 9.70825 33.2905 8.20825 31.7916C6.70825 30.2927 5.52103 28.5288 4.64659 26.4999C3.77214 24.471 3.33437 22.3044 3.33325 19.9999C3.33214 17.6955 3.76992 15.5288 4.64659 13.4999C5.52325 11.471 6.71048 9.70714 8.20825 8.20825C9.70603 6.70936 11.4699 5.52214 13.4999 4.64659C15.5299 3.77103 17.6966 3.33325 19.9999 3.33325C22.3033 3.33325 24.4699 3.77103 26.4999 4.64659C28.5299 5.52214 30.2938 6.70936 31.7916 8.20825C33.2894 9.70714 34.4771 11.471 35.3549 13.4999C36.2327 15.5288 36.6699 17.6955 36.6666 19.9999C36.6633 22.3044 36.2255 24.471 35.3533 26.4999C34.481 28.5288 33.2938 30.2927 31.7916 31.7916C30.2894 33.2905 28.5255 34.4783 26.4999 35.3549C24.4744 36.2316 22.3077 36.6688 19.9999 36.6666ZM19.9999 33.3333C23.7221 33.3333 26.8749 32.0416 29.4583 29.4583C32.0416 26.8749 33.3333 23.7221 33.3333 19.9999C33.3333 16.2777 32.0416 13.1249 29.4583 10.5416C26.8749 7.95825 23.7221 6.66659 19.9999 6.66659C16.2777 6.66659 13.1249 7.95825 10.5416 10.5416C7.95825 13.1249 6.66659 16.2777 6.66659 19.9999C6.66659 23.7221 7.95825 26.8749 10.5416 29.4583C13.1249 32.0416 16.2777 33.3333 19.9999 33.3333Z"
+  },
+  mode_heat: {
+    // Figma SVG export (raw/figma/mode_heat.svg). Source-of-truth glyph for the
+    // /alerts map heatmap-toggle button (Figma 100:5611, top-left over map).
+    viewBox: "0 0 16 18",
+    d: "M0 11C0 9.25 0.416667 7.69167 1.25 6.325C2.08333 4.95833 3 3.80833 4 2.875C5 1.94167 5.91667 1.22917 6.75 0.7375L8 0V3.3C8 3.91667 8.20833 4.40417 8.625 4.7625C9.04167 5.12083 9.50833 5.3 10.025 5.3C10.3083 5.3 10.5792 5.24167 10.8375 5.125C11.0958 5.00833 11.3333 4.81667 11.55 4.55L12 4C13.2 4.7 14.1667 5.67083 14.9 6.9125C15.6333 8.15417 16 9.51667 16 11C16 12.4667 15.6417 13.8042 14.925 15.0125C14.2083 16.2208 13.2667 17.175 12.1 17.875C12.3833 17.475 12.6042 17.0375 12.7625 16.5625C12.9208 16.0875 13 15.5833 13 15.05C13 14.3833 12.875 13.7542 12.625 13.1625C12.375 12.5708 12.0167 12.0417 11.55 11.575L8 8.1L4.475 11.575C3.99167 12.0583 3.625 12.5917 3.375 13.175C3.125 13.7583 3 14.3833 3 15.05C3 15.5833 3.07917 16.0875 3.2375 16.5625C3.39583 17.0375 3.61667 17.475 3.9 17.875C2.73333 17.175 1.79167 16.2208 1.075 15.0125C0.358333 13.8042 0 12.4667 0 11ZM8 10.9L10.125 12.975C10.4083 13.2583 10.625 13.575 10.775 13.925C10.925 14.275 11 14.65 11 15.05C11 15.8667 10.7083 16.5625 10.125 17.1375C9.54167 17.7125 8.83333 18 8 18C7.16667 18 6.45833 17.7125 5.875 17.1375C5.29167 16.5625 5 15.8667 5 15.05C5 14.6667 5.075 14.2958 5.225 13.9375C5.375 13.5792 5.59167 13.2583 5.875 12.975L8 10.9Z"
+  },
+  wb_twilight: {
+    // Figma SVG export (raw/figma/wb_twilight.svg). Source-of-truth glyph for
+    // the /alerts map meteorologic-toggle button (Figma 100:5611, top-left).
+    viewBox: "0 0 20 16",
+    d: "M16.35 6.1L14.95 4.65L17.1 2.55L18.5 3.95L16.35 6.1ZM0 16V14H20V16H0ZM9 3V0H11V3H9ZM3.65 6.05L1.55 3.9L2.95 2.5L5.1 4.65L3.65 6.05ZM5.425 10H14.575C14.1917 9.1 13.5917 8.375 12.775 7.825C11.9583 7.275 11.0333 7 10 7C8.96667 7 8.04167 7.275 7.225 7.825C6.40833 8.375 5.80833 9.1 5.425 10ZM3 12C3 10.05 3.67917 8.39583 5.0375 7.0375C6.39583 5.67917 8.05 5 10 5C11.95 5 13.6042 5.67917 14.9625 7.0375C16.3208 8.39583 17 10.05 17 12H3Z"
+  },
+  turn_right: {
+    // Figma SVG export — turn-right arrow used in the alerts-rescue-route
+    // confirmation modal (Figma 101:8167).
+    viewBox: "0 0 14 14",
+    d: "M0 14V5C0 4.45 0.195833 3.97917 0.5875 3.5875C0.979167 3.19583 1.45 3 2 3H10.2L8.6 1.4L10 0L14 4L10 8L8.6 6.6L10.2 5H2V14H0Z"
+  },
   add_a_photo: {
     viewBox: MATERIAL_VIEWBOX,
     d: "M440-440ZM120-120q-33 0-56.5-23.5T40-200v-480q0-33 23.5-56.5T120-760h126l74-80h240v80H355l-73 80H120v480h640v-360h80v360q0 33-23.5 56.5T760-120H120Zm640-560v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80ZM440-260q75 0 127.5-52.5T620-440q0-75-52.5-127.5T440-620q-75 0-127.5 52.5T260-440q0 75 52.5 127.5T440-260Zm0-80q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29Z"
@@ -481,12 +526,15 @@ var iconPaths = {
     d: "M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
   },
   directions_walk: {
-    // Material Symbols FILLED (Fill=1) variant. Replaces the prior partial
-    // path whose bounds occupied only a small portion of the 960×960 viewBox
-    // (rendered as a clipped/tiny figure). This MS path fills the full
-    // 24px frame.
+    // Canonical Figma export from raw/material/directions_walk.svg.
+    viewBox: "0 0 13 22",
+    d: "M1 21.5L3.8 7.4L2 8.1V11.5H0V6.8L5.05 4.65C5.28333 4.55 5.52917 4.49167 5.7875 4.475C6.04583 4.45833 6.29167 4.49167 6.525 4.575C6.75833 4.65833 6.97917 4.775 7.1875 4.925C7.39583 5.075 7.56667 5.26667 7.7 5.5L8.7 7.1C9.13333 7.8 9.72083 8.375 10.4625 8.825C11.2042 9.275 12.05 9.5 13 9.5V11.5C11.8333 11.5 10.7917 11.2583 9.875 10.775C8.95833 10.2917 8.175 9.675 7.525 8.925L6.9 12L9 14V21.5H7V15L4.9 13.4L3.1 21.5H1ZM6.0875 3.4125C5.69583 3.02083 5.5 2.55 5.5 2C5.5 1.45 5.69583 0.979167 6.0875 0.5875C6.47917 0.195833 6.95 0 7.5 0C8.05 0 8.52083 0.195833 8.9125 0.5875C9.30417 0.979167 9.5 1.45 9.5 2C9.5 2.55 9.30417 3.02083 8.9125 3.4125C8.52083 3.80417 8.05 4 7.5 4C6.95 4 6.47917 3.80417 6.0875 3.4125Z"
+  },
+  warning: {
+    // Material Symbols `warning` Filled (Fill=1) variant. Used for the
+    // "Alertas urgentes" card on /monitoring/good-conditions (Figma 77:16587).
     viewBox: MATERIAL_VIEWBOX,
-    d: "M520-40v-240l-84-80-32 160-256-50 14-78 178 35 76-396-90 36v152h-80v-208l218-92q31-13 64-13t64 13l38 64q26 42 70.5 69T700-680v80q-67 0-117.5-26T500-694l-24 114 84 80v200l216 218-58 56-198-194v180h-80Zm20-660q-33 0-56.5-23.5T460-780q0-33 23.5-56.5T540-860q33 0 56.5 23.5T620-780q0 33-23.5 56.5T540-700Z"
+    d: "M40-120l440-760 440 760H40Zm440-120q17 0 28.5-11.5T520-280q0-17-11.5-28.5T480-320q-17 0-28.5 11.5T440-280q0 17 11.5 28.5T480-240Zm-40-120h80v-200h-80v200Z"
   },
   humidity_mid: {
     viewBox: MATERIAL_VIEWBOX,
@@ -499,10 +547,6 @@ var iconPaths = {
   person_apron: {
     viewBox: MATERIAL_VIEWBOX,
     d: "M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17-62.5t47-43.5q60-30 124.5-46T480-440q67 0 131.5 16T736-378q30 15 47 43.5t17 62.5v112H160Zm320-400q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm160 228v92h80v-32q0-11-5-20t-15-14q-14-8-29.5-14.5T640-332Zm-240-21v53h160v-53q-20-4-40-5.5t-40-1.5q-20 0-40 1.5t-40 5.5ZM240-240h80v-92q-15 5-30.5 11.5T260-306q-10 5-15 14t-5 20v32Zm400 0H320h320ZM480-640Z"
-  },
-  mode_heat: {
-    viewBox: MATERIAL_VIEWBOX,
-    d: "M240-400q0 52 21 98.5t60 81.5q-1-5-1-9v-9q0-32 12-60t35-51l113-111 113 111q23 23 35 51t12 60v9q0 4-1 9 39-35 60-81.5t21-98.5q0-50-18.5-94.5T648-574q-20 13-42 19.5t-45 6.5q-62 0-107.5-41T401-690q-39 33-69 68.5t-50.5 72Q261-513 250.5-475T240-400Zm240 52-57 56q-11 11-17 25t-6 29q0 32 23.5 55t56.5 23q33 0 56.5-23t23.5-55q0-16-6-29.5T537-292l-57-56Zm0-492v132q0 34 23.5 57t57.5 23q18 0 33.5-7.5T622-658l18-22q74 42 117 117t43 163q0 134-93 227T480-80q-134 0-227-93t-93-227q0-129 86.5-245T480-840Z"
   },
   video_camera_back: {
     // Figma node 32:2972 — simple filled video camera body with side lens.
@@ -604,31 +648,40 @@ var iconPaths = {
     d: "M6.59966 1H19.8007C20.1188 1 20.4238 1.10358 20.6487 1.28794C20.8736 1.47231 21 1.72236 21 1.98309V20.0169C21 20.2776 20.8736 20.5277 20.6487 20.7121C20.4238 20.8964 20.1188 21 19.8007 21H2.19933C1.88125 21 1.57619 20.8964 1.35128 20.7121C1.12636 20.5277 1 20.2776 1 20.0169V5.59005C1.00007 5.32934 1.12647 5.07933 1.3514 4.89501L5.75174 1.28805C5.9766 1.10367 6.28161 1.00006 6.59966 1ZM18.6013 2.96618H7.09619L3.39866 5.99705V19.0338H18.6013V2.96618Z M6.59968 6.57317H2.19934V4.60699H5.40035V1.98312H7.799V5.59008C7.799 5.71919 7.76798 5.84702 7.70771 5.9663C7.64744 6.08557 7.5591 6.19395 7.44773 6.28523C7.33636 6.37652 7.20415 6.44894 7.05864 6.49834C6.91313 6.54775 6.75717 6.57317 6.59968 6.57317Z M16.8659 17.9947H5.86565C5.54757 17.9947 5.24252 17.8911 5.0176 17.7067C4.79268 17.5224 4.66633 17.2723 4.66633 17.0116V8.59534H7.06498V16.0285H16.8659V17.9947Z M6.71357 17.7067L5.01772 16.3205L10.1508 12.1129C10.3758 11.9286 10.6808 11.825 10.9988 11.825C11.3168 11.825 11.6218 11.9286 11.8467 12.1129L13.1983 13.2208L16.0168 10.9106L17.7126 12.3006L14.0463 15.306C13.8214 15.4903 13.5164 15.5938 13.1983 15.5938C12.8803 15.5938 12.5753 15.4903 12.3504 15.306L10.9988 14.1941L6.71357 17.7067Z"
   },
   bell_filled: {
-    // Material Symbols `notifications` FILLED (Fill=1) variant. The previous
-    // Figma export rendered as an outlined bell — likely the wrong source
-    // variant. This MS path is a true solid silhouette.
-    viewBox: MATERIAL_VIEWBOX,
-    d: "M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320 120q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80Z"
+    // Canonical Figma export from raw/material/notifications-icon.svg.
+    viewBox: "0 0 24 24",
+    d: "M5 19C4.71667 19 4.47934 18.904 4.288 18.712C4.09667 18.52 4.00067 18.2827 4 18C3.99934 17.7173 4.09534 17.48 4.288 17.288C4.48067 17.096 4.718 17 5 17H6V10C6 8.61667 6.41667 7.38767 7.25 6.313C8.08334 5.23834 9.16667 4.534 10.5 4.2V3.5C10.5 3.08334 10.646 2.72934 10.938 2.438C11.23 2.14667 11.584 2.00067 12 2C12.416 1.99934 12.7703 2.14534 13.063 2.438C13.3557 2.73067 13.5013 3.08467 13.5 3.5V4.2C14.8333 4.53334 15.9167 5.23767 16.75 6.313C17.5833 7.38834 18 8.61734 18 10V17H19C19.2833 17 19.521 17.096 19.713 17.288C19.905 17.48 20.0007 17.7173 20 18C19.9993 18.2827 19.9033 18.5203 19.712 18.713C19.5207 18.9057 19.2833 19.0013 19 19H5ZM12 22C11.45 22 10.9793 21.8043 10.588 21.413C10.1967 21.0217 10.0007 20.5507 10 20H14C14 20.55 13.8043 21.021 13.413 21.413C13.0217 21.805 12.5507 22.0007 12 22Z"
   },
   settings_filled: {
     viewBox: "0 0 22 22",
     d: "M9.92292 20.1666C9.51042 20.1666 9.15536 20.0291 8.85775 19.7541C8.56014 19.4791 8.38047 19.143 8.31875 18.7458L8.1125 17.2333C7.91389 17.1569 7.72689 17.0653 7.5515 16.9583C7.37611 16.8514 7.20408 16.7368 7.03542 16.6146L5.61458 17.2104C5.23264 17.3785 4.85069 17.3937 4.46875 17.2562C4.0868 17.1187 3.78889 16.8743 3.575 16.5229L2.49792 14.6437C2.28403 14.2923 2.22292 13.918 2.31458 13.5208C2.40625 13.1236 2.6125 12.7951 2.93333 12.5354L4.14792 11.6187C4.13264 11.5118 4.125 11.4085 4.125 11.3089V10.6901C4.125 10.5911 4.13264 10.4882 4.14792 10.3812L2.93333 9.46456C2.6125 9.20484 2.40625 8.87637 2.31458 8.47915C2.22292 8.08192 2.28403 7.70762 2.49792 7.35623L3.575 5.47706C3.78889 5.12567 4.0868 4.88123 4.46875 4.74373C4.85069 4.60623 5.23264 4.62151 5.61458 4.78956L7.03542 5.3854C7.20347 5.26317 7.37917 5.14859 7.5625 5.04165C7.74583 4.9347 7.92917 4.84304 8.1125 4.76665L8.31875 3.25415C8.37986 2.85692 8.55953 2.52081 8.85775 2.24581C9.15597 1.97081 9.51103 1.83331 9.92292 1.83331H12.0771C12.4896 1.83331 12.8449 1.97081 13.1432 2.24581C13.4414 2.52081 13.6207 2.85692 13.6812 3.25415L13.8875 4.76665C14.0861 4.84304 14.2734 4.9347 14.4494 5.04165C14.6254 5.14859 14.7971 5.26317 14.9646 5.3854L16.3854 4.78956C16.7674 4.62151 17.1493 4.60623 17.5312 4.74373C17.9132 4.88123 18.2111 5.12567 18.425 5.47706L19.5021 7.35623C19.716 7.70762 19.7771 8.08192 19.6854 8.47915C19.5938 8.87637 19.3875 9.20484 19.0667 9.46456L17.8521 10.3812C17.8674 10.4882 17.875 10.5915 17.875 10.6911V11.3089C17.875 11.4085 17.8597 11.5118 17.8292 11.6187L19.0437 12.5354C19.3646 12.7951 19.5708 13.1236 19.6625 13.5208C19.7542 13.918 19.6931 14.2923 19.4792 14.6437L18.3792 16.5229C18.1653 16.8743 17.8674 17.1187 17.4854 17.2562C17.1035 17.3937 16.7215 17.3785 16.3396 17.2104L14.9646 16.6146C14.7965 16.7368 14.6208 16.8514 14.4375 16.9583C14.2542 17.0653 14.0708 17.1569 13.8875 17.2333L13.6812 18.7458C13.6201 19.143 13.4408 19.4791 13.1432 19.7541C12.8456 20.0291 12.4902 20.1666 12.0771 20.1666H9.92292ZM10.0833 18.3333H11.8937L12.2146 15.9041C12.6882 15.7819 13.1276 15.6026 13.5327 15.3661C13.9379 15.1296 14.3082 14.843 14.6437 14.5062L16.9125 15.4458L17.8062 13.8875L15.8354 12.3979C15.9118 12.184 15.9653 11.9588 15.9958 11.7223C16.0264 11.4858 16.0417 11.245 16.0417 11C16.0417 10.7549 16.0264 10.5145 15.9958 10.2786C15.9653 10.0427 15.9118 9.81717 15.8354 9.60206L17.8062 8.11248L16.9125 6.55415L14.6437 7.51665C14.3076 7.16526 13.9373 6.87131 13.5327 6.63481C13.1282 6.39831 12.6888 6.21865 12.2146 6.09581L11.9167 3.66665H10.1062L9.78542 6.09581C9.3118 6.21804 8.87272 6.3977 8.46817 6.63481C8.06361 6.87192 7.69297 7.15823 7.35625 7.49373L5.0875 6.55415L4.19375 8.11248L6.16458 9.57915C6.08819 9.80831 6.03472 10.0375 6.00417 10.2666C5.97361 10.4958 5.95833 10.7403 5.95833 11C5.95833 11.2444 5.97361 11.4812 6.00417 11.7104C6.03472 11.9396 6.08819 12.1687 6.16458 12.3979L4.19375 13.8875L5.0875 15.4458L7.35625 14.4833C7.69236 14.8347 8.063 15.129 8.46817 15.3661C8.87333 15.6032 9.31242 15.7825 9.78542 15.9041L10.0833 18.3333ZM11.0458 14.2083C11.9319 14.2083 12.6882 13.8951 13.3146 13.2687C13.941 12.6423 14.2542 11.8861 14.2542 11C14.2542 10.1139 13.941 9.35762 13.3146 8.73123C12.6882 8.10484 11.9319 7.79165 11.0458 7.79165C10.1444 7.79165 9.38453 8.10484 8.76608 8.73123C8.14764 9.35762 7.83811 10.1139 7.8375 11C7.83689 11.8861 8.14642 12.6423 8.76608 13.2687C9.38575 13.8951 10.1457 14.2083 11.0458 14.2083Z"
   },
   account_circle_filled: {
-    viewBox: "0 0 24 24",
-    d: "M5.85 17.1C6.7 16.45 7.65 15.9375 8.7 15.5625C9.75 15.1875 10.85 15 12 15C13.15 15 14.25 15.1875 15.3 15.5625C16.35 15.9375 17.3 16.45 18.15 17.1C18.7333 16.4167 19.1875 15.6417 19.5125 14.775C19.8375 13.9083 20 12.9833 20 12C20 9.78333 19.2208 7.89583 17.6625 6.3375C16.1042 4.77917 14.2167 4 12 4C9.78333 4 7.89583 4.77917 6.3375 6.3375C4.77917 7.89583 4 9.78333 4 12C4 12.9833 4.1625 13.9083 4.4875 14.775C4.8125 15.6417 5.26667 16.4167 5.85 17.1ZM9.5125 11.9875C8.8375 11.3125 8.5 10.4833 8.5 9.5C8.5 8.51667 8.8375 7.6875 9.5125 7.0125C10.1875 6.3375 11.0167 6 12 6C12.9833 6 13.8125 6.3375 14.4875 7.0125C15.1625 7.6875 15.5 8.51667 15.5 9.5C15.5 10.4833 15.1625 11.3125 14.4875 11.9875C13.8125 12.6625 12.9833 13 12 13C11.0167 13 10.1875 12.6625 9.5125 11.9875ZM12 22C10.6167 22 9.31667 21.7375 8.1 21.2125C6.88333 20.6875 5.825 19.975 4.925 19.075C4.025 18.175 3.3125 17.1167 2.7875 15.9C2.2625 14.6833 2 13.3833 2 12C2 10.6167 2.2625 9.31667 2.7875 8.1C3.3125 6.88333 4.025 5.825 4.925 4.925C5.825 4.025 6.88333 3.3125 8.1 2.7875C9.31667 2.2625 10.6167 2 12 2C13.3833 2 14.6833 2.2625 15.9 2.7875C17.1167 3.3125 18.175 4.025 19.075 4.925C19.975 5.825 20.6875 6.88333 21.2125 8.1C21.7375 9.31667 22 10.6167 22 12C22 13.3833 21.7375 14.6833 21.2125 15.9C20.6875 17.1167 19.975 18.175 19.075 19.075C18.175 19.975 17.1167 20.6875 15.9 21.2125C14.6833 21.7375 13.3833 22 12 22Z"
+    // Canonical Figma export from raw/material/account_circle.svg.
+    viewBox: "0 0 20 20",
+    d: "M3.85 15.1C4.7 14.45 5.65 13.9375 6.7 13.5625C7.75 13.1875 8.85 13 10 13C11.15 13 12.25 13.1875 13.3 13.5625C14.35 13.9375 15.3 14.45 16.15 15.1C16.7333 14.4167 17.1875 13.6417 17.5125 12.775C17.8375 11.9083 18 10.9833 18 10C18 7.78333 17.2208 5.89583 15.6625 4.3375C14.1042 2.77917 12.2167 2 10 2C7.78333 2 5.89583 2.77917 4.3375 4.3375C2.77917 5.89583 2 7.78333 2 10C2 10.9833 2.1625 11.9083 2.4875 12.775C2.8125 13.6417 3.26667 14.4167 3.85 15.1ZM7.5125 9.9875C6.8375 9.3125 6.5 8.48333 6.5 7.5C6.5 6.51667 6.8375 5.6875 7.5125 5.0125C8.1875 4.3375 9.01667 4 10 4C10.9833 4 11.8125 4.3375 12.4875 5.0125C13.1625 5.6875 13.5 6.51667 13.5 7.5C13.5 8.48333 13.1625 9.3125 12.4875 9.9875C11.8125 10.6625 10.9833 11 10 11C9.01667 11 8.1875 10.6625 7.5125 9.9875ZM10 20C8.61667 20 7.31667 19.7375 6.1 19.2125C4.88333 18.6875 3.825 17.975 2.925 17.075C2.025 16.175 1.3125 15.1167 0.7875 13.9C0.2625 12.6833 0 11.3833 0 10C0 8.61667 0.2625 7.31667 0.7875 6.1C1.3125 4.88333 2.025 3.825 2.925 2.925C3.825 2.025 4.88333 1.3125 6.1 0.7875C7.31667 0.2625 8.61667 0 10 0C11.3833 0 12.6833 0.2625 13.9 0.7875C15.1167 1.3125 16.175 2.025 17.075 2.925C17.975 3.825 18.6875 4.88333 19.2125 6.1C19.7375 7.31667 20 8.61667 20 10C20 11.3833 19.7375 12.6833 19.2125 13.9C18.6875 15.1167 17.975 16.175 17.075 17.075C16.175 17.975 15.1167 18.6875 13.9 19.2125C12.6833 19.7375 11.3833 20 10 20Z"
   },
   employee_filled: {
     viewBox: "0 0 24 24",
     d: "M9.175 10.825C8.39167 10.0417 8 9.1 8 8C8 6.9 8.39167 5.95833 9.175 5.175C9.95833 4.39167 10.9 4 12 4C13.1 4 14.0417 4.39167 14.825 5.175C15.6083 5.95833 16 6.9 16 8C16 9.1 15.6083 10.0417 14.825 10.825C14.0417 11.6083 13.1 12 12 12C10.9 12 9.95833 11.6083 9.175 10.825ZM16 20V13.6C16.4167 13.7333 16.825 13.875 17.225 14.025C17.625 14.175 18.0167 14.35 18.4 14.55C18.9 14.8 19.2917 15.1625 19.575 15.6375C19.8583 16.1125 20 16.6333 20 17.2V20H16ZM10 16.5V13.15C10.3333 13.1 10.6667 13.0625 11 13.0375C11.3333 13.0125 11.6667 13 12 13C12.3333 13 12.6667 13.0125 13 13.0375C13.3333 13.0625 13.6667 13.1 14 13.15V16.5H10ZM4 20V17.2C4 16.6333 4.14167 16.1125 4.425 15.6375C4.70833 15.1625 5.1 14.8 5.6 14.55C5.98333 14.35 6.375 14.175 6.775 14.025C7.175 13.875 7.58333 13.7333 8 13.6V20H4Z"
   },
+  person_apron_filled: {
+    // Canonical Figma export from raw/material/person_apron.svg. Used for
+    // the "Funcionários" KPI card (Figma 69:14749).
+    viewBox: "0 0 16 16",
+    d: "M5.175 6.825C4.39167 6.04167 4 5.1 4 4C4 2.9 4.39167 1.95833 5.175 1.175C5.95833 0.391667 6.9 0 8 0C9.1 0 10.0417 0.391667 10.825 1.175C11.6083 1.95833 12 2.9 12 4C12 5.1 11.6083 6.04167 10.825 6.825C10.0417 7.60833 9.1 8 8 8C6.9 8 5.95833 7.60833 5.175 6.825ZM12 16V9.6C12.4167 9.73333 12.825 9.875 13.225 10.025C13.625 10.175 14.0167 10.35 14.4 10.55C14.9 10.8 15.2917 11.1625 15.575 11.6375C15.8583 12.1125 16 12.6333 16 13.2V16H12ZM6 12.5V9.15C6.33333 9.1 6.66667 9.0625 7 9.0375C7.33333 9.0125 7.66667 9 8 9C8.33333 9 8.66667 9.0125 9 9.0375C9.33333 9.0625 9.66667 9.1 10 9.15V12.5H6ZM0 16V13.2C0 12.6333 0.141667 12.1125 0.425 11.6375C0.708333 11.1625 1.1 10.8 1.6 10.55C1.98333 10.35 2.375 10.175 2.775 10.025C3.175 9.875 3.58333 9.73333 4 9.6V16H0Z"
+  },
   report_filled: {
-    viewBox: "0 0 24 24",
-    d: "M5 22C4.45 22 3.97917 21.8042 3.5875 21.4125C3.19583 21.0208 3 20.55 3 20V6C3 5.45 3.19583 4.97917 3.5875 4.5875C3.97917 4.19583 4.45 4 5 4H9.2C9.41667 3.4 9.77917 2.91667 10.2875 2.55C10.7958 2.18333 11.3667 2 12 2C12.6333 2 13.2042 2.18333 13.7125 2.55C14.2208 2.91667 14.5833 3.4 14.8 4H19C19.55 4 20.0208 4.19583 20.4125 4.5875C20.8042 4.97917 21 5.45 21 6V20C21 20.55 20.8042 21.0208 20.4125 21.4125C20.0208 21.8042 19.55 22 19 22H5ZM7 18H14V16H7V18ZM7 14H17V12H7V14ZM7 10H17V8H7V10ZM12.5375 5.0375C12.6792 4.89583 12.75 4.71667 12.75 4.5C12.75 4.28333 12.6792 4.10417 12.5375 3.9625C12.3958 3.82083 12.2167 3.75 12 3.75C11.7833 3.75 11.6042 3.82083 11.4625 3.9625C11.3208 4.10417 11.25 4.28333 11.25 4.5C11.25 4.71667 11.3208 4.89583 11.4625 5.0375C11.6042 5.17917 11.7833 5.25 12 5.25C12.2167 5.25 12.3958 5.17917 12.5375 5.0375Z"
+    // Canonical Figma export from raw/material/assignment.svg (Figma names
+    // the "Novos relatórios" KPI icon `assignment`; we keep the existing
+    // `report_filled` key for backwards-compat).
+    viewBox: "0 0 18 20",
+    d: "M2 20C1.45 20 0.979167 19.8042 0.5875 19.4125C0.195833 19.0208 0 18.55 0 18V4C0 3.45 0.195833 2.97917 0.5875 2.5875C0.979167 2.19583 1.45 2 2 2H6.2C6.41667 1.4 6.77917 0.916667 7.2875 0.55C7.79583 0.183333 8.36667 0 9 0C9.63333 0 10.2042 0.183333 10.7125 0.55C11.2208 0.916667 11.5833 1.4 11.8 2H16C16.55 2 17.0208 2.19583 17.4125 2.5875C17.8042 2.97917 18 3.45 18 4V18C18 18.55 17.8042 19.0208 17.4125 19.4125C17.0208 19.8042 16.55 20 16 20H2ZM4 16H11V14H4V16ZM4 12H14V10H4V12ZM4 8H14V6H4V8ZM9.5375 3.0375C9.67917 2.89583 9.75 2.71667 9.75 2.5C9.75 2.28333 9.67917 2.10417 9.5375 1.9625C9.39583 1.82083 9.21667 1.75 9 1.75C8.78333 1.75 8.60417 1.82083 8.4625 1.9625C8.32083 2.10417 8.25 2.28333 8.25 2.5C8.25 2.71667 8.32083 2.89583 8.4625 3.0375C8.60417 3.17917 8.78333 3.25 9 3.25C9.21667 3.25 9.39583 3.17917 9.5375 3.0375Z"
   },
   video_camera_filled: {
-    viewBox: "0 0 24 24",
-    d: "M4 20C3.45 20 2.97917 19.8042 2.5875 19.4125C2.19583 19.0208 2 18.55 2 18V6C2 5.45 2.19583 4.97917 2.5875 4.5875C2.97917 4.19583 3.45 4 4 4H16C16.55 4 17.0208 4.19583 17.4125 4.5875C17.8042 4.97917 18 5.45 18 6V10.5L22 6.5V17.5L18 13.5V18C18 18.55 17.8042 19.0208 17.4125 19.4125C17.0208 19.8042 16.55 20 16 20H4Z"
+    // Canonical Figma export from raw/material/video_camera_back.svg.
+    viewBox: "0 0 20 16",
+    d: "M2 16C1.45 16 0.979167 15.8042 0.5875 15.4125C0.195833 15.0208 0 14.55 0 14V2C0 1.45 0.195833 0.979167 0.5875 0.5875C0.979167 0.195833 1.45 0 2 0H14C14.55 0 15.0208 0.195833 15.4125 0.5875C15.8042 0.979167 16 1.45 16 2V6.5L20 2.5V13.5L16 9.5V14C16 14.55 15.8042 15.0208 15.4125 15.4125C15.0208 15.8042 14.55 16 14 16H2Z"
   },
   favorite_filled: {
     viewBox: "0 0 20 19",
@@ -2115,6 +2168,7 @@ var Card3 = styled37__default.default(reactNative.Pressable)`
   padding-vertical: ${({ theme: theme2 }) => theme2.padding.sm}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
+  ${({ $borderColor }) => $borderColor ? `border-width: 1px; border-color: ${$borderColor};` : ""}
 `;
 var LeftCluster = styled37__default.default(reactNative.View)`
   flex-direction: row;
@@ -2183,6 +2237,8 @@ var EmployeeOverviewCard = React35.forwardRef(
     onLocationPress,
     onPress,
     fullWidth = false,
+    actionElement,
+    borderColor: borderColor2,
     accessibilityLabel,
     testID
   }, ref) => {
@@ -2195,6 +2251,7 @@ var EmployeeOverviewCard = React35.forwardRef(
         accessibilityRole: onPress ? "button" : void 0,
         accessibilityLabel: accessibilityLabel ?? employee.name,
         testID,
+        $borderColor: borderColor2,
         style: fullWidth ? { alignSelf: "stretch", width: "100%" } : { alignSelf: "flex-start", width: 602 },
         children: [
           /* @__PURE__ */ jsxRuntime.jsxs(LeftCluster, { children: [
@@ -2218,7 +2275,7 @@ var EmployeeOverviewCard = React35.forwardRef(
               ] })
             ] })
           ] }),
-          /* @__PURE__ */ jsxRuntime.jsx(
+          actionElement ?? /* @__PURE__ */ jsxRuntime.jsx(
             LocationButton3,
             {
               onPress: onLocationPress,
@@ -2953,9 +3010,22 @@ var Chevron = styled37__default.default.Text`
   color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
 `;
 var Panel = styled37__default.default(reactNative.View)`
-  background-color: ${({ theme: theme2 }) => theme2.surface.standard};
-  border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
+  /* Float above siblings instead of pushing them down. */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: ${({ theme: theme2 }) => theme2.gap.xs}px;
+  z-index: 50;
+  min-width: 160px;
+  /* surface.high is a touch lighter than the chart card behind it
+   * (surface.medium), giving the floating panel a visible silhouette. */
+  background-color: ${({ theme: theme2 }) => theme2.surface.high};
+  border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
+  border-width: 1px;
+  border-color: ${({ theme: theme2 }) => theme2.content.medium};
   padding: ${({ theme: theme2 }) => theme2.padding.s}px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
 `;
 var OptionsList = styled37__default.default(reactNative.View)`
   flex-direction: column;
@@ -3536,10 +3606,26 @@ var CameraBody = styled37__default.default(reactNative.View)`
     justify-content: center;
   `}
 `;
+var BadgeBody = styled37__default.default(reactNative.View)`
+  ${({ $size, $fill }) => styled37.css`
+    width: ${$size}px;
+    height: ${$size}px;
+    border-radius: ${$size / 2}px;
+    background-color: ${$fill};
+    align-items: center;
+    justify-content: center;
+  `}
+`;
 var STATUS_BORDER = {
   good: "#10b981",
   alert: "#f59e0b",
   low: "#ef4444",
+  offline: "#6b7280"
+};
+var STATUS_BADGE_FILL = {
+  good: "#3EAB2E",
+  alert: "#EF8600",
+  low: "#F5667A",
   offline: "#6b7280"
 };
 var LocationPin = React35.forwardRef(
@@ -3555,7 +3641,8 @@ var LocationPin = React35.forwardRef(
   }, ref) => {
     const theme2 = useTheme();
     const resolvedBorder = borderColor2 ?? STATUS_BORDER[status];
-    const resolvedTail = tailColor ?? (variant === "camera" ? theme2.surface.primary : theme2.background);
+    const badgeFill = borderColor2 ?? STATUS_BADGE_FILL[status];
+    const resolvedTail = tailColor ?? (variant === "camera" ? theme2.surface.primary : variant === "badge" ? badgeFill : theme2.background);
     const tailSize = Math.round(size * 0.41);
     return /* @__PURE__ */ jsxRuntime.jsxs(Container13, { ref, testID, accessibilityLabel: name, children: [
       variant === "camera" ? /* @__PURE__ */ jsxRuntime.jsx(CameraBody, { $size: size, accessibilityLabel: name, children: /* @__PURE__ */ jsxRuntime.jsx(
@@ -3564,6 +3651,13 @@ var LocationPin = React35.forwardRef(
           name: "video_camera_back",
           color: theme2.content.dark,
           size: Math.round(size * 0.55)
+        }
+      ) }) : variant === "badge" ? /* @__PURE__ */ jsxRuntime.jsx(BadgeBody, { $size: size, $fill: badgeFill, accessibilityLabel: name, children: /* @__PURE__ */ jsxRuntime.jsx(
+        Icon,
+        {
+          name: status === "good" ? "check_circle" : "error",
+          color: "#F5F5F5",
+          size
         }
       ) }) : /* @__PURE__ */ jsxRuntime.jsx(
         Avatar,
@@ -4009,6 +4103,7 @@ var LineCaloriesChart = React35.forwardRef(
     const theme2 = useTheme();
     const laid = layoutPoints(points, width, height);
     const d = linePath(laid);
+    const gradId = `calories-stroke-${React35.useId().replace(/:/g, "")}`;
     return /* @__PURE__ */ jsxRuntime.jsxs(
       ChartFrame,
       {
@@ -4017,24 +4112,31 @@ var LineCaloriesChart = React35.forwardRef(
         testID,
         style: fullWidth ? { alignSelf: "stretch", width: "100%", height } : { alignSelf: "flex-start", width, height },
         children: [
-          /* @__PURE__ */ jsxRuntime.jsx(Layer, { children: /* @__PURE__ */ jsxRuntime.jsx(
+          /* @__PURE__ */ jsxRuntime.jsx(Layer, { children: /* @__PURE__ */ jsxRuntime.jsxs(
             Svg__default.default,
             {
               width: "100%",
               height,
               viewBox: `0 0 ${width} ${height}`,
               preserveAspectRatio: "none",
-              children: /* @__PURE__ */ jsxRuntime.jsx(
-                Svg.Path,
-                {
-                  d,
-                  fill: "none",
-                  stroke: theme2.content.secondary,
-                  strokeWidth: 2,
-                  strokeLinecap: "round",
-                  strokeLinejoin: "round"
-                }
-              )
+              children: [
+                /* @__PURE__ */ jsxRuntime.jsx(Svg.Defs, { children: /* @__PURE__ */ jsxRuntime.jsxs(Svg.LinearGradient, { id: gradId, x1: "0", y1: "0", x2: "1", y2: "0", children: [
+                  /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: theme2.surface.primary, stopOpacity: "1" }),
+                  /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0.5", stopColor: theme2.surface.secondary, stopOpacity: "1" }),
+                  /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: theme2.surface.warning, stopOpacity: "1" })
+                ] }) }),
+                /* @__PURE__ */ jsxRuntime.jsx(
+                  Svg.Path,
+                  {
+                    d,
+                    fill: "none",
+                    stroke: `url(#${gradId})`,
+                    strokeWidth: 2,
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round"
+                  }
+                )
+              ]
             }
           ) }),
           laid.map((p) => /* @__PURE__ */ jsxRuntime.jsx(
@@ -4368,6 +4470,8 @@ var surfaceForStatus = ({
       return theme2.surface.success;
     case "pending":
       return theme2.surface.warning;
+    case "info":
+      return theme2.surface.secondary;
     case "canceled":
     default:
       return theme2.surface.error;
@@ -4390,7 +4494,8 @@ var Label12 = styled37__default.default.Text`
 var DEFAULT_LABELS = {
   canceled: "Cancelado",
   pending: "Pendente",
-  accept: "Aceito"
+  accept: "Aceito",
+  info: "Em andamento"
 };
 var StatusTag = React35.forwardRef(
   ({
@@ -5760,6 +5865,7 @@ SuccessBadge.displayName = "SuccessBadge";
 var Container21 = styled37__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
+  ${({ $separated, theme: theme2 }) => $separated ? `gap: ${theme2.gap.s}px;` : ""};
 `;
 var Tab = styled37__default.default(reactNative.Pressable)`
   align-items: center;
@@ -5769,13 +5875,20 @@ var Tab = styled37__default.default(reactNative.Pressable)`
   min-height: 36px;
   ${({ $fullWidth }) => $fullWidth ? "flex: 1; min-width: 0;" : ""};
   background-color: ${({ $active, theme: theme2 }) => $active ? theme2.surface.secondary : "transparent"};
-  border-width: ${({ $active, theme: theme2 }) => $active ? 0 : theme2.border.size.s}px;
+  /* Separated tabs always carry a border, including the active one — the
+     border outlines each pill so the cyan bg of the active tab still reads
+     as an enclosed button (Figma 69:14770). Segmented tabs keep the legacy
+     behaviour where the active tab drops its border. */
+  border-width: ${({ $active, $separated, theme: theme2 }) => !$active || $separated ? theme2.border.size.s : 0}px;
   border-style: solid;
   border-color: ${({ theme: theme2 }) => theme2.content.secondary};
-  border-top-left-radius: ${({ $first, theme: theme2 }) => $first ? theme2.border.radius.m : 0}px;
-  border-bottom-left-radius: ${({ $first, theme: theme2 }) => $first ? theme2.border.radius.m : 0}px;
-  border-top-right-radius: ${({ $last, theme: theme2 }) => $last ? theme2.border.radius.m : 0}px;
-  border-bottom-right-radius: ${({ $last, theme: theme2 }) => $last ? theme2.border.radius.m : 0}px;
+  /* Separated tabs are independent pills: all four corners rounded.
+     Segmented keeps the legacy "first/last only" rounding so the row reads
+     as one segmented control. */
+  border-top-left-radius: ${({ $first, $separated, theme: theme2 }) => $separated || $first ? theme2.border.radius.m : 0}px;
+  border-bottom-left-radius: ${({ $first, $separated, theme: theme2 }) => $separated || $first ? theme2.border.radius.m : 0}px;
+  border-top-right-radius: ${({ $last, $separated, theme: theme2 }) => $separated || $last ? theme2.border.radius.m : 0}px;
+  border-bottom-right-radius: ${({ $last, $separated, theme: theme2 }) => $separated || $last ? theme2.border.radius.m : 0}px;
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
 var TabLabel = styled37__default.default.Text`
@@ -5792,6 +5905,7 @@ var Tabs = React35.forwardRef(
     onChange,
     fullWidth = false,
     disabled = false,
+    variant = "segmented",
     accessibilityLabel,
     testID
   }, ref) => {
@@ -5812,6 +5926,7 @@ var Tabs = React35.forwardRef(
       Container21,
       {
         ref,
+        $separated: variant === "separated",
         style: fullWidth ? { alignSelf: "stretch", width: "100%" } : { alignSelf: "flex-start" },
         accessibilityRole: "tablist",
         accessibilityLabel,
@@ -5827,6 +5942,7 @@ var Tabs = React35.forwardRef(
               $last: idx === tabs.length - 1,
               $fullWidth: fullWidth,
               $disabled: isDisabled,
+              $separated: variant === "separated",
               disabled: isDisabled,
               onPress: () => handlePress(tab.value),
               accessibilityRole: "tab",

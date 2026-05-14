@@ -28,8 +28,16 @@ export interface StatusChartProps {
    */
   size?: StatusChartSize;
   /**
+   * Render the bottom-right heart-rate action button (with its nested
+   * settings sub-badge). Defaults to `true` — matches the dashboard variant
+   * (Figma `245:23280`). Pass `false` on screens that omit the button,
+   * e.g. the mobile my-stats StatusChart (Figma `342:9420`).
+   */
+  showActionButton?: boolean;
+  /**
    * Optional press handler for the heart-rate action button (bottom-right).
-   * If omitted, the button is rendered non-interactive.
+   * If omitted, the button is rendered non-interactive. Ignored when
+   * `showActionButton` is `false`.
    */
   onPressHeartRate?: (event: GestureResponderEvent) => void;
   testID?: string;

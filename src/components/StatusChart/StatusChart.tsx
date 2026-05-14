@@ -61,6 +61,7 @@ export const StatusChart = ({
   condition = 'good',
   progress = 1,
   size = 'default',
+  showActionButton = true,
   onPressHeartRate,
   testID,
   accessibilityLabel,
@@ -135,7 +136,10 @@ export const StatusChart = ({
         <HeartStatus condition={p.heartStatus} size={HEART_STATUS_OFFSET.height} />
       </View>
 
-      {/* Heart-rate action button (bottom-right) */}
+      {/* Heart-rate action button (bottom-right) — Figma `245:23280`.
+          Hidden on the my-stats compact variant where the design omits both
+          the button and its settings sub-badge (Figma `342:9420`). */}
+      {showActionButton ? (
       <Pressable
         onPress={onPressHeartRate}
         disabled={!onPressHeartRate}
@@ -224,6 +228,7 @@ export const StatusChart = ({
           />
         </View>
       </Pressable>
+      ) : null}
     </View>
   );
 

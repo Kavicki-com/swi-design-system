@@ -1092,6 +1092,15 @@ interface ChatUserCardProps {
 declare const ChatUserCard: React$1.ForwardRefExoticComponent<ChatUserCardProps & React$1.RefAttributes<View>>;
 
 type DonutChartSize = 'default' | 'small';
+/**
+ * Visual treatment of the donut.
+ * - `bevel` (default): dark 3D ring with bezel + inner well + tracked arc.
+ *   Use on dashboards where the donut sits over an unrelated background.
+ * - `flat`: minimal arc on transparent background — no bezel, no inner
+ *   well, very subtle track. Use on screens that already have their own
+ *   container (e.g. admin profile right column, Figma `159:14140`).
+ */
+type DonutChartAppearance = 'bevel' | 'flat';
 type DonutGradient = readonly [from: string, to: string];
 interface DonutChartProps {
     title: string;
@@ -1105,6 +1114,7 @@ interface DonutChartProps {
     icon?: IconName;
     iconColor?: string;
     size?: DonutChartSize;
+    appearance?: DonutChartAppearance;
     onLocationPress?: () => void;
     locationIcon?: IconName;
     accessibilityLabel?: string;

@@ -1877,7 +1877,8 @@ var DonutArc = ({
   strokeWidth,
   progress,
   gradient,
-  trackColor
+  trackColor,
+  appearance = "bevel"
 }) => {
   const pct = clamp2(progress, 0, 100);
   const cx = size / 2;
@@ -1885,7 +1886,8 @@ var DonutArc = ({
   const outerR = size / 2;
   const ringBand = strokeWidth * 2;
   const innerR = outerR - ringBand;
-  const arcR = outerR - strokeWidth;
+  const arcStroke = appearance === "flat" ? Math.max(2, Math.round(strokeWidth / 2)) : strokeWidth;
+  const arcR = outerR - arcStroke;
   const circumference = 2 * Math.PI * arcR;
   const dash = pct / 100 * circumference;
   const id = React35.useId().replace(/:/g, "");
@@ -1893,24 +1895,29 @@ var DonutArc = ({
   const wellId = `donut-well-${id}`;
   const arcId = `donut-arc-${id}`;
   const [arcFrom, arcTo] = gradient;
+  const isFlat = appearance === "flat";
   return /* @__PURE__ */ jsxRuntime.jsxs(Svg__default.default, { width: size, height: size, viewBox: `0 0 ${size} ${size}`, children: [
     /* @__PURE__ */ jsxRuntime.jsxs(Svg.Defs, { children: [
-      /* @__PURE__ */ jsxRuntime.jsxs(Svg.LinearGradient, { id: bezelId, x1: "0.5", y1: "0", x2: "0.5", y2: "1", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: "#3a3a3a", stopOpacity: "1" }),
-        /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0.55", stopColor: "#1f1f1f", stopOpacity: "1" }),
-        /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: "#141414", stopOpacity: "1" })
-      ] }),
-      /* @__PURE__ */ jsxRuntime.jsxs(Svg.RadialGradient, { id: wellId, cx: "0.5", cy: "0.5", rx: "0.55", ry: "0.55", fx: "0.5", fy: "0.5", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: "#1c1c1c", stopOpacity: "1" }),
-        /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: "#0c0c0c", stopOpacity: "1" })
+      isFlat ? null : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+        /* @__PURE__ */ jsxRuntime.jsxs(Svg.LinearGradient, { id: bezelId, x1: "0.5", y1: "0", x2: "0.5", y2: "1", children: [
+          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: "#3a3a3a", stopOpacity: "1" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0.55", stopColor: "#1f1f1f", stopOpacity: "1" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: "#141414", stopOpacity: "1" })
+        ] }),
+        /* @__PURE__ */ jsxRuntime.jsxs(Svg.RadialGradient, { id: wellId, cx: "0.5", cy: "0.5", rx: "0.55", ry: "0.55", fx: "0.5", fy: "0.5", children: [
+          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: "#1c1c1c", stopOpacity: "1" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: "#0c0c0c", stopOpacity: "1" })
+        ] })
       ] }),
       /* @__PURE__ */ jsxRuntime.jsxs(Svg.LinearGradient, { id: arcId, x1: "0.5", y1: "0", x2: "0.5", y2: "1", children: [
         /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: arcFrom, stopOpacity: "1" }),
         /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: arcTo, stopOpacity: "1" })
       ] })
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx, cy, r: outerR, fill: `url(#${bezelId})` }),
-    /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx, cy, r: innerR, fill: `url(#${wellId})` }),
+    isFlat ? /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx, cy, r: arcR - arcStroke / 2, fill: "#1a1a1a" }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx, cy, r: outerR, fill: `url(#${bezelId})` }),
+      /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx, cy, r: innerR, fill: `url(#${wellId})` })
+    ] }),
     /* @__PURE__ */ jsxRuntime.jsx(
       Svg.Circle,
       {
@@ -1918,9 +1925,9 @@ var DonutArc = ({
         cy,
         r: arcR,
         stroke: trackColor,
-        strokeWidth,
+        strokeWidth: arcStroke,
         fill: "transparent",
-        opacity: 0.35
+        opacity: isFlat ? 0.25 : 0.35
       }
     ),
     /* @__PURE__ */ jsxRuntime.jsx(Svg.G, { transform: `rotate(-90 ${cx} ${cy})`, children: /* @__PURE__ */ jsxRuntime.jsx(
@@ -1930,7 +1937,7 @@ var DonutArc = ({
         cy,
         r: arcR,
         stroke: `url(#${arcId})`,
-        strokeWidth,
+        strokeWidth: arcStroke,
         fill: "transparent",
         strokeDasharray: `${dash} ${circumference}`,
         strokeLinecap: "round"
@@ -2039,6 +2046,7 @@ var DonutChart = React35.forwardRef(
     icon = "vital_signs",
     iconColor,
     size = "default",
+    appearance = "bevel",
     onLocationPress,
     locationIcon = "location_on",
     accessibilityLabel,
@@ -2064,7 +2072,8 @@ var DonutChart = React35.forwardRef(
                 strokeWidth: dims.stroke,
                 progress,
                 gradient: progressGradient,
-                trackColor: arcTrackColor
+                trackColor: arcTrackColor,
+                appearance
               }
             ) }),
             /* @__PURE__ */ jsxRuntime.jsxs(Center, { children: [

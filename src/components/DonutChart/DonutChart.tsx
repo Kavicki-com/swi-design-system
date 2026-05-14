@@ -36,6 +36,7 @@ export const DonutChart = forwardRef<View, DonutChartProps>(
       icon = 'vital_signs',
       iconColor,
       size = 'default',
+      appearance = 'bevel',
       onLocationPress,
       locationIcon = 'location_on',
       accessibilityLabel,
@@ -64,6 +65,7 @@ export const DonutChart = forwardRef<View, DonutChartProps>(
               progress={progress}
               gradient={progressGradient}
               trackColor={arcTrackColor}
+              appearance={appearance}
             />
           </ArcSlot>
 

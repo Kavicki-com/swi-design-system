@@ -22,6 +22,7 @@ export const DonutArc = ({
   progress,
   gradient,
   trackColor,
+  appearance = 'bevel',
 }: DonutArcProps) => {
   const pct = clamp(progress, 0, 100);
   const cx = size / 2;
@@ -30,7 +31,8 @@ export const DonutArc = ({
   const outerR = size / 2;
   const ringBand = strokeWidth * 2;
   const innerR = outerR - ringBand;
-  const arcR = outerR - strokeWidth;
+  const arcStroke = appearance === 'flat' ? Math.max(2, Math.round(strokeWidth / 2)) : strokeWidth;
+  const arcR = outerR - arcStroke;
 
   const circumference = 2 * Math.PI * arcR;
   const dash = (pct / 100) * circumference;
@@ -40,36 +42,47 @@ export const DonutArc = ({
   const wellId = `donut-well-${id}`;
   const arcId = `donut-arc-${id}`;
   const [arcFrom, arcTo] = gradient;
+  const isFlat = appearance === 'flat';
 
   return (
     <Svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
       <Defs>
-        <LinearGradient id={bezelId} x1="0.5" y1="0" x2="0.5" y2="1">
-          <Stop offset="0" stopColor="#3a3a3a" stopOpacity="1" />
-          <Stop offset="0.55" stopColor="#1f1f1f" stopOpacity="1" />
-          <Stop offset="1" stopColor="#141414" stopOpacity="1" />
-        </LinearGradient>
-        <RadialGradient id={wellId} cx="0.5" cy="0.5" rx="0.55" ry="0.55" fx="0.5" fy="0.5">
-          <Stop offset="0" stopColor="#1c1c1c" stopOpacity="1" />
-          <Stop offset="1" stopColor="#0c0c0c" stopOpacity="1" />
-        </RadialGradient>
+        {isFlat ? null : (
+          <>
+            <LinearGradient id={bezelId} x1="0.5" y1="0" x2="0.5" y2="1">
+              <Stop offset="0" stopColor="#3a3a3a" stopOpacity="1" />
+              <Stop offset="0.55" stopColor="#1f1f1f" stopOpacity="1" />
+              <Stop offset="1" stopColor="#141414" stopOpacity="1" />
+            </LinearGradient>
+            <RadialGradient id={wellId} cx="0.5" cy="0.5" rx="0.55" ry="0.55" fx="0.5" fy="0.5">
+              <Stop offset="0" stopColor="#1c1c1c" stopOpacity="1" />
+              <Stop offset="1" stopColor="#0c0c0c" stopOpacity="1" />
+            </RadialGradient>
+          </>
+        )}
         <LinearGradient id={arcId} x1="0.5" y1="0" x2="0.5" y2="1">
           <Stop offset="0" stopColor={arcFrom} stopOpacity="1" />
           <Stop offset="1" stopColor={arcTo} stopOpacity="1" />
         </LinearGradient>
       </Defs>
 
-      <Circle cx={cx} cy={cy} r={outerR} fill={`url(#${bezelId})`} />
-      <Circle cx={cx} cy={cy} r={innerR} fill={`url(#${wellId})`} />
+      {isFlat ? (
+        <Circle cx={cx} cy={cy} r={arcR - arcStroke / 2} fill="#1a1a1a" />
+      ) : (
+        <>
+          <Circle cx={cx} cy={cy} r={outerR} fill={`url(#${bezelId})`} />
+          <Circle cx={cx} cy={cy} r={innerR} fill={`url(#${wellId})`} />
+        </>
+      )}
 
       <Circle
         cx={cx}
         cy={cy}
         r={arcR}
         stroke={trackColor}
-        strokeWidth={strokeWidth}
+        strokeWidth={arcStroke}
         fill="transparent"
-        opacity={0.35}
+        opacity={isFlat ? 0.25 : 0.35}
       />
 
       <G transform={`rotate(-90 ${cx} ${cy})`}>
@@ -78,7 +91,7 @@ export const DonutArc = ({
           cy={cy}
           r={arcR}
           stroke={`url(#${arcId})`}
-          strokeWidth={strokeWidth}
+          strokeWidth={arcStroke}
           fill="transparent"
           strokeDasharray={`${dash} ${circumference}`}
           strokeLinecap="round"

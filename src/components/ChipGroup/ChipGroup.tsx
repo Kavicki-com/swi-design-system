@@ -15,6 +15,8 @@ export const ChipGroup = ({
   initialValue,
   value,
   onChange,
+  variant,
+  colorScheme,
   style,
 }: ChipGroupProps) => {
   const [selected, setSelected] = useState<string[]>(
@@ -45,6 +47,8 @@ export const ChipGroup = ({
         <Chip
           key={option}
           label={option}
+          variant={variant}
+          colorScheme={colorScheme}
           state={selected.includes(option) ? 'active' : 'default'}
           onPress={() => handlePress(option)}
         />

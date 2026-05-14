@@ -1274,8 +1274,10 @@ var labelColor = ({
   $variant,
   $hovered,
   $disabled,
+  $labelColor,
   theme: theme2
 }) => {
+  if ($labelColor && !$disabled) return $labelColor;
   if ($variant === "contained") return theme2.content.light;
   if ($variant === "surface") return theme2.content.dark;
   if ($disabled) return theme2.content.primaryLight;
@@ -1305,6 +1307,7 @@ var Button = React35.forwardRef(
     backgroundColor: backgroundColor2,
     borderColor: borderColor2,
     borderWidth,
+    labelColor: labelColor2,
     iconLeft,
     iconRight,
     disabled: disabledProp = false,
@@ -1353,7 +1356,17 @@ var Button = React35.forwardRef(
         testID,
         children: [
           iconLeft ? /* @__PURE__ */ jsxRuntime.jsx(IconSlot3, { children: iconLeft }) : null,
-          hasLabel ? /* @__PURE__ */ jsxRuntime.jsx(Label2, { $variant: variant, $hovered: hovered, $disabled: disabled, $underline: underline, children: label }) : null,
+          hasLabel ? /* @__PURE__ */ jsxRuntime.jsx(
+            Label2,
+            {
+              $variant: variant,
+              $hovered: hovered,
+              $disabled: disabled,
+              $underline: underline,
+              $labelColor: labelColor2,
+              children: label
+            }
+          ) : null,
           iconRight ? /* @__PURE__ */ jsxRuntime.jsx(IconSlot3, { children: iconRight }) : null,
           showHoverOverlay ? /* @__PURE__ */ jsxRuntime.jsx(HoverOverlay, { $shape: shape }) : null,
           showPressedOverlay ? /* @__PURE__ */ jsxRuntime.jsx(PressedOverlay, { $shape: shape, style: elevation.negative }) : null
@@ -1775,8 +1788,7 @@ var DonutArc = ({
   strokeWidth,
   progress,
   gradient,
-  trackColor,
-  appearance = "bevel"
+  trackColor
 }) => {
   const pct = clamp2(progress, 0, 100);
   const cx = size / 2;
@@ -1784,8 +1796,7 @@ var DonutArc = ({
   const outerR = size / 2;
   const ringBand = strokeWidth * 2;
   const innerR = outerR - ringBand;
-  const arcStroke = appearance === "flat" ? Math.max(2, Math.round(strokeWidth / 2)) : strokeWidth;
-  const arcR = outerR - arcStroke;
+  const arcR = outerR - strokeWidth;
   const circumference = 2 * Math.PI * arcR;
   const dash = pct / 100 * circumference;
   const id = React35.useId().replace(/:/g, "");
@@ -1793,29 +1804,24 @@ var DonutArc = ({
   const wellId = `donut-well-${id}`;
   const arcId = `donut-arc-${id}`;
   const [arcFrom, arcTo] = gradient;
-  const isFlat = appearance === "flat";
   return /* @__PURE__ */ jsxRuntime.jsxs(Svg__default.default, { width: size, height: size, viewBox: `0 0 ${size} ${size}`, children: [
     /* @__PURE__ */ jsxRuntime.jsxs(Svg.Defs, { children: [
-      isFlat ? null : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-        /* @__PURE__ */ jsxRuntime.jsxs(Svg.LinearGradient, { id: bezelId, x1: "0.5", y1: "0", x2: "0.5", y2: "1", children: [
-          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: "#3a3a3a", stopOpacity: "1" }),
-          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0.55", stopColor: "#1f1f1f", stopOpacity: "1" }),
-          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: "#141414", stopOpacity: "1" })
-        ] }),
-        /* @__PURE__ */ jsxRuntime.jsxs(Svg.RadialGradient, { id: wellId, cx: "0.5", cy: "0.5", rx: "0.55", ry: "0.55", fx: "0.5", fy: "0.5", children: [
-          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: "#1c1c1c", stopOpacity: "1" }),
-          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: "#0c0c0c", stopOpacity: "1" })
-        ] })
+      /* @__PURE__ */ jsxRuntime.jsxs(Svg.LinearGradient, { id: bezelId, x1: "0.5", y1: "0", x2: "0.5", y2: "1", children: [
+        /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: "#3a3a3a", stopOpacity: "1" }),
+        /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0.55", stopColor: "#1f1f1f", stopOpacity: "1" }),
+        /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: "#141414", stopOpacity: "1" })
+      ] }),
+      /* @__PURE__ */ jsxRuntime.jsxs(Svg.RadialGradient, { id: wellId, cx: "0.5", cy: "0.5", rx: "0.55", ry: "0.55", fx: "0.5", fy: "0.5", children: [
+        /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: "#1c1c1c", stopOpacity: "1" }),
+        /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: "#0c0c0c", stopOpacity: "1" })
       ] }),
       /* @__PURE__ */ jsxRuntime.jsxs(Svg.LinearGradient, { id: arcId, x1: "0.5", y1: "0", x2: "0.5", y2: "1", children: [
         /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: arcFrom, stopOpacity: "1" }),
         /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: arcTo, stopOpacity: "1" })
       ] })
     ] }),
-    isFlat ? /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx, cy, r: arcR - arcStroke / 2, fill: "#1a1a1a" }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-      /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx, cy, r: outerR, fill: `url(#${bezelId})` }),
-      /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx, cy, r: innerR, fill: `url(#${wellId})` })
-    ] }),
+    /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx, cy, r: outerR, fill: `url(#${bezelId})` }),
+    /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx, cy, r: innerR, fill: `url(#${wellId})` }),
     /* @__PURE__ */ jsxRuntime.jsx(
       Svg.Circle,
       {
@@ -1823,9 +1829,9 @@ var DonutArc = ({
         cy,
         r: arcR,
         stroke: trackColor,
-        strokeWidth: arcStroke,
+        strokeWidth,
         fill: "transparent",
-        opacity: isFlat ? 0.25 : 0.35
+        opacity: 0.35
       }
     ),
     /* @__PURE__ */ jsxRuntime.jsx(Svg.G, { transform: `rotate(-90 ${cx} ${cy})`, children: /* @__PURE__ */ jsxRuntime.jsx(
@@ -1835,7 +1841,7 @@ var DonutArc = ({
         cy,
         r: arcR,
         stroke: `url(#${arcId})`,
-        strokeWidth: arcStroke,
+        strokeWidth,
         fill: "transparent",
         strokeDasharray: `${dash} ${circumference}`,
         strokeLinecap: "round"
@@ -1944,7 +1950,6 @@ var DonutChart = React35.forwardRef(
     icon = "vital_signs",
     iconColor,
     size = "default",
-    appearance = "bevel",
     onLocationPress,
     locationIcon = "location_on",
     accessibilityLabel,
@@ -1970,8 +1975,7 @@ var DonutChart = React35.forwardRef(
                 strokeWidth: dims.stroke,
                 progress,
                 gradient: progressGradient,
-                trackColor: arcTrackColor,
-                appearance
+                trackColor: arcTrackColor
               }
             ) }),
             /* @__PURE__ */ jsxRuntime.jsxs(Center, { children: [
@@ -2141,13 +2145,13 @@ var Card4 = styled37__default.default(reactNative.View)`
   gap: ${({ theme: theme2, $compact }) => $compact ? theme2.gap.s : theme2.gap.m}px;
 `;
 var YearText = styled37__default.default.Text`
-  color: ${({ theme: theme2 }) => theme2.content.dark};
+  color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.ms}px;
 `;
 var DateText = styled37__default.default.Text`
-  color: ${({ theme: theme2 }) => theme2.content.dark};
+  color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2, $compact }) => $compact ? theme2.fontWeight.regular : theme2.fontWeight.medium};
   font-size: ${({ theme: theme2, $compact }) => $compact ? theme2.fontSize.m : theme2.fontSize.ms}px;
@@ -2168,13 +2172,13 @@ var ExamLink = styled37__default.default(reactNative.Pressable)`
   `}
 `;
 var ExamLinkText = styled37__default.default.Text`
-  color: ${({ theme: theme2 }) => theme2.content.secondary};
+  color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.secondary};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2, $compact }) => $compact ? theme2.fontSize.sm : theme2.fontSize.ms}px;
   text-align: ${({ $compact }) => $compact ? "left" : "center"};
   text-decoration-line: ${({ $compact }) => $compact ? "none" : "underline"};
-  text-decoration-color: ${({ theme: theme2 }) => theme2.content.secondary};
+  text-decoration-color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.secondary};
 `;
 var CompactActionButton = styled37__default.default(reactNative.Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.primary};
@@ -2194,6 +2198,7 @@ var ExamInfoCard = React35.forwardRef(
     actionDisabled = false,
     fullWidth = false,
     compact = false,
+    past = false,
     accessibilityLabel,
     testID
   }, ref) => {
@@ -2202,12 +2207,21 @@ var ExamInfoCard = React35.forwardRef(
       {
         ref,
         $compact: compact,
+        $past: past,
         accessibilityLabel: accessibilityLabel ?? `${examName} ${date} ${year}`,
         testID,
         style: fullWidth ? { alignSelf: "stretch", width: "100%" } : { alignSelf: "flex-start" },
         children: [
-          /* @__PURE__ */ jsxRuntime.jsx(YearText, { numberOfLines: compact ? 1 : void 0, children: year }),
-          /* @__PURE__ */ jsxRuntime.jsx(DateText, { $compact: compact, numberOfLines: compact ? 1 : void 0, children: date }),
+          /* @__PURE__ */ jsxRuntime.jsx(YearText, { $past: past, numberOfLines: compact ? 1 : void 0, children: year }),
+          /* @__PURE__ */ jsxRuntime.jsx(
+            DateText,
+            {
+              $compact: compact,
+              $past: past,
+              numberOfLines: compact ? 1 : void 0,
+              children: date
+            }
+          ),
           /* @__PURE__ */ jsxRuntime.jsx(
             ExamLink,
             {
@@ -2219,6 +2233,7 @@ var ExamInfoCard = React35.forwardRef(
                 ExamLinkText,
                 {
                   $compact: compact,
+                  $past: past,
                   numberOfLines: compact ? 1 : void 0,
                   ellipsizeMode: compact ? "tail" : void 0,
                   children: examName
@@ -2840,22 +2855,9 @@ var Chevron = styled37__default.default.Text`
   color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
 `;
 var Panel = styled37__default.default(reactNative.View)`
-  /* Float above siblings instead of pushing them down. */
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  margin-top: ${({ theme: theme2 }) => theme2.gap.xs}px;
-  z-index: 50;
-  min-width: 160px;
-  /* surface.high is a touch lighter than the chart card behind it
-   * (surface.medium), giving the floating panel a visible silhouette. */
-  background-color: ${({ theme: theme2 }) => theme2.surface.high};
-  border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
-  border-width: 1px;
-  border-color: ${({ theme: theme2 }) => theme2.content.medium};
+  background-color: ${({ theme: theme2 }) => theme2.surface.standard};
+  border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   padding: ${({ theme: theme2 }) => theme2.padding.s}px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
 `;
 var OptionsList = styled37__default.default(reactNative.View)`
   flex-direction: column;
@@ -2956,27 +2958,33 @@ Combobox.displayName = "Combobox";
 var borderColor = ({
   $state,
   $variant,
+  $colorScheme,
   theme: theme2
 }) => {
   if ($variant === "filled") return "transparent";
   if ($state === "disable") return theme2.content.disable;
-  return theme2.content.primary;
+  return $colorScheme === "secondary" ? theme2.content.secondary : theme2.content.primary;
 };
 var backgroundColor = ({
   $state,
   $variant,
+  $colorScheme,
   theme: theme2
 }) => {
   if ($variant === "filled") {
     if ($state === "disable") return theme2.surface.disable;
-    return theme2.surface.primary;
+    return $colorScheme === "secondary" ? theme2.surface.secondaryLight : theme2.surface.primary;
   }
-  if ($state === "active") return `${theme2.surface.primaryLight}14`;
+  if ($state === "active") {
+    const tint = $colorScheme === "secondary" ? theme2.surface.secondaryLight : theme2.surface.primaryLight;
+    return `${tint}14`;
+  }
   return "transparent";
 };
 var textColor = ({
   $state,
   $variant,
+  $colorScheme,
   theme: theme2
 }) => {
   if ($variant === "filled") {
@@ -2984,7 +2992,7 @@ var textColor = ({
     return theme2.content.light;
   }
   if ($state === "disable") return theme2.content.disable;
-  return theme2.content.primary;
+  return $colorScheme === "secondary" ? theme2.content.secondary : theme2.content.primary;
 };
 var Container11 = styled37__default.default(reactNative.Pressable)`
   align-self: flex-start;
@@ -3018,6 +3026,7 @@ var Chip = React35.forwardRef(
     label,
     state = "default",
     variant = "outline",
+    colorScheme = "primary",
     onPress,
     accessibilityLabel,
     accessibilityHint,
@@ -3032,6 +3041,7 @@ var Chip = React35.forwardRef(
         ref,
         $state: state,
         $variant: variant,
+        $colorScheme: colorScheme,
         disabled: isDisabled,
         onPress: isDisabled ? void 0 : onPress,
         onPressIn: () => setPressed(true),
@@ -3043,8 +3053,8 @@ var Chip = React35.forwardRef(
         accessibilityLabel: accessibilityLabel ?? label,
         accessibilityHint,
         testID,
-        children: /* @__PURE__ */ jsxRuntime.jsxs(Body, { $state: state, $variant: variant, children: [
-          /* @__PURE__ */ jsxRuntime.jsx(Label7, { $state: state, $variant: variant, children: label }),
+        children: /* @__PURE__ */ jsxRuntime.jsxs(Body, { $state: state, $variant: variant, $colorScheme: colorScheme, children: [
+          /* @__PURE__ */ jsxRuntime.jsx(Label7, { $state: state, $variant: variant, $colorScheme: colorScheme, children: label }),
           !isDisabled && (hovered || pressed) ? /* @__PURE__ */ jsxRuntime.jsx(HoverOverlay4, {}) : null
         ] })
       }
@@ -3063,6 +3073,8 @@ var ChipGroup = ({
   initialValue,
   value,
   onChange,
+  variant,
+  colorScheme,
   style
 }) => {
   const [selected, setSelected] = React35.useState(
@@ -3087,6 +3099,8 @@ var ChipGroup = ({
     Chip,
     {
       label: option,
+      variant,
+      colorScheme,
       state: selected.includes(option) ? "active" : "default",
       onPress: () => handlePress(option)
     },
@@ -3182,6 +3196,7 @@ var ImageUploader = React35.forwardRef(
     takePhotoLabel = DEFAULT_TAKE_PHOTO,
     pickFileLabel = DEFAULT_PICK_FILE,
     showTakePhoto = true,
+    accentColor: accentColor2,
     disabled = false,
     accessibilityLabel,
     removeAccessibilityLabel = "Remover imagem",
@@ -3190,7 +3205,9 @@ var ImageUploader = React35.forwardRef(
     const theme2 = useTheme();
     const hasValue = !!value?.uri;
     const ctaDisabled = disabled || hasValue;
-    const ctaIconColor = ctaDisabled ? theme2.content.primaryLight : theme2.content.primary;
+    const resolvedAccent = accentColor2 ?? theme2.content.primary;
+    const ctaIconColor = ctaDisabled ? theme2.content.primaryLight : resolvedAccent;
+    const ctaLabelColor = ctaDisabled ? void 0 : accentColor2;
     return /* @__PURE__ */ jsxRuntime.jsxs(
       Container12,
       {
@@ -3226,6 +3243,7 @@ var ImageUploader = React35.forwardRef(
               variant: "outline",
               fullWidth: true,
               disabled: ctaDisabled,
+              labelColor: ctaLabelColor,
               onPress: onTakePhoto,
               iconRight: /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: "add_a_photo", size: 24, color: ctaIconColor }),
               accessibilityLabel: takePhotoLabel
@@ -3238,6 +3256,7 @@ var ImageUploader = React35.forwardRef(
               variant: "outline",
               fullWidth: true,
               disabled: ctaDisabled,
+              labelColor: ctaLabelColor,
               onPress: onPickFile,
               iconRight: /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: "cloud_upload", size: 24, color: ctaIconColor }),
               accessibilityLabel: pickFileLabel
@@ -3892,7 +3911,6 @@ var LineCaloriesChart = React35.forwardRef(
     const theme2 = useTheme();
     const laid = layoutPoints(points, width, height);
     const d = linePath(laid);
-    const gradId = `calories-stroke-${React35.useId().replace(/:/g, "")}`;
     return /* @__PURE__ */ jsxRuntime.jsxs(
       ChartFrame,
       {
@@ -3901,31 +3919,24 @@ var LineCaloriesChart = React35.forwardRef(
         testID,
         style: fullWidth ? { alignSelf: "stretch", width: "100%", height } : { alignSelf: "flex-start", width, height },
         children: [
-          /* @__PURE__ */ jsxRuntime.jsx(Layer, { children: /* @__PURE__ */ jsxRuntime.jsxs(
+          /* @__PURE__ */ jsxRuntime.jsx(Layer, { children: /* @__PURE__ */ jsxRuntime.jsx(
             Svg__default.default,
             {
               width: "100%",
               height,
               viewBox: `0 0 ${width} ${height}`,
               preserveAspectRatio: "none",
-              children: [
-                /* @__PURE__ */ jsxRuntime.jsx(Svg.Defs, { children: /* @__PURE__ */ jsxRuntime.jsxs(Svg.LinearGradient, { id: gradId, x1: "0", y1: "0", x2: "1", y2: "0", children: [
-                  /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: theme2.surface.primary, stopOpacity: "1" }),
-                  /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0.5", stopColor: theme2.surface.secondary, stopOpacity: "1" }),
-                  /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: theme2.surface.warning, stopOpacity: "1" })
-                ] }) }),
-                /* @__PURE__ */ jsxRuntime.jsx(
-                  Svg.Path,
-                  {
-                    d,
-                    fill: "none",
-                    stroke: `url(#${gradId})`,
-                    strokeWidth: 2,
-                    strokeLinecap: "round",
-                    strokeLinejoin: "round"
-                  }
-                )
-              ]
+              children: /* @__PURE__ */ jsxRuntime.jsx(
+                Svg.Path,
+                {
+                  d,
+                  fill: "none",
+                  stroke: theme2.content.secondary,
+                  strokeWidth: 2,
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round"
+                }
+              )
             }
           ) }),
           laid.map((p) => /* @__PURE__ */ jsxRuntime.jsx(

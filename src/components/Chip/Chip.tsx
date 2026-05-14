@@ -5,7 +5,16 @@ import type { ChipProps } from './Chip.types';
 
 export const Chip = forwardRef<View, ChipProps>(
   (
-    { label, state = 'default', onPress, accessibilityLabel, accessibilityHint, testID },
+    {
+      label,
+      state = 'default',
+      variant = 'outline',
+      colorScheme = 'primary',
+      onPress,
+      accessibilityLabel,
+      accessibilityHint,
+      testID,
+    },
     ref,
   ) => {
     const [hovered, setHovered] = useState(false);
@@ -16,6 +25,8 @@ export const Chip = forwardRef<View, ChipProps>(
       <Container
         ref={ref}
         $state={state}
+        $variant={variant}
+        $colorScheme={colorScheme}
         disabled={isDisabled}
         onPress={isDisabled ? undefined : onPress}
         onPressIn={() => setPressed(true)}
@@ -28,8 +39,10 @@ export const Chip = forwardRef<View, ChipProps>(
         accessibilityHint={accessibilityHint}
         testID={testID}
       >
-        <Body $state={state}>
-          <Label $state={state}>{label}</Label>
+        <Body $state={state} $variant={variant} $colorScheme={colorScheme}>
+          <Label $state={state} $variant={variant} $colorScheme={colorScheme}>
+            {label}
+          </Label>
           {!isDisabled && (hovered || pressed) ? <HoverOverlay /> : null}
         </Body>
       </Container>

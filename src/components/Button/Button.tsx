@@ -15,6 +15,7 @@ export const Button = forwardRef<View, ButtonProps>(
       backgroundColor,
       borderColor,
       borderWidth,
+      labelColor,
       iconLeft,
       iconRight,
       disabled: disabledProp = false,
@@ -69,7 +70,13 @@ export const Button = forwardRef<View, ButtonProps>(
       >
         {iconLeft ? <IconSlot>{iconLeft}</IconSlot> : null}
         {hasLabel ? (
-          <Label $variant={variant} $hovered={hovered} $disabled={disabled} $underline={underline}>
+          <Label
+            $variant={variant}
+            $hovered={hovered}
+            $disabled={disabled}
+            $underline={underline}
+            $labelColor={labelColor}
+          >
             {label}
           </Label>
         ) : null}

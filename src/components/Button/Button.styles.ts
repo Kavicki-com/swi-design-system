@@ -101,13 +101,18 @@ const labelColor = ({
   $variant,
   $hovered,
   $disabled,
+  $labelColor,
   theme,
 }: {
   $variant: ButtonVariant;
   $hovered: boolean;
   $disabled: boolean;
+  $labelColor?: string;
   theme: DefaultTheme;
 }) => {
+  // Explicit override wins (when not disabled, so disabled tone stays
+  // recognizable).
+  if ($labelColor && !$disabled) return $labelColor;
   if ($variant === 'contained') return theme.content.light;
   // Surface: dark bg → use light content for readable text/icons.
   if ($variant === 'surface') return theme.content.dark;
@@ -121,6 +126,7 @@ export const Label = styled.Text<{
   $hovered: boolean;
   $disabled: boolean;
   $underline: boolean;
+  $labelColor?: string;
 }>`
   font-family: ${({ theme }) => theme.fontFamily.title};
   font-weight: ${({ theme }) => theme.fontWeight.bold};

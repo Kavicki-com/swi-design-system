@@ -28,6 +28,7 @@ export const ImageUploader = forwardRef<View, ImageUploaderProps>(
       takePhotoLabel = DEFAULT_TAKE_PHOTO,
       pickFileLabel = DEFAULT_PICK_FILE,
       showTakePhoto = true,
+      accentColor,
       disabled = false,
       accessibilityLabel,
       removeAccessibilityLabel = 'Remover imagem',
@@ -38,7 +39,9 @@ export const ImageUploader = forwardRef<View, ImageUploaderProps>(
     const theme = useTheme();
     const hasValue = !!value?.uri;
     const ctaDisabled = disabled || hasValue;
-    const ctaIconColor = ctaDisabled ? theme.content.primaryLight : theme.content.primary;
+    const resolvedAccent = accentColor ?? theme.content.primary;
+    const ctaIconColor = ctaDisabled ? theme.content.primaryLight : resolvedAccent;
+    const ctaLabelColor = ctaDisabled ? undefined : accentColor;
 
     return (
       <Container
@@ -76,6 +79,7 @@ export const ImageUploader = forwardRef<View, ImageUploaderProps>(
             variant="outline"
             fullWidth
             disabled={ctaDisabled}
+            labelColor={ctaLabelColor}
             onPress={onTakePhoto}
             iconRight={<Icon name="add_a_photo" size={24} color={ctaIconColor} />}
             accessibilityLabel={takePhotoLabel}
@@ -87,6 +91,7 @@ export const ImageUploader = forwardRef<View, ImageUploaderProps>(
           variant="outline"
           fullWidth
           disabled={ctaDisabled}
+          labelColor={ctaLabelColor}
           onPress={onPickFile}
           iconRight={<Icon name="cloud_upload" size={24} color={ctaIconColor} />}
           accessibilityLabel={pickFileLabel}

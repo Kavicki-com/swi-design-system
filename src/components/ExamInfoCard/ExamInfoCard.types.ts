@@ -14,6 +14,12 @@ export interface ExamInfoCardProps {
    * download button instead of a labelled `Button`. Default `false`.
    */
   compact?: boolean;
+  /**
+   * Mute the year/date/exam-name text colors to indicate a past or
+   * inactive exam. Action button styling is unaffected. Used on mobile
+   * my-stats to dim out-of-window history entries (Figma `342:9907`).
+   */
+  past?: boolean;
   accessibilityLabel?: string;
   testID?: string;
 }

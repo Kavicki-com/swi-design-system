@@ -71,6 +71,13 @@ export interface ButtonProps
    */
   borderColor?: string;
   /**
+   * Override the label color. Overrides the variant default. Useful when an
+   * outline button needs a fully-saturated `content.primary` label instead of
+   * the default `content.primaryLight` (e.g. Mobile my-stats "Enviar novo
+   * exame" CTA, Figma `342:9907`). When `disabled` the disabled tone wins.
+   */
+  labelColor?: string;
+  /**
    * Outline thickness. Only meaningful when `variant === 'outline'`.
    * - `'s'`: 1px (default; matches `border.size.s`).
    * - `'m'`: 2px (matches `border.size.m`). Used for emphasized outline

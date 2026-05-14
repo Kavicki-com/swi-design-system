@@ -24,6 +24,7 @@ export const ExamInfoCard = forwardRef<View, ExamInfoCardProps>(
       actionDisabled = false,
       fullWidth = false,
       compact = false,
+      past = false,
       accessibilityLabel,
       testID,
     },
@@ -33,6 +34,7 @@ export const ExamInfoCard = forwardRef<View, ExamInfoCardProps>(
       <Card
         ref={ref}
         $compact={compact}
+        $past={past}
         accessibilityLabel={accessibilityLabel ?? `${examName} ${date} ${year}`}
         testID={testID}
         style={
@@ -41,8 +43,14 @@ export const ExamInfoCard = forwardRef<View, ExamInfoCardProps>(
             : { alignSelf: 'flex-start' }
         }
       >
-        <YearText numberOfLines={compact ? 1 : undefined}>{year}</YearText>
-        <DateText $compact={compact} numberOfLines={compact ? 1 : undefined}>
+        <YearText $past={past} numberOfLines={compact ? 1 : undefined}>
+          {year}
+        </YearText>
+        <DateText
+          $compact={compact}
+          $past={past}
+          numberOfLines={compact ? 1 : undefined}
+        >
           {date}
         </DateText>
         <ExamLink
@@ -53,6 +61,7 @@ export const ExamInfoCard = forwardRef<View, ExamInfoCardProps>(
         >
           <ExamLinkText
             $compact={compact}
+            $past={past}
             numberOfLines={compact ? 1 : undefined}
             ellipsizeMode={compact ? 'tail' : undefined}
           >

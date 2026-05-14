@@ -6177,7 +6177,82 @@ var Toast = forwardRef(
   }
 );
 Toast.displayName = "Toast";
+var Container24 = styled38(View)`
+  flex-direction: row;
+  align-items: center;
+  width: 360px;
+  padding-left: ${({ theme: theme2 }) => theme2.padding.m}px;
+  padding-right: ${({ theme: theme2 }) => theme2.padding.m}px;
+  padding-top: ${({ theme: theme2 }) => theme2.padding.s}px;
+  padding-bottom: ${({ theme: theme2 }) => theme2.padding.s}px;
+`;
+var BackSlot = styled38(Pressable)`
+  flex-direction: row;
+  align-items: center;
+  gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: ${({ theme: theme2 }) => theme2.padding.sm}px;
+  padding-bottom: ${({ theme: theme2 }) => theme2.padding.sm}px;
+  border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
+`;
+var TitleSlot = styled38(View)`
+  flex: 1;
+  align-items: flex-end;
+`;
+var TopBar = forwardRef(
+  ({ title, onBack, backLabel = "Voltar", accessibilityLabel, testID }, ref) => {
+    const theme2 = useTheme();
+    const backColor = theme2.content.primaryLight;
+    return /* @__PURE__ */ jsxs(Container24, { ref, testID, children: [
+      onBack ? /* @__PURE__ */ jsxs(
+        BackSlot,
+        {
+          onPress: onBack,
+          accessibilityRole: "button",
+          accessibilityLabel: accessibilityLabel ?? backLabel,
+          children: [
+            /* @__PURE__ */ jsx(
+              Icon,
+              {
+                name: "keyboard_arrow_left",
+                width: 7.4,
+                height: 12,
+                color: backColor
+              }
+            ),
+            /* @__PURE__ */ jsx(
+              Text,
+              {
+                color: backColor,
+                style: {
+                  fontFamily: theme2.fontFamily.title,
+                  fontWeight: theme2.fontWeight.bold,
+                  fontSize: theme2.fontSize.m
+                },
+                children: backLabel
+              }
+            )
+          ]
+        }
+      ) : null,
+      /* @__PURE__ */ jsx(TitleSlot, { children: /* @__PURE__ */ jsx(
+        Text,
+        {
+          color: theme2.content.dark,
+          style: {
+            fontFamily: theme2.fontFamily.title,
+            fontWeight: theme2.fontWeight.bold,
+            fontSize: theme2.fontSize.m
+          },
+          children: title
+        }
+      ) })
+    ] });
+  }
+);
+TopBar.displayName = "TopBar";
 
-export { Accordion, ActivitiesOverviewCard, Avatar, AvatarGroup, BigNumbersCard, Button, CaloriesTag, ChatBubble, ChatSection, ChatUserCard, Checkbox, Chip, ChipGroup, Combobox, DonutChart, EmployeeOverviewCard, ExamInfoCard, GenderSelectionCard, GenderSelector, Header2 as Header, HeaderUserInfo, HeartStatus, HeartrateStatus, HorizontalCard, Icon, Image, ImageUploader, Input, LineCaloriesChart, LocationPin, Logo, MapControl, MenuItem, NowMarker, ProgressBar, Radio, ReportCard, SearchInput, SideMenu, Silhouette, SmartbandStatus, StatusChart, StatusTag, Step, StepBar, SuccessBadge, Surface, SwiThemeProvider, Tabs, Text, TimeStamp, Title2 as Title, Toast, Toggle, WeatherEventChip, WeatherIcon, WeatherTimeline, WeatherTimelineEntry, WorkersInfoCard, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
+export { Accordion, ActivitiesOverviewCard, Avatar, AvatarGroup, BigNumbersCard, Button, CaloriesTag, ChatBubble, ChatSection, ChatUserCard, Checkbox, Chip, ChipGroup, Combobox, DonutChart, EmployeeOverviewCard, ExamInfoCard, GenderSelectionCard, GenderSelector, Header2 as Header, HeaderUserInfo, HeartStatus, HeartrateStatus, HorizontalCard, Icon, Image, ImageUploader, Input, LineCaloriesChart, LocationPin, Logo, MapControl, MenuItem, NowMarker, ProgressBar, Radio, ReportCard, SearchInput, SideMenu, Silhouette, SmartbandStatus, StatusChart, StatusTag, Step, StepBar, SuccessBadge, Surface, SwiThemeProvider, Tabs, Text, TimeStamp, Title2 as Title, Toast, Toggle, TopBar, WeatherEventChip, WeatherIcon, WeatherTimeline, WeatherTimelineEntry, WorkersInfoCard, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
 //# sourceMappingURL=index.mjs.map
 //# sourceMappingURL=index.mjs.map

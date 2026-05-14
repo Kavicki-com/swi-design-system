@@ -149,3 +149,5 @@ export { Tabs } from './components/Tabs';
 export type { TabsProps, TabItem } from './components/Tabs';
 export { Toast } from './components/Toast';
 export type { ToastProps, ToastVariant } from './components/Toast';
+export { TopBar } from './components/TopBar';
+export type { TopBarProps } from './components/TopBar';

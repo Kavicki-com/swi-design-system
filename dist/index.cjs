@@ -6185,6 +6185,81 @@ var Toast = React36.forwardRef(
   }
 );
 Toast.displayName = "Toast";
+var Container24 = styled38__default.default(reactNative.View)`
+  flex-direction: row;
+  align-items: center;
+  width: 360px;
+  padding-left: ${({ theme: theme2 }) => theme2.padding.m}px;
+  padding-right: ${({ theme: theme2 }) => theme2.padding.m}px;
+  padding-top: ${({ theme: theme2 }) => theme2.padding.s}px;
+  padding-bottom: ${({ theme: theme2 }) => theme2.padding.s}px;
+`;
+var BackSlot = styled38__default.default(reactNative.Pressable)`
+  flex-direction: row;
+  align-items: center;
+  gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: ${({ theme: theme2 }) => theme2.padding.sm}px;
+  padding-bottom: ${({ theme: theme2 }) => theme2.padding.sm}px;
+  border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
+`;
+var TitleSlot = styled38__default.default(reactNative.View)`
+  flex: 1;
+  align-items: flex-end;
+`;
+var TopBar = React36.forwardRef(
+  ({ title, onBack, backLabel = "Voltar", accessibilityLabel, testID }, ref) => {
+    const theme2 = useTheme();
+    const backColor = theme2.content.primaryLight;
+    return /* @__PURE__ */ jsxRuntime.jsxs(Container24, { ref, testID, children: [
+      onBack ? /* @__PURE__ */ jsxRuntime.jsxs(
+        BackSlot,
+        {
+          onPress: onBack,
+          accessibilityRole: "button",
+          accessibilityLabel: accessibilityLabel ?? backLabel,
+          children: [
+            /* @__PURE__ */ jsxRuntime.jsx(
+              Icon,
+              {
+                name: "keyboard_arrow_left",
+                width: 7.4,
+                height: 12,
+                color: backColor
+              }
+            ),
+            /* @__PURE__ */ jsxRuntime.jsx(
+              Text,
+              {
+                color: backColor,
+                style: {
+                  fontFamily: theme2.fontFamily.title,
+                  fontWeight: theme2.fontWeight.bold,
+                  fontSize: theme2.fontSize.m
+                },
+                children: backLabel
+              }
+            )
+          ]
+        }
+      ) : null,
+      /* @__PURE__ */ jsxRuntime.jsx(TitleSlot, { children: /* @__PURE__ */ jsxRuntime.jsx(
+        Text,
+        {
+          color: theme2.content.dark,
+          style: {
+            fontFamily: theme2.fontFamily.title,
+            fontWeight: theme2.fontWeight.bold,
+            fontSize: theme2.fontSize.m
+          },
+          children: title
+        }
+      ) })
+    ] });
+  }
+);
+TopBar.displayName = "TopBar";
 
 exports.Accordion = Accordion;
 exports.ActivitiesOverviewCard = ActivitiesOverviewCard;
@@ -6240,6 +6315,7 @@ exports.TimeStamp = TimeStamp;
 exports.Title = Title2;
 exports.Toast = Toast;
 exports.Toggle = Toggle;
+exports.TopBar = TopBar;
 exports.WeatherEventChip = WeatherEventChip;
 exports.WeatherIcon = WeatherIcon;
 exports.WeatherTimeline = WeatherTimeline;

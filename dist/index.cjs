@@ -1,15 +1,15 @@
 'use strict';
 
-var styled37 = require('styled-components/native');
+var styled38 = require('styled-components/native');
 var reactNative = require('react-native');
 var jsxRuntime = require('react/jsx-runtime');
-var React35 = require('react');
+var React37 = require('react');
 var Svg = require('react-native-svg');
 
 function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
-var styled37__default = /*#__PURE__*/_interopDefault(styled37);
-var React35__default = /*#__PURE__*/_interopDefault(React35);
+var styled38__default = /*#__PURE__*/_interopDefault(styled38);
+var React37__default = /*#__PURE__*/_interopDefault(React37);
 var Svg__default = /*#__PURE__*/_interopDefault(Svg);
 
 // src/theme/ThemeProvider.tsx
@@ -363,8 +363,8 @@ var theme = {
   fontSize,
   elevation
 };
-var SwiThemeProvider = ({ children, theme: override }) => /* @__PURE__ */ jsxRuntime.jsx(styled37.ThemeProvider, { theme: override ?? theme, children });
-var useTheme = styled37.useTheme;
+var SwiThemeProvider = ({ children, theme: override }) => /* @__PURE__ */ jsxRuntime.jsx(styled38.ThemeProvider, { theme: override ?? theme, children });
+var useTheme = styled38.useTheme;
 
 // src/icons/paths.ts
 var MATERIAL_VIEWBOX = "0 -960 960 960";
@@ -765,6 +765,16 @@ var iconPaths = {
   edit: {
     viewBox: MATERIAL_VIEWBOX,
     d: "M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"
+  },
+  border_color: {
+    // Material Symbols `border_color` (outlined) — pencil drawing on a line
+    // (pencil-in-corner glyph). Used as the leftIcon on the mobile Settings
+    // "Editar perfil" entry (Figma 348:10615). Generic concept icon — MS
+    // fallback is explicitly permitted per CLAUDE.md icons sub-rule. Source:
+    // material-design-icons/symbols/web/border_color/materialsymbolsoutlined
+    // /border_color_24px.svg.
+    viewBox: MATERIAL_VIEWBOX,
+    d: "M120-40v-160h720v160H120Zm80-160h44l268-268-22-22-22-22-268 268v44Zm433-235L498-570l128-128q11-11 28-11t28 11l71 71q11 11 11 28t-11 28L633-435ZM200-200v-44 44Zm453-257-44-44 44 44Z"
   }
 };
 var Icon = ({
@@ -794,11 +804,11 @@ var Icon = ({
     }
   );
 };
-var Container = styled37__default.default(reactNative.View)`
+var Container = styled38__default.default(reactNative.View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   overflow: hidden;
 `;
-var Header = styled37__default.default(reactNative.Pressable)`
+var Header = styled38__default.default(reactNative.Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -809,7 +819,7 @@ var Header = styled37__default.default(reactNative.Pressable)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var TitleText = styled37__default.default.Text`
+var TitleText = styled38__default.default.Text`
   flex: 1;
   min-width: 0;
   text-align: center;
@@ -818,7 +828,7 @@ var TitleText = styled37__default.default.Text`
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
 `;
-var Content = styled37__default.default(reactNative.View)`
+var Content = styled38__default.default(reactNative.View)`
   align-self: stretch;
   min-width: 0;
   margin-top: 2px;
@@ -826,14 +836,14 @@ var Content = styled37__default.default(reactNative.View)`
   padding: ${({ theme: theme2 }) => theme2.padding.s}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
 `;
-var ContentText = styled37__default.default.Text`
+var ContentText = styled38__default.default.Text`
   min-width: 0;
   color: ${({ theme: theme2 }) => theme2.content.medium};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
 `;
-var ChevronWrap = styled37__default.default(reactNative.View)`
+var ChevronWrap = styled38__default.default(reactNative.View)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -841,7 +851,7 @@ var ChevronWrap = styled37__default.default(reactNative.View)`
   padding: ${({ theme: theme2 }) => theme2.padding.xs}px;
   transform: rotate(${({ $open }) => $open ? "180deg" : "0deg"});
 `;
-var Accordion = React35.forwardRef(
+var Accordion = React37.forwardRef(
   ({
     title,
     children,
@@ -856,10 +866,10 @@ var Accordion = React35.forwardRef(
     testID
   }, ref) => {
     const theme2 = useTheme();
-    const [uncontrolledOpen, setUncontrolledOpen] = React35.useState(defaultOpen);
+    const [uncontrolledOpen, setUncontrolledOpen] = React37.useState(defaultOpen);
     const isControlled = controlledOpen !== void 0;
     const open = isControlled ? controlledOpen : uncontrolledOpen;
-    const handleToggle = React35.useCallback(() => {
+    const handleToggle = React37.useCallback(() => {
       if (disabled) return;
       const next = !open;
       if (!isControlled) setUncontrolledOpen(next);
@@ -896,7 +906,7 @@ var Accordion = React35.forwardRef(
   }
 );
 Accordion.displayName = "Accordion";
-var Frame = styled37__default.default(reactNative.View)`
+var Frame = styled38__default.default(reactNative.View)`
   width: ${({ $size }) => $size}px;
   height: ${({ $size }) => $size}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -909,7 +919,7 @@ var SIZE_MAP = {
   m: 40,
   l: 64
 };
-var Avatar = React35.forwardRef(
+var Avatar = React37.forwardRef(
   ({
     uri,
     size = "m",
@@ -947,14 +957,14 @@ var Avatar = React35.forwardRef(
   }
 );
 Avatar.displayName = "Avatar";
-var Row = styled37__default.default(reactNative.View)`
+var Row = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
 `;
-var AvatarSlot = styled37__default.default(reactNative.View)`
+var AvatarSlot = styled38__default.default(reactNative.View)`
   margin-left: ${({ $marginLeft }) => $marginLeft}px;
 `;
-var CountBadge = styled37__default.default(reactNative.View)`
+var CountBadge = styled38__default.default(reactNative.View)`
   width: ${({ $size }) => $size}px;
   height: ${({ $size }) => $size}px;
   margin-left: ${({ $marginLeft }) => $marginLeft}px;
@@ -966,7 +976,7 @@ var CountBadge = styled37__default.default(reactNative.View)`
   align-items: center;
   justify-content: center;
 `;
-var CountText = styled37__default.default.Text`
+var CountText = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.s}px;
@@ -975,7 +985,7 @@ var CountText = styled37__default.default.Text`
 var AVATAR_PX = { s: 24, m: 40, l: 64 };
 var BADGE_PX = { s: 16, m: 24, l: 32 };
 var overlapFor = (size) => Math.round(AVATAR_PX[size] * 0.4);
-var AvatarGroup = React35.forwardRef(
+var AvatarGroup = React37.forwardRef(
   ({
     avatars,
     totalCount,
@@ -1013,7 +1023,7 @@ var AvatarGroup = React35.forwardRef(
   }
 );
 AvatarGroup.displayName = "AvatarGroup";
-var Track = styled37__default.default(reactNative.View)`
+var Track = styled38__default.default(reactNative.View)`
   height: 6px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   background-color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.surface.secondaryLight};
@@ -1021,14 +1031,14 @@ var Track = styled37__default.default(reactNative.View)`
   overflow: hidden;
   opacity: ${({ $disabled }) => $disabled ? 0.6 : 1};
 `;
-var Fill = styled37__default.default(reactNative.View)`
+var Fill = styled38__default.default(reactNative.View)`
   height: 6px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   background-color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.medium : theme2.content.primary};
 `;
 var clamp = (n, min, max) => Math.min(Math.max(n, min), max);
 var FILL_HEIGHT = 6;
-var ProgressBar = React35.forwardRef(
+var ProgressBar = React37.forwardRef(
   ({
     value,
     disabled = false,
@@ -1146,7 +1156,7 @@ var ProgressBar = React35.forwardRef(
   }
 );
 ProgressBar.displayName = "ProgressBar";
-var Card = styled37__default.default(reactNative.Pressable)`
+var Card = styled38__default.default(reactNative.Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -1155,58 +1165,58 @@ var Card = styled37__default.default(reactNative.Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
 `;
-var LeftContent = styled37__default.default(reactNative.View)`
+var LeftContent = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.l}px;
   flex-shrink: 1;
 `;
-var IconSlot = styled37__default.default(reactNative.View)`
+var IconSlot = styled38__default.default(reactNative.View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var Divider = styled37__default.default(reactNative.View)`
+var Divider = styled38__default.default(reactNative.View)`
   align-self: stretch;
   width: 1px;
   background-color: ${({ theme: theme2 }) => theme2.content.dark};
   opacity: 0.2;
 `;
-var InfoColumn = styled37__default.default(reactNative.View)`
+var InfoColumn = styled38__default.default(reactNative.View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
   flex-shrink: 1;
 `;
-var Title = styled37__default.default.Text`
+var Title = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var Subtitle = styled37__default.default.Text`
+var Subtitle = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var ProgressSlot = styled37__default.default(reactNative.View)`
+var ProgressSlot = styled38__default.default(reactNative.View)`
   width: 119px;
   margin-top: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var RightContent = styled37__default.default(reactNative.View)`
+var RightContent = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
 `;
-var LocationButton = styled37__default.default(reactNative.Pressable)`
+var LocationButton = styled38__default.default(reactNative.Pressable)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var ActivitiesOverviewCard = React35.forwardRef(
+var ActivitiesOverviewCard = React37.forwardRef(
   ({
     title,
     subtitle,
@@ -1281,7 +1291,7 @@ var ActivitiesOverviewCard = React35.forwardRef(
   }
 );
 ActivitiesOverviewCard.displayName = "ActivitiesOverviewCard";
-var Card2 = styled37__default.default(reactNative.View)`
+var Card2 = styled38__default.default(reactNative.View)`
   flex-direction: column;
   align-self: flex-start;
   align-items: center;
@@ -1291,26 +1301,26 @@ var Card2 = styled37__default.default(reactNative.View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
 `;
-var IconSlot2 = styled37__default.default(reactNative.View)`
+var IconSlot2 = styled38__default.default(reactNative.View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var Value = styled37__default.default.Text`
+var Value = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.xxl}px;
   text-align: center;
 `;
-var Label = styled37__default.default.Text`
+var Label = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
 `;
-var BigNumbersCard = React35.forwardRef(
+var BigNumbersCard = React37.forwardRef(
   ({
     value,
     label,
@@ -1380,7 +1390,7 @@ var borderWidthPx = ($borderWidth, theme2) => {
   if ($borderWidth === "s") return theme2.border.size.s;
   return theme2.border.size.m;
 };
-var Container2 = styled37__default.default(reactNative.Pressable)`
+var Container2 = styled38__default.default(reactNative.Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -1399,14 +1409,14 @@ var Container2 = styled37__default.default(reactNative.Pressable)`
   box-shadow: ${({ $variant }) => $variant === "surface" ? "0px 4px 8px rgba(29, 29, 29, 0.16)" : "none"};
   ${({ $fullWidth }) => $fullWidth ? "align-self: stretch; width: 100%;" : ""};
 `;
-var HoverOverlay = styled37__default.default(reactNative.View)`
+var HoverOverlay = styled38__default.default(reactNative.View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ $shape, theme: theme2 }) => radius($shape, theme2)}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.hover};
   pointer-events: none;
 `;
-var PressedOverlay = styled37__default.default(reactNative.View)`
+var PressedOverlay = styled38__default.default(reactNative.View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ $shape, theme: theme2 }) => radius($shape, theme2)}px;
@@ -1426,20 +1436,20 @@ var labelColor = ({
   if ($variant === "ghost" && $hovered) return theme2.content.dark;
   return theme2.content.primaryLight;
 };
-var Label2 = styled37__default.default.Text`
+var Label2 = styled38__default.default.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: 14px;
   color: ${(props) => labelColor(props)};
   ${({ $underline }) => $underline ? "text-decoration-line: underline;" : ""}
 `;
-var IconSlot3 = styled37__default.default(reactNative.View)`
+var IconSlot3 = styled38__default.default(reactNative.View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var Button = React35.forwardRef(
+var Button = React37.forwardRef(
   ({
     label,
     variant = "contained",
@@ -1461,8 +1471,8 @@ var Button = React35.forwardRef(
     accessibilityHint,
     testID
   }, ref) => {
-    const [hovered, setHovered] = React35.useState(false);
-    const [pressed, setPressed] = React35.useState(false);
+    const [hovered, setHovered] = React37.useState(false);
+    const [pressed, setPressed] = React37.useState(false);
     const disabled = disabledProp ?? false;
     const showDropShadow = variant === "contained" && !disabled && !pressed && elevationProp !== "none";
     const shadowStyle = elevationProp === "none" ? void 0 : elevation[elevationProp];
@@ -1518,12 +1528,12 @@ var Button = React35.forwardRef(
   }
 );
 Button.displayName = "Button";
-var Row2 = styled37__default.default(reactNative.View)`
+var Row2 = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: flex-end;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
 `;
-var Bubble = styled37__default.default(reactNative.View)`
+var Bubble = styled38__default.default(reactNative.View)`
   flex: 1;
   min-width: 0;
   flex-direction: column;
@@ -1536,18 +1546,18 @@ var Bubble = styled37__default.default(reactNative.View)`
   padding-left: ${({ $position, theme: theme2 }) => $position === "left" ? theme2.padding.s : theme2.padding.m}px;
   padding-right: ${({ $position, theme: theme2 }) => $position === "left" ? theme2.padding.m : theme2.padding.s}px;
 `;
-var BubbleInner = styled37__default.default(reactNative.View)`
+var BubbleInner = styled38__default.default(reactNative.View)`
   flex-direction: column;
   gap: 10px;
   align-items: ${({ $position }) => $position === "left" ? "flex-end" : "flex-start"};
 `;
-var TopRow = styled37__default.default(reactNative.View)`
+var TopRow = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   width: 100%;
 `;
-var MessageText = styled37__default.default.Text`
+var MessageText = styled38__default.default.Text`
   flex: 1;
   min-width: 0;
   color: ${({ theme: theme2 }) => theme2.content.dark};
@@ -1556,19 +1566,19 @@ var MessageText = styled37__default.default.Text`
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   text-align: ${({ $position }) => $position === "left" ? "right" : "left"};
 `;
-var MenuButton = styled37__default.default(reactNative.Pressable)`
+var MenuButton = styled38__default.default(reactNative.Pressable)`
   width: 16px;
   height: 16px;
   align-items: center;
   justify-content: center;
 `;
-var TimeText = styled37__default.default.Text`
+var TimeText = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.s}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
 `;
-var ChatBubble = React35.forwardRef(
+var ChatBubble = React37.forwardRef(
   ({
     message,
     time,
@@ -1618,7 +1628,7 @@ var ChatBubble = React35.forwardRef(
   }
 );
 ChatBubble.displayName = "ChatBubble";
-var Container3 = styled37__default.default(reactNative.Pressable)`
+var Container3 = styled38__default.default(reactNative.Pressable)`
   height: 60px;
   flex-direction: row;
   align-items: center;
@@ -1627,30 +1637,30 @@ var Container3 = styled37__default.default(reactNative.Pressable)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
 `;
-var AvatarRow = styled37__default.default(reactNative.View)`
+var AvatarRow = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   flex: 1;
   min-width: 0;
 `;
-var TextStack = styled37__default.default(reactNative.View)`
+var TextStack = styled38__default.default(reactNative.View)`
   flex: 1;
   min-width: 0;
 `;
-var Name = styled37__default.default.Text`
+var Name = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
 `;
-var Subtitle2 = styled37__default.default.Text`
+var Subtitle2 = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
 `;
-var Badge = styled37__default.default(reactNative.View)`
+var Badge = styled38__default.default(reactNative.View)`
   width: 28px;
   height: 28px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -1658,7 +1668,7 @@ var Badge = styled37__default.default(reactNative.View)`
   justify-content: center;
   background-color: ${({ theme: theme2 }) => theme2.surface.error};
 `;
-var BadgeText = styled37__default.default.Text`
+var BadgeText = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -1669,7 +1679,7 @@ var formatCount = (n) => {
   if (n < 10) return n.toString().padStart(2, "0");
   return n.toString();
 };
-var ChatUserCard = React35.forwardRef(
+var ChatUserCard = React37.forwardRef(
   ({
     name,
     subtitle,
@@ -1718,11 +1728,11 @@ var rowBackground = ({
   if ($hasValue) return theme2.surface.medium;
   return theme2.surface.standard;
 };
-var Container4 = styled37__default.default(reactNative.View)`
+var Container4 = styled38__default.default(reactNative.View)`
   flex-direction: column;
   align-self: stretch;
 `;
-var Row3 = styled37__default.default(reactNative.Pressable)`
+var Row3 = styled38__default.default(reactNative.Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -1730,19 +1740,19 @@ var Row3 = styled37__default.default(reactNative.Pressable)`
   padding: ${({ theme: theme2 }) => theme2.padding.sm}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${(props) => rowBackground(props)};
-  ${({ $disabled, theme: theme2 }) => $disabled ? styled37.css`
+  ${({ $disabled, theme: theme2 }) => $disabled ? styled38.css`
           border-width: ${theme2.border.size.s}px;
           border-color: ${theme2.content.disable};
         ` : ""};
 `;
-var HoverOverlay2 = styled37__default.default(reactNative.View)`
+var HoverOverlay2 = styled38__default.default(reactNative.View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.hover};
   pointer-events: none;
 `;
-styled37__default.default(reactNative.View)`
+styled38__default.default(reactNative.View)`
   position: absolute;
   top: -2px;
   left: -2px;
@@ -1753,7 +1763,7 @@ styled37__default.default(reactNative.View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m + 2}px;
   pointer-events: none;
 `;
-var StyledInput = styled37__default.default(reactNative.TextInput)`
+var StyledInput = styled38__default.default(reactNative.TextInput)`
   flex: 1;
   min-width: 0;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
@@ -1765,19 +1775,19 @@ var StyledInput = styled37__default.default(reactNative.TextInput)`
   outline-width: 0;
   outline-style: none;
 `;
-var IconSlot4 = styled37__default.default(reactNative.View)`
+var IconSlot4 = styled38__default.default(reactNative.View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var IconButton = styled37__default.default(reactNative.Pressable)`
+var IconButton = styled38__default.default(reactNative.Pressable)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var SearchInput = React35.forwardRef(
+var SearchInput = React37.forwardRef(
   ({
     value,
     defaultValue,
@@ -1790,11 +1800,11 @@ var SearchInput = React35.forwardRef(
     ...textInputProps
   }, ref) => {
     const theme2 = useTheme();
-    const innerRef = React35.useRef(null);
-    React35.useImperativeHandle(ref, () => innerRef.current, []);
-    const [focused, setFocused] = React35.useState(false);
-    const [hovered, setHovered] = React35.useState(false);
-    const [internalValue, setInternalValue] = React35.useState(defaultValue ?? "");
+    const innerRef = React37.useRef(null);
+    React37.useImperativeHandle(ref, () => innerRef.current, []);
+    const [focused, setFocused] = React37.useState(false);
+    const [hovered, setHovered] = React37.useState(false);
+    const [internalValue, setInternalValue] = React37.useState(defaultValue ?? "");
     const isControlled = value !== void 0;
     const currentValue = isControlled ? value : internalValue;
     const hasValue = !!currentValue && currentValue.length > 0;
@@ -1859,7 +1869,7 @@ var SearchInput = React35.forwardRef(
   }
 );
 SearchInput.displayName = "SearchInput";
-var Container5 = styled37__default.default(reactNative.View)`
+var Container5 = styled38__default.default(reactNative.View)`
   flex-direction: column;
   align-items: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
@@ -1867,16 +1877,16 @@ var Container5 = styled37__default.default(reactNative.View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.background};
 `;
-var ListScroll = styled37__default.default(reactNative.ScrollView).attrs({
+var ListScroll = styled38__default.default(reactNative.ScrollView).attrs({
   showsVerticalScrollIndicator: false
 })`
   align-self: stretch;
   max-height: 296px;
 `;
-var ListInner = styled37__default.default(reactNative.View)`
+var ListInner = styled38__default.default(reactNative.View)`
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var ChatSection = React35.forwardRef(
+var ChatSection = React37.forwardRef(
   ({
     users,
     searchValue,
@@ -1943,7 +1953,7 @@ var DonutArc = ({
   const arcR = outerR - arcStroke;
   const circumference = 2 * Math.PI * arcR;
   const dash = pct / 100 * circumference;
-  const id = React35.useId().replace(/:/g, "");
+  const id = React37.useId().replace(/:/g, "");
   const bezelId = `donut-bezel-${id}`;
   const wellId = `donut-well-${id}`;
   const arcId = `donut-arc-${id}`;
@@ -2018,27 +2028,27 @@ var DIMS = {
     locationButton: 36
   }
 };
-var Container6 = styled37__default.default(reactNative.View)`
+var Container6 = styled38__default.default(reactNative.View)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var TitleText2 = styled37__default.default.Text`
+var TitleText2 = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ $size }) => $size}px;
   text-align: center;
 `;
-var DonutWrapper = styled37__default.default(reactNative.View)`
+var DonutWrapper = styled38__default.default(reactNative.View)`
   width: ${({ $size }) => $size}px;
   height: ${({ $size }) => $size}px;
   align-items: center;
   justify-content: center;
   position: relative;
 `;
-var ArcSlot = styled37__default.default(reactNative.View)`
+var ArcSlot = styled38__default.default(reactNative.View)`
   position: absolute;
   top: 0;
   left: 0;
@@ -2047,35 +2057,35 @@ var ArcSlot = styled37__default.default(reactNative.View)`
   align-items: center;
   justify-content: center;
 `;
-var Center = styled37__default.default(reactNative.View)`
+var Center = styled38__default.default(reactNative.View)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
   width: 96px;
 `;
-var ValueText = styled37__default.default.Text`
+var ValueText = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ $size }) => $size}px;
   text-align: center;
 `;
-var LabelText = styled37__default.default.Text`
+var LabelText = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   text-align: center;
 `;
-var Caption = styled37__default.default.Text`
+var Caption = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   text-align: center;
 `;
-var LocationButton2 = styled37__default.default(reactNative.Pressable)`
+var LocationButton2 = styled38__default.default(reactNative.Pressable)`
   position: absolute;
   top: 0;
   right: 0;
@@ -2087,7 +2097,7 @@ var LocationButton2 = styled37__default.default(reactNative.Pressable)`
   justify-content: center;
 `;
 var DEFAULT_GRADIENT = [primitive.green[200], primitive.green[300]];
-var DonutChart = React35.forwardRef(
+var DonutChart = React37.forwardRef(
   ({
     title,
     value,
@@ -2160,7 +2170,7 @@ var DonutChart = React35.forwardRef(
   }
 );
 DonutChart.displayName = "DonutChart";
-var Card3 = styled37__default.default(reactNative.Pressable)`
+var Card3 = styled38__default.default(reactNative.Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -2170,64 +2180,64 @@ var Card3 = styled37__default.default(reactNative.Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   ${({ $borderColor }) => $borderColor ? `border-width: 1px; border-color: ${$borderColor};` : ""}
 `;
-var LeftCluster = styled37__default.default(reactNative.View)`
+var LeftCluster = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.l}px;
 `;
-var UserInfo = styled37__default.default(reactNative.View)`
+var UserInfo = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var TextStack2 = styled37__default.default(reactNative.View)`
+var TextStack2 = styled38__default.default(reactNative.View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var Name2 = styled37__default.default.Text`
+var Name2 = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var Sector = styled37__default.default.Text`
+var Sector = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var ProgressSlot2 = styled37__default.default(reactNative.View)`
+var ProgressSlot2 = styled38__default.default(reactNative.View)`
   width: 119px;
 `;
-var Divider2 = styled37__default.default(reactNative.View)`
+var Divider2 = styled38__default.default(reactNative.View)`
   width: 1px;
   align-self: stretch;
   background-color: ${({ theme: theme2 }) => theme2.content.medium};
 `;
-var HealthOverview = styled37__default.default(reactNative.View)`
+var HealthOverview = styled38__default.default(reactNative.View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var Stat = styled37__default.default(reactNative.View)`
+var Stat = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
 `;
-var StatText = styled37__default.default.Text`
+var StatText = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var LocationButton3 = styled37__default.default(reactNative.Pressable)`
+var LocationButton3 = styled38__default.default(reactNative.Pressable)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var EmployeeOverviewCard = React35.forwardRef(
+var EmployeeOverviewCard = React37.forwardRef(
   ({
     employee,
     progress = 0,
@@ -2290,7 +2300,7 @@ var EmployeeOverviewCard = React35.forwardRef(
   }
 );
 EmployeeOverviewCard.displayName = "EmployeeOverviewCard";
-var Card4 = styled37__default.default(reactNative.View)`
+var Card4 = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -2299,13 +2309,13 @@ var Card4 = styled37__default.default(reactNative.View)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   gap: ${({ theme: theme2, $compact }) => $compact ? theme2.gap.s : theme2.gap.m}px;
 `;
-var YearText = styled37__default.default.Text`
+var YearText = styled38__default.default.Text`
   color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.ms}px;
 `;
-var DateText = styled37__default.default.Text`
+var DateText = styled38__default.default.Text`
   color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2, $compact }) => $compact ? theme2.fontWeight.regular : theme2.fontWeight.medium};
@@ -2315,7 +2325,7 @@ var DateText = styled37__default.default.Text`
     width: 240px;
   `}
 `;
-var ExamLink = styled37__default.default(reactNative.Pressable)`
+var ExamLink = styled38__default.default(reactNative.Pressable)`
   ${({ $compact }) => $compact ? `
     flex: 1;
     align-items: flex-start;
@@ -2326,7 +2336,7 @@ var ExamLink = styled37__default.default(reactNative.Pressable)`
     justify-content: center;
   `}
 `;
-var ExamLinkText = styled37__default.default.Text`
+var ExamLinkText = styled38__default.default.Text`
   color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.secondary};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
@@ -2335,14 +2345,14 @@ var ExamLinkText = styled37__default.default.Text`
   text-decoration-line: ${({ $compact }) => $compact ? "none" : "underline"};
   text-decoration-color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.secondary};
 `;
-var CompactActionButton = styled37__default.default(reactNative.Pressable)`
+var CompactActionButton = styled38__default.default(reactNative.Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.primary};
   padding: ${({ theme: theme2 }) => theme2.padding.s}px ${({ theme: theme2 }) => theme2.padding.sm}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   align-items: center;
   justify-content: center;
 `;
-var ExamInfoCard = React35.forwardRef(
+var ExamInfoCard = React37.forwardRef(
   ({
     year,
     date,
@@ -2421,12 +2431,12 @@ var ExamInfoCard = React35.forwardRef(
   }
 );
 ExamInfoCard.displayName = "ExamInfoCard";
-var Row4 = styled37__default.default(reactNative.View)`
+var Row4 = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   align-self: flex-start;
 `;
-var VitalsCard = styled37__default.default(reactNative.View)`
+var VitalsCard = styled38__default.default(reactNative.View)`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
@@ -2441,32 +2451,32 @@ var VitalsCard = styled37__default.default(reactNative.View)`
   border-bottom-left-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   margin-right: -32px;
 `;
-var StatsRow = styled37__default.default(reactNative.View)`
+var StatsRow = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   gap: 10px;
 `;
-var StatItem = styled37__default.default(reactNative.View)`
+var StatItem = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var StatText2 = styled37__default.default.Text`
+var StatText2 = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
 `;
-var StatValueBold = styled37__default.default.Text`
+var StatValueBold = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
 `;
-var ProgressSlot3 = styled37__default.default(reactNative.View)`
+var ProgressSlot3 = styled38__default.default(reactNative.View)`
   width: 138px;
 `;
-var HeaderUserInfo = React35.forwardRef(
+var HeaderUserInfo = React37.forwardRef(
   ({
     bpm,
     pressure,
@@ -2550,14 +2560,14 @@ var Logo = ({
   );
 };
 Logo.displayName = "Logo";
-var Bar = styled37__default.default(reactNative.View)`
+var Bar = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.xl}px;
   padding-vertical: ${({ theme: theme2 }) => theme2.padding.sm}px;
 `;
-var Header2 = React35.forwardRef(
+var Header2 = React37.forwardRef(
   ({
     logoSize = "m",
     logoType = "complete",
@@ -2684,17 +2694,163 @@ var HeartStatus = ({
   );
 };
 HeartStatus.displayName = "HeartStatus";
+var DARK_BG_VARIANTS = /* @__PURE__ */ new Set([
+  "standard",
+  "medium",
+  "high"
+]);
+var toneForVariant = (variant) => {
+  if (variant === "disable") return "disabled";
+  return DARK_BG_VARIANTS.has(variant) ? "dark" : "light";
+};
+var isLightBgVariant = (variant) => toneForVariant(variant) === "light";
+var SurfaceContext = React37.createContext({ tone: "dark" });
+var useSurfaceTone = () => React37.useContext(SurfaceContext);
+var Surface = React37.forwardRef(
+  ({ variant = "standard", padding: padding2 = "m", radius: radius2 = "m", children, style, ...rest }, ref) => {
+    const theme2 = useTheme();
+    const tone = toneForVariant(variant);
+    return /* @__PURE__ */ jsxRuntime.jsx(
+      reactNative.View,
+      {
+        ref,
+        style: [
+          {
+            backgroundColor: theme2.surface[variant],
+            padding: theme2.padding[padding2],
+            borderRadius: theme2.border.radius[radius2]
+          },
+          style
+        ],
+        ...rest,
+        children: /* @__PURE__ */ jsxRuntime.jsx(SurfaceContext.Provider, { value: { tone }, children })
+      }
+    );
+  }
+);
+Surface.displayName = "Surface";
+var resolve = (variant) => {
+  const [group, key] = variant.split(".");
+  const slot = typography[group];
+  return slot?.[key] ?? typography.body.m;
+};
+var Text = React37.forwardRef(
+  ({ variant = "body.m", color, children, style, ...rest }, ref) => {
+    const theme2 = useTheme();
+    const { tone } = useSurfaceTone();
+    const styleDef = resolve(variant);
+    const defaultColor = tone === "disabled" ? theme2.content.disable : tone === "light" ? theme2.content.light : theme2.content.dark;
+    return /* @__PURE__ */ jsxRuntime.jsx(
+      reactNative.Text,
+      {
+        ref,
+        style: [
+          {
+            fontFamily: styleDef.fontFamily,
+            fontWeight: styleDef.fontWeight,
+            fontSize: styleDef.fontSize,
+            color: color ?? defaultColor
+          },
+          style
+        ],
+        ...rest,
+        children
+      }
+    );
+  }
+);
+Text.displayName = "Text";
+var Container7 = styled38__default.default(reactNative.Pressable)`
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  background-color: ${({ theme: theme2 }) => theme2.surface.standard};
+  padding: ${({ theme: theme2 }) => theme2.padding.m}px;
+  border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
+  gap: ${({ theme: theme2 }) => theme2.gap.s}px;
+  opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
+`;
+var LeftSlot = styled38__default.default(reactNative.View)`
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+`;
+var LabelSlot = styled38__default.default(reactNative.View)`
+  flex: 1;
+`;
+var RightSlot = styled38__default.default(reactNative.View)`
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  /* padding.xs optically centres the narrow chevron (7.4×12) inside the 24×24 slot */
+  padding: ${({ theme: theme2 }) => theme2.padding.xs}px;
+`;
+var HorizontalCard = React37.forwardRef(
+  ({
+    label,
+    leftIcon,
+    rightIcon = "keyboard_arrow_right",
+    onPress,
+    disabled = false,
+    accessibilityLabel,
+    testID
+  }, ref) => {
+    const theme2 = useTheme();
+    return /* @__PURE__ */ jsxRuntime.jsxs(
+      Container7,
+      {
+        ref,
+        $disabled: disabled,
+        disabled,
+        style: elevation.sm,
+        onPress: disabled ? void 0 : onPress,
+        accessibilityRole: "button",
+        accessibilityLabel: accessibilityLabel ?? label,
+        accessibilityState: { disabled },
+        testID,
+        children: [
+          leftIcon ? /* @__PURE__ */ jsxRuntime.jsx(LeftSlot, { children: /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: leftIcon, size: 20, color: theme2.content.dark }) }) : null,
+          /* @__PURE__ */ jsxRuntime.jsx(LabelSlot, { children: /* @__PURE__ */ jsxRuntime.jsx(
+            Text,
+            {
+              variant: "body.m",
+              color: theme2.content.dark,
+              style: {
+                fontFamily: theme2.fontFamily.title,
+                fontWeight: theme2.fontWeight.bold,
+                fontSize: theme2.fontSize.ms
+              },
+              children: label
+            }
+          ) }),
+          /* @__PURE__ */ jsxRuntime.jsx(RightSlot, { children: /* @__PURE__ */ jsxRuntime.jsx(
+            Icon,
+            {
+              name: rightIcon,
+              width: 7.4,
+              height: 12,
+              color: theme2.content.dark
+            }
+          ) })
+        ]
+      }
+    );
+  }
+);
+HorizontalCard.displayName = "HorizontalCard";
 var SIZE = {
   m: { ring: 24, border: 2, dot: 12 },
   s: { ring: 16, border: 1, dot: 8 }
 };
-var Container7 = styled37__default.default(reactNative.Pressable)`
+var Container8 = styled38__default.default(reactNative.Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var Ring = styled37__default.default(reactNative.View)`
+var Ring = styled38__default.default(reactNative.View)`
   width: ${({ $size }) => SIZE[$size].ring}px;
   height: ${({ $size }) => SIZE[$size].ring}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -2704,19 +2860,19 @@ var Ring = styled37__default.default(reactNative.View)`
   justify-content: center;
   background-color: transparent;
 `;
-var Dot = styled37__default.default(reactNative.View)`
+var Dot = styled38__default.default(reactNative.View)`
   width: ${({ $size }) => SIZE[$size].dot}px;
   height: ${({ $size }) => SIZE[$size].dot}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   background-color: ${({ theme: theme2 }) => theme2.content.secondary};
 `;
-var Label3 = styled37__default.default.Text`
+var Label3 = styled38__default.default.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: 14px;
   color: ${({ theme: theme2 }) => theme2.content.dark};
 `;
-var Radio = React35.forwardRef(
+var Radio = React37.forwardRef(
   ({
     label,
     checked,
@@ -2733,7 +2889,7 @@ var Radio = React35.forwardRef(
       onChange?.(!checked);
     };
     return /* @__PURE__ */ jsxRuntime.jsxs(
-      Container7,
+      Container8,
       {
         ref,
         $disabled: disabled,
@@ -2757,13 +2913,13 @@ var SIZE2 = {
   m: { box: 24, border: 2, check: 16, label: 14, labelWeight: "400" },
   s: { box: 16, border: 1, check: 12, label: 12, labelWeight: "500" }
 };
-var Container8 = styled37__default.default(reactNative.Pressable)`
+var Container9 = styled38__default.default(reactNative.Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var Box = styled37__default.default(reactNative.View)`
+var Box = styled38__default.default(reactNative.View)`
   width: ${({ $size }) => SIZE2[$size].box}px;
   height: ${({ $size }) => SIZE2[$size].box}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
@@ -2773,20 +2929,20 @@ var Box = styled37__default.default(reactNative.View)`
   justify-content: center;
   background-color: transparent;
 `;
-var Check = styled37__default.default.Text`
+var Check = styled38__default.default.Text`
   font-size: ${({ $size }) => SIZE2[$size].check}px;
   line-height: ${({ $size }) => SIZE2[$size].check}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   color: ${({ theme: theme2 }) => theme2.content.secondary};
   text-align: center;
 `;
-var Label4 = styled37__default.default.Text`
+var Label4 = styled38__default.default.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ $size }) => SIZE2[$size].label}px;
   font-weight: ${({ $size }) => SIZE2[$size].labelWeight};
   color: ${({ theme: theme2 }) => theme2.content.dark};
 `;
-var Checkbox = React35.forwardRef(
+var Checkbox = React37.forwardRef(
   ({
     checked,
     onChange,
@@ -2803,7 +2959,7 @@ var Checkbox = React35.forwardRef(
       onChange?.(!checked);
     };
     return /* @__PURE__ */ jsxRuntime.jsxs(
-      Container8,
+      Container9,
       {
         ref,
         $disabled: disabled,
@@ -2839,37 +2995,37 @@ var rowBackground2 = ({ $focused, $hovered, $disabled, theme: theme2 }) => {
   if ($focused || $hovered) return theme2.surface.medium;
   return theme2.surface.standard;
 };
-var Container9 = styled37__default.default(reactNative.View)`
+var Container10 = styled38__default.default(reactNative.View)`
   flex-direction: column;
   align-self: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var Label5 = styled37__default.default.Text`
+var Label5 = styled38__default.default.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: 14px;
   color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
 `;
-var Row5 = styled37__default.default(reactNative.Pressable)`
+var Row5 = styled38__default.default(reactNative.Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
   padding: ${({ theme: theme2 }) => theme2.padding.sm}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${(props) => rowBackground2(props)};
-  ${({ $disabled, theme: theme2 }) => $disabled ? styled37.css`
+  ${({ $disabled, theme: theme2 }) => $disabled ? styled38.css`
           border-width: ${theme2.border.size.s}px;
           border-color: ${theme2.content.disable};
         ` : ""};
 `;
-var HoverOverlay3 = styled37__default.default(reactNative.View)`
+var HoverOverlay3 = styled38__default.default(reactNative.View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.hover};
   pointer-events: none;
 `;
-styled37__default.default(reactNative.View)`
+styled38__default.default(reactNative.View)`
   position: absolute;
   top: -2px;
   left: -2px;
@@ -2880,7 +3036,7 @@ styled37__default.default(reactNative.View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m + 2}px;
   pointer-events: none;
 `;
-var StyledInput2 = styled37__default.default(reactNative.TextInput)`
+var StyledInput2 = styled38__default.default(reactNative.TextInput)`
   flex: 1;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
@@ -2891,20 +3047,20 @@ var StyledInput2 = styled37__default.default(reactNative.TextInput)`
   outline-width: 0;
   outline-style: none;
 `;
-var IconSlot5 = styled37__default.default(reactNative.View)`
+var IconSlot5 = styled38__default.default(reactNative.View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
   padding: ${({ theme: theme2 }) => theme2.padding.xs}px;
 `;
-var Description = styled37__default.default.Text`
+var Description = styled38__default.default.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: 12px;
   color: ${(props) => descriptionColor(props)};
 `;
-var Input = React35.forwardRef(
+var Input = React37.forwardRef(
   ({
     label,
     description,
@@ -2916,15 +3072,15 @@ var Input = React35.forwardRef(
     ...textInputProps
   }, ref) => {
     const theme2 = useTheme();
-    const innerRef = React35.useRef(null);
-    React35.useImperativeHandle(ref, () => innerRef.current, []);
-    const [focused, setFocused] = React35.useState(false);
-    const [hovered, setHovered] = React35.useState(false);
+    const innerRef = React37.useRef(null);
+    React37.useImperativeHandle(ref, () => innerRef.current, []);
+    const [focused, setFocused] = React37.useState(false);
+    const [hovered, setHovered] = React37.useState(false);
     const focusInput = () => {
       if (disabled) return;
       innerRef.current?.focus();
     };
-    return /* @__PURE__ */ jsxRuntime.jsxs(Container9, { children: [
+    return /* @__PURE__ */ jsxRuntime.jsxs(Container10, { children: [
       label ? /* @__PURE__ */ jsxRuntime.jsx(Label5, { $disabled: disabled, children: label }) : null,
       /* @__PURE__ */ jsxRuntime.jsxs(
         Row5,
@@ -2975,18 +3131,18 @@ var triggerBackground = ({
   if ($focused || $hovered) return theme2.surface.medium;
   return theme2.surface.standard;
 };
-var Container10 = styled37__default.default(reactNative.View)`
+var Container11 = styled38__default.default(reactNative.View)`
   flex-direction: column;
   align-self: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var Label6 = styled37__default.default.Text`
+var Label6 = styled38__default.default.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: 14px;
   color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
 `;
-var Trigger = styled37__default.default(reactNative.Pressable)`
+var Trigger = styled38__default.default(reactNative.Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
@@ -2994,7 +3150,7 @@ var Trigger = styled37__default.default(reactNative.Pressable)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${(props) => triggerBackground(props)};
 `;
-var TriggerLabel = styled37__default.default.Text`
+var TriggerLabel = styled38__default.default.Text`
   flex: 1;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
@@ -3005,11 +3161,11 @@ var TriggerLabel = styled37__default.default.Text`
   return theme2.content.dark;
 }};
 `;
-var Chevron = styled37__default.default.Text`
+var Chevron = styled38__default.default.Text`
   font-size: 12px;
   color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
 `;
-var Panel = styled37__default.default(reactNative.View)`
+var Panel = styled38__default.default(reactNative.View)`
   /* Float above siblings instead of pushing them down. */
   position: absolute;
   top: 100%;
@@ -3027,11 +3183,11 @@ var Panel = styled37__default.default(reactNative.View)`
   padding: ${({ theme: theme2 }) => theme2.padding.s}px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
 `;
-var OptionsList = styled37__default.default(reactNative.View)`
+var OptionsList = styled38__default.default(reactNative.View)`
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var OptionRow = styled37__default.default(reactNative.Pressable)`
+var OptionRow = styled38__default.default(reactNative.Pressable)`
   flex-direction: row;
   align-items: center;
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.s}px;
@@ -3040,19 +3196,19 @@ var OptionRow = styled37__default.default(reactNative.Pressable)`
   border-top-color: ${({ theme: theme2 }) => theme2.content.medium};
   background-color: ${({ $hovered, theme: theme2 }) => $hovered ? theme2.surface.hover : "transparent"};
 `;
-var OptionLabel = styled37__default.default.Text`
+var OptionLabel = styled38__default.default.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: 14px;
   color: ${({ theme: theme2 }) => theme2.content.dark};
 `;
-var Description2 = styled37__default.default.Text`
+var Description2 = styled38__default.default.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: 12px;
   color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
 `;
-var Combobox = React35.forwardRef(
+var Combobox = React37.forwardRef(
   ({
     label,
     description,
@@ -3067,14 +3223,14 @@ var Combobox = React35.forwardRef(
     accessibilityHint,
     testID
   }, ref) => {
-    const [internalOpen, setInternalOpen] = React35.useState(false);
+    const [internalOpen, setInternalOpen] = React37.useState(false);
     const isOpen = open ?? internalOpen;
     const setOpen = (next) => {
       if (open === void 0) setInternalOpen(next);
       onOpenChange?.(next);
     };
-    const [hovered, setHovered] = React35.useState(false);
-    const [hoveredOption, setHoveredOption] = React35.useState(null);
+    const [hovered, setHovered] = React37.useState(false);
+    const [hoveredOption, setHoveredOption] = React37.useState(null);
     const selected = options.find((o) => o.value === value);
     const displayText = selected?.label ?? placeholder;
     const isPlaceholder = !selected;
@@ -3082,7 +3238,7 @@ var Combobox = React35.forwardRef(
       onChange?.(next);
       setOpen(false);
     };
-    return /* @__PURE__ */ jsxRuntime.jsxs(Container10, { ref, testID, children: [
+    return /* @__PURE__ */ jsxRuntime.jsxs(Container11, { ref, testID, children: [
       label ? /* @__PURE__ */ jsxRuntime.jsx(Label6, { $disabled: disabled, children: label }) : null,
       /* @__PURE__ */ jsxRuntime.jsxs(
         Trigger,
@@ -3162,10 +3318,10 @@ var textColor = ({
   if ($state === "disable") return theme2.content.disable;
   return $colorScheme === "secondary" ? theme2.content.secondary : theme2.content.primary;
 };
-var Container11 = styled37__default.default(reactNative.Pressable)`
+var Container12 = styled38__default.default(reactNative.Pressable)`
   align-self: flex-start;
 `;
-var Body = styled37__default.default(reactNative.View)`
+var Body = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -3177,19 +3333,19 @@ var Body = styled37__default.default(reactNative.View)`
   border-radius: ${({ $variant, theme: theme2 }) => $variant === "filled" ? theme2.border.radius.s : theme2.border.radius.m}px;
   overflow: hidden;
 `;
-var Label7 = styled37__default.default.Text`
+var Label7 = styled38__default.default.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: 12px;
   color: ${(props) => textColor(props)};
 `;
-var HoverOverlay4 = styled37__default.default(reactNative.View)`
+var HoverOverlay4 = styled38__default.default(reactNative.View)`
   position: absolute;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.05);
   pointer-events: none;
 `;
-var Chip = React35.forwardRef(
+var Chip = React37.forwardRef(
   ({
     label,
     state = "default",
@@ -3200,11 +3356,11 @@ var Chip = React35.forwardRef(
     accessibilityHint,
     testID
   }, ref) => {
-    const [hovered, setHovered] = React35.useState(false);
-    const [pressed, setPressed] = React35.useState(false);
+    const [hovered, setHovered] = React37.useState(false);
+    const [pressed, setPressed] = React37.useState(false);
     const isDisabled = state === "disable";
     return /* @__PURE__ */ jsxRuntime.jsx(
-      Container11,
+      Container12,
       {
         ref,
         $state: state,
@@ -3245,10 +3401,10 @@ var ChipGroup = ({
   colorScheme,
   style
 }) => {
-  const [selected, setSelected] = React35.useState(
+  const [selected, setSelected] = React37.useState(
     toArray(value !== void 0 ? value : initialValue)
   );
-  React35.useEffect(() => {
+  React37.useEffect(() => {
     if (value !== void 0) setSelected(toArray(value));
   }, [value]);
   const handlePress = (option) => {
@@ -3283,7 +3439,7 @@ var RESIZE_MAP = {
   center: "center",
   fill: "stretch"
 };
-var Image = React35.forwardRef(
+var Image = React37.forwardRef(
   ({
     source,
     width,
@@ -3315,7 +3471,7 @@ var Image = React35.forwardRef(
   }
 );
 Image.displayName = "Image";
-var Container12 = styled37__default.default(reactNative.View)`
+var Container13 = styled38__default.default(reactNative.View)`
   align-self: stretch;
   border-width: 1px;
   border-style: dashed;
@@ -3325,21 +3481,21 @@ var Container12 = styled37__default.default(reactNative.View)`
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   align-items: center;
 `;
-var HelperText = styled37__default.default.Text`
+var HelperText = styled38__default.default.Text`
   align-self: stretch;
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
 `;
-var PreviewSlot = styled37__default.default(reactNative.View)`
+var PreviewSlot = styled38__default.default(reactNative.View)`
   align-self: stretch;
   height: 56px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   overflow: hidden;
   background-color: ${({ theme: theme2 }) => theme2.surface.medium};
 `;
-var RemoveButton = styled37__default.default(reactNative.Pressable)`
+var RemoveButton = styled38__default.default(reactNative.Pressable)`
   position: absolute;
   top: 4px;
   right: 4px;
@@ -3353,7 +3509,7 @@ var RemoveButton = styled37__default.default(reactNative.Pressable)`
 var DEFAULT_HELPER = "Selecione arquivos do tipo: JPG ou PNG";
 var DEFAULT_TAKE_PHOTO = "Tirar Foto";
 var DEFAULT_PICK_FILE = "Enviar arquivo";
-var ImageUploader = React35.forwardRef(
+var ImageUploader = React37.forwardRef(
   ({
     value,
     progress,
@@ -3377,7 +3533,7 @@ var ImageUploader = React35.forwardRef(
     const ctaIconColor = ctaDisabled ? theme2.content.primaryLight : resolvedAccent;
     const ctaLabelColor = ctaDisabled ? void 0 : accentColor2;
     return /* @__PURE__ */ jsxRuntime.jsxs(
-      Container12,
+      Container13,
       {
         ref,
         accessibilityLabel,
@@ -3436,7 +3592,7 @@ var ImageUploader = React35.forwardRef(
   }
 );
 ImageUploader.displayName = "ImageUploader";
-var ExpandedBar = styled37__default.default(reactNative.View)`
+var ExpandedBar = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
@@ -3445,27 +3601,27 @@ var ExpandedBar = styled37__default.default(reactNative.View)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   align-self: flex-end;
 `;
-var TitleText3 = styled37__default.default.Text`
+var TitleText3 = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var Divider3 = styled37__default.default(reactNative.View)`
+var Divider3 = styled38__default.default(reactNative.View)`
   width: 1px;
   height: 40px;
   background-color: ${({ theme: theme2 }) => theme2.content.medium};
 `;
-var SearchSlot = styled37__default.default(reactNative.View)`
+var SearchSlot = styled38__default.default(reactNative.View)`
   width: 284px;
 `;
-var OptionsRow = styled37__default.default(reactNative.View)`
+var OptionsRow = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
   padding: ${({ theme: theme2 }) => theme2.padding.sm}px;
 `;
-var TrailingButton = styled37__default.default(reactNative.Pressable)`
+var TrailingButton = styled38__default.default(reactNative.Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -3473,7 +3629,7 @@ var TrailingButton = styled37__default.default(reactNative.Pressable)`
   border-top-right-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   border-bottom-right-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
 `;
-var CollapsedButton = styled37__default.default(reactNative.Pressable)`
+var CollapsedButton = styled38__default.default(reactNative.Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -3497,7 +3653,7 @@ var DEFAULT_PLACEHOLDER = {
   heatmap: "",
   cameras: "Buscar c\xE2mera"
 };
-var MapControl = React35.forwardRef(
+var MapControl = React37.forwardRef(
   ({
     variant,
     expanded: controlledExpanded,
@@ -3514,9 +3670,9 @@ var MapControl = React35.forwardRef(
   }, ref) => {
     const theme2 = useTheme();
     const isExpandedControlled = controlledExpanded !== void 0;
-    const [uncontrolledExpanded, setUncontrolledExpanded] = React35.useState(defaultExpanded);
+    const [uncontrolledExpanded, setUncontrolledExpanded] = React37.useState(defaultExpanded);
     const expanded = isExpandedControlled ? controlledExpanded : uncontrolledExpanded;
-    const toggleExpanded = React35.useCallback(() => {
+    const toggleExpanded = React37.useCallback(() => {
       const next = !expanded;
       if (!isExpandedControlled) setUncontrolledExpanded(next);
       onExpandedChange?.(next);
@@ -3587,15 +3743,15 @@ var MapControl = React35.forwardRef(
   }
 );
 MapControl.displayName = "MapControl";
-var Container13 = styled37__default.default(reactNative.View)`
+var Container14 = styled38__default.default(reactNative.View)`
   align-items: center;
   justify-content: flex-start;
 `;
-var TailWrapper = styled37__default.default(reactNative.View)`
+var TailWrapper = styled38__default.default(reactNative.View)`
   margin-top: -2px;
 `;
-var CameraBody = styled37__default.default(reactNative.View)`
-  ${({ $size, theme: theme2 }) => styled37.css`
+var CameraBody = styled38__default.default(reactNative.View)`
+  ${({ $size, theme: theme2 }) => styled38.css`
     width: ${$size}px;
     height: ${$size}px;
     border-radius: ${Math.round($size * 0.18)}px;
@@ -3606,8 +3762,8 @@ var CameraBody = styled37__default.default(reactNative.View)`
     justify-content: center;
   `}
 `;
-var BadgeBody = styled37__default.default(reactNative.View)`
-  ${({ $size, $fill }) => styled37.css`
+var BadgeBody = styled38__default.default(reactNative.View)`
+  ${({ $size, $fill }) => styled38.css`
     width: ${$size}px;
     height: ${$size}px;
     border-radius: ${$size / 2}px;
@@ -3628,7 +3784,7 @@ var STATUS_BADGE_FILL = {
   low: "#F5667A",
   offline: "#6b7280"
 };
-var LocationPin = React35.forwardRef(
+var LocationPin = React37.forwardRef(
   ({
     variant = "avatar",
     avatarUri,
@@ -3644,7 +3800,7 @@ var LocationPin = React35.forwardRef(
     const badgeFill = borderColor2 ?? STATUS_BADGE_FILL[status];
     const resolvedTail = tailColor ?? (variant === "camera" ? theme2.surface.primary : variant === "badge" ? badgeFill : theme2.background);
     const tailSize = Math.round(size * 0.41);
-    return /* @__PURE__ */ jsxRuntime.jsxs(Container13, { ref, testID, accessibilityLabel: name, children: [
+    return /* @__PURE__ */ jsxRuntime.jsxs(Container14, { ref, testID, accessibilityLabel: name, children: [
       variant === "camera" ? /* @__PURE__ */ jsxRuntime.jsx(CameraBody, { $size: size, accessibilityLabel: name, children: /* @__PURE__ */ jsxRuntime.jsx(
         Icon,
         {
@@ -3715,7 +3871,7 @@ var dividerColor = ({
   }
   return accentColor({ $active, $hovered, $disabled, $variant, theme: theme2 });
 };
-var Container14 = styled37__default.default(reactNative.Pressable)`
+var Container15 = styled38__default.default(reactNative.Pressable)`
   height: ${({ $variant }) => $variant === "compact" ? "44px" : $variant === "minimal" ? "60px" : "64px"};
   flex-direction: row;
   align-items: center;
@@ -3727,25 +3883,25 @@ var Container14 = styled37__default.default(reactNative.Pressable)`
   border-radius: ${({ $variant, theme: theme2 }) => $variant === "compact" ? "0px" : `${theme2.border.radius.m}px`};
   background-color: ${(props) => containerBackground2(props)};
 `;
-var HoverOverlay5 = styled37__default.default(reactNative.View)`
+var HoverOverlay5 = styled38__default.default(reactNative.View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ $variant, theme: theme2 }) => $variant === "compact" ? "0px" : `${theme2.border.radius.m}px`};
   background-color: ${({ theme: theme2 }) => theme2.surface.hover};
   pointer-events: none;
 `;
-var LabelGroup = styled37__default.default(reactNative.View)`
+var LabelGroup = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var IconSlot6 = styled37__default.default(reactNative.View)`
+var IconSlot6 = styled38__default.default(reactNative.View)`
   width: 22px;
   height: 22px;
   align-items: center;
   justify-content: center;
 `;
-var Label8 = styled37__default.default.Text`
+var Label8 = styled38__default.default.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ $variant, theme: theme2 }) => $variant === "compact" ? `${theme2.fontSize.s}px` : `${theme2.fontSize.m}px`};
@@ -3753,13 +3909,13 @@ var Label8 = styled37__default.default.Text`
   text-transform: ${({ $variant }) => $variant === "compact" ? "uppercase" : "none"};
   letter-spacing: ${({ $variant }) => $variant === "compact" ? "0.6px" : "normal"};
 `;
-var Divider4 = styled37__default.default(reactNative.View)`
+var Divider4 = styled38__default.default(reactNative.View)`
   width: 2px;
   height: 100%;
   border-radius: 2px;
   background-color: ${(props) => dividerColor(props)};
 `;
-var BadgeOverlay = styled37__default.default(reactNative.View)`
+var BadgeOverlay = styled38__default.default(reactNative.View)`
   position: absolute;
   top: 0;
   left: ${({ $position }) => $position === "outside-left" ? "-14px" : "0"};
@@ -3772,13 +3928,13 @@ var BadgeOverlay = styled37__default.default(reactNative.View)`
   padding: ${({ theme: theme2 }) => theme2.padding.s}px;
   z-index: 2;
 `;
-var BadgeText2 = styled37__default.default.Text`
+var BadgeText2 = styled38__default.default.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: 12px;
   color: ${({ theme: theme2 }) => theme2.content.dark};
 `;
-var MenuItem = React35.forwardRef(
+var MenuItem = React37.forwardRef(
   ({
     label,
     icon,
@@ -3794,7 +3950,7 @@ var MenuItem = React35.forwardRef(
     testID
   }, ref) => {
     const theme2 = useTheme();
-    const [hovered, setHovered] = React35.useState(false);
+    const [hovered, setHovered] = React37.useState(false);
     const accentColor2 = disabled ? theme2.content.disable : active ? theme2.content.primary : hovered ? theme2.content.dark : theme2.content.medium;
     const showHoverOverlay = hovered && !disabled && !active;
     const isCompact = variant === "compact";
@@ -3806,7 +3962,7 @@ var MenuItem = React35.forwardRef(
       $variant: variant
     };
     return /* @__PURE__ */ jsxRuntime.jsxs(
-      Container14,
+      Container15,
       {
         ref,
         ...stateProps,
@@ -3834,12 +3990,12 @@ var MenuItem = React35.forwardRef(
   }
 );
 MenuItem.displayName = "MenuItem";
-var Container15 = styled37__default.default(reactNative.View)`
+var Container16 = styled38__default.default(reactNative.View)`
   flex-direction: column;
   align-items: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var SideMenu = React35.forwardRef(
+var SideMenu = React37.forwardRef(
   ({
     items,
     value: controlledValue,
@@ -3853,11 +4009,11 @@ var SideMenu = React35.forwardRef(
     testID
   }, ref) => {
     const isControlled = controlledValue !== void 0;
-    const [uncontrolledValue, setUncontrolledValue] = React35.useState(
+    const [uncontrolledValue, setUncontrolledValue] = React37.useState(
       defaultValue ?? items[0]?.value
     );
     const value = isControlled ? controlledValue : uncontrolledValue;
-    const handlePress = React35.useCallback(
+    const handlePress = React37.useCallback(
       (next) => {
         if (!isControlled) setUncontrolledValue(next);
         onChange?.(next);
@@ -3865,7 +4021,7 @@ var SideMenu = React35.forwardRef(
       [isControlled, onChange]
     );
     return /* @__PURE__ */ jsxRuntime.jsx(
-      Container15,
+      Container16,
       {
         ref,
         style: fullWidth ? { alignSelf: "stretch", width: "100%" } : { alignSelf: "flex-start", width: 224 },
@@ -3948,7 +4104,7 @@ var Silhouette = ({
   );
 };
 Silhouette.displayName = "Silhouette";
-var Pill = styled37__default.default(reactNative.View)`
+var Pill = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -3956,13 +4112,13 @@ var Pill = styled37__default.default(reactNative.View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.primaryLight};
 `;
-var Label9 = styled37__default.default.Text`
+var Label9 = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.light};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.s}px;
 `;
-var Triangle = styled37__default.default(reactNative.View)`
+var Triangle = styled38__default.default(reactNative.View)`
   position: absolute;
   top: -9px;
   left: 50%;
@@ -3976,7 +4132,7 @@ var Triangle = styled37__default.default(reactNative.View)`
   border-right-color: transparent;
   border-bottom-color: ${({ theme: theme2 }) => theme2.surface.primaryLight};
 `;
-var TimeStamp = React35.forwardRef(
+var TimeStamp = React37.forwardRef(
   ({ time, testID, accessibilityLabel }, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsxs(
       Pill,
@@ -3993,7 +4149,7 @@ var TimeStamp = React35.forwardRef(
   }
 );
 TimeStamp.displayName = "TimeStamp";
-var Pill2 = styled37__default.default(reactNative.View)`
+var Pill2 = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -4001,13 +4157,13 @@ var Pill2 = styled37__default.default(reactNative.View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   background-color: ${({ theme: theme2 }) => theme2.background};
 `;
-var Label10 = styled37__default.default.Text`
+var Label10 = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
 `;
-var CaloriesTag = React35.forwardRef(
+var CaloriesTag = React37.forwardRef(
   ({ value, unit = "kcal", testID, accessibilityLabel }, ref) => {
     const text = `${value}${unit}`;
     return /* @__PURE__ */ jsxRuntime.jsx(
@@ -4022,24 +4178,24 @@ var CaloriesTag = React35.forwardRef(
   }
 );
 CaloriesTag.displayName = "CaloriesTag";
-var ChartFrame = styled37__default.default(reactNative.View)`
+var ChartFrame = styled38__default.default(reactNative.View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.l}px;
   overflow: hidden;
   background-color: ${({ theme: theme2 }) => theme2.surface.medium};
 `;
-var Layer = styled37__default.default(reactNative.View)`
+var Layer = styled38__default.default(reactNative.View)`
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
 `;
-var KcalAnchor = styled37__default.default(reactNative.View)`
+var KcalAnchor = styled38__default.default(reactNative.View)`
   position: absolute;
   width: 0;
   align-items: center;
 `;
-var TimeAnchor = styled37__default.default(reactNative.View)`
+var TimeAnchor = styled38__default.default(reactNative.View)`
   position: absolute;
   width: 0;
   align-items: center;
@@ -4090,7 +4246,7 @@ var linePath = (laid) => {
 };
 var DEFAULT_WIDTH = 1013;
 var DEFAULT_HEIGHT = 110;
-var LineCaloriesChart = React35.forwardRef(
+var LineCaloriesChart = React37.forwardRef(
   ({
     points,
     unit = "kcal",
@@ -4103,7 +4259,7 @@ var LineCaloriesChart = React35.forwardRef(
     const theme2 = useTheme();
     const laid = layoutPoints(points, width, height);
     const d = linePath(laid);
-    const gradId = `calories-stroke-${React35.useId().replace(/:/g, "")}`;
+    const gradId = `calories-stroke-${React37.useId().replace(/:/g, "")}`;
     return /* @__PURE__ */ jsxRuntime.jsxs(
       ChartFrame,
       {
@@ -4167,50 +4323,15 @@ var LineCaloriesChart = React35.forwardRef(
   }
 );
 LineCaloriesChart.displayName = "LineCaloriesChart";
-var DARK_BG_VARIANTS = /* @__PURE__ */ new Set([
-  "standard",
-  "medium",
-  "high"
-]);
-var toneForVariant = (variant) => {
-  if (variant === "disable") return "disabled";
-  return DARK_BG_VARIANTS.has(variant) ? "dark" : "light";
-};
-var isLightBgVariant = (variant) => toneForVariant(variant) === "light";
-var SurfaceContext = React35.createContext({ tone: "dark" });
-var useSurfaceTone = () => React35.useContext(SurfaceContext);
-var Surface = React35.forwardRef(
-  ({ variant = "standard", padding: padding2 = "m", radius: radius2 = "m", children, style, ...rest }, ref) => {
-    const theme2 = useTheme();
-    const tone = toneForVariant(variant);
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      reactNative.View,
-      {
-        ref,
-        style: [
-          {
-            backgroundColor: theme2.surface[variant],
-            padding: theme2.padding[padding2],
-            borderRadius: theme2.border.radius[radius2]
-          },
-          style
-        ],
-        ...rest,
-        children: /* @__PURE__ */ jsxRuntime.jsx(SurfaceContext.Provider, { value: { tone }, children })
-      }
-    );
-  }
-);
-Surface.displayName = "Surface";
-var resolve = (variant) => {
+var resolve2 = (variant) => {
   const [, key] = variant.split(".");
   return typography.title[key] ?? typography.title.m;
 };
-var Title2 = React35.forwardRef(
+var Title2 = React37.forwardRef(
   ({ variant = "title.m", color, children, style, ...rest }, ref) => {
     const theme2 = useTheme();
     const { tone } = useSurfaceTone();
-    const styleDef = resolve(variant);
+    const styleDef = resolve2(variant);
     const defaultColor = tone === "disabled" ? theme2.content.disable : tone === "light" ? theme2.content.light : theme2.content.dark;
     return /* @__PURE__ */ jsxRuntime.jsx(
       reactNative.Text,
@@ -4233,18 +4354,18 @@ var Title2 = React35.forwardRef(
   }
 );
 Title2.displayName = "Title";
-var Row6 = styled37__default.default(reactNative.View)`
+var Row6 = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var SideLabel = styled37__default.default.Text`
+var SideLabel = styled38__default.default.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   color: ${({ $active, $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : $active ? theme2.content.dark : theme2.content.medium};
 `;
-var Track2 = styled37__default.default(reactNative.Pressable)`
+var Track2 = styled38__default.default(reactNative.Pressable)`
   width: 32px;
   height: 16px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -4254,13 +4375,13 @@ var Track2 = styled37__default.default(reactNative.Pressable)`
   justify-content: ${({ $on }) => $on ? "flex-end" : "flex-start"};
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var Thumb = styled37__default.default(reactNative.View)`
+var Thumb = styled38__default.default(reactNative.View)`
   width: 16px;
   height: 16px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   background-color: ${({ $on, theme: theme2 }) => $on ? theme2.content.primary : theme2.content.medium};
 `;
-var Toggle = React35.forwardRef(
+var Toggle = React37.forwardRef(
   ({
     value: controlledValue,
     defaultValue = false,
@@ -4272,9 +4393,9 @@ var Toggle = React35.forwardRef(
     testID
   }, ref) => {
     const isControlled = controlledValue !== void 0;
-    const [uncontrolledValue, setUncontrolledValue] = React35.useState(defaultValue);
+    const [uncontrolledValue, setUncontrolledValue] = React37.useState(defaultValue);
     const value = isControlled ? controlledValue : uncontrolledValue;
-    const handlePress = React35.useCallback(() => {
+    const handlePress = React37.useCallback(() => {
       if (disabled) return;
       const next = !value;
       if (!isControlled) setUncontrolledValue(next);
@@ -4295,7 +4416,7 @@ var Toggle = React35.forwardRef(
       }
     );
     if (!leftLabel && !rightLabel) {
-      return React35__default.default.cloneElement(track, { ref });
+      return React37__default.default.cloneElement(track, { ref });
     }
     return /* @__PURE__ */ jsxRuntime.jsxs(Row6, { ref, children: [
       leftLabel ? /* @__PURE__ */ jsxRuntime.jsx(SideLabel, { $active: !value, $disabled: disabled, children: leftLabel }) : null,
@@ -4351,30 +4472,30 @@ var WeatherIcon = ({
   );
 };
 WeatherIcon.displayName = "WeatherIcon";
-var Row7 = styled37__default.default(reactNative.View)`
+var Row7 = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var TimePill = styled37__default.default(reactNative.View)`
+var TimePill = styled38__default.default(reactNative.View)`
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.s}px;
   padding-vertical: ${({ theme: theme2 }) => theme2.padding.xs}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
 `;
-var TimeText2 = styled37__default.default.Text`
+var TimeText2 = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.s}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
 `;
-var Label11 = styled37__default.default.Text`
+var Label11 = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
 `;
-var WeatherEventChip = React35.forwardRef(
+var WeatherEventChip = React37.forwardRef(
   ({ time, label, accessibilityLabel, testID }, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsxs(
       Row7,
@@ -4391,19 +4512,19 @@ var WeatherEventChip = React35.forwardRef(
   }
 );
 WeatherEventChip.displayName = "WeatherEventChip";
-var Stack = styled37__default.default(reactNative.View)`
+var Stack = styled38__default.default(reactNative.View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.l}px;
 `;
-var IconRow = styled37__default.default(reactNative.View)`
+var IconRow = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
   align-self: stretch;
   height: 64px;
 `;
-var WeatherTimelineEntry = React35.forwardRef(
+var WeatherTimelineEntry = React37.forwardRef(
   ({ condition, time, label, accessibilityLabel, testID }, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsxs(
       Stack,
@@ -4420,16 +4541,16 @@ var WeatherTimelineEntry = React35.forwardRef(
   }
 );
 WeatherTimelineEntry.displayName = "WeatherTimelineEntry";
-var Stack2 = styled37__default.default(reactNative.View)`
+var Stack2 = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: flex-start;
 `;
-var Pole = styled37__default.default(reactNative.View)`
+var Pole = styled38__default.default(reactNative.View)`
   width: 3px;
   height: ${({ $height }) => $height}px;
   background-color: ${({ theme: theme2 }) => theme2.content.dark};
 `;
-var Flag = styled37__default.default(reactNative.View)`
+var Flag = styled38__default.default(reactNative.View)`
   width: 80px;
   height: 30px;
   background-color: ${({ theme: theme2 }) => theme2.content.dark};
@@ -4438,13 +4559,13 @@ var Flag = styled37__default.default(reactNative.View)`
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
 `;
-var FlagText = styled37__default.default.Text`
+var FlagText = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.light};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
 `;
-var NowMarker = React35.forwardRef(
+var NowMarker = React37.forwardRef(
   ({ label = "AGORA", height = 80, accessibilityLabel, testID }, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsxs(
       Stack2,
@@ -4477,7 +4598,7 @@ var surfaceForStatus = ({
       return theme2.surface.error;
   }
 };
-var Container16 = styled37__default.default(reactNative.View)`
+var Container17 = styled38__default.default(reactNative.View)`
   align-items: center;
   justify-content: center;
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.m}px;
@@ -4485,7 +4606,7 @@ var Container16 = styled37__default.default(reactNative.View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   background-color: ${(props) => surfaceForStatus(props)};
 `;
-var Label12 = styled37__default.default.Text`
+var Label12 = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.light};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.s}px;
@@ -4497,7 +4618,7 @@ var DEFAULT_LABELS = {
   accept: "Aceito",
   info: "Em andamento"
 };
-var StatusTag = React35.forwardRef(
+var StatusTag = React37.forwardRef(
   ({
     status = "canceled",
     label,
@@ -4507,7 +4628,7 @@ var StatusTag = React35.forwardRef(
   }, ref) => {
     const text = label ?? DEFAULT_LABELS[status];
     return /* @__PURE__ */ jsxRuntime.jsx(
-      Container16,
+      Container17,
       {
         ref,
         $status: status,
@@ -4521,7 +4642,7 @@ var StatusTag = React35.forwardRef(
   }
 );
 StatusTag.displayName = "StatusTag";
-var Card5 = styled37__default.default(reactNative.Pressable)`
+var Card5 = styled38__default.default(reactNative.Pressable)`
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
@@ -4530,49 +4651,49 @@ var Card5 = styled37__default.default(reactNative.Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   overflow: hidden;
 `;
-var Title3 = styled37__default.default.Text`
+var Title3 = styled38__default.default.Text`
   align-self: stretch;
   color: ${({ theme: theme2 }) => theme2.content.primary};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.ms}px;
 `;
-var Section = styled37__default.default(reactNative.View)`
+var Section = styled38__default.default(reactNative.View)`
   align-self: stretch;
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var SectionHeading = styled37__default.default.Text`
+var SectionHeading = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
 `;
-var SectionBody = styled37__default.default.Text`
+var SectionBody = styled38__default.default.Text`
   align-self: stretch;
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var FooterRow = styled37__default.default(reactNative.View)`
+var FooterRow = styled38__default.default(reactNative.View)`
   align-self: stretch;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 `;
-var AuthorBlock = styled37__default.default(reactNative.View)`
+var AuthorBlock = styled38__default.default(reactNative.View)`
   flex: 1;
   min-width: 0;
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var AuthorRow = styled37__default.default(reactNative.View)`
+var AuthorRow = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var AuthorName = styled37__default.default.Text`
+var AuthorName = styled38__default.default.Text`
   flex: 1;
   min-width: 0;
   color: ${({ theme: theme2 }) => theme2.content.dark};
@@ -4580,13 +4701,13 @@ var AuthorName = styled37__default.default.Text`
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
 `;
-var LocationLabel = styled37__default.default.Text`
+var LocationLabel = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.secondary};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
 `;
-var ReportCard = React35.forwardRef(
+var ReportCard = React37.forwardRef(
   ({
     status,
     statusLabel,
@@ -4645,11 +4766,11 @@ var ReportCard = React35.forwardRef(
   }
 );
 ReportCard.displayName = "ReportCard";
-var Container17 = styled37__default.default(reactNative.View)`
+var Container18 = styled38__default.default(reactNative.View)`
   flex-direction: column;
   position: relative;
 `;
-var RulerRow = styled37__default.default(reactNative.View)`
+var RulerRow = styled38__default.default(reactNative.View)`
   position: absolute;
   top: 64px;
   left: 0;
@@ -4660,34 +4781,34 @@ var RulerRow = styled37__default.default(reactNative.View)`
   height: 20px;
   z-index: 1;
 `;
-var RulerLine = styled37__default.default(reactNative.View)`
+var RulerLine = styled38__default.default(reactNative.View)`
   width: 1px;
   height: ${({ $major }) => $major ? 20 : 12}px;
   background-color: ${({ theme: theme2 }) => theme2.content.dark};
   opacity: 0.4;
 `;
-var EventsRow = styled37__default.default(reactNative.View)`
+var EventsRow = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
 `;
-var EventColumn = styled37__default.default(reactNative.View)`
+var EventColumn = styled38__default.default(reactNative.View)`
   flex: 1;
   min-width: 200px;
   align-items: flex-start;
   position: relative;
 `;
-styled37__default.default(reactNative.View)`
+styled38__default.default(reactNative.View)`
   flex: 1;
   align-items: center;
   position: relative;
 `;
-var NowFloat = styled37__default.default(reactNative.View)`
+var NowFloat = styled38__default.default(reactNative.View)`
   position: absolute;
   top: 40px;
   z-index: 2;
 `;
-var IntensityRow = styled37__default.default(reactNative.View)`
+var IntensityRow = styled38__default.default(reactNative.View)`
   flex-direction: row;
   height: 12px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -4695,18 +4816,18 @@ var IntensityRow = styled37__default.default(reactNative.View)`
   align-self: stretch;
   margin-top: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var IntensitySegmentView = styled37__default.default(reactNative.View)`
+var IntensitySegmentView = styled38__default.default(reactNative.View)`
   flex: ${({ $flex }) => $flex};
   background-color: ${({ $bg }) => $bg};
 `;
-var ScrollTrack = styled37__default.default(reactNative.View)`
+var ScrollTrack = styled38__default.default(reactNative.View)`
   height: 8px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.l}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.medium};
   margin-top: ${({ theme: theme2 }) => theme2.gap.m}px;
   flex-direction: row;
 `;
-var ScrollThumb = styled37__default.default(reactNative.View)`
+var ScrollThumb = styled38__default.default(reactNative.View)`
   height: 8px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.l}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.high};
@@ -4716,7 +4837,7 @@ var RULER_LINES = Array.from(
   (_, i) => ({ id: `ruler-${i}`, major: i % 4 === 0 })
 );
 var NOW_POLE_HEIGHT = 100;
-var WeatherTimeline = React35.forwardRef(
+var WeatherTimeline = React37.forwardRef(
   ({
     events,
     intensitySegments,
@@ -4728,13 +4849,13 @@ var WeatherTimeline = React35.forwardRef(
     testID
   }, ref) => {
     const theme2 = useTheme();
-    const scrollViewRef = React35.useRef(null);
-    const [scrollMetrics, setScrollMetrics] = React35.useState({
+    const scrollViewRef = React37.useRef(null);
+    const [scrollMetrics, setScrollMetrics] = React37.useState({
       contentWidth: 0,
       containerWidth: 0,
       scrollX: 0
     });
-    const metricsRef = React35.useRef(scrollMetrics);
+    const metricsRef = React37.useRef(scrollMetrics);
     metricsRef.current = scrollMetrics;
     const intensityColor = (c) => {
       switch (c) {
@@ -4789,8 +4910,8 @@ var WeatherTimeline = React35.forwardRef(
         scrollX: contentOffset.x
       });
     };
-    const dragInitialScrollRef = React35.useRef(null);
-    const thumbPanResponder = React35.useRef(
+    const dragInitialScrollRef = React37.useRef(null);
+    const thumbPanResponder = React37.useRef(
       reactNative.PanResponder.create({
         onStartShouldSetPanResponder: () => true,
         onMoveShouldSetPanResponder: () => true,
@@ -4831,7 +4952,7 @@ var WeatherTimeline = React35.forwardRef(
       computedNowPercent !== void 0 ? /* @__PURE__ */ jsxRuntime.jsx(NowFloat, { style: { left: `${computedNowPercent}%` }, children: /* @__PURE__ */ jsxRuntime.jsx(NowMarker, { label: nowLabel, height: NOW_POLE_HEIGHT }) }) : null
     ] });
     return /* @__PURE__ */ jsxRuntime.jsxs(
-      Container17,
+      Container18,
       {
         ref,
         accessibilityLabel,
@@ -4882,7 +5003,7 @@ var WeatherTimeline = React35.forwardRef(
   }
 );
 WeatherTimeline.displayName = "WeatherTimeline";
-var Card6 = styled37__default.default(reactNative.View)`
+var Card6 = styled38__default.default(reactNative.View)`
   flex-direction: column;
   align-items: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
@@ -4892,85 +5013,85 @@ var Card6 = styled37__default.default(reactNative.View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
 `;
-var HeaderRow = styled37__default.default(reactNative.Pressable)`
+var HeaderRow = styled38__default.default(reactNative.Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 `;
-var UserInfoCluster = styled37__default.default(reactNative.View)`
+var UserInfoCluster = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xxl}px;
 `;
-var UserData = styled37__default.default(reactNative.View)`
+var UserData = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var UserText = styled37__default.default(reactNative.View)`
+var UserText = styled38__default.default(reactNative.View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
   width: 145px;
 `;
-var NameAge = styled37__default.default(reactNative.View)`
+var NameAge = styled38__default.default(reactNative.View)`
   flex-direction: column;
 `;
-var NameText = styled37__default.default.Text`
+var NameText = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var AgeText = styled37__default.default.Text`
+var AgeText = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var BloodRow = styled37__default.default(reactNative.View)`
+var BloodRow = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   gap: 5px;
 `;
-var BloodText = styled37__default.default.Text`
+var BloodText = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.ms}px;
 `;
-var VerticalDivider = styled37__default.default(reactNative.View)`
+var VerticalDivider = styled38__default.default(reactNative.View)`
   width: 1px;
   height: 56px;
   background-color: ${({ theme: theme2 }) => theme2.content.medium};
 `;
-var HorizontalDivider = styled37__default.default(reactNative.View)`
+var HorizontalDivider = styled38__default.default(reactNative.View)`
   height: 1px;
   align-self: stretch;
   background-color: ${({ theme: theme2 }) => theme2.content.medium};
 `;
-var RoleStack = styled37__default.default(reactNative.View)`
+var RoleStack = styled38__default.default(reactNative.View)`
   flex-direction: column;
   width: 186px;
 `;
-var RolePrimary = styled37__default.default.Text`
+var RolePrimary = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var RoleSecondary = styled37__default.default.Text`
+var RoleSecondary = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var ActionsRow = styled37__default.default(reactNative.View)`
+var ActionsRow = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var IconButton2 = styled37__default.default(reactNative.Pressable)`
+var IconButton2 = styled38__default.default(reactNative.Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -4978,55 +5099,55 @@ var IconButton2 = styled37__default.default(reactNative.Pressable)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.high};
 `;
-var ChevronWrap2 = styled37__default.default(reactNative.View)`
+var ChevronWrap2 = styled38__default.default(reactNative.View)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.xs}px;
   padding-vertical: ${({ theme: theme2 }) => theme2.padding.sm}px;
 `;
-var ExpandedRow = styled37__default.default(reactNative.View)`
+var ExpandedRow = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   gap: 51px;
 `;
-var AlertsList = styled37__default.default(reactNative.View)`
+var AlertsList = styled38__default.default(reactNative.View)`
   flex: 1;
   min-width: 0;
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
 `;
-var AlertItem = styled37__default.default(reactNative.View)`
+var AlertItem = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   align-self: stretch;
 `;
-var AlertContent = styled37__default.default(reactNative.View)`
+var AlertContent = styled38__default.default(reactNative.View)`
   flex: 1;
   min-width: 0;
   flex-direction: column;
   gap: 5px;
 `;
-var AlertTitle = styled37__default.default.Text`
+var AlertTitle = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.ms}px;
 `;
-var AlertBody = styled37__default.default.Text`
+var AlertBody = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var ActionsColumn = styled37__default.default(reactNative.View)`
+var ActionsColumn = styled38__default.default(reactNative.View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
   width: 280px;
 `;
-var PauseButton = styled37__default.default(reactNative.Pressable)`
+var PauseButton = styled38__default.default(reactNative.Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -5035,13 +5156,13 @@ var PauseButton = styled37__default.default(reactNative.Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.accent};
   align-self: stretch;
 `;
-var PauseButtonLabel = styled37__default.default.Text`
+var PauseButtonLabel = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.light};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var WorkersInfoCard = React35.forwardRef(
+var WorkersInfoCard = React37.forwardRef(
   ({
     employee,
     enabled,
@@ -5065,9 +5186,9 @@ var WorkersInfoCard = React35.forwardRef(
   }, ref) => {
     const theme2 = useTheme();
     const isExpandedControlled = controlledExpanded !== void 0;
-    const [uncontrolledExpanded, setUncontrolledExpanded] = React35.useState(defaultExpanded);
+    const [uncontrolledExpanded, setUncontrolledExpanded] = React37.useState(defaultExpanded);
     const expanded = isExpandedControlled ? controlledExpanded : uncontrolledExpanded;
-    const handleToggleExpanded = React35.useCallback(() => {
+    const handleToggleExpanded = React37.useCallback(() => {
       const next = !expanded;
       if (!isExpandedControlled) setUncontrolledExpanded(next);
       onExpandedChange?.(next);
@@ -5173,37 +5294,6 @@ var WorkersInfoCard = React35.forwardRef(
   }
 );
 WorkersInfoCard.displayName = "WorkersInfoCard";
-var resolve2 = (variant) => {
-  const [group, key] = variant.split(".");
-  const slot = typography[group];
-  return slot?.[key] ?? typography.body.m;
-};
-var Text = React35.forwardRef(
-  ({ variant = "body.m", color, children, style, ...rest }, ref) => {
-    const theme2 = useTheme();
-    const { tone } = useSurfaceTone();
-    const styleDef = resolve2(variant);
-    const defaultColor = tone === "disabled" ? theme2.content.disable : tone === "light" ? theme2.content.light : theme2.content.dark;
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      reactNative.Text,
-      {
-        ref,
-        style: [
-          {
-            fontFamily: styleDef.fontFamily,
-            fontWeight: styleDef.fontWeight,
-            fontSize: styleDef.fontSize,
-            color: color ?? defaultColor
-          },
-          style
-        ],
-        ...rest,
-        children
-      }
-    );
-  }
-);
-Text.displayName = "Text";
 
 // src/icons/raw/background-chart.png
 var background_chart_default = "./background-chart-4WAIHJSI.png";
@@ -5583,7 +5673,7 @@ var dotBackground = ({ $state, theme: theme2 }) => {
   if ($state === "current" || $state === "done") return theme2.content.primary;
   return theme2.content.medium;
 };
-var Dot2 = styled37__default.default(reactNative.View)`
+var Dot2 = styled38__default.default(reactNative.View)`
   width: 20px;
   height: 20px;
   border-radius: 10px;
@@ -5591,7 +5681,7 @@ var Dot2 = styled37__default.default(reactNative.View)`
   justify-content: center;
   background-color: ${dotBackground};
 `;
-var Label13 = styled37__default.default.Text`
+var Label13 = styled38__default.default.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ $state, theme: theme2 }) => $state === "current" ? theme2.fontWeight.bold : theme2.fontWeight.regular};
   font-size: 12px;
@@ -5614,12 +5704,12 @@ var Step = ({ state, number, testID, accessibilityLabel }) => /* @__PURE__ */ js
   }
 );
 Step.displayName = "Step";
-var Container18 = styled37__default.default(reactNative.View)`
+var Container19 = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   align-self: stretch;
 `;
-var Connector = styled37__default.default(reactNative.View)`
+var Connector = styled38__default.default(reactNative.View)`
   flex: 1;
   height: 1px;
   background-color: ${({ $reached, theme: theme2 }) => $reached ? theme2.content.primary : theme2.content.medium};
@@ -5630,7 +5720,7 @@ var stateFor = (stepNum, current) => {
   return "default";
 };
 var StepBar = ({ total, current, testID, accessibilityLabel }) => /* @__PURE__ */ jsxRuntime.jsx(
-  Container18,
+  Container19,
   {
     testID,
     accessibilityLabel: accessibilityLabel ?? `Etapa ${current} de ${total}`,
@@ -5638,7 +5728,7 @@ var StepBar = ({ total, current, testID, accessibilityLabel }) => /* @__PURE__ *
     children: Array.from({ length: total }, (_, idx) => {
       const stepNum = idx + 1;
       const state = stateFor(stepNum, current);
-      return /* @__PURE__ */ jsxRuntime.jsxs(React35.Fragment, { children: [
+      return /* @__PURE__ */ jsxRuntime.jsxs(React37.Fragment, { children: [
         /* @__PURE__ */ jsxRuntime.jsx(Step, { state, number: state === "default" ? stepNum : void 0 }),
         idx < total - 1 ? /* @__PURE__ */ jsxRuntime.jsx(Connector, { $reached: stepNum < current }) : null
       ] }, stepNum);
@@ -5646,7 +5736,7 @@ var StepBar = ({ total, current, testID, accessibilityLabel }) => /* @__PURE__ *
   }
 );
 StepBar.displayName = "StepBar";
-var Container19 = styled37__default.default(reactNative.Pressable)`
+var Container20 = styled38__default.default(reactNative.Pressable)`
   flex: 1;
   flex-direction: column;
   align-items: center;
@@ -5659,13 +5749,13 @@ var Container19 = styled37__default.default(reactNative.Pressable)`
   border-width: ${({ $selected, theme: theme2 }) => $selected ? theme2.border.size.m : 0}px;
   border-color: ${({ theme: theme2 }) => theme2.content.primary};
 `;
-var IconSlot7 = styled37__default.default(reactNative.View)`
+var IconSlot7 = styled38__default.default(reactNative.View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var Label14 = styled37__default.default.Text`
+var Label14 = styled38__default.default.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: 12px;
@@ -5683,7 +5773,7 @@ var GenderSelectionCard = ({
   const theme2 = useTheme();
   const resolvedIcon = iconName ?? gender;
   return /* @__PURE__ */ jsxRuntime.jsxs(
-    Container19,
+    Container20,
     {
       $selected: selected,
       onPress,
@@ -5706,7 +5796,7 @@ var GenderSelectionCard = ({
   );
 };
 GenderSelectionCard.displayName = "GenderSelectionCard";
-var Row8 = styled37__default.default(reactNative.View)`
+var Row8 = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
@@ -5739,18 +5829,18 @@ var GenderSelector = ({
   )
 ] });
 GenderSelector.displayName = "GenderSelector";
-var Container20 = styled37__default.default(reactNative.View)`
+var Container21 = styled38__default.default(reactNative.View)`
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
   align-self: stretch;
 `;
-var SyncRow = styled37__default.default(reactNative.View)`
+var SyncRow = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   align-self: stretch;
 `;
-var SyncCell = styled37__default.default(reactNative.View)`
+var SyncCell = styled38__default.default(reactNative.View)`
   flex: 1;
   flex-direction: row;
   align-items: center;
@@ -5758,13 +5848,13 @@ var SyncCell = styled37__default.default(reactNative.View)`
   padding: ${({ theme: theme2 }) => theme2.padding.m}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.xs}px;
 `;
-var IconSlot8 = styled37__default.default(reactNative.View)`
+var IconSlot8 = styled38__default.default(reactNative.View)`
   width: 56px;
   height: 56px;
   align-items: center;
   justify-content: center;
 `;
-var Value2 = styled37__default.default.Text`
+var Value2 = styled38__default.default.Text`
   flex: 1;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
@@ -5772,7 +5862,7 @@ var Value2 = styled37__default.default.Text`
   text-align: center;
   color: ${({ $active, theme: theme2 }) => $active ? theme2.content.dark : theme2.content.medium};
 `;
-var Message = styled37__default.default.Text`
+var Message = styled38__default.default.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: 12px;
@@ -5794,7 +5884,7 @@ var SmartbandStatus = ({
   const pressureActive = synced || bloodPressure != null;
   const heartColor = heartActive ? theme2.content.dark : theme2.content.medium;
   const pressureColor = pressureActive ? theme2.content.dark : theme2.content.medium;
-  return /* @__PURE__ */ jsxRuntime.jsxs(Container20, { testID, accessibilityLabel: accessibilityLabel ?? message, children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs(Container21, { testID, accessibilityLabel: accessibilityLabel ?? message, children: [
     /* @__PURE__ */ jsxRuntime.jsx(ProgressBar, { value: progress }),
     /* @__PURE__ */ jsxRuntime.jsxs(SyncRow, { children: [
       /* @__PURE__ */ jsxRuntime.jsxs(SyncCell, { children: [
@@ -5820,7 +5910,7 @@ var SuccessBadge = ({
   accessibilityLabel
 }) => {
   const theme2 = useTheme();
-  const rawId = React35.useId();
+  const rawId = React37.useId();
   const gradientId = `success-badge-grad-${rawId.replace(/:/g, "-")}`;
   const resolvedIconSize = iconSize ?? Math.round(size * 0.583);
   const [c1, c2] = colors ?? [theme2.surface.primary, theme2.surface.secondary];
@@ -5862,12 +5952,12 @@ var SuccessBadge = ({
   );
 };
 SuccessBadge.displayName = "SuccessBadge";
-var Container21 = styled37__default.default(reactNative.View)`
+var Container22 = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   ${({ $separated, theme: theme2 }) => $separated ? `gap: ${theme2.gap.s}px;` : ""};
 `;
-var Tab = styled37__default.default(reactNative.Pressable)`
+var Tab = styled38__default.default(reactNative.Pressable)`
   align-items: center;
   justify-content: center;
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.s}px;
@@ -5891,13 +5981,13 @@ var Tab = styled37__default.default(reactNative.Pressable)`
   border-bottom-right-radius: ${({ $last, $separated, theme: theme2 }) => $separated || $last ? theme2.border.radius.m : 0}px;
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var TabLabel = styled37__default.default.Text`
+var TabLabel = styled38__default.default.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   color: ${({ $active, theme: theme2 }) => $active ? theme2.content.light : theme2.content.secondary};
 `;
-var Tabs = React35.forwardRef(
+var Tabs = React37.forwardRef(
   ({
     tabs,
     value: controlledValue,
@@ -5910,11 +6000,11 @@ var Tabs = React35.forwardRef(
     testID
   }, ref) => {
     const isControlled = controlledValue !== void 0;
-    const [uncontrolledValue, setUncontrolledValue] = React35.useState(
+    const [uncontrolledValue, setUncontrolledValue] = React37.useState(
       defaultValue ?? tabs[0]?.value
     );
     const value = isControlled ? controlledValue : uncontrolledValue;
-    const handlePress = React35.useCallback(
+    const handlePress = React37.useCallback(
       (next) => {
         if (disabled) return;
         if (!isControlled) setUncontrolledValue(next);
@@ -5923,7 +6013,7 @@ var Tabs = React35.forwardRef(
       [disabled, isControlled, onChange]
     );
     return /* @__PURE__ */ jsxRuntime.jsx(
-      Container21,
+      Container22,
       {
         ref,
         $separated: variant === "separated",
@@ -6041,7 +6131,7 @@ var variantBackground = ({
       return theme2.surface.infoLight;
   }
 };
-var Container22 = styled37__default.default(reactNative.View)`
+var Container23 = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
@@ -6049,34 +6139,34 @@ var Container22 = styled37__default.default(reactNative.View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${(props) => variantBackground(props)};
 `;
-var MessageContainer = styled37__default.default(reactNative.View)`
+var MessageContainer = styled38__default.default(reactNative.View)`
   flex: 1;
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var Title4 = styled37__default.default.Text`
+var Title4 = styled38__default.default.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: 12px;
   color: ${({ theme: theme2 }) => theme2.content.light};
 `;
-var Message2 = styled37__default.default.Text`
+var Message2 = styled38__default.default.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: 12px;
   color: ${({ theme: theme2 }) => theme2.content.light};
 `;
-var CloseButton = styled37__default.default(reactNative.Pressable)`
+var CloseButton = styled38__default.default(reactNative.Pressable)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var Toast = React35.forwardRef(
+var Toast = React37.forwardRef(
   ({ variant = "info", title, message, onClose, accessibilityLabel, testID }, ref) => {
     const theme2 = useTheme();
     return /* @__PURE__ */ jsxRuntime.jsxs(
-      Container22,
+      Container23,
       {
         ref,
         $variant: variant,
@@ -6128,6 +6218,7 @@ exports.Header = Header2;
 exports.HeaderUserInfo = HeaderUserInfo;
 exports.HeartStatus = HeartStatus;
 exports.HeartrateStatus = HeartrateStatus;
+exports.HorizontalCard = HorizontalCard;
 exports.Icon = Icon;
 exports.Image = Image;
 exports.ImageUploader = ImageUploader;

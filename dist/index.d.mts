@@ -909,6 +909,10 @@ declare const iconPaths: {
         readonly viewBox: "0 -960 960 960";
         readonly d: "M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z";
     };
+    readonly border_color: {
+        readonly viewBox: "0 -960 960 960";
+        readonly d: "M120-40v-160h720v160H120Zm80-160h44l268-268-22-22-22-22-268 268v44Zm433-235L498-570l128-128q11-11 28-11t28 11l71 71q11 11 11 28t-11 28L633-435ZM200-200v-44 44Zm453-257-44-44 44 44Z";
+    };
 };
 type IconName = keyof typeof iconPaths;
 
@@ -1274,6 +1278,27 @@ declare const HeartStatus: {
     ({ condition, size, testID, accessibilityLabel, }: HeartStatusProps): react_jsx_runtime.JSX.Element;
     displayName: string;
 };
+
+interface HorizontalCardProps {
+    label: string;
+    leftIcon?: IconName;
+    /** Defaults to `'keyboard_arrow_right'` (chevron) inside the component. */
+    rightIcon?: IconName;
+    onPress?: () => void;
+    disabled?: boolean;
+    accessibilityLabel?: string;
+    testID?: string;
+}
+
+/**
+ * HorizontalCard — full-width list-item card with a bold label and a
+ * chevron-right. Used for the mobile Settings list (Figma 348:10615).
+ *
+ * Distinct from `MenuItem` (side-menu entry; no chevron, different
+ * padding/height rules and per-state bg swaps). Keep both — they
+ * solve different layout problems.
+ */
+declare const HorizontalCard: React$1.ForwardRefExoticComponent<HorizontalCardProps & React$1.RefAttributes<View>>;
 
 type RadioSize = 's' | 'm';
 interface RadioProps extends Pick<PressableProps, 'disabled' | 'accessibilityLabel' | 'accessibilityHint' | 'testID'> {
@@ -2094,4 +2119,4 @@ interface ToastProps {
 
 declare const Toast: React$1.ForwardRefExoticComponent<ToastProps & React$1.RefAttributes<View>>;
 
-export { Accordion, type AccordionProps, ActivitiesOverviewCard, type ActivitiesOverviewCardProps, Avatar, AvatarGroup, type AvatarGroupItem, type AvatarGroupProps, type AvatarProps, type AvatarSize, BigNumbersCard, type BigNumbersCardProps, Button, type ButtonProps, CaloriesTag, type CaloriesTagProps, ChatBubble, type ChatBubblePosition, type ChatBubbleProps, ChatSection, type ChatSectionProps, type ChatSectionUser, ChatUserCard, type ChatUserCardProps, Checkbox, type CheckboxProps, type CheckboxSize, Chip, ChipGroup, type ChipGroupMode, type ChipGroupProps, type ChipProps, type ChipState, Combobox, type ComboboxOption, type ComboboxProps, DonutChart, type DonutChartProps, type DonutChartSize, type DonutGradient, EmployeeOverviewCard, type EmployeeOverviewCardEmployee, type EmployeeOverviewCardProps, ExamInfoCard, type ExamInfoCardProps, GenderSelectionCard, type GenderSelectionCardProps, GenderSelector, type GenderSelectorProps, type GenderValue, Header, type HeaderProps, HeaderUserInfo, type HeaderUserInfoProps, HeartStatus, type HeartStatusCondition, type HeartStatusProps, HeartrateStatus, type HeartrateStatusCondition, type HeartrateStatusProps, Icon, type IconName, type IconProps, Image, type ImageProps, type ImageResizeMode, ImageUploader, type ImageUploaderProps, type ImageUploaderValue, Input, type InputProps, type IntensityColor, type IntensitySegment, LineCaloriesChart, type LineCaloriesChartProps, type LineCaloriesPoint, LocationPin, type LocationPinProps, type LocationPinStatus, Logo, type LogoProps, type LogoSize, type LogoType, MapControl, type MapControlOption, type MapControlProps, type MapControlVariant, MenuItem, type MenuItemProps, NowMarker, type NowMarkerProps, ProgressBar, type ProgressBarProps, Radio, type RadioProps, type RadioSize, ReportCard, type ReportCardAuthor, type ReportCardProps, SearchInput, type SearchInputProps, SideMenu, type SideMenuItem, type SideMenuProps, Silhouette, type SilhouetteGender, type SilhouetteProps, SmartbandStatus, type SmartbandStatusProps, StatusChart, type StatusChartCondition, type StatusChartProps, StatusTag, type StatusTagProps, type StatusTagStatus, Step, StepBar, type StepBarProps, type StepProps, type StepState, SuccessBadge, type SuccessBadgeProps, Surface, type SurfacePadding, type SurfaceProps, type SurfaceRadius, type SurfaceVariant, SwiThemeProvider, type SwiThemeProviderProps, type TabItem, Tabs, type TabsProps, Text, type TextProps, type TextVariant, type Theme, TimeStamp, type TimeStampProps, Title, type TitleProps, type TitleVariant, Toast, type ToastProps, type ToastVariant, Toggle, type ToggleProps, type TypographyVariant, type WeatherCondition, WeatherEventChip, type WeatherEventChipProps, WeatherIcon, type WeatherIconProps, type WeatherIconSize, WeatherTimeline, WeatherTimelineEntry, type WeatherTimelineEntryProps, type WeatherTimelineEvent, type WeatherTimelineProps, WorkersInfoCard, type WorkersInfoCardAlert, type WorkersInfoCardEmployee, type WorkersInfoCardProps, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
+export { Accordion, type AccordionProps, ActivitiesOverviewCard, type ActivitiesOverviewCardProps, Avatar, AvatarGroup, type AvatarGroupItem, type AvatarGroupProps, type AvatarProps, type AvatarSize, BigNumbersCard, type BigNumbersCardProps, Button, type ButtonProps, CaloriesTag, type CaloriesTagProps, ChatBubble, type ChatBubblePosition, type ChatBubbleProps, ChatSection, type ChatSectionProps, type ChatSectionUser, ChatUserCard, type ChatUserCardProps, Checkbox, type CheckboxProps, type CheckboxSize, Chip, ChipGroup, type ChipGroupMode, type ChipGroupProps, type ChipProps, type ChipState, Combobox, type ComboboxOption, type ComboboxProps, DonutChart, type DonutChartProps, type DonutChartSize, type DonutGradient, EmployeeOverviewCard, type EmployeeOverviewCardEmployee, type EmployeeOverviewCardProps, ExamInfoCard, type ExamInfoCardProps, GenderSelectionCard, type GenderSelectionCardProps, GenderSelector, type GenderSelectorProps, type GenderValue, Header, type HeaderProps, HeaderUserInfo, type HeaderUserInfoProps, HeartStatus, type HeartStatusCondition, type HeartStatusProps, HeartrateStatus, type HeartrateStatusCondition, type HeartrateStatusProps, HorizontalCard, type HorizontalCardProps, Icon, type IconName, type IconProps, Image, type ImageProps, type ImageResizeMode, ImageUploader, type ImageUploaderProps, type ImageUploaderValue, Input, type InputProps, type IntensityColor, type IntensitySegment, LineCaloriesChart, type LineCaloriesChartProps, type LineCaloriesPoint, LocationPin, type LocationPinProps, type LocationPinStatus, Logo, type LogoProps, type LogoSize, type LogoType, MapControl, type MapControlOption, type MapControlProps, type MapControlVariant, MenuItem, type MenuItemProps, NowMarker, type NowMarkerProps, ProgressBar, type ProgressBarProps, Radio, type RadioProps, type RadioSize, ReportCard, type ReportCardAuthor, type ReportCardProps, SearchInput, type SearchInputProps, SideMenu, type SideMenuItem, type SideMenuProps, Silhouette, type SilhouetteGender, type SilhouetteProps, SmartbandStatus, type SmartbandStatusProps, StatusChart, type StatusChartCondition, type StatusChartProps, StatusTag, type StatusTagProps, type StatusTagStatus, Step, StepBar, type StepBarProps, type StepProps, type StepState, SuccessBadge, type SuccessBadgeProps, Surface, type SurfacePadding, type SurfaceProps, type SurfaceRadius, type SurfaceVariant, SwiThemeProvider, type SwiThemeProviderProps, type TabItem, Tabs, type TabsProps, Text, type TextProps, type TextVariant, type Theme, TimeStamp, type TimeStampProps, Title, type TitleProps, type TitleVariant, Toast, type ToastProps, type ToastVariant, Toggle, type ToggleProps, type TypographyVariant, type WeatherCondition, WeatherEventChip, type WeatherEventChipProps, WeatherIcon, type WeatherIconProps, type WeatherIconSize, WeatherTimeline, WeatherTimelineEntry, type WeatherTimelineEntryProps, type WeatherTimelineEvent, type WeatherTimelineProps, WorkersInfoCard, type WorkersInfoCardAlert, type WorkersInfoCardEmployee, type WorkersInfoCardProps, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };

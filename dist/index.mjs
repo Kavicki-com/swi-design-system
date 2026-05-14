@@ -1,7 +1,7 @@
-import styled37, { css, useTheme as useTheme$1, ThemeProvider } from 'styled-components/native';
+import styled38, { css, useTheme as useTheme$1, ThemeProvider } from 'styled-components/native';
 import { Platform, View, Pressable, Image as Image$1, TextInput, ScrollView, Text as Text$1, PanResponder } from 'react-native';
 import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
-import React35, { forwardRef, useState, useCallback, useRef, useImperativeHandle, useId, createContext, useContext, useEffect, Fragment as Fragment$1 } from 'react';
+import React37, { forwardRef, useState, useCallback, useRef, useImperativeHandle, createContext, useId, useContext, useEffect, Fragment as Fragment$1 } from 'react';
 import Svg, { Defs, LinearGradient, Stop, Rect, Path, RadialGradient, Circle, G, ClipPath } from 'react-native-svg';
 
 // src/theme/ThemeProvider.tsx
@@ -757,6 +757,16 @@ var iconPaths = {
   edit: {
     viewBox: MATERIAL_VIEWBOX,
     d: "M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"
+  },
+  border_color: {
+    // Material Symbols `border_color` (outlined) — pencil drawing on a line
+    // (pencil-in-corner glyph). Used as the leftIcon on the mobile Settings
+    // "Editar perfil" entry (Figma 348:10615). Generic concept icon — MS
+    // fallback is explicitly permitted per CLAUDE.md icons sub-rule. Source:
+    // material-design-icons/symbols/web/border_color/materialsymbolsoutlined
+    // /border_color_24px.svg.
+    viewBox: MATERIAL_VIEWBOX,
+    d: "M120-40v-160h720v160H120Zm80-160h44l268-268-22-22-22-22-268 268v44Zm433-235L498-570l128-128q11-11 28-11t28 11l71 71q11 11 11 28t-11 28L633-435ZM200-200v-44 44Zm453-257-44-44 44 44Z"
   }
 };
 var Icon = ({
@@ -786,11 +796,11 @@ var Icon = ({
     }
   );
 };
-var Container = styled37(View)`
+var Container = styled38(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   overflow: hidden;
 `;
-var Header = styled37(Pressable)`
+var Header = styled38(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -801,7 +811,7 @@ var Header = styled37(Pressable)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var TitleText = styled37.Text`
+var TitleText = styled38.Text`
   flex: 1;
   min-width: 0;
   text-align: center;
@@ -810,7 +820,7 @@ var TitleText = styled37.Text`
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
 `;
-var Content = styled37(View)`
+var Content = styled38(View)`
   align-self: stretch;
   min-width: 0;
   margin-top: 2px;
@@ -818,14 +828,14 @@ var Content = styled37(View)`
   padding: ${({ theme: theme2 }) => theme2.padding.s}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
 `;
-var ContentText = styled37.Text`
+var ContentText = styled38.Text`
   min-width: 0;
   color: ${({ theme: theme2 }) => theme2.content.medium};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
 `;
-var ChevronWrap = styled37(View)`
+var ChevronWrap = styled38(View)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -888,7 +898,7 @@ var Accordion = forwardRef(
   }
 );
 Accordion.displayName = "Accordion";
-var Frame = styled37(View)`
+var Frame = styled38(View)`
   width: ${({ $size }) => $size}px;
   height: ${({ $size }) => $size}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -939,14 +949,14 @@ var Avatar = forwardRef(
   }
 );
 Avatar.displayName = "Avatar";
-var Row = styled37(View)`
+var Row = styled38(View)`
   flex-direction: row;
   align-items: center;
 `;
-var AvatarSlot = styled37(View)`
+var AvatarSlot = styled38(View)`
   margin-left: ${({ $marginLeft }) => $marginLeft}px;
 `;
-var CountBadge = styled37(View)`
+var CountBadge = styled38(View)`
   width: ${({ $size }) => $size}px;
   height: ${({ $size }) => $size}px;
   margin-left: ${({ $marginLeft }) => $marginLeft}px;
@@ -958,7 +968,7 @@ var CountBadge = styled37(View)`
   align-items: center;
   justify-content: center;
 `;
-var CountText = styled37.Text`
+var CountText = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.s}px;
@@ -1005,7 +1015,7 @@ var AvatarGroup = forwardRef(
   }
 );
 AvatarGroup.displayName = "AvatarGroup";
-var Track = styled37(View)`
+var Track = styled38(View)`
   height: 6px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   background-color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.surface.secondaryLight};
@@ -1013,7 +1023,7 @@ var Track = styled37(View)`
   overflow: hidden;
   opacity: ${({ $disabled }) => $disabled ? 0.6 : 1};
 `;
-var Fill = styled37(View)`
+var Fill = styled38(View)`
   height: 6px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   background-color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.medium : theme2.content.primary};
@@ -1138,7 +1148,7 @@ var ProgressBar = forwardRef(
   }
 );
 ProgressBar.displayName = "ProgressBar";
-var Card = styled37(Pressable)`
+var Card = styled38(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -1147,52 +1157,52 @@ var Card = styled37(Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
 `;
-var LeftContent = styled37(View)`
+var LeftContent = styled38(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.l}px;
   flex-shrink: 1;
 `;
-var IconSlot = styled37(View)`
+var IconSlot = styled38(View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var Divider = styled37(View)`
+var Divider = styled38(View)`
   align-self: stretch;
   width: 1px;
   background-color: ${({ theme: theme2 }) => theme2.content.dark};
   opacity: 0.2;
 `;
-var InfoColumn = styled37(View)`
+var InfoColumn = styled38(View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
   flex-shrink: 1;
 `;
-var Title = styled37.Text`
+var Title = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var Subtitle = styled37.Text`
+var Subtitle = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var ProgressSlot = styled37(View)`
+var ProgressSlot = styled38(View)`
   width: 119px;
   margin-top: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var RightContent = styled37(View)`
+var RightContent = styled38(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
 `;
-var LocationButton = styled37(Pressable)`
+var LocationButton = styled38(Pressable)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -1273,7 +1283,7 @@ var ActivitiesOverviewCard = forwardRef(
   }
 );
 ActivitiesOverviewCard.displayName = "ActivitiesOverviewCard";
-var Card2 = styled37(View)`
+var Card2 = styled38(View)`
   flex-direction: column;
   align-self: flex-start;
   align-items: center;
@@ -1283,20 +1293,20 @@ var Card2 = styled37(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
 `;
-var IconSlot2 = styled37(View)`
+var IconSlot2 = styled38(View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var Value = styled37.Text`
+var Value = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.xxl}px;
   text-align: center;
 `;
-var Label = styled37.Text`
+var Label = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
@@ -1372,7 +1382,7 @@ var borderWidthPx = ($borderWidth, theme2) => {
   if ($borderWidth === "s") return theme2.border.size.s;
   return theme2.border.size.m;
 };
-var Container2 = styled37(Pressable)`
+var Container2 = styled38(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -1391,14 +1401,14 @@ var Container2 = styled37(Pressable)`
   box-shadow: ${({ $variant }) => $variant === "surface" ? "0px 4px 8px rgba(29, 29, 29, 0.16)" : "none"};
   ${({ $fullWidth }) => $fullWidth ? "align-self: stretch; width: 100%;" : ""};
 `;
-var HoverOverlay = styled37(View)`
+var HoverOverlay = styled38(View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ $shape, theme: theme2 }) => radius($shape, theme2)}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.hover};
   pointer-events: none;
 `;
-var PressedOverlay = styled37(View)`
+var PressedOverlay = styled38(View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ $shape, theme: theme2 }) => radius($shape, theme2)}px;
@@ -1418,14 +1428,14 @@ var labelColor = ({
   if ($variant === "ghost" && $hovered) return theme2.content.dark;
   return theme2.content.primaryLight;
 };
-var Label2 = styled37.Text`
+var Label2 = styled38.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: 14px;
   color: ${(props) => labelColor(props)};
   ${({ $underline }) => $underline ? "text-decoration-line: underline;" : ""}
 `;
-var IconSlot3 = styled37(View)`
+var IconSlot3 = styled38(View)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -1510,12 +1520,12 @@ var Button = forwardRef(
   }
 );
 Button.displayName = "Button";
-var Row2 = styled37(View)`
+var Row2 = styled38(View)`
   flex-direction: row;
   align-items: flex-end;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
 `;
-var Bubble = styled37(View)`
+var Bubble = styled38(View)`
   flex: 1;
   min-width: 0;
   flex-direction: column;
@@ -1528,18 +1538,18 @@ var Bubble = styled37(View)`
   padding-left: ${({ $position, theme: theme2 }) => $position === "left" ? theme2.padding.s : theme2.padding.m}px;
   padding-right: ${({ $position, theme: theme2 }) => $position === "left" ? theme2.padding.m : theme2.padding.s}px;
 `;
-var BubbleInner = styled37(View)`
+var BubbleInner = styled38(View)`
   flex-direction: column;
   gap: 10px;
   align-items: ${({ $position }) => $position === "left" ? "flex-end" : "flex-start"};
 `;
-var TopRow = styled37(View)`
+var TopRow = styled38(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   width: 100%;
 `;
-var MessageText = styled37.Text`
+var MessageText = styled38.Text`
   flex: 1;
   min-width: 0;
   color: ${({ theme: theme2 }) => theme2.content.dark};
@@ -1548,13 +1558,13 @@ var MessageText = styled37.Text`
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   text-align: ${({ $position }) => $position === "left" ? "right" : "left"};
 `;
-var MenuButton = styled37(Pressable)`
+var MenuButton = styled38(Pressable)`
   width: 16px;
   height: 16px;
   align-items: center;
   justify-content: center;
 `;
-var TimeText = styled37.Text`
+var TimeText = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.s}px;
@@ -1610,7 +1620,7 @@ var ChatBubble = forwardRef(
   }
 );
 ChatBubble.displayName = "ChatBubble";
-var Container3 = styled37(Pressable)`
+var Container3 = styled38(Pressable)`
   height: 60px;
   flex-direction: row;
   align-items: center;
@@ -1619,30 +1629,30 @@ var Container3 = styled37(Pressable)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
 `;
-var AvatarRow = styled37(View)`
+var AvatarRow = styled38(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   flex: 1;
   min-width: 0;
 `;
-var TextStack = styled37(View)`
+var TextStack = styled38(View)`
   flex: 1;
   min-width: 0;
 `;
-var Name = styled37.Text`
+var Name = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
 `;
-var Subtitle2 = styled37.Text`
+var Subtitle2 = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
 `;
-var Badge = styled37(View)`
+var Badge = styled38(View)`
   width: 28px;
   height: 28px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -1650,7 +1660,7 @@ var Badge = styled37(View)`
   justify-content: center;
   background-color: ${({ theme: theme2 }) => theme2.surface.error};
 `;
-var BadgeText = styled37.Text`
+var BadgeText = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -1710,11 +1720,11 @@ var rowBackground = ({
   if ($hasValue) return theme2.surface.medium;
   return theme2.surface.standard;
 };
-var Container4 = styled37(View)`
+var Container4 = styled38(View)`
   flex-direction: column;
   align-self: stretch;
 `;
-var Row3 = styled37(Pressable)`
+var Row3 = styled38(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -1727,14 +1737,14 @@ var Row3 = styled37(Pressable)`
           border-color: ${theme2.content.disable};
         ` : ""};
 `;
-var HoverOverlay2 = styled37(View)`
+var HoverOverlay2 = styled38(View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.hover};
   pointer-events: none;
 `;
-styled37(View)`
+styled38(View)`
   position: absolute;
   top: -2px;
   left: -2px;
@@ -1745,7 +1755,7 @@ styled37(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m + 2}px;
   pointer-events: none;
 `;
-var StyledInput = styled37(TextInput)`
+var StyledInput = styled38(TextInput)`
   flex: 1;
   min-width: 0;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
@@ -1757,13 +1767,13 @@ var StyledInput = styled37(TextInput)`
   outline-width: 0;
   outline-style: none;
 `;
-var IconSlot4 = styled37(View)`
+var IconSlot4 = styled38(View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var IconButton = styled37(Pressable)`
+var IconButton = styled38(Pressable)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -1851,7 +1861,7 @@ var SearchInput = forwardRef(
   }
 );
 SearchInput.displayName = "SearchInput";
-var Container5 = styled37(View)`
+var Container5 = styled38(View)`
   flex-direction: column;
   align-items: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
@@ -1859,13 +1869,13 @@ var Container5 = styled37(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.background};
 `;
-var ListScroll = styled37(ScrollView).attrs({
+var ListScroll = styled38(ScrollView).attrs({
   showsVerticalScrollIndicator: false
 })`
   align-self: stretch;
   max-height: 296px;
 `;
-var ListInner = styled37(View)`
+var ListInner = styled38(View)`
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
 var ChatSection = forwardRef(
@@ -2010,27 +2020,27 @@ var DIMS = {
     locationButton: 36
   }
 };
-var Container6 = styled37(View)`
+var Container6 = styled38(View)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var TitleText2 = styled37.Text`
+var TitleText2 = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ $size }) => $size}px;
   text-align: center;
 `;
-var DonutWrapper = styled37(View)`
+var DonutWrapper = styled38(View)`
   width: ${({ $size }) => $size}px;
   height: ${({ $size }) => $size}px;
   align-items: center;
   justify-content: center;
   position: relative;
 `;
-var ArcSlot = styled37(View)`
+var ArcSlot = styled38(View)`
   position: absolute;
   top: 0;
   left: 0;
@@ -2039,35 +2049,35 @@ var ArcSlot = styled37(View)`
   align-items: center;
   justify-content: center;
 `;
-var Center = styled37(View)`
+var Center = styled38(View)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
   width: 96px;
 `;
-var ValueText = styled37.Text`
+var ValueText = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ $size }) => $size}px;
   text-align: center;
 `;
-var LabelText = styled37.Text`
+var LabelText = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   text-align: center;
 `;
-var Caption = styled37.Text`
+var Caption = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   text-align: center;
 `;
-var LocationButton2 = styled37(Pressable)`
+var LocationButton2 = styled38(Pressable)`
   position: absolute;
   top: 0;
   right: 0;
@@ -2152,7 +2162,7 @@ var DonutChart = forwardRef(
   }
 );
 DonutChart.displayName = "DonutChart";
-var Card3 = styled37(Pressable)`
+var Card3 = styled38(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -2162,58 +2172,58 @@ var Card3 = styled37(Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   ${({ $borderColor }) => $borderColor ? `border-width: 1px; border-color: ${$borderColor};` : ""}
 `;
-var LeftCluster = styled37(View)`
+var LeftCluster = styled38(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.l}px;
 `;
-var UserInfo = styled37(View)`
+var UserInfo = styled38(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var TextStack2 = styled37(View)`
+var TextStack2 = styled38(View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var Name2 = styled37.Text`
+var Name2 = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var Sector = styled37.Text`
+var Sector = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var ProgressSlot2 = styled37(View)`
+var ProgressSlot2 = styled38(View)`
   width: 119px;
 `;
-var Divider2 = styled37(View)`
+var Divider2 = styled38(View)`
   width: 1px;
   align-self: stretch;
   background-color: ${({ theme: theme2 }) => theme2.content.medium};
 `;
-var HealthOverview = styled37(View)`
+var HealthOverview = styled38(View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var Stat = styled37(View)`
+var Stat = styled38(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
 `;
-var StatText = styled37.Text`
+var StatText = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var LocationButton3 = styled37(Pressable)`
+var LocationButton3 = styled38(Pressable)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -2282,7 +2292,7 @@ var EmployeeOverviewCard = forwardRef(
   }
 );
 EmployeeOverviewCard.displayName = "EmployeeOverviewCard";
-var Card4 = styled37(View)`
+var Card4 = styled38(View)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -2291,13 +2301,13 @@ var Card4 = styled37(View)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   gap: ${({ theme: theme2, $compact }) => $compact ? theme2.gap.s : theme2.gap.m}px;
 `;
-var YearText = styled37.Text`
+var YearText = styled38.Text`
   color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.ms}px;
 `;
-var DateText = styled37.Text`
+var DateText = styled38.Text`
   color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2, $compact }) => $compact ? theme2.fontWeight.regular : theme2.fontWeight.medium};
@@ -2307,7 +2317,7 @@ var DateText = styled37.Text`
     width: 240px;
   `}
 `;
-var ExamLink = styled37(Pressable)`
+var ExamLink = styled38(Pressable)`
   ${({ $compact }) => $compact ? `
     flex: 1;
     align-items: flex-start;
@@ -2318,7 +2328,7 @@ var ExamLink = styled37(Pressable)`
     justify-content: center;
   `}
 `;
-var ExamLinkText = styled37.Text`
+var ExamLinkText = styled38.Text`
   color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.secondary};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
@@ -2327,7 +2337,7 @@ var ExamLinkText = styled37.Text`
   text-decoration-line: ${({ $compact }) => $compact ? "none" : "underline"};
   text-decoration-color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.secondary};
 `;
-var CompactActionButton = styled37(Pressable)`
+var CompactActionButton = styled38(Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.primary};
   padding: ${({ theme: theme2 }) => theme2.padding.s}px ${({ theme: theme2 }) => theme2.padding.sm}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
@@ -2413,12 +2423,12 @@ var ExamInfoCard = forwardRef(
   }
 );
 ExamInfoCard.displayName = "ExamInfoCard";
-var Row4 = styled37(View)`
+var Row4 = styled38(View)`
   flex-direction: row;
   align-items: center;
   align-self: flex-start;
 `;
-var VitalsCard = styled37(View)`
+var VitalsCard = styled38(View)`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
@@ -2433,29 +2443,29 @@ var VitalsCard = styled37(View)`
   border-bottom-left-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   margin-right: -32px;
 `;
-var StatsRow = styled37(View)`
+var StatsRow = styled38(View)`
   flex-direction: row;
   align-items: center;
   gap: 10px;
 `;
-var StatItem = styled37(View)`
+var StatItem = styled38(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var StatText2 = styled37.Text`
+var StatText2 = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
 `;
-var StatValueBold = styled37.Text`
+var StatValueBold = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
 `;
-var ProgressSlot3 = styled37(View)`
+var ProgressSlot3 = styled38(View)`
   width: 138px;
 `;
 var HeaderUserInfo = forwardRef(
@@ -2542,7 +2552,7 @@ var Logo = ({
   );
 };
 Logo.displayName = "Logo";
-var Bar = styled37(View)`
+var Bar = styled38(View)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -2676,17 +2686,163 @@ var HeartStatus = ({
   );
 };
 HeartStatus.displayName = "HeartStatus";
+var DARK_BG_VARIANTS = /* @__PURE__ */ new Set([
+  "standard",
+  "medium",
+  "high"
+]);
+var toneForVariant = (variant) => {
+  if (variant === "disable") return "disabled";
+  return DARK_BG_VARIANTS.has(variant) ? "dark" : "light";
+};
+var isLightBgVariant = (variant) => toneForVariant(variant) === "light";
+var SurfaceContext = createContext({ tone: "dark" });
+var useSurfaceTone = () => useContext(SurfaceContext);
+var Surface = forwardRef(
+  ({ variant = "standard", padding: padding2 = "m", radius: radius2 = "m", children, style, ...rest }, ref) => {
+    const theme2 = useTheme();
+    const tone = toneForVariant(variant);
+    return /* @__PURE__ */ jsx(
+      View,
+      {
+        ref,
+        style: [
+          {
+            backgroundColor: theme2.surface[variant],
+            padding: theme2.padding[padding2],
+            borderRadius: theme2.border.radius[radius2]
+          },
+          style
+        ],
+        ...rest,
+        children: /* @__PURE__ */ jsx(SurfaceContext.Provider, { value: { tone }, children })
+      }
+    );
+  }
+);
+Surface.displayName = "Surface";
+var resolve = (variant) => {
+  const [group, key] = variant.split(".");
+  const slot = typography[group];
+  return slot?.[key] ?? typography.body.m;
+};
+var Text = forwardRef(
+  ({ variant = "body.m", color, children, style, ...rest }, ref) => {
+    const theme2 = useTheme();
+    const { tone } = useSurfaceTone();
+    const styleDef = resolve(variant);
+    const defaultColor = tone === "disabled" ? theme2.content.disable : tone === "light" ? theme2.content.light : theme2.content.dark;
+    return /* @__PURE__ */ jsx(
+      Text$1,
+      {
+        ref,
+        style: [
+          {
+            fontFamily: styleDef.fontFamily,
+            fontWeight: styleDef.fontWeight,
+            fontSize: styleDef.fontSize,
+            color: color ?? defaultColor
+          },
+          style
+        ],
+        ...rest,
+        children
+      }
+    );
+  }
+);
+Text.displayName = "Text";
+var Container7 = styled38(Pressable)`
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  background-color: ${({ theme: theme2 }) => theme2.surface.standard};
+  padding: ${({ theme: theme2 }) => theme2.padding.m}px;
+  border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
+  gap: ${({ theme: theme2 }) => theme2.gap.s}px;
+  opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
+`;
+var LeftSlot = styled38(View)`
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+`;
+var LabelSlot = styled38(View)`
+  flex: 1;
+`;
+var RightSlot = styled38(View)`
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  /* padding.xs optically centres the narrow chevron (7.4×12) inside the 24×24 slot */
+  padding: ${({ theme: theme2 }) => theme2.padding.xs}px;
+`;
+var HorizontalCard = forwardRef(
+  ({
+    label,
+    leftIcon,
+    rightIcon = "keyboard_arrow_right",
+    onPress,
+    disabled = false,
+    accessibilityLabel,
+    testID
+  }, ref) => {
+    const theme2 = useTheme();
+    return /* @__PURE__ */ jsxs(
+      Container7,
+      {
+        ref,
+        $disabled: disabled,
+        disabled,
+        style: elevation.sm,
+        onPress: disabled ? void 0 : onPress,
+        accessibilityRole: "button",
+        accessibilityLabel: accessibilityLabel ?? label,
+        accessibilityState: { disabled },
+        testID,
+        children: [
+          leftIcon ? /* @__PURE__ */ jsx(LeftSlot, { children: /* @__PURE__ */ jsx(Icon, { name: leftIcon, size: 20, color: theme2.content.dark }) }) : null,
+          /* @__PURE__ */ jsx(LabelSlot, { children: /* @__PURE__ */ jsx(
+            Text,
+            {
+              variant: "body.m",
+              color: theme2.content.dark,
+              style: {
+                fontFamily: theme2.fontFamily.title,
+                fontWeight: theme2.fontWeight.bold,
+                fontSize: theme2.fontSize.ms
+              },
+              children: label
+            }
+          ) }),
+          /* @__PURE__ */ jsx(RightSlot, { children: /* @__PURE__ */ jsx(
+            Icon,
+            {
+              name: rightIcon,
+              width: 7.4,
+              height: 12,
+              color: theme2.content.dark
+            }
+          ) })
+        ]
+      }
+    );
+  }
+);
+HorizontalCard.displayName = "HorizontalCard";
 var SIZE = {
   m: { ring: 24, border: 2, dot: 12 },
   s: { ring: 16, border: 1, dot: 8 }
 };
-var Container7 = styled37(Pressable)`
+var Container8 = styled38(Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var Ring = styled37(View)`
+var Ring = styled38(View)`
   width: ${({ $size }) => SIZE[$size].ring}px;
   height: ${({ $size }) => SIZE[$size].ring}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -2696,13 +2852,13 @@ var Ring = styled37(View)`
   justify-content: center;
   background-color: transparent;
 `;
-var Dot = styled37(View)`
+var Dot = styled38(View)`
   width: ${({ $size }) => SIZE[$size].dot}px;
   height: ${({ $size }) => SIZE[$size].dot}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   background-color: ${({ theme: theme2 }) => theme2.content.secondary};
 `;
-var Label3 = styled37.Text`
+var Label3 = styled38.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: 14px;
@@ -2725,7 +2881,7 @@ var Radio = forwardRef(
       onChange?.(!checked);
     };
     return /* @__PURE__ */ jsxs(
-      Container7,
+      Container8,
       {
         ref,
         $disabled: disabled,
@@ -2749,13 +2905,13 @@ var SIZE2 = {
   m: { box: 24, border: 2, check: 16, label: 14, labelWeight: "400" },
   s: { box: 16, border: 1, check: 12, label: 12, labelWeight: "500" }
 };
-var Container8 = styled37(Pressable)`
+var Container9 = styled38(Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var Box = styled37(View)`
+var Box = styled38(View)`
   width: ${({ $size }) => SIZE2[$size].box}px;
   height: ${({ $size }) => SIZE2[$size].box}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
@@ -2765,14 +2921,14 @@ var Box = styled37(View)`
   justify-content: center;
   background-color: transparent;
 `;
-var Check = styled37.Text`
+var Check = styled38.Text`
   font-size: ${({ $size }) => SIZE2[$size].check}px;
   line-height: ${({ $size }) => SIZE2[$size].check}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   color: ${({ theme: theme2 }) => theme2.content.secondary};
   text-align: center;
 `;
-var Label4 = styled37.Text`
+var Label4 = styled38.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ $size }) => SIZE2[$size].label}px;
   font-weight: ${({ $size }) => SIZE2[$size].labelWeight};
@@ -2795,7 +2951,7 @@ var Checkbox = forwardRef(
       onChange?.(!checked);
     };
     return /* @__PURE__ */ jsxs(
-      Container8,
+      Container9,
       {
         ref,
         $disabled: disabled,
@@ -2831,18 +2987,18 @@ var rowBackground2 = ({ $focused, $hovered, $disabled, theme: theme2 }) => {
   if ($focused || $hovered) return theme2.surface.medium;
   return theme2.surface.standard;
 };
-var Container9 = styled37(View)`
+var Container10 = styled38(View)`
   flex-direction: column;
   align-self: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var Label5 = styled37.Text`
+var Label5 = styled38.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: 14px;
   color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
 `;
-var Row5 = styled37(Pressable)`
+var Row5 = styled38(Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
@@ -2854,14 +3010,14 @@ var Row5 = styled37(Pressable)`
           border-color: ${theme2.content.disable};
         ` : ""};
 `;
-var HoverOverlay3 = styled37(View)`
+var HoverOverlay3 = styled38(View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.hover};
   pointer-events: none;
 `;
-styled37(View)`
+styled38(View)`
   position: absolute;
   top: -2px;
   left: -2px;
@@ -2872,7 +3028,7 @@ styled37(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m + 2}px;
   pointer-events: none;
 `;
-var StyledInput2 = styled37(TextInput)`
+var StyledInput2 = styled38(TextInput)`
   flex: 1;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
@@ -2883,14 +3039,14 @@ var StyledInput2 = styled37(TextInput)`
   outline-width: 0;
   outline-style: none;
 `;
-var IconSlot5 = styled37(View)`
+var IconSlot5 = styled38(View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
   padding: ${({ theme: theme2 }) => theme2.padding.xs}px;
 `;
-var Description = styled37.Text`
+var Description = styled38.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: 12px;
@@ -2916,7 +3072,7 @@ var Input = forwardRef(
       if (disabled) return;
       innerRef.current?.focus();
     };
-    return /* @__PURE__ */ jsxs(Container9, { children: [
+    return /* @__PURE__ */ jsxs(Container10, { children: [
       label ? /* @__PURE__ */ jsx(Label5, { $disabled: disabled, children: label }) : null,
       /* @__PURE__ */ jsxs(
         Row5,
@@ -2967,18 +3123,18 @@ var triggerBackground = ({
   if ($focused || $hovered) return theme2.surface.medium;
   return theme2.surface.standard;
 };
-var Container10 = styled37(View)`
+var Container11 = styled38(View)`
   flex-direction: column;
   align-self: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var Label6 = styled37.Text`
+var Label6 = styled38.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: 14px;
   color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
 `;
-var Trigger = styled37(Pressable)`
+var Trigger = styled38(Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
@@ -2986,7 +3142,7 @@ var Trigger = styled37(Pressable)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${(props) => triggerBackground(props)};
 `;
-var TriggerLabel = styled37.Text`
+var TriggerLabel = styled38.Text`
   flex: 1;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
@@ -2997,11 +3153,11 @@ var TriggerLabel = styled37.Text`
   return theme2.content.dark;
 }};
 `;
-var Chevron = styled37.Text`
+var Chevron = styled38.Text`
   font-size: 12px;
   color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
 `;
-var Panel = styled37(View)`
+var Panel = styled38(View)`
   /* Float above siblings instead of pushing them down. */
   position: absolute;
   top: 100%;
@@ -3019,11 +3175,11 @@ var Panel = styled37(View)`
   padding: ${({ theme: theme2 }) => theme2.padding.s}px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
 `;
-var OptionsList = styled37(View)`
+var OptionsList = styled38(View)`
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var OptionRow = styled37(Pressable)`
+var OptionRow = styled38(Pressable)`
   flex-direction: row;
   align-items: center;
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.s}px;
@@ -3032,13 +3188,13 @@ var OptionRow = styled37(Pressable)`
   border-top-color: ${({ theme: theme2 }) => theme2.content.medium};
   background-color: ${({ $hovered, theme: theme2 }) => $hovered ? theme2.surface.hover : "transparent"};
 `;
-var OptionLabel = styled37.Text`
+var OptionLabel = styled38.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: 14px;
   color: ${({ theme: theme2 }) => theme2.content.dark};
 `;
-var Description2 = styled37.Text`
+var Description2 = styled38.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: 12px;
@@ -3074,7 +3230,7 @@ var Combobox = forwardRef(
       onChange?.(next);
       setOpen(false);
     };
-    return /* @__PURE__ */ jsxs(Container10, { ref, testID, children: [
+    return /* @__PURE__ */ jsxs(Container11, { ref, testID, children: [
       label ? /* @__PURE__ */ jsx(Label6, { $disabled: disabled, children: label }) : null,
       /* @__PURE__ */ jsxs(
         Trigger,
@@ -3154,10 +3310,10 @@ var textColor = ({
   if ($state === "disable") return theme2.content.disable;
   return $colorScheme === "secondary" ? theme2.content.secondary : theme2.content.primary;
 };
-var Container11 = styled37(Pressable)`
+var Container12 = styled38(Pressable)`
   align-self: flex-start;
 `;
-var Body = styled37(View)`
+var Body = styled38(View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -3169,13 +3325,13 @@ var Body = styled37(View)`
   border-radius: ${({ $variant, theme: theme2 }) => $variant === "filled" ? theme2.border.radius.s : theme2.border.radius.m}px;
   overflow: hidden;
 `;
-var Label7 = styled37.Text`
+var Label7 = styled38.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: 12px;
   color: ${(props) => textColor(props)};
 `;
-var HoverOverlay4 = styled37(View)`
+var HoverOverlay4 = styled38(View)`
   position: absolute;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.05);
@@ -3196,7 +3352,7 @@ var Chip = forwardRef(
     const [pressed, setPressed] = useState(false);
     const isDisabled = state === "disable";
     return /* @__PURE__ */ jsx(
-      Container11,
+      Container12,
       {
         ref,
         $state: state,
@@ -3307,7 +3463,7 @@ var Image = forwardRef(
   }
 );
 Image.displayName = "Image";
-var Container12 = styled37(View)`
+var Container13 = styled38(View)`
   align-self: stretch;
   border-width: 1px;
   border-style: dashed;
@@ -3317,21 +3473,21 @@ var Container12 = styled37(View)`
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   align-items: center;
 `;
-var HelperText = styled37.Text`
+var HelperText = styled38.Text`
   align-self: stretch;
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
 `;
-var PreviewSlot = styled37(View)`
+var PreviewSlot = styled38(View)`
   align-self: stretch;
   height: 56px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   overflow: hidden;
   background-color: ${({ theme: theme2 }) => theme2.surface.medium};
 `;
-var RemoveButton = styled37(Pressable)`
+var RemoveButton = styled38(Pressable)`
   position: absolute;
   top: 4px;
   right: 4px;
@@ -3369,7 +3525,7 @@ var ImageUploader = forwardRef(
     const ctaIconColor = ctaDisabled ? theme2.content.primaryLight : resolvedAccent;
     const ctaLabelColor = ctaDisabled ? void 0 : accentColor2;
     return /* @__PURE__ */ jsxs(
-      Container12,
+      Container13,
       {
         ref,
         accessibilityLabel,
@@ -3428,7 +3584,7 @@ var ImageUploader = forwardRef(
   }
 );
 ImageUploader.displayName = "ImageUploader";
-var ExpandedBar = styled37(View)`
+var ExpandedBar = styled38(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
@@ -3437,27 +3593,27 @@ var ExpandedBar = styled37(View)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   align-self: flex-end;
 `;
-var TitleText3 = styled37.Text`
+var TitleText3 = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var Divider3 = styled37(View)`
+var Divider3 = styled38(View)`
   width: 1px;
   height: 40px;
   background-color: ${({ theme: theme2 }) => theme2.content.medium};
 `;
-var SearchSlot = styled37(View)`
+var SearchSlot = styled38(View)`
   width: 284px;
 `;
-var OptionsRow = styled37(View)`
+var OptionsRow = styled38(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
   padding: ${({ theme: theme2 }) => theme2.padding.sm}px;
 `;
-var TrailingButton = styled37(Pressable)`
+var TrailingButton = styled38(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -3465,7 +3621,7 @@ var TrailingButton = styled37(Pressable)`
   border-top-right-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   border-bottom-right-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
 `;
-var CollapsedButton = styled37(Pressable)`
+var CollapsedButton = styled38(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -3579,14 +3735,14 @@ var MapControl = forwardRef(
   }
 );
 MapControl.displayName = "MapControl";
-var Container13 = styled37(View)`
+var Container14 = styled38(View)`
   align-items: center;
   justify-content: flex-start;
 `;
-var TailWrapper = styled37(View)`
+var TailWrapper = styled38(View)`
   margin-top: -2px;
 `;
-var CameraBody = styled37(View)`
+var CameraBody = styled38(View)`
   ${({ $size, theme: theme2 }) => css`
     width: ${$size}px;
     height: ${$size}px;
@@ -3598,7 +3754,7 @@ var CameraBody = styled37(View)`
     justify-content: center;
   `}
 `;
-var BadgeBody = styled37(View)`
+var BadgeBody = styled38(View)`
   ${({ $size, $fill }) => css`
     width: ${$size}px;
     height: ${$size}px;
@@ -3636,7 +3792,7 @@ var LocationPin = forwardRef(
     const badgeFill = borderColor2 ?? STATUS_BADGE_FILL[status];
     const resolvedTail = tailColor ?? (variant === "camera" ? theme2.surface.primary : variant === "badge" ? badgeFill : theme2.background);
     const tailSize = Math.round(size * 0.41);
-    return /* @__PURE__ */ jsxs(Container13, { ref, testID, accessibilityLabel: name, children: [
+    return /* @__PURE__ */ jsxs(Container14, { ref, testID, accessibilityLabel: name, children: [
       variant === "camera" ? /* @__PURE__ */ jsx(CameraBody, { $size: size, accessibilityLabel: name, children: /* @__PURE__ */ jsx(
         Icon,
         {
@@ -3707,7 +3863,7 @@ var dividerColor = ({
   }
   return accentColor({ $active, $hovered, $disabled, $variant, theme: theme2 });
 };
-var Container14 = styled37(Pressable)`
+var Container15 = styled38(Pressable)`
   height: ${({ $variant }) => $variant === "compact" ? "44px" : $variant === "minimal" ? "60px" : "64px"};
   flex-direction: row;
   align-items: center;
@@ -3719,25 +3875,25 @@ var Container14 = styled37(Pressable)`
   border-radius: ${({ $variant, theme: theme2 }) => $variant === "compact" ? "0px" : `${theme2.border.radius.m}px`};
   background-color: ${(props) => containerBackground2(props)};
 `;
-var HoverOverlay5 = styled37(View)`
+var HoverOverlay5 = styled38(View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ $variant, theme: theme2 }) => $variant === "compact" ? "0px" : `${theme2.border.radius.m}px`};
   background-color: ${({ theme: theme2 }) => theme2.surface.hover};
   pointer-events: none;
 `;
-var LabelGroup = styled37(View)`
+var LabelGroup = styled38(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var IconSlot6 = styled37(View)`
+var IconSlot6 = styled38(View)`
   width: 22px;
   height: 22px;
   align-items: center;
   justify-content: center;
 `;
-var Label8 = styled37.Text`
+var Label8 = styled38.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ $variant, theme: theme2 }) => $variant === "compact" ? `${theme2.fontSize.s}px` : `${theme2.fontSize.m}px`};
@@ -3745,13 +3901,13 @@ var Label8 = styled37.Text`
   text-transform: ${({ $variant }) => $variant === "compact" ? "uppercase" : "none"};
   letter-spacing: ${({ $variant }) => $variant === "compact" ? "0.6px" : "normal"};
 `;
-var Divider4 = styled37(View)`
+var Divider4 = styled38(View)`
   width: 2px;
   height: 100%;
   border-radius: 2px;
   background-color: ${(props) => dividerColor(props)};
 `;
-var BadgeOverlay = styled37(View)`
+var BadgeOverlay = styled38(View)`
   position: absolute;
   top: 0;
   left: ${({ $position }) => $position === "outside-left" ? "-14px" : "0"};
@@ -3764,7 +3920,7 @@ var BadgeOverlay = styled37(View)`
   padding: ${({ theme: theme2 }) => theme2.padding.s}px;
   z-index: 2;
 `;
-var BadgeText2 = styled37.Text`
+var BadgeText2 = styled38.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: 12px;
@@ -3798,7 +3954,7 @@ var MenuItem = forwardRef(
       $variant: variant
     };
     return /* @__PURE__ */ jsxs(
-      Container14,
+      Container15,
       {
         ref,
         ...stateProps,
@@ -3826,7 +3982,7 @@ var MenuItem = forwardRef(
   }
 );
 MenuItem.displayName = "MenuItem";
-var Container15 = styled37(View)`
+var Container16 = styled38(View)`
   flex-direction: column;
   align-items: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
@@ -3857,7 +4013,7 @@ var SideMenu = forwardRef(
       [isControlled, onChange]
     );
     return /* @__PURE__ */ jsx(
-      Container15,
+      Container16,
       {
         ref,
         style: fullWidth ? { alignSelf: "stretch", width: "100%" } : { alignSelf: "flex-start", width: 224 },
@@ -3940,7 +4096,7 @@ var Silhouette = ({
   );
 };
 Silhouette.displayName = "Silhouette";
-var Pill = styled37(View)`
+var Pill = styled38(View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -3948,13 +4104,13 @@ var Pill = styled37(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.primaryLight};
 `;
-var Label9 = styled37.Text`
+var Label9 = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.light};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.s}px;
 `;
-var Triangle = styled37(View)`
+var Triangle = styled38(View)`
   position: absolute;
   top: -9px;
   left: 50%;
@@ -3985,7 +4141,7 @@ var TimeStamp = forwardRef(
   }
 );
 TimeStamp.displayName = "TimeStamp";
-var Pill2 = styled37(View)`
+var Pill2 = styled38(View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -3993,7 +4149,7 @@ var Pill2 = styled37(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   background-color: ${({ theme: theme2 }) => theme2.background};
 `;
-var Label10 = styled37.Text`
+var Label10 = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
@@ -4014,24 +4170,24 @@ var CaloriesTag = forwardRef(
   }
 );
 CaloriesTag.displayName = "CaloriesTag";
-var ChartFrame = styled37(View)`
+var ChartFrame = styled38(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.l}px;
   overflow: hidden;
   background-color: ${({ theme: theme2 }) => theme2.surface.medium};
 `;
-var Layer = styled37(View)`
+var Layer = styled38(View)`
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
 `;
-var KcalAnchor = styled37(View)`
+var KcalAnchor = styled38(View)`
   position: absolute;
   width: 0;
   align-items: center;
 `;
-var TimeAnchor = styled37(View)`
+var TimeAnchor = styled38(View)`
   position: absolute;
   width: 0;
   align-items: center;
@@ -4159,42 +4315,7 @@ var LineCaloriesChart = forwardRef(
   }
 );
 LineCaloriesChart.displayName = "LineCaloriesChart";
-var DARK_BG_VARIANTS = /* @__PURE__ */ new Set([
-  "standard",
-  "medium",
-  "high"
-]);
-var toneForVariant = (variant) => {
-  if (variant === "disable") return "disabled";
-  return DARK_BG_VARIANTS.has(variant) ? "dark" : "light";
-};
-var isLightBgVariant = (variant) => toneForVariant(variant) === "light";
-var SurfaceContext = createContext({ tone: "dark" });
-var useSurfaceTone = () => useContext(SurfaceContext);
-var Surface = forwardRef(
-  ({ variant = "standard", padding: padding2 = "m", radius: radius2 = "m", children, style, ...rest }, ref) => {
-    const theme2 = useTheme();
-    const tone = toneForVariant(variant);
-    return /* @__PURE__ */ jsx(
-      View,
-      {
-        ref,
-        style: [
-          {
-            backgroundColor: theme2.surface[variant],
-            padding: theme2.padding[padding2],
-            borderRadius: theme2.border.radius[radius2]
-          },
-          style
-        ],
-        ...rest,
-        children: /* @__PURE__ */ jsx(SurfaceContext.Provider, { value: { tone }, children })
-      }
-    );
-  }
-);
-Surface.displayName = "Surface";
-var resolve = (variant) => {
+var resolve2 = (variant) => {
   const [, key] = variant.split(".");
   return typography.title[key] ?? typography.title.m;
 };
@@ -4202,7 +4323,7 @@ var Title2 = forwardRef(
   ({ variant = "title.m", color, children, style, ...rest }, ref) => {
     const theme2 = useTheme();
     const { tone } = useSurfaceTone();
-    const styleDef = resolve(variant);
+    const styleDef = resolve2(variant);
     const defaultColor = tone === "disabled" ? theme2.content.disable : tone === "light" ? theme2.content.light : theme2.content.dark;
     return /* @__PURE__ */ jsx(
       Text$1,
@@ -4225,18 +4346,18 @@ var Title2 = forwardRef(
   }
 );
 Title2.displayName = "Title";
-var Row6 = styled37(View)`
+var Row6 = styled38(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var SideLabel = styled37.Text`
+var SideLabel = styled38.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   color: ${({ $active, $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : $active ? theme2.content.dark : theme2.content.medium};
 `;
-var Track2 = styled37(Pressable)`
+var Track2 = styled38(Pressable)`
   width: 32px;
   height: 16px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -4246,7 +4367,7 @@ var Track2 = styled37(Pressable)`
   justify-content: ${({ $on }) => $on ? "flex-end" : "flex-start"};
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var Thumb = styled37(View)`
+var Thumb = styled38(View)`
   width: 16px;
   height: 16px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -4287,7 +4408,7 @@ var Toggle = forwardRef(
       }
     );
     if (!leftLabel && !rightLabel) {
-      return React35.cloneElement(track, { ref });
+      return React37.cloneElement(track, { ref });
     }
     return /* @__PURE__ */ jsxs(Row6, { ref, children: [
       leftLabel ? /* @__PURE__ */ jsx(SideLabel, { $active: !value, $disabled: disabled, children: leftLabel }) : null,
@@ -4343,24 +4464,24 @@ var WeatherIcon = ({
   );
 };
 WeatherIcon.displayName = "WeatherIcon";
-var Row7 = styled37(View)`
+var Row7 = styled38(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var TimePill = styled37(View)`
+var TimePill = styled38(View)`
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.s}px;
   padding-vertical: ${({ theme: theme2 }) => theme2.padding.xs}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
 `;
-var TimeText2 = styled37.Text`
+var TimeText2 = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.s}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
 `;
-var Label11 = styled37.Text`
+var Label11 = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -4383,12 +4504,12 @@ var WeatherEventChip = forwardRef(
   }
 );
 WeatherEventChip.displayName = "WeatherEventChip";
-var Stack = styled37(View)`
+var Stack = styled38(View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.l}px;
 `;
-var IconRow = styled37(View)`
+var IconRow = styled38(View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -4412,16 +4533,16 @@ var WeatherTimelineEntry = forwardRef(
   }
 );
 WeatherTimelineEntry.displayName = "WeatherTimelineEntry";
-var Stack2 = styled37(View)`
+var Stack2 = styled38(View)`
   flex-direction: row;
   align-items: flex-start;
 `;
-var Pole = styled37(View)`
+var Pole = styled38(View)`
   width: 3px;
   height: ${({ $height }) => $height}px;
   background-color: ${({ theme: theme2 }) => theme2.content.dark};
 `;
-var Flag = styled37(View)`
+var Flag = styled38(View)`
   width: 80px;
   height: 30px;
   background-color: ${({ theme: theme2 }) => theme2.content.dark};
@@ -4430,7 +4551,7 @@ var Flag = styled37(View)`
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
 `;
-var FlagText = styled37.Text`
+var FlagText = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.light};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -4469,7 +4590,7 @@ var surfaceForStatus = ({
       return theme2.surface.error;
   }
 };
-var Container16 = styled37(View)`
+var Container17 = styled38(View)`
   align-items: center;
   justify-content: center;
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.m}px;
@@ -4477,7 +4598,7 @@ var Container16 = styled37(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   background-color: ${(props) => surfaceForStatus(props)};
 `;
-var Label12 = styled37.Text`
+var Label12 = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.light};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.s}px;
@@ -4499,7 +4620,7 @@ var StatusTag = forwardRef(
   }, ref) => {
     const text = label ?? DEFAULT_LABELS[status];
     return /* @__PURE__ */ jsx(
-      Container16,
+      Container17,
       {
         ref,
         $status: status,
@@ -4513,7 +4634,7 @@ var StatusTag = forwardRef(
   }
 );
 StatusTag.displayName = "StatusTag";
-var Card5 = styled37(Pressable)`
+var Card5 = styled38(Pressable)`
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
@@ -4522,49 +4643,49 @@ var Card5 = styled37(Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   overflow: hidden;
 `;
-var Title3 = styled37.Text`
+var Title3 = styled38.Text`
   align-self: stretch;
   color: ${({ theme: theme2 }) => theme2.content.primary};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.ms}px;
 `;
-var Section = styled37(View)`
+var Section = styled38(View)`
   align-self: stretch;
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var SectionHeading = styled37.Text`
+var SectionHeading = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
 `;
-var SectionBody = styled37.Text`
+var SectionBody = styled38.Text`
   align-self: stretch;
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var FooterRow = styled37(View)`
+var FooterRow = styled38(View)`
   align-self: stretch;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 `;
-var AuthorBlock = styled37(View)`
+var AuthorBlock = styled38(View)`
   flex: 1;
   min-width: 0;
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var AuthorRow = styled37(View)`
+var AuthorRow = styled38(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var AuthorName = styled37.Text`
+var AuthorName = styled38.Text`
   flex: 1;
   min-width: 0;
   color: ${({ theme: theme2 }) => theme2.content.dark};
@@ -4572,7 +4693,7 @@ var AuthorName = styled37.Text`
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
 `;
-var LocationLabel = styled37.Text`
+var LocationLabel = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.secondary};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
@@ -4637,11 +4758,11 @@ var ReportCard = forwardRef(
   }
 );
 ReportCard.displayName = "ReportCard";
-var Container17 = styled37(View)`
+var Container18 = styled38(View)`
   flex-direction: column;
   position: relative;
 `;
-var RulerRow = styled37(View)`
+var RulerRow = styled38(View)`
   position: absolute;
   top: 64px;
   left: 0;
@@ -4652,34 +4773,34 @@ var RulerRow = styled37(View)`
   height: 20px;
   z-index: 1;
 `;
-var RulerLine = styled37(View)`
+var RulerLine = styled38(View)`
   width: 1px;
   height: ${({ $major }) => $major ? 20 : 12}px;
   background-color: ${({ theme: theme2 }) => theme2.content.dark};
   opacity: 0.4;
 `;
-var EventsRow = styled37(View)`
+var EventsRow = styled38(View)`
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
 `;
-var EventColumn = styled37(View)`
+var EventColumn = styled38(View)`
   flex: 1;
   min-width: 200px;
   align-items: flex-start;
   position: relative;
 `;
-styled37(View)`
+styled38(View)`
   flex: 1;
   align-items: center;
   position: relative;
 `;
-var NowFloat = styled37(View)`
+var NowFloat = styled38(View)`
   position: absolute;
   top: 40px;
   z-index: 2;
 `;
-var IntensityRow = styled37(View)`
+var IntensityRow = styled38(View)`
   flex-direction: row;
   height: 12px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -4687,18 +4808,18 @@ var IntensityRow = styled37(View)`
   align-self: stretch;
   margin-top: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var IntensitySegmentView = styled37(View)`
+var IntensitySegmentView = styled38(View)`
   flex: ${({ $flex }) => $flex};
   background-color: ${({ $bg }) => $bg};
 `;
-var ScrollTrack = styled37(View)`
+var ScrollTrack = styled38(View)`
   height: 8px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.l}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.medium};
   margin-top: ${({ theme: theme2 }) => theme2.gap.m}px;
   flex-direction: row;
 `;
-var ScrollThumb = styled37(View)`
+var ScrollThumb = styled38(View)`
   height: 8px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.l}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.high};
@@ -4823,7 +4944,7 @@ var WeatherTimeline = forwardRef(
       computedNowPercent !== void 0 ? /* @__PURE__ */ jsx(NowFloat, { style: { left: `${computedNowPercent}%` }, children: /* @__PURE__ */ jsx(NowMarker, { label: nowLabel, height: NOW_POLE_HEIGHT }) }) : null
     ] });
     return /* @__PURE__ */ jsxs(
-      Container17,
+      Container18,
       {
         ref,
         accessibilityLabel,
@@ -4874,7 +4995,7 @@ var WeatherTimeline = forwardRef(
   }
 );
 WeatherTimeline.displayName = "WeatherTimeline";
-var Card6 = styled37(View)`
+var Card6 = styled38(View)`
   flex-direction: column;
   align-items: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
@@ -4884,85 +5005,85 @@ var Card6 = styled37(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
 `;
-var HeaderRow = styled37(Pressable)`
+var HeaderRow = styled38(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 `;
-var UserInfoCluster = styled37(View)`
+var UserInfoCluster = styled38(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xxl}px;
 `;
-var UserData = styled37(View)`
+var UserData = styled38(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var UserText = styled37(View)`
+var UserText = styled38(View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
   width: 145px;
 `;
-var NameAge = styled37(View)`
+var NameAge = styled38(View)`
   flex-direction: column;
 `;
-var NameText = styled37.Text`
+var NameText = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var AgeText = styled37.Text`
+var AgeText = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var BloodRow = styled37(View)`
+var BloodRow = styled38(View)`
   flex-direction: row;
   align-items: center;
   gap: 5px;
 `;
-var BloodText = styled37.Text`
+var BloodText = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.ms}px;
 `;
-var VerticalDivider = styled37(View)`
+var VerticalDivider = styled38(View)`
   width: 1px;
   height: 56px;
   background-color: ${({ theme: theme2 }) => theme2.content.medium};
 `;
-var HorizontalDivider = styled37(View)`
+var HorizontalDivider = styled38(View)`
   height: 1px;
   align-self: stretch;
   background-color: ${({ theme: theme2 }) => theme2.content.medium};
 `;
-var RoleStack = styled37(View)`
+var RoleStack = styled38(View)`
   flex-direction: column;
   width: 186px;
 `;
-var RolePrimary = styled37.Text`
+var RolePrimary = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var RoleSecondary = styled37.Text`
+var RoleSecondary = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var ActionsRow = styled37(View)`
+var ActionsRow = styled38(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var IconButton2 = styled37(Pressable)`
+var IconButton2 = styled38(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -4970,55 +5091,55 @@ var IconButton2 = styled37(Pressable)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.high};
 `;
-var ChevronWrap2 = styled37(View)`
+var ChevronWrap2 = styled38(View)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.xs}px;
   padding-vertical: ${({ theme: theme2 }) => theme2.padding.sm}px;
 `;
-var ExpandedRow = styled37(View)`
+var ExpandedRow = styled38(View)`
   flex-direction: row;
   align-items: center;
   gap: 51px;
 `;
-var AlertsList = styled37(View)`
+var AlertsList = styled38(View)`
   flex: 1;
   min-width: 0;
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
 `;
-var AlertItem = styled37(View)`
+var AlertItem = styled38(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   align-self: stretch;
 `;
-var AlertContent = styled37(View)`
+var AlertContent = styled38(View)`
   flex: 1;
   min-width: 0;
   flex-direction: column;
   gap: 5px;
 `;
-var AlertTitle = styled37.Text`
+var AlertTitle = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.ms}px;
 `;
-var AlertBody = styled37.Text`
+var AlertBody = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var ActionsColumn = styled37(View)`
+var ActionsColumn = styled38(View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
   width: 280px;
 `;
-var PauseButton = styled37(Pressable)`
+var PauseButton = styled38(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -5027,7 +5148,7 @@ var PauseButton = styled37(Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.accent};
   align-self: stretch;
 `;
-var PauseButtonLabel = styled37.Text`
+var PauseButtonLabel = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.light};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
@@ -5165,37 +5286,6 @@ var WorkersInfoCard = forwardRef(
   }
 );
 WorkersInfoCard.displayName = "WorkersInfoCard";
-var resolve2 = (variant) => {
-  const [group, key] = variant.split(".");
-  const slot = typography[group];
-  return slot?.[key] ?? typography.body.m;
-};
-var Text = forwardRef(
-  ({ variant = "body.m", color, children, style, ...rest }, ref) => {
-    const theme2 = useTheme();
-    const { tone } = useSurfaceTone();
-    const styleDef = resolve2(variant);
-    const defaultColor = tone === "disabled" ? theme2.content.disable : tone === "light" ? theme2.content.light : theme2.content.dark;
-    return /* @__PURE__ */ jsx(
-      Text$1,
-      {
-        ref,
-        style: [
-          {
-            fontFamily: styleDef.fontFamily,
-            fontWeight: styleDef.fontWeight,
-            fontSize: styleDef.fontSize,
-            color: color ?? defaultColor
-          },
-          style
-        ],
-        ...rest,
-        children
-      }
-    );
-  }
-);
-Text.displayName = "Text";
 
 // src/icons/raw/background-chart.png
 var background_chart_default = "./background-chart-4WAIHJSI.png";
@@ -5575,7 +5665,7 @@ var dotBackground = ({ $state, theme: theme2 }) => {
   if ($state === "current" || $state === "done") return theme2.content.primary;
   return theme2.content.medium;
 };
-var Dot2 = styled37(View)`
+var Dot2 = styled38(View)`
   width: 20px;
   height: 20px;
   border-radius: 10px;
@@ -5583,7 +5673,7 @@ var Dot2 = styled37(View)`
   justify-content: center;
   background-color: ${dotBackground};
 `;
-var Label13 = styled37.Text`
+var Label13 = styled38.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ $state, theme: theme2 }) => $state === "current" ? theme2.fontWeight.bold : theme2.fontWeight.regular};
   font-size: 12px;
@@ -5606,12 +5696,12 @@ var Step = ({ state, number, testID, accessibilityLabel }) => /* @__PURE__ */ js
   }
 );
 Step.displayName = "Step";
-var Container18 = styled37(View)`
+var Container19 = styled38(View)`
   flex-direction: row;
   align-items: center;
   align-self: stretch;
 `;
-var Connector = styled37(View)`
+var Connector = styled38(View)`
   flex: 1;
   height: 1px;
   background-color: ${({ $reached, theme: theme2 }) => $reached ? theme2.content.primary : theme2.content.medium};
@@ -5622,7 +5712,7 @@ var stateFor = (stepNum, current) => {
   return "default";
 };
 var StepBar = ({ total, current, testID, accessibilityLabel }) => /* @__PURE__ */ jsx(
-  Container18,
+  Container19,
   {
     testID,
     accessibilityLabel: accessibilityLabel ?? `Etapa ${current} de ${total}`,
@@ -5638,7 +5728,7 @@ var StepBar = ({ total, current, testID, accessibilityLabel }) => /* @__PURE__ *
   }
 );
 StepBar.displayName = "StepBar";
-var Container19 = styled37(Pressable)`
+var Container20 = styled38(Pressable)`
   flex: 1;
   flex-direction: column;
   align-items: center;
@@ -5651,13 +5741,13 @@ var Container19 = styled37(Pressable)`
   border-width: ${({ $selected, theme: theme2 }) => $selected ? theme2.border.size.m : 0}px;
   border-color: ${({ theme: theme2 }) => theme2.content.primary};
 `;
-var IconSlot7 = styled37(View)`
+var IconSlot7 = styled38(View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var Label14 = styled37.Text`
+var Label14 = styled38.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: 12px;
@@ -5675,7 +5765,7 @@ var GenderSelectionCard = ({
   const theme2 = useTheme();
   const resolvedIcon = iconName ?? gender;
   return /* @__PURE__ */ jsxs(
-    Container19,
+    Container20,
     {
       $selected: selected,
       onPress,
@@ -5698,7 +5788,7 @@ var GenderSelectionCard = ({
   );
 };
 GenderSelectionCard.displayName = "GenderSelectionCard";
-var Row8 = styled37(View)`
+var Row8 = styled38(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
@@ -5731,18 +5821,18 @@ var GenderSelector = ({
   )
 ] });
 GenderSelector.displayName = "GenderSelector";
-var Container20 = styled37(View)`
+var Container21 = styled38(View)`
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
   align-self: stretch;
 `;
-var SyncRow = styled37(View)`
+var SyncRow = styled38(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   align-self: stretch;
 `;
-var SyncCell = styled37(View)`
+var SyncCell = styled38(View)`
   flex: 1;
   flex-direction: row;
   align-items: center;
@@ -5750,13 +5840,13 @@ var SyncCell = styled37(View)`
   padding: ${({ theme: theme2 }) => theme2.padding.m}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.xs}px;
 `;
-var IconSlot8 = styled37(View)`
+var IconSlot8 = styled38(View)`
   width: 56px;
   height: 56px;
   align-items: center;
   justify-content: center;
 `;
-var Value2 = styled37.Text`
+var Value2 = styled38.Text`
   flex: 1;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
@@ -5764,7 +5854,7 @@ var Value2 = styled37.Text`
   text-align: center;
   color: ${({ $active, theme: theme2 }) => $active ? theme2.content.dark : theme2.content.medium};
 `;
-var Message = styled37.Text`
+var Message = styled38.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: 12px;
@@ -5786,7 +5876,7 @@ var SmartbandStatus = ({
   const pressureActive = synced || bloodPressure != null;
   const heartColor = heartActive ? theme2.content.dark : theme2.content.medium;
   const pressureColor = pressureActive ? theme2.content.dark : theme2.content.medium;
-  return /* @__PURE__ */ jsxs(Container20, { testID, accessibilityLabel: accessibilityLabel ?? message, children: [
+  return /* @__PURE__ */ jsxs(Container21, { testID, accessibilityLabel: accessibilityLabel ?? message, children: [
     /* @__PURE__ */ jsx(ProgressBar, { value: progress }),
     /* @__PURE__ */ jsxs(SyncRow, { children: [
       /* @__PURE__ */ jsxs(SyncCell, { children: [
@@ -5854,12 +5944,12 @@ var SuccessBadge = ({
   );
 };
 SuccessBadge.displayName = "SuccessBadge";
-var Container21 = styled37(View)`
+var Container22 = styled38(View)`
   flex-direction: row;
   align-items: center;
   ${({ $separated, theme: theme2 }) => $separated ? `gap: ${theme2.gap.s}px;` : ""};
 `;
-var Tab = styled37(Pressable)`
+var Tab = styled38(Pressable)`
   align-items: center;
   justify-content: center;
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.s}px;
@@ -5883,7 +5973,7 @@ var Tab = styled37(Pressable)`
   border-bottom-right-radius: ${({ $last, $separated, theme: theme2 }) => $separated || $last ? theme2.border.radius.m : 0}px;
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var TabLabel = styled37.Text`
+var TabLabel = styled38.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
@@ -5915,7 +6005,7 @@ var Tabs = forwardRef(
       [disabled, isControlled, onChange]
     );
     return /* @__PURE__ */ jsx(
-      Container21,
+      Container22,
       {
         ref,
         $separated: variant === "separated",
@@ -6033,7 +6123,7 @@ var variantBackground = ({
       return theme2.surface.infoLight;
   }
 };
-var Container22 = styled37(View)`
+var Container23 = styled38(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
@@ -6041,24 +6131,24 @@ var Container22 = styled37(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${(props) => variantBackground(props)};
 `;
-var MessageContainer = styled37(View)`
+var MessageContainer = styled38(View)`
   flex: 1;
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var Title4 = styled37.Text`
+var Title4 = styled38.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: 12px;
   color: ${({ theme: theme2 }) => theme2.content.light};
 `;
-var Message2 = styled37.Text`
+var Message2 = styled38.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: 12px;
   color: ${({ theme: theme2 }) => theme2.content.light};
 `;
-var CloseButton = styled37(Pressable)`
+var CloseButton = styled38(Pressable)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -6068,7 +6158,7 @@ var Toast = forwardRef(
   ({ variant = "info", title, message, onClose, accessibilityLabel, testID }, ref) => {
     const theme2 = useTheme();
     return /* @__PURE__ */ jsxs(
-      Container22,
+      Container23,
       {
         ref,
         $variant: variant,
@@ -6097,6 +6187,6 @@ var Toast = forwardRef(
 );
 Toast.displayName = "Toast";
 
-export { Accordion, ActivitiesOverviewCard, Avatar, AvatarGroup, BigNumbersCard, Button, CaloriesTag, ChatBubble, ChatSection, ChatUserCard, Checkbox, Chip, ChipGroup, Combobox, DonutChart, EmployeeOverviewCard, ExamInfoCard, GenderSelectionCard, GenderSelector, Header2 as Header, HeaderUserInfo, HeartStatus, HeartrateStatus, Icon, Image, ImageUploader, Input, LineCaloriesChart, LocationPin, Logo, MapControl, MenuItem, NowMarker, ProgressBar, Radio, ReportCard, SearchInput, SideMenu, Silhouette, SmartbandStatus, StatusChart, StatusTag, Step, StepBar, SuccessBadge, Surface, SwiThemeProvider, Tabs, Text, TimeStamp, Title2 as Title, Toast, Toggle, WeatherEventChip, WeatherIcon, WeatherTimeline, WeatherTimelineEntry, WorkersInfoCard, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
+export { Accordion, ActivitiesOverviewCard, Avatar, AvatarGroup, BigNumbersCard, Button, CaloriesTag, ChatBubble, ChatSection, ChatUserCard, Checkbox, Chip, ChipGroup, Combobox, DonutChart, EmployeeOverviewCard, ExamInfoCard, GenderSelectionCard, GenderSelector, Header2 as Header, HeaderUserInfo, HeartStatus, HeartrateStatus, HorizontalCard, Icon, Image, ImageUploader, Input, LineCaloriesChart, LocationPin, Logo, MapControl, MenuItem, NowMarker, ProgressBar, Radio, ReportCard, SearchInput, SideMenu, Silhouette, SmartbandStatus, StatusChart, StatusTag, Step, StepBar, SuccessBadge, Surface, SwiThemeProvider, Tabs, Text, TimeStamp, Title2 as Title, Toast, Toggle, WeatherEventChip, WeatherIcon, WeatherTimeline, WeatherTimelineEntry, WorkersInfoCard, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
 //# sourceMappingURL=index.mjs.map
 //# sourceMappingURL=index.mjs.map

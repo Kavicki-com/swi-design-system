@@ -49,6 +49,8 @@ export type {
 } from './components/HeartrateStatus';
 export { HeartStatus } from './components/HeartStatus';
 export type { HeartStatusProps, HeartStatusCondition } from './components/HeartStatus';
+export { HorizontalCard } from './components/HorizontalCard';
+export type { HorizontalCardProps } from './components/HorizontalCard';
 export { Radio } from './components/Radio';
 export type { RadioProps, RadioSize } from './components/Radio';
 export { Checkbox } from './components/Checkbox';

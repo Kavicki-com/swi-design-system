@@ -417,6 +417,16 @@ export const iconPaths = {
     viewBox: MATERIAL_VIEWBOX,
     d: 'M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z',
   },
+  border_color: {
+    // Material Symbols `border_color` (outlined) — pencil drawing on a line
+    // (pencil-in-corner glyph). Used as the leftIcon on the mobile Settings
+    // "Editar perfil" entry (Figma 348:10615). Generic concept icon — MS
+    // fallback is explicitly permitted per CLAUDE.md icons sub-rule. Source:
+    // material-design-icons/symbols/web/border_color/materialsymbolsoutlined
+    // /border_color_24px.svg.
+    viewBox: MATERIAL_VIEWBOX,
+    d: 'M120-40v-160h720v160H120Zm80-160h44l268-268-22-22-22-22-268 268v44Zm433-235L498-570l128-128q11-11 28-11t28 11l71 71q11 11 11 28t-11 28L633-435ZM200-200v-44 44Zm453-257-44-44 44 44Z',
+  },
 } as const satisfies Record<string, IconPath>;
 
 export type IconName = keyof typeof iconPaths;

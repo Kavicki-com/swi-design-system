@@ -3,13 +3,13 @@
 var styled38 = require('styled-components/native');
 var reactNative = require('react-native');
 var jsxRuntime = require('react/jsx-runtime');
-var React37 = require('react');
+var React36 = require('react');
 var Svg = require('react-native-svg');
 
 function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 var styled38__default = /*#__PURE__*/_interopDefault(styled38);
-var React37__default = /*#__PURE__*/_interopDefault(React37);
+var React36__default = /*#__PURE__*/_interopDefault(React36);
 var Svg__default = /*#__PURE__*/_interopDefault(Svg);
 
 // src/theme/ThemeProvider.tsx
@@ -556,8 +556,12 @@ var iconPaths = {
     d: "M2 16C1.45 16 0.979167 15.8042 0.5875 15.4125C0.195833 15.0208 0 14.55 0 14V2C0 1.45 0.195833 0.979167 0.5875 0.5875C0.979167 0.195833 1.45 0 2 0H14C14.55 0 15.0208 0.195833 15.4125 0.5875C15.8042 0.979167 16 1.45 16 2V6.5L20 2.5V13.5L16 9.5V14C16 14.55 15.8042 15.0208 15.4125 15.4125C15.0208 15.8042 14.55 16 14 16H2Z"
   },
   home: {
-    viewBox: MATERIAL_VIEWBOX,
-    d: "M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"
+    // Figma SVG export (não Material Symbols). Casa "cheia" com chaminé
+    // implícita — usada nos Home FABs de my-stats e Settings. Artwork
+    // natural é 28.286×25.458 (aspect ratio ~1.11:1). Consumers devem
+    // passar width/height proporcionais pra evitar squish vertical.
+    viewBox: "0 0 29 26",
+    d: "M14.1429 0C14.1429 0 5.39359 7.55284 0.504641 11.6429C0.349221 11.7784 0.223992 11.945 0.137061 12.132C0.0501303 12.319 0.0034356 12.5221 0 12.7283C0 13.1048 0.149576 13.466 0.415823 13.7322C0.682069 13.9984 1.04318 14.148 1.41971 14.148H4.24234V24.0485C4.24234 24.4251 4.39192 24.7862 4.65816 25.0524C4.92441 25.3187 5.28552 25.4682 5.66205 25.4682H9.90052C10.277 25.4682 10.6382 25.3187 10.9044 25.0524C11.1706 24.7862 11.3202 24.4251 11.3202 24.0485V18.3865H16.9719V24.0434C16.9719 24.4199 17.1215 24.781 17.3878 25.0473C17.654 25.3135 18.0151 25.4631 18.3917 25.4631H22.634C23.0105 25.4631 23.3716 25.3135 23.6379 25.0473C23.9041 24.781 24.0537 24.4199 24.0537 24.0434V14.1429H26.8712C27.2477 14.1429 27.6088 13.9933 27.8751 13.727C28.1413 13.4608 28.2909 13.0997 28.2909 12.7232C28.2889 12.5127 28.2391 12.3056 28.1452 12.1173C28.0513 11.929 27.9157 11.7645 27.7488 11.6364C22.8895 7.55284 14.1429 0 14.1429 0Z"
   },
   manage_accounts: {
     viewBox: MATERIAL_VIEWBOX,
@@ -759,22 +763,21 @@ var iconPaths = {
     d: "M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"
   },
   keyboard_arrow_right: {
-    viewBox: MATERIAL_VIEWBOX,
-    d: "M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"
+    // Figma SVG export (não Material Symbols). Chevron mais grosso que o
+    // glifo Material padrão; corresponde ao componente HorizontalCard
+    // RightSlot em Figma 348:10928 e telas relacionadas.
+    viewBox: "0 0 8 12",
+    d: "M4.6 6L0 1.4L1.4 0L7.4 6L1.4 12L0 10.6L4.6 6Z"
   },
   edit: {
     viewBox: MATERIAL_VIEWBOX,
     d: "M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"
   },
   border_color: {
-    // Material Symbols `border_color` (outlined) — pencil drawing on a line
-    // (pencil-in-corner glyph). Used as the leftIcon on the mobile Settings
-    // "Editar perfil" entry (Figma 348:10615). Generic concept icon — MS
-    // fallback is explicitly permitted per CLAUDE.md icons sub-rule. Source:
-    // material-design-icons/symbols/web/border_color/materialsymbolsoutlined
-    // /border_color_24px.svg.
-    viewBox: MATERIAL_VIEWBOX,
-    d: "M120-40v-160h720v160H120Zm80-160h44l268-268-22-22-22-22-268 268v44Zm433-235L498-570l128-128q11-11 28-11t28 11l71 71q11 11 11 28t-11 28L633-435ZM200-200v-44 44Zm453-257-44-44 44 44Z"
+    // Figma SVG export (não Material Symbols). Lápis sobre linha — usado no
+    // Edit-float chip do Avatar em mobile Settings (Figma 348:10615 / 348:10373).
+    viewBox: "0 0 19 20",
+    d: "M0 20V16.3636H18.1818V20H0ZM3.63636 12.7273H4.90909L12 5.65909L10.7045 4.36364L3.63636 11.4545V12.7273ZM1.81818 14.5455V10.6818L12 0.522727C12.1667 0.356061 12.3598 0.227273 12.5795 0.136364C12.7992 0.0454546 13.0303 0 13.2727 0C13.5152 0 13.75 0.0454546 13.9773 0.136364C14.2045 0.227273 14.4091 0.363636 14.5909 0.545455L15.8409 1.81818C16.0227 1.98485 16.1553 2.18182 16.2386 2.40909C16.322 2.63636 16.3636 2.87121 16.3636 3.11364C16.3636 3.34091 16.322 3.56439 16.2386 3.78409C16.1553 4.00379 16.0227 4.20455 15.8409 4.38636L5.68182 14.5455H1.81818Z"
   }
 };
 var Icon = ({
@@ -851,7 +854,7 @@ var ChevronWrap = styled38__default.default(reactNative.View)`
   padding: ${({ theme: theme2 }) => theme2.padding.xs}px;
   transform: rotate(${({ $open }) => $open ? "180deg" : "0deg"});
 `;
-var Accordion = React37.forwardRef(
+var Accordion = React36.forwardRef(
   ({
     title,
     children,
@@ -866,10 +869,10 @@ var Accordion = React37.forwardRef(
     testID
   }, ref) => {
     const theme2 = useTheme();
-    const [uncontrolledOpen, setUncontrolledOpen] = React37.useState(defaultOpen);
+    const [uncontrolledOpen, setUncontrolledOpen] = React36.useState(defaultOpen);
     const isControlled = controlledOpen !== void 0;
     const open = isControlled ? controlledOpen : uncontrolledOpen;
-    const handleToggle = React37.useCallback(() => {
+    const handleToggle = React36.useCallback(() => {
       if (disabled) return;
       const next = !open;
       if (!isControlled) setUncontrolledOpen(next);
@@ -919,7 +922,7 @@ var SIZE_MAP = {
   m: 40,
   l: 64
 };
-var Avatar = React37.forwardRef(
+var Avatar = React36.forwardRef(
   ({
     uri,
     size = "m",
@@ -985,7 +988,7 @@ var CountText = styled38__default.default.Text`
 var AVATAR_PX = { s: 24, m: 40, l: 64 };
 var BADGE_PX = { s: 16, m: 24, l: 32 };
 var overlapFor = (size) => Math.round(AVATAR_PX[size] * 0.4);
-var AvatarGroup = React37.forwardRef(
+var AvatarGroup = React36.forwardRef(
   ({
     avatars,
     totalCount,
@@ -1038,7 +1041,7 @@ var Fill = styled38__default.default(reactNative.View)`
 `;
 var clamp = (n, min, max) => Math.min(Math.max(n, min), max);
 var FILL_HEIGHT = 6;
-var ProgressBar = React37.forwardRef(
+var ProgressBar = React36.forwardRef(
   ({
     value,
     disabled = false,
@@ -1216,7 +1219,7 @@ var LocationButton = styled38__default.default(reactNative.Pressable)`
   align-items: center;
   justify-content: center;
 `;
-var ActivitiesOverviewCard = React37.forwardRef(
+var ActivitiesOverviewCard = React36.forwardRef(
   ({
     title,
     subtitle,
@@ -1320,7 +1323,7 @@ var Label = styled38__default.default.Text`
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
 `;
-var BigNumbersCard = React37.forwardRef(
+var BigNumbersCard = React36.forwardRef(
   ({
     value,
     label,
@@ -1449,7 +1452,7 @@ var IconSlot3 = styled38__default.default(reactNative.View)`
   align-items: center;
   justify-content: center;
 `;
-var Button = React37.forwardRef(
+var Button = React36.forwardRef(
   ({
     label,
     variant = "contained",
@@ -1471,8 +1474,8 @@ var Button = React37.forwardRef(
     accessibilityHint,
     testID
   }, ref) => {
-    const [hovered, setHovered] = React37.useState(false);
-    const [pressed, setPressed] = React37.useState(false);
+    const [hovered, setHovered] = React36.useState(false);
+    const [pressed, setPressed] = React36.useState(false);
     const disabled = disabledProp ?? false;
     const showDropShadow = variant === "contained" && !disabled && !pressed && elevationProp !== "none";
     const shadowStyle = elevationProp === "none" ? void 0 : elevation[elevationProp];
@@ -1578,7 +1581,7 @@ var TimeText = styled38__default.default.Text`
   font-size: ${({ theme: theme2 }) => theme2.fontSize.s}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
 `;
-var ChatBubble = React37.forwardRef(
+var ChatBubble = React36.forwardRef(
   ({
     message,
     time,
@@ -1679,7 +1682,7 @@ var formatCount = (n) => {
   if (n < 10) return n.toString().padStart(2, "0");
   return n.toString();
 };
-var ChatUserCard = React37.forwardRef(
+var ChatUserCard = React36.forwardRef(
   ({
     name,
     subtitle,
@@ -1787,7 +1790,7 @@ var IconButton = styled38__default.default(reactNative.Pressable)`
   align-items: center;
   justify-content: center;
 `;
-var SearchInput = React37.forwardRef(
+var SearchInput = React36.forwardRef(
   ({
     value,
     defaultValue,
@@ -1800,11 +1803,11 @@ var SearchInput = React37.forwardRef(
     ...textInputProps
   }, ref) => {
     const theme2 = useTheme();
-    const innerRef = React37.useRef(null);
-    React37.useImperativeHandle(ref, () => innerRef.current, []);
-    const [focused, setFocused] = React37.useState(false);
-    const [hovered, setHovered] = React37.useState(false);
-    const [internalValue, setInternalValue] = React37.useState(defaultValue ?? "");
+    const innerRef = React36.useRef(null);
+    React36.useImperativeHandle(ref, () => innerRef.current, []);
+    const [focused, setFocused] = React36.useState(false);
+    const [hovered, setHovered] = React36.useState(false);
+    const [internalValue, setInternalValue] = React36.useState(defaultValue ?? "");
     const isControlled = value !== void 0;
     const currentValue = isControlled ? value : internalValue;
     const hasValue = !!currentValue && currentValue.length > 0;
@@ -1886,7 +1889,7 @@ var ListScroll = styled38__default.default(reactNative.ScrollView).attrs({
 var ListInner = styled38__default.default(reactNative.View)`
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var ChatSection = React37.forwardRef(
+var ChatSection = React36.forwardRef(
   ({
     users,
     searchValue,
@@ -1953,7 +1956,7 @@ var DonutArc = ({
   const arcR = outerR - arcStroke;
   const circumference = 2 * Math.PI * arcR;
   const dash = pct / 100 * circumference;
-  const id = React37.useId().replace(/:/g, "");
+  const id = React36.useId().replace(/:/g, "");
   const bezelId = `donut-bezel-${id}`;
   const wellId = `donut-well-${id}`;
   const arcId = `donut-arc-${id}`;
@@ -2097,7 +2100,7 @@ var LocationButton2 = styled38__default.default(reactNative.Pressable)`
   justify-content: center;
 `;
 var DEFAULT_GRADIENT = [primitive.green[200], primitive.green[300]];
-var DonutChart = React37.forwardRef(
+var DonutChart = React36.forwardRef(
   ({
     title,
     value,
@@ -2237,7 +2240,7 @@ var LocationButton3 = styled38__default.default(reactNative.Pressable)`
   align-items: center;
   justify-content: center;
 `;
-var EmployeeOverviewCard = React37.forwardRef(
+var EmployeeOverviewCard = React36.forwardRef(
   ({
     employee,
     progress = 0,
@@ -2352,7 +2355,7 @@ var CompactActionButton = styled38__default.default(reactNative.Pressable)`
   align-items: center;
   justify-content: center;
 `;
-var ExamInfoCard = React37.forwardRef(
+var ExamInfoCard = React36.forwardRef(
   ({
     year,
     date,
@@ -2476,7 +2479,7 @@ var StatValueBold = styled38__default.default.Text`
 var ProgressSlot3 = styled38__default.default(reactNative.View)`
   width: 138px;
 `;
-var HeaderUserInfo = React37.forwardRef(
+var HeaderUserInfo = React36.forwardRef(
   ({
     bpm,
     pressure,
@@ -2567,7 +2570,7 @@ var Bar = styled38__default.default(reactNative.View)`
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.xl}px;
   padding-vertical: ${({ theme: theme2 }) => theme2.padding.sm}px;
 `;
-var Header2 = React37.forwardRef(
+var Header2 = React36.forwardRef(
   ({
     logoSize = "m",
     logoType = "complete",
@@ -2704,9 +2707,9 @@ var toneForVariant = (variant) => {
   return DARK_BG_VARIANTS.has(variant) ? "dark" : "light";
 };
 var isLightBgVariant = (variant) => toneForVariant(variant) === "light";
-var SurfaceContext = React37.createContext({ tone: "dark" });
-var useSurfaceTone = () => React37.useContext(SurfaceContext);
-var Surface = React37.forwardRef(
+var SurfaceContext = React36.createContext({ tone: "dark" });
+var useSurfaceTone = () => React36.useContext(SurfaceContext);
+var Surface = React36.forwardRef(
   ({ variant = "standard", padding: padding2 = "m", radius: radius2 = "m", children, style, ...rest }, ref) => {
     const theme2 = useTheme();
     const tone = toneForVariant(variant);
@@ -2730,12 +2733,11 @@ var Surface = React37.forwardRef(
 );
 Surface.displayName = "Surface";
 var resolve = (variant) => {
-  const [group, key] = variant.split(".");
-  const slot = typography[group];
-  return slot?.[key] ?? typography.body.m;
+  const [, key] = variant.split(".");
+  return typography.title[key] ?? typography.title.m;
 };
-var Text = React37.forwardRef(
-  ({ variant = "body.m", color, children, style, ...rest }, ref) => {
+var Title2 = React36.forwardRef(
+  ({ variant = "title.m", color, children, style, ...rest }, ref) => {
     const theme2 = useTheme();
     const { tone } = useSurfaceTone();
     const styleDef = resolve(variant);
@@ -2744,6 +2746,7 @@ var Text = React37.forwardRef(
       reactNative.Text,
       {
         ref,
+        accessibilityRole: "header",
         style: [
           {
             fontFamily: styleDef.fontFamily,
@@ -2759,7 +2762,7 @@ var Text = React37.forwardRef(
     );
   }
 );
-Text.displayName = "Text";
+Title2.displayName = "Title";
 var Container7 = styled38__default.default(reactNative.Pressable)`
   flex-direction: row;
   align-items: center;
@@ -2787,7 +2790,7 @@ var RightSlot = styled38__default.default(reactNative.View)`
   /* padding.xs optically centres the narrow chevron (7.4×12) inside the 24×24 slot */
   padding: ${({ theme: theme2 }) => theme2.padding.xs}px;
 `;
-var HorizontalCard = React37.forwardRef(
+var HorizontalCard = React36.forwardRef(
   ({
     label,
     leftIcon,
@@ -2812,19 +2815,7 @@ var HorizontalCard = React37.forwardRef(
         testID,
         children: [
           leftIcon ? /* @__PURE__ */ jsxRuntime.jsx(LeftSlot, { children: /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: leftIcon, size: 20, color: theme2.content.dark }) }) : null,
-          /* @__PURE__ */ jsxRuntime.jsx(LabelSlot, { children: /* @__PURE__ */ jsxRuntime.jsx(
-            Text,
-            {
-              variant: "body.m",
-              color: theme2.content.dark,
-              style: {
-                fontFamily: theme2.fontFamily.title,
-                fontWeight: theme2.fontWeight.bold,
-                fontSize: theme2.fontSize.ms
-              },
-              children: label
-            }
-          ) }),
+          /* @__PURE__ */ jsxRuntime.jsx(LabelSlot, { children: /* @__PURE__ */ jsxRuntime.jsx(Title2, { variant: "title.xs", color: theme2.content.dark, children: label }) }),
           /* @__PURE__ */ jsxRuntime.jsx(RightSlot, { children: /* @__PURE__ */ jsxRuntime.jsx(
             Icon,
             {
@@ -2872,7 +2863,7 @@ var Label3 = styled38__default.default.Text`
   font-size: 14px;
   color: ${({ theme: theme2 }) => theme2.content.dark};
 `;
-var Radio = React37.forwardRef(
+var Radio = React36.forwardRef(
   ({
     label,
     checked,
@@ -2942,7 +2933,7 @@ var Label4 = styled38__default.default.Text`
   font-weight: ${({ $size }) => SIZE2[$size].labelWeight};
   color: ${({ theme: theme2 }) => theme2.content.dark};
 `;
-var Checkbox = React37.forwardRef(
+var Checkbox = React36.forwardRef(
   ({
     checked,
     onChange,
@@ -3060,7 +3051,7 @@ var Description = styled38__default.default.Text`
   font-size: 12px;
   color: ${(props) => descriptionColor(props)};
 `;
-var Input = React37.forwardRef(
+var Input = React36.forwardRef(
   ({
     label,
     description,
@@ -3072,10 +3063,10 @@ var Input = React37.forwardRef(
     ...textInputProps
   }, ref) => {
     const theme2 = useTheme();
-    const innerRef = React37.useRef(null);
-    React37.useImperativeHandle(ref, () => innerRef.current, []);
-    const [focused, setFocused] = React37.useState(false);
-    const [hovered, setHovered] = React37.useState(false);
+    const innerRef = React36.useRef(null);
+    React36.useImperativeHandle(ref, () => innerRef.current, []);
+    const [focused, setFocused] = React36.useState(false);
+    const [hovered, setHovered] = React36.useState(false);
     const focusInput = () => {
       if (disabled) return;
       innerRef.current?.focus();
@@ -3208,7 +3199,7 @@ var Description2 = styled38__default.default.Text`
   font-size: 12px;
   color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
 `;
-var Combobox = React37.forwardRef(
+var Combobox = React36.forwardRef(
   ({
     label,
     description,
@@ -3223,14 +3214,14 @@ var Combobox = React37.forwardRef(
     accessibilityHint,
     testID
   }, ref) => {
-    const [internalOpen, setInternalOpen] = React37.useState(false);
+    const [internalOpen, setInternalOpen] = React36.useState(false);
     const isOpen = open ?? internalOpen;
     const setOpen = (next) => {
       if (open === void 0) setInternalOpen(next);
       onOpenChange?.(next);
     };
-    const [hovered, setHovered] = React37.useState(false);
-    const [hoveredOption, setHoveredOption] = React37.useState(null);
+    const [hovered, setHovered] = React36.useState(false);
+    const [hoveredOption, setHoveredOption] = React36.useState(null);
     const selected = options.find((o) => o.value === value);
     const displayText = selected?.label ?? placeholder;
     const isPlaceholder = !selected;
@@ -3345,7 +3336,7 @@ var HoverOverlay4 = styled38__default.default(reactNative.View)`
   background-color: rgba(0, 0, 0, 0.05);
   pointer-events: none;
 `;
-var Chip = React37.forwardRef(
+var Chip = React36.forwardRef(
   ({
     label,
     state = "default",
@@ -3356,8 +3347,8 @@ var Chip = React37.forwardRef(
     accessibilityHint,
     testID
   }, ref) => {
-    const [hovered, setHovered] = React37.useState(false);
-    const [pressed, setPressed] = React37.useState(false);
+    const [hovered, setHovered] = React36.useState(false);
+    const [pressed, setPressed] = React36.useState(false);
     const isDisabled = state === "disable";
     return /* @__PURE__ */ jsxRuntime.jsx(
       Container12,
@@ -3401,10 +3392,10 @@ var ChipGroup = ({
   colorScheme,
   style
 }) => {
-  const [selected, setSelected] = React37.useState(
+  const [selected, setSelected] = React36.useState(
     toArray(value !== void 0 ? value : initialValue)
   );
-  React37.useEffect(() => {
+  React36.useEffect(() => {
     if (value !== void 0) setSelected(toArray(value));
   }, [value]);
   const handlePress = (option) => {
@@ -3439,7 +3430,7 @@ var RESIZE_MAP = {
   center: "center",
   fill: "stretch"
 };
-var Image = React37.forwardRef(
+var Image = React36.forwardRef(
   ({
     source,
     width,
@@ -3509,7 +3500,7 @@ var RemoveButton = styled38__default.default(reactNative.Pressable)`
 var DEFAULT_HELPER = "Selecione arquivos do tipo: JPG ou PNG";
 var DEFAULT_TAKE_PHOTO = "Tirar Foto";
 var DEFAULT_PICK_FILE = "Enviar arquivo";
-var ImageUploader = React37.forwardRef(
+var ImageUploader = React36.forwardRef(
   ({
     value,
     progress,
@@ -3653,7 +3644,7 @@ var DEFAULT_PLACEHOLDER = {
   heatmap: "",
   cameras: "Buscar c\xE2mera"
 };
-var MapControl = React37.forwardRef(
+var MapControl = React36.forwardRef(
   ({
     variant,
     expanded: controlledExpanded,
@@ -3670,9 +3661,9 @@ var MapControl = React37.forwardRef(
   }, ref) => {
     const theme2 = useTheme();
     const isExpandedControlled = controlledExpanded !== void 0;
-    const [uncontrolledExpanded, setUncontrolledExpanded] = React37.useState(defaultExpanded);
+    const [uncontrolledExpanded, setUncontrolledExpanded] = React36.useState(defaultExpanded);
     const expanded = isExpandedControlled ? controlledExpanded : uncontrolledExpanded;
-    const toggleExpanded = React37.useCallback(() => {
+    const toggleExpanded = React36.useCallback(() => {
       const next = !expanded;
       if (!isExpandedControlled) setUncontrolledExpanded(next);
       onExpandedChange?.(next);
@@ -3784,7 +3775,7 @@ var STATUS_BADGE_FILL = {
   low: "#F5667A",
   offline: "#6b7280"
 };
-var LocationPin = React37.forwardRef(
+var LocationPin = React36.forwardRef(
   ({
     variant = "avatar",
     avatarUri,
@@ -3934,7 +3925,7 @@ var BadgeText2 = styled38__default.default.Text`
   font-size: 12px;
   color: ${({ theme: theme2 }) => theme2.content.dark};
 `;
-var MenuItem = React37.forwardRef(
+var MenuItem = React36.forwardRef(
   ({
     label,
     icon,
@@ -3950,7 +3941,7 @@ var MenuItem = React37.forwardRef(
     testID
   }, ref) => {
     const theme2 = useTheme();
-    const [hovered, setHovered] = React37.useState(false);
+    const [hovered, setHovered] = React36.useState(false);
     const accentColor2 = disabled ? theme2.content.disable : active ? theme2.content.primary : hovered ? theme2.content.dark : theme2.content.medium;
     const showHoverOverlay = hovered && !disabled && !active;
     const isCompact = variant === "compact";
@@ -3995,7 +3986,7 @@ var Container16 = styled38__default.default(reactNative.View)`
   align-items: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var SideMenu = React37.forwardRef(
+var SideMenu = React36.forwardRef(
   ({
     items,
     value: controlledValue,
@@ -4009,11 +4000,11 @@ var SideMenu = React37.forwardRef(
     testID
   }, ref) => {
     const isControlled = controlledValue !== void 0;
-    const [uncontrolledValue, setUncontrolledValue] = React37.useState(
+    const [uncontrolledValue, setUncontrolledValue] = React36.useState(
       defaultValue ?? items[0]?.value
     );
     const value = isControlled ? controlledValue : uncontrolledValue;
-    const handlePress = React37.useCallback(
+    const handlePress = React36.useCallback(
       (next) => {
         if (!isControlled) setUncontrolledValue(next);
         onChange?.(next);
@@ -4132,7 +4123,7 @@ var Triangle = styled38__default.default(reactNative.View)`
   border-right-color: transparent;
   border-bottom-color: ${({ theme: theme2 }) => theme2.surface.primaryLight};
 `;
-var TimeStamp = React37.forwardRef(
+var TimeStamp = React36.forwardRef(
   ({ time, testID, accessibilityLabel }, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsxs(
       Pill,
@@ -4163,7 +4154,7 @@ var Label10 = styled38__default.default.Text`
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
 `;
-var CaloriesTag = React37.forwardRef(
+var CaloriesTag = React36.forwardRef(
   ({ value, unit = "kcal", testID, accessibilityLabel }, ref) => {
     const text = `${value}${unit}`;
     return /* @__PURE__ */ jsxRuntime.jsx(
@@ -4246,7 +4237,7 @@ var linePath = (laid) => {
 };
 var DEFAULT_WIDTH = 1013;
 var DEFAULT_HEIGHT = 110;
-var LineCaloriesChart = React37.forwardRef(
+var LineCaloriesChart = React36.forwardRef(
   ({
     points,
     unit = "kcal",
@@ -4259,7 +4250,7 @@ var LineCaloriesChart = React37.forwardRef(
     const theme2 = useTheme();
     const laid = layoutPoints(points, width, height);
     const d = linePath(laid);
-    const gradId = `calories-stroke-${React37.useId().replace(/:/g, "")}`;
+    const gradId = `calories-stroke-${React36.useId().replace(/:/g, "")}`;
     return /* @__PURE__ */ jsxRuntime.jsxs(
       ChartFrame,
       {
@@ -4323,37 +4314,6 @@ var LineCaloriesChart = React37.forwardRef(
   }
 );
 LineCaloriesChart.displayName = "LineCaloriesChart";
-var resolve2 = (variant) => {
-  const [, key] = variant.split(".");
-  return typography.title[key] ?? typography.title.m;
-};
-var Title2 = React37.forwardRef(
-  ({ variant = "title.m", color, children, style, ...rest }, ref) => {
-    const theme2 = useTheme();
-    const { tone } = useSurfaceTone();
-    const styleDef = resolve2(variant);
-    const defaultColor = tone === "disabled" ? theme2.content.disable : tone === "light" ? theme2.content.light : theme2.content.dark;
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      reactNative.Text,
-      {
-        ref,
-        accessibilityRole: "header",
-        style: [
-          {
-            fontFamily: styleDef.fontFamily,
-            fontWeight: styleDef.fontWeight,
-            fontSize: styleDef.fontSize,
-            color: color ?? defaultColor
-          },
-          style
-        ],
-        ...rest,
-        children
-      }
-    );
-  }
-);
-Title2.displayName = "Title";
 var Row6 = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
@@ -4381,7 +4341,7 @@ var Thumb = styled38__default.default(reactNative.View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   background-color: ${({ $on, theme: theme2 }) => $on ? theme2.content.primary : theme2.content.medium};
 `;
-var Toggle = React37.forwardRef(
+var Toggle = React36.forwardRef(
   ({
     value: controlledValue,
     defaultValue = false,
@@ -4393,9 +4353,9 @@ var Toggle = React37.forwardRef(
     testID
   }, ref) => {
     const isControlled = controlledValue !== void 0;
-    const [uncontrolledValue, setUncontrolledValue] = React37.useState(defaultValue);
+    const [uncontrolledValue, setUncontrolledValue] = React36.useState(defaultValue);
     const value = isControlled ? controlledValue : uncontrolledValue;
-    const handlePress = React37.useCallback(() => {
+    const handlePress = React36.useCallback(() => {
       if (disabled) return;
       const next = !value;
       if (!isControlled) setUncontrolledValue(next);
@@ -4416,7 +4376,7 @@ var Toggle = React37.forwardRef(
       }
     );
     if (!leftLabel && !rightLabel) {
-      return React37__default.default.cloneElement(track, { ref });
+      return React36__default.default.cloneElement(track, { ref });
     }
     return /* @__PURE__ */ jsxRuntime.jsxs(Row6, { ref, children: [
       leftLabel ? /* @__PURE__ */ jsxRuntime.jsx(SideLabel, { $active: !value, $disabled: disabled, children: leftLabel }) : null,
@@ -4495,7 +4455,7 @@ var Label11 = styled38__default.default.Text`
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
 `;
-var WeatherEventChip = React37.forwardRef(
+var WeatherEventChip = React36.forwardRef(
   ({ time, label, accessibilityLabel, testID }, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsxs(
       Row7,
@@ -4524,7 +4484,7 @@ var IconRow = styled38__default.default(reactNative.View)`
   align-self: stretch;
   height: 64px;
 `;
-var WeatherTimelineEntry = React37.forwardRef(
+var WeatherTimelineEntry = React36.forwardRef(
   ({ condition, time, label, accessibilityLabel, testID }, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsxs(
       Stack,
@@ -4565,7 +4525,7 @@ var FlagText = styled38__default.default.Text`
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
 `;
-var NowMarker = React37.forwardRef(
+var NowMarker = React36.forwardRef(
   ({ label = "AGORA", height = 80, accessibilityLabel, testID }, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsxs(
       Stack2,
@@ -4618,7 +4578,7 @@ var DEFAULT_LABELS = {
   accept: "Aceito",
   info: "Em andamento"
 };
-var StatusTag = React37.forwardRef(
+var StatusTag = React36.forwardRef(
   ({
     status = "canceled",
     label,
@@ -4707,7 +4667,7 @@ var LocationLabel = styled38__default.default.Text`
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
 `;
-var ReportCard = React37.forwardRef(
+var ReportCard = React36.forwardRef(
   ({
     status,
     statusLabel,
@@ -4837,7 +4797,7 @@ var RULER_LINES = Array.from(
   (_, i) => ({ id: `ruler-${i}`, major: i % 4 === 0 })
 );
 var NOW_POLE_HEIGHT = 100;
-var WeatherTimeline = React37.forwardRef(
+var WeatherTimeline = React36.forwardRef(
   ({
     events,
     intensitySegments,
@@ -4849,13 +4809,13 @@ var WeatherTimeline = React37.forwardRef(
     testID
   }, ref) => {
     const theme2 = useTheme();
-    const scrollViewRef = React37.useRef(null);
-    const [scrollMetrics, setScrollMetrics] = React37.useState({
+    const scrollViewRef = React36.useRef(null);
+    const [scrollMetrics, setScrollMetrics] = React36.useState({
       contentWidth: 0,
       containerWidth: 0,
       scrollX: 0
     });
-    const metricsRef = React37.useRef(scrollMetrics);
+    const metricsRef = React36.useRef(scrollMetrics);
     metricsRef.current = scrollMetrics;
     const intensityColor = (c) => {
       switch (c) {
@@ -4910,8 +4870,8 @@ var WeatherTimeline = React37.forwardRef(
         scrollX: contentOffset.x
       });
     };
-    const dragInitialScrollRef = React37.useRef(null);
-    const thumbPanResponder = React37.useRef(
+    const dragInitialScrollRef = React36.useRef(null);
+    const thumbPanResponder = React36.useRef(
       reactNative.PanResponder.create({
         onStartShouldSetPanResponder: () => true,
         onMoveShouldSetPanResponder: () => true,
@@ -5162,7 +5122,7 @@ var PauseButtonLabel = styled38__default.default.Text`
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var WorkersInfoCard = React37.forwardRef(
+var WorkersInfoCard = React36.forwardRef(
   ({
     employee,
     enabled,
@@ -5186,9 +5146,9 @@ var WorkersInfoCard = React37.forwardRef(
   }, ref) => {
     const theme2 = useTheme();
     const isExpandedControlled = controlledExpanded !== void 0;
-    const [uncontrolledExpanded, setUncontrolledExpanded] = React37.useState(defaultExpanded);
+    const [uncontrolledExpanded, setUncontrolledExpanded] = React36.useState(defaultExpanded);
     const expanded = isExpandedControlled ? controlledExpanded : uncontrolledExpanded;
-    const handleToggleExpanded = React37.useCallback(() => {
+    const handleToggleExpanded = React36.useCallback(() => {
       const next = !expanded;
       if (!isExpandedControlled) setUncontrolledExpanded(next);
       onExpandedChange?.(next);
@@ -5294,6 +5254,37 @@ var WorkersInfoCard = React37.forwardRef(
   }
 );
 WorkersInfoCard.displayName = "WorkersInfoCard";
+var resolve2 = (variant) => {
+  const [group, key] = variant.split(".");
+  const slot = typography[group];
+  return slot?.[key] ?? typography.body.m;
+};
+var Text = React36.forwardRef(
+  ({ variant = "body.m", color, children, style, ...rest }, ref) => {
+    const theme2 = useTheme();
+    const { tone } = useSurfaceTone();
+    const styleDef = resolve2(variant);
+    const defaultColor = tone === "disabled" ? theme2.content.disable : tone === "light" ? theme2.content.light : theme2.content.dark;
+    return /* @__PURE__ */ jsxRuntime.jsx(
+      reactNative.Text,
+      {
+        ref,
+        style: [
+          {
+            fontFamily: styleDef.fontFamily,
+            fontWeight: styleDef.fontWeight,
+            fontSize: styleDef.fontSize,
+            color: color ?? defaultColor
+          },
+          style
+        ],
+        ...rest,
+        children
+      }
+    );
+  }
+);
+Text.displayName = "Text";
 
 // src/icons/raw/background-chart.png
 var background_chart_default = "./background-chart-4WAIHJSI.png";
@@ -5728,7 +5719,7 @@ var StepBar = ({ total, current, testID, accessibilityLabel }) => /* @__PURE__ *
     children: Array.from({ length: total }, (_, idx) => {
       const stepNum = idx + 1;
       const state = stateFor(stepNum, current);
-      return /* @__PURE__ */ jsxRuntime.jsxs(React37.Fragment, { children: [
+      return /* @__PURE__ */ jsxRuntime.jsxs(React36.Fragment, { children: [
         /* @__PURE__ */ jsxRuntime.jsx(Step, { state, number: state === "default" ? stepNum : void 0 }),
         idx < total - 1 ? /* @__PURE__ */ jsxRuntime.jsx(Connector, { $reached: stepNum < current }) : null
       ] }, stepNum);
@@ -5910,7 +5901,7 @@ var SuccessBadge = ({
   accessibilityLabel
 }) => {
   const theme2 = useTheme();
-  const rawId = React37.useId();
+  const rawId = React36.useId();
   const gradientId = `success-badge-grad-${rawId.replace(/:/g, "-")}`;
   const resolvedIconSize = iconSize ?? Math.round(size * 0.583);
   const [c1, c2] = colors ?? [theme2.surface.primary, theme2.surface.secondary];
@@ -5987,7 +5978,7 @@ var TabLabel = styled38__default.default.Text`
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   color: ${({ $active, theme: theme2 }) => $active ? theme2.content.light : theme2.content.secondary};
 `;
-var Tabs = React37.forwardRef(
+var Tabs = React36.forwardRef(
   ({
     tabs,
     value: controlledValue,
@@ -6000,11 +5991,11 @@ var Tabs = React37.forwardRef(
     testID
   }, ref) => {
     const isControlled = controlledValue !== void 0;
-    const [uncontrolledValue, setUncontrolledValue] = React37.useState(
+    const [uncontrolledValue, setUncontrolledValue] = React36.useState(
       defaultValue ?? tabs[0]?.value
     );
     const value = isControlled ? controlledValue : uncontrolledValue;
-    const handlePress = React37.useCallback(
+    const handlePress = React36.useCallback(
       (next) => {
         if (disabled) return;
         if (!isControlled) setUncontrolledValue(next);
@@ -6162,7 +6153,7 @@ var CloseButton = styled38__default.default(reactNative.Pressable)`
   align-items: center;
   justify-content: center;
 `;
-var Toast = React37.forwardRef(
+var Toast = React36.forwardRef(
   ({ variant = "info", title, message, onClose, accessibilityLabel, testID }, ref) => {
     const theme2 = useTheme();
     return /* @__PURE__ */ jsxRuntime.jsxs(

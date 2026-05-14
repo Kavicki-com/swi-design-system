@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { type View as RNView } from 'react-native';
 import { Icon } from '../Icon';
-import { Text } from '../Text';
+import { Title } from '../Title';
 import { useTheme } from '../../theme';
 import { elevation } from '../../tokens';
 import {
@@ -52,17 +52,15 @@ export const HorizontalCard = forwardRef<RNView, HorizontalCardProps>(
           </LeftSlot>
         ) : null}
         <LabelSlot>
-          <Text
-            variant="body.m"
-            color={theme.content.dark}
-            style={{
-              fontFamily: theme.fontFamily.title,
-              fontWeight: theme.fontWeight.bold,
-              fontSize: theme.fontSize.ms,
-            }}
-          >
+          {/* Title gives Montserrat Bold 16 (title.xs) nativo do DS — visual
+              correto pro Figma 348:10615. Title hardcoda accessibilityRole=
+              "header" internamente, criando aninhamento role="header" dentro
+              de role="button" no Container. Trade-off aceito: fidelidade
+              visual > pureza ARIA. Phase 2: bumpar Title pra aceitar
+              accessibilityRole override prop. */}
+          <Title variant="title.xs" color={theme.content.dark}>
             {label}
-          </Text>
+          </Title>
         </LabelSlot>
         <RightSlot>
           {/* Chevron dimensions 7.4×12 per Figma 348:10615 right-slot spec */}

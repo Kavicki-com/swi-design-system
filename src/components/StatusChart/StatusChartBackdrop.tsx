@@ -2,7 +2,9 @@
  * Native StatusChart backdrop (RN — iOS/Android).
  *
  * Layer mapping (back-to-front), each pulled from the actual Figma exports
- * in src/icons/raw/status-chart-assets/:
+ * in `./references/` (sibling folder; reference SVGs only, not consumed at
+ * runtime — this component recreates each layer via react-native-svg
+ * primitives so the geometry stays in code with `useTheme()`):
  *   1. background-circle        — 456.714 dia filled #1F1F1F
  *   2. inner-background-circle  — 298.46 dia filled #222
  *   3. (background-chart PNG    — rendered as a separate Image overlay

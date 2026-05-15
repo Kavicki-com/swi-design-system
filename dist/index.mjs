@@ -6196,6 +6196,13 @@ var BackSlot = styled38(Pressable)`
   padding-bottom: ${({ theme: theme2 }) => theme2.padding.sm}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
 `;
+var IconSlot9 = styled38(View)`
+  width: 24px;
+  height: 24px;
+  padding: ${({ theme: theme2 }) => theme2.padding.xs}px;
+  align-items: center;
+  justify-content: center;
+`;
 var TitleSlot = styled38(View)`
   flex: 1;
   align-items: flex-end;
@@ -6212,7 +6219,7 @@ var TopBar = forwardRef(
           accessibilityRole: "button",
           accessibilityLabel: accessibilityLabel ?? backLabel,
           children: [
-            /* @__PURE__ */ jsx(
+            /* @__PURE__ */ jsx(IconSlot9, { children: /* @__PURE__ */ jsx(
               Icon,
               {
                 name: "keyboard_arrow_left",
@@ -6220,7 +6227,7 @@ var TopBar = forwardRef(
                 height: 12,
                 color: backColor
               }
-            ),
+            ) }),
             /* @__PURE__ */ jsx(
               Text,
               {

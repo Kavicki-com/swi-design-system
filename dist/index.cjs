@@ -6204,6 +6204,13 @@ var BackSlot = styled38__default.default(reactNative.Pressable)`
   padding-bottom: ${({ theme: theme2 }) => theme2.padding.sm}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
 `;
+var IconSlot9 = styled38__default.default(reactNative.View)`
+  width: 24px;
+  height: 24px;
+  padding: ${({ theme: theme2 }) => theme2.padding.xs}px;
+  align-items: center;
+  justify-content: center;
+`;
 var TitleSlot = styled38__default.default(reactNative.View)`
   flex: 1;
   align-items: flex-end;
@@ -6220,7 +6227,7 @@ var TopBar = React36.forwardRef(
           accessibilityRole: "button",
           accessibilityLabel: accessibilityLabel ?? backLabel,
           children: [
-            /* @__PURE__ */ jsxRuntime.jsx(
+            /* @__PURE__ */ jsxRuntime.jsx(IconSlot9, { children: /* @__PURE__ */ jsxRuntime.jsx(
               Icon,
               {
                 name: "keyboard_arrow_left",
@@ -6228,7 +6235,7 @@ var TopBar = React36.forwardRef(
                 height: 12,
                 color: backColor
               }
-            ),
+            ) }),
             /* @__PURE__ */ jsxRuntime.jsx(
               Text,
               {

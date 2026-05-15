@@ -759,8 +759,13 @@ var iconPaths = {
     d: "M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"
   },
   keyboard_arrow_left: {
-    viewBox: MATERIAL_VIEWBOX,
-    d: "M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"
+    // Figma SVG export (não Material Symbols). Mirror do
+    // keyboard_arrow_right. ViewBox 24×24 inclui o padding implícito do
+    // chevron-left-icon container (Figma 353:11629); o chevron path
+    // ocupa 7.4×12 centrado, dando o tamanho visual correto quando
+    // renderizado em 24×24.
+    viewBox: "0 0 24 24",
+    d: "M14.3 18L8.30005 12L14.3 6L15.7 7.4L11.1 12L15.7 16.6L14.3 18Z"
   },
   keyboard_arrow_right: {
     // Figma SVG export (não Material Symbols). Chevron mais grosso que o
@@ -6204,13 +6209,6 @@ var BackSlot = styled38__default.default(reactNative.Pressable)`
   padding-bottom: ${({ theme: theme2 }) => theme2.padding.sm}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
 `;
-var IconSlot9 = styled38__default.default(reactNative.View)`
-  width: 24px;
-  height: 24px;
-  padding: ${({ theme: theme2 }) => theme2.padding.xs}px;
-  align-items: center;
-  justify-content: center;
-`;
 var TitleSlot = styled38__default.default(reactNative.View)`
   flex: 1;
   align-items: flex-end;
@@ -6227,15 +6225,15 @@ var TopBar = React36.forwardRef(
           accessibilityRole: "button",
           accessibilityLabel: accessibilityLabel ?? backLabel,
           children: [
-            /* @__PURE__ */ jsxRuntime.jsx(IconSlot9, { children: /* @__PURE__ */ jsxRuntime.jsx(
+            /* @__PURE__ */ jsxRuntime.jsx(
               Icon,
               {
                 name: "keyboard_arrow_left",
-                width: 7.4,
-                height: 12,
+                width: 24,
+                height: 24,
                 color: backColor
               }
-            ) }),
+            ),
             /* @__PURE__ */ jsxRuntime.jsx(
               Text,
               {

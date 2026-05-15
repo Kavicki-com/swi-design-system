@@ -3,7 +3,7 @@ import { type View as RNView } from 'react-native';
 import { Icon } from '../Icon';
 import { Text } from '../Text';
 import { useTheme } from '../../theme';
-import { Container, BackSlot, IconSlot, TitleSlot } from './TopBar.styles';
+import { Container, BackSlot, TitleSlot } from './TopBar.styles';
 import type { TopBarProps } from './TopBar.types';
 
 /**
@@ -27,14 +27,12 @@ export const TopBar = forwardRef<RNView, TopBarProps>(
             accessibilityRole="button"
             accessibilityLabel={accessibilityLabel ?? backLabel}
           >
-            <IconSlot>
-              <Icon
-                name="keyboard_arrow_left"
-                width={7.4}
-                height={12}
-                color={backColor}
-              />
-            </IconSlot>
+            <Icon
+              name="keyboard_arrow_left"
+              width={24}
+              height={24}
+              color={backColor}
+            />
             <Text
               color={backColor}
               style={{

@@ -898,8 +898,8 @@ declare const iconPaths: {
         readonly d: "M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z";
     };
     readonly keyboard_arrow_left: {
-        readonly viewBox: "0 -960 960 960";
-        readonly d: "M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z";
+        readonly viewBox: "0 0 24 24";
+        readonly d: "M14.3 18L8.30005 12L14.3 6L15.7 7.4L11.1 12L15.7 16.6L14.3 18Z";
     };
     readonly keyboard_arrow_right: {
         readonly viewBox: "0 0 8 12";

@@ -26,16 +26,6 @@ export const BackSlot = styled(Pressable)`
   border-radius: ${({ theme }) => theme.border.radius.m}px;
 `;
 
-/* Figma 353:11629 → chevron-left-icon: 24×24 container com padding/xs (4px).
-   Replica o icon-slot que dá peso visual ao chevron path 7.4×12. */
-export const IconSlot = styled(View)`
-  width: 24px;
-  height: 24px;
-  padding: ${({ theme }) => theme.padding.xs}px;
-  align-items: center;
-  justify-content: center;
-`;
-
 export const TitleSlot = styled(View)`
   flex: 1;
   align-items: flex-end;

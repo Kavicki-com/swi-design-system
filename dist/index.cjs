@@ -2376,6 +2376,12 @@ var CompactActionButton = styled38__default.default(reactNative.Pressable)`
   align-items: center;
   justify-content: center;
 `;
+var DownloadIconSlot = styled38__default.default(reactNative.View)`
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+`;
 var ExamInfoCard = React36.forwardRef(
   ({
     year,
@@ -2453,7 +2459,7 @@ var ExamInfoCard = React36.forwardRef(
               accessibilityLabel: actionLabel ?? `Baixar ${examName}`,
               accessibilityState: { disabled: actionDisabled },
               style: mobile && !actionDisabled ? elevation.lg : void 0,
-              children: /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: "download", size: 16, color: "#171717" })
+              children: mobile ? /* @__PURE__ */ jsxRuntime.jsx(DownloadIconSlot, { children: /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: "download", size: 16, color: "#171717" }) }) : /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: "download", size: 16, color: "#171717" })
             }
           ) : /* @__PURE__ */ jsxRuntime.jsx(
             Button,

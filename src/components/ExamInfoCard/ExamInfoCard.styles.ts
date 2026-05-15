@@ -109,3 +109,13 @@ export const CompactActionButton = styled(Pressable)<{ $mobile?: boolean }>`
   align-items: center;
   justify-content: center;
 `;
+
+/* Inner 24×24 slot wrapping the 16×16 download icon when mobile.
+   Replica `download-icon` container (Figma 342:9908;62:13498;118:897)
+   pra fechar botão 32×32 (4 padding + 24 slot + 4 padding). */
+export const DownloadIconSlot = styled(View)`
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+`;

@@ -7,6 +7,7 @@ import {
   Card,
   CompactActionButton,
   DateText,
+  DownloadIconSlot,
   ExamLink,
   ExamLinkText,
   YearText,
@@ -88,7 +89,13 @@ export const ExamInfoCard = forwardRef<View, ExamInfoCardProps>(
             accessibilityState={{ disabled: actionDisabled }}
             style={mobile && !actionDisabled ? elevation.lg : undefined}
           >
-            <Icon name="download" size={16} color="#171717" />
+            {mobile ? (
+              <DownloadIconSlot>
+                <Icon name="download" size={16} color="#171717" />
+              </DownloadIconSlot>
+            ) : (
+              <Icon name="download" size={16} color="#171717" />
+            )}
           </CompactActionButton>
         ) : (
           <Button

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import { Icon } from '../Icon';
 import type { ToastVariant } from './Toast.types';
 
 const SYMBOL: Record<ToastVariant, string> = {
@@ -18,18 +19,26 @@ export const StatusIcon = ({ variant, color }: { variant: ToastVariant; color: s
       justifyContent: 'center',
     }}
   >
-    <Text
-      style={{
-        fontFamily: 'Montserrat, system-ui, sans-serif',
-        fontSize: 18,
-        fontWeight: '700',
-        color,
-        textAlign: 'center',
-        includeFontPadding: false,
-      }}
-    >
-      {SYMBOL[variant]}
-    </Text>
+    {variant === 'info' ? (
+      // Figma 353:12284 — Toast info usa Material `info` glyph (circle
+      // com "i"), não o literal char Montserrat 18. Outros variants
+      // (error/warning/success) continuam usando literal char até bump
+      // futuro que registre ícones próprios.
+      <Icon name="info" size={20} color={color} />
+    ) : (
+      <Text
+        style={{
+          fontFamily: 'Montserrat, system-ui, sans-serif',
+          fontSize: 18,
+          fontWeight: '700',
+          color,
+          textAlign: 'center',
+          includeFontPadding: false,
+        }}
+      >
+        {SYMBOL[variant]}
+      </Text>
+    )}
   </View>
 );
 

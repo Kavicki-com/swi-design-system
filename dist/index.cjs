@@ -3324,6 +3324,66 @@ var Combobox = React36.forwardRef(
   }
 );
 Combobox.displayName = "Combobox";
+function Pagination({
+  currentPage,
+  pageCount = 4,
+  onPageChange,
+  onOverflowPress,
+  testID
+}) {
+  const theme2 = useTheme();
+  const pages = Array.from({ length: pageCount }, (_, i) => i + 1);
+  return /* @__PURE__ */ jsxRuntime.jsxs(
+    reactNative.View,
+    {
+      testID,
+      style: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 10
+      },
+      children: [
+        pages.map((n) => /* @__PURE__ */ jsxRuntime.jsx(reactNative.View, { style: { flex: 1 }, children: /* @__PURE__ */ jsxRuntime.jsx(
+          Button,
+          {
+            variant: "ghost",
+            label: String(n),
+            accessibilityLabel: `P\xE1gina ${n}`,
+            onPress: () => onPageChange(n)
+          }
+        ) }, n)),
+        /* @__PURE__ */ jsxRuntime.jsx(reactNative.View, { style: { flex: 1 }, children: /* @__PURE__ */ jsxRuntime.jsx(
+          Button,
+          {
+            variant: "ghost",
+            label: "...",
+            accessibilityLabel: "Mais p\xE1ginas",
+            onPress: onOverflowPress
+          }
+        ) }),
+        /* @__PURE__ */ jsxRuntime.jsx(reactNative.View, { style: { flex: 1 }, children: /* @__PURE__ */ jsxRuntime.jsx(
+          Button,
+          {
+            variant: "contained",
+            backgroundColor: theme2.surface.primary,
+            accessibilityLabel: "Pr\xF3xima p\xE1gina",
+            onPress: () => onPageChange(currentPage + 1),
+            iconLeft: /* @__PURE__ */ jsxRuntime.jsx(
+              Icon,
+              {
+                name: "keyboard_arrow_right",
+                width: 7.4,
+                height: 12,
+                color: theme2.content.light
+              }
+            )
+          }
+        ) })
+      ]
+    }
+  );
+}
 var borderColor = ({
   $state,
   $variant,
@@ -6355,6 +6415,7 @@ exports.Logo = Logo;
 exports.MapControl = MapControl;
 exports.MenuItem = MenuItem;
 exports.NowMarker = NowMarker;
+exports.Pagination = Pagination;
 exports.ProgressBar = ProgressBar;
 exports.Radio = Radio;
 exports.ReportCard = ReportCard;

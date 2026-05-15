@@ -63,6 +63,8 @@ export { SearchInput } from './components/SearchInput';
 export type { SearchInputProps } from './components/SearchInput';
 export { ProgressBar } from './components/ProgressBar';
 export type { ProgressBarProps } from './components/ProgressBar';
+export { Pagination } from './components/Pagination';
+export type { PaginationProps } from './components/Pagination';
 export { Chip } from './components/Chip';
 export type { ChipProps, ChipState } from './components/Chip';
 export { ChipGroup } from './components/ChipGroup';

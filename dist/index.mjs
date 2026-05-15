@@ -3316,6 +3316,66 @@ var Combobox = forwardRef(
   }
 );
 Combobox.displayName = "Combobox";
+function Pagination({
+  currentPage,
+  pageCount = 4,
+  onPageChange,
+  onOverflowPress,
+  testID
+}) {
+  const theme2 = useTheme();
+  const pages = Array.from({ length: pageCount }, (_, i) => i + 1);
+  return /* @__PURE__ */ jsxs(
+    View,
+    {
+      testID,
+      style: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 10
+      },
+      children: [
+        pages.map((n) => /* @__PURE__ */ jsx(View, { style: { flex: 1 }, children: /* @__PURE__ */ jsx(
+          Button,
+          {
+            variant: "ghost",
+            label: String(n),
+            accessibilityLabel: `P\xE1gina ${n}`,
+            onPress: () => onPageChange(n)
+          }
+        ) }, n)),
+        /* @__PURE__ */ jsx(View, { style: { flex: 1 }, children: /* @__PURE__ */ jsx(
+          Button,
+          {
+            variant: "ghost",
+            label: "...",
+            accessibilityLabel: "Mais p\xE1ginas",
+            onPress: onOverflowPress
+          }
+        ) }),
+        /* @__PURE__ */ jsx(View, { style: { flex: 1 }, children: /* @__PURE__ */ jsx(
+          Button,
+          {
+            variant: "contained",
+            backgroundColor: theme2.surface.primary,
+            accessibilityLabel: "Pr\xF3xima p\xE1gina",
+            onPress: () => onPageChange(currentPage + 1),
+            iconLeft: /* @__PURE__ */ jsx(
+              Icon,
+              {
+                name: "keyboard_arrow_right",
+                width: 7.4,
+                height: 12,
+                color: theme2.content.light
+              }
+            )
+          }
+        ) })
+      ]
+    }
+  );
+}
 var borderColor = ({
   $state,
   $variant,
@@ -6313,6 +6373,6 @@ var TopBar = forwardRef(
 );
 TopBar.displayName = "TopBar";
 
-export { Accordion, ActivitiesOverviewCard, Avatar, AvatarGroup, BigNumbersCard, Button, CaloriesTag, ChatBubble, ChatSection, ChatUserCard, Checkbox, Chip, ChipGroup, Combobox, DonutChart, EmployeeOverviewCard, ExamInfoCard, GenderSelectionCard, GenderSelector, Header2 as Header, HeaderUserInfo, HeartStatus, HeartrateStatus, HorizontalCard, Icon, Image, ImageUploader, Input, LineCaloriesChart, LocationPin, Logo, MapControl, MenuItem, NowMarker, ProgressBar, Radio, ReportCard, SearchInput, SideMenu, Silhouette, SmartbandStatus, StatusChart, StatusTag, Step, StepBar, SuccessBadge, Surface, SwiThemeProvider, Tabs, Text, TimeStamp, Title2 as Title, Toast, Toggle, TopBar, WeatherEventChip, WeatherIcon, WeatherTimeline, WeatherTimelineEntry, WorkersInfoCard, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
+export { Accordion, ActivitiesOverviewCard, Avatar, AvatarGroup, BigNumbersCard, Button, CaloriesTag, ChatBubble, ChatSection, ChatUserCard, Checkbox, Chip, ChipGroup, Combobox, DonutChart, EmployeeOverviewCard, ExamInfoCard, GenderSelectionCard, GenderSelector, Header2 as Header, HeaderUserInfo, HeartStatus, HeartrateStatus, HorizontalCard, Icon, Image, ImageUploader, Input, LineCaloriesChart, LocationPin, Logo, MapControl, MenuItem, NowMarker, Pagination, ProgressBar, Radio, ReportCard, SearchInput, SideMenu, Silhouette, SmartbandStatus, StatusChart, StatusTag, Step, StepBar, SuccessBadge, Surface, SwiThemeProvider, Tabs, Text, TimeStamp, Title2 as Title, Toast, Toggle, TopBar, WeatherEventChip, WeatherIcon, WeatherTimeline, WeatherTimelineEntry, WorkersInfoCard, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
 //# sourceMappingURL=index.mjs.map
 //# sourceMappingURL=index.mjs.map

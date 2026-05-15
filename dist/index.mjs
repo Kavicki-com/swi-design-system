@@ -829,7 +829,7 @@ var Header = styled38(Pressable)`
 var TitleText = styled38.Text`
   flex: 1;
   min-width: 0;
-  text-align: center;
+  text-align: left;
   color: ${({ theme: theme2 }) => theme2.content.primary};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;

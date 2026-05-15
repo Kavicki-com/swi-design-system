@@ -21,7 +21,7 @@ export const Header = styled(Pressable)<{ $disabled: boolean }>`
 export const TitleText = styled.Text`
   flex: 1;
   min-width: 0;
-  text-align: center;
+  text-align: left;
   color: ${({ theme }) => theme.content.primary};
   font-family: ${({ theme }) => theme.fontFamily.body};
   font-size: ${({ theme }) => theme.fontSize.m}px;

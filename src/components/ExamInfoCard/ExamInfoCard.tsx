@@ -2,6 +2,7 @@ import React, { forwardRef } from 'react';
 import { type View } from 'react-native';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
+import { elevation } from '../../tokens';
 import {
   Card,
   CompactActionButton,
@@ -25,6 +26,8 @@ export const ExamInfoCard = forwardRef<View, ExamInfoCardProps>(
       fullWidth = false,
       compact = false,
       past = false,
+      mobile = false,
+      future = false,
       accessibilityLabel,
       testID,
     },
@@ -34,6 +37,7 @@ export const ExamInfoCard = forwardRef<View, ExamInfoCardProps>(
       <Card
         ref={ref}
         $compact={compact}
+        $mobile={mobile}
         $past={past}
         accessibilityLabel={accessibilityLabel ?? `${examName} ${date} ${year}`}
         testID={testID}
@@ -43,11 +47,17 @@ export const ExamInfoCard = forwardRef<View, ExamInfoCardProps>(
             : { alignSelf: 'flex-start' }
         }
       >
-        <YearText $past={past} numberOfLines={compact ? 1 : undefined}>
+        <YearText
+          $past={past}
+          $mobile={mobile}
+          $future={future}
+          numberOfLines={compact ? 1 : undefined}
+        >
           {year}
         </YearText>
         <DateText
           $compact={compact}
+          $mobile={mobile}
           $past={past}
           numberOfLines={compact ? 1 : undefined}
         >
@@ -70,11 +80,13 @@ export const ExamInfoCard = forwardRef<View, ExamInfoCardProps>(
         </ExamLink>
         {compact ? (
           <CompactActionButton
+            $mobile={mobile}
             onPress={actionDisabled ? undefined : onActionPress}
             disabled={actionDisabled}
             accessibilityRole="button"
             accessibilityLabel={actionLabel ?? `Baixar ${examName}`}
             accessibilityState={{ disabled: actionDisabled }}
+            style={mobile && !actionDisabled ? elevation.lg : undefined}
           >
             <Icon name="download" size={16} color="#171717" />
           </CompactActionButton>

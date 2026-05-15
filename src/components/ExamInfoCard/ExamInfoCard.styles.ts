@@ -1,33 +1,67 @@
 import { Pressable, View } from 'react-native';
 import styled from 'styled-components/native';
 
-export const Card = styled(View)<{ $compact?: boolean; $past?: boolean }>`
+/*
+ * Compact mode has two metric specs:
+ *   • admin (default): Figma 159:15646 — Montserrat Bold 16 year, 4V/12H
+ *     padding, gap 8, button 8V/12H.
+ *   • mobile (`$mobile`): Figma 342:9907 + 361:12377 — Inter Bold 14 year,
+ *     8 all-sides padding, gap 12, button 4 all-sides + drop shadow.
+ */
+
+export const Card = styled(View)<{
+  $compact?: boolean;
+  $mobile?: boolean;
+  $past?: boolean;
+}>`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: ${({ theme, $compact }) =>
-    $compact
-      ? `${theme.padding.xs}px ${theme.padding.sm}px`
-      : `${theme.padding.sm}px ${theme.padding.m}px`};
+  padding: ${({ theme, $compact, $mobile }) => {
+    if ($compact && $mobile) return `${theme.padding.s}px`;
+    if ($compact) return `${theme.padding.xs}px ${theme.padding.sm}px`;
+    return `${theme.padding.sm}px ${theme.padding.m}px`;
+  }};
   border-radius: ${({ theme }) => theme.border.radius.m}px;
   background-color: ${({ theme }) => theme.surface.standard};
-  gap: ${({ theme, $compact }) => ($compact ? theme.gap.s : theme.gap.m)}px;
+  gap: ${({ theme, $compact, $mobile }) => {
+    if ($compact && $mobile) return theme.gap.sm;
+    if ($compact) return theme.gap.s;
+    return theme.gap.m;
+  }}px;
 `;
 
-export const YearText = styled.Text<{ $past?: boolean }>`
+export const YearText = styled.Text<{
+  $past?: boolean;
+  $mobile?: boolean;
+  $future?: boolean;
+}>`
   color: ${({ theme, $past }) => ($past ? theme.content.medium : theme.content.dark)};
-  font-family: ${({ theme }) => theme.fontFamily.title};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-  font-size: ${({ theme }) => theme.fontSize.ms}px;
+  font-family: ${({ theme, $mobile }) =>
+    $mobile ? theme.fontFamily.body : theme.fontFamily.title};
+  font-weight: ${({ theme, $future }) =>
+    $future ? theme.fontWeight.regular : theme.fontWeight.bold};
+  font-size: ${({ theme, $mobile }) =>
+    $mobile ? theme.fontSize.m : theme.fontSize.ms}px;
 `;
 
-export const DateText = styled.Text<{ $compact?: boolean; $past?: boolean }>`
+export const DateText = styled.Text<{
+  $compact?: boolean;
+  $mobile?: boolean;
+  $past?: boolean;
+}>`
   color: ${({ theme, $past }) => ($past ? theme.content.medium : theme.content.dark)};
   font-family: ${({ theme }) => theme.fontFamily.body};
-  font-weight: ${({ theme, $compact }) =>
-    $compact ? theme.fontWeight.regular : theme.fontWeight.medium};
-  font-size: ${({ theme, $compact }) =>
-    $compact ? theme.fontSize.m : theme.fontSize.ms}px;
+  font-weight: ${({ theme, $compact, $mobile }) => {
+    if ($compact && $mobile) return theme.fontWeight.medium;
+    if ($compact) return theme.fontWeight.regular;
+    return theme.fontWeight.medium;
+  }};
+  font-size: ${({ theme, $compact, $mobile }) => {
+    if ($compact && $mobile) return theme.fontSize.sm;
+    if ($compact) return theme.fontSize.m;
+    return theme.fontSize.ms;
+  }}px;
   ${({ $compact }) =>
     $compact
       ? ''
@@ -65,9 +99,12 @@ export const ExamLinkText = styled.Text<{ $compact?: boolean; $past?: boolean }>
     $past ? theme.content.medium : theme.content.secondary};
 `;
 
-export const CompactActionButton = styled(Pressable)`
+export const CompactActionButton = styled(Pressable)<{ $mobile?: boolean }>`
   background-color: ${({ theme }) => theme.surface.primary};
-  padding: ${({ theme }) => theme.padding.s}px ${({ theme }) => theme.padding.sm}px;
+  padding: ${({ theme, $mobile }) =>
+    $mobile
+      ? `${theme.padding.xs}px`
+      : `${theme.padding.s}px ${theme.padding.sm}px`};
   border-radius: ${({ theme }) => theme.border.radius.m}px;
   align-items: center;
   justify-content: center;

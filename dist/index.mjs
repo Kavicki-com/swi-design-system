@@ -2304,22 +2304,38 @@ var Card4 = styled38(View)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: ${({ theme: theme2, $compact }) => $compact ? `${theme2.padding.xs}px ${theme2.padding.sm}px` : `${theme2.padding.sm}px ${theme2.padding.m}px`};
+  padding: ${({ theme: theme2, $compact, $mobile }) => {
+  if ($compact && $mobile) return `${theme2.padding.s}px`;
+  if ($compact) return `${theme2.padding.xs}px ${theme2.padding.sm}px`;
+  return `${theme2.padding.sm}px ${theme2.padding.m}px`;
+}};
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
-  gap: ${({ theme: theme2, $compact }) => $compact ? theme2.gap.s : theme2.gap.m}px;
+  gap: ${({ theme: theme2, $compact, $mobile }) => {
+  if ($compact && $mobile) return theme2.gap.sm;
+  if ($compact) return theme2.gap.s;
+  return theme2.gap.m;
+}}px;
 `;
 var YearText = styled38.Text`
   color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.dark};
-  font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
-  font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
-  font-size: ${({ theme: theme2 }) => theme2.fontSize.ms}px;
+  font-family: ${({ theme: theme2, $mobile }) => $mobile ? theme2.fontFamily.body : theme2.fontFamily.title};
+  font-weight: ${({ theme: theme2, $future }) => $future ? theme2.fontWeight.regular : theme2.fontWeight.bold};
+  font-size: ${({ theme: theme2, $mobile }) => $mobile ? theme2.fontSize.m : theme2.fontSize.ms}px;
 `;
 var DateText = styled38.Text`
   color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
-  font-weight: ${({ theme: theme2, $compact }) => $compact ? theme2.fontWeight.regular : theme2.fontWeight.medium};
-  font-size: ${({ theme: theme2, $compact }) => $compact ? theme2.fontSize.m : theme2.fontSize.ms}px;
+  font-weight: ${({ theme: theme2, $compact, $mobile }) => {
+  if ($compact && $mobile) return theme2.fontWeight.medium;
+  if ($compact) return theme2.fontWeight.regular;
+  return theme2.fontWeight.medium;
+}};
+  font-size: ${({ theme: theme2, $compact, $mobile }) => {
+  if ($compact && $mobile) return theme2.fontSize.sm;
+  if ($compact) return theme2.fontSize.m;
+  return theme2.fontSize.ms;
+}}px;
   ${({ $compact }) => $compact ? "" : `
     text-align: center;
     width: 240px;
@@ -2347,7 +2363,7 @@ var ExamLinkText = styled38.Text`
 `;
 var CompactActionButton = styled38(Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.primary};
-  padding: ${({ theme: theme2 }) => theme2.padding.s}px ${({ theme: theme2 }) => theme2.padding.sm}px;
+  padding: ${({ theme: theme2, $mobile }) => $mobile ? `${theme2.padding.xs}px` : `${theme2.padding.s}px ${theme2.padding.sm}px`};
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   align-items: center;
   justify-content: center;
@@ -2364,6 +2380,8 @@ var ExamInfoCard = forwardRef(
     fullWidth = false,
     compact = false,
     past = false,
+    mobile = false,
+    future = false,
     accessibilityLabel,
     testID
   }, ref) => {
@@ -2372,16 +2390,27 @@ var ExamInfoCard = forwardRef(
       {
         ref,
         $compact: compact,
+        $mobile: mobile,
         $past: past,
         accessibilityLabel: accessibilityLabel ?? `${examName} ${date} ${year}`,
         testID,
         style: fullWidth ? { alignSelf: "stretch", width: "100%" } : { alignSelf: "flex-start" },
         children: [
-          /* @__PURE__ */ jsx(YearText, { $past: past, numberOfLines: compact ? 1 : void 0, children: year }),
+          /* @__PURE__ */ jsx(
+            YearText,
+            {
+              $past: past,
+              $mobile: mobile,
+              $future: future,
+              numberOfLines: compact ? 1 : void 0,
+              children: year
+            }
+          ),
           /* @__PURE__ */ jsx(
             DateText,
             {
               $compact: compact,
+              $mobile: mobile,
               $past: past,
               numberOfLines: compact ? 1 : void 0,
               children: date
@@ -2409,11 +2438,13 @@ var ExamInfoCard = forwardRef(
           compact ? /* @__PURE__ */ jsx(
             CompactActionButton,
             {
+              $mobile: mobile,
               onPress: actionDisabled ? void 0 : onActionPress,
               disabled: actionDisabled,
               accessibilityRole: "button",
               accessibilityLabel: actionLabel ?? `Baixar ${examName}`,
               accessibilityState: { disabled: actionDisabled },
+              style: mobile && !actionDisabled ? elevation.lg : void 0,
               children: /* @__PURE__ */ jsx(Icon, { name: "download", size: 16, color: "#171717" })
             }
           ) : /* @__PURE__ */ jsx(

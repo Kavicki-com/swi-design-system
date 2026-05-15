@@ -119,3 +119,46 @@ export const CompactStacked: Story = {
     </View>
   ),
 };
+
+export const CompactMobile: Story = {
+  name: 'Compact mobile — Figma 342:9907 + 361:12377',
+  parameters: { controls: { disable: true }, actions: { disable: true } },
+  render: () => (
+    <View style={{ width: 328, gap: 16 }}>
+      <Caption>Histórico Médico</Caption>
+      <ExamInfoCard
+        year={2027}
+        date="05 Mar"
+        examName="Exame de reciclagem técnica"
+        compact
+        mobile
+        fullWidth
+      />
+      <ExamInfoCard
+        year={2029}
+        date="19 Nov"
+        examName="Avaliação de segurança"
+        compact
+        mobile
+        fullWidth
+      />
+      <ExamInfoCard
+        year={2031}
+        date="14 Jul"
+        examName="Certificação em normas ISO"
+        compact
+        mobile
+        fullWidth
+      />
+      <ExamInfoCard
+        year={2033}
+        date="28 Fev"
+        examName="Exame de aptidão física e mental"
+        compact
+        mobile
+        future
+        fullWidth
+      />
+    </View>
+  ),
+};

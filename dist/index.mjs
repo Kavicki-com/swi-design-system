@@ -306,6 +306,7 @@ var typography = {
   }
 };
 var SHADOW_COLOR = "#1D1D1D";
+var OVERLAY_COLOR = "rgba(0,0,0,0.4)";
 var elevation = {
   sm: Platform.select({
     ios: {
@@ -347,13 +348,17 @@ var elevation = {
 };
 
 // src/tokens/index.ts
+var shadow = { color: SHADOW_COLOR };
+var overlay = OVERLAY_COLOR;
 var theme = {
   ...semantic,
   typography,
   fontFamily,
   fontWeight,
   fontSize,
-  elevation
+  elevation,
+  shadow,
+  overlay
 };
 var SwiThemeProvider = ({ children, theme: override }) => /* @__PURE__ */ jsx(ThemeProvider, { theme: override ?? theme, children });
 var useTheme = useTheme$1;
@@ -2778,7 +2783,7 @@ var resolve = (variant) => {
   return typography.title[key] ?? typography.title.m;
 };
 var Title2 = forwardRef(
-  ({ variant = "title.m", color, children, style, ...rest }, ref) => {
+  ({ variant = "title.m", weight, color, children, style, ...rest }, ref) => {
     const theme2 = useTheme();
     const { tone } = useSurfaceTone();
     const styleDef = resolve(variant);
@@ -2791,7 +2796,7 @@ var Title2 = forwardRef(
         style: [
           {
             fontFamily: styleDef.fontFamily,
-            fontWeight: styleDef.fontWeight,
+            fontWeight: weight ? fontWeight[weight] : styleDef.fontWeight,
             fontSize: styleDef.fontSize,
             color: color ?? defaultColor
           },
@@ -5301,7 +5306,7 @@ var resolve2 = (variant) => {
   return slot?.[key] ?? typography.body.m;
 };
 var Text = forwardRef(
-  ({ variant = "body.m", color, children, style, ...rest }, ref) => {
+  ({ variant = "body.m", weight, color, children, style, ...rest }, ref) => {
     const theme2 = useTheme();
     const { tone } = useSurfaceTone();
     const styleDef = resolve2(variant);
@@ -5313,7 +5318,7 @@ var Text = forwardRef(
         style: [
           {
             fontFamily: styleDef.fontFamily,
-            fontWeight: styleDef.fontWeight,
+            fontWeight: weight ? fontWeight[weight] : styleDef.fontWeight,
             fontSize: styleDef.fontSize,
             color: color ?? defaultColor
           },

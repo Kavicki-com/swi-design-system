@@ -8,7 +8,17 @@
 
 import { Platform, type ViewStyle } from 'react-native';
 
-const SHADOW_COLOR = '#1D1D1D';
+/**
+ * Canonical shadow color for elevation tokens AND any ad-hoc `shadowColor`
+ * usage at the consumer side (consume via `theme.shadow.color`).
+ */
+export const SHADOW_COLOR = '#1D1D1D';
+
+/**
+ * Backdrop color for modal overlays / scrims. Applied as `backgroundColor`
+ * on the full-screen wrapper of modal routes (consume via `theme.overlay`).
+ */
+export const OVERLAY_COLOR = 'rgba(0,0,0,0.4)';
 
 export const elevation = {
   sm: Platform.select({

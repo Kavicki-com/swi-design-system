@@ -431,6 +431,10 @@ declare const theme: {
         readonly lg: react_native.ViewStyle;
         readonly negative: react_native.ViewStyle;
     };
+    readonly shadow: {
+        readonly color: "#1D1D1D";
+    };
+    readonly overlay: "rgba(0,0,0,0.4)";
     readonly background: "#171717";
     readonly surface: {
         readonly standard: "#1F1F1F";
@@ -1719,8 +1723,12 @@ interface LineCaloriesChartProps {
 declare const LineCaloriesChart: React$1.ForwardRefExoticComponent<LineCaloriesChartProps & React$1.RefAttributes<View>>;
 
 type TitleVariant = `title.${keyof typeof typography.title}`;
+/** Overrides the variant's default weight while keeping its family/size. */
+type TitleWeight = keyof typeof fontWeight;
 interface TitleProps extends TextProps$1 {
     variant?: TitleVariant;
+    /** Overrides the variant's default fontWeight. */
+    weight?: TitleWeight;
     color?: string;
     children: React.ReactNode;
 }
@@ -1896,8 +1904,16 @@ interface WorkersInfoCardProps {
 declare const WorkersInfoCard: React$1.ForwardRefExoticComponent<WorkersInfoCardProps & React$1.RefAttributes<View>>;
 
 type TextVariant = `subtitle.${keyof typeof typography.subtitle}` | `body.${keyof typeof typography.body}` | `caption.${keyof typeof typography.caption}`;
+/**
+ * Overrides the variant's default weight while keeping its family/size.
+ * Use for combinations the variant matrix doesn't enumerate (e.g. bold
+ * body.m on a date/name label).
+ */
+type TextWeight = keyof typeof fontWeight;
 interface TextProps extends TextProps$1 {
     variant?: TextVariant;
+    /** Overrides the variant's default fontWeight. */
+    weight?: TextWeight;
     color?: string;
     children: React.ReactNode;
 }

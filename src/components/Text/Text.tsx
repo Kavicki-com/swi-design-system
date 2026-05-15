@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { Text as RNText, type Text as RNTextRef, type TextStyle } from 'react-native';
 import { useTheme } from '../../theme';
-import { typography } from '../../tokens';
+import { typography, fontWeight as fontWeightTokens } from '../../tokens';
 import { useSurfaceTone } from '../Surface';
 import type { TextProps, TextVariant } from './Text.types';
 
@@ -12,7 +12,7 @@ const resolve = (variant: TextVariant): TextStyle => {
 };
 
 export const Text = forwardRef<RNTextRef, TextProps>(
-  ({ variant = 'body.m', color, children, style, ...rest }, ref) => {
+  ({ variant = 'body.m', weight, color, children, style, ...rest }, ref) => {
     const theme = useTheme();
     const { tone } = useSurfaceTone();
     const styleDef = resolve(variant);
@@ -28,7 +28,7 @@ export const Text = forwardRef<RNTextRef, TextProps>(
         style={[
           {
             fontFamily: styleDef.fontFamily,
-            fontWeight: styleDef.fontWeight,
+            fontWeight: weight ? fontWeightTokens[weight] : styleDef.fontWeight,
             fontSize: styleDef.fontSize,
             color: color ?? defaultColor,
           },

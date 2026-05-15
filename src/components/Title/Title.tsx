@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { Text as RNText, type Text as RNTextRef } from 'react-native';
 import { useTheme } from '../../theme';
-import { typography } from '../../tokens';
+import { typography, fontWeight as fontWeightTokens } from '../../tokens';
 import { useSurfaceTone } from '../Surface';
 import type { TitleProps } from './Title.types';
 
@@ -11,7 +11,7 @@ const resolve = (variant: string) => {
 };
 
 export const Title = forwardRef<RNTextRef, TitleProps>(
-  ({ variant = 'title.m', color, children, style, ...rest }, ref) => {
+  ({ variant = 'title.m', weight, color, children, style, ...rest }, ref) => {
     const theme = useTheme();
     const { tone } = useSurfaceTone();
     const styleDef = resolve(variant);
@@ -28,7 +28,7 @@ export const Title = forwardRef<RNTextRef, TitleProps>(
         style={[
           {
             fontFamily: styleDef.fontFamily,
-            fontWeight: styleDef.fontWeight,
+            fontWeight: weight ? fontWeightTokens[weight] : styleDef.fontWeight,
             fontSize: styleDef.fontSize,
             color: color ?? defaultColor,
           },

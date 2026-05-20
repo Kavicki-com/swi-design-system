@@ -123,12 +123,41 @@ export const typography = {
       fontSize: 8,
     },
   },
+  label: {
+    m: {
+      fontFamily: resolveFontFamily('Inter', '700'),
+      fontWeight: fontWeight.bold,
+      fontSize: 14,
+    },
+    l: {
+      fontFamily: resolveFontFamily('Inter', '700'),
+      fontWeight: fontWeight.bold,
+      fontSize: 16,
+    },
+  },
+  badge: {
+    s: {
+      fontFamily: resolveFontFamily('Inter', '700'),
+      fontWeight: fontWeight.bold,
+      fontSize: 12,
+    },
+  },
+  link: {
+    m: {
+      fontFamily: resolveFontFamily('Montserrat', '700'),
+      fontWeight: fontWeight.bold,
+      fontSize: 14,
+    },
+  },
 } as const satisfies Record<string, Record<string, TextStyle>>;
 
 export type TypographyVariant =
   | `title.${keyof typeof typography.title}`
   | `subtitle.${keyof typeof typography.subtitle}`
   | `body.${keyof typeof typography.body}`
-  | `caption.${keyof typeof typography.caption}`;
+  | `caption.${keyof typeof typography.caption}`
+  | `label.${keyof typeof typography.label}`
+  | `badge.${keyof typeof typography.badge}`
+  | `link.${keyof typeof typography.link}`;
 
 export type Typography = typeof typography;

@@ -316,8 +316,34 @@ declare const typography: {
             readonly fontSize: 8;
         };
     };
+    readonly label: {
+        readonly m: {
+            readonly fontFamily: string;
+            readonly fontWeight: "700";
+            readonly fontSize: 14;
+        };
+        readonly l: {
+            readonly fontFamily: string;
+            readonly fontWeight: "700";
+            readonly fontSize: 16;
+        };
+    };
+    readonly badge: {
+        readonly s: {
+            readonly fontFamily: string;
+            readonly fontWeight: "700";
+            readonly fontSize: 12;
+        };
+    };
+    readonly link: {
+        readonly m: {
+            readonly fontFamily: string;
+            readonly fontWeight: "700";
+            readonly fontSize: 14;
+        };
+    };
 };
-type TypographyVariant = `title.${keyof typeof typography.title}` | `subtitle.${keyof typeof typography.subtitle}` | `body.${keyof typeof typography.body}` | `caption.${keyof typeof typography.caption}`;
+type TypographyVariant = `title.${keyof typeof typography.title}` | `subtitle.${keyof typeof typography.subtitle}` | `body.${keyof typeof typography.body}` | `caption.${keyof typeof typography.caption}` | `label.${keyof typeof typography.label}` | `badge.${keyof typeof typography.badge}` | `link.${keyof typeof typography.link}`;
 
 /**
  * GENERATED FILE — do not edit by hand.
@@ -402,6 +428,32 @@ declare const theme: {
                 readonly fontFamily: string;
                 readonly fontWeight: "700";
                 readonly fontSize: 8;
+            };
+        };
+        readonly label: {
+            readonly m: {
+                readonly fontFamily: string;
+                readonly fontWeight: "700";
+                readonly fontSize: 14;
+            };
+            readonly l: {
+                readonly fontFamily: string;
+                readonly fontWeight: "700";
+                readonly fontSize: 16;
+            };
+        };
+        readonly badge: {
+            readonly s: {
+                readonly fontFamily: string;
+                readonly fontWeight: "700";
+                readonly fontSize: 12;
+            };
+        };
+        readonly link: {
+            readonly m: {
+                readonly fontFamily: string;
+                readonly fontWeight: "700";
+                readonly fontSize: 14;
             };
         };
     };
@@ -2088,7 +2140,7 @@ interface WorkersInfoCardProps {
 
 declare const WorkersInfoCard: React$1.ForwardRefExoticComponent<WorkersInfoCardProps & React$1.RefAttributes<View>>;
 
-type TextVariant = `subtitle.${keyof typeof typography.subtitle}` | `body.${keyof typeof typography.body}` | `caption.${keyof typeof typography.caption}`;
+type TextVariant = `subtitle.${keyof typeof typography.subtitle}` | `body.${keyof typeof typography.body}` | `caption.${keyof typeof typography.caption}` | `label.${keyof typeof typography.label}` | `badge.${keyof typeof typography.badge}` | `link.${keyof typeof typography.link}`;
 /**
  * Overrides the variant's default weight while keeping its family/size.
  * Use for combinations the variant matrix doesn't enumerate (e.g. bold
@@ -2099,6 +2151,13 @@ interface TextProps extends TextProps$1 {
     variant?: TextVariant;
     /** Overrides the variant's default fontWeight. */
     weight?: TextWeight;
+    /**
+     * Renders the text in italic style. Native platforms (iOS/Android) only
+     * render with the correct italic face if the host has registered an
+     * Italic font family (e.g. `Inter-Italic`, `Inter-MediumItalic`); otherwise
+     * RN falls back to a synthetic skew. Web resolves via the FontFace API.
+     */
+    italic?: boolean;
     color?: string;
     children: React.ReactNode;
 }

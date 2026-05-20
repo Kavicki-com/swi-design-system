@@ -321,6 +321,32 @@ var typography = {
       fontWeight: fontWeight.bold,
       fontSize: 8
     }
+  },
+  label: {
+    m: {
+      fontFamily: resolveFontFamily("Inter", "700"),
+      fontWeight: fontWeight.bold,
+      fontSize: 14
+    },
+    l: {
+      fontFamily: resolveFontFamily("Inter", "700"),
+      fontWeight: fontWeight.bold,
+      fontSize: 16
+    }
+  },
+  badge: {
+    s: {
+      fontFamily: resolveFontFamily("Inter", "700"),
+      fontWeight: fontWeight.bold,
+      fontSize: 12
+    }
+  },
+  link: {
+    m: {
+      fontFamily: resolveFontFamily("Montserrat", "700"),
+      fontWeight: fontWeight.bold,
+      fontSize: 14
+    }
   }
 };
 var SHADOW_COLOR = "#1D1D1D";
@@ -5677,7 +5703,7 @@ var resolve2 = (variant) => {
   return slot?.[key] ?? typography.body.m;
 };
 var Text = React12.forwardRef(
-  ({ variant = "body.m", weight, color, children, style, ...rest }, ref) => {
+  ({ variant = "body.m", weight, italic, color, children, style, ...rest }, ref) => {
     const theme2 = useTheme();
     const { tone } = useSurfaceTone();
     const styleDef = resolve2(variant);
@@ -5693,6 +5719,10 @@ var Text = React12.forwardRef(
             fontSize: styleDef.fontSize,
             color: color ?? defaultColor
           },
+          // Native renders synthetic italic unless the host registers an
+          // Italic font face (e.g. `Inter-Italic`, `Inter-MediumItalic`);
+          // web resolves via the FontFace API.
+          italic ? { fontStyle: "italic" } : null,
           style
         ],
         ...rest,

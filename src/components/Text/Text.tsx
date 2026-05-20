@@ -12,7 +12,7 @@ const resolve = (variant: TextVariant): TextStyle => {
 };
 
 export const Text = forwardRef<RNTextRef, TextProps>(
-  ({ variant = 'body.m', weight, color, children, style, ...rest }, ref) => {
+  ({ variant = 'body.m', weight, italic, color, children, style, ...rest }, ref) => {
     const theme = useTheme();
     const { tone } = useSurfaceTone();
     const styleDef = resolve(variant);
@@ -32,6 +32,10 @@ export const Text = forwardRef<RNTextRef, TextProps>(
             fontSize: styleDef.fontSize,
             color: color ?? defaultColor,
           },
+          // Native renders synthetic italic unless the host registers an
+          // Italic font face (e.g. `Inter-Italic`, `Inter-MediumItalic`);
+          // web resolves via the FontFace API.
+          italic ? { fontStyle: 'italic' as const } : null,
           style,
         ]}
         {...rest}

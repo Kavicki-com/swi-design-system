@@ -1,5 +1,24 @@
 import type { StorybookConfig } from '@storybook/react-vite';
 import path from 'node:path';
+// @ts-expect-error flow-remove-types ships no types
+import flowRemoveTypes from 'flow-remove-types';
+import type { Plugin } from 'vite';
+
+// react-native-svg deep-imports `@react-native/assets-registry/registry`, which
+// ships as Flow-typed `.js`. Rollup's parser chokes on `export type`, so strip
+// Flow annotations from any `.js` under `node_modules/@react-native/**` before
+// the commonjs/esm passes see them.
+const stripFlowFromReactNativePkgs = (): Plugin => ({
+  name: 'swi-strip-flow-react-native',
+  enforce: 'pre',
+  transform(code, id) {
+    const normalized = id.replace(/\\/g, '/');
+    if (!/\/node_modules\/@react-native\/[^/]+\/[^/]+\.js$/.test(normalized)) return null;
+    if (!/@flow|^\s*(import |export )?type\s/m.test(code)) return null;
+    const result = flowRemoveTypes(code, { pretty: true });
+    return { code: result.toString(), map: result.generateMap() };
+  },
+});
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(ts|tsx)'],
@@ -10,6 +29,7 @@ const config: StorybookConfig = {
   },
   typescript: { reactDocgen: 'react-docgen-typescript' },
   viteFinal: async (config, { configType }) => {
+    config.plugins = [stripFlowFromReactNativePkgs(), ...(config.plugins ?? [])];
     // GitHub Pages serves project sites from /<repo-name>/. Set the base path
     // for production builds so asset URLs resolve correctly when hosted there.
     // Override via STORYBOOK_BASE_URL env var if hosting elsewhere.

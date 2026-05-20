@@ -7,8 +7,8 @@ export const Container = styled(View)`
   border-style: dashed;
   border-color: ${({ theme }) => theme.content.primary};
   border-radius: ${({ theme }) => theme.border.radius.m}px;
-  padding: ${({ theme }) => theme.padding.s}px;
-  gap: ${({ theme }) => theme.gap.s}px;
+  padding: ${({ theme }) => theme.padding.m}px;
+  gap: ${({ theme }) => theme.gap.m}px;
   align-items: center;
 `;
 

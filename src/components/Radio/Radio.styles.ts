@@ -37,6 +37,6 @@ export const Dot = styled(View)<{ $size: RadioSize }>`
 export const Label = styled.Text`
   font-family: ${({ theme }) => theme.fontFamily.body};
   font-weight: ${({ theme }) => theme.fontWeight.regular};
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.fontSize.m}px;
   color: ${({ theme }) => theme.content.dark};
 `;

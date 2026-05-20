@@ -67,7 +67,7 @@ const dividerColor = ({
             padding 8 all sides, border-radius 8 — Figma 165:21149 map-side-menu. */
 export const Container = styled(Pressable)<StateProps>`
   height: ${({ $variant }) =>
-    $variant === 'compact' ? '44px' : $variant === 'minimal' ? '60px' : '64px'};
+    $variant === 'compact' ? '44px' : $variant === 'minimal' ? '60px' : '60px'};
   flex-direction: row;
   align-items: center;
   justify-content: ${({ $variant }) =>
@@ -152,6 +152,6 @@ export const BadgeOverlay = styled(View)<{ $position?: 'overlay' | 'outside-left
 export const BadgeText = styled.Text`
   font-family: ${({ theme }) => theme.fontFamily.body};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-  font-size: 12px;
+  font-size: ${({ theme }) => theme.fontSize.sm}px;
   color: ${({ theme }) => theme.content.dark};
 `;

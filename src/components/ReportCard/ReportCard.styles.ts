@@ -61,11 +61,11 @@ export const AuthorRow = styled(View)`
 `;
 
 export const AuthorName = styled.Text`
-  flex: 1;
-  min-width: 0;
+  flex: 0 1 auto;
+  max-width: 80px;
   color: ${({ theme }) => theme.content.dark};
   font-family: ${({ theme }) => theme.fontFamily.body};
-  font-weight: ${({ theme }) => theme.fontWeight.medium};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
   font-size: ${({ theme }) => theme.fontSize.sm}px;
 `;
 

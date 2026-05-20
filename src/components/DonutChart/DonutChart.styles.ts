@@ -36,17 +36,23 @@ export const DIMS: Record<
 
 export const Container = styled(View)`
   flex-direction: column;
+  /* Both children (TitleText, DonutWrapper) are individually centered in
+     the cross-axis. Reverted from 'stretch' on 2026-05-19 because wide titles
+     like "Média de batimentos" (~230px) made the Container wider than the
+     182px DonutWrapper — with stretch the DonutWrapper sat at flex-start
+     (left) of the wider Container, breaking visual alignment. With 'center',
+     each child centers independently and the chart stays under its title. */
   align-items: center;
   justify-content: center;
   gap: ${({ theme }) => theme.gap.s}px;
 `;
 
-export const TitleText = styled.Text<{ $size: number }>`
+export const TitleText = styled.Text<{ $size: number; $align?: 'left' | 'center' }>`
   color: ${({ theme }) => theme.content.dark};
   font-family: ${({ theme }) => theme.fontFamily.title};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   font-size: ${({ $size }) => $size}px;
-  text-align: center;
+  text-align: ${({ $align }) => $align ?? 'center'};
 `;
 
 export const DonutWrapper = styled(View)<{ $size: number }>`
@@ -83,11 +89,22 @@ export const ValueText = styled.Text<{ $size: number }>`
   text-align: center;
 `;
 
-export const LabelText = styled.Text`
+// Accept optional $size/$weight para override per-screen (Figma 364:16900
+// caption/xs = 8px Bold; default fica em 12px Medium pra outras instâncias).
+const resolveLabelWeight = (
+  $w: 'regular' | 'medium' | 'bold' | undefined,
+  theme: import('styled-components/native').DefaultTheme,
+) => {
+  if ($w === 'regular') return theme.fontWeight.regular;
+  if ($w === 'bold') return theme.fontWeight.bold;
+  return theme.fontWeight.medium;
+};
+
+export const LabelText = styled.Text<{ $size?: number; $weight?: 'regular' | 'medium' | 'bold' }>`
   color: ${({ theme }) => theme.content.dark};
   font-family: ${({ theme }) => theme.fontFamily.body};
-  font-weight: ${({ theme }) => theme.fontWeight.medium};
-  font-size: ${({ theme }) => theme.fontSize.sm}px;
+  font-weight: ${({ $weight, theme }) => resolveLabelWeight($weight, theme)};
+  font-size: ${({ $size, theme }) => $size ?? theme.fontSize.sm}px;
   text-align: center;
 `;
 
@@ -109,4 +126,7 @@ export const LocationButton = styled(Pressable)<{ $size: number }>`
   background-color: ${({ theme }) => theme.surface.standard};
   align-items: center;
   justify-content: center;
+  /* Inset shadow per Figma 43:2131 is applied via the consumer's global
+   * stylesheet targeting [data-donut-loc-btn]. RN-Web/jsdom can't parse
+   * the inset keyword in boxShadow inline values, hence the escape hatch. */
 `;

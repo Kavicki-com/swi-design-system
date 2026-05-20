@@ -50,7 +50,7 @@ export const Tab = styled(Pressable)<TabState>`
 export const TabLabel = styled.Text<{ $active: boolean }>`
   font-family: ${({ theme }) => theme.fontFamily.body};
   font-size: ${({ theme }) => theme.fontSize.m}px;
-  font-weight: ${({ theme }) => theme.fontWeight.regular};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
   color: ${({ $active, theme }) =>
     $active ? theme.content.light : theme.content.secondary};
 `;

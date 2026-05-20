@@ -69,7 +69,7 @@ export const StyledInput = styled(TextInput)<{ $disabled: boolean }>`
   min-width: 0;
   font-family: ${({ theme }) => theme.fontFamily.body};
   font-weight: ${({ theme }) => theme.fontWeight.regular};
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.fontSize.m}px;
   color: ${({ $disabled, theme }) => ($disabled ? theme.content.disable : theme.content.dark)};
   padding: 0;
   margin: 0;

@@ -34,6 +34,6 @@ export const Container = styled(View)<{ $status: StatusTagStatus }>`
 export const Label = styled.Text`
   color: ${({ theme }) => theme.content.light};
   font-family: ${({ theme }) => theme.fontFamily.body};
-  font-size: ${({ theme }) => theme.fontSize.s}px;
+  font-size: ${({ theme }) => theme.fontSize.sm}px;
   font-weight: ${({ theme }) => theme.fontWeight.bold};
 `;

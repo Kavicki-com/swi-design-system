@@ -35,10 +35,16 @@ export const DonutChart = forwardRef<View, DonutChartProps>(
       trackColor,
       icon = 'vital_signs',
       iconColor,
+      iconGradient,
       size = 'default',
       appearance = 'bevel',
+      titleAlign,
+      iconWidth,
+      iconHeight,
+      labelSize,
+      labelWeight,
       onLocationPress,
-      locationIcon = 'location_on',
+      locationIcon = 'location_on_filled',
       accessibilityLabel,
       testID,
     },
@@ -48,6 +54,8 @@ export const DonutChart = forwardRef<View, DonutChartProps>(
     const dims = DIMS[size];
     const arcTrackColor = trackColor ?? theme.surface.medium;
     const contentColor = iconColor ?? theme.content.dark;
+    const resolvedIconWidth = iconWidth ?? dims.iconWidth;
+    const resolvedIconHeight = iconHeight ?? dims.iconHeight;
 
     return (
       <Container
@@ -55,9 +63,28 @@ export const DonutChart = forwardRef<View, DonutChartProps>(
         accessibilityLabel={accessibilityLabel ?? `${title}: ${value} ${label} - ${caption ?? ''}`}
         testID={testID}
       >
-        <TitleText $size={dims.titleSize}>{title}</TitleText>
+        <TitleText $size={dims.titleSize} $align={titleAlign} numberOfLines={1}>{title}</TitleText>
 
         <DonutWrapper $size={dims.outer}>
+          {/* LocationButton rendered FIRST so its bg + icon paint behind
+              the arc + center. Only the top-right corner of the round bg
+              shows outside the donut's circular arc (matches Figma). */}
+          {onLocationPress ? (
+            <LocationButton
+              $size={dims.locationButton}
+              onPress={onLocationPress}
+              accessibilityRole="button"
+              accessibilityLabel="Open location"
+              // dataSet is RN-Web specific (becomes data-* attrs on the DOM);
+              // styled(Pressable) drops it from the public type so we cast.
+              {...({ dataSet: { donutLocBtn: 'true' } } as Record<string, unknown>)}
+            >
+              {/* Location pin stays content.dark (white) regardless of the
+                 heartbeat iconColor — Figma 43:2131 spec. */}
+              <Icon name={locationIcon} size={20} color={theme.content.dark} />
+            </LocationButton>
+          ) : null}
+
           <ArcSlot>
             <DonutArc
               size={dims.outer}
@@ -72,24 +99,14 @@ export const DonutChart = forwardRef<View, DonutChartProps>(
           <Center>
             <Icon
               name={icon}
-              width={dims.iconWidth}
-              height={dims.iconHeight}
+              width={resolvedIconWidth}
+              height={resolvedIconHeight}
               color={contentColor}
+              gradient={iconGradient}
             />
             <ValueText $size={dims.valueSize}>{value}</ValueText>
-            <LabelText>{label}</LabelText>
+            <LabelText $size={labelSize} $weight={labelWeight}>{label}</LabelText>
           </Center>
-
-          {onLocationPress ? (
-            <LocationButton
-              $size={dims.locationButton}
-              onPress={onLocationPress}
-              accessibilityRole="button"
-              accessibilityLabel="Open location"
-            >
-              <Icon name={locationIcon} size={20} color={contentColor} />
-            </LocationButton>
-          ) : null}
         </DonutWrapper>
 
         {caption ? <Caption>{caption}</Caption> : null}

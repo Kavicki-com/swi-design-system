@@ -18,16 +18,29 @@ const triggerBackground = ({
   return theme.surface.standard;
 };
 
-export const Container = styled(View)`
+export const Container = styled(View)<{ $open?: boolean }>`
   flex-direction: column;
   align-self: stretch;
   gap: ${({ theme }) => theme.gap.xs}px;
+  /* When the menu is open we lift the whole container so its absolutely-
+   * positioned Panel paints above following sibling Comboboxes/inputs.
+   * Without this, the next sibling (which is static-positioned and comes
+   * later in DOM order) renders on top of the floating Panel. */
+  position: ${({ $open }) => ($open ? 'relative' : 'static')};
+  z-index: ${({ $open }) => ($open ? 1000 : 'auto')};
 `;
 
+/* Inter Bold per Figma (e.g. 213:13619 "Tipo sanguíneo"). Antes era
+   fontFamily.title (Montserrat) — corrigido 2026-05-18 quando o usuário
+   detectou no step-3 que Altura/Peso/Tipo sanguíneo renderizavam Montserrat
+   enquanto os outros labels Inter próximos eram Inter.
+   IMPORTANTE: comentário fica FORA do template literal — styled-components
+   trata "//" line comments dentro do template como CSS quebrado e o texto
+   do comentário vaza pro className, anulando font-family. */
 export const Label = styled.Text<{ $disabled: boolean }>`
-  font-family: ${({ theme }) => theme.fontFamily.title};
+  font-family: ${({ theme }) => theme.fontFamily.body};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.fontSize.m}px;
   color: ${({ $disabled, theme }) => ($disabled ? theme.content.disable : theme.content.dark)};
 `;
 
@@ -44,7 +57,7 @@ export const TriggerLabel = styled.Text<{ $placeholder: boolean; $disabled: bool
   flex: 1;
   font-family: ${({ theme }) => theme.fontFamily.body};
   font-weight: ${({ theme }) => theme.fontWeight.regular};
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.fontSize.m}px;
   color: ${({ $placeholder, $disabled, theme }) => {
     if ($disabled) return theme.content.disable;
     if ($placeholder) return theme.content.medium;
@@ -53,7 +66,7 @@ export const TriggerLabel = styled.Text<{ $placeholder: boolean; $disabled: bool
 `;
 
 export const Chevron = styled.Text<{ $disabled: boolean }>`
-  font-size: 12px;
+  font-size: ${({ theme }) => theme.fontSize.sm}px;
   color: ${({ $disabled, theme }) => ($disabled ? theme.content.disable : theme.content.dark)};
 `;
 
@@ -94,13 +107,13 @@ export const OptionRow = styled(Pressable)<{ $first: boolean; $hovered: boolean 
 export const OptionLabel = styled.Text`
   font-family: ${({ theme }) => theme.fontFamily.body};
   font-weight: ${({ theme }) => theme.fontWeight.regular};
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.fontSize.m}px;
   color: ${({ theme }) => theme.content.dark};
 `;
 
 export const Description = styled.Text<{ $disabled: boolean }>`
   font-family: ${({ theme }) => theme.fontFamily.body};
   font-weight: ${({ theme }) => theme.fontWeight.medium};
-  font-size: 12px;
+  font-size: ${({ theme }) => theme.fontSize.sm}px;
   color: ${({ $disabled, theme }) => ($disabled ? theme.content.disable : theme.content.dark)};
 `;

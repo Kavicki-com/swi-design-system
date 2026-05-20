@@ -39,14 +39,14 @@ export const MessageContainer = styled(View)`
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fontFamily.body};
   font-weight: ${({ theme }) => theme.fontWeight.medium};
-  font-size: 12px;
+  font-size: ${({ theme }) => theme.fontSize.sm}px;
   color: ${({ theme }) => theme.content.light};
 `;
 
 export const Message = styled.Text`
   font-family: ${({ theme }) => theme.fontFamily.body};
   font-weight: ${({ theme }) => theme.fontWeight.medium};
-  font-size: 12px;
+  font-size: ${({ theme }) => theme.fontSize.sm}px;
   color: ${({ theme }) => theme.content.light};
 `;
 

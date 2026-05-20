@@ -1,7 +1,7 @@
 import * as react_jsx_runtime from 'react/jsx-runtime';
 import React$1, { ReactNode } from 'react';
 import * as react_native from 'react-native';
-import { ViewStyle, View, PressableProps, TextInputProps, TextInput, StyleProp, ImageSourcePropType, Image as Image$1, TextProps as TextProps$1, Text as Text$1, GestureResponderEvent, ViewProps } from 'react-native';
+import { ViewStyle, View, StyleProp, PressableProps, TextInputProps, TextInput, ImageSourcePropType, Image as Image$1, TextProps as TextProps$1, Text as Text$1, GestureResponderEvent, ViewProps } from 'react-native';
 
 /**
  * GENERATED FILE — do not edit by hand.
@@ -558,9 +558,22 @@ declare const iconPaths: {
         readonly viewBox: "0 -960 960 960";
         readonly d: "M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z";
     };
+    readonly add_circle: {
+        readonly viewBox: "0 0 20 20";
+        readonly d: "M9 11V14C9 14.2833 9.096 14.521 9.288 14.713C9.48 14.905 9.71733 15.0007 10 15C10.2827 14.9993 10.5203 14.9033 10.713 14.712C10.9057 14.5207 11.0013 14.2833 11 14V11H14C14.2833 11 14.521 10.904 14.713 10.712C14.905 10.52 15.0007 10.2827 15 10C14.9993 9.71733 14.9033 9.48 14.712 9.288C14.5207 9.096 14.2833 9 14 9H11V6C11 5.71667 10.904 5.47933 10.712 5.288C10.52 5.09667 10.2827 5.00067 10 5C9.71733 4.99933 9.48 5.09533 9.288 5.288C9.096 5.48067 9 5.718 9 6V9H6C5.71667 9 5.47933 9.096 5.288 9.288C5.09667 9.48 5.00067 9.71733 5 10C4.99933 10.2827 5.09533 10.5203 5.288 10.713C5.48067 10.9057 5.718 11.0013 6 11H9ZM10 20C8.61667 20 7.31667 19.7373 6.1 19.212C4.88334 18.6867 3.825 17.9743 2.925 17.075C2.025 16.1757 1.31267 15.1173 0.788001 13.9C0.263335 12.6827 0.000667932 11.3827 1.26582e-06 10C-0.000665401 8.61733 0.262001 7.31733 0.788001 6.1C1.314 4.88267 2.02633 3.82433 2.925 2.925C3.82367 2.02567 4.882 1.31333 6.1 0.788C7.318 0.262667 8.618 0 10 0C11.382 0 12.682 0.262667 13.9 0.788C15.118 1.31333 16.1763 2.02567 17.075 2.925C17.9737 3.82433 18.6863 4.88267 19.213 6.1C19.7397 7.31733 20.002 8.61733 20 10C19.998 11.3827 19.7353 12.6827 19.212 13.9C18.6887 15.1173 17.9763 16.1757 17.075 17.075C16.1737 17.9743 15.1153 18.687 13.9 19.213C12.6847 19.739 11.3847 20.0013 10 20ZM10 18C12.2333 18 14.125 17.225 15.675 15.675C17.225 14.125 18 12.2333 18 10C18 7.76667 17.225 5.875 15.675 4.325C14.125 2.775 12.2333 2 10 2C7.76667 2 5.875 2.775 4.325 4.325C2.775 5.875 2 7.76667 2 10C2 12.2333 2.775 14.125 4.325 15.675C5.875 17.225 7.76667 18 10 18Z";
+    };
     readonly priority_high: {
         readonly viewBox: "0 -960 960 960";
         readonly d: "M480-240q-25 0-42.5-17.5T420-300q0-25 17.5-42.5T480-360q25 0 42.5 17.5T540-300q0 25-17.5 42.5T480-240Zm0-200q-17 0-28.5-11.5T440-480v-200q0-17 11.5-28.5T480-720q17 0 28.5 11.5T520-680v200q0 17-11.5 28.5T480-440Z";
+    };
+    readonly chat_bubble_outline: {
+        readonly viewBox: "0 0 24 24";
+        readonly d: "M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z";
+    };
+    readonly water_drop: {
+        readonly viewBox: "0 0 24 24";
+        readonly d: "M12 21C9.78333 21 7.89583 20.2333 6.3375 18.7C4.77917 17.1667 4 15.3 4 13.1C4 12.05 4.20417 11.0458 4.6125 10.0875C5.02083 9.12917 5.6 8.28333 6.35 7.55L12 2L17.65 7.55C18.4 8.28333 18.9792 9.12917 19.3875 10.0875C19.7958 11.0458 20 12.05 20 13.1C20 15.3 19.2208 17.1667 17.6625 18.7C16.1042 20.2333 14.2167 21 12 21ZM6 13.1H18C18 12.3167 17.85 11.5708 17.55 10.8625C17.25 10.1542 16.8167 9.53333 16.25 9L12 4.8L7.75 9C7.18333 9.53333 6.75 10.1542 6.45 10.8625C6.15 11.5708 6 12.3167 6 13.1Z";
+        readonly fillRule: "evenodd";
     };
     readonly check_circle: {
         readonly viewBox: "0 0 40 40";
@@ -681,13 +694,21 @@ declare const iconPaths: {
         readonly viewBox: "0 -960 960 960";
         readonly d: "M480-120q-74 0-139.5-28.5T226-226q-49-49-77.5-114.5T120-480q0-44 10-85.5t29-78q19-36.5 45.5-68T264-768l272 272-56 56-216-216q-30 36-47 80.5T200-480q0 116 82 198t198 82q116 0 198-82t82-198q0-107-68.5-184.5T520-756v76h-80v-160h40q74 0 139.5 28.5T734-734q49 49 77.5 114.5T840-480q0 74-28.5 139.5T734-226q-49 49-114.5 77.5T480-120ZM280-440q-17 0-28.5-11.5T240-480q0-17 11.5-28.5T280-520q17 0 28.5 11.5T320-480q0 17-11.5 28.5T280-440Zm200 200q-17 0-28.5-11.5T440-280q0-17 11.5-28.5T480-320q17 0 28.5 11.5T520-280q0 17-11.5 28.5T480-240Zm200-200q-17 0-28.5-11.5T640-480q0-17 11.5-28.5T680-520q17 0 28.5 11.5T720-480q0 17-11.5 28.5T680-440Z";
     };
+    readonly nest_clock: {
+        readonly viewBox: "0 0 20 20";
+        readonly d: "M12.55 14.55L13.95 13.125L11 10.175V6H9V11L12.55 14.55ZM9 4H11V2H9V4ZM16 11H18V9H16V11ZM9 18H11V16H9V18ZM2 11H4V9H2V11ZM10 20C8.61667 20 7.31667 19.7375 6.1 19.2125C4.88333 18.6875 3.825 17.975 2.925 17.075C2.025 16.175 1.3125 15.1167 0.7875 13.9C0.2625 12.6833 0 11.3833 0 10C0 8.61667 0.2625 7.31667 0.7875 6.1C1.3125 4.88333 2.025 3.825 2.925 2.925C3.825 2.025 4.88333 1.3125 6.1 0.7875C7.31667 0.2625 8.61667 0 10 0C11.3833 0 12.6833 0.2625 13.9 0.7875C15.1167 1.3125 16.175 2.025 17.075 2.925C17.975 3.825 18.6875 4.88333 19.2125 6.1C19.7375 7.31667 20 8.61667 20 10C20 11.3833 19.7375 12.6833 19.2125 13.9C18.6875 15.1167 17.975 16.175 17.075 17.075C16.175 17.975 15.1167 18.6875 13.9 19.2125C12.6833 19.7375 11.3833 20 10 20Z";
+    };
     readonly cognition: {
         readonly viewBox: "0 -960 960 960";
         readonly d: "M491-339q70 0 119-45t49-109q0-57-36.5-96.5T534-629q-47 0-79.5 30T422-525q0 19 7.5 37t21.5 33l57-57q-3-2-4.5-5t-1.5-7q0-11 9-17.5t23-6.5q20 0 33 16.5t13 39.5q0 31-25.5 52.5T492-418q-47 0-79.5-38T380-549q0-29 11-55.5t31-46.5l-57-57q-32 31-49 72t-17 86q0 88 56 149.5T491-339ZM240-80v-172q-57-52-88.5-121.5T120-520q0-150 105-255t255-105q125 0 221.5 73.5T827-615l52 205q5 19-7 34.5T840-360h-80v120q0 33-23.5 56.5T680-160h-80v80h-80v-160h160v-200h108l-38-155q-23-91-98-148t-172-57q-116 0-198 81t-82 197q0 60 24.5 114t69.5 96l26 24v208h-80Zm254-360Z";
     };
+    readonly cognition_filled: {
+        readonly viewBox: "0 0 19.0118 20";
+        readonly d: "M9.275 13.525C10.4417 13.525 11.4333 13.15 12.25 12.4C13.0667 11.65 13.475 10.7417 13.475 9.675C13.475 8.725 13.1708 7.92083 12.5625 7.2625C11.9542 6.60417 11.2167 6.275 10.35 6.275C9.56667 6.275 8.90417 6.525 8.3625 7.025C7.82083 7.525 7.55 8.14167 7.55 8.875C7.55 9.19167 7.6125 9.5 7.7375 9.8C7.8625 10.1 8.04167 10.375 8.275 10.625L9.7 9.2C9.65 9.16667 9.6125 9.125 9.5875 9.075C9.5625 9.025 9.55 8.96667 9.55 8.9C9.55 8.71667 9.625 8.57083 9.775 8.4625C9.925 8.35417 10.1167 8.3 10.35 8.3C10.6833 8.3 10.9583 8.4375 11.175 8.7125C11.3917 8.9875 11.5 9.31667 11.5 9.7C11.5 10.2167 11.2875 10.6542 10.8625 11.0125C10.4375 11.3708 9.91667 11.55 9.3 11.55C8.51667 11.55 7.85417 11.2333 7.3125 10.6C6.77083 9.96667 6.5 9.19167 6.5 8.275C6.5 7.79167 6.59167 7.32917 6.775 6.8875C6.95833 6.44583 7.21667 6.05833 7.55 5.725L6.125 4.3C5.59167 4.81667 5.18333 5.41667 4.9 6.1C4.61667 6.78333 4.475 7.5 4.475 8.25C4.475 9.71667 4.94167 10.9625 5.875 11.9875C6.80833 13.0125 7.94167 13.525 9.275 13.525ZM3 20V15.7C2.05 14.8333 1.3125 13.8208 0.7875 12.6625C0.2625 11.5042 0 10.2833 0 9C0 6.5 0.875 4.375 2.625 2.625C4.375 0.875 6.5 0 9 0C11.0833 0 12.9292 0.6125 14.5375 1.8375C16.1458 3.0625 17.1917 4.65833 17.675 6.625L18.975 11.75C19.0583 12.0667 19 12.3542 18.8 12.6125C18.6 12.8708 18.3333 13 18 13H16V16C16 16.55 15.8042 17.0208 15.4125 17.4125C15.0208 17.8042 14.55 18 14 18H12V20H3Z";
+    };
     readonly chat_bubble: {
-        readonly viewBox: "0 -960 960 960";
-        readonly d: "M80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z";
+        readonly viewBox: "0 0 25.7143 25.7143";
+        readonly d: "M0 25.7143V2.57143C0 1.86429 0.251786 1.25893 0.755357 0.755357C1.25893 0.251786 1.86429 0 2.57143 0H23.1429C23.85 0 24.4554 0.251786 24.9589 0.755357C25.4625 1.25893 25.7143 1.86429 25.7143 2.57143V18C25.7143 18.7071 25.4625 19.3125 24.9589 19.8161C24.4554 20.3196 23.85 20.5714 23.1429 20.5714H5.14286L0 25.7143Z";
     };
     readonly delete_icon: {
         readonly viewBox: "0 -960 960 960";
@@ -708,6 +729,18 @@ declare const iconPaths: {
     readonly keyboard_arrow_up: {
         readonly viewBox: "0 -960 960 960";
         readonly d: "M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z";
+    };
+    readonly arrow_drop_up: {
+        readonly viewBox: "0 -960 960 960";
+        readonly d: "M280-400l200-200 200 200H280Z";
+    };
+    readonly arrow_drop_down: {
+        readonly viewBox: "0 -960 960 960";
+        readonly d: "M480-360 280-560h400L480-360Z";
+    };
+    readonly device_thermostat: {
+        readonly viewBox: "0 -960 960 960";
+        readonly d: "M480-80q-83 0-141.5-58.5T280-280q0-48 22-89.5t60-70.5v-320q0-50 35-85t85-35q50 0 85 35t35 85v320q38 29 60 70.5t22 89.5q0 83-58.5 141.5T480-80Zm0-80q50 0 85-35t35-85q0-30-13-55t-37-43l-10-8v-374q0-17-11.5-28.5T480-800q-17 0-28.5 11.5T440-760v374l-10 8q-24 18-37 43t-13 55q0 50 35 85t85 35Z";
     };
     readonly person_apron: {
         readonly viewBox: "0 -960 960 960";
@@ -869,12 +902,12 @@ declare const iconPaths: {
         readonly d: "M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z";
     };
     readonly mail: {
-        readonly viewBox: "0 -960 960 960";
-        readonly d: "M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-760h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z";
+        readonly viewBox: "0 0 46.6667 37.3333";
+        readonly d: "M4.66667 37.3333C3.38333 37.3333 2.28472 36.8764 1.37083 35.9625C0.456945 35.0486 0 33.95 0 32.6667V4.66667C0 3.38333 0.456945 2.28472 1.37083 1.37083C2.28472 0.456945 3.38333 0 4.66667 0H42C43.2833 0 44.3819 0.456945 45.2958 1.37083C46.2097 2.28472 46.6667 3.38333 46.6667 4.66667V32.6667C46.6667 33.95 46.2097 35.0486 45.2958 35.9625C44.3819 36.8764 43.2833 37.3333 42 37.3333H4.66667ZM23.3333 21L4.66667 9.33333V32.6667H42V9.33333L23.3333 21ZM23.3333 16.3333L42 4.66667H4.66667L23.3333 16.3333ZM4.66667 9.33333V4.66667V32.6667V9.33333Z";
     };
     readonly female: {
-        readonly viewBox: "0 -960 960 960";
-        readonly d: "M440-120v-80h-80v-80h80v-87q-79-14-129.5-75.5T260-585q0-92 64-156t156-64q92 0 156 64t64 156q0 81-50.5 142.5T520-367v87h80v80h-80v80h-80Zm40-327q57 0 98.5-41.5T620-585q0-57-41.5-98.5T480-725q-57 0-98.5 41.5T340-585q0 57 41.5 98.5T480-447Z";
+        readonly viewBox: "0 0 11 17";
+        readonly d: "M4.5 17V15H2.5V13H4.5V10.9C3.18333 10.6667 2.10417 10.0375 1.2625 9.0125C0.420833 7.9875 0 6.8 0 5.45C0 3.93333 0.5375 2.64583 1.6125 1.5875C2.6875 0.529167 3.98333 0 5.5 0C7.01667 0 8.3125 0.529167 9.3875 1.5875C10.4625 2.64583 11 3.93333 11 5.45C11 6.8 10.5792 7.9875 9.7375 9.0125C8.89583 10.0375 7.81667 10.6667 6.5 10.9V13H8.5V15H6.5V17H4.5ZM7.975 7.975C8.65833 7.29167 9 6.46667 9 5.5C9 4.53333 8.65833 3.70833 7.975 3.025C7.29167 2.34167 6.46667 2 5.5 2C4.53333 2 3.70833 2.34167 3.025 3.025C2.34167 3.70833 2 4.53333 2 5.5C2 6.46667 2.34167 7.29167 3.025 7.975C3.70833 8.65833 4.53333 9 5.5 9C6.46667 9 7.29167 8.65833 7.975 7.975Z";
     };
     readonly blood_pressure: {
         readonly viewBox: "0 0 46.6667 46.6667";
@@ -882,8 +915,8 @@ declare const iconPaths: {
         readonly d: "M22.0933 0H24.5741C24.7885 0.0767897 25.2946 0.084033 25.5322 0.0990655C25.8282 0.11929 26.1238 0.148444 26.4179 0.186487C27.4278 0.326963 28.4279 0.531795 29.4116 0.79973C35.754 2.54069 41.0794 6.85428 44.0993 12.6968C45.2081 14.8527 45.9769 17.167 46.3789 19.5577C46.4573 20.0384 46.5006 20.505 46.5625 20.9852C46.5928 21.2219 46.5906 21.8596 46.6667 22.0462V24.6463C46.5824 24.8897 46.5972 25.3212 46.5703 25.5851C46.5439 25.8421 46.5202 26.0946 46.4869 26.3519C46.3488 27.3946 46.1401 28.4268 45.8623 29.4412C44.1504 35.6433 39.972 40.8728 34.3011 43.9118C32.1107 45.0939 29.7427 45.9129 27.2897 46.336C26.7955 46.4256 26.2981 46.4969 25.7988 46.5502C25.5764 46.5742 24.9156 46.609 24.7413 46.6667H21.8607C21.6665 46.6008 21.1379 46.5776 20.9044 46.5502C20.3687 46.4871 19.8349 46.4094 19.3035 46.3171C17.0412 45.92 14.8511 45.1865 12.8059 44.1412C6.90238 41.1432 2.54115 35.7893 0.798763 29.4016C0.53501 28.4325 0.333708 27.4474 0.196097 26.4526C0.157155 26.1605 0.128561 25.8711 0.0974372 25.5799C0.0708971 25.3317 0.0842962 24.799 0 24.582V22.1083C0.0719542 21.9253 0.0861303 21.1588 0.107883 20.9212C0.149891 20.5045 0.204011 20.0891 0.270175 19.6755C0.673317 17.1686 1.48508 14.7448 2.67313 12.5008C5.6764 6.78861 10.9017 2.56724 17.1176 0.831626C18.1625 0.547775 19.2246 0.33144 20.2973 0.183965C20.5722 0.147808 20.8482 0.119997 21.1248 0.100571C21.3654 0.0848262 21.8779 0.0764117 22.0933 0ZM15.3626 5.64446C15.6786 6.15793 15.9863 6.6765 16.2856 7.19993C16.5413 7.64376 16.9242 8.12991 16.7911 8.66954C16.7013 9.03367 16.5307 9.24381 16.2066 9.42965C15.2459 9.98054 14.6568 8.33791 14.3101 7.72557C14.083 7.32446 13.7765 6.80452 13.6068 6.40639C13.3922 6.59798 13.0773 6.78631 12.8339 6.95561C12.4109 7.25122 11.9954 7.55736 11.5876 7.87372C10.4421 8.7544 9.3978 9.75942 8.47385 10.8703C8.1483 11.2661 7.88564 11.6594 7.57627 12.0548C8.12242 12.3423 8.69705 12.7017 9.23795 13.0074C9.4886 13.149 10.1219 13.4941 10.3145 13.6565C10.4191 13.7448 10.4958 13.8615 10.5355 13.9924C10.5808 14.1376 10.606 14.4085 10.5245 14.5465C10.3161 14.8996 9.84006 15.195 9.42341 15.0743C9.19985 15.0096 8.99573 14.9087 8.79211 14.7973C8.10009 14.4187 7.40391 14.0475 6.7125 13.6678C6.67842 13.6491 6.64264 13.6237 6.61056 13.6017C6.33491 14.1421 6.09287 14.5968 5.84527 15.154C5.21789 16.5982 4.7322 18.0999 4.39503 19.6381C4.29737 20.0825 4.12815 20.9228 4.09366 21.3766L5.89832 21.3789C6.67354 21.3786 7.82241 21.2386 7.79233 22.4003C7.78383 22.6623 7.67275 22.9104 7.48303 23.0913C7.12202 23.4293 6.37098 23.3386 5.89354 23.3381L3.88963 23.3361C3.9138 23.7378 3.91929 24.1368 3.93119 24.5376C3.99171 26.5793 4.29568 28.6428 5.1671 30.5081C5.25989 30.7066 5.34928 30.9076 5.43623 31.1092C6.19154 31.0791 7.07745 31.0999 7.84387 31.1001L12.1253 31.1008H16.916C17.7238 31.1008 18.6473 31.0794 19.4479 31.1053C19.4049 30.501 19.4358 29.9029 19.463 29.2984C19.5185 28.1094 19.6191 26.9227 19.7646 25.7412C20.3599 20.7156 21.4242 15.7631 22.57 10.8387C22.6613 10.4465 23.1834 8.11039 23.3121 7.95095L23.3509 7.9484C23.4149 8.0817 23.4172 8.15051 23.4653 8.2765C24.5788 12.6293 25.5195 17.0245 26.2849 21.4517C26.7046 23.975 27.0598 26.5419 27.1911 29.0981C27.2093 29.4531 27.2797 30.8342 27.2118 31.1017C30.363 31.0662 33.5843 31.101 36.74 31.1008L39.7177 31.1001C40.0452 31.0999 40.9224 31.0803 41.218 31.1215C41.4424 30.6282 41.6685 30.1381 41.8555 29.6329C42.5391 27.786 42.7335 25.7993 42.7515 23.8424C42.7531 23.6735 42.7581 23.5029 42.7741 23.3338L40.9334 23.3383C40.5519 23.3393 40.2072 23.3536 39.8316 23.3062C38.7889 23.1752 38.8368 21.473 39.8626 21.4036C40.8169 21.339 41.8232 21.3927 42.7832 21.3723C42.7189 21.1391 42.6872 20.8137 42.6483 20.5687C42.5911 20.2064 42.5216 19.8463 42.4396 19.4889C42.1344 18.1122 41.6748 16.7186 41.1343 15.4171C41.0318 15.1704 40.3783 13.7345 40.2402 13.6407C40.031 13.7168 39.6639 13.9284 39.4591 14.0407C39.0683 14.2559 38.6761 14.4688 38.2826 14.6793C37.769 14.9553 37.3106 15.2215 36.7149 14.9387C36.0696 14.6324 36.1601 13.5397 36.7507 13.2086C37.5252 12.7743 38.302 12.2594 39.0895 11.854C38.6973 11.4058 38.3369 10.8949 37.9176 10.4226C36.4246 8.74034 34.9335 7.59377 33.0461 6.40637C32.9558 6.64519 32.823 6.87638 32.6993 7.10017C32.4671 7.52072 32.2412 7.94252 32.0177 8.36799C31.7518 8.86947 31.3316 9.7673 30.6118 9.48992C30.0209 9.26217 29.6153 8.64537 29.9193 8.02273C30.3178 7.20547 30.8745 6.44123 31.2863 5.635C29.0233 4.53109 26.7221 4.00944 24.2065 3.91369C23.9023 3.90211 23.0838 3.86477 22.7994 3.90615C22.2086 3.94023 21.6906 3.9542 21.0905 4.01718C19.1004 4.21871 17.1614 4.76957 15.3626 5.64446ZM23.3315 13.7754C23.3092 13.9426 23.2873 14.1462 23.2552 14.3091C23.1488 14.997 23.0804 15.8118 22.992 16.5181L22.3294 21.8891C22.0997 23.749 21.8831 25.6102 21.6797 27.4732C21.5926 28.3133 21.4913 29.1785 21.4412 30.0209C21.4346 30.5767 21.3427 31.2131 21.4888 31.7554C21.9875 33.6059 25.0109 33.4252 25.2214 31.5016C25.3269 30.5398 25.1891 29.4294 25.0899 28.4601C25.0109 27.6272 24.9209 26.7953 24.8197 25.9647C24.518 23.3272 24.2015 20.6912 23.8704 18.0571L23.5234 15.3456C23.4938 15.1072 23.4379 14.3541 23.3769 14.1559C23.3759 13.9918 23.3632 13.9354 23.3315 13.7754ZM26.456 33.0383C26.2427 33.7408 25.9333 34.3082 25.2675 34.6678C25.0384 34.7899 24.7914 34.8754 24.536 34.9212C24.0074 35.021 23.6264 34.9863 23.1132 35.0027C21.53 35.0533 20.3141 34.7715 19.8401 33.0798C19.7974 33.0508 19.8152 33.0509 19.777 33.0524C19.3223 33.0809 18.6639 33.0609 18.1971 33.0606L15.3586 33.0597L6.45948 33.0693C6.46659 33.1582 6.82794 33.6943 6.89999 33.8019C7.33476 34.4618 7.80616 35.0966 8.312 35.7036C11.094 39.03 15.0341 41.4789 19.2967 42.3432C21.445 42.795 23.6537 42.885 25.8314 42.6091C26.4184 42.5293 26.9869 42.4339 27.5646 42.3019C27.6728 42.2771 27.7974 42.2472 27.9059 42.2304C28.8064 41.9788 29.4982 41.789 30.3791 41.4436C33.5512 40.1901 36.3164 38.086 38.3697 35.3623C38.7295 34.879 39.0667 34.3791 39.3805 33.8646C39.5149 33.644 39.7384 33.2274 39.8736 33.0381C39.6352 33.0764 39.2754 33.0629 39.0264 33.0625L37.7125 33.0606L33.0094 33.0597L28.5031 33.0593L27.2483 33.0618C27.022 33.0625 26.667 33.0748 26.456 33.0383Z";
     };
     readonly male: {
-        readonly viewBox: "0 -960 960 960";
-        readonly d: "M520-440q-79 0-134.5-55.5T330-630q0-79 55.5-134.5T520-820q66 0 117 39t68 101l122-122-30-30q-9-9-9-21.5t9-21.5q9-9 21.5-9t21.5 9l141 141q9 9 9 21.5t-9 21.5q-9 9-21.5 9t-21.5-9l-29-29-122 122q19 27 29.5 58.5T855-490q3 24-12 42t-39 18q-19 0-32-12.5T753-475q-7-55-46-94.5T613-617q-23-9-46-12-9 28-13 56.5t-4 57.5q0 79-55.5 134.5T520-440Zm0-80q46 0 78-32t32-78q0-46-32-78t-78-32q-46 0-78 32t-32 78q0 46 32 78t78 32ZM320-40q-17 0-28.5-11.5T280-80v-160H140q-25 0-42.5-17.5T80-300v-100h80v100h120v-160q0-25 17.5-42.5T340-520h80v80h-60v160h220q33 0 56.5 23.5T660-200v80q0 33-23.5 56.5T580-40H320Zm20-80h200v-40H340v40Z";
+        readonly viewBox: "0 0 16 16";
+        readonly d: "M16 0V6H14V3.425L10.025 7.375C10.3417 7.84167 10.5833 8.3375 10.75 8.8625C10.9167 9.3875 11 9.93333 11 10.5C11 12.0333 10.4667 13.3333 9.4 14.4C8.33333 15.4667 7.03333 16 5.5 16C3.96667 16 2.66667 15.4667 1.6 14.4C0.533333 13.3333 0 12.0333 0 10.5C0 8.96667 0.533333 7.66667 1.6 6.6C2.66667 5.53333 3.96667 5 5.5 5C6.05 5 6.59167 5.07917 7.125 5.2375C7.65833 5.39583 8.15 5.64167 8.6 5.975L12.575 2H10V0H16ZM3.025 8.025C2.34167 8.70833 2 9.53333 2 10.5C2 11.4667 2.34167 12.2917 3.025 12.975C3.70833 13.6583 4.53333 14 5.5 14C6.46667 14 7.29167 13.6583 7.975 12.975C8.65833 12.2917 9 11.4667 9 10.5C9 9.53333 8.65833 8.70833 7.975 8.025C7.29167 7.34167 6.46667 7 5.5 7C4.53333 7 3.70833 7.34167 3.025 8.025Z";
     };
     readonly info: {
         readonly viewBox: "0 -960 960 960";
@@ -985,6 +1018,28 @@ interface ActivitiesOverviewCardProps {
 
 declare const ActivitiesOverviewCard: React$1.ForwardRefExoticComponent<ActivitiesOverviewCardProps & React$1.RefAttributes<View>>;
 
+interface BackgroundDotsGridProps {
+    /** Quantidade de colunas verticais. Default 27 (Figma `Repetição de grade 4`). */
+    columns?: number;
+    /** Cor dos dots. Default `#65D040` (Figma). */
+    color?: string;
+    /** Opacidade do conjunto. Default 0.09 (Figma `opacity-9`). */
+    opacity?: number;
+    /**
+     * Largura total da grid em px. Default = `(columns - 1) * 15.93 + 10.62`
+     * (≈414.92 pra 27 colunas, Figma). Use pra reescalar em telas custom.
+     */
+    width?: number;
+    /** Override de style do container — typicamente position/top/left/transform. */
+    style?: StyleProp<ViewStyle>;
+    testID?: string;
+}
+
+declare const BackgroundDotsGrid: {
+    ({ columns, color, opacity, width, style, testID, }: BackgroundDotsGridProps): react_jsx_runtime.JSX.Element;
+    displayName: string;
+};
+
 interface BigNumbersCardProps {
     value: number | string;
     label: string;
@@ -1027,6 +1082,20 @@ type ButtonSize = 'default' | 'small' | 'large' | 'xlarge';
  *   buttons (Dashboard map controls, etc.).
  */
 type ButtonShape = 'rounded' | 'pill';
+/**
+ * Font family of the label text.
+ * - `'title'` (default): Montserrat — DS spec for most buttons.
+ * - `'body'`: Inter — used by Mobile sign-up "Política de privacidade & Termos
+ *   de uso" ghost link (Figma `213:13784`) which calls for Inter Regular
+ *   underlined, distinct from login's Montserrat Bold variant.
+ */
+type ButtonLabelFamily = 'title' | 'body';
+/**
+ * Font weight of the label text. Default `'bold'` matches the DS spec.
+ * Override to `'regular'` or `'medium'` when the Figma calls for a lighter
+ * inline-link style (e.g. sign-up's Inter Regular underlined ghost button).
+ */
+type ButtonLabelWeight = 'regular' | 'medium' | 'bold';
 interface ButtonProps extends Pick<PressableProps, 'onPress' | 'onLongPress' | 'disabled' | 'accessibilityLabel' | 'accessibilityHint' | 'testID'> {
     /**
      * Button label. Optional — omit for icon-only buttons (pass `iconLeft`
@@ -1086,6 +1155,17 @@ interface ButtonProps extends Pick<PressableProps, 'onPress' | 'onLongPress' | '
      * Mobile sign-up screen, Figma `213:13784`). Default `false`.
      */
     underline?: boolean;
+    /**
+     * Font family of the label text. Defaults to `'title'` (Montserrat — DS spec).
+     * Use `'body'` (Inter) for inline-link ghost buttons where the Figma calls
+     * for body-family typography (sign-up's Privacy link, Figma `213:13784`).
+     */
+    labelFamily?: ButtonLabelFamily;
+    /**
+     * Font weight of the label text. Defaults to `'bold'`. Override to
+     * `'regular'` / `'medium'` for lighter inline-link styles.
+     */
+    labelWeight?: ButtonLabelWeight;
 }
 
 declare const Button: React$1.ForwardRefExoticComponent<ButtonProps & React$1.RefAttributes<View>>;
@@ -1122,6 +1202,13 @@ interface ChatSectionProps {
     fullWidth?: boolean;
     accessibilityLabel?: string;
     testID?: string;
+    /**
+     * Optional render-slot to wrap each ChatUserCard. Consumers can use this to
+     * inject motion wrappers (e.g. framer-motion's `motion.div` with `layoutId`)
+     * without the DS depending on any animation library.
+     * Returns a new node that takes the place of the original card.
+     */
+    renderCard?: (card: ReactNode, user: ChatSectionUser) => ReactNode;
 }
 
 declare const ChatSection: React$1.ForwardRefExoticComponent<ChatSectionProps & React$1.RefAttributes<View>>;
@@ -1161,8 +1248,33 @@ interface DonutChartProps {
     trackColor?: string;
     icon?: IconName;
     iconColor?: string;
+    /**
+     * Two-stop linear gradient applied to the center icon (top→bottom).
+     * Overrides `iconColor` when set. Matches the Figma heartbeat-vector asset
+     * which uses surface/success → surface/success-light, etc.
+     */
+    iconGradient?: DonutGradient;
     size?: DonutChartSize;
     appearance?: DonutChartAppearance;
+    /**
+     * Horizontal alignment of the title text within the donut card.
+     * Defaults to 'center' (legacy behavior used by Dashboard donuts).
+     * Set to 'left' when the donut sits in a column whose other components
+     * (titles, chips, dividers) are left-aligned — e.g. WorkerDetailsLayout
+     * right column (Figma 159:14140 / 159:14142).
+     */
+    titleAlign?: 'left' | 'center';
+    /**
+     * Override the inner icon width. Defaults to size-specific DIMS. Use when
+     * matching a Figma asset where the glyph é naturalmente menor que o default
+     * (e.g. dashboard-donnut-chart 18x18 dentro do small chart 156x156).
+     */
+    iconWidth?: number;
+    iconHeight?: number;
+    /** Override label font-size em px. Default = theme.fontSize.sm (12). */
+    labelSize?: number;
+    /** Override label font-weight. Default = 'medium'. */
+    labelWeight?: 'regular' | 'medium' | 'bold';
     onLocationPress?: () => void;
     locationIcon?: IconName;
     accessibilityLabel?: string;
@@ -1358,8 +1470,16 @@ declare const Checkbox: React$1.ForwardRefExoticComponent<CheckboxProps & React$
  * - `warning`: content.warning — used for non-blocking warnings
  */
 type InputDescriptionVariant = 'default' | 'success' | 'error' | 'warning';
+/**
+ * Font weight of the label text. Default `'bold'` matches the DS spec
+ * for login / settings / most flows. Sign-up's Figma `138:7963` calls for
+ * `'regular'` labels — use this prop to override.
+ */
+type InputLabelWeight = 'regular' | 'medium' | 'bold';
 interface InputProps extends Omit<TextInputProps, 'editable' | 'style' | 'placeholderTextColor'> {
     label?: string;
+    /** Weight of the label text. Defaults to `'bold'`. */
+    labelWeight?: InputLabelWeight;
     description?: string;
     descriptionVariant?: InputDescriptionVariant;
     iconRight?: ReactNode;
@@ -1367,6 +1487,40 @@ interface InputProps extends Omit<TextInputProps, 'editable' | 'style' | 'placeh
 }
 
 declare const Input: React$1.ForwardRefExoticComponent<InputProps & React$1.RefAttributes<TextInput>>;
+
+interface JourneyThemeProps {
+    /**
+     * Imagem de gradient/glow que cobre 100% da viewport (camada base). Quando
+     * omitida, a camada não é renderizada — útil pra screens que já têm cor
+     * sólida no parent ou queiram desligar o gradient.
+     */
+    gradient?: ImageSourcePropType;
+    /**
+     * Imagem do mesh wireframe pattern (Figma 364:17123). Renderizada em
+     * tamanho natural 1600×1600 posicionada em `top:143, left:-449` — só a
+     * porção bottom-left fica visível no viewport 360×800. Omita pra desligar.
+     */
+    pattern?: ImageSourcePropType;
+    /** Mostra o dot-grid (Figma 364:16538). Default true. */
+    showDotGrid?: boolean;
+    /** Cor dos dots. Default `#65D040` (Figma). */
+    dotGridColor?: string;
+    /** Opacidade do dot-grid. Default 0.09 (Figma `opacity-9`). */
+    dotGridOpacity?: number;
+    /** Número de colunas. Default 27. */
+    dotGridColumns?: number;
+    /**
+     * Override do positioning do dot-grid. Default Figma: `top:-23, left:'50%',
+     * transform:[{translateX:-207.46}]` (centrado horizontal, anchorado no topo).
+     */
+    dotGridStyle?: StyleProp<ViewStyle>;
+    testID?: string;
+}
+
+declare const JourneyTheme: {
+    ({ gradient, pattern, showDotGrid, dotGridColor, dotGridOpacity, dotGridColumns, dotGridStyle, testID, }: JourneyThemeProps): react_jsx_runtime.JSX.Element;
+    displayName: string;
+};
 
 interface ComboboxOption {
     label: string;
@@ -1526,11 +1680,17 @@ interface IconProps {
     width?: number;
     height?: number;
     color?: string;
+    /**
+     * Optional vertical linear gradient `[topColor, bottomColor]` applied to
+     * the path fill. Overrides `color` when provided. Used for selected gender
+     * cards (Figma 211:13710) where o ícone faz transition #62BB81 → #50B3D2.
+     */
+    gradient?: readonly [string, string];
     testID?: string;
     accessibilityLabel?: string;
 }
 
-declare const Icon: ({ name, size, width, height, color, testID, accessibilityLabel, }: IconProps) => react_jsx_runtime.JSX.Element | null;
+declare const Icon: ({ name, size, width, height, color, gradient, testID, accessibilityLabel, }: IconProps) => react_jsx_runtime.JSX.Element | null;
 
 type ImageResizeMode = 'cover' | 'fill' | 'contain' | 'repeat' | 'stretch' | 'center';
 interface ImageProps {
@@ -2201,4 +2361,4 @@ interface TopBarProps {
  */
 declare const TopBar: React$1.ForwardRefExoticComponent<TopBarProps & React$1.RefAttributes<View>>;
 
-export { Accordion, type AccordionProps, ActivitiesOverviewCard, type ActivitiesOverviewCardProps, Avatar, AvatarGroup, type AvatarGroupItem, type AvatarGroupProps, type AvatarProps, type AvatarSize, BigNumbersCard, type BigNumbersCardProps, Button, type ButtonProps, CaloriesTag, type CaloriesTagProps, ChatBubble, type ChatBubblePosition, type ChatBubbleProps, ChatSection, type ChatSectionProps, type ChatSectionUser, ChatUserCard, type ChatUserCardProps, Checkbox, type CheckboxProps, type CheckboxSize, Chip, ChipGroup, type ChipGroupMode, type ChipGroupProps, type ChipProps, type ChipState, Combobox, type ComboboxOption, type ComboboxProps, DonutChart, type DonutChartProps, type DonutChartSize, type DonutGradient, EmployeeOverviewCard, type EmployeeOverviewCardEmployee, type EmployeeOverviewCardProps, ExamInfoCard, type ExamInfoCardProps, GenderSelectionCard, type GenderSelectionCardProps, GenderSelector, type GenderSelectorProps, type GenderValue, Header, type HeaderProps, HeaderUserInfo, type HeaderUserInfoProps, HeartStatus, type HeartStatusCondition, type HeartStatusProps, HeartrateStatus, type HeartrateStatusCondition, type HeartrateStatusProps, HorizontalCard, type HorizontalCardProps, Icon, type IconName, type IconProps, Image, type ImageProps, type ImageResizeMode, ImageUploader, type ImageUploaderProps, type ImageUploaderValue, Input, type InputProps, type IntensityColor, type IntensitySegment, LineCaloriesChart, type LineCaloriesChartProps, type LineCaloriesPoint, LocationPin, type LocationPinProps, type LocationPinStatus, Logo, type LogoProps, type LogoSize, type LogoType, MapControl, type MapControlOption, type MapControlProps, type MapControlVariant, MenuItem, type MenuItemProps, NowMarker, type NowMarkerProps, Pagination, type PaginationProps, ProgressBar, type ProgressBarProps, Radio, type RadioProps, type RadioSize, ReportCard, type ReportCardAuthor, type ReportCardProps, SearchInput, type SearchInputProps, SideMenu, type SideMenuItem, type SideMenuProps, Silhouette, type SilhouetteGender, type SilhouetteProps, SmartbandStatus, type SmartbandStatusProps, StatusChart, type StatusChartCondition, type StatusChartProps, StatusTag, type StatusTagProps, type StatusTagStatus, Step, StepBar, type StepBarProps, type StepProps, type StepState, SuccessBadge, type SuccessBadgeProps, Surface, type SurfacePadding, type SurfaceProps, type SurfaceRadius, type SurfaceVariant, SwiThemeProvider, type SwiThemeProviderProps, type TabItem, Tabs, type TabsProps, Text, type TextProps, type TextVariant, type Theme, TimeStamp, type TimeStampProps, Title, type TitleProps, type TitleVariant, Toast, type ToastProps, type ToastVariant, Toggle, type ToggleProps, TopBar, type TopBarProps, type TypographyVariant, type WeatherCondition, WeatherEventChip, type WeatherEventChipProps, WeatherIcon, type WeatherIconProps, type WeatherIconSize, WeatherTimeline, WeatherTimelineEntry, type WeatherTimelineEntryProps, type WeatherTimelineEvent, type WeatherTimelineProps, WorkersInfoCard, type WorkersInfoCardAlert, type WorkersInfoCardEmployee, type WorkersInfoCardProps, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
+export { Accordion, type AccordionProps, ActivitiesOverviewCard, type ActivitiesOverviewCardProps, Avatar, AvatarGroup, type AvatarGroupItem, type AvatarGroupProps, type AvatarProps, type AvatarSize, BackgroundDotsGrid, type BackgroundDotsGridProps, BigNumbersCard, type BigNumbersCardProps, Button, type ButtonProps, CaloriesTag, type CaloriesTagProps, ChatBubble, type ChatBubblePosition, type ChatBubbleProps, ChatSection, type ChatSectionProps, type ChatSectionUser, ChatUserCard, type ChatUserCardProps, Checkbox, type CheckboxProps, type CheckboxSize, Chip, ChipGroup, type ChipGroupMode, type ChipGroupProps, type ChipProps, type ChipState, Combobox, type ComboboxOption, type ComboboxProps, DonutChart, type DonutChartProps, type DonutChartSize, type DonutGradient, EmployeeOverviewCard, type EmployeeOverviewCardEmployee, type EmployeeOverviewCardProps, ExamInfoCard, type ExamInfoCardProps, GenderSelectionCard, type GenderSelectionCardProps, GenderSelector, type GenderSelectorProps, type GenderValue, Header, type HeaderProps, HeaderUserInfo, type HeaderUserInfoProps, HeartStatus, type HeartStatusCondition, type HeartStatusProps, HeartrateStatus, type HeartrateStatusCondition, type HeartrateStatusProps, HorizontalCard, type HorizontalCardProps, Icon, type IconName, type IconProps, Image, type ImageProps, type ImageResizeMode, ImageUploader, type ImageUploaderProps, type ImageUploaderValue, Input, type InputProps, type IntensityColor, type IntensitySegment, JourneyTheme, type JourneyThemeProps, LineCaloriesChart, type LineCaloriesChartProps, type LineCaloriesPoint, LocationPin, type LocationPinProps, type LocationPinStatus, Logo, type LogoProps, type LogoSize, type LogoType, MapControl, type MapControlOption, type MapControlProps, type MapControlVariant, MenuItem, type MenuItemProps, NowMarker, type NowMarkerProps, Pagination, type PaginationProps, ProgressBar, type ProgressBarProps, Radio, type RadioProps, type RadioSize, ReportCard, type ReportCardAuthor, type ReportCardProps, SearchInput, type SearchInputProps, SideMenu, type SideMenuItem, type SideMenuProps, Silhouette, type SilhouetteGender, type SilhouetteProps, SmartbandStatus, type SmartbandStatusProps, StatusChart, type StatusChartCondition, type StatusChartProps, StatusTag, type StatusTagProps, type StatusTagStatus, Step, StepBar, type StepBarProps, type StepProps, type StepState, SuccessBadge, type SuccessBadgeProps, Surface, type SurfacePadding, type SurfaceProps, type SurfaceRadius, type SurfaceVariant, SwiThemeProvider, type SwiThemeProviderProps, type TabItem, Tabs, type TabsProps, Text, type TextProps, type TextVariant, type Theme, TimeStamp, type TimeStampProps, Title, type TitleProps, type TitleVariant, Toast, type ToastProps, type ToastVariant, Toggle, type ToggleProps, TopBar, type TopBarProps, type TypographyVariant, type WeatherCondition, WeatherEventChip, type WeatherEventChipProps, WeatherIcon, type WeatherIconProps, type WeatherIconSize, WeatherTimeline, WeatherTimelineEntry, type WeatherTimelineEntryProps, type WeatherTimelineEvent, type WeatherTimelineProps, WorkersInfoCard, type WorkersInfoCardAlert, type WorkersInfoCardEmployee, type WorkersInfoCardProps, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };

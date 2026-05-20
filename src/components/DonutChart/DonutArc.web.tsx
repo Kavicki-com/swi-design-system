@@ -25,35 +25,41 @@ export const DonutArc = ({
   // `flat` mode renders a thinner arc that sits inside the canvas instead of
   // the thick bevel band; we shrink the arc radius slightly so the inner
   // content (icon + value + label) breathes more — matching Figma 159:14140.
-  const arcStroke = appearance === 'flat' ? Math.max(2, Math.round(strokeWidth / 2)) : strokeWidth;
-  const arcR = outerR - arcStroke;
+  // Figma 364:16900 mostra arc visível ~3.5px wide dentro do band escuro
+  // 19.5px wide → ratio ≈ 1/5. Aproximamos com stroke/3 (~3-4px small/default),
+  // visualmente fiel. Flat appearance mantém o cálculo anterior.
+  const arcStroke = appearance === 'flat'
+    ? Math.max(2, Math.round(strokeWidth / 2))
+    : Math.max(3, Math.round(strokeWidth / 3));
+  // Centerline da arc no meio do bezel band (Figma centra o gradient em
+  // r=68 dentro do band r=58.5-78). Antes usávamos `outerR - arcStroke`,
+  // colocando a arc na borda externa — o usuário detectou em 2026-05-18.
+  // Flat mode mantém comportamento legado (arc próxima da borda externa).
+  const arcR = appearance === 'flat' ? outerR - arcStroke : outerR - ringBand / 2;
 
   const circumference = 2 * Math.PI * arcR;
   const dash = (pct / 100) * circumference;
 
   const id = useId().replace(/:/g, '');
-  const bezelId = `donut-bezel-${id}`;
-  const wellId = `donut-well-${id}`;
   const arcId = `donut-arc-${id}`;
   const [arcFrom, arcTo] = gradient;
   const isFlat = appearance === 'flat';
 
+  // Figma tokens — confirmed by the user against the SWI Figma library:
+  //   surface/standard = neutral/800 = #1F1F1F  (outer bezel ring where the
+  //                                              progress arc lives)
+  //   background       = neutral/900 = #171717  (inner well, matches page bg)
+  // Two flat fills give the raised-ring illusion without gradient stops.
+  // SVG inner-shadow attempts (both full dual and tight single) read worse
+  // than the plain two-circle approach at this render scale — kept flat per
+  // user feedback. LocationButton still receives its Figma inset shadow via
+  // the consumer's CSS escape hatch (see DonutChart.styles.ts).
+  const BEZEL_FILL = '#1F1F1F';
+  const WELL_FILL = '#171717';
+
   return (
     <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
       <defs>
-        {isFlat ? null : (
-          <>
-            <linearGradient id={bezelId} x1="0.5" y1="0" x2="0.5" y2="1">
-              <stop offset="0%" stopColor="#3a3a3a" />
-              <stop offset="55%" stopColor="#1f1f1f" />
-              <stop offset="100%" stopColor="#141414" />
-            </linearGradient>
-            <radialGradient id={wellId} cx="50%" cy="50%" r="55%" fx="50%" fy="50%">
-              <stop offset="0%" stopColor="#1c1c1c" />
-              <stop offset="100%" stopColor="#0c0c0c" />
-            </radialGradient>
-          </>
-        )}
         <linearGradient id={arcId} x1="0.5" y1="0" x2="0.5" y2="1">
           <stop offset="0%" stopColor={arcFrom} />
           <stop offset="100%" stopColor={arcTo} />
@@ -66,8 +72,8 @@ export const DonutArc = ({
         <circle cx={cx} cy={cy} r={arcR - arcStroke / 2} fill="#1a1a1a" />
       ) : (
         <>
-          <circle cx={cx} cy={cy} r={outerR} fill={`url(#${bezelId})`} />
-          <circle cx={cx} cy={cy} r={innerR} fill={`url(#${wellId})`} />
+          <circle cx={cx} cy={cy} r={outerR} fill={BEZEL_FILL} />
+          <circle cx={cx} cy={cy} r={innerR} fill={WELL_FILL} />
         </>
       )}
 

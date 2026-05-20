@@ -25,8 +25,33 @@ export interface DonutChartProps {
   trackColor?: string;
   icon?: IconName;
   iconColor?: string;
+  /**
+   * Two-stop linear gradient applied to the center icon (top→bottom).
+   * Overrides `iconColor` when set. Matches the Figma heartbeat-vector asset
+   * which uses surface/success → surface/success-light, etc.
+   */
+  iconGradient?: DonutGradient;
   size?: DonutChartSize;
   appearance?: DonutChartAppearance;
+  /**
+   * Horizontal alignment of the title text within the donut card.
+   * Defaults to 'center' (legacy behavior used by Dashboard donuts).
+   * Set to 'left' when the donut sits in a column whose other components
+   * (titles, chips, dividers) are left-aligned — e.g. WorkerDetailsLayout
+   * right column (Figma 159:14140 / 159:14142).
+   */
+  titleAlign?: 'left' | 'center';
+  /**
+   * Override the inner icon width. Defaults to size-specific DIMS. Use when
+   * matching a Figma asset where the glyph é naturalmente menor que o default
+   * (e.g. dashboard-donnut-chart 18x18 dentro do small chart 156x156).
+   */
+  iconWidth?: number;
+  iconHeight?: number;
+  /** Override label font-size em px. Default = theme.fontSize.sm (12). */
+  labelSize?: number;
+  /** Override label font-weight. Default = 'medium'. */
+  labelWeight?: 'regular' | 'medium' | 'bold';
   onLocationPress?: () => void;
   locationIcon?: IconName;
   accessibilityLabel?: string;

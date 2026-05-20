@@ -36,6 +36,7 @@ export function Pagination({
           <Button
             variant="ghost"
             label={String(n)}
+            labelColor={theme.content.primaryLight}
             accessibilityLabel={`Página ${n}`}
             onPress={() => onPageChange(n)}
           />
@@ -45,6 +46,7 @@ export function Pagination({
         <Button
           variant="ghost"
           label="..."
+          labelColor={theme.content.primaryLight}
           accessibilityLabel="Mais páginas"
           onPress={onOverflowPress}
         />

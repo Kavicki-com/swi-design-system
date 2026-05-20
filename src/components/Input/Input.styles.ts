@@ -1,6 +1,6 @@
 import { Pressable, TextInput, View } from 'react-native';
 import styled, { css, type DefaultTheme } from 'styled-components/native';
-import type { InputDescriptionVariant } from './Input.types';
+import type { InputDescriptionVariant, InputLabelWeight } from './Input.types';
 
 export interface RowProps {
   $focused: boolean;
@@ -37,10 +37,19 @@ export const Container = styled(View)`
   gap: ${({ theme }) => theme.gap.xs}px;
 `;
 
-export const Label = styled.Text<{ $disabled: boolean }>`
+const labelFontWeight = (
+  $weight: InputLabelWeight | undefined,
+  theme: DefaultTheme,
+) => {
+  if ($weight === 'regular') return theme.fontWeight.regular;
+  if ($weight === 'medium') return theme.fontWeight.medium;
+  return theme.fontWeight.bold;
+};
+
+export const Label = styled.Text<{ $disabled: boolean; $weight?: InputLabelWeight }>`
   font-family: ${({ theme }) => theme.fontFamily.body};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-  font-size: 14px;
+  font-weight: ${({ $weight, theme }) => labelFontWeight($weight, theme)};
+  font-size: ${({ theme }) => theme.fontSize.m}px;
   color: ${({ $disabled, theme }) => ($disabled ? theme.content.disable : theme.content.dark)};
 `;
 
@@ -84,7 +93,7 @@ export const StyledInput = styled(TextInput)<{ $disabled: boolean }>`
   flex: 1;
   font-family: ${({ theme }) => theme.fontFamily.body};
   font-weight: ${({ theme }) => theme.fontWeight.regular};
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.fontSize.m}px;
   color: ${({ $disabled, theme }) => ($disabled ? theme.content.disable : theme.content.dark)};
   padding: 0;
   margin: 0;
@@ -103,6 +112,6 @@ export const IconSlot = styled(View)`
 export const Description = styled.Text<DescriptionProps>`
   font-family: ${({ theme }) => theme.fontFamily.body};
   font-weight: ${({ theme }) => theme.fontWeight.medium};
-  font-size: 12px;
+  font-size: ${({ theme }) => theme.fontSize.sm}px;
   color: ${(props) => descriptionColor(props)};
 `;

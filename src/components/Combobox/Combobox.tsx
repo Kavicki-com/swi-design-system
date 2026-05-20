@@ -1,7 +1,8 @@
 import React, { forwardRef, useState } from 'react';
 import { type View } from 'react-native';
+import { Icon } from '../Icon';
+import { useTheme } from '../../theme';
 import {
-  Chevron,
   Container,
   Description,
   Label,
@@ -32,6 +33,7 @@ export const Combobox = forwardRef<View, ComboboxProps>(
     },
     ref,
   ) => {
+    const theme = useTheme();
     const [internalOpen, setInternalOpen] = useState(false);
     const isOpen = open ?? internalOpen;
     const setOpen = (next: boolean) => {
@@ -52,7 +54,7 @@ export const Combobox = forwardRef<View, ComboboxProps>(
     };
 
     return (
-      <Container ref={ref} testID={testID}>
+      <Container ref={ref} testID={testID} $open={isOpen && !disabled}>
         {label ? <Label $disabled={disabled}>{label}</Label> : null}
         <Trigger
           $focused={isOpen}
@@ -70,7 +72,11 @@ export const Combobox = forwardRef<View, ComboboxProps>(
           <TriggerLabel $placeholder={isPlaceholder} $disabled={disabled} numberOfLines={1}>
             {displayText}
           </TriggerLabel>
-          <Chevron $disabled={disabled}>{isOpen ? '▴' : '▾'}</Chevron>
+          <Icon
+            name={isOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}
+            size={20}
+            color={disabled ? theme.content.disable : theme.content.dark}
+          />
         </Trigger>
         {isOpen && !disabled ? (
           <Panel accessibilityRole="menu">

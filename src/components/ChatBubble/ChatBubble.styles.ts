@@ -18,7 +18,7 @@ export const Bubble = styled(View)<{ $position: ChatBubblePosition }>`
   border-color: ${({ $position, theme }) =>
     $position === 'left' ? theme.content.secondaryLight : theme.content.primaryLight};
   border-radius: ${({ theme }) => theme.border.radius.l}px;
-  padding-vertical: ${({ theme }) => theme.padding.sm}px;
+  padding-vertical: ${({ theme }) => theme.padding.ml}px;
   padding-left: ${({ $position, theme }) =>
     $position === 'left' ? theme.padding.s : theme.padding.m}px;
   padding-right: ${({ $position, theme }) =>

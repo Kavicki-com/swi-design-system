@@ -16,6 +16,7 @@ export const Input = forwardRef<RNTextInput, InputProps>(
   (
     {
       label,
+      labelWeight = 'bold',
       description,
       descriptionVariant = 'default',
       iconRight,
@@ -40,7 +41,7 @@ export const Input = forwardRef<RNTextInput, InputProps>(
 
     return (
       <Container>
-        {label ? <Label $disabled={disabled}>{label}</Label> : null}
+        {label ? <Label $disabled={disabled} $weight={labelWeight}>{label}</Label> : null}
         <Row
           $focused={focused}
           $hovered={hovered}

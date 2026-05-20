@@ -1,7 +1,7 @@
 /**
  * Web StatusChart backdrop. See StatusChartBackdrop.tsx for layer breakdown.
  */
-import React from 'react';
+import React, { useId } from 'react';
 import { useTheme } from '../../theme';
 import { palette } from './StatusChart.theme';
 import { STATUS_CHART_CANVAS, STATUS_GAUGE } from './StatusChart.paths';
@@ -59,9 +59,15 @@ export const StatusChartBackdrop = ({
 }: BackdropProps) => {
   const theme = useTheme();
   const p = palette(theme, condition);
-  const silhouetteGradId = `status-gauge-gradient-${condition}-${layer}`;
-  const crescentGradId = `status-crescent-gradient-${condition}-${layer}`;
-  const progressClipId = `status-progress-clip-${condition}-${layer}`;
+  // IDs únicos por instância evitam colisão quando duas StatusChart com
+  // mesmo condition+layer co-existem no DOM (ex: dashboard escondido por
+  // `display:none` no Expo Router Stack + my-stats visível). Sem `useId()`
+  // o browser resolve `url(#...)` pra primeira def, que vive em SVG sem
+  // bbox renderizado, deixando a silhueta invisível.
+  const uid = useId().replace(/:/g, '');
+  const silhouetteGradId = `status-gauge-gradient-${condition}-${layer}-${uid}`;
+  const crescentGradId = `status-crescent-gradient-${condition}-${layer}-${uid}`;
+  const progressClipId = `status-progress-clip-${condition}-${layer}-${uid}`;
 
   const clamped = clamp01(progress);
   const sectorD = sectorPath(

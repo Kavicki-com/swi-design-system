@@ -76,7 +76,7 @@ export const Body = styled(View)<StateProps>`
 export const Label = styled.Text<StateProps>`
   font-family: ${({ theme }) => theme.fontFamily.body};
   font-weight: ${({ theme }) => theme.fontWeight.medium};
-  font-size: 12px;
+  font-size: ${({ theme }) => theme.fontSize.sm}px;
   color: ${(props) => textColor(props)};
 `;
 

@@ -3,6 +3,7 @@ import { type View } from 'react-native';
 import { Button } from '../Button';
 import { ChatUserCard } from '../ChatUserCard';
 import { SearchInput } from '../SearchInput';
+import { useTheme } from '../../theme';
 import { Container, ListInner, ListScroll } from './ChatSection.styles';
 import type { ChatSectionProps } from './ChatSection.types';
 
@@ -19,9 +20,11 @@ export const ChatSection = forwardRef<View, ChatSectionProps>(
       fullWidth = false,
       accessibilityLabel,
       testID,
+      renderCard,
     },
     ref,
   ) => {
+    const theme = useTheme();
     return (
       <Container
         ref={ref}
@@ -40,21 +43,34 @@ export const ChatSection = forwardRef<View, ChatSectionProps>(
         />
         <ListScroll>
           <ListInner>
-            {users.map((user) => (
-              <ChatUserCard
-                key={user.id}
-                name={user.name}
-                subtitle={user.subtitle}
-                avatarUri={user.avatarUri}
-                unreadCount={user.unreadCount}
-                onPress={onUserPress ? () => onUserPress(user.id) : undefined}
-                fullWidth
-              />
-            ))}
+            {users.map((user) => {
+              const card = (
+                <ChatUserCard
+                  name={user.name}
+                  subtitle={user.subtitle}
+                  avatarUri={user.avatarUri}
+                  unreadCount={user.unreadCount}
+                  onPress={onUserPress ? () => onUserPress(user.id) : undefined}
+                  fullWidth
+                />
+              );
+              return (
+                <React.Fragment key={user.id}>
+                  {renderCard ? renderCard(card, user) : card}
+                </React.Fragment>
+              );
+            })}
           </ListInner>
         </ListScroll>
         {onExpand ? (
-          <Button label={expandLabel} variant="outline" fullWidth onPress={onExpand} />
+          <Button
+            label={expandLabel}
+            variant="contained"
+            backgroundColor={theme.background}
+            labelColor={theme.content.primaryLight}
+            fullWidth
+            onPress={onExpand}
+          />
         ) : null}
       </Container>
     );

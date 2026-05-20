@@ -19,7 +19,7 @@
  *
  * Web build picks StatusChartBackdrop.web.tsx instead.
  */
-import React from 'react';
+import React, { useId } from 'react';
 import Svg, {
   Circle,
   ClipPath,
@@ -102,9 +102,14 @@ export const StatusChartBackdrop = ({
 }: BackdropProps) => {
   const theme = useTheme();
   const p = palette(theme, condition);
-  const silhouetteGradId = `status-gauge-gradient-${condition}-${layer}`;
-  const crescentGradId = `status-crescent-gradient-${condition}-${layer}`;
-  const progressClipId = `status-progress-clip-${condition}-${layer}`;
+  // IDs únicos por instância evitam colisão entre múltiplas StatusChart
+  // co-existindo no DOM/tree (web: Expo Router Stack mantém telas anteriores
+  // com `display:none`, fazendo `url(#...)` resolver pra def em SVG sem
+  // bbox e silhueta invisível). Paridade web/native pra robustez.
+  const uid = useId().replace(/:/g, '');
+  const silhouetteGradId = `status-gauge-gradient-${condition}-${layer}-${uid}`;
+  const crescentGradId = `status-crescent-gradient-${condition}-${layer}-${uid}`;
+  const progressClipId = `status-progress-clip-${condition}-${layer}-${uid}`;
 
   const clamped = clamp01(progress);
   const sectorD = sectorPath(

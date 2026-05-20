@@ -237,6 +237,10 @@ export const StatusChart = ({
   // Compact preset: outer box sized to scaled dimensions, inner 360×374
   // chart body shrunk via transform with top-left origin so the visible
   // footprint exactly matches the Figma 342:9420 compact canvas.
+  //
+  // transformOrigin '0 0' (numeric, no unit) é silenciosamente ignorado pela
+  // CSS parser do RN-web em 0.19 e cai pro default 'center center', clipando
+  // a silhueta. 'top left' (CSS keyword) é parseado em ambas as plataformas.
   return (
     <View style={{ width: outerW, height: outerH, overflow: 'hidden' }}>
       <View
@@ -245,7 +249,7 @@ export const StatusChart = ({
             width: STATUS_CHART_CANVAS.width,
             height: STATUS_CHART_CANVAS.height,
             transform: [{ scale }],
-            transformOrigin: '0 0',
+            transformOrigin: 'top left',
           } as unknown as ViewStyle
         }
       >

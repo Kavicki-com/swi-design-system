@@ -1,6 +1,12 @@
 import { Pressable, View } from 'react-native';
 import styled, { type DefaultTheme } from 'styled-components/native';
-import type { ButtonShape, ButtonSize, ButtonVariant } from './Button.types';
+import type {
+  ButtonLabelFamily,
+  ButtonLabelWeight,
+  ButtonShape,
+  ButtonSize,
+  ButtonVariant,
+} from './Button.types';
 
 export interface StateProps {
   $variant: ButtonVariant;
@@ -129,29 +135,48 @@ const labelColor = ({
   return theme.content.primaryLight;
 };
 
+// Default to body (Inter) — Figma button labels usam Inter Bold em todas as
+// telas inspecionadas (login, sign-up, complimentary-data, smartband). Passe
+// `labelFamily="title"` explicitamente quando precisar Montserrat. Antes o
+// default era title, gerando Montserrat 14 (visualmente errado vs Figma);
+// corrigido 2026-05-18.
+const labelFontFamily = (
+  $labelFamily: ButtonLabelFamily | undefined,
+  theme: DefaultTheme,
+) => ($labelFamily === 'title' ? theme.fontFamily.title : theme.fontFamily.body);
+
+const labelFontWeight = (
+  $labelWeight: ButtonLabelWeight | undefined,
+  theme: DefaultTheme,
+) => {
+  if ($labelWeight === 'regular') return theme.fontWeight.regular;
+  if ($labelWeight === 'medium') return theme.fontWeight.medium;
+  return theme.fontWeight.bold;
+};
+
 export const Label = styled.Text<{
   $variant: ButtonVariant;
   $hovered: boolean;
   $disabled: boolean;
   $underline: boolean;
   $labelColor?: string;
+  $labelFamily?: ButtonLabelFamily;
+  $labelWeight?: ButtonLabelWeight;
 }>`
-  font-family: ${({ theme }) => theme.fontFamily.title};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-  font-size: 14px;
+  font-family: ${({ $labelFamily, theme }) => labelFontFamily($labelFamily, theme)};
+  font-weight: ${({ $labelWeight, theme }) => labelFontWeight($labelWeight, theme)};
+  font-size: ${({ theme }) => theme.fontSize.m}px;
   color: ${(props) => labelColor(props)};
   ${({ $underline }) => ($underline ? 'text-decoration-line: underline;' : '')}
 `;
 
-/* IconSlot — 24×24 container that matches Figma button specs (e.g. 32:2502).
-   No internal padding: the icon (rendered at size:24) fills the slot directly,
-   relying on the Container gap (theme.gap.xs = 4) for label↔icon spacing.
-   Earlier versions added 4px of internal padding here, which inflated the
-   surface-variant button by ~8px horizontal and broke Figma fidelity for
-   compact contexts like the maps "Voltar ao dashboard" CTA. */
+/* IconSlot — container que se adapta ao tamanho natural do ícone (centra-o).
+   Anteriormente era fixo 24×24 (specs Figma 32:2502 onde o ícone é 24).
+   Quando o ícone vinha menor (ex: size=16 em botões compactos como o action
+   row de /reports/[id]), o slot continuava em 24px, comendo 8px do espaço do
+   label e forçando wrap. Removido width/height fixos — flexbox sizes ao
+   filho, mantendo Figma fidelity quando o ícone JÁ é 24 (caso comum). */
 export const IconSlot = styled(View)`
-  width: 24px;
-  height: 24px;
   align-items: center;
   justify-content: center;
 `;

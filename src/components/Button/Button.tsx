@@ -16,6 +16,11 @@ export const Button = forwardRef<View, ButtonProps>(
       borderColor,
       borderWidth,
       labelColor,
+      // Figma spec usa Inter Bold pros labels em todas as telas inspecionadas
+      // (login, sign-up, complimentary-data, smartband). Mantém Montserrat
+      // disponível via prop explícita `labelFamily="title"`.
+      labelFamily = 'body',
+      labelWeight = 'bold',
       iconLeft,
       iconRight,
       disabled: disabledProp = false,
@@ -76,6 +81,9 @@ export const Button = forwardRef<View, ButtonProps>(
             $disabled={disabled}
             $underline={underline}
             $labelColor={labelColor}
+            $labelFamily={labelFamily}
+            $labelWeight={labelWeight}
+            numberOfLines={1}
           >
             {label}
           </Label>

@@ -34,6 +34,22 @@ export type ButtonSize = 'default' | 'small' | 'large' | 'xlarge';
  */
 export type ButtonShape = 'rounded' | 'pill';
 
+/**
+ * Font family of the label text.
+ * - `'title'` (default): Montserrat — DS spec for most buttons.
+ * - `'body'`: Inter — used by Mobile sign-up "Política de privacidade & Termos
+ *   de uso" ghost link (Figma `213:13784`) which calls for Inter Regular
+ *   underlined, distinct from login's Montserrat Bold variant.
+ */
+export type ButtonLabelFamily = 'title' | 'body';
+
+/**
+ * Font weight of the label text. Default `'bold'` matches the DS spec.
+ * Override to `'regular'` or `'medium'` when the Figma calls for a lighter
+ * inline-link style (e.g. sign-up's Inter Regular underlined ghost button).
+ */
+export type ButtonLabelWeight = 'regular' | 'medium' | 'bold';
+
 export interface ButtonProps
   extends Pick<
     PressableProps,
@@ -102,4 +118,15 @@ export interface ButtonProps
    * Mobile sign-up screen, Figma `213:13784`). Default `false`.
    */
   underline?: boolean;
+  /**
+   * Font family of the label text. Defaults to `'title'` (Montserrat — DS spec).
+   * Use `'body'` (Inter) for inline-link ghost buttons where the Figma calls
+   * for body-family typography (sign-up's Privacy link, Figma `213:13784`).
+   */
+  labelFamily?: ButtonLabelFamily;
+  /**
+   * Font weight of the label text. Defaults to `'bold'`. Override to
+   * `'regular'` / `'medium'` for lighter inline-link styles.
+   */
+  labelWeight?: ButtonLabelWeight;
 }

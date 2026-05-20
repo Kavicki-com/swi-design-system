@@ -8,3 +8,6 @@ example-app/.expo
 example-app/node_modules
 example-app/storybook.requires.ts
 coverage
+
+# Local build artifacts consumed via file: protocol — not versioned.
+*.tgz

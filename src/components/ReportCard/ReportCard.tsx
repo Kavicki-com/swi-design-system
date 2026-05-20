@@ -69,7 +69,7 @@ export const ReportCard = forwardRef<View, ReportCardProps>(
             <SectionHeading>{authorLabel}</SectionHeading>
             <AuthorRow>
               <Avatar uri={author.avatarUri} size="m" />
-              <AuthorName numberOfLines={2}>{author.name}</AuthorName>
+              <AuthorName numberOfLines={3}>{author.name}</AuthorName>
             </AuthorRow>
           </AuthorBlock>
           {location ? <LocationLabel>{location}</LocationLabel> : null}

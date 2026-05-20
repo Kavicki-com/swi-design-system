@@ -51,7 +51,7 @@ export const ChatBubble = forwardRef<View, ChatBubbleProps>(
         style={
           fullWidth
             ? { alignSelf: 'stretch', width: '100%' }
-            : { alignSelf: 'flex-start', width: 328 }
+            : { alignSelf: 'flex-start', width: 296 }
         }
         accessibilityLabel={accessibilityLabel ?? message}
         testID={testID}

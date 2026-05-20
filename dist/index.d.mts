@@ -250,68 +250,68 @@ declare const fontSize: {
 declare const typography: {
     readonly title: {
         readonly l: {
-            readonly fontFamily: "Montserrat";
+            readonly fontFamily: string;
             readonly fontWeight: "700";
             readonly fontSize: 32;
         };
         readonly m: {
-            readonly fontFamily: "Montserrat";
+            readonly fontFamily: string;
             readonly fontWeight: "700";
             readonly fontSize: 24;
         };
         readonly s: {
-            readonly fontFamily: "Montserrat";
+            readonly fontFamily: string;
             readonly fontWeight: "700";
             readonly fontSize: 20;
         };
         readonly xs: {
-            readonly fontFamily: "Montserrat";
+            readonly fontFamily: string;
             readonly fontWeight: "700";
             readonly fontSize: 16;
         };
     };
     readonly subtitle: {
         readonly l: {
-            readonly fontFamily: "Inter";
+            readonly fontFamily: string;
             readonly fontWeight: "500";
             readonly fontSize: 24;
         };
         readonly m: {
-            readonly fontFamily: "Inter";
+            readonly fontFamily: string;
             readonly fontWeight: "500";
             readonly fontSize: 16;
         };
         readonly s: {
-            readonly fontFamily: "Inter";
+            readonly fontFamily: string;
             readonly fontWeight: "500";
             readonly fontSize: 12;
         };
     };
     readonly body: {
         readonly l: {
-            readonly fontFamily: "Inter";
+            readonly fontFamily: string;
             readonly fontWeight: "500";
             readonly fontSize: 20;
         };
         readonly m: {
-            readonly fontFamily: "Inter";
+            readonly fontFamily: string;
             readonly fontWeight: "400";
             readonly fontSize: 14;
         };
         readonly s: {
-            readonly fontFamily: "Inter";
+            readonly fontFamily: string;
             readonly fontWeight: "500";
             readonly fontSize: 12;
         };
     };
     readonly caption: {
         readonly s: {
-            readonly fontFamily: "Inter";
+            readonly fontFamily: string;
             readonly fontWeight: "500";
             readonly fontSize: 12;
         };
         readonly xs: {
-            readonly fontFamily: "Inter";
+            readonly fontFamily: string;
             readonly fontWeight: "700";
             readonly fontSize: 8;
         };
@@ -338,68 +338,68 @@ declare const theme: {
     readonly typography: {
         readonly title: {
             readonly l: {
-                readonly fontFamily: "Montserrat";
+                readonly fontFamily: string;
                 readonly fontWeight: "700";
                 readonly fontSize: 32;
             };
             readonly m: {
-                readonly fontFamily: "Montserrat";
+                readonly fontFamily: string;
                 readonly fontWeight: "700";
                 readonly fontSize: 24;
             };
             readonly s: {
-                readonly fontFamily: "Montserrat";
+                readonly fontFamily: string;
                 readonly fontWeight: "700";
                 readonly fontSize: 20;
             };
             readonly xs: {
-                readonly fontFamily: "Montserrat";
+                readonly fontFamily: string;
                 readonly fontWeight: "700";
                 readonly fontSize: 16;
             };
         };
         readonly subtitle: {
             readonly l: {
-                readonly fontFamily: "Inter";
+                readonly fontFamily: string;
                 readonly fontWeight: "500";
                 readonly fontSize: 24;
             };
             readonly m: {
-                readonly fontFamily: "Inter";
+                readonly fontFamily: string;
                 readonly fontWeight: "500";
                 readonly fontSize: 16;
             };
             readonly s: {
-                readonly fontFamily: "Inter";
+                readonly fontFamily: string;
                 readonly fontWeight: "500";
                 readonly fontSize: 12;
             };
         };
         readonly body: {
             readonly l: {
-                readonly fontFamily: "Inter";
+                readonly fontFamily: string;
                 readonly fontWeight: "500";
                 readonly fontSize: 20;
             };
             readonly m: {
-                readonly fontFamily: "Inter";
+                readonly fontFamily: string;
                 readonly fontWeight: "400";
                 readonly fontSize: 14;
             };
             readonly s: {
-                readonly fontFamily: "Inter";
+                readonly fontFamily: string;
                 readonly fontWeight: "500";
                 readonly fontSize: 12;
             };
         };
         readonly caption: {
             readonly s: {
-                readonly fontFamily: "Inter";
+                readonly fontFamily: string;
                 readonly fontWeight: "500";
                 readonly fontSize: 12;
             };
             readonly xs: {
-                readonly fontFamily: "Inter";
+                readonly fontFamily: string;
                 readonly fontWeight: "700";
                 readonly fontSize: 8;
             };

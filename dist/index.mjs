@@ -235,71 +235,81 @@ var fontSize = {
   xl: 28,
   xxl: 32
 };
+var resolveFontFamily = (family, weight) => {
+  if (family === "Inter") {
+    if (weight === "500") return "Inter-Medium";
+    if (weight === "700") return "Inter-Bold";
+    return "Inter";
+  }
+  if (weight === "400") return "Montserrat-Regular";
+  if (weight === "500") return "Montserrat-Medium";
+  return "Montserrat";
+};
 var typography = {
   title: {
     l: {
-      fontFamily: fontFamily.title,
+      fontFamily: resolveFontFamily("Montserrat", "700"),
       fontWeight: fontWeight.bold,
       fontSize: 32
     },
     m: {
-      fontFamily: fontFamily.title,
+      fontFamily: resolveFontFamily("Montserrat", "700"),
       fontWeight: fontWeight.bold,
       fontSize: 24
     },
     s: {
-      fontFamily: fontFamily.title,
+      fontFamily: resolveFontFamily("Montserrat", "700"),
       fontWeight: fontWeight.bold,
       fontSize: 20
     },
     xs: {
-      fontFamily: fontFamily.title,
+      fontFamily: resolveFontFamily("Montserrat", "700"),
       fontWeight: fontWeight.bold,
       fontSize: 16
     }
   },
   subtitle: {
     l: {
-      fontFamily: fontFamily.body,
+      fontFamily: resolveFontFamily("Inter", "500"),
       fontWeight: fontWeight.medium,
       fontSize: 24
     },
     m: {
-      fontFamily: fontFamily.body,
+      fontFamily: resolveFontFamily("Inter", "500"),
       fontWeight: fontWeight.medium,
       fontSize: 16
     },
     s: {
-      fontFamily: fontFamily.body,
+      fontFamily: resolveFontFamily("Inter", "500"),
       fontWeight: fontWeight.medium,
       fontSize: 12
     }
   },
   body: {
     l: {
-      fontFamily: fontFamily.body,
+      fontFamily: resolveFontFamily("Inter", "500"),
       fontWeight: fontWeight.medium,
       fontSize: 20
     },
     m: {
-      fontFamily: fontFamily.body,
+      fontFamily: resolveFontFamily("Inter", "400"),
       fontWeight: fontWeight.regular,
       fontSize: 14
     },
     s: {
-      fontFamily: fontFamily.body,
+      fontFamily: resolveFontFamily("Inter", "500"),
       fontWeight: fontWeight.medium,
       fontSize: 12
     }
   },
   caption: {
     s: {
-      fontFamily: fontFamily.body,
+      fontFamily: resolveFontFamily("Inter", "500"),
       fontWeight: fontWeight.medium,
       fontSize: 12
     },
     xs: {
-      fontFamily: fontFamily.body,
+      fontFamily: resolveFontFamily("Inter", "700"),
       fontWeight: fontWeight.bold,
       fontSize: 8
     }

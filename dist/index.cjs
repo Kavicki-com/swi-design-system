@@ -1857,9 +1857,9 @@ var TextStack = styled38__default.default(reactNative.View)`
 `;
 var Name = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
-  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
-  font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
-  font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
+  font-family: ${typography.badge.s.fontFamily};
+  font-size: ${typography.badge.s.fontSize}px;
+  font-weight: ${typography.badge.s.fontWeight};
 `;
 var Subtitle2 = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
@@ -1877,9 +1877,9 @@ var Badge = styled38__default.default(reactNative.View)`
 `;
 var BadgeText = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
-  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
-  font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
-  font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
+  font-family: ${typography.badge.s.fontFamily};
+  font-size: ${typography.badge.s.fontSize}px;
+  font-weight: ${typography.badge.s.fontWeight};
 `;
 var formatCount = (n) => {
   if (n >= 100) return "99+";
@@ -5073,9 +5073,9 @@ var Section = styled38__default.default(reactNative.View)`
 `;
 var SectionHeading = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
-  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
-  font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
-  font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
+  font-family: ${typography.badge.s.fontFamily};
+  font-weight: ${typography.badge.s.fontWeight};
+  font-size: ${typography.badge.s.fontSize}px;
 `;
 var SectionBody = styled38__default.default.Text`
   align-self: stretch;
@@ -5105,15 +5105,15 @@ var AuthorName = styled38__default.default.Text`
   flex: 0 1 auto;
   max-width: 80px;
   color: ${({ theme: theme2 }) => theme2.content.dark};
-  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
-  font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
-  font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
+  font-family: ${typography.badge.s.fontFamily};
+  font-weight: ${typography.badge.s.fontWeight};
+  font-size: ${typography.badge.s.fontSize}px;
 `;
 var LocationLabel = styled38__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.secondary};
-  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
-  font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
-  font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
+  font-family: ${typography.badge.s.fontFamily};
+  font-weight: ${typography.badge.s.fontWeight};
+  font-size: ${typography.badge.s.fontSize}px;
 `;
 var ReportCard = React12.forwardRef(
   ({

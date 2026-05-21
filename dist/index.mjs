@@ -1849,9 +1849,9 @@ var TextStack = styled38(View)`
 `;
 var Name = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
-  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
-  font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
-  font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
+  font-family: ${typography.badge.s.fontFamily};
+  font-size: ${typography.badge.s.fontSize}px;
+  font-weight: ${typography.badge.s.fontWeight};
 `;
 var Subtitle2 = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
@@ -1869,9 +1869,9 @@ var Badge = styled38(View)`
 `;
 var BadgeText = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
-  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
-  font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
-  font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
+  font-family: ${typography.badge.s.fontFamily};
+  font-size: ${typography.badge.s.fontSize}px;
+  font-weight: ${typography.badge.s.fontWeight};
 `;
 var formatCount = (n) => {
   if (n >= 100) return "99+";
@@ -5065,9 +5065,9 @@ var Section = styled38(View)`
 `;
 var SectionHeading = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
-  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
-  font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
-  font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
+  font-family: ${typography.badge.s.fontFamily};
+  font-weight: ${typography.badge.s.fontWeight};
+  font-size: ${typography.badge.s.fontSize}px;
 `;
 var SectionBody = styled38.Text`
   align-self: stretch;
@@ -5097,15 +5097,15 @@ var AuthorName = styled38.Text`
   flex: 0 1 auto;
   max-width: 80px;
   color: ${({ theme: theme2 }) => theme2.content.dark};
-  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
-  font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
-  font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
+  font-family: ${typography.badge.s.fontFamily};
+  font-weight: ${typography.badge.s.fontWeight};
+  font-size: ${typography.badge.s.fontSize}px;
 `;
 var LocationLabel = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.secondary};
-  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
-  font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
-  font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
+  font-family: ${typography.badge.s.fontFamily};
+  font-weight: ${typography.badge.s.fontWeight};
+  font-size: ${typography.badge.s.fontSize}px;
 `;
 var ReportCard = forwardRef(
   ({

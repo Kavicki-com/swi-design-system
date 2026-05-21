@@ -35,7 +35,13 @@ export const Check = styled.Text<{ $size: CheckboxSize }>`
   text-align: center;
 `;
 
+// flex:1 obrigatorio — sem isso, Label usa width intrinsico do texto e
+// overflow do Container quando label e longo (ex: "Eu estou de acordo
+// com as politicas e termos de uso..."), cortando palavras no edge da
+// tela. Com flex:1, Label ocupa espaco restante apos Box+gap e wrap
+// naturalmente.
 export const Label = styled.Text<{ $size: CheckboxSize }>`
+  flex: 1;
   font-family: ${({ theme }) => theme.fontFamily.body};
   font-size: ${({ $size }) => SIZE[$size].label}px;
   font-weight: ${({ $size }) => SIZE[$size].labelWeight};

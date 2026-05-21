@@ -3233,6 +3233,7 @@ var Check = styled38__default.default.Text`
   text-align: center;
 `;
 var Label4 = styled38__default.default.Text`
+  flex: 1;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ $size }) => SIZE2[$size].label}px;
   font-weight: ${({ $size }) => SIZE2[$size].labelWeight};

@@ -4535,6 +4535,41 @@ var Silhouette = ({
   );
 };
 Silhouette.displayName = "Silhouette";
+var resolve2 = (variant) => {
+  const [group, key] = variant.split(".");
+  const slot = typography[group];
+  return slot?.[key] ?? typography.body.m;
+};
+var Text = forwardRef(
+  ({ variant = "body.m", weight, italic, color, children, style, ...rest }, ref) => {
+    const theme2 = useTheme();
+    const { tone } = useSurfaceTone();
+    const styleDef = resolve2(variant);
+    const defaultColor = tone === "disabled" ? theme2.content.disable : tone === "light" ? theme2.content.light : theme2.content.dark;
+    return /* @__PURE__ */ jsx(
+      Text$1,
+      {
+        ref,
+        style: [
+          {
+            fontFamily: styleDef.fontFamily,
+            fontWeight: weight ? fontWeight[weight] : styleDef.fontWeight,
+            fontSize: styleDef.fontSize,
+            color: color ?? defaultColor
+          },
+          // Native renders synthetic italic unless the host registers an
+          // Italic font face (e.g. `Inter-Italic`, `Inter-MediumItalic`);
+          // web resolves via the FontFace API.
+          italic ? { fontStyle: "italic" } : null,
+          style
+        ],
+        ...rest,
+        children
+      }
+    );
+  }
+);
+Text.displayName = "Text";
 var Pill = styled38(View)`
   flex-direction: row;
   align-items: center;
@@ -4542,18 +4577,12 @@ var Pill = styled38(View)`
   padding: ${({ theme: theme2 }) => theme2.padding.xs}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.primaryLight};
-`;
-var Label9 = styled38.Text`
-  color: ${({ theme: theme2 }) => theme2.content.light};
-  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
-  font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
-  font-size: ${({ theme: theme2 }) => theme2.fontSize.s}px;
+  min-width: 40px;
 `;
 var Triangle = styled38(View)`
   position: absolute;
   top: -9px;
   left: 50%;
-  margin-left: -4.5px;
   width: 0;
   height: 0;
   border-left-width: 4.5px;
@@ -4565,6 +4594,7 @@ var Triangle = styled38(View)`
 `;
 var TimeStamp = forwardRef(
   ({ time, testID, accessibilityLabel }, ref) => {
+    const theme2 = useTheme();
     return /* @__PURE__ */ jsxs(
       Pill,
       {
@@ -4573,7 +4603,7 @@ var TimeStamp = forwardRef(
         accessibilityLabel: accessibilityLabel ?? time,
         children: [
           /* @__PURE__ */ jsx(Triangle, {}),
-          /* @__PURE__ */ jsx(Label9, { children: time })
+          /* @__PURE__ */ jsx(Text, { variant: "caption.xs", color: theme2.content.light, children: time })
         ]
       }
     );
@@ -4586,16 +4616,12 @@ var Pill2 = styled38(View)`
   justify-content: center;
   padding: ${({ theme: theme2 }) => theme2.padding.xs}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
-  background-color: ${({ theme: theme2 }) => theme2.background};
-`;
-var Label10 = styled38.Text`
-  color: ${({ theme: theme2 }) => theme2.content.dark};
-  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
-  font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
-  font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
+  background-color: #171717;
+  min-width: 55px;
 `;
 var CaloriesTag = forwardRef(
   ({ value, unit = "kcal", testID, accessibilityLabel }, ref) => {
+    const theme2 = useTheme();
     const text = `${value}${unit}`;
     return /* @__PURE__ */ jsx(
       Pill2,
@@ -4603,15 +4629,14 @@ var CaloriesTag = forwardRef(
         ref,
         testID,
         accessibilityLabel: accessibilityLabel ?? text,
-        children: /* @__PURE__ */ jsx(Label10, { children: text })
+        children: /* @__PURE__ */ jsx(Text, { variant: "body.s", color: theme2.content.dark, children: text })
       }
     );
   }
 );
 CaloriesTag.displayName = "CaloriesTag";
 var ChartFrame = styled38(View)`
-  border-radius: ${({ theme: theme2 }) => theme2.border.radius.l}px;
-  overflow: hidden;
+  border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.medium};
 `;
 var Layer = styled38(View)`
@@ -4636,7 +4661,7 @@ var TimeAnchor = styled38(View)`
 var CHART_PADDING_X = 40;
 var CHART_PADDING_TOP = 32;
 var CHART_PADDING_BOTTOM = 40;
-var KCAL_TAG_GAP = 6;
+var KCAL_TAG_GAP = 2;
 var TIMESTAMP_GAP = 10;
 var KCAL_TAG_HEIGHT = 20;
 var CURVE_TENSION = 0.35;
@@ -4687,10 +4712,8 @@ var LineCaloriesChart = forwardRef(
     accessibilityLabel,
     testID
   }, ref) => {
-    const theme2 = useTheme();
     const laid = layoutPoints(points, width, height);
     const d = linePath(laid);
-    const gradId = `calories-stroke-${useId().replace(/:/g, "")}`;
     return /* @__PURE__ */ jsxs(
       ChartFrame,
       {
@@ -4699,31 +4722,24 @@ var LineCaloriesChart = forwardRef(
         testID,
         style: fullWidth ? { alignSelf: "stretch", width: "100%", height } : { alignSelf: "flex-start", width, height },
         children: [
-          /* @__PURE__ */ jsx(Layer, { children: /* @__PURE__ */ jsxs(
+          /* @__PURE__ */ jsx(Layer, { children: /* @__PURE__ */ jsx(
             Svg,
             {
               width: "100%",
               height,
               viewBox: `0 0 ${width} ${height}`,
               preserveAspectRatio: "none",
-              children: [
-                /* @__PURE__ */ jsx(Defs, { children: /* @__PURE__ */ jsxs(LinearGradient, { id: gradId, x1: "0", y1: "0", x2: "1", y2: "0", children: [
-                  /* @__PURE__ */ jsx(Stop, { offset: "0", stopColor: theme2.surface.primary, stopOpacity: "1" }),
-                  /* @__PURE__ */ jsx(Stop, { offset: "0.5", stopColor: theme2.surface.secondary, stopOpacity: "1" }),
-                  /* @__PURE__ */ jsx(Stop, { offset: "1", stopColor: theme2.surface.warning, stopOpacity: "1" })
-                ] }) }),
-                /* @__PURE__ */ jsx(
-                  Path,
-                  {
-                    d,
-                    fill: "none",
-                    stroke: `url(#${gradId})`,
-                    strokeWidth: 2,
-                    strokeLinecap: "round",
-                    strokeLinejoin: "round"
-                  }
-                )
-              ]
+              children: /* @__PURE__ */ jsx(
+                Path,
+                {
+                  d,
+                  fill: "none",
+                  stroke: "#8AD2E2",
+                  strokeWidth: 2,
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round"
+                }
+              )
             }
           ) }),
           laid.map((p) => /* @__PURE__ */ jsx(
@@ -4889,7 +4905,7 @@ var TimeText2 = styled38.Text`
   font-size: ${({ theme: theme2 }) => theme2.fontSize.s}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
 `;
-var Label11 = styled38.Text`
+var Label9 = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -4905,7 +4921,7 @@ var WeatherEventChip = forwardRef(
         testID,
         children: [
           /* @__PURE__ */ jsx(TimePill, { children: /* @__PURE__ */ jsx(TimeText2, { children: time }) }),
-          /* @__PURE__ */ jsx(Label11, { children: label })
+          /* @__PURE__ */ jsx(Label9, { children: label })
         ]
       }
     );
@@ -5006,7 +5022,7 @@ var Container17 = styled38(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   background-color: ${(props) => surfaceForStatus(props)};
 `;
-var Label12 = styled38.Text`
+var Label10 = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.light};
   font-family: ${typography.badge.s.fontFamily};
   font-size: ${typography.badge.s.fontSize}px;
@@ -5036,7 +5052,7 @@ var StatusTag = forwardRef(
         accessibilityRole: "text",
         accessibilityLabel: accessibilityLabel ?? text,
         testID,
-        children: /* @__PURE__ */ jsx(Label12, { numberOfLines: 1, children: text })
+        children: /* @__PURE__ */ jsx(Label10, { numberOfLines: 1, children: text })
       }
     );
   }
@@ -5694,41 +5710,6 @@ var WorkersInfoCard = forwardRef(
   }
 );
 WorkersInfoCard.displayName = "WorkersInfoCard";
-var resolve2 = (variant) => {
-  const [group, key] = variant.split(".");
-  const slot = typography[group];
-  return slot?.[key] ?? typography.body.m;
-};
-var Text = forwardRef(
-  ({ variant = "body.m", weight, italic, color, children, style, ...rest }, ref) => {
-    const theme2 = useTheme();
-    const { tone } = useSurfaceTone();
-    const styleDef = resolve2(variant);
-    const defaultColor = tone === "disabled" ? theme2.content.disable : tone === "light" ? theme2.content.light : theme2.content.dark;
-    return /* @__PURE__ */ jsx(
-      Text$1,
-      {
-        ref,
-        style: [
-          {
-            fontFamily: styleDef.fontFamily,
-            fontWeight: weight ? fontWeight[weight] : styleDef.fontWeight,
-            fontSize: styleDef.fontSize,
-            color: color ?? defaultColor
-          },
-          // Native renders synthetic italic unless the host registers an
-          // Italic font face (e.g. `Inter-Italic`, `Inter-MediumItalic`);
-          // web resolves via the FontFace API.
-          italic ? { fontStyle: "italic" } : null,
-          style
-        ],
-        ...rest,
-        children
-      }
-    );
-  }
-);
-Text.displayName = "Text";
 
 // src/icons/raw/background-chart.png
 var background_chart_default = "./background-chart-4WAIHJSI.png";
@@ -6117,7 +6098,7 @@ var Dot2 = styled38(View)`
   justify-content: center;
   background-color: ${dotBackground};
 `;
-var Label13 = styled38.Text`
+var Label11 = styled38.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ $state, theme: theme2 }) => $state === "current" ? theme2.fontWeight.bold : theme2.fontWeight.regular};
   font-size: 12px;
@@ -6136,7 +6117,7 @@ var Step = ({ state, number, testID, accessibilityLabel }) => /* @__PURE__ */ js
     testID,
     accessibilityLabel,
     accessibilityRole: accessibilityLabel ? "image" : void 0,
-    children: /* @__PURE__ */ jsx(Label13, { $state: state, children: renderContent(state, number) })
+    children: /* @__PURE__ */ jsx(Label11, { $state: state, children: renderContent(state, number) })
   }
 );
 Step.displayName = "Step";
@@ -6206,7 +6187,7 @@ var IconSlot7 = styled38(View)`
   align-items: center;
   justify-content: center;
 `;
-var Label14 = styled38.Text`
+var Label12 = styled38.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: 12px;
@@ -6243,7 +6224,7 @@ var GenderSelectionCard = ({
             gradient: selected ? ["#62BB81", "#50B3D2"] : void 0
           }
         ) }),
-        /* @__PURE__ */ jsx(Label14, { $selected: selected, children: label })
+        /* @__PURE__ */ jsx(Label12, { $selected: selected, children: label })
       ]
     }
   );
@@ -6656,9 +6637,7 @@ Toast.displayName = "Toast";
 var Container24 = styled38(View)`
   flex-direction: row;
   align-items: center;
-  width: 360px;
-  padding-left: ${({ theme: theme2 }) => theme2.padding.m}px;
-  padding-right: ${({ theme: theme2 }) => theme2.padding.m}px;
+  width: 100%;
   padding-top: ${({ theme: theme2 }) => theme2.padding.s}px;
   padding-bottom: ${({ theme: theme2 }) => theme2.padding.s}px;
 `;
@@ -6666,6 +6645,7 @@ var BackSlot = styled38(Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
+  margin-left: -6px;
   padding-left: 0px;
   padding-right: 0px;
   padding-top: ${({ theme: theme2 }) => theme2.padding.sm}px;

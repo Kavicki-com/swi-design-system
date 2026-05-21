@@ -1,9 +1,13 @@
 import { View } from 'react-native';
 import styled from 'styled-components/native';
 
+// ChartFrame SEM overflow:hidden — os CaloriesTag das pontas renderem
+// centralizados sobre o data point e overflowam metade fora do edge do
+// frame. Com overflow:hidden, ficavam clipados invisíveis. BorderRadius
+// continua redondinho no bg do View sem precisar de overflow.
+// radius.m (8px) alinhado com Figma 342:10223 (era radius.l).
 export const ChartFrame = styled(View)`
-  border-radius: ${({ theme }) => theme.border.radius.l}px;
-  overflow: hidden;
+  border-radius: ${({ theme }) => theme.border.radius.m}px;
   background-color: ${({ theme }) => theme.surface.medium};
 `;
 

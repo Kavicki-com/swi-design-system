@@ -3,7 +3,9 @@ import type { LineCaloriesPoint } from './LineCaloriesChart.types';
 export const CHART_PADDING_X = 40;
 export const CHART_PADDING_TOP = 32;
 export const CHART_PADDING_BOTTOM = 40;
-export const KCAL_TAG_GAP = 6;
+// Gap entre callout (CaloriesTag) e o data point. Figma 342:10223 mostra
+// callout proximo da linha — antes era 6, descendo pra 2 aproxima visual.
+export const KCAL_TAG_GAP = 2;
 export const TIMESTAMP_GAP = 10;
 export const KCAL_TAG_HEIGHT = 20;
 export const TIMESTAMP_HEIGHT = 18;

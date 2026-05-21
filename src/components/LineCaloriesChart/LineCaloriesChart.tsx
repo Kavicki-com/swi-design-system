@@ -1,12 +1,11 @@
 /**
  * Native LineCaloriesChart implementation. Web build picks the .web.tsx variant.
  */
-import React, { forwardRef, useId } from 'react';
+import React, { forwardRef } from 'react';
 import { type View } from 'react-native';
-import Svg, { Defs, LinearGradient, Path, Stop } from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 import { CaloriesTag } from '../CaloriesTag';
 import { TimeStamp } from '../TimeStamp';
-import { useTheme } from '../../theme';
 import {
   ChartFrame,
   KcalAnchor,
@@ -38,10 +37,8 @@ export const LineCaloriesChart = forwardRef<View, LineCaloriesChartProps>(
     },
     ref,
   ) => {
-    const theme = useTheme();
     const laid = layoutPoints(points, width, height);
     const d = linePath(laid);
-    const gradId = `calories-stroke-${useId().replace(/:/g, '')}`;
 
     return (
       <ChartFrame
@@ -61,17 +58,14 @@ export const LineCaloriesChart = forwardRef<View, LineCaloriesChartProps>(
             viewBox={`0 0 ${width} ${height}`}
             preserveAspectRatio="none"
           >
-            <Defs>
-              <LinearGradient id={gradId} x1="0" y1="0" x2="1" y2="0">
-                <Stop offset="0" stopColor={theme.surface.primary} stopOpacity="1" />
-                <Stop offset="0.5" stopColor={theme.surface.secondary} stopOpacity="1" />
-                <Stop offset="1" stopColor={theme.surface.warning} stopOpacity="1" />
-              </LinearGradient>
-            </Defs>
+            {/* Linha mint solida — Figma 342:10223. Antes era gradient
+                tri-color (primary→secondary→warning) que nao batia com
+                Figma. FIXME: deveria virar token (theme.surface.cyan ou
+                similar) — atualmente nao ha token mint disponivel. */}
             <Path
               d={d}
               fill="none"
-              stroke={`url(#${gradId})`}
+              stroke="#8AD2E2"
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"

@@ -1627,16 +1627,20 @@ var labelColor = ({
   if ($variant === "ghost" && $hovered) return theme2.content.dark;
   return theme2.content.primaryLight;
 };
-var labelFontFamily = ($labelFamily, theme2) => $labelFamily === "title" ? theme2.fontFamily.title : theme2.fontFamily.body;
-var labelFontWeight = ($labelWeight, theme2) => {
-  if ($labelWeight === "regular") return theme2.fontWeight.regular;
-  if ($labelWeight === "medium") return theme2.fontWeight.medium;
-  return theme2.fontWeight.bold;
+var labelTriplet = ($labelFamily, $labelWeight, theme2) => {
+  const weight = $labelWeight ?? "bold";
+  if (weight === "bold") {
+    if ($labelFamily === "title") return typography.link.m;
+    return typography.label.m;
+  }
+  const fontWeight2 = weight === "regular" ? theme2.fontWeight.regular : theme2.fontWeight.medium;
+  const fontFamily2 = $labelFamily === "title" ? theme2.fontFamily.title : theme2.fontFamily.body;
+  return { fontFamily: fontFamily2, fontWeight: fontWeight2, fontSize: theme2.fontSize.m };
 };
 var Label2 = styled38__default.default.Text`
-  font-family: ${({ $labelFamily, theme: theme2 }) => labelFontFamily($labelFamily, theme2)};
-  font-weight: ${({ $labelWeight, theme: theme2 }) => labelFontWeight($labelWeight, theme2)};
-  font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
+  font-family: ${({ $labelFamily, $labelWeight, theme: theme2 }) => labelTriplet($labelFamily, $labelWeight, theme2).fontFamily};
+  font-weight: ${({ $labelFamily, $labelWeight, theme: theme2 }) => labelTriplet($labelFamily, $labelWeight, theme2).fontWeight};
+  font-size: ${({ $labelFamily, $labelWeight, theme: theme2 }) => labelTriplet($labelFamily, $labelWeight, theme2).fontSize}px;
   color: ${(props) => labelColor(props)};
   ${({ $underline }) => $underline ? "text-decoration-line: underline;" : ""}
 `;
@@ -3292,15 +3296,16 @@ var Container10 = styled38__default.default(reactNative.View)`
   align-self: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var labelFontWeight2 = ($weight, theme2) => {
-  if ($weight === "regular") return theme2.fontWeight.regular;
-  if ($weight === "medium") return theme2.fontWeight.medium;
-  return theme2.fontWeight.bold;
+var labelTriplet2 = ($weight, theme2) => {
+  const weight = $weight ?? "bold";
+  if (weight === "bold") return typography.label.m;
+  const fontWeight2 = weight === "regular" ? theme2.fontWeight.regular : theme2.fontWeight.medium;
+  return { fontFamily: theme2.fontFamily.body, fontWeight: fontWeight2, fontSize: theme2.fontSize.m };
 };
 var Label5 = styled38__default.default.Text`
-  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
-  font-weight: ${({ $weight, theme: theme2 }) => labelFontWeight2($weight, theme2)};
-  font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
+  font-family: ${({ $weight, theme: theme2 }) => labelTriplet2($weight, theme2).fontFamily};
+  font-weight: ${({ $weight, theme: theme2 }) => labelTriplet2($weight, theme2).fontWeight};
+  font-size: ${({ $weight, theme: theme2 }) => labelTriplet2($weight, theme2).fontSize}px;
   color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
 `;
 var Row5 = styled38__default.default(reactNative.Pressable)`
@@ -6700,33 +6705,11 @@ var TopBar = React12.forwardRef(
                 color: backColor
               }
             ),
-            /* @__PURE__ */ jsxRuntime.jsx(
-              Text,
-              {
-                color: backColor,
-                style: {
-                  fontFamily: theme2.fontFamily.title,
-                  fontWeight: theme2.fontWeight.bold,
-                  fontSize: theme2.fontSize.m
-                },
-                children: backLabel
-              }
-            )
+            /* @__PURE__ */ jsxRuntime.jsx(Text, { variant: "link.m", color: backColor, children: backLabel })
           ]
         }
       ) : null,
-      /* @__PURE__ */ jsxRuntime.jsx(TitleSlot, { children: /* @__PURE__ */ jsxRuntime.jsx(
-        Text,
-        {
-          color: theme2.content.dark,
-          style: {
-            fontFamily: theme2.fontFamily.title,
-            fontWeight: theme2.fontWeight.bold,
-            fontSize: theme2.fontSize.m
-          },
-          children: title
-        }
-      ) })
+      /* @__PURE__ */ jsxRuntime.jsx(TitleSlot, { children: /* @__PURE__ */ jsxRuntime.jsx(Text, { variant: "link.m", color: theme2.content.dark, children: title }) })
     ] });
   }
 );

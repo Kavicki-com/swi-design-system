@@ -9,8 +9,9 @@ import type { TopBarProps } from './TopBar.types';
 /**
  * TopBar — drill-down navigation primitive. Left back-slot (optional)
  * with chevron-left + label, right title slot. Montserrat Bold 14 in
- * both slots; back slot uses content.primaryLight (#CAE8D4), title uses
- * content.dark. Figma 353:11629; first consumer: settings/personal-data.
+ * both slots (variant `link.m`); back slot uses content.primaryLight
+ * (#CAE8D4), title uses content.dark. Figma 353:11629; first consumer:
+ * settings/personal-data.
  */
 export const TopBar = forwardRef<RNView, TopBarProps>(
   (
@@ -33,27 +34,13 @@ export const TopBar = forwardRef<RNView, TopBarProps>(
               height={24}
               color={backColor}
             />
-            <Text
-              color={backColor}
-              style={{
-                fontFamily: theme.fontFamily.title,
-                fontWeight: theme.fontWeight.bold,
-                fontSize: theme.fontSize.m,
-              }}
-            >
+            <Text variant="link.m" color={backColor}>
               {backLabel}
             </Text>
           </BackSlot>
         ) : null}
         <TitleSlot>
-          <Text
-            color={theme.content.dark}
-            style={{
-              fontFamily: theme.fontFamily.title,
-              fontWeight: theme.fontWeight.bold,
-              fontSize: theme.fontSize.m,
-            }}
-          >
+          <Text variant="link.m" color={theme.content.dark}>
             {title}
           </Text>
         </TitleSlot>

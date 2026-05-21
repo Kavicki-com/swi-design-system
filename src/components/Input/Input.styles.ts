@@ -1,5 +1,6 @@
 import { Pressable, TextInput, View } from 'react-native';
 import styled, { css, type DefaultTheme } from 'styled-components/native';
+import { typography } from '../../tokens';
 import type { InputDescriptionVariant, InputLabelWeight } from './Input.types';
 
 export interface RowProps {
@@ -37,19 +38,26 @@ export const Container = styled(View)`
   gap: ${({ theme }) => theme.gap.xs}px;
 `;
 
-const labelFontWeight = (
+// Label triplet: default `bold` (Inter 700/14) references `typography.label.m`
+// added in v0.1.80. `regular` / `medium` branches stay on theme tokens — they
+// emit Inter 400/14 and Inter 500/14 respectively, which the variant matrix
+// doesn't enumerate as named typography variants. Triplet output identical to
+// the previous implementation.
+const labelTriplet = (
   $weight: InputLabelWeight | undefined,
   theme: DefaultTheme,
 ) => {
-  if ($weight === 'regular') return theme.fontWeight.regular;
-  if ($weight === 'medium') return theme.fontWeight.medium;
-  return theme.fontWeight.bold;
+  const weight = $weight ?? 'bold';
+  if (weight === 'bold') return typography.label.m;
+  const fontWeight =
+    weight === 'regular' ? theme.fontWeight.regular : theme.fontWeight.medium;
+  return { fontFamily: theme.fontFamily.body, fontWeight, fontSize: theme.fontSize.m };
 };
 
 export const Label = styled.Text<{ $disabled: boolean; $weight?: InputLabelWeight }>`
-  font-family: ${({ theme }) => theme.fontFamily.body};
-  font-weight: ${({ $weight, theme }) => labelFontWeight($weight, theme)};
-  font-size: ${({ theme }) => theme.fontSize.m}px;
+  font-family: ${({ $weight, theme }) => labelTriplet($weight, theme).fontFamily};
+  font-weight: ${({ $weight, theme }) => labelTriplet($weight, theme).fontWeight};
+  font-size: ${({ $weight, theme }) => labelTriplet($weight, theme).fontSize}px;
   color: ${({ $disabled, theme }) => ($disabled ? theme.content.disable : theme.content.dark)};
 `;
 

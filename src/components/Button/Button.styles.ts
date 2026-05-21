@@ -1,5 +1,6 @@
 import { Pressable, View } from 'react-native';
 import styled, { type DefaultTheme } from 'styled-components/native';
+import { typography } from '../../tokens';
 import type {
   ButtonLabelFamily,
   ButtonLabelWeight,
@@ -140,18 +141,27 @@ const labelColor = ({
 // `labelFamily="title"` explicitamente quando precisar Montserrat. Antes o
 // default era title, gerando Montserrat 14 (visualmente errado vs Figma);
 // corrigido 2026-05-18.
-const labelFontFamily = (
+//
+// As duas combinações default-bold (body+bold = Inter 700/14, title+bold =
+// Montserrat 700/14) referenciam variantes nomeadas `typography.label.m` e
+// `typography.link.m` adicionadas em v0.1.80. As variações regular/medium
+// continuam emitindo via theme tokens (são overrides intencionais — sign-up
+// privacy link usa body+regular underlined, etc.). Triplet final idêntico.
+const labelTriplet = (
   $labelFamily: ButtonLabelFamily | undefined,
-  theme: DefaultTheme,
-) => ($labelFamily === 'title' ? theme.fontFamily.title : theme.fontFamily.body);
-
-const labelFontWeight = (
   $labelWeight: ButtonLabelWeight | undefined,
   theme: DefaultTheme,
 ) => {
-  if ($labelWeight === 'regular') return theme.fontWeight.regular;
-  if ($labelWeight === 'medium') return theme.fontWeight.medium;
-  return theme.fontWeight.bold;
+  const weight = $labelWeight ?? 'bold';
+  if (weight === 'bold') {
+    if ($labelFamily === 'title') return typography.link.m; // Montserrat 700/14
+    return typography.label.m; // Inter 700/14 (default)
+  }
+  const fontWeight =
+    weight === 'regular' ? theme.fontWeight.regular : theme.fontWeight.medium;
+  const fontFamily =
+    $labelFamily === 'title' ? theme.fontFamily.title : theme.fontFamily.body;
+  return { fontFamily, fontWeight, fontSize: theme.fontSize.m };
 };
 
 export const Label = styled.Text<{
@@ -163,9 +173,12 @@ export const Label = styled.Text<{
   $labelFamily?: ButtonLabelFamily;
   $labelWeight?: ButtonLabelWeight;
 }>`
-  font-family: ${({ $labelFamily, theme }) => labelFontFamily($labelFamily, theme)};
-  font-weight: ${({ $labelWeight, theme }) => labelFontWeight($labelWeight, theme)};
-  font-size: ${({ theme }) => theme.fontSize.m}px;
+  font-family: ${({ $labelFamily, $labelWeight, theme }) =>
+    labelTriplet($labelFamily, $labelWeight, theme).fontFamily};
+  font-weight: ${({ $labelFamily, $labelWeight, theme }) =>
+    labelTriplet($labelFamily, $labelWeight, theme).fontWeight};
+  font-size: ${({ $labelFamily, $labelWeight, theme }) =>
+    labelTriplet($labelFamily, $labelWeight, theme).fontSize}px;
   color: ${(props) => labelColor(props)};
   ${({ $underline }) => ($underline ? 'text-decoration-line: underline;' : '')}
 `;

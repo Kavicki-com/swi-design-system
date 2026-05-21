@@ -1,5 +1,6 @@
 import { View } from 'react-native';
 import styled, { type DefaultTheme } from 'styled-components/native';
+import { typography } from '../../tokens';
 import type { StatusTagStatus } from './StatusTag.types';
 
 const surfaceForStatus = ({
@@ -33,7 +34,7 @@ export const Container = styled(View)<{ $status: StatusTagStatus }>`
 
 export const Label = styled.Text`
   color: ${({ theme }) => theme.content.light};
-  font-family: ${({ theme }) => theme.fontFamily.body};
-  font-size: ${({ theme }) => theme.fontSize.sm}px;
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  font-family: ${typography.badge.s.fontFamily};
+  font-size: ${typography.badge.s.fontSize}px;
+  font-weight: ${typography.badge.s.fontWeight};
 `;

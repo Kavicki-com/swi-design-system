@@ -2415,8 +2415,9 @@ interface TopBarProps {
 /**
  * TopBar — drill-down navigation primitive. Left back-slot (optional)
  * with chevron-left + label, right title slot. Montserrat Bold 14 in
- * both slots; back slot uses content.primaryLight (#CAE8D4), title uses
- * content.dark. Figma 353:11629; first consumer: settings/personal-data.
+ * both slots (variant `link.m`); back slot uses content.primaryLight
+ * (#CAE8D4), title uses content.dark. Figma 353:11629; first consumer:
+ * settings/personal-data.
  */
 declare const TopBar: React$1.ForwardRefExoticComponent<TopBarProps & React$1.RefAttributes<View>>;
 

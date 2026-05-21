@@ -5008,9 +5008,9 @@ var Container17 = styled38(View)`
 `;
 var Label12 = styled38.Text`
   color: ${({ theme: theme2 }) => theme2.content.light};
-  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
-  font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
-  font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
+  font-family: ${typography.badge.s.fontFamily};
+  font-size: ${typography.badge.s.fontSize}px;
+  font-weight: ${typography.badge.s.fontWeight};
 `;
 var DEFAULT_LABELS = {
   canceled: "Cancelado",

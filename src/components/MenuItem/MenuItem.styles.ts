@@ -41,8 +41,11 @@ const accentColor = ({
   if ($variant === 'minimal') {
     return $active ? theme.content.dark : theme.content.medium;
   }
-  if ($active) return theme.content.primary;
-  if ($hovered) return theme.content.dark;
+  // QA cliente §1.2: estilos de active e hover INVERTIDOS no sidebar.
+  // - Active agora usa content.dark (a aparência que era do hover: branco)
+  // - Hover agora usa content.primary (a aparência que era do active: verde)
+  if ($active) return theme.content.dark;
+  if ($hovered) return theme.content.primary;
   return theme.content.medium;
 };
 

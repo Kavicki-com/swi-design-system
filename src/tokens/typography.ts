@@ -4,7 +4,7 @@
  * Regenerate with: npm run tokens:generate
  */
 
-import type { TextStyle } from 'react-native';
+import { Platform, type TextStyle } from 'react-native';
 
 export const fontFamily = {
   title: 'Montserrat',
@@ -38,11 +38,21 @@ export const fontSize = {
  * Convenção esperada no host:
  *   Inter → Inter Regular  |  Inter-Medium → Inter Medium  |  Inter-Bold → Inter Bold
  *   Montserrat → Montserrat Bold  |  Montserrat-Regular → Montserrat Regular  |  Montserrat-Medium → Montserrat Medium
+ *
+ * IMPORTANTE — Web: browsers selecionam o glyph correto via `font-weight` CSS;
+ * a família é só "Inter" ou "Montserrat" (carregadas via @font-face / Google
+ * Fonts). Nomes weight-suffixados como "Inter-Medium" NÃO existem como CSS
+ * font-family e caem em fallback (Times/Arial). Por isso a early-return aqui
+ * devolve o nome base no web — o fontWeight nos estilos da typography faz o
+ * resto. Sem essa guarda, dezenas de elementos do admin (StatusTag, badges,
+ * Button labels, subtitle/body.s/body.l/label/caption variants) renderizam em
+ * fonte de fallback do browser, gerando a regressão de fontes desalinhadas.
  */
 const resolveFontFamily = (
   family: 'Inter' | 'Montserrat',
   weight: '300' | '400' | '500' | '700',
 ): string => {
+  if (Platform.OS === 'web') return family;
   if (family === 'Inter') {
     if (weight === '500') return 'Inter-Medium';
     if (weight === '700') return 'Inter-Bold';

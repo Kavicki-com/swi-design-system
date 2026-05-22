@@ -35,15 +35,18 @@ export const MenuItem = forwardRef<View, MenuItemProps>(
     const theme = useTheme();
     const [hovered, setHovered] = useState(false);
 
+    // QA cliente §1.2: estilos de active e hover INVERTIDOS — active ganha a
+    // aparência antiga de hover (ink branco + overlay), hover ganha a aparência
+    // antiga de active (ink verde, sem overlay).
     const accentColor = disabled
       ? theme.content.disable
       : active
-        ? theme.content.primary
+        ? theme.content.dark
         : hovered
-          ? theme.content.dark
+          ? theme.content.primary
           : theme.content.medium;
 
-    const showHoverOverlay = hovered && !disabled && !active;
+    const showHoverOverlay = active && !disabled;
     const isCompact = variant === 'compact';
     const isMinimal = variant === 'minimal';
 

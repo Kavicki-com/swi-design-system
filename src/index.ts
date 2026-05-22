@@ -133,7 +133,7 @@ export type {
 } from './components/WorkersInfoCard';
 export { Text } from './components/Text';
 export type { TextProps, TextVariant } from './components/Text';
-export { StatusChart } from './components/StatusChart';
+export { StatusChart, HEART_STATUS_OFFSET, STATUS_CHART_CANVAS, HEART_RATE_BUTTON } from './components/StatusChart';
 export type { StatusChartProps, StatusChartCondition } from './components/StatusChart';
 export { StatusTag } from './components/StatusTag';
 export type { StatusTagProps, StatusTagStatus } from './components/StatusTag';

@@ -2,6 +2,7 @@
  * Web StatusChart backdrop. See StatusChartBackdrop.tsx for layer breakdown.
  */
 import React, { useId } from 'react';
+import { ELLIPSE_5_DATA_URL } from './ellipse5.data';
 import { useTheme } from '../../theme';
 import { palette } from './StatusChart.theme';
 import { STATUS_CHART_CANVAS, STATUS_GAUGE } from './StatusChart.paths';
@@ -13,6 +14,8 @@ interface BackdropProps {
   height: number;
   progress: number;
   layer?: 'lower' | 'upper';
+  /** When true, sets SVG overflow:visible so Caminho 4122 extrapolates. */
+  extrapolate?: boolean;
 }
 
 const CENTER_X = 180;
@@ -21,6 +24,13 @@ const BG_R = 228.357;
 const INNER_BG_R = 149.23;
 const TRACK_R = 105.502;
 const WELL_R = 88.15;
+
+// Ellipse 5 — PNG asset (109×65 natural). Ver StatusChartBackdrop.tsx pro
+// reasoning. Posição: top-right do disco.
+const ELLIPSE_5_X = 180;
+const ELLIPSE_5_Y = 67;
+const ELLIPSE_5_W = 109;
+const ELLIPSE_5_H = 65;
 
 const SILHOUETTE_X = 141.9;
 const SILHOUETTE_Y = 87.47;
@@ -56,6 +66,7 @@ export const StatusChartBackdrop = ({
   height,
   progress,
   layer = 'upper',
+  extrapolate = false,
 }: BackdropProps) => {
   const theme = useTheme();
   const p = palette(theme, condition);
@@ -68,6 +79,7 @@ export const StatusChartBackdrop = ({
   const silhouetteGradId = `status-gauge-gradient-${condition}-${layer}-${uid}`;
   const crescentGradId = `status-crescent-gradient-${condition}-${layer}-${uid}`;
   const progressClipId = `status-progress-clip-${condition}-${layer}-${uid}`;
+  const innerShadowId = `status-inner-shadow-${layer}-${uid}`;
 
   const clamped = clamp01(progress);
   const sectorD = sectorPath(
@@ -85,9 +97,18 @@ export const StatusChartBackdrop = ({
       viewBox={`0 0 ${STATUS_CHART_CANVAS.width} ${STATUS_CHART_CANVAS.height}`}
       pointerEvents="none"
       aria-hidden
+      overflow={extrapolate ? 'visible' : undefined}
+      style={extrapolate ? { overflow: 'visible' } : undefined}
     >
       <defs>
-        <linearGradient id={silhouetteGradId} x1="0" y1="0" x2="0" y2="1">
+        <linearGradient
+          id={silhouetteGradId}
+          x1={38.4836}
+          y1={0}
+          x2={38.4836}
+          y2={262.318}
+          gradientUnits="userSpaceOnUse"
+        >
           <stop offset="0" stopColor={p.gradientFrom} />
           <stop offset="1" stopColor={p.gradientTo} />
         </linearGradient>
@@ -107,16 +128,56 @@ export const StatusChartBackdrop = ({
         <clipPath id={progressClipId}>
           <path d={sectorD} />
         </clipPath>
+
+        {/* Inner shadow filter — chain restaurada da 0.1.86. */}
+        <filter id={innerShadowId} x="-10%" y="-10%" width="120%" height="120%">
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
+          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dy="2.08" />
+          <feGaussianBlur stdDeviation="2.08" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2={-1} k3={1} />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.9882 0"
+          />
+          <feBlend mode="normal" in2="shape" result="effect_innerShadow" />
+        </filter>
       </defs>
 
       {layer === 'lower' ? (
         <>
-          <circle cx={CENTER_X} cy={CENTER_Y} r={BG_R} fill={theme.surface.standard} />
-          <circle cx={CENTER_X} cy={CENTER_Y} r={INNER_BG_R} fill={theme.surface.medium} />
+          {!extrapolate ? (
+            <circle
+              cx={CENTER_X}
+              cy={CENTER_Y}
+              r={BG_R}
+              fill={theme.surface.standard}
+              filter={`url(#${innerShadowId})`}
+            />
+          ) : null}
+          <circle
+            cx={CENTER_X}
+            cy={CENTER_Y}
+            r={INNER_BG_R}
+            fill={theme.surface.medium}
+            filter={`url(#${innerShadowId})`}
+          />
         </>
       ) : (
         <>
-          <circle cx={CENTER_X} cy={CENTER_Y} r={TRACK_R} fill={theme.surface.high} />
+          <circle
+            cx={CENTER_X}
+            cy={CENTER_Y}
+            r={TRACK_R}
+            fill={theme.surface.high}
+            filter={`url(#${innerShadowId})`}
+          />
 
           {clamped > 0 ? (
             <g clipPath={`url(#${progressClipId})`}>
@@ -126,14 +187,25 @@ export const StatusChartBackdrop = ({
             </g>
           ) : null}
 
-          <circle cx={CENTER_X} cy={CENTER_Y} r={WELL_R} fill={theme.background} />
-
-          <path
-            d={STATUS_GAUGE.d}
-            fill={`url(#${silhouetteGradId})`}
-            fillRule="evenodd"
-            transform={`translate(${SILHOUETTE_X} ${SILHOUETTE_Y})`}
+          {/* Ellipse 5 — PNG asset (109×65 natural) embedded direto. */}
+          <image
+            x={ELLIPSE_5_X}
+            y={ELLIPSE_5_Y}
+            width={ELLIPSE_5_W}
+            height={ELLIPSE_5_H}
+            href={ELLIPSE_5_DATA_URL}
+            preserveAspectRatio="xMidYMid meet"
           />
+
+          <circle
+            cx={CENTER_X}
+            cy={CENTER_Y}
+            r={WELL_R}
+            fill={theme.background}
+            filter={`url(#${innerShadowId})`}
+          />
+
+          {/* silhouette body — movido pro StatusChart pai via SvgXml. */}
         </>
       )}
     </svg>

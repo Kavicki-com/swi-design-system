@@ -52,7 +52,11 @@ const containerBackground = ({
   }
   // ghost
   if ($hovered) return theme.surface.primary;
-  if ($pressed) return theme.surface.primaryLight;
+  // Pressed: escurecimento sutil universal (funciona em dark + light themes).
+  // Antes usávamos `theme.surface.primaryLight` (verde-mint pálido) que em
+  // dark themes virava flash quase-branco, percebido como bug pelo usuário
+  // ("button fica branco e volta") em ghost buttons como Voltar/back.
+  if ($pressed) return 'rgba(255, 255, 255, 0.06)';
   return 'transparent';
 };
 

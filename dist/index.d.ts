@@ -1082,13 +1082,22 @@ interface BackgroundDotsGridProps {
      * (≈414.92 pra 27 colunas, Figma). Use pra reescalar em telas custom.
      */
     width?: number;
+    /**
+     * Quantidade de linhas (dots) por coluna. Quando omitido, usa o row count
+     * natural do Figma (13 linhas em ~157.829px com fade large→small top→bottom).
+     * Quando provido, renderiza esse número de linhas SEM escalar dots
+     * individualmente — a altura intrínseca do componente cresce linearmente
+     * com `rows`, mantendo o spacing inter-row constante. Linhas além das 13
+     * naturais continuam com o pattern do fundo (r=1.64, spacing≈14.32px).
+     */
+    rows?: number;
     /** Override de style do container — typicamente position/top/left/transform. */
     style?: StyleProp<ViewStyle>;
     testID?: string;
 }
 
 declare const BackgroundDotsGrid: {
-    ({ columns, color, opacity, width, style, testID, }: BackgroundDotsGridProps): react_jsx_runtime.JSX.Element;
+    ({ columns, color, opacity, width, rows, style, testID, }: BackgroundDotsGridProps): react_jsx_runtime.JSX.Element;
     displayName: string;
 };
 
@@ -2197,18 +2206,70 @@ interface StatusChartProps {
      */
     showActionButton?: boolean;
     /**
+     * Render the heart-status badge over the silhouette's chest. Defaults to
+     * `true` — matches the dashboard + my-stats internal behavior. Pass `false`
+     * on screens that need to stack a custom overlay (e.g. mix-blend-mode
+     * multiply) on top of the silhouette WITHOUT colorizing the heart badge.
+     * The consumer is then responsible for rendering `<HeartStatus>` manually
+     * AFTER the overlay, using `HEART_STATUS_OFFSET` for positioning.
+     */
+    renderHeartStatus?: boolean;
+    /**
      * Optional press handler for the heart-rate action button (bottom-right).
      * If omitted, the button is rendered non-interactive. Ignored when
      * `showActionButton` is `false`.
      */
     onPressHeartRate?: (event: GestureResponderEvent) => void;
+    /**
+     * Optional press handler for the settings sub-badge (top-right gear icon
+     * nested inside the heart-rate action button). When omitted, the badge
+     * remains visible but is non-interactive (press is a no-op). Touch events
+     * on the sub-badge do NOT propagate to the parent heart-rate button.
+     * Ignored when `showActionButton` is `false`.
+     */
+    onPressSettings?: (event: GestureResponderEvent) => void;
+    /**
+     * When true, allows the outermost background-circle (Caminho 4122,
+     * 456.714px diameter) to extrapolate beyond the canvas. Per Figma data,
+     * the disc extends ~25.7px above, ~57px below, and ~48px on each side
+     * of the 360×374 canvas. Default behavior (`false`) clips the disc to
+     * the canvas (preserving backwards compatibility — useful when StatusChart
+     * is rendered standalone in a card). Set to `true` on dashboard contexts
+     * where the disc should visually bleed beyond the chart frame.
+     */
+    extrapolate?: boolean;
+    /**
+     * Diameter (in logical px) of the outermost background-circle (Caminho 4122)
+     * when `extrapolate=true`. Default is 456.714 (Figma spec). Pass a larger
+     * value to make the disc visually bigger and extrapolate further beyond
+     * the canvas. Ignored when `extrapolate=false`.
+     */
+    discDiameter?: number;
     testID?: string;
     accessibilityLabel?: string;
 }
 
 declare const StatusChart: {
-    ({ condition, progress, size, showActionButton, onPressHeartRate, testID, accessibilityLabel, }: StatusChartProps): react_jsx_runtime.JSX.Element;
+    ({ condition, progress, size, showActionButton, renderHeartStatus, onPressHeartRate, onPressSettings, extrapolate, discDiameter, testID, accessibilityLabel, }: StatusChartProps): react_jsx_runtime.JSX.Element;
     displayName: string;
+};
+
+/** Canvas dimensions used by StatusChart. Designed against this fixed size. */
+declare const STATUS_CHART_CANVAS: {
+    readonly width: 360;
+    readonly height: 374;
+};
+/** Heart-status badge position in the chart canvas. */
+declare const HEART_STATUS_OFFSET: {
+    readonly left: 169.2;
+    readonly top: number;
+    readonly height: 26.093;
+};
+/** Heart-rate action button position + size in the chart canvas. */
+declare const HEART_RATE_BUTTON: {
+    readonly size: 90.03;
+    readonly right: 22.45;
+    readonly top: 187.04;
 };
 
 type StepState = 'default' | 'current' | 'done';
@@ -2421,4 +2482,4 @@ interface TopBarProps {
  */
 declare const TopBar: React$1.ForwardRefExoticComponent<TopBarProps & React$1.RefAttributes<View>>;
 
-export { Accordion, type AccordionProps, ActivitiesOverviewCard, type ActivitiesOverviewCardProps, Avatar, AvatarGroup, type AvatarGroupItem, type AvatarGroupProps, type AvatarProps, type AvatarSize, BackgroundDotsGrid, type BackgroundDotsGridProps, BigNumbersCard, type BigNumbersCardProps, Button, type ButtonProps, CaloriesTag, type CaloriesTagProps, ChatBubble, type ChatBubblePosition, type ChatBubbleProps, ChatSection, type ChatSectionProps, type ChatSectionUser, ChatUserCard, type ChatUserCardProps, Checkbox, type CheckboxProps, type CheckboxSize, Chip, ChipGroup, type ChipGroupMode, type ChipGroupProps, type ChipProps, type ChipState, Combobox, type ComboboxOption, type ComboboxProps, DonutChart, type DonutChartProps, type DonutChartSize, type DonutGradient, EmployeeOverviewCard, type EmployeeOverviewCardEmployee, type EmployeeOverviewCardProps, ExamInfoCard, type ExamInfoCardProps, GenderSelectionCard, type GenderSelectionCardProps, GenderSelector, type GenderSelectorProps, type GenderValue, Header, type HeaderProps, HeaderUserInfo, type HeaderUserInfoProps, HeartStatus, type HeartStatusCondition, type HeartStatusProps, HeartrateStatus, type HeartrateStatusCondition, type HeartrateStatusProps, HorizontalCard, type HorizontalCardProps, Icon, type IconName, type IconProps, Image, type ImageProps, type ImageResizeMode, ImageUploader, type ImageUploaderProps, type ImageUploaderValue, Input, type InputProps, type IntensityColor, type IntensitySegment, JourneyTheme, type JourneyThemeProps, LineCaloriesChart, type LineCaloriesChartProps, type LineCaloriesPoint, LocationPin, type LocationPinProps, type LocationPinStatus, Logo, type LogoProps, type LogoSize, type LogoType, MapControl, type MapControlOption, type MapControlProps, type MapControlVariant, MenuItem, type MenuItemProps, NowMarker, type NowMarkerProps, Pagination, type PaginationProps, ProgressBar, type ProgressBarProps, Radio, type RadioProps, type RadioSize, ReportCard, type ReportCardAuthor, type ReportCardProps, SearchInput, type SearchInputProps, SideMenu, type SideMenuItem, type SideMenuProps, Silhouette, type SilhouetteGender, type SilhouetteProps, SmartbandStatus, type SmartbandStatusProps, StatusChart, type StatusChartCondition, type StatusChartProps, StatusTag, type StatusTagProps, type StatusTagStatus, Step, StepBar, type StepBarProps, type StepProps, type StepState, SuccessBadge, type SuccessBadgeProps, Surface, type SurfacePadding, type SurfaceProps, type SurfaceRadius, type SurfaceVariant, SwiThemeProvider, type SwiThemeProviderProps, type TabItem, Tabs, type TabsProps, Text, type TextProps, type TextVariant, type Theme, TimeStamp, type TimeStampProps, Title, type TitleProps, type TitleVariant, Toast, type ToastProps, type ToastVariant, Toggle, type ToggleProps, TopBar, type TopBarProps, type TypographyVariant, type WeatherCondition, WeatherEventChip, type WeatherEventChipProps, WeatherIcon, type WeatherIconProps, type WeatherIconSize, WeatherTimeline, WeatherTimelineEntry, type WeatherTimelineEntryProps, type WeatherTimelineEvent, type WeatherTimelineProps, WorkersInfoCard, type WorkersInfoCardAlert, type WorkersInfoCardEmployee, type WorkersInfoCardProps, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
+export { Accordion, type AccordionProps, ActivitiesOverviewCard, type ActivitiesOverviewCardProps, Avatar, AvatarGroup, type AvatarGroupItem, type AvatarGroupProps, type AvatarProps, type AvatarSize, BackgroundDotsGrid, type BackgroundDotsGridProps, BigNumbersCard, type BigNumbersCardProps, Button, type ButtonProps, CaloriesTag, type CaloriesTagProps, ChatBubble, type ChatBubblePosition, type ChatBubbleProps, ChatSection, type ChatSectionProps, type ChatSectionUser, ChatUserCard, type ChatUserCardProps, Checkbox, type CheckboxProps, type CheckboxSize, Chip, ChipGroup, type ChipGroupMode, type ChipGroupProps, type ChipProps, type ChipState, Combobox, type ComboboxOption, type ComboboxProps, DonutChart, type DonutChartProps, type DonutChartSize, type DonutGradient, EmployeeOverviewCard, type EmployeeOverviewCardEmployee, type EmployeeOverviewCardProps, ExamInfoCard, type ExamInfoCardProps, GenderSelectionCard, type GenderSelectionCardProps, GenderSelector, type GenderSelectorProps, type GenderValue, HEART_RATE_BUTTON, HEART_STATUS_OFFSET, Header, type HeaderProps, HeaderUserInfo, type HeaderUserInfoProps, HeartStatus, type HeartStatusCondition, type HeartStatusProps, HeartrateStatus, type HeartrateStatusCondition, type HeartrateStatusProps, HorizontalCard, type HorizontalCardProps, Icon, type IconName, type IconProps, Image, type ImageProps, type ImageResizeMode, ImageUploader, type ImageUploaderProps, type ImageUploaderValue, Input, type InputProps, type IntensityColor, type IntensitySegment, JourneyTheme, type JourneyThemeProps, LineCaloriesChart, type LineCaloriesChartProps, type LineCaloriesPoint, LocationPin, type LocationPinProps, type LocationPinStatus, Logo, type LogoProps, type LogoSize, type LogoType, MapControl, type MapControlOption, type MapControlProps, type MapControlVariant, MenuItem, type MenuItemProps, NowMarker, type NowMarkerProps, Pagination, type PaginationProps, ProgressBar, type ProgressBarProps, Radio, type RadioProps, type RadioSize, ReportCard, type ReportCardAuthor, type ReportCardProps, STATUS_CHART_CANVAS, SearchInput, type SearchInputProps, SideMenu, type SideMenuItem, type SideMenuProps, Silhouette, type SilhouetteGender, type SilhouetteProps, SmartbandStatus, type SmartbandStatusProps, StatusChart, type StatusChartCondition, type StatusChartProps, StatusTag, type StatusTagProps, type StatusTagStatus, Step, StepBar, type StepBarProps, type StepProps, type StepState, SuccessBadge, type SuccessBadgeProps, Surface, type SurfacePadding, type SurfaceProps, type SurfaceRadius, type SurfaceVariant, SwiThemeProvider, type SwiThemeProviderProps, type TabItem, Tabs, type TabsProps, Text, type TextProps, type TextVariant, type Theme, TimeStamp, type TimeStampProps, Title, type TitleProps, type TitleVariant, Toast, type ToastProps, type ToastVariant, Toggle, type ToggleProps, TopBar, type TopBarProps, type TypographyVariant, type WeatherCondition, WeatherEventChip, type WeatherEventChipProps, WeatherIcon, type WeatherIconProps, type WeatherIconSize, WeatherTimeline, WeatherTimelineEntry, type WeatherTimelineEntryProps, type WeatherTimelineEvent, type WeatherTimelineProps, WorkersInfoCard, type WorkersInfoCardAlert, type WorkersInfoCardEmployee, type WorkersInfoCardProps, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };

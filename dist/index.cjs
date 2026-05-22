@@ -4,13 +4,13 @@ var styled38 = require('styled-components/native');
 var reactNative = require('react-native');
 var jsxRuntime = require('react/jsx-runtime');
 var React12 = require('react');
-var Svg = require('react-native-svg');
+var Svg10 = require('react-native-svg');
 
 function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 var styled38__default = /*#__PURE__*/_interopDefault(styled38);
 var React12__default = /*#__PURE__*/_interopDefault(React12);
-var Svg__default = /*#__PURE__*/_interopDefault(Svg);
+var Svg10__default = /*#__PURE__*/_interopDefault(Svg10);
 
 // src/theme/ThemeProvider.tsx
 
@@ -221,8 +221,6 @@ var semantic = {
     xl: primitive.size.xxl
   }
 };
-
-// src/tokens/typography.ts
 var fontFamily = {
   title: "Montserrat",
   body: "Inter"
@@ -244,6 +242,7 @@ var fontSize = {
   xxl: 32
 };
 var resolveFontFamily = (family, weight) => {
+  if (reactNative.Platform.OS === "web") return family;
   if (family === "Inter") {
     if (weight === "500") return "Inter-Medium";
     if (weight === "700") return "Inter-Bold";
@@ -936,7 +935,7 @@ var Icon = ({
   const gradId = `icon-grad-${rawId.replace(/:/g, "-")}`;
   const fill = gradient ? `url(#${gradId})` : color;
   return /* @__PURE__ */ jsxRuntime.jsxs(
-    Svg__default.default,
+    Svg10__default.default,
     {
       width: w,
       height: h,
@@ -946,11 +945,11 @@ var Icon = ({
       accessibilityLabel,
       accessibilityRole: accessibilityLabel ? "image" : void 0,
       children: [
-        gradient ? /* @__PURE__ */ jsxRuntime.jsx(Svg.Defs, { children: /* @__PURE__ */ jsxRuntime.jsxs(Svg.LinearGradient, { id: gradId, x1: "0", y1: "0", x2: "0", y2: "1", children: [
-          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: gradient[0] }),
-          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: gradient[1] })
+        gradient ? /* @__PURE__ */ jsxRuntime.jsx(Svg10.Defs, { children: /* @__PURE__ */ jsxRuntime.jsxs(Svg10.LinearGradient, { id: gradId, x1: "0", y1: "0", x2: "0", y2: "1", children: [
+          /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "0", stopColor: gradient[0] }),
+          /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "1", stopColor: gradient[1] })
         ] }) }) : null,
-        /* @__PURE__ */ jsxRuntime.jsx(Svg.Path, { d: icon.d, fill, fillRule: icon.fillRule ?? "nonzero" })
+        /* @__PURE__ */ jsxRuntime.jsx(Svg10.Path, { d: icon.d, fill, fillRule: icon.fillRule ?? "nonzero" })
       ]
     }
   );
@@ -1217,15 +1216,15 @@ var ProgressBar = React12.forwardRef(
     const gradX1 = gradientDirection === "rtl" ? 100 : 0;
     const gradX2 = gradientDirection === "rtl" ? 0 : 100;
     const fillNode = useGradient ? /* @__PURE__ */ jsxRuntime.jsx(reactNative.View, { style: { width: `${pct}%`, height: FILL_HEIGHT, overflow: "hidden" }, children: /* @__PURE__ */ jsxRuntime.jsxs(
-      Svg__default.default,
+      Svg10__default.default,
       {
         width: "100%",
         height: "100%",
         viewBox: `0 0 100 ${FILL_HEIGHT}`,
         preserveAspectRatio: "none",
         children: [
-          /* @__PURE__ */ jsxRuntime.jsx(Svg.Defs, { children: /* @__PURE__ */ jsxRuntime.jsx(
-            Svg.LinearGradient,
+          /* @__PURE__ */ jsxRuntime.jsx(Svg10.Defs, { children: /* @__PURE__ */ jsxRuntime.jsx(
+            Svg10.LinearGradient,
             {
               id: "pb-gradient",
               x1: gradX1,
@@ -1234,7 +1233,7 @@ var ProgressBar = React12.forwardRef(
               y2: "0",
               gradientUnits: "userSpaceOnUse",
               children: gradient.map((stopColor, i) => /* @__PURE__ */ jsxRuntime.jsx(
-                Svg.Stop,
+                Svg10.Stop,
                 {
                   offset: `${stops[i]}%`,
                   stopColor
@@ -1244,7 +1243,7 @@ var ProgressBar = React12.forwardRef(
             }
           ) }),
           /* @__PURE__ */ jsxRuntime.jsx(
-            Svg.Rect,
+            Svg10.Rect,
             {
               x: 0,
               y: 0,
@@ -1461,23 +1460,42 @@ var COL_WIDTH = 10.6228;
 var COL_HEIGHT = 157.829;
 var COL_SPACING = 15.93;
 var COL_CENTER_X = COL_WIDTH / 2;
+var NATURAL_ROWS = COL_DOTS.length;
+var LAST_NATURAL_DOT = COL_DOTS[NATURAL_ROWS - 1];
+var EXTRA_DOT_R = 1.64;
+var EXTRA_DOT_SPACING = 14.32;
+var NATURAL_BOTTOM_MARGIN = COL_HEIGHT - (LAST_NATURAL_DOT.cy + LAST_NATURAL_DOT.r);
+var resolveDots = (n) => {
+  if (n <= NATURAL_ROWS) return COL_DOTS.slice(0, n);
+  const extras = [];
+  let cy = LAST_NATURAL_DOT.cy;
+  for (let i = NATURAL_ROWS; i < n; i += 1) {
+    cy += EXTRA_DOT_SPACING;
+    extras.push({ cy, r: EXTRA_DOT_R });
+  }
+  return [...COL_DOTS, ...extras];
+};
 var BackgroundDotsGrid = ({
   columns = 27,
   color = "#65D040",
   opacity = 0.09,
   width,
+  rows,
   style,
   testID
 }) => {
   const totalWidth = width ?? (columns - 1) * COL_SPACING + COL_WIDTH;
-  const viewBox = `0 0 ${totalWidth} ${COL_HEIGHT}`;
+  const dots = rows == null ? COL_DOTS : resolveDots(rows);
+  const lastDot = dots[dots.length - 1];
+  const totalHeight = rows == null || rows <= NATURAL_ROWS ? COL_HEIGHT : lastDot.cy + EXTRA_DOT_R + NATURAL_BOTTOM_MARGIN;
+  const viewBox = `0 0 ${totalWidth} ${totalHeight}`;
   return /* @__PURE__ */ jsxRuntime.jsx(
     reactNative.View,
     {
-      style: [{ width: totalWidth, height: COL_HEIGHT, opacity }, style],
+      style: [{ width: totalWidth, height: totalHeight, opacity }, style],
       pointerEvents: "none",
       testID,
-      children: /* @__PURE__ */ jsxRuntime.jsx(Svg__default.default, { width: "100%", height: "100%", viewBox, children: Array.from({ length: columns }, (_, i) => /* @__PURE__ */ jsxRuntime.jsx(Svg.G, { transform: `translate(${i * COL_SPACING} 0)`, children: COL_DOTS.map((d, di) => /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx: COL_CENTER_X, cy: d.cy, r: d.r, fill: color }, di)) }, i)) })
+      children: /* @__PURE__ */ jsxRuntime.jsx(Svg10__default.default, { width: "100%", height: "100%", viewBox, children: Array.from({ length: columns }, (_, i) => /* @__PURE__ */ jsxRuntime.jsx(Svg10.G, { transform: `translate(${i * COL_SPACING} 0)`, children: dots.map((d, di) => /* @__PURE__ */ jsxRuntime.jsx(Svg10.Circle, { cx: COL_CENTER_X, cy: d.cy, r: d.r, fill: color }, di)) }, i)) })
     }
   );
 };
@@ -1564,7 +1582,7 @@ var containerBackground = ({
     return $hovered || $pressed ? theme2.surface.primaryLight : "transparent";
   }
   if ($hovered) return theme2.surface.primary;
-  if ($pressed) return theme2.surface.primaryLight;
+  if ($pressed) return "rgba(255, 255, 255, 0.06)";
   return "transparent";
 };
 var containerBorderColor = ({
@@ -2202,17 +2220,17 @@ var DonutArc = ({
   const isFlat = appearance === "flat";
   const BEZEL_FILL = "#1F1F1F";
   const WELL_FILL = "#171717";
-  return /* @__PURE__ */ jsxRuntime.jsxs(Svg__default.default, { width: size, height: size, viewBox: `0 0 ${size} ${size}`, children: [
-    /* @__PURE__ */ jsxRuntime.jsx(Svg.Defs, { children: /* @__PURE__ */ jsxRuntime.jsxs(Svg.LinearGradient, { id: arcId, x1: "0.5", y1: "0", x2: "0.5", y2: "1", children: [
-      /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: arcFrom, stopOpacity: "1" }),
-      /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: arcTo, stopOpacity: "1" })
+  return /* @__PURE__ */ jsxRuntime.jsxs(Svg10__default.default, { width: size, height: size, viewBox: `0 0 ${size} ${size}`, children: [
+    /* @__PURE__ */ jsxRuntime.jsx(Svg10.Defs, { children: /* @__PURE__ */ jsxRuntime.jsxs(Svg10.LinearGradient, { id: arcId, x1: "0.5", y1: "0", x2: "0.5", y2: "1", children: [
+      /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "0", stopColor: arcFrom, stopOpacity: "1" }),
+      /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "1", stopColor: arcTo, stopOpacity: "1" })
     ] }) }),
-    isFlat ? /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx, cy, r: arcR - arcStroke / 2, fill: "#1a1a1a" }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-      /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx, cy, r: outerR, fill: BEZEL_FILL }),
-      /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx, cy, r: innerR, fill: WELL_FILL })
+    isFlat ? /* @__PURE__ */ jsxRuntime.jsx(Svg10.Circle, { cx, cy, r: arcR - arcStroke / 2, fill: "#1a1a1a" }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx(Svg10.Circle, { cx, cy, r: outerR, fill: BEZEL_FILL }),
+      /* @__PURE__ */ jsxRuntime.jsx(Svg10.Circle, { cx, cy, r: innerR, fill: WELL_FILL })
     ] }),
     /* @__PURE__ */ jsxRuntime.jsx(
-      Svg.Circle,
+      Svg10.Circle,
       {
         cx,
         cy,
@@ -2223,8 +2241,8 @@ var DonutArc = ({
         opacity: isFlat ? 0.25 : 0.35
       }
     ),
-    /* @__PURE__ */ jsxRuntime.jsx(Svg.G, { transform: `rotate(-90 ${cx} ${cy})`, children: /* @__PURE__ */ jsxRuntime.jsx(
-      Svg.Circle,
+    /* @__PURE__ */ jsxRuntime.jsx(Svg10.G, { transform: `rotate(-90 ${cx} ${cy})`, children: /* @__PURE__ */ jsxRuntime.jsx(
+      Svg10.Circle,
       {
         cx,
         cy,
@@ -2951,7 +2969,7 @@ var HeartrateStatus = ({
   const data = HEARTRATE_STATUS_PATHS[condition];
   const w = size * data.width / data.height;
   return /* @__PURE__ */ jsxRuntime.jsxs(
-    Svg__default.default,
+    Svg10__default.default,
     {
       width: w,
       height: size,
@@ -2960,8 +2978,8 @@ var HeartrateStatus = ({
       accessibilityLabel: accessibilityLabel ?? `heartrate status ${conditionLabel[condition]}`,
       accessibilityRole: "image",
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx(Svg.Path, { d: data.circle, fill: conditionColor(theme2, condition) }),
-        /* @__PURE__ */ jsxRuntime.jsx(Svg.Path, { d: data.symbol, fill: theme2.content.dark })
+        /* @__PURE__ */ jsxRuntime.jsx(Svg10.Path, { d: data.circle, fill: conditionColor(theme2, condition) }),
+        /* @__PURE__ */ jsxRuntime.jsx(Svg10.Path, { d: data.symbol, fill: theme2.content.dark })
       ]
     }
   );
@@ -2983,7 +3001,7 @@ var HeartStatus = ({
   const w = h * HEART_STATUS_CANVAS.width / HEART_STATUS_CANVAS.height;
   const badge = HEARTRATE_STATUS_PATHS[condition];
   return /* @__PURE__ */ jsxRuntime.jsxs(
-    Svg__default.default,
+    Svg10__default.default,
     {
       width: w,
       height: h,
@@ -2992,10 +3010,10 @@ var HeartStatus = ({
       accessibilityLabel: accessibilityLabel ?? `heart status ${conditionLabel[condition]}`,
       accessibilityRole: "image",
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx(Svg.Path, { d: HEART_PATH, fill: theme2.content.dark }),
-        /* @__PURE__ */ jsxRuntime.jsxs(Svg.G, { x: HEART_STATUS_BADGE_OFFSET.x, y: HEART_STATUS_BADGE_OFFSET.y, children: [
-          /* @__PURE__ */ jsxRuntime.jsx(Svg.Path, { d: badge.circle, fill: conditionColor(theme2, condition) }),
-          /* @__PURE__ */ jsxRuntime.jsx(Svg.Path, { d: badge.symbol, fill: theme2.content.dark })
+        /* @__PURE__ */ jsxRuntime.jsx(Svg10.Path, { d: HEART_PATH, fill: theme2.content.dark }),
+        /* @__PURE__ */ jsxRuntime.jsxs(Svg10.G, { x: HEART_STATUS_BADGE_OFFSET.x, y: HEART_STATUS_BADGE_OFFSET.y, children: [
+          /* @__PURE__ */ jsxRuntime.jsx(Svg10.Path, { d: badge.circle, fill: conditionColor(theme2, condition) }),
+          /* @__PURE__ */ jsxRuntime.jsx(Svg10.Path, { d: badge.symbol, fill: theme2.content.dark })
         ] })
       ]
     }
@@ -4295,8 +4313,8 @@ var accentColor = ({
   if ($variant === "minimal") {
     return $active ? theme2.content.dark : theme2.content.medium;
   }
-  if ($active) return theme2.content.primary;
-  if ($hovered) return theme2.content.dark;
+  if ($active) return theme2.content.dark;
+  if ($hovered) return theme2.content.primary;
   return theme2.content.medium;
 };
 var dividerColor = ({
@@ -4391,8 +4409,8 @@ var MenuItem = React12.forwardRef(
   }, ref) => {
     const theme2 = useTheme();
     const [hovered, setHovered] = React12.useState(false);
-    const accentColor2 = disabled ? theme2.content.disable : active ? theme2.content.primary : hovered ? theme2.content.dark : theme2.content.medium;
-    const showHoverOverlay = hovered && !disabled && !active;
+    const accentColor2 = disabled ? theme2.content.disable : active ? theme2.content.dark : hovered ? theme2.content.primary : theme2.content.medium;
+    const showHoverOverlay = active && !disabled;
     const isCompact = variant === "compact";
     const isMinimal = variant === "minimal";
     const stateProps = {
@@ -4519,7 +4537,7 @@ var Silhouette = ({
   const w = h * data.width / data.height;
   const gradientId = `silhouette-gradient-${gender}-${heatGradient ? "heat" : "primary"}`;
   return /* @__PURE__ */ jsxRuntime.jsxs(
-    Svg__default.default,
+    Svg10__default.default,
     {
       width: w,
       height: h,
@@ -4528,17 +4546,17 @@ var Silhouette = ({
       accessibilityLabel: accessibilityLabel ?? `silhouette ${gender}`,
       accessibilityRole: "image",
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx(Svg.Defs, { children: /* @__PURE__ */ jsxRuntime.jsx(Svg.LinearGradient, { id: gradientId, x1: "0", y1: "0", x2: "0", y2: "1", children: heatGradient ? [
-          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: "#ef4444" }, "heat-0"),
-          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0.33", stopColor: "#f97316" }, "heat-1"),
-          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0.66", stopColor: "#facc15" }, "heat-2"),
-          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: "#22c55e" }, "heat-3")
+        /* @__PURE__ */ jsxRuntime.jsx(Svg10.Defs, { children: /* @__PURE__ */ jsxRuntime.jsx(Svg10.LinearGradient, { id: gradientId, x1: "0", y1: "0", x2: "0", y2: "1", children: heatGradient ? [
+          /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "0", stopColor: "#ef4444" }, "heat-0"),
+          /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "0.33", stopColor: "#f97316" }, "heat-1"),
+          /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "0.66", stopColor: "#facc15" }, "heat-2"),
+          /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "1", stopColor: "#22c55e" }, "heat-3")
         ] : [
-          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: theme2.content.primary }, "primary-0"),
-          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: theme2.surface.accent }, "primary-1")
+          /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "0", stopColor: theme2.content.primary }, "primary-0"),
+          /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "1", stopColor: theme2.surface.accent }, "primary-1")
         ] }) }),
-        /* @__PURE__ */ jsxRuntime.jsx(Svg.Path, { d: data.body, fill: `url(#${gradientId})` }),
-        showHeart ? /* @__PURE__ */ jsxRuntime.jsx(Svg.Path, { d: data.heart, fill: theme2.content.dark }) : null
+        /* @__PURE__ */ jsxRuntime.jsx(Svg10.Path, { d: data.body, fill: `url(#${gradientId})` }),
+        showHeart ? /* @__PURE__ */ jsxRuntime.jsx(Svg10.Path, { d: data.heart, fill: theme2.content.dark }) : null
       ]
     }
   );
@@ -4732,14 +4750,14 @@ var LineCaloriesChart = React12.forwardRef(
         style: fullWidth ? { alignSelf: "stretch", width: "100%", height } : { alignSelf: "flex-start", width, height },
         children: [
           /* @__PURE__ */ jsxRuntime.jsx(Layer, { children: /* @__PURE__ */ jsxRuntime.jsx(
-            Svg__default.default,
+            Svg10__default.default,
             {
               width: "100%",
               height,
               viewBox: `0 0 ${width} ${height}`,
               preserveAspectRatio: "none",
               children: /* @__PURE__ */ jsxRuntime.jsx(
-                Svg.Path,
+                Svg10.Path,
                 {
                   d,
                   fill: "none",
@@ -5720,8 +5738,8 @@ var WorkersInfoCard = React12.forwardRef(
 );
 WorkersInfoCard.displayName = "WorkersInfoCard";
 
-// src/icons/raw/background-chart.png
-var background_chart_default = "./background-chart-4WAIHJSI.png";
+// src/components/StatusChart/ellipse5.data.ts
+var ELLIPSE_5_DATA_URL = "data:image/png;base64,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";
 
 // src/components/StatusChart/StatusChart.theme.ts
 var palette = (theme2, condition) => {
@@ -5763,6 +5781,7 @@ var conditionLabel2 = {
 var STATUS_GAUGE = {
   d: "M38.4838 136.34L37.8084 136.306C37.8135 135.301 37.7466 134.914 38.4838 134.792C39.2206 134.914 39.1537 135.301 39.1589 136.306L38.4838 136.34ZM66.2391 126.034C66.279 126.007 66.3272 125.967 66.3528 125.946L66.6583 125.681C66.7764 125.564 66.7896 125.542 66.8945 125.411C69.1123 122.645 67.7022 116.204 67.0801 113.278C66.632 111.17 65.984 109.227 65.6163 107.063C65.0904 103.964 64.3546 96.1752 64.7841 93.1924C65.4438 88.6102 65.4135 90.7465 64.5282 86.7549C64.0487 84.5923 63.7548 82.4231 63.5048 80.1789C63.3736 78.9998 63.3298 77.8719 63.2611 76.7089L63.1401 73.4944C63.0611 73.1373 63.0999 73.2952 62.9972 73.1253C62.9603 74.664 62.8407 75.3266 62.4171 76.7411C62.0469 77.9754 62.0191 78.8306 61.8239 80.1493C60.9296 86.1855 59.037 89.0378 58.6163 93.1964C58.2713 96.6119 59.2644 96.8992 60.6119 99.3075C62.753 103.134 63.1105 107.855 63.7347 112.53C64.0454 114.856 64.6934 116.903 65.1806 119.17C65.6689 121.441 66.0355 123.719 66.2391 126.034ZM38.4838 0.00149414C42.6654 -0.057716 46.8522 1.6422 49.3211 5.22149C51.9815 9.07818 51.8258 12.1794 50.6932 16.83C51.2867 16.1955 51.3916 15.2978 52.3934 15.1947C53.4216 16.1589 52.3485 19.5661 51.7125 20.6753C51.2864 21.4195 50.6906 22.1874 50.6767 23.1431C50.6584 24.3752 50.7253 25.0861 49.1307 25.2583C48.8569 26.7714 47.9834 28.0203 47.6482 29.2772C47.3708 30.3174 47.3273 32.8236 47.2147 34.0649C47.0305 36.0966 47.5035 36.4694 48.5137 37.9797C49.3562 39.2388 49.9461 40.0579 51.1299 40.821C53.2831 42.2095 55.7202 43.5567 58.8839 44.4241C63.817 45.7768 67.1631 44.6766 70.7347 49.5384C72.6141 52.0973 74.4573 58.5786 74.5618 61.6016C74.6217 63.3388 74.1799 64.9484 74.2581 66.5946C74.3341 68.2039 74.4438 69.8559 74.5636 71.4509C75.0691 78.1724 74.6532 85.0206 75.1919 91.7307C75.6788 97.7917 78.4679 96.7241 75.8856 110.266C74.6641 116.671 76.3728 121.199 74.803 124.926C74.4028 125.877 74.7438 128.469 74.9233 129.585C75.1791 131.173 75.2954 132.637 75.5245 134.21C75.9532 137.156 76.0859 135.571 75.2742 138.325C74.8622 139.723 74.8111 141.474 73.7734 142.297C72.6455 143.192 72.378 144.503 71.4891 145.439C70.9982 145.956 70.5377 146.273 70.0465 146.812C69.295 147.639 69.503 147.342 68.526 147.964C67.8356 148.404 66.973 149.424 66.3513 149.94C65.6792 150.498 65.3539 150.189 65.1083 151.179L64.3674 153.816C64.0206 154.915 63.5714 156.095 63.1894 157.141C62.3901 159.332 61.4884 161.457 60.6273 163.628C59.1163 167.436 57.086 173.017 56.453 177.281C56.0707 179.857 55.972 182.632 55.6025 185.252C54.2925 194.538 59.1237 197.268 57.5166 208.098C55.9621 218.573 52.4852 226.356 49.6614 235.967C49.0195 238.152 48.0645 241.215 48.6208 243.604C48.8646 244.651 49.4643 246.183 49.5466 247.133C49.7059 248.971 48.4008 248.703 49.3697 250.578C49.8832 251.572 50.4194 252.573 51.2366 253.295C52.2067 254.151 52.5831 254.648 53.5268 255.644C55.3009 257.515 53.8028 256.459 56.6164 257.28C58.3985 257.801 57.4471 258.24 59.6295 258.803C59.9073 260.6 59.6258 260.088 58.3839 260.731C57.2819 261.301 56.931 261.302 55.7611 261.685C54.8517 261.984 53.5173 261.865 52.4618 262.037C50.7483 262.316 50.7787 261.799 49.9059 261.382C49.264 262.223 49.1244 262.28 47.6226 262.313C45.4965 262.36 46.3098 262.017 45.1855 261.656C44.0133 261.281 43.7652 261.788 42.7374 260.832C42.1771 260.31 42.3094 259.702 42.1555 259.028L42.0071 258.64C40.2904 258.188 39.5415 258.71 39.5159 256.512C39.4991 255.051 39.6139 254.062 40.1705 252.857C40.6212 251.881 39.6501 251.14 39.7016 249.473C39.736 248.367 39.2246 246.317 39.4713 245.68C39.9907 244.337 40.4998 244.342 40.6716 242.395L41.4819 230.404C41.8591 222.065 39.8781 220.283 39.8383 215.084C39.8006 210.151 40.5649 204.43 41.5554 199.689C42.7129 194.152 41.6014 189.756 40.8726 184.338C40.5247 181.751 40.5675 178.8 40.5002 176.157C40.4702 174.977 40.0996 173.748 39.8642 172.576C38.9037 167.789 40.2473 158.198 40.0101 152.088C39.9055 149.394 39.5316 146.888 39.5821 144.121C39.615 142.324 40.4589 137.414 38.4838 136.994C36.5083 137.414 37.3522 142.324 37.3851 144.121C37.4355 146.888 37.0616 149.394 36.9571 152.088C36.7199 158.198 38.0634 167.789 37.1029 172.576C36.8675 173.748 36.4969 174.977 36.467 176.157C36.3997 178.8 36.4425 181.751 36.0945 184.338C35.3657 189.756 34.2546 194.152 35.4118 199.689C36.4023 204.43 37.1665 210.151 37.1289 215.084C37.089 220.283 35.1081 222.065 35.4852 230.404L36.2955 242.395C36.4673 244.342 36.9765 244.337 37.4958 245.68C37.7425 246.317 37.2312 248.367 37.2656 249.473C37.3171 251.14 36.346 251.881 36.7966 252.857C37.3533 254.062 37.4681 255.051 37.4512 256.512C37.426 258.71 36.6771 258.188 34.96 258.64L34.8116 259.028C34.6578 259.702 34.7901 260.31 34.2298 260.832C33.202 261.788 32.9542 261.281 31.7817 261.656C30.6574 262.017 31.4706 262.36 29.3446 262.313C27.8427 262.28 27.7031 262.223 27.0613 261.382C26.1885 261.799 26.2188 262.316 24.5054 262.037C23.4499 261.865 22.1154 261.984 21.2061 261.685C20.0361 261.302 19.6853 261.301 18.5833 260.731C17.3413 260.088 17.0599 260.6 17.3377 258.803C19.5201 258.24 18.5687 257.801 20.3508 257.28C23.1644 256.459 21.6662 257.515 23.4403 255.644C24.3841 254.648 24.7609 254.151 25.7305 253.295C26.5478 252.573 27.084 251.572 27.5975 250.578C28.5664 248.703 27.2612 248.971 27.4206 247.133C27.5028 246.183 28.1026 244.651 28.3464 243.604C28.9027 241.215 27.9476 238.152 27.3058 235.967C24.482 226.356 21.0051 218.573 19.4506 208.098C17.8435 197.268 22.6746 194.538 21.3647 185.252C20.9952 182.632 20.8965 179.857 20.5142 177.281C19.8812 173.017 17.8508 167.436 16.3399 163.628C15.4788 161.457 14.5771 159.332 13.7778 157.141C13.3958 156.095 12.9466 154.915 12.5998 153.816L11.8589 151.179C11.6133 150.189 11.288 150.498 10.6159 149.94C9.99415 149.424 9.13158 148.404 8.44116 147.964C7.46419 147.342 7.67216 147.639 6.9207 146.812C6.42947 146.273 5.96895 145.956 5.47809 145.439C4.5892 144.503 4.32166 143.192 3.19374 142.297C2.1561 141.474 2.10493 139.723 1.69302 138.325C0.881257 135.571 1.01393 137.156 1.44266 134.21C1.67182 132.637 1.78805 131.173 2.0439 129.585C2.22336 128.469 2.56436 125.877 2.16414 124.926C0.594343 121.199 2.30303 116.671 1.08155 110.266C-1.50067 96.7241 1.28842 97.7917 1.77526 91.7308C2.314 85.0206 1.89806 78.1724 2.40354 71.4509C2.52343 69.8559 2.63308 68.2039 2.7091 66.5946C2.78731 64.9484 2.34543 63.3388 2.40537 61.6016C2.5099 58.5786 4.3531 52.0973 6.23247 49.5385C9.80409 44.6766 13.1502 45.7768 18.0833 44.4241C21.247 43.5568 23.6841 42.2096 25.8373 40.8211C27.0211 40.0579 27.611 39.2388 28.4535 37.9797C29.4637 36.4695 29.937 36.0967 29.7524 34.0649C29.6399 32.8237 29.5964 30.3175 29.319 29.2773C28.9838 28.0203 28.1103 26.7714 27.8365 25.2583C26.2419 25.0861 26.3088 24.3753 26.2905 23.1432C26.2766 22.1874 25.6808 21.4195 25.2547 20.6754C24.6187 19.5661 23.5456 16.1589 24.5737 15.1948C25.5759 15.2978 25.6805 16.1955 26.274 16.83C25.1414 12.1794 24.9857 9.07822 27.6461 5.22152C30.115 1.64223 34.3018 -0.0577158 38.4838 0.00149414ZM38.4838 136.34L39.1589 136.306C39.1537 135.301 39.2206 134.914 38.4838 134.792C37.7466 134.914 37.8135 135.301 37.8084 136.306L38.4838 136.34ZM10.7281 126.034C10.6882 126.007 10.6404 125.967 10.6144 125.946L10.3089 125.681C10.1908 125.564 10.178 125.542 10.0728 125.411C7.85493 122.645 9.26501 116.204 9.88708 113.278C10.3352 111.17 10.9832 109.227 11.3509 107.063C11.8768 103.964 12.6126 96.1752 12.1831 93.1924C11.5234 88.6102 11.5537 90.7465 12.439 86.7549C12.9185 84.5923 13.2124 82.4231 13.4624 80.1789C13.5936 78.9998 13.6374 77.8719 13.7061 76.7089L13.8271 73.4944C13.9061 73.1373 13.8673 73.2952 13.97 73.1253C14.0069 74.664 14.1265 75.3266 14.5501 76.7411C14.9203 77.9754 14.9481 78.8306 15.1433 80.1493C16.0376 86.1855 17.9302 89.0378 18.3509 93.1964C18.6959 96.6119 17.7028 96.8992 16.3552 99.3075C14.2142 103.134 13.8567 107.855 13.2325 112.53C12.9218 114.856 12.2738 116.903 11.7866 119.17C11.2983 121.441 10.9317 123.719 10.7281 126.034Z"
 };
+var SILHOUETTE_BODY_XML = `<svg width="77" height="263" viewBox="0 0 77 263" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="${STATUS_GAUGE.d}" fill="url(#paint0_linear_silhouette)"/><defs><linearGradient id="paint0_linear_silhouette" x1="38.4836" y1="0" x2="38.4836" y2="262.318" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#3EAB2E"/><stop offset="1" stop-color="#B7E9A4"/></linearGradient></defs></svg>`;
 var STATUS_CHART_CANVAS = { width: 360, height: 374 };
 var HEART_STATUS_OFFSET = {
   left: 169.2,
@@ -5781,8 +5800,10 @@ var BG_R = 228.357;
 var INNER_BG_R = 149.23;
 var TRACK_R = 105.502;
 var WELL_R = 88.15;
-var SILHOUETTE_X = 141.9;
-var SILHOUETTE_Y = 87.47;
+var ELLIPSE_5_X = 180;
+var ELLIPSE_5_Y = 67;
+var ELLIPSE_5_W = 109;
+var ELLIPSE_5_H = 65;
 var CRESCENT_PATH = "M98.2529 0C121.768 2.80411e-07 144.503 8.43341 162.329 23.7686C180.155 39.1039 191.89 60.3238 195.403 83.5747C198.916 106.826 193.974 130.565 181.474 150.482C168.974 170.4 149.745 185.173 127.28 192.12C104.815 199.067 80.603 197.727 59.042 188.342C37.481 178.958 20.0005 162.152 9.77539 140.977C-0.449759 119.802 -2.74147 95.6617 3.31647 72.9407C9.37441 50.2197 23.3802 30.4248 42.7902 17.1509L45.3672 20.9192C26.859 33.5763 13.504 52.4514 7.72752 74.1168C1.95106 95.7821 4.13629 118.801 13.8863 138.992C23.6364 159.183 40.3046 175.208 60.8639 184.157C81.4231 193.105 104.51 194.383 125.931 187.759C147.352 181.135 165.688 167.047 177.607 148.056C189.526 129.064 194.239 106.427 190.889 84.2567C187.54 62.0861 176.35 41.8521 159.352 27.2294C142.354 12.6067 120.675 4.56515 98.2529 4.56515L98.2529 0Z";
 var CRESCENT_X = 81.75;
 var CRESCENT_Y = STATUS_CHART_CANVAS.height - 72.72 - 196.506;
@@ -5806,7 +5827,8 @@ var StatusChartBackdrop = ({
   width,
   height,
   progress,
-  layer = "upper"
+  layer = "upper",
+  extrapolate = false
 }) => {
   const theme2 = useTheme();
   const p = palette(theme2, condition);
@@ -5814,6 +5836,7 @@ var StatusChartBackdrop = ({
   const silhouetteGradId = `status-gauge-gradient-${condition}-${layer}-${uid}`;
   const crescentGradId = `status-crescent-gradient-${condition}-${layer}-${uid}`;
   const progressClipId = `status-progress-clip-${condition}-${layer}-${uid}`;
+  const innerShadowId = `status-inner-shadow-${layer}-${uid}`;
   const clamped = clamp01(progress);
   const sectorD = sectorPath(
     CENTER_X,
@@ -5823,20 +5846,33 @@ var StatusChartBackdrop = ({
     PROGRESS_MAX_SWEEP_DEG * clamped
   );
   return /* @__PURE__ */ jsxRuntime.jsxs(
-    Svg__default.default,
+    Svg10__default.default,
     {
       width,
       height,
       viewBox: `0 0 ${STATUS_CHART_CANVAS.width} ${STATUS_CHART_CANVAS.height}`,
       pointerEvents: "none",
+      overflow: extrapolate ? "visible" : void 0,
+      style: extrapolate ? { overflow: "visible" } : void 0,
       children: [
-        /* @__PURE__ */ jsxRuntime.jsxs(Svg.Defs, { children: [
-          /* @__PURE__ */ jsxRuntime.jsxs(Svg.LinearGradient, { id: silhouetteGradId, x1: "0", y1: "0", x2: "0", y2: "1", children: [
-            /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: p.gradientFrom }),
-            /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: p.gradientTo })
-          ] }),
+        /* @__PURE__ */ jsxRuntime.jsxs(Svg10.Defs, { children: [
           /* @__PURE__ */ jsxRuntime.jsxs(
-            Svg.LinearGradient,
+            Svg10.LinearGradient,
+            {
+              id: silhouetteGradId,
+              x1: 38.4836,
+              y1: 0,
+              x2: 38.4836,
+              y2: 262.318,
+              gradientUnits: "userSpaceOnUse",
+              children: [
+                /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "0", stopColor: p.gradientFrom }),
+                /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "1", stopColor: p.gradientTo })
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntime.jsxs(
+            Svg10.LinearGradient,
             {
               id: crescentGradId,
               x1: CRESCENT_X + 98.2529,
@@ -5845,27 +5881,99 @@ var StatusChartBackdrop = ({
               y2: CRESCENT_Y + 196.506,
               gradientUnits: "userSpaceOnUse",
               children: [
-                /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: p.gradientFrom }),
-                /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: p.gradientTo })
+                /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "0", stopColor: p.gradientFrom }),
+                /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "1", stopColor: p.gradientTo })
               ]
             }
           ),
-          /* @__PURE__ */ jsxRuntime.jsx(Svg.ClipPath, { id: progressClipId, children: /* @__PURE__ */ jsxRuntime.jsx(Svg.Path, { d: sectorD }) })
+          /* @__PURE__ */ jsxRuntime.jsx(Svg10.ClipPath, { id: progressClipId, children: /* @__PURE__ */ jsxRuntime.jsx(Svg10.Path, { d: sectorD }) }),
+          /* @__PURE__ */ jsxRuntime.jsxs(
+            Svg10.Filter,
+            {
+              id: innerShadowId,
+              x: "-10%",
+              y: "-10%",
+              width: "120%",
+              height: "120%",
+              children: [
+                /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeFlood, { floodOpacity: "0", result: "BackgroundImageFix" }),
+                /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeBlend, { mode: "normal", in: "SourceGraphic", in2: "BackgroundImageFix", result: "shape" }),
+                /* @__PURE__ */ jsxRuntime.jsx(
+                  Svg10.FeColorMatrix,
+                  {
+                    in: "SourceAlpha",
+                    type: "matrix",
+                    values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0",
+                    result: "hardAlpha"
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeOffset, { dy: "2.08" }),
+                /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeGaussianBlur, { stdDeviation: "2.08" }),
+                /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeComposite, { in2: "hardAlpha", operator: "arithmetic", k2: -1, k3: 1 }),
+                /* @__PURE__ */ jsxRuntime.jsx(
+                  Svg10.FeColorMatrix,
+                  {
+                    type: "matrix",
+                    values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.9882 0"
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeBlend, { mode: "normal", in2: "shape", result: "effect_innerShadow" })
+              ]
+            }
+          )
         ] }),
         layer === "lower" ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx: CENTER_X, cy: CENTER_Y, r: BG_R, fill: theme2.surface.standard }),
-          /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx: CENTER_X, cy: CENTER_Y, r: INNER_BG_R, fill: theme2.surface.medium })
-        ] }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx: CENTER_X, cy: CENTER_Y, r: TRACK_R, fill: theme2.surface.high }),
-          clamped > 0 ? /* @__PURE__ */ jsxRuntime.jsx(Svg.G, { clipPath: `url(#${progressClipId})`, children: /* @__PURE__ */ jsxRuntime.jsx(Svg.G, { transform: `translate(${CRESCENT_X} ${CRESCENT_Y})`, children: /* @__PURE__ */ jsxRuntime.jsx(Svg.Path, { d: CRESCENT_PATH, fill: `url(#${crescentGradId})` }) }) }) : null,
-          /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx: CENTER_X, cy: CENTER_Y, r: WELL_R, fill: theme2.background }),
-          /* @__PURE__ */ jsxRuntime.jsx(
-            Svg.Path,
+          !extrapolate ? /* @__PURE__ */ jsxRuntime.jsx(
+            Svg10.Circle,
             {
-              d: STATUS_GAUGE.d,
-              fill: `url(#${silhouetteGradId})`,
-              fillRule: "evenodd",
-              transform: `translate(${SILHOUETTE_X} ${SILHOUETTE_Y})`
+              cx: CENTER_X,
+              cy: CENTER_Y,
+              r: BG_R,
+              fill: theme2.surface.standard,
+              filter: `url(#${innerShadowId})`
+            }
+          ) : null,
+          /* @__PURE__ */ jsxRuntime.jsx(
+            Svg10.Circle,
+            {
+              cx: CENTER_X,
+              cy: CENTER_Y,
+              r: INNER_BG_R,
+              fill: theme2.surface.medium,
+              filter: `url(#${innerShadowId})`
+            }
+          )
+        ] }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+          /* @__PURE__ */ jsxRuntime.jsx(
+            Svg10.Circle,
+            {
+              cx: CENTER_X,
+              cy: CENTER_Y,
+              r: TRACK_R,
+              fill: theme2.surface.high,
+              filter: `url(#${innerShadowId})`
+            }
+          ),
+          clamped > 0 ? /* @__PURE__ */ jsxRuntime.jsx(Svg10.G, { clipPath: `url(#${progressClipId})`, children: /* @__PURE__ */ jsxRuntime.jsx(Svg10.G, { transform: `translate(${CRESCENT_X} ${CRESCENT_Y})`, children: /* @__PURE__ */ jsxRuntime.jsx(Svg10.Path, { d: CRESCENT_PATH, fill: `url(#${crescentGradId})` }) }) }) : null,
+          /* @__PURE__ */ jsxRuntime.jsx(
+            Svg10.Image,
+            {
+              x: ELLIPSE_5_X,
+              y: ELLIPSE_5_Y,
+              width: ELLIPSE_5_W,
+              height: ELLIPSE_5_H,
+              href: { uri: ELLIPSE_5_DATA_URL },
+              preserveAspectRatio: "xMidYMid meet"
+            }
+          ),
+          /* @__PURE__ */ jsxRuntime.jsx(
+            Svg10.Circle,
+            {
+              cx: CENTER_X,
+              cy: CENTER_Y,
+              r: WELL_R,
+              fill: theme2.background,
+              filter: `url(#${innerShadowId})`
             }
           )
         ] })
@@ -5875,7 +5983,8 @@ var StatusChartBackdrop = ({
 };
 StatusChartBackdrop.displayName = "StatusChartBackdrop";
 var BG_GRID_WIDTH = 425;
-var BG_GRID_HEIGHT = 158;
+var BG_GRID_ROWS = 20;
+var BG_GRID_HEIGHT = 258.069;
 var BG_GRID_LEFT = (STATUS_CHART_CANVAS.width - BG_GRID_WIDTH) / 2;
 var SETTINGS_BADGE = {
   size: 31.392,
@@ -5899,13 +6008,30 @@ var BUTTON_DROP_SHADOW = reactNative.Platform.select({
   default: {}
 });
 var BUTTON_INSET_SHADOW = reactNative.Platform.OS === "web" ? { boxShadow: "inset 0px 2.178px 4.356px rgba(0,0,0,0.59)" } : void 0;
+var BUTTON_CONTAINER_SIZE = 68.974;
+var BUTTON_CONTAINER_R = BUTTON_CONTAINER_SIZE / 2;
+var BUTTON_CONTAINER_DROP_SHADOW = reactNative.Platform.select({
+  ios: {
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2.18 },
+    shadowRadius: 4.36,
+    shadowOpacity: 0.1608
+  },
+  android: { elevation: 2 },
+  web: { boxShadow: "0px 2.18px 4.36px rgba(0,0,0,0.1608)" },
+  default: {}
+});
 var COMPACT_SCALE = 289.733 / STATUS_CHART_CANVAS.width;
 var StatusChart = ({
   condition = "good",
   progress = 1,
   size = "default",
   showActionButton = true,
+  renderHeartStatus = true,
   onPressHeartRate,
+  onPressSettings,
+  extrapolate = false,
+  discDiameter = 456.714,
   testID,
   accessibilityLabel
 }) => {
@@ -5920,14 +6046,80 @@ var StatusChart = ({
       style: {
         width: STATUS_CHART_CANVAS.width,
         height: STATUS_CHART_CANVAS.height,
-        backgroundColor: theme2.background,
-        borderRadius: theme2.border.radius.l,
-        overflow: "hidden"
+        // extrapolate=true: backgroundColor transparent + overflow visible
+        // permite o Caminho 4122 (background-circle 456.714 dia) sangrar pra
+        // fora do canvas 360×374 conforme Figma data (top -25.7, bottom +57,
+        // sides ±48). Default false preserva comportamento card-like com
+        // background + rounded corners (back-compat).
+        backgroundColor: extrapolate ? "transparent" : theme2.background,
+        borderRadius: extrapolate ? 0 : theme2.border.radius.l,
+        overflow: extrapolate ? "visible" : "hidden"
       },
       testID,
       accessibilityLabel: accessibilityLabel ?? `status chart ${conditionLabel2[condition]}`,
       accessibilityRole: "image",
       children: [
+        extrapolate ? /* @__PURE__ */ jsxRuntime.jsx(
+          reactNative.View,
+          {
+            pointerEvents: "none",
+            style: {
+              position: "absolute",
+              width: discDiameter,
+              height: discDiameter,
+              borderRadius: discDiameter / 2,
+              left: STATUS_CHART_CANVAS.width / 2 - discDiameter / 2,
+              top: 202.64 - discDiameter / 2,
+              overflow: "hidden"
+            },
+            children: /* @__PURE__ */ jsxRuntime.jsxs(Svg10__default.default, { width: discDiameter, height: discDiameter, children: [
+              /* @__PURE__ */ jsxRuntime.jsx(Svg10.Defs, { children: /* @__PURE__ */ jsxRuntime.jsxs(
+                Svg10.Filter,
+                {
+                  id: "caminho4122-inner-shadow",
+                  x: "-10%",
+                  y: "-10%",
+                  width: "120%",
+                  height: "120%",
+                  children: [
+                    /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeFlood, { floodOpacity: "0", result: "BackgroundImageFix" }),
+                    /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeBlend, { mode: "normal", in: "SourceGraphic", in2: "BackgroundImageFix", result: "shape" }),
+                    /* @__PURE__ */ jsxRuntime.jsx(
+                      Svg10.FeColorMatrix,
+                      {
+                        in: "SourceAlpha",
+                        type: "matrix",
+                        values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0",
+                        result: "hardAlpha"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeOffset, { dy: "2.08" }),
+                    /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeGaussianBlur, { stdDeviation: "2.08" }),
+                    /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeComposite, { in2: "hardAlpha", operator: "arithmetic", k2: -1, k3: 1 }),
+                    /* @__PURE__ */ jsxRuntime.jsx(
+                      Svg10.FeColorMatrix,
+                      {
+                        type: "matrix",
+                        values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.9882 0"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeBlend, { mode: "normal", in2: "shape", result: "effect_innerShadow" })
+                  ]
+                }
+              ) }),
+              /* @__PURE__ */ jsxRuntime.jsx(
+                Svg10.Circle,
+                {
+                  cx: discDiameter / 2,
+                  cy: discDiameter / 2,
+                  r: discDiameter / 2,
+                  fill: theme2.surface.standard,
+                  filter: "url(#caminho4122-inner-shadow)"
+                }
+              )
+            ] })
+          }
+        ) : null,
         /* @__PURE__ */ jsxRuntime.jsx(reactNative.View, { style: { position: "absolute", inset: 0 }, children: /* @__PURE__ */ jsxRuntime.jsx(
           StatusChartBackdrop,
           {
@@ -5935,24 +6127,22 @@ var StatusChart = ({
             condition,
             progress,
             width: STATUS_CHART_CANVAS.width,
-            height: STATUS_CHART_CANVAS.height
+            height: STATUS_CHART_CANVAS.height,
+            extrapolate
           }
         ) }),
         /* @__PURE__ */ jsxRuntime.jsx(
-          reactNative.Image,
+          BackgroundDotsGrid,
           {
-            source: { uri: background_chart_default } ,
+            color: p.backgroundTint,
+            rows: BG_GRID_ROWS,
             style: {
               position: "absolute",
-              top: 0,
+              top: -75,
               left: BG_GRID_LEFT,
               width: BG_GRID_WIDTH,
-              height: BG_GRID_HEIGHT,
-              tintColor: p.backgroundTint,
-              opacity: 0.45
-            },
-            resizeMode: "stretch",
-            accessible: false
+              height: BG_GRID_HEIGHT
+            }
           }
         ),
         /* @__PURE__ */ jsxRuntime.jsx(reactNative.View, { style: { position: "absolute", inset: 0 }, children: /* @__PURE__ */ jsxRuntime.jsx(
@@ -5962,10 +6152,25 @@ var StatusChart = ({
             condition,
             progress,
             width: STATUS_CHART_CANVAS.width,
-            height: STATUS_CHART_CANVAS.height
+            height: STATUS_CHART_CANVAS.height,
+            extrapolate
           }
         ) }),
         /* @__PURE__ */ jsxRuntime.jsx(
+          reactNative.View,
+          {
+            pointerEvents: "none",
+            style: {
+              position: "absolute",
+              left: 141.9,
+              top: 87.47,
+              width: 76.967,
+              height: 262.318
+            },
+            children: /* @__PURE__ */ jsxRuntime.jsx(Svg10.SvgXml, { xml: SILHOUETTE_BODY_XML, width: "100%", height: "100%" })
+          }
+        ),
+        renderHeartStatus ? /* @__PURE__ */ jsxRuntime.jsx(
           reactNative.View,
           {
             style: {
@@ -5976,7 +6181,7 @@ var StatusChart = ({
             pointerEvents: "none",
             children: /* @__PURE__ */ jsxRuntime.jsx(HeartStatus, { condition: p.heartStatus, size: HEART_STATUS_OFFSET.height })
           }
-        ),
+        ) : null,
         showActionButton ? /* @__PURE__ */ jsxRuntime.jsxs(
           reactNative.Pressable,
           {
@@ -5984,33 +6189,95 @@ var StatusChart = ({
             disabled: !onPressHeartRate,
             accessibilityRole: "button",
             accessibilityLabel: "open heart rate details",
-            style: ({ pressed }) => [
-              {
-                position: "absolute",
-                top: HEART_RATE_BUTTON.top,
-                right: HEART_RATE_BUTTON.right,
-                width: HEART_RATE_BUTTON.size,
-                height: HEART_RATE_BUTTON.size,
-                borderRadius: HEART_RATE_BUTTON.size / 2,
-                backgroundColor: theme2.surface.high,
-                opacity: pressed ? 0.85 : 1
-              },
-              BUTTON_DROP_SHADOW
-            ],
+            style: {
+              position: "absolute",
+              top: HEART_RATE_BUTTON.top,
+              right: HEART_RATE_BUTTON.right,
+              width: HEART_RATE_BUTTON.size,
+              height: HEART_RATE_BUTTON.size,
+              borderRadius: HEART_RATE_BUTTON.size / 2,
+              backgroundColor: theme2.surface.high,
+              ...BUTTON_DROP_SHADOW
+            },
             children: [
               /* @__PURE__ */ jsxRuntime.jsx(
                 reactNative.View,
                 {
                   pointerEvents: "none",
-                  style: {
-                    position: "absolute",
-                    top: (HEART_RATE_BUTTON.size - 68.974) / 2,
-                    left: (HEART_RATE_BUTTON.size - 68.974) / 2,
-                    width: 68.974,
-                    height: 68.974,
-                    borderRadius: 68.974 / 2,
-                    backgroundColor: theme2.surface.medium
-                  }
+                  style: [
+                    {
+                      position: "absolute",
+                      top: (HEART_RATE_BUTTON.size - BUTTON_CONTAINER_SIZE) / 2,
+                      left: (HEART_RATE_BUTTON.size - BUTTON_CONTAINER_SIZE) / 2,
+                      width: BUTTON_CONTAINER_SIZE,
+                      height: BUTTON_CONTAINER_SIZE,
+                      borderRadius: BUTTON_CONTAINER_R,
+                      backgroundColor: theme2.surface.standard
+                    },
+                    BUTTON_CONTAINER_DROP_SHADOW
+                  ],
+                  children: /* @__PURE__ */ jsxRuntime.jsxs(
+                    Svg10__default.default,
+                    {
+                      width: BUTTON_CONTAINER_SIZE,
+                      height: BUTTON_CONTAINER_SIZE,
+                      pointerEvents: "none",
+                      children: [
+                        /* @__PURE__ */ jsxRuntime.jsx(Svg10.Defs, { children: /* @__PURE__ */ jsxRuntime.jsxs(
+                          Svg10.Filter,
+                          {
+                            id: "elipse34-inner-shadow",
+                            x: "-10%",
+                            y: "-10%",
+                            width: "120%",
+                            height: "120%",
+                            children: [
+                              /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeFlood, { floodOpacity: "0", result: "BackgroundImageFix" }),
+                              /* @__PURE__ */ jsxRuntime.jsx(
+                                Svg10.FeBlend,
+                                {
+                                  mode: "normal",
+                                  in: "SourceGraphic",
+                                  in2: "BackgroundImageFix",
+                                  result: "shape"
+                                }
+                              ),
+                              /* @__PURE__ */ jsxRuntime.jsx(
+                                Svg10.FeColorMatrix,
+                                {
+                                  in: "SourceAlpha",
+                                  type: "matrix",
+                                  values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0",
+                                  result: "hardAlpha"
+                                }
+                              ),
+                              /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeOffset, { dy: "2.18" }),
+                              /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeGaussianBlur, { stdDeviation: "2.18" }),
+                              /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeComposite, { in2: "hardAlpha", operator: "arithmetic", k2: -1, k3: 1 }),
+                              /* @__PURE__ */ jsxRuntime.jsx(
+                                Svg10.FeColorMatrix,
+                                {
+                                  type: "matrix",
+                                  values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6314 0"
+                                }
+                              ),
+                              /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeBlend, { mode: "normal", in2: "shape", result: "effect_innerShadow" })
+                            ]
+                          }
+                        ) }),
+                        /* @__PURE__ */ jsxRuntime.jsx(
+                          Svg10.Circle,
+                          {
+                            cx: BUTTON_CONTAINER_R,
+                            cy: BUTTON_CONTAINER_R,
+                            r: BUTTON_CONTAINER_R,
+                            fill: theme2.surface.standard,
+                            filter: "url(#elipse34-inner-shadow)"
+                          }
+                        )
+                      ]
+                    }
+                  )
                 }
               ),
               BUTTON_INSET_SHADOW ? /* @__PURE__ */ jsxRuntime.jsx(
@@ -6050,8 +6317,13 @@ var StatusChart = ({
                 }
               ),
               /* @__PURE__ */ jsxRuntime.jsx(
-                reactNative.View,
+                reactNative.Pressable,
                 {
+                  onPress: onPressSettings,
+                  disabled: !onPressSettings,
+                  accessibilityRole: "button",
+                  accessibilityLabel: "open settings",
+                  hitSlop: 4,
                   style: {
                     position: "absolute",
                     top: 0,
@@ -6068,7 +6340,7 @@ var StatusChart = ({
                     {
                       name: "settings",
                       size: SETTINGS_BADGE.iconSize,
-                      color: theme2.content.dark,
+                      color: theme2.content.primary,
                       accessibilityLabel: "settings"
                     }
                   )
@@ -6152,12 +6424,12 @@ var stateFor = (stepNum, current) => {
   if (stepNum === current) return "current";
   return "default";
 };
-var GradientConnector = () => /* @__PURE__ */ jsxRuntime.jsx(GradientTrack, { children: /* @__PURE__ */ jsxRuntime.jsxs(Svg__default.default, { width: "100%", height: "100%", viewBox: "0 0 100 4", preserveAspectRatio: "none", children: [
-  /* @__PURE__ */ jsxRuntime.jsx(Svg.Defs, { children: /* @__PURE__ */ jsxRuntime.jsxs(Svg.LinearGradient, { id: "stepbar-reached", x1: "0", y1: "0", x2: "100", y2: "0", gradientUnits: "userSpaceOnUse", children: [
-    /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0%", stopColor: "#8AD2E2" }),
-    /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "100%", stopColor: "#62BB81" })
+var GradientConnector = () => /* @__PURE__ */ jsxRuntime.jsx(GradientTrack, { children: /* @__PURE__ */ jsxRuntime.jsxs(Svg10__default.default, { width: "100%", height: "100%", viewBox: "0 0 100 4", preserveAspectRatio: "none", children: [
+  /* @__PURE__ */ jsxRuntime.jsx(Svg10.Defs, { children: /* @__PURE__ */ jsxRuntime.jsxs(Svg10.LinearGradient, { id: "stepbar-reached", x1: "0", y1: "0", x2: "100", y2: "0", gradientUnits: "userSpaceOnUse", children: [
+    /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "0%", stopColor: "#8AD2E2" }),
+    /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "100%", stopColor: "#62BB81" })
   ] }) }),
-  /* @__PURE__ */ jsxRuntime.jsx(Svg.Rect, { x: 0, y: 0, width: 100, height: 4, fill: "url(#stepbar-reached)" })
+  /* @__PURE__ */ jsxRuntime.jsx(Svg10.Rect, { x: 0, y: 0, width: 100, height: 4, fill: "url(#stepbar-reached)" })
 ] }) });
 var StepBar = ({ total, current, testID, accessibilityLabel }) => /* @__PURE__ */ jsxRuntime.jsx(
   Container19,
@@ -6375,17 +6647,17 @@ var SuccessBadge = ({
       accessibilityRole: accessibilityLabel ? "image" : void 0,
       children: [
         /* @__PURE__ */ jsxRuntime.jsxs(
-          Svg__default.default,
+          Svg10__default.default,
           {
             width: size,
             height: size,
             style: { position: "absolute", top: 0, left: 0 },
             children: [
-              /* @__PURE__ */ jsxRuntime.jsx(Svg.Defs, { children: /* @__PURE__ */ jsxRuntime.jsxs(Svg.LinearGradient, { id: gradientId, x1: "0", y1: "0", x2: "0", y2: "1", children: [
-                /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: c1 }),
-                /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: c2 })
+              /* @__PURE__ */ jsxRuntime.jsx(Svg10.Defs, { children: /* @__PURE__ */ jsxRuntime.jsxs(Svg10.LinearGradient, { id: gradientId, x1: "0", y1: "0", x2: "0", y2: "1", children: [
+                /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "0", stopColor: c1 }),
+                /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "1", stopColor: c2 })
               ] }) }),
-              /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx: size / 2, cy: size / 2, r: size / 2, fill: `url(#${gradientId})` })
+              /* @__PURE__ */ jsxRuntime.jsx(Svg10.Circle, { cx: size / 2, cy: size / 2, r: size / 2, fill: `url(#${gradientId})` })
             ]
           }
         ),
@@ -6716,6 +6988,8 @@ exports.EmployeeOverviewCard = EmployeeOverviewCard;
 exports.ExamInfoCard = ExamInfoCard;
 exports.GenderSelectionCard = GenderSelectionCard;
 exports.GenderSelector = GenderSelector;
+exports.HEART_RATE_BUTTON = HEART_RATE_BUTTON;
+exports.HEART_STATUS_OFFSET = HEART_STATUS_OFFSET;
 exports.Header = Header2;
 exports.HeaderUserInfo = HeaderUserInfo;
 exports.HeartStatus = HeartStatus;
@@ -6736,6 +7010,7 @@ exports.Pagination = Pagination;
 exports.ProgressBar = ProgressBar;
 exports.Radio = Radio;
 exports.ReportCard = ReportCard;
+exports.STATUS_CHART_CANVAS = STATUS_CHART_CANVAS;
 exports.SearchInput = SearchInput;
 exports.SideMenu = SideMenu;
 exports.Silhouette = Silhouette;

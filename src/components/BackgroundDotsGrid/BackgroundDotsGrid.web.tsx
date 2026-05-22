@@ -26,27 +26,54 @@ const COL_WIDTH = 10.6228;
 const COL_HEIGHT = 157.829;
 const COL_SPACING = 15.93;
 const COL_CENTER_X = COL_WIDTH / 2;
+const NATURAL_ROWS = COL_DOTS.length; // 13
+const LAST_NATURAL_DOT = COL_DOTS[NATURAL_ROWS - 1]!;
+// Pattern de extensão: pra rows > 13, dots adicionais continuam o fade do
+// fundo com r=1.64 e spacing vertical de 14.32px (último gap observado entre
+// linhas 11→12 do Figma natural). Mantém visual coerente sem distorcer dots.
+const EXTRA_DOT_R = 1.64;
+const EXTRA_DOT_SPACING = 14.32;
+const NATURAL_BOTTOM_MARGIN =
+  COL_HEIGHT - (LAST_NATURAL_DOT.cy + LAST_NATURAL_DOT.r);
+
+const resolveDots = (n: number): ReadonlyArray<{ cy: number; r: number }> => {
+  if (n <= NATURAL_ROWS) return COL_DOTS.slice(0, n);
+  const extras: Array<{ cy: number; r: number }> = [];
+  let cy = LAST_NATURAL_DOT.cy;
+  for (let i = NATURAL_ROWS; i < n; i += 1) {
+    cy += EXTRA_DOT_SPACING;
+    extras.push({ cy, r: EXTRA_DOT_R });
+  }
+  return [...COL_DOTS, ...extras];
+};
 
 export const BackgroundDotsGrid = ({
   columns = 27,
   color = '#65D040',
   opacity = 0.09,
   width,
+  rows,
   style,
   testID,
 }: BackgroundDotsGridProps) => {
   const totalWidth = width ?? (columns - 1) * COL_SPACING + COL_WIDTH;
-  const viewBox = `0 0 ${totalWidth} ${COL_HEIGHT}`;
+  const dots = rows == null ? COL_DOTS : resolveDots(rows);
+  const lastDot = dots[dots.length - 1]!;
+  const totalHeight =
+    rows == null || rows <= NATURAL_ROWS
+      ? COL_HEIGHT
+      : lastDot.cy + EXTRA_DOT_R + NATURAL_BOTTOM_MARGIN;
+  const viewBox = `0 0 ${totalWidth} ${totalHeight}`;
   return (
     <View
-      style={[{ width: totalWidth, height: COL_HEIGHT, opacity }, style]}
+      style={[{ width: totalWidth, height: totalHeight, opacity }, style]}
       pointerEvents="none"
       testID={testID}
     >
       <svg width="100%" height="100%" viewBox={viewBox} xmlns="http://www.w3.org/2000/svg">
         {Array.from({ length: columns }, (_, i) => (
           <g key={i} transform={`translate(${i * COL_SPACING} 0)`}>
-            {COL_DOTS.map((d, di) => (
+            {dots.map((d, di) => (
               <circle key={di} cx={COL_CENTER_X} cy={d.cy} r={d.r} fill={color} />
             ))}
           </g>

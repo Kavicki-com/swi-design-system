@@ -35,11 +35,45 @@ export interface StatusChartProps {
    */
   showActionButton?: boolean;
   /**
+   * Render the heart-status badge over the silhouette's chest. Defaults to
+   * `true` — matches the dashboard + my-stats internal behavior. Pass `false`
+   * on screens that need to stack a custom overlay (e.g. mix-blend-mode
+   * multiply) on top of the silhouette WITHOUT colorizing the heart badge.
+   * The consumer is then responsible for rendering `<HeartStatus>` manually
+   * AFTER the overlay, using `HEART_STATUS_OFFSET` for positioning.
+   */
+  renderHeartStatus?: boolean;
+  /**
    * Optional press handler for the heart-rate action button (bottom-right).
    * If omitted, the button is rendered non-interactive. Ignored when
    * `showActionButton` is `false`.
    */
   onPressHeartRate?: (event: GestureResponderEvent) => void;
+  /**
+   * Optional press handler for the settings sub-badge (top-right gear icon
+   * nested inside the heart-rate action button). When omitted, the badge
+   * remains visible but is non-interactive (press is a no-op). Touch events
+   * on the sub-badge do NOT propagate to the parent heart-rate button.
+   * Ignored when `showActionButton` is `false`.
+   */
+  onPressSettings?: (event: GestureResponderEvent) => void;
+  /**
+   * When true, allows the outermost background-circle (Caminho 4122,
+   * 456.714px diameter) to extrapolate beyond the canvas. Per Figma data,
+   * the disc extends ~25.7px above, ~57px below, and ~48px on each side
+   * of the 360×374 canvas. Default behavior (`false`) clips the disc to
+   * the canvas (preserving backwards compatibility — useful when StatusChart
+   * is rendered standalone in a card). Set to `true` on dashboard contexts
+   * where the disc should visually bleed beyond the chart frame.
+   */
+  extrapolate?: boolean;
+  /**
+   * Diameter (in logical px) of the outermost background-circle (Caminho 4122)
+   * when `extrapolate=true`. Default is 456.714 (Figma spec). Pass a larger
+   * value to make the disc visually bigger and extrapolate further beyond
+   * the canvas. Ignored when `extrapolate=false`.
+   */
+  discDiameter?: number;
   testID?: string;
   accessibilityLabel?: string;
 }

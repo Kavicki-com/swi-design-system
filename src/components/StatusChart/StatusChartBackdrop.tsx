@@ -24,11 +24,20 @@ import Svg, {
   Circle,
   ClipPath,
   Defs,
+  FeBlend,
+  FeColorMatrix,
+  FeComposite,
+  FeFlood,
+  FeGaussianBlur,
+  FeOffset,
+  Filter,
   G,
+  Image as SvgImage,
   LinearGradient,
   Path,
   Stop,
 } from 'react-native-svg';
+import { ELLIPSE_5_DATA_URL } from './ellipse5.data';
 import { useTheme } from '../../theme';
 import { palette } from './StatusChart.theme';
 import { STATUS_CHART_CANVAS, STATUS_GAUGE } from './StatusChart.paths';
@@ -43,6 +52,10 @@ interface BackdropProps {
   /** When true, only renders the lower layers (background-circle, inner-bg).
    * Used so the dotted-bars PNG can sit between the lower and upper passes. */
   layer?: 'lower' | 'upper';
+  /** When true, sets the Svg overflow to 'visible' so the Caminho 4122
+   * (background-circle, 456.714 dia) can extrapolate beyond the canvas
+   * viewBox (360×374). Forwarded from StatusChart's `extrapolate` prop. */
+  extrapolate?: boolean;
 }
 
 const CENTER_X = 180;
@@ -52,6 +65,15 @@ const BG_R = 228.357; // background-circle (456.714 / 2)
 const INNER_BG_R = 149.23; // inner-background-circle (298.46 / 2)
 const TRACK_R = 105.502; // status-bar-background (211.005 / 2)
 const WELL_R = 88.15; // innner-background (176.3 / 2)
+
+// Ellipse 5 — Figma `295:2178`: asset PNG embedded direto (109×65 natural).
+// Tentar reproduzir o shape via Path circular gerou aproximações imprecisas
+// (a curva real não é círculo perfeito). Usar o PNG do Figma é fiel ao design
+// sem aproximação. Posição: top-right do disco, dentro do bbox visível.
+const ELLIPSE_5_X = 180;
+const ELLIPSE_5_Y = 67;
+const ELLIPSE_5_W = 109;
+const ELLIPSE_5_H = 65;
 
 // Silhouette placement (unchanged).
 const SILHOUETTE_X = 141.9;
@@ -99,6 +121,7 @@ export const StatusChartBackdrop = ({
   height,
   progress,
   layer = 'upper',
+  extrapolate = false,
 }: BackdropProps) => {
   const theme = useTheme();
   const p = palette(theme, condition);
@@ -110,6 +133,12 @@ export const StatusChartBackdrop = ({
   const silhouetteGradId = `status-gauge-gradient-${condition}-${layer}-${uid}`;
   const crescentGradId = `status-crescent-gradient-${condition}-${layer}-${uid}`;
   const progressClipId = `status-progress-clip-${condition}-${layer}-${uid}`;
+  // Inner shadow filter (Figma spec X=0 Y=2.08 blur=4.16 #000 98.82%) —
+  // chain original que funcionou em DS 0.1.86. Aplicado em Elipse 98, 99,
+  // 100 (todos fit dentro do viewBox 360×374). Caminho 4122 não usa porque
+  // é renderizado como View nativa pelo StatusChart pai com seu próprio
+  // SVG overlay interno (mesma técnica).
+  const innerShadowId = `status-inner-shadow-${layer}-${uid}`;
 
   const clamped = clamp01(progress);
   const sectorD = sectorPath(
@@ -126,9 +155,30 @@ export const StatusChartBackdrop = ({
       height={height}
       viewBox={`0 0 ${STATUS_CHART_CANVAS.width} ${STATUS_CHART_CANVAS.height}`}
       pointerEvents="none"
+      // extrapolate=true: SVG attribute overflow="visible" + style overflow
+      // visible (View clipping). Ambos necessários:
+      // - SVG attribute: controla viewBox clipping (default SVG spec é hidden)
+      // - style overflow: controla a View nativa onde o SVG renderiza
+      // Sem ambos, Caminho 4122 (r=228 centrado em (180, 202.64)) é clipado
+      // ao viewBox 360×374 e fica visivelmente "rounded rectangle".
+      // @ts-expect-error react-native-svg typings don't expose `overflow` but
+      // runtime honors it (valid SVG attr; used pra desativar viewBox clip).
+      overflow={extrapolate ? 'visible' : undefined}
+      style={extrapolate ? { overflow: 'visible' } : undefined}
     >
       <Defs>
-        <LinearGradient id={silhouetteGradId} x1="0" y1="0" x2="0" y2="1">
+        {/* Silhouette gradient — coords (38.4836, 0) → (38.4836, 262.318) no
+            coord system do <G transform> que wrap o path. Match exato do
+            Caminho 4123.svg (user-fornecido) que tem gradient nessas
+            coordenadas sem path transform. */}
+        <LinearGradient
+          id={silhouetteGradId}
+          x1={38.4836}
+          y1={0}
+          x2={38.4836}
+          y2={262.318}
+          gradientUnits="userSpaceOnUse"
+        >
           <Stop offset="0" stopColor={p.gradientFrom} />
           <Stop offset="1" stopColor={p.gradientTo} />
         </LinearGradient>
@@ -148,19 +198,68 @@ export const StatusChartBackdrop = ({
         <ClipPath id={progressClipId}>
           <Path d={sectorD} />
         </ClipPath>
+
+        {/* Inner shadow filter — chain original DS 0.1.86 (Figma spec
+            X=0 Y=2.08 blur=4.16 #000 98.82%). */}
+        <Filter
+          id={innerShadowId}
+          x="-10%"
+          y="-10%"
+          width="120%"
+          height="120%"
+        >
+          <FeFlood floodOpacity="0" result="BackgroundImageFix" />
+          <FeBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+          <FeColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <FeOffset dy="2.08" />
+          <FeGaussianBlur stdDeviation="2.08" />
+          <FeComposite in2="hardAlpha" operator="arithmetic" k2={-1} k3={1} />
+          <FeColorMatrix
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.9882 0"
+          />
+          <FeBlend mode="normal" in2="shape" result="effect_innerShadow" />
+        </Filter>
       </Defs>
 
       {layer === 'lower' ? (
         <>
-          {/* 1. background-circle — outer dark disk. */}
-          <Circle cx={CENTER_X} cy={CENTER_Y} r={BG_R} fill={theme.surface.standard} />
-          {/* 2. inner-background-circle — slightly lighter inner disk. */}
-          <Circle cx={CENTER_X} cy={CENTER_Y} r={INNER_BG_R} fill={theme.surface.medium} />
+          {/* 1. background-circle (Caminho 4122) — Skipped quando extrapolate=true
+             (renderizado como View nativa pelo StatusChart pai). Sem filter
+             quando renderizado aqui (extrapolate=false case). */}
+          {!extrapolate ? (
+            <Circle
+              cx={CENTER_X}
+              cy={CENTER_Y}
+              r={BG_R}
+              fill={theme.surface.standard}
+              filter={`url(#${innerShadowId})`}
+            />
+          ) : null}
+          {/* 2. inner-background-circle (Elipse 98) — inner shadow. */}
+          <Circle
+            cx={CENTER_X}
+            cy={CENTER_Y}
+            r={INNER_BG_R}
+            fill={theme.surface.medium}
+            filter={`url(#${innerShadowId})`}
+          />
         </>
       ) : (
         <>
-          {/* 4. status-bar-background — LIGHTER ring (the visible track the crescent sits on). */}
-          <Circle cx={CENTER_X} cy={CENTER_Y} r={TRACK_R} fill={theme.surface.high} />
+          {/* 4. status-bar-background (Elipse 99) — track ring + inner shadow. */}
+          <Circle
+            cx={CENTER_X}
+            cy={CENTER_Y}
+            r={TRACK_R}
+            fill={theme.surface.high}
+            filter={`url(#${innerShadowId})`}
+          />
 
           {/* 5. status-condition-bar — colored crescent, clipped by progress sector. */}
           {clamped > 0 ? (
@@ -171,16 +270,31 @@ export const StatusChartBackdrop = ({
             </G>
           ) : null}
 
-          {/* 6. innner-background — deep darkest inner well. */}
-          <Circle cx={CENTER_X} cy={CENTER_Y} r={WELL_R} fill={theme.background} />
-
-          {/* 7. silhouette body. */}
-          <Path
-            d={STATUS_GAUGE.d}
-            fill={`url(#${silhouetteGradId})`}
-            fillRule="evenodd"
-            transform={`translate(${SILHOUETTE_X} ${SILHOUETTE_Y})`}
+          {/* 5.5. Ellipse 5 — PNG asset embedded direto (Figma `295:2178`).
+              Native size 109×65; posicionado em (180, 67) do canvas. Elemento
+              decorativo no quadrante superior-direito do disco. */}
+          <SvgImage
+            x={ELLIPSE_5_X}
+            y={ELLIPSE_5_Y}
+            width={ELLIPSE_5_W}
+            height={ELLIPSE_5_H}
+            href={{ uri: ELLIPSE_5_DATA_URL }}
+            preserveAspectRatio="xMidYMid meet"
           />
+
+          {/* 6. innner-background (Elipse 100) — deepest dark well + inner shadow. */}
+          <Circle
+            cx={CENTER_X}
+            cy={CENTER_Y}
+            r={WELL_R}
+            fill={theme.background}
+            filter={`url(#${innerShadowId})`}
+          />
+
+          {/* 7. silhouette body — NÃO renderizado aqui. Foi movido pro
+              StatusChart pai via SvgXml com Caminho 4123.svg embedded,
+              pra garantir paridade visual com my-stats (rendering idêntico
+              independente de RN-SVG gradient quirks). */}
         </>
       )}
     </Svg>

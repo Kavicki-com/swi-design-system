@@ -1,5 +1,5 @@
 import React, { forwardRef, useState } from 'react';
-import { type View } from 'react-native';
+import { ScrollView, type View } from 'react-native';
 import { Icon } from '../Icon';
 import { useTheme } from '../../theme';
 import {
@@ -14,6 +14,11 @@ import {
   TriggerLabel,
 } from './Combobox.styles';
 import type { ComboboxProps } from './Combobox.types';
+
+// Altura estimada por OptionRow: padding-vertical 10×2 + OptionLabel (fontSize.m
+// ≈14, line-height ~1.4) ≈ 44px. Buffer de 6px (gap.xs entre rows + border-top
+// 1px) → 50px por linha. maxHeight = 50 × maxVisibleRows.
+const OPTION_ROW_HEIGHT_ESTIMATE = 50;
 
 export const Combobox = forwardRef<View, ComboboxProps>(
   (
@@ -30,6 +35,7 @@ export const Combobox = forwardRef<View, ComboboxProps>(
       accessibilityLabel,
       accessibilityHint,
       testID,
+      maxVisibleRows,
     },
     ref,
   ) => {
@@ -80,22 +86,44 @@ export const Combobox = forwardRef<View, ComboboxProps>(
         </Trigger>
         {isOpen && !disabled ? (
           <Panel accessibilityRole="menu">
-            <OptionsList>
-              {options.map((option, idx) => (
-                <OptionRow
-                  key={option.value}
-                  $first={idx === 0}
-                  $hovered={hoveredOption === option.value}
-                  onPress={() => handleSelect(option.value)}
-                  onHoverIn={() => setHoveredOption(option.value)}
-                  onHoverOut={() => setHoveredOption((current) => (current === option.value ? null : current))}
-                  accessibilityRole="menuitem"
-                  accessibilityState={{ selected: option.value === value }}
-                >
-                  <OptionLabel>{option.label}</OptionLabel>
-                </OptionRow>
-              ))}
-            </OptionsList>
+            {(() => {
+              const optionsList = (
+                <OptionsList>
+                  {options.map((option, idx) => (
+                    <OptionRow
+                      key={option.value}
+                      $first={idx === 0}
+                      $hovered={hoveredOption === option.value}
+                      onPress={() => handleSelect(option.value)}
+                      onHoverIn={() => setHoveredOption(option.value)}
+                      onHoverOut={() =>
+                        setHoveredOption((current) => (current === option.value ? null : current))
+                      }
+                      accessibilityRole="menuitem"
+                      accessibilityState={{ selected: option.value === value }}
+                    >
+                      <OptionLabel>{option.label}</OptionLabel>
+                    </OptionRow>
+                  ))}
+                </OptionsList>
+              );
+
+              // Scroll só se houver cap E mais opções que o cap. Caso contrário
+              // render plano (sem ScrollView extra) preserva touch nativo.
+              if (maxVisibleRows && options.length > maxVisibleRows) {
+                return (
+                  <ScrollView
+                    style={{ maxHeight: OPTION_ROW_HEIGHT_ESTIMATE * maxVisibleRows }}
+                    showsVerticalScrollIndicator
+                    nestedScrollEnabled
+                    keyboardShouldPersistTaps="handled"
+                  >
+                    {optionsList}
+                  </ScrollView>
+                );
+              }
+              return optionsList;
+            })()}
           </Panel>
         ) : null}
         {description ? <Description $disabled={disabled}>{description}</Description> : null}

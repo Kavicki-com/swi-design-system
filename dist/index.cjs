@@ -3,13 +3,13 @@
 var styled38 = require('styled-components/native');
 var reactNative = require('react-native');
 var jsxRuntime = require('react/jsx-runtime');
-var React12 = require('react');
+var React13 = require('react');
 var Svg10 = require('react-native-svg');
 
 function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 var styled38__default = /*#__PURE__*/_interopDefault(styled38);
-var React12__default = /*#__PURE__*/_interopDefault(React12);
+var React13__default = /*#__PURE__*/_interopDefault(React13);
 var Svg10__default = /*#__PURE__*/_interopDefault(Svg10);
 
 // src/theme/ThemeProvider.tsx
@@ -928,7 +928,7 @@ var Icon = ({
   accessibilityLabel
 }) => {
   const icon = iconPaths[name];
-  const rawId = React12.useId();
+  const rawId = React13.useId();
   if (!icon) return null;
   const w = width ?? size;
   const h = height ?? size;
@@ -1001,7 +1001,7 @@ var ChevronWrap = styled38__default.default(reactNative.View)`
   padding: ${({ theme: theme2 }) => theme2.padding.xs}px;
   transform: rotate(${({ $open }) => $open ? "180deg" : "0deg"});
 `;
-var Accordion = React12.forwardRef(
+var Accordion = React13.forwardRef(
   ({
     title,
     children,
@@ -1016,10 +1016,10 @@ var Accordion = React12.forwardRef(
     testID
   }, ref) => {
     const theme2 = useTheme();
-    const [uncontrolledOpen, setUncontrolledOpen] = React12.useState(defaultOpen);
+    const [uncontrolledOpen, setUncontrolledOpen] = React13.useState(defaultOpen);
     const isControlled = controlledOpen !== void 0;
     const open = isControlled ? controlledOpen : uncontrolledOpen;
-    const handleToggle = React12.useCallback(() => {
+    const handleToggle = React13.useCallback(() => {
       if (disabled) return;
       const next = !open;
       if (!isControlled) setUncontrolledOpen(next);
@@ -1069,7 +1069,7 @@ var SIZE_MAP = {
   m: 40,
   l: 64
 };
-var Avatar = React12.forwardRef(
+var Avatar = React13.forwardRef(
   ({
     uri,
     size = "m",
@@ -1135,7 +1135,7 @@ var CountText = styled38__default.default.Text`
 var AVATAR_PX = { s: 24, m: 40, l: 64 };
 var BADGE_PX = { s: 16, m: 24, l: 32 };
 var overlapFor = (size) => Math.round(AVATAR_PX[size] * 0.4);
-var AvatarGroup = React12.forwardRef(
+var AvatarGroup = React13.forwardRef(
   ({
     avatars,
     totalCount,
@@ -1188,7 +1188,7 @@ var Fill = styled38__default.default(reactNative.View)`
 `;
 var clamp = (n, min, max) => Math.min(Math.max(n, min), max);
 var FILL_HEIGHT = 6;
-var ProgressBar = React12.forwardRef(
+var ProgressBar = React13.forwardRef(
   ({
     value,
     disabled = false,
@@ -1366,7 +1366,7 @@ var LocationButton = styled38__default.default(reactNative.Pressable)`
   align-items: center;
   justify-content: center;
 `;
-var ActivitiesOverviewCard = React12.forwardRef(
+var ActivitiesOverviewCard = React13.forwardRef(
   ({
     title,
     subtitle,
@@ -1475,7 +1475,20 @@ var resolveDots = (n) => {
   }
   return [...COL_DOTS, ...extras];
 };
-var BackgroundDotsGrid = ({
+var buildDotsPath = (columns, dots) => {
+  let path = "";
+  for (let col = 0; col < columns; col += 1) {
+    const cx = COL_CENTER_X + col * COL_SPACING;
+    for (let i = 0; i < dots.length; i += 1) {
+      const d = dots[i];
+      const r = d.r;
+      const d2 = r * 2;
+      path += `M${cx - r},${d.cy}a${r},${r} 0 1,0 ${d2},0a${r},${r} 0 1,0 ${-d2},0`;
+    }
+  }
+  return path;
+};
+var BackgroundDotsGrid = React13.memo(function BackgroundDotsGrid2({
   columns = 27,
   color = "#65D040",
   opacity = 0.09,
@@ -1483,22 +1496,23 @@ var BackgroundDotsGrid = ({
   rows,
   style,
   testID
-}) => {
+}) {
   const totalWidth = width ?? (columns - 1) * COL_SPACING + COL_WIDTH;
   const dots = rows == null ? COL_DOTS : resolveDots(rows);
   const lastDot = dots[dots.length - 1];
   const totalHeight = rows == null || rows <= NATURAL_ROWS ? COL_HEIGHT : lastDot.cy + EXTRA_DOT_R + NATURAL_BOTTOM_MARGIN;
   const viewBox = `0 0 ${totalWidth} ${totalHeight}`;
+  const pathData = React13.useMemo(() => buildDotsPath(columns, dots), [columns, dots]);
   return /* @__PURE__ */ jsxRuntime.jsx(
     reactNative.View,
     {
       style: [{ width: totalWidth, height: totalHeight, opacity }, style],
       pointerEvents: "none",
       testID,
-      children: /* @__PURE__ */ jsxRuntime.jsx(Svg10__default.default, { width: "100%", height: "100%", viewBox, children: Array.from({ length: columns }, (_, i) => /* @__PURE__ */ jsxRuntime.jsx(Svg10.G, { transform: `translate(${i * COL_SPACING} 0)`, children: dots.map((d, di) => /* @__PURE__ */ jsxRuntime.jsx(Svg10.Circle, { cx: COL_CENTER_X, cy: d.cy, r: d.r, fill: color }, di)) }, i)) })
+      children: /* @__PURE__ */ jsxRuntime.jsx(Svg10__default.default, { width: "100%", height: "100%", viewBox, children: /* @__PURE__ */ jsxRuntime.jsx(Svg10.Path, { d: pathData, fill: color }) })
     }
   );
-};
+});
 BackgroundDotsGrid.displayName = "BackgroundDotsGrid";
 var Card2 = styled38__default.default(reactNative.View)`
   flex-direction: column;
@@ -1529,7 +1543,7 @@ var Label = styled38__default.default.Text`
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
 `;
-var BigNumbersCard = React12.forwardRef(
+var BigNumbersCard = React13.forwardRef(
   ({
     value,
     label,
@@ -1666,7 +1680,7 @@ var IconSlot3 = styled38__default.default(reactNative.View)`
   align-items: center;
   justify-content: center;
 `;
-var Button = React12.forwardRef(
+var Button = React13.forwardRef(
   ({
     label,
     variant = "contained",
@@ -1693,8 +1707,8 @@ var Button = React12.forwardRef(
     accessibilityHint,
     testID
   }, ref) => {
-    const [hovered, setHovered] = React12.useState(false);
-    const [pressed, setPressed] = React12.useState(false);
+    const [hovered, setHovered] = React13.useState(false);
+    const [pressed, setPressed] = React13.useState(false);
     const disabled = disabledProp ?? false;
     const showDropShadow = variant === "contained" && !disabled && !pressed && elevationProp !== "none";
     const shadowStyle = elevationProp === "none" ? void 0 : elevation[elevationProp];
@@ -1803,7 +1817,7 @@ var TimeText = styled38__default.default.Text`
   font-size: ${({ theme: theme2 }) => theme2.fontSize.s}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
 `;
-var ChatBubble = React12.forwardRef(
+var ChatBubble = React13.forwardRef(
   ({
     message,
     time,
@@ -1904,7 +1918,7 @@ var formatCount = (n) => {
   if (n < 10) return n.toString().padStart(2, "0");
   return n.toString();
 };
-var ChatUserCard = React12.forwardRef(
+var ChatUserCard = React13.forwardRef(
   ({
     name,
     subtitle,
@@ -2012,7 +2026,7 @@ var IconButton = styled38__default.default(reactNative.Pressable)`
   align-items: center;
   justify-content: center;
 `;
-var SearchInput = React12.forwardRef(
+var SearchInput = React13.forwardRef(
   ({
     value,
     defaultValue,
@@ -2025,11 +2039,11 @@ var SearchInput = React12.forwardRef(
     ...textInputProps
   }, ref) => {
     const theme2 = useTheme();
-    const innerRef = React12.useRef(null);
-    React12.useImperativeHandle(ref, () => innerRef.current, []);
-    const [focused, setFocused] = React12.useState(false);
-    const [hovered, setHovered] = React12.useState(false);
-    const [internalValue, setInternalValue] = React12.useState(defaultValue ?? "");
+    const innerRef = React13.useRef(null);
+    React13.useImperativeHandle(ref, () => innerRef.current, []);
+    const [focused, setFocused] = React13.useState(false);
+    const [hovered, setHovered] = React13.useState(false);
+    const [internalValue, setInternalValue] = React13.useState(defaultValue ?? "");
     const isControlled = value !== void 0;
     const currentValue = isControlled ? value : internalValue;
     const hasValue = !!currentValue && currentValue.length > 0;
@@ -2133,7 +2147,7 @@ var ListScroll = styled38__default.default(reactNative.ScrollView)`
 var ListInner = styled38__default.default(reactNative.View)`
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var ChatSection = React12.forwardRef(
+var ChatSection = React13.forwardRef(
   ({
     users,
     searchValue,
@@ -2176,7 +2190,7 @@ var ChatSection = React12.forwardRef(
                 fullWidth: true
               }
             );
-            return /* @__PURE__ */ jsxRuntime.jsx(React12__default.default.Fragment, { children: renderCard ? renderCard(card, user) : card }, user.id);
+            return /* @__PURE__ */ jsxRuntime.jsx(React13__default.default.Fragment, { children: renderCard ? renderCard(card, user) : card }, user.id);
           }) }) }),
           onExpand ? /* @__PURE__ */ jsxRuntime.jsx(
             Button,
@@ -2214,7 +2228,7 @@ var DonutArc = ({
   const arcR = appearance === "flat" ? outerR - arcStroke : outerR - ringBand / 2;
   const circumference = 2 * Math.PI * arcR;
   const dash = pct / 100 * circumference;
-  const id = React12.useId().replace(/:/g, "");
+  const id = React13.useId().replace(/:/g, "");
   const arcId = `donut-arc-${id}`;
   const [arcFrom, arcTo] = gradient;
   const isFlat = appearance === "flat";
@@ -2359,7 +2373,7 @@ var LocationButton2 = styled38__default.default(reactNative.Pressable)`
    * the inset keyword in boxShadow inline values, hence the escape hatch. */
 `;
 var DEFAULT_GRADIENT = [primitive.green[200], primitive.green[300]];
-var DonutChart = React12.forwardRef(
+var DonutChart = React13.forwardRef(
   ({
     title,
     value,
@@ -2526,7 +2540,7 @@ var LocationButton3 = styled38__default.default(reactNative.Pressable)`
   align-items: center;
   justify-content: center;
 `;
-var EmployeeOverviewCard = React12.forwardRef(
+var EmployeeOverviewCard = React13.forwardRef(
   ({
     employee,
     progress = 0,
@@ -2663,7 +2677,7 @@ var DownloadIconSlot = styled38__default.default(reactNative.View)`
   align-items: center;
   justify-content: center;
 `;
-var ExamInfoCard = React12.forwardRef(
+var ExamInfoCard = React13.forwardRef(
   ({
     year,
     date,
@@ -2802,7 +2816,7 @@ var StatValueBold = styled38__default.default.Text`
 var ProgressSlot3 = styled38__default.default(reactNative.View)`
   width: 138px;
 `;
-var HeaderUserInfo = React12.forwardRef(
+var HeaderUserInfo = React13.forwardRef(
   ({
     bpm,
     pressure,
@@ -2893,7 +2907,7 @@ var Bar = styled38__default.default(reactNative.View)`
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.xl}px;
   padding-vertical: ${({ theme: theme2 }) => theme2.padding.sm}px;
 `;
-var Header2 = React12.forwardRef(
+var Header2 = React13.forwardRef(
   ({
     logoSize = "m",
     logoType = "complete",
@@ -3030,9 +3044,9 @@ var toneForVariant = (variant) => {
   return DARK_BG_VARIANTS.has(variant) ? "dark" : "light";
 };
 var isLightBgVariant = (variant) => toneForVariant(variant) === "light";
-var SurfaceContext = React12.createContext({ tone: "dark" });
-var useSurfaceTone = () => React12.useContext(SurfaceContext);
-var Surface = React12.forwardRef(
+var SurfaceContext = React13.createContext({ tone: "dark" });
+var useSurfaceTone = () => React13.useContext(SurfaceContext);
+var Surface = React13.forwardRef(
   ({ variant = "standard", padding: padding2 = "m", radius: radius2 = "m", children, style, ...rest }, ref) => {
     const theme2 = useTheme();
     const tone = toneForVariant(variant);
@@ -3059,7 +3073,7 @@ var resolve = (variant) => {
   const [, key] = variant.split(".");
   return typography.title[key] ?? typography.title.m;
 };
-var Title2 = React12.forwardRef(
+var Title2 = React13.forwardRef(
   ({ variant = "title.m", weight, color, children, style, ...rest }, ref) => {
     const theme2 = useTheme();
     const { tone } = useSurfaceTone();
@@ -3113,7 +3127,7 @@ var RightSlot = styled38__default.default(reactNative.View)`
   /* padding.xs optically centres the narrow chevron (7.4×12) inside the 24×24 slot */
   padding: ${({ theme: theme2 }) => theme2.padding.xs}px;
 `;
-var HorizontalCard = React12.forwardRef(
+var HorizontalCard = React13.forwardRef(
   ({
     label,
     leftIcon,
@@ -3186,7 +3200,7 @@ var Label3 = styled38__default.default.Text`
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
   color: ${({ theme: theme2 }) => theme2.content.dark};
 `;
-var Radio = React12.forwardRef(
+var Radio = React13.forwardRef(
   ({
     label,
     checked,
@@ -3257,7 +3271,7 @@ var Label4 = styled38__default.default.Text`
   font-weight: ${({ $size }) => SIZE2[$size].labelWeight};
   color: ${({ theme: theme2 }) => theme2.content.dark};
 `;
-var Checkbox = React12.forwardRef(
+var Checkbox = React13.forwardRef(
   ({
     checked,
     onChange,
@@ -3381,7 +3395,7 @@ var Description = styled38__default.default.Text`
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   color: ${(props) => descriptionColor(props)};
 `;
-var Input = React12.forwardRef(
+var Input = React13.forwardRef(
   ({
     label,
     labelWeight = "bold",
@@ -3394,10 +3408,10 @@ var Input = React12.forwardRef(
     ...textInputProps
   }, ref) => {
     const theme2 = useTheme();
-    const innerRef = React12.useRef(null);
-    React12.useImperativeHandle(ref, () => innerRef.current, []);
-    const [focused, setFocused] = React12.useState(false);
-    const [hovered, setHovered] = React12.useState(false);
+    const innerRef = React13.useRef(null);
+    React13.useImperativeHandle(ref, () => innerRef.current, []);
+    const [focused, setFocused] = React13.useState(false);
+    const [hovered, setHovered] = React13.useState(false);
     const focusInput = () => {
       if (disabled) return;
       innerRef.current?.focus();
@@ -3596,7 +3610,8 @@ var Description2 = styled38__default.default.Text`
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
 `;
-var Combobox = React12.forwardRef(
+var OPTION_ROW_HEIGHT_ESTIMATE = 50;
+var Combobox = React13.forwardRef(
   ({
     label,
     description,
@@ -3609,17 +3624,18 @@ var Combobox = React12.forwardRef(
     disabled = false,
     accessibilityLabel,
     accessibilityHint,
-    testID
+    testID,
+    maxVisibleRows
   }, ref) => {
     const theme2 = useTheme();
-    const [internalOpen, setInternalOpen] = React12.useState(false);
+    const [internalOpen, setInternalOpen] = React13.useState(false);
     const isOpen = open ?? internalOpen;
     const setOpen = (next) => {
       if (open === void 0) setInternalOpen(next);
       onOpenChange?.(next);
     };
-    const [hovered, setHovered] = React12.useState(false);
-    const [hoveredOption, setHoveredOption] = React12.useState(null);
+    const [hovered, setHovered] = React13.useState(false);
+    const [hoveredOption, setHoveredOption] = React13.useState(null);
     const selected = options.find((o) => o.value === value);
     const displayText = selected?.label ?? placeholder;
     const isPlaceholder = !selected;
@@ -3656,20 +3672,35 @@ var Combobox = React12.forwardRef(
           ]
         }
       ),
-      isOpen && !disabled ? /* @__PURE__ */ jsxRuntime.jsx(Panel, { accessibilityRole: "menu", children: /* @__PURE__ */ jsxRuntime.jsx(OptionsList, { children: options.map((option, idx) => /* @__PURE__ */ jsxRuntime.jsx(
-        OptionRow,
-        {
-          $first: idx === 0,
-          $hovered: hoveredOption === option.value,
-          onPress: () => handleSelect(option.value),
-          onHoverIn: () => setHoveredOption(option.value),
-          onHoverOut: () => setHoveredOption((current) => current === option.value ? null : current),
-          accessibilityRole: "menuitem",
-          accessibilityState: { selected: option.value === value },
-          children: /* @__PURE__ */ jsxRuntime.jsx(OptionLabel, { children: option.label })
-        },
-        option.value
-      )) }) }) : null,
+      isOpen && !disabled ? /* @__PURE__ */ jsxRuntime.jsx(Panel, { accessibilityRole: "menu", children: (() => {
+        const optionsList = /* @__PURE__ */ jsxRuntime.jsx(OptionsList, { children: options.map((option, idx) => /* @__PURE__ */ jsxRuntime.jsx(
+          OptionRow,
+          {
+            $first: idx === 0,
+            $hovered: hoveredOption === option.value,
+            onPress: () => handleSelect(option.value),
+            onHoverIn: () => setHoveredOption(option.value),
+            onHoverOut: () => setHoveredOption((current) => current === option.value ? null : current),
+            accessibilityRole: "menuitem",
+            accessibilityState: { selected: option.value === value },
+            children: /* @__PURE__ */ jsxRuntime.jsx(OptionLabel, { children: option.label })
+          },
+          option.value
+        )) });
+        if (maxVisibleRows && options.length > maxVisibleRows) {
+          return /* @__PURE__ */ jsxRuntime.jsx(
+            reactNative.ScrollView,
+            {
+              style: { maxHeight: OPTION_ROW_HEIGHT_ESTIMATE * maxVisibleRows },
+              showsVerticalScrollIndicator: true,
+              nestedScrollEnabled: true,
+              keyboardShouldPersistTaps: "handled",
+              children: optionsList
+            }
+          );
+        }
+        return optionsList;
+      })() }) : null,
       description ? /* @__PURE__ */ jsxRuntime.jsx(Description2, { $disabled: disabled, children: description }) : null
     ] });
   }
@@ -3803,7 +3834,7 @@ var HoverOverlay4 = styled38__default.default(reactNative.View)`
   background-color: rgba(0, 0, 0, 0.05);
   pointer-events: none;
 `;
-var Chip = React12.forwardRef(
+var Chip = React13.forwardRef(
   ({
     label,
     state = "default",
@@ -3814,8 +3845,8 @@ var Chip = React12.forwardRef(
     accessibilityHint,
     testID
   }, ref) => {
-    const [hovered, setHovered] = React12.useState(false);
-    const [pressed, setPressed] = React12.useState(false);
+    const [hovered, setHovered] = React13.useState(false);
+    const [pressed, setPressed] = React13.useState(false);
     const isDisabled = state === "disable";
     return /* @__PURE__ */ jsxRuntime.jsx(
       Container12,
@@ -3859,10 +3890,10 @@ var ChipGroup = ({
   colorScheme,
   style
 }) => {
-  const [selected, setSelected] = React12.useState(
+  const [selected, setSelected] = React13.useState(
     toArray(value !== void 0 ? value : initialValue)
   );
-  React12.useEffect(() => {
+  React13.useEffect(() => {
     if (value !== void 0) setSelected(toArray(value));
   }, [value]);
   const handlePress = (option) => {
@@ -3897,7 +3928,7 @@ var RESIZE_MAP = {
   center: "center",
   fill: "stretch"
 };
-var Image2 = React12.forwardRef(
+var Image2 = React13.forwardRef(
   ({
     source,
     width,
@@ -3967,7 +3998,7 @@ var RemoveButton = styled38__default.default(reactNative.Pressable)`
 var DEFAULT_HELPER = "Selecione arquivos do tipo: JPG ou PNG";
 var DEFAULT_TAKE_PHOTO = "Tirar Foto";
 var DEFAULT_PICK_FILE = "Enviar arquivo";
-var ImageUploader = React12.forwardRef(
+var ImageUploader = React13.forwardRef(
   ({
     value,
     progress,
@@ -4111,7 +4142,7 @@ var DEFAULT_PLACEHOLDER = {
   heatmap: "",
   cameras: "Buscar c\xE2mera"
 };
-var MapControl = React12.forwardRef(
+var MapControl = React13.forwardRef(
   ({
     variant,
     expanded: controlledExpanded,
@@ -4128,9 +4159,9 @@ var MapControl = React12.forwardRef(
   }, ref) => {
     const theme2 = useTheme();
     const isExpandedControlled = controlledExpanded !== void 0;
-    const [uncontrolledExpanded, setUncontrolledExpanded] = React12.useState(defaultExpanded);
+    const [uncontrolledExpanded, setUncontrolledExpanded] = React13.useState(defaultExpanded);
     const expanded = isExpandedControlled ? controlledExpanded : uncontrolledExpanded;
-    const toggleExpanded = React12.useCallback(() => {
+    const toggleExpanded = React13.useCallback(() => {
       const next = !expanded;
       if (!isExpandedControlled) setUncontrolledExpanded(next);
       onExpandedChange?.(next);
@@ -4242,7 +4273,7 @@ var STATUS_BADGE_FILL = {
   low: "#F5667A",
   offline: "#6b7280"
 };
-var LocationPin = React12.forwardRef(
+var LocationPin = React13.forwardRef(
   ({
     variant = "avatar",
     avatarUri,
@@ -4392,7 +4423,7 @@ var BadgeText2 = styled38__default.default.Text`
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   color: ${({ theme: theme2 }) => theme2.content.dark};
 `;
-var MenuItem = React12.forwardRef(
+var MenuItem = React13.forwardRef(
   ({
     label,
     icon,
@@ -4408,7 +4439,7 @@ var MenuItem = React12.forwardRef(
     testID
   }, ref) => {
     const theme2 = useTheme();
-    const [hovered, setHovered] = React12.useState(false);
+    const [hovered, setHovered] = React13.useState(false);
     const accentColor2 = disabled ? theme2.content.disable : active ? theme2.content.dark : hovered ? theme2.content.primary : theme2.content.medium;
     const showHoverOverlay = active && !disabled;
     const isCompact = variant === "compact";
@@ -4453,7 +4484,7 @@ var Container16 = styled38__default.default(reactNative.View)`
   align-items: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var SideMenu = React12.forwardRef(
+var SideMenu = React13.forwardRef(
   ({
     items,
     value: controlledValue,
@@ -4467,11 +4498,11 @@ var SideMenu = React12.forwardRef(
     testID
   }, ref) => {
     const isControlled = controlledValue !== void 0;
-    const [uncontrolledValue, setUncontrolledValue] = React12.useState(
+    const [uncontrolledValue, setUncontrolledValue] = React13.useState(
       defaultValue ?? items[0]?.value
     );
     const value = isControlled ? controlledValue : uncontrolledValue;
-    const handlePress = React12.useCallback(
+    const handlePress = React13.useCallback(
       (next) => {
         if (!isControlled) setUncontrolledValue(next);
         onChange?.(next);
@@ -4567,7 +4598,7 @@ var resolve2 = (variant) => {
   const slot = typography[group];
   return slot?.[key] ?? typography.body.m;
 };
-var Text = React12.forwardRef(
+var Text = React13.forwardRef(
   ({ variant = "body.m", weight, italic, color, children, style, ...rest }, ref) => {
     const theme2 = useTheme();
     const { tone } = useSurfaceTone();
@@ -4619,7 +4650,7 @@ var Triangle = styled38__default.default(reactNative.View)`
   border-right-color: transparent;
   border-bottom-color: ${({ theme: theme2 }) => theme2.surface.primaryLight};
 `;
-var TimeStamp = React12.forwardRef(
+var TimeStamp = React13.forwardRef(
   ({ time, testID, accessibilityLabel }, ref) => {
     const theme2 = useTheme();
     return /* @__PURE__ */ jsxRuntime.jsxs(
@@ -4646,7 +4677,7 @@ var Pill2 = styled38__default.default(reactNative.View)`
   background-color: #171717;
   min-width: 55px;
 `;
-var CaloriesTag = React12.forwardRef(
+var CaloriesTag = React13.forwardRef(
   ({ value, unit = "kcal", testID, accessibilityLabel }, ref) => {
     const theme2 = useTheme();
     const text = `${value}${unit}`;
@@ -4729,7 +4760,7 @@ var linePath = (laid) => {
 };
 var DEFAULT_WIDTH = 1013;
 var DEFAULT_HEIGHT = 110;
-var LineCaloriesChart = React12.forwardRef(
+var LineCaloriesChart = React13.forwardRef(
   ({
     points,
     unit = "kcal",
@@ -4824,7 +4855,7 @@ var Thumb = styled38__default.default(reactNative.View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   background-color: ${({ $on, theme: theme2 }) => $on ? theme2.content.primary : theme2.content.medium};
 `;
-var Toggle = React12.forwardRef(
+var Toggle = React13.forwardRef(
   ({
     value: controlledValue,
     defaultValue = false,
@@ -4836,9 +4867,9 @@ var Toggle = React12.forwardRef(
     testID
   }, ref) => {
     const isControlled = controlledValue !== void 0;
-    const [uncontrolledValue, setUncontrolledValue] = React12.useState(defaultValue);
+    const [uncontrolledValue, setUncontrolledValue] = React13.useState(defaultValue);
     const value = isControlled ? controlledValue : uncontrolledValue;
-    const handlePress = React12.useCallback(() => {
+    const handlePress = React13.useCallback(() => {
       if (disabled) return;
       const next = !value;
       if (!isControlled) setUncontrolledValue(next);
@@ -4859,7 +4890,7 @@ var Toggle = React12.forwardRef(
       }
     );
     if (!leftLabel && !rightLabel) {
-      return React12__default.default.cloneElement(track, { ref });
+      return React13__default.default.cloneElement(track, { ref });
     }
     return /* @__PURE__ */ jsxRuntime.jsxs(Row6, { ref, children: [
       leftLabel ? /* @__PURE__ */ jsxRuntime.jsx(SideLabel, { $active: !value, $disabled: disabled, children: leftLabel }) : null,
@@ -4938,7 +4969,7 @@ var Label9 = styled38__default.default.Text`
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
 `;
-var WeatherEventChip = React12.forwardRef(
+var WeatherEventChip = React13.forwardRef(
   ({ time, label, accessibilityLabel, testID }, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsxs(
       Row7,
@@ -4967,7 +4998,7 @@ var IconRow = styled38__default.default(reactNative.View)`
   align-self: stretch;
   height: 64px;
 `;
-var WeatherTimelineEntry = React12.forwardRef(
+var WeatherTimelineEntry = React13.forwardRef(
   ({ condition, time, label, accessibilityLabel, testID }, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsxs(
       Stack,
@@ -5008,7 +5039,7 @@ var FlagText = styled38__default.default.Text`
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
 `;
-var NowMarker = React12.forwardRef(
+var NowMarker = React13.forwardRef(
   ({ label = "AGORA", height = 80, accessibilityLabel, testID }, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsxs(
       Stack2,
@@ -5061,7 +5092,7 @@ var DEFAULT_LABELS = {
   accept: "Aceito",
   info: "Em andamento"
 };
-var StatusTag = React12.forwardRef(
+var StatusTag = React13.forwardRef(
   ({
     status = "canceled",
     label,
@@ -5150,7 +5181,7 @@ var LocationLabel = styled38__default.default.Text`
   font-weight: ${typography.badge.s.fontWeight};
   font-size: ${typography.badge.s.fontSize}px;
 `;
-var ReportCard = React12.forwardRef(
+var ReportCard = React13.forwardRef(
   ({
     status,
     statusLabel,
@@ -5280,7 +5311,7 @@ var RULER_LINES = Array.from(
   (_, i) => ({ id: `ruler-${i}`, major: i % 4 === 0 })
 );
 var NOW_POLE_HEIGHT = 100;
-var WeatherTimeline = React12.forwardRef(
+var WeatherTimeline = React13.forwardRef(
   ({
     events,
     intensitySegments,
@@ -5292,13 +5323,13 @@ var WeatherTimeline = React12.forwardRef(
     testID
   }, ref) => {
     const theme2 = useTheme();
-    const scrollViewRef = React12.useRef(null);
-    const [scrollMetrics, setScrollMetrics] = React12.useState({
+    const scrollViewRef = React13.useRef(null);
+    const [scrollMetrics, setScrollMetrics] = React13.useState({
       contentWidth: 0,
       containerWidth: 0,
       scrollX: 0
     });
-    const metricsRef = React12.useRef(scrollMetrics);
+    const metricsRef = React13.useRef(scrollMetrics);
     metricsRef.current = scrollMetrics;
     const intensityColor = (c) => {
       switch (c) {
@@ -5353,8 +5384,8 @@ var WeatherTimeline = React12.forwardRef(
         scrollX: contentOffset.x
       });
     };
-    const dragInitialScrollRef = React12.useRef(null);
-    const thumbPanResponder = React12.useRef(
+    const dragInitialScrollRef = React13.useRef(null);
+    const thumbPanResponder = React13.useRef(
       reactNative.PanResponder.create({
         onStartShouldSetPanResponder: () => true,
         onMoveShouldSetPanResponder: () => true,
@@ -5605,7 +5636,7 @@ var PauseButtonLabel = styled38__default.default.Text`
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var WorkersInfoCard = React12.forwardRef(
+var WorkersInfoCard = React13.forwardRef(
   ({
     employee,
     enabled,
@@ -5629,9 +5660,9 @@ var WorkersInfoCard = React12.forwardRef(
   }, ref) => {
     const theme2 = useTheme();
     const isExpandedControlled = controlledExpanded !== void 0;
-    const [uncontrolledExpanded, setUncontrolledExpanded] = React12.useState(defaultExpanded);
+    const [uncontrolledExpanded, setUncontrolledExpanded] = React13.useState(defaultExpanded);
     const expanded = isExpandedControlled ? controlledExpanded : uncontrolledExpanded;
-    const handleToggleExpanded = React12.useCallback(() => {
+    const handleToggleExpanded = React13.useCallback(() => {
       const next = !expanded;
       if (!isExpandedControlled) setUncontrolledExpanded(next);
       onExpandedChange?.(next);
@@ -5832,7 +5863,7 @@ var StatusChartBackdrop = ({
 }) => {
   const theme2 = useTheme();
   const p = palette(theme2, condition);
-  const uid = React12.useId().replace(/:/g, "");
+  const uid = React13.useId().replace(/:/g, "");
   const silhouetteGradId = `status-gauge-gradient-${condition}-${layer}-${uid}`;
   const crescentGradId = `status-crescent-gradient-${condition}-${layer}-${uid}`;
   const progressClipId = `status-progress-clip-${condition}-${layer}-${uid}`;
@@ -6441,7 +6472,7 @@ var StepBar = ({ total, current, testID, accessibilityLabel }) => /* @__PURE__ *
       const stepNum = idx + 1;
       const state = stateFor(stepNum, current);
       const reached = stepNum < current;
-      return /* @__PURE__ */ jsxRuntime.jsxs(React12.Fragment, { children: [
+      return /* @__PURE__ */ jsxRuntime.jsxs(React13.Fragment, { children: [
         /* @__PURE__ */ jsxRuntime.jsx(Step, { state, number: state === "default" ? stepNum : void 0 }),
         idx < total - 1 ? reached ? /* @__PURE__ */ jsxRuntime.jsx(GradientConnector, {}) : /* @__PURE__ */ jsxRuntime.jsx(Connector, { $reached: false }) : null
       ] }, stepNum);
@@ -6625,7 +6656,7 @@ var SuccessBadge = ({
   accessibilityLabel
 }) => {
   const theme2 = useTheme();
-  const rawId = React12.useId();
+  const rawId = React13.useId();
   const gradientId = `success-badge-grad-${rawId.replace(/:/g, "-")}`;
   const resolvedIconSize = iconSize ?? Math.round(size * 0.583);
   const [c1, c2] = colors ?? [theme2.surface.primary, theme2.surface.secondary];
@@ -6702,7 +6733,7 @@ var TabLabel = styled38__default.default.Text`
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   color: ${({ $active, theme: theme2 }) => $active ? theme2.content.light : theme2.content.secondary};
 `;
-var Tabs = React12.forwardRef(
+var Tabs = React13.forwardRef(
   ({
     tabs,
     value: controlledValue,
@@ -6715,11 +6746,11 @@ var Tabs = React12.forwardRef(
     testID
   }, ref) => {
     const isControlled = controlledValue !== void 0;
-    const [uncontrolledValue, setUncontrolledValue] = React12.useState(
+    const [uncontrolledValue, setUncontrolledValue] = React13.useState(
       defaultValue ?? tabs[0]?.value
     );
     const value = isControlled ? controlledValue : uncontrolledValue;
-    const handlePress = React12.useCallback(
+    const handlePress = React13.useCallback(
       (next) => {
         if (disabled) return;
         if (!isControlled) setUncontrolledValue(next);
@@ -6883,7 +6914,7 @@ var CloseButton = styled38__default.default(reactNative.Pressable)`
   align-items: center;
   justify-content: center;
 `;
-var Toast = React12.forwardRef(
+var Toast = React13.forwardRef(
   ({ variant = "info", title, message, onClose, accessibilityLabel, testID }, ref) => {
     const theme2 = useTheme();
     return /* @__PURE__ */ jsxRuntime.jsxs(
@@ -6937,7 +6968,7 @@ var TitleSlot = styled38__default.default(reactNative.View)`
   flex: 1;
   align-items: flex-end;
 `;
-var TopBar = React12.forwardRef(
+var TopBar = React13.forwardRef(
   ({ title, onBack, backLabel = "Voltar", accessibilityLabel, testID }, ref) => {
     const theme2 = useTheme();
     const backColor = theme2.content.primaryLight;

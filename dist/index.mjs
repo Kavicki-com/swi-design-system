@@ -1,7 +1,7 @@
 import styled38, { css, useTheme as useTheme$1, ThemeProvider } from 'styled-components/native';
 import { Platform, View, Pressable, Image, TextInput, ScrollView, Text as Text$1, PanResponder } from 'react-native';
 import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
-import React12, { forwardRef, useState, useCallback, useRef, useImperativeHandle, createContext, useId, useContext, useEffect, Fragment as Fragment$1 } from 'react';
+import React13, { forwardRef, useState, useCallback, memo, useMemo, useRef, useImperativeHandle, createContext, useId, useContext, useEffect, Fragment as Fragment$1 } from 'react';
 import Svg10, { Defs, LinearGradient, Stop, Rect, Path, Circle, G, Filter, FeFlood, FeBlend, FeColorMatrix, FeOffset, FeGaussianBlur, FeComposite, SvgXml, ClipPath, Image as Image$1 } from 'react-native-svg';
 
 // src/theme/ThemeProvider.tsx
@@ -1467,7 +1467,20 @@ var resolveDots = (n) => {
   }
   return [...COL_DOTS, ...extras];
 };
-var BackgroundDotsGrid = ({
+var buildDotsPath = (columns, dots) => {
+  let path = "";
+  for (let col = 0; col < columns; col += 1) {
+    const cx = COL_CENTER_X + col * COL_SPACING;
+    for (let i = 0; i < dots.length; i += 1) {
+      const d = dots[i];
+      const r = d.r;
+      const d2 = r * 2;
+      path += `M${cx - r},${d.cy}a${r},${r} 0 1,0 ${d2},0a${r},${r} 0 1,0 ${-d2},0`;
+    }
+  }
+  return path;
+};
+var BackgroundDotsGrid = memo(function BackgroundDotsGrid2({
   columns = 27,
   color = "#65D040",
   opacity = 0.09,
@@ -1475,22 +1488,23 @@ var BackgroundDotsGrid = ({
   rows,
   style,
   testID
-}) => {
+}) {
   const totalWidth = width ?? (columns - 1) * COL_SPACING + COL_WIDTH;
   const dots = rows == null ? COL_DOTS : resolveDots(rows);
   const lastDot = dots[dots.length - 1];
   const totalHeight = rows == null || rows <= NATURAL_ROWS ? COL_HEIGHT : lastDot.cy + EXTRA_DOT_R + NATURAL_BOTTOM_MARGIN;
   const viewBox = `0 0 ${totalWidth} ${totalHeight}`;
+  const pathData = useMemo(() => buildDotsPath(columns, dots), [columns, dots]);
   return /* @__PURE__ */ jsx(
     View,
     {
       style: [{ width: totalWidth, height: totalHeight, opacity }, style],
       pointerEvents: "none",
       testID,
-      children: /* @__PURE__ */ jsx(Svg10, { width: "100%", height: "100%", viewBox, children: Array.from({ length: columns }, (_, i) => /* @__PURE__ */ jsx(G, { transform: `translate(${i * COL_SPACING} 0)`, children: dots.map((d, di) => /* @__PURE__ */ jsx(Circle, { cx: COL_CENTER_X, cy: d.cy, r: d.r, fill: color }, di)) }, i)) })
+      children: /* @__PURE__ */ jsx(Svg10, { width: "100%", height: "100%", viewBox, children: /* @__PURE__ */ jsx(Path, { d: pathData, fill: color }) })
     }
   );
-};
+});
 BackgroundDotsGrid.displayName = "BackgroundDotsGrid";
 var Card2 = styled38(View)`
   flex-direction: column;
@@ -2168,7 +2182,7 @@ var ChatSection = forwardRef(
                 fullWidth: true
               }
             );
-            return /* @__PURE__ */ jsx(React12.Fragment, { children: renderCard ? renderCard(card, user) : card }, user.id);
+            return /* @__PURE__ */ jsx(React13.Fragment, { children: renderCard ? renderCard(card, user) : card }, user.id);
           }) }) }),
           onExpand ? /* @__PURE__ */ jsx(
             Button,
@@ -3588,6 +3602,7 @@ var Description2 = styled38.Text`
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
 `;
+var OPTION_ROW_HEIGHT_ESTIMATE = 50;
 var Combobox = forwardRef(
   ({
     label,
@@ -3601,7 +3616,8 @@ var Combobox = forwardRef(
     disabled = false,
     accessibilityLabel,
     accessibilityHint,
-    testID
+    testID,
+    maxVisibleRows
   }, ref) => {
     const theme2 = useTheme();
     const [internalOpen, setInternalOpen] = useState(false);
@@ -3648,20 +3664,35 @@ var Combobox = forwardRef(
           ]
         }
       ),
-      isOpen && !disabled ? /* @__PURE__ */ jsx(Panel, { accessibilityRole: "menu", children: /* @__PURE__ */ jsx(OptionsList, { children: options.map((option, idx) => /* @__PURE__ */ jsx(
-        OptionRow,
-        {
-          $first: idx === 0,
-          $hovered: hoveredOption === option.value,
-          onPress: () => handleSelect(option.value),
-          onHoverIn: () => setHoveredOption(option.value),
-          onHoverOut: () => setHoveredOption((current) => current === option.value ? null : current),
-          accessibilityRole: "menuitem",
-          accessibilityState: { selected: option.value === value },
-          children: /* @__PURE__ */ jsx(OptionLabel, { children: option.label })
-        },
-        option.value
-      )) }) }) : null,
+      isOpen && !disabled ? /* @__PURE__ */ jsx(Panel, { accessibilityRole: "menu", children: (() => {
+        const optionsList = /* @__PURE__ */ jsx(OptionsList, { children: options.map((option, idx) => /* @__PURE__ */ jsx(
+          OptionRow,
+          {
+            $first: idx === 0,
+            $hovered: hoveredOption === option.value,
+            onPress: () => handleSelect(option.value),
+            onHoverIn: () => setHoveredOption(option.value),
+            onHoverOut: () => setHoveredOption((current) => current === option.value ? null : current),
+            accessibilityRole: "menuitem",
+            accessibilityState: { selected: option.value === value },
+            children: /* @__PURE__ */ jsx(OptionLabel, { children: option.label })
+          },
+          option.value
+        )) });
+        if (maxVisibleRows && options.length > maxVisibleRows) {
+          return /* @__PURE__ */ jsx(
+            ScrollView,
+            {
+              style: { maxHeight: OPTION_ROW_HEIGHT_ESTIMATE * maxVisibleRows },
+              showsVerticalScrollIndicator: true,
+              nestedScrollEnabled: true,
+              keyboardShouldPersistTaps: "handled",
+              children: optionsList
+            }
+          );
+        }
+        return optionsList;
+      })() }) : null,
       description ? /* @__PURE__ */ jsx(Description2, { $disabled: disabled, children: description }) : null
     ] });
   }
@@ -4851,7 +4882,7 @@ var Toggle = forwardRef(
       }
     );
     if (!leftLabel && !rightLabel) {
-      return React12.cloneElement(track, { ref });
+      return React13.cloneElement(track, { ref });
     }
     return /* @__PURE__ */ jsxs(Row6, { ref, children: [
       leftLabel ? /* @__PURE__ */ jsx(SideLabel, { $active: !value, $disabled: disabled, children: leftLabel }) : null,

@@ -29,7 +29,7 @@
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
     "storybook:rn": "cd example-app && yarn start",
-    "test": "vitest --passWithNoTests",
+    "test": "vitest run --passWithNoTests",
     "lint": "echo 'lint: noop (eslint v9 flat config not yet wired)' && exit 0",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm run build"

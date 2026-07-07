@@ -29,7 +29,10 @@ export const SmartbandStatus = ({
 
   return (
     <Container testID={testID} accessibilityLabel={accessibilityLabel ?? message}>
-      <ProgressBar value={progress} />
+      {/* ProgressBar expects value 0..100, mas SmartbandStatusProps.progress
+          é 0..1 (documentado nos types). Sem o *100, valores < 0.01 viravam
+          ~0% após clamp, deixando a bar sempre vazia (bug Fix 3 do cliente). */}
+      <ProgressBar value={progress * 100} />
       <SyncRow>
         <SyncCell>
           <IconSlot>

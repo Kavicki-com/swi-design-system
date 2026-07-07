@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
   Image as RNImage,
   Platform,
@@ -26,7 +26,7 @@ import { StatusChartBackdrop } from './StatusChartBackdrop';
 import {
   HEART_RATE_BUTTON,
   HEART_STATUS_OFFSET,
-  SILHOUETTE_BODY_XML,
+  silhouetteBodyXml,
   STATUS_CHART_CANVAS,
 } from './StatusChart.paths';
 import { conditionLabel, palette } from './StatusChart.theme';
@@ -108,6 +108,14 @@ export const StatusChart = ({
 }: StatusChartProps) => {
   const theme = useTheme();
   const p = palette(theme, condition);
+  // Silhueta por condição (variantes Figma 304:2356): mesmo XML, só os stops
+  // do gradient trocam — good preserva byte a byte o raw Caminho 4123.svg
+  // (palette good = #3EAB2E→#B7E9A4). Memoizado pra não re-parsear o SVG a
+  // cada render do chart.
+  const silhouetteXml = useMemo(
+    () => silhouetteBodyXml(p.gradientFrom, p.gradientTo),
+    [p.gradientFrom, p.gradientTo],
+  );
 
   const scale = size === 'compact' ? COMPACT_SCALE : 1;
   const outerW = STATUS_CHART_CANVAS.width * scale;
@@ -237,7 +245,8 @@ export const StatusChart = ({
           Dimensões 76.967 × 262.318 (canvas natural do SVG).
           Renderizado FORA do StatusChartBackdrop pra evitar problemas de
           interação entre gradient userSpaceOnUse e path transform em RN-SVG
-          iOS. Match exato com my-stats SILHOUETTE_BODY_SVG. */}
+          iOS. No `good`, match exato com my-stats SILHOUETTE_BODY_SVG;
+          alert/low trocam os stops via palette (Figma 304:2356). */}
       <View
         pointerEvents="none"
         style={{
@@ -248,7 +257,7 @@ export const StatusChart = ({
           height: 262.318,
         }}
       >
-        <SvgXml xml={SILHOUETTE_BODY_XML} width="100%" height="100%" />
+        <SvgXml xml={silhouetteXml} width="100%" height="100%" />
       </View>
 
       {/* Heart-status badge over the chest. Skipped when consumer passes

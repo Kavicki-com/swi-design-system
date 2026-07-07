@@ -1,6 +1,6 @@
 {
   "name": "@kavicki/swi-design-system",
-  "version": "0.1.107",
+  "version": "0.1.113",
   "description": "SWI Design System — universal React Native components for swi-admin and swi-app",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
@@ -29,7 +29,7 @@
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
     "storybook:rn": "cd example-app && yarn start",
-    "test": "vitest --passWithNoTests",
+    "test": "vitest run --passWithNoTests",
     "lint": "echo 'lint: noop (eslint v9 flat config not yet wired)' && exit 0",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm run build"

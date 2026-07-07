@@ -4,9 +4,9 @@
  * de interop ESM/CJS do react-native-svg no Vite/bundlers web — mesmo
  * pattern de Icon/SuccessBadge).
  */
-import React from 'react';
+import React, { memo, useMemo } from 'react';
 import { View } from 'react-native';
-import Svg, { Circle, G } from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 import type { BackgroundDotsGridProps } from './BackgroundDotsGrid.types';
 
 // Spec exato extraído do Figma `Repetição de grade 4` (364:16538):
@@ -63,7 +63,28 @@ const resolveDots = (n: number): ReadonlyArray<{ cy: number; r: number }> => {
   return [...COL_DOTS, ...extras];
 };
 
-export const BackgroundDotsGrid = ({
+// T3.16: gera UM único path string com todos os círculos como sub-paths.
+// Em vez de ~351-540 host nodes (`<Circle>` × N), o react-native-svg cria
+// apenas 1 host node `<Path>`. Cada círculo vira: `M (cx-r) cy a r,r 0 1,0
+// (2r),0 a r,r 0 1,0 (-2r),0` — duas semi-arcos relativos.
+const buildDotsPath = (
+  columns: number,
+  dots: ReadonlyArray<{ cy: number; r: number }>,
+): string => {
+  let path = '';
+  for (let col = 0; col < columns; col += 1) {
+    const cx = COL_CENTER_X + col * COL_SPACING;
+    for (let i = 0; i < dots.length; i += 1) {
+      const d = dots[i]!;
+      const r = d.r;
+      const d2 = r * 2;
+      path += `M${cx - r},${d.cy}a${r},${r} 0 1,0 ${d2},0a${r},${r} 0 1,0 ${-d2},0`;
+    }
+  }
+  return path;
+};
+
+export const BackgroundDotsGrid = memo(function BackgroundDotsGrid({
   columns = 27,
   color = '#65D040',
   opacity = 0.09,
@@ -71,7 +92,7 @@ export const BackgroundDotsGrid = ({
   rows,
   style,
   testID,
-}: BackgroundDotsGridProps) => {
+}: BackgroundDotsGridProps) {
   const totalWidth = width ?? (columns - 1) * COL_SPACING + COL_WIDTH;
   const dots = rows == null ? COL_DOTS : resolveDots(rows);
   // Altura intrínseca: pra `rows` natural ou menor, mantém COL_HEIGHT (157.829)
@@ -83,6 +104,8 @@ export const BackgroundDotsGrid = ({
       ? COL_HEIGHT
       : lastDot.cy + EXTRA_DOT_R + NATURAL_BOTTOM_MARGIN;
   const viewBox = `0 0 ${totalWidth} ${totalHeight}`;
+  // Computa o path string só quando columns/rows mudam (raramente).
+  const pathData = useMemo(() => buildDotsPath(columns, dots), [columns, dots]);
   return (
     <View
       style={[{ width: totalWidth, height: totalHeight, opacity }, style]}
@@ -90,16 +113,10 @@ export const BackgroundDotsGrid = ({
       testID={testID}
     >
       <Svg width="100%" height="100%" viewBox={viewBox}>
-        {Array.from({ length: columns }, (_, i) => (
-          <G key={i} transform={`translate(${i * COL_SPACING} 0)`}>
-            {dots.map((d, di) => (
-              <Circle key={di} cx={COL_CENTER_X} cy={d.cy} r={d.r} fill={color} />
-            ))}
-          </G>
-        ))}
+        <Path d={pathData} fill={color} />
       </Svg>
     </View>
   );
-};
+});
 
 BackgroundDotsGrid.displayName = 'BackgroundDotsGrid';

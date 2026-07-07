@@ -1096,10 +1096,14 @@ interface BackgroundDotsGridProps {
     testID?: string;
 }
 
-declare const BackgroundDotsGrid: {
-    ({ columns, color, opacity, width, rows, style, testID, }: BackgroundDotsGridProps): react_jsx_runtime.JSX.Element;
-    displayName: string;
-};
+/**
+ * Native BackgroundDotsGrid — usa react-native-svg.
+ * Web build pega BackgroundDotsGrid.web.tsx (plain <svg> para evitar issues
+ * de interop ESM/CJS do react-native-svg no Vite/bundlers web — mesmo
+ * pattern de Icon/SuccessBadge).
+ */
+
+declare const BackgroundDotsGrid: React$1.NamedExoticComponent<BackgroundDotsGridProps>;
 
 interface BigNumbersCardProps {
     value: number | string;
@@ -1600,6 +1604,12 @@ interface ComboboxProps {
     accessibilityLabel?: string;
     accessibilityHint?: string;
     testID?: string;
+    /**
+     * Quando definido, limita o panel a ~N linhas visíveis e torna o resto
+     * scrollável. Útil pra opções longas (alturas 140-220cm, pesos 40-160kg)
+     * que estouravam o viewport. Sem cap quando undefined.
+     */
+    maxVisibleRows?: number;
 }
 
 declare const Combobox: React$1.ForwardRefExoticComponent<ComboboxProps & React$1.RefAttributes<View>>;

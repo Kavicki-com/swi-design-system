@@ -18,16 +18,10 @@ const triggerBackground = ({
   return theme.surface.standard;
 };
 
-export const Container = styled(View)<{ $open?: boolean }>`
+export const Container = styled(View)`
   flex-direction: column;
   align-self: stretch;
   gap: ${({ theme }) => theme.gap.xs}px;
-  /* When the menu is open we lift the whole container so its absolutely-
-   * positioned Panel paints above following sibling Comboboxes/inputs.
-   * Without this, the next sibling (which is static-positioned and comes
-   * later in DOM order) renders on top of the floating Panel. */
-  position: ${({ $open }) => ($open ? 'relative' : 'static')};
-  z-index: ${({ $open }) => ($open ? 1000 : 'auto')};
 `;
 
 /* Inter Bold per Figma (e.g. 213:13619 "Tipo sanguíneo"). Antes era
@@ -71,16 +65,10 @@ export const Chevron = styled.Text<{ $disabled: boolean }>`
 `;
 
 export const Panel = styled(View)`
-  /* Float above siblings instead of pushing them down. */
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  margin-top: ${({ theme }) => theme.gap.xs}px;
-  z-index: 50;
+  /* Panel renderiza dentro de Modal — posicionamento absoluto vem do View
+   * wrapper que computa coords via measureInWindow no Combobox.tsx. Aqui
+   * fica só o visual: superfície + borda + padding + sombra. */
   min-width: 160px;
-  /* surface.high is a touch lighter than the chart card behind it
-   * (surface.medium), giving the floating panel a visible silhouette. */
   background-color: ${({ theme }) => theme.surface.high};
   border-radius: ${({ theme }) => theme.border.radius.m}px;
   border-width: 1px;

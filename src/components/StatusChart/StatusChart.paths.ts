@@ -14,17 +14,26 @@ export const STATUS_GAUGE = {
 } as const;
 
 /**
- * Caminho 4123 silhouette SVG XML — embedded literal pra rendering via SvgXml.
- * Match exato do arquivo Caminho 4123.svg (Figma export user-fornecido).
- * Usado em vez de <Path d={STATUS_GAUGE.d} /> pra garantir paridade visual
- * com SILHOUETTE_BODY_SVG do mobile (my-stats), evitando diferenças sutis
- * de rendering entre gradient userSpaceOnUse + path transform em RN-SVG.
- * Cores hardcoded: #3EAB2E (top, surface/success) → #B7E9A4 (bottom,
- * surface/success-light). Match exato do arquivo `src/icons/raw/Caminho 4123.svg`
- * (Figma export user-fornecido). Usuário pediu paridade com o SVG raw — não
- * alterar pra adivinhar cor que matche o render do Figma com mix-blend-multiply.
+ * Caminho 4123 silhouette SVG XML factory — embedded literal pra rendering via
+ * SvgXml. Usado em vez de <Path d={STATUS_GAUGE.d} /> pra garantir paridade
+ * visual com SILHOUETTE_BODY_SVG do mobile (my-stats), evitando diferenças
+ * sutis de rendering entre gradient userSpaceOnUse + path transform em RN-SVG.
+ *
+ * A condição (variantes Figma 304:2356) troca APENAS os stops do gradient —
+ * o StatusChart injeta os pares da palette (StatusChart.theme):
+ *   good  → surface.success→successLight (#3EAB2E→#B7E9A4 — byte-idêntico ao
+ *           raw `src/icons/raw/Caminho 4123.svg`, preservando a paridade que
+ *           o usuário pediu com o SVG raw)
+ *   alert → surface.error→errorLight
+ *   low   → surface.info→infoLight
+ * Mesmos pares que o crescente (StatusChartBackdrop) já aplica — silhueta e
+ * crescente andam juntos por variante, como no Figma.
  */
-export const SILHOUETTE_BODY_XML = `<svg width="77" height="263" viewBox="0 0 77 263" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="${STATUS_GAUGE.d}" fill="url(#paint0_linear_silhouette)"/><defs><linearGradient id="paint0_linear_silhouette" x1="38.4836" y1="0" x2="38.4836" y2="262.318" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#3EAB2E"/><stop offset="1" stop-color="#B7E9A4"/></linearGradient></defs></svg>`;
+export const silhouetteBodyXml = (gradientFrom: string, gradientTo: string) =>
+  `<svg width="77" height="263" viewBox="0 0 77 263" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="${STATUS_GAUGE.d}" fill="url(#paint0_linear_silhouette)"/><defs><linearGradient id="paint0_linear_silhouette" x1="38.4836" y1="0" x2="38.4836" y2="262.318" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${gradientFrom}"/><stop offset="1" stop-color="${gradientTo}"/></linearGradient></defs></svg>`;
+
+/** Back-compat: a variante `good` com os stops originais do Caminho 4123.svg. */
+export const SILHOUETTE_BODY_XML = silhouetteBodyXml('#3EAB2E', '#B7E9A4');
 
 /** Canvas dimensions used by StatusChart. Designed against this fixed size. */
 export const STATUS_CHART_CANVAS = { width: 360, height: 374 } as const;

@@ -1,6 +1,6 @@
 {
   "name": "@kavicki/swi-design-system",
-  "version": "0.1.113",
+  "version": "0.1.114",
   "description": "SWI Design System — universal React Native components for swi-admin and swi-app",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",

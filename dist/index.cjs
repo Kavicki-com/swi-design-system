@@ -4,13 +4,13 @@ var styled38 = require('styled-components/native');
 var reactNative = require('react-native');
 var jsxRuntime = require('react/jsx-runtime');
 var React13 = require('react');
-var Svg10 = require('react-native-svg');
+var Svg = require('react-native-svg');
 
 function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 var styled38__default = /*#__PURE__*/_interopDefault(styled38);
 var React13__default = /*#__PURE__*/_interopDefault(React13);
-var Svg10__default = /*#__PURE__*/_interopDefault(Svg10);
+var Svg__default = /*#__PURE__*/_interopDefault(Svg);
 
 // src/theme/ThemeProvider.tsx
 
@@ -935,7 +935,7 @@ var Icon = ({
   const gradId = `icon-grad-${rawId.replace(/:/g, "-")}`;
   const fill = gradient ? `url(#${gradId})` : color;
   return /* @__PURE__ */ jsxRuntime.jsxs(
-    Svg10__default.default,
+    Svg__default.default,
     {
       width: w,
       height: h,
@@ -945,11 +945,11 @@ var Icon = ({
       accessibilityLabel,
       accessibilityRole: accessibilityLabel ? "image" : void 0,
       children: [
-        gradient ? /* @__PURE__ */ jsxRuntime.jsx(Svg10.Defs, { children: /* @__PURE__ */ jsxRuntime.jsxs(Svg10.LinearGradient, { id: gradId, x1: "0", y1: "0", x2: "0", y2: "1", children: [
-          /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "0", stopColor: gradient[0] }),
-          /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "1", stopColor: gradient[1] })
+        gradient ? /* @__PURE__ */ jsxRuntime.jsx(Svg.Defs, { children: /* @__PURE__ */ jsxRuntime.jsxs(Svg.LinearGradient, { id: gradId, x1: "0", y1: "0", x2: "0", y2: "1", children: [
+          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: gradient[0] }),
+          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: gradient[1] })
         ] }) }) : null,
-        /* @__PURE__ */ jsxRuntime.jsx(Svg10.Path, { d: icon.d, fill, fillRule: icon.fillRule ?? "nonzero" })
+        /* @__PURE__ */ jsxRuntime.jsx(Svg.Path, { d: icon.d, fill, fillRule: icon.fillRule ?? "nonzero" })
       ]
     }
   );
@@ -1216,15 +1216,15 @@ var ProgressBar = React13.forwardRef(
     const gradX1 = gradientDirection === "rtl" ? 100 : 0;
     const gradX2 = gradientDirection === "rtl" ? 0 : 100;
     const fillNode = useGradient ? /* @__PURE__ */ jsxRuntime.jsx(reactNative.View, { style: { width: `${pct}%`, height: FILL_HEIGHT, overflow: "hidden" }, children: /* @__PURE__ */ jsxRuntime.jsxs(
-      Svg10__default.default,
+      Svg__default.default,
       {
         width: "100%",
         height: "100%",
         viewBox: `0 0 100 ${FILL_HEIGHT}`,
         preserveAspectRatio: "none",
         children: [
-          /* @__PURE__ */ jsxRuntime.jsx(Svg10.Defs, { children: /* @__PURE__ */ jsxRuntime.jsx(
-            Svg10.LinearGradient,
+          /* @__PURE__ */ jsxRuntime.jsx(Svg.Defs, { children: /* @__PURE__ */ jsxRuntime.jsx(
+            Svg.LinearGradient,
             {
               id: "pb-gradient",
               x1: gradX1,
@@ -1233,7 +1233,7 @@ var ProgressBar = React13.forwardRef(
               y2: "0",
               gradientUnits: "userSpaceOnUse",
               children: gradient.map((stopColor, i) => /* @__PURE__ */ jsxRuntime.jsx(
-                Svg10.Stop,
+                Svg.Stop,
                 {
                   offset: `${stops[i]}%`,
                   stopColor
@@ -1243,7 +1243,7 @@ var ProgressBar = React13.forwardRef(
             }
           ) }),
           /* @__PURE__ */ jsxRuntime.jsx(
-            Svg10.Rect,
+            Svg.Rect,
             {
               x: 0,
               y: 0,
@@ -1509,7 +1509,7 @@ var BackgroundDotsGrid = React13.memo(function BackgroundDotsGrid2({
       style: [{ width: totalWidth, height: totalHeight, opacity }, style],
       pointerEvents: "none",
       testID,
-      children: /* @__PURE__ */ jsxRuntime.jsx(Svg10__default.default, { width: "100%", height: "100%", viewBox, children: /* @__PURE__ */ jsxRuntime.jsx(Svg10.Path, { d: pathData, fill: color }) })
+      children: /* @__PURE__ */ jsxRuntime.jsx(Svg__default.default, { width: "100%", height: "100%", viewBox, children: /* @__PURE__ */ jsxRuntime.jsx(Svg.Path, { d: pathData, fill: color }) })
     }
   );
 });
@@ -2234,17 +2234,17 @@ var DonutArc = ({
   const isFlat = appearance === "flat";
   const BEZEL_FILL = "#1F1F1F";
   const WELL_FILL = "#171717";
-  return /* @__PURE__ */ jsxRuntime.jsxs(Svg10__default.default, { width: size, height: size, viewBox: `0 0 ${size} ${size}`, children: [
-    /* @__PURE__ */ jsxRuntime.jsx(Svg10.Defs, { children: /* @__PURE__ */ jsxRuntime.jsxs(Svg10.LinearGradient, { id: arcId, x1: "0.5", y1: "0", x2: "0.5", y2: "1", children: [
-      /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "0", stopColor: arcFrom, stopOpacity: "1" }),
-      /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "1", stopColor: arcTo, stopOpacity: "1" })
+  return /* @__PURE__ */ jsxRuntime.jsxs(Svg__default.default, { width: size, height: size, viewBox: `0 0 ${size} ${size}`, children: [
+    /* @__PURE__ */ jsxRuntime.jsx(Svg.Defs, { children: /* @__PURE__ */ jsxRuntime.jsxs(Svg.LinearGradient, { id: arcId, x1: "0.5", y1: "0", x2: "0.5", y2: "1", children: [
+      /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: arcFrom, stopOpacity: "1" }),
+      /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: arcTo, stopOpacity: "1" })
     ] }) }),
-    isFlat ? /* @__PURE__ */ jsxRuntime.jsx(Svg10.Circle, { cx, cy, r: arcR - arcStroke / 2, fill: "#1a1a1a" }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-      /* @__PURE__ */ jsxRuntime.jsx(Svg10.Circle, { cx, cy, r: outerR, fill: BEZEL_FILL }),
-      /* @__PURE__ */ jsxRuntime.jsx(Svg10.Circle, { cx, cy, r: innerR, fill: WELL_FILL })
+    isFlat ? /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx, cy, r: arcR - arcStroke / 2, fill: "#1a1a1a" }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx, cy, r: outerR, fill: BEZEL_FILL }),
+      /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx, cy, r: innerR, fill: WELL_FILL })
     ] }),
     /* @__PURE__ */ jsxRuntime.jsx(
-      Svg10.Circle,
+      Svg.Circle,
       {
         cx,
         cy,
@@ -2255,8 +2255,8 @@ var DonutArc = ({
         opacity: isFlat ? 0.25 : 0.35
       }
     ),
-    /* @__PURE__ */ jsxRuntime.jsx(Svg10.G, { transform: `rotate(-90 ${cx} ${cy})`, children: /* @__PURE__ */ jsxRuntime.jsx(
-      Svg10.Circle,
+    /* @__PURE__ */ jsxRuntime.jsx(Svg.G, { transform: `rotate(-90 ${cx} ${cy})`, children: /* @__PURE__ */ jsxRuntime.jsx(
+      Svg.Circle,
       {
         cx,
         cy,
@@ -2983,7 +2983,7 @@ var HeartrateStatus = ({
   const data = HEARTRATE_STATUS_PATHS[condition];
   const w = size * data.width / data.height;
   return /* @__PURE__ */ jsxRuntime.jsxs(
-    Svg10__default.default,
+    Svg__default.default,
     {
       width: w,
       height: size,
@@ -2992,8 +2992,8 @@ var HeartrateStatus = ({
       accessibilityLabel: accessibilityLabel ?? `heartrate status ${conditionLabel[condition]}`,
       accessibilityRole: "image",
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx(Svg10.Path, { d: data.circle, fill: conditionColor(theme2, condition) }),
-        /* @__PURE__ */ jsxRuntime.jsx(Svg10.Path, { d: data.symbol, fill: theme2.content.dark })
+        /* @__PURE__ */ jsxRuntime.jsx(Svg.Path, { d: data.circle, fill: conditionColor(theme2, condition) }),
+        /* @__PURE__ */ jsxRuntime.jsx(Svg.Path, { d: data.symbol, fill: theme2.content.dark })
       ]
     }
   );
@@ -3015,7 +3015,7 @@ var HeartStatus = ({
   const w = h * HEART_STATUS_CANVAS.width / HEART_STATUS_CANVAS.height;
   const badge = HEARTRATE_STATUS_PATHS[condition];
   return /* @__PURE__ */ jsxRuntime.jsxs(
-    Svg10__default.default,
+    Svg__default.default,
     {
       width: w,
       height: h,
@@ -3024,10 +3024,10 @@ var HeartStatus = ({
       accessibilityLabel: accessibilityLabel ?? `heart status ${conditionLabel[condition]}`,
       accessibilityRole: "image",
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx(Svg10.Path, { d: HEART_PATH, fill: theme2.content.dark }),
-        /* @__PURE__ */ jsxRuntime.jsxs(Svg10.G, { x: HEART_STATUS_BADGE_OFFSET.x, y: HEART_STATUS_BADGE_OFFSET.y, children: [
-          /* @__PURE__ */ jsxRuntime.jsx(Svg10.Path, { d: badge.circle, fill: conditionColor(theme2, condition) }),
-          /* @__PURE__ */ jsxRuntime.jsx(Svg10.Path, { d: badge.symbol, fill: theme2.content.dark })
+        /* @__PURE__ */ jsxRuntime.jsx(Svg.Path, { d: HEART_PATH, fill: theme2.content.dark }),
+        /* @__PURE__ */ jsxRuntime.jsxs(Svg.G, { x: HEART_STATUS_BADGE_OFFSET.x, y: HEART_STATUS_BADGE_OFFSET.y, children: [
+          /* @__PURE__ */ jsxRuntime.jsx(Svg.Path, { d: badge.circle, fill: conditionColor(theme2, condition) }),
+          /* @__PURE__ */ jsxRuntime.jsx(Svg.Path, { d: badge.symbol, fill: theme2.content.dark })
         ] })
       ]
     }
@@ -4617,7 +4617,7 @@ var Silhouette = ({
   const w = h * data.width / data.height;
   const gradientId = `silhouette-gradient-${gender}-${heatGradient ? "heat" : "primary"}`;
   return /* @__PURE__ */ jsxRuntime.jsxs(
-    Svg10__default.default,
+    Svg__default.default,
     {
       width: w,
       height: h,
@@ -4626,17 +4626,17 @@ var Silhouette = ({
       accessibilityLabel: accessibilityLabel ?? `silhouette ${gender}`,
       accessibilityRole: "image",
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx(Svg10.Defs, { children: /* @__PURE__ */ jsxRuntime.jsx(Svg10.LinearGradient, { id: gradientId, x1: "0", y1: "0", x2: "0", y2: "1", children: heatGradient ? [
-          /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "0", stopColor: "#ef4444" }, "heat-0"),
-          /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "0.33", stopColor: "#f97316" }, "heat-1"),
-          /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "0.66", stopColor: "#facc15" }, "heat-2"),
-          /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "1", stopColor: "#22c55e" }, "heat-3")
+        /* @__PURE__ */ jsxRuntime.jsx(Svg.Defs, { children: /* @__PURE__ */ jsxRuntime.jsx(Svg.LinearGradient, { id: gradientId, x1: "0", y1: "0", x2: "0", y2: "1", children: heatGradient ? [
+          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: "#ef4444" }, "heat-0"),
+          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0.33", stopColor: "#f97316" }, "heat-1"),
+          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0.66", stopColor: "#facc15" }, "heat-2"),
+          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: "#22c55e" }, "heat-3")
         ] : [
-          /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "0", stopColor: theme2.content.primary }, "primary-0"),
-          /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "1", stopColor: theme2.surface.accent }, "primary-1")
+          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: theme2.content.primary }, "primary-0"),
+          /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: theme2.surface.accent }, "primary-1")
         ] }) }),
-        /* @__PURE__ */ jsxRuntime.jsx(Svg10.Path, { d: data.body, fill: `url(#${gradientId})` }),
-        showHeart ? /* @__PURE__ */ jsxRuntime.jsx(Svg10.Path, { d: data.heart, fill: theme2.content.dark }) : null
+        /* @__PURE__ */ jsxRuntime.jsx(Svg.Path, { d: data.body, fill: `url(#${gradientId})` }),
+        showHeart ? /* @__PURE__ */ jsxRuntime.jsx(Svg.Path, { d: data.heart, fill: theme2.content.dark }) : null
       ]
     }
   );
@@ -4830,14 +4830,14 @@ var LineCaloriesChart = React13.forwardRef(
         style: fullWidth ? { alignSelf: "stretch", width: "100%", height } : { alignSelf: "flex-start", width, height },
         children: [
           /* @__PURE__ */ jsxRuntime.jsx(Layer, { children: /* @__PURE__ */ jsxRuntime.jsx(
-            Svg10__default.default,
+            Svg__default.default,
             {
               width: "100%",
               height,
               viewBox: `0 0 ${width} ${height}`,
               preserveAspectRatio: "none",
               children: /* @__PURE__ */ jsxRuntime.jsx(
-                Svg10.Path,
+                Svg.Path,
                 {
                   d,
                   fill: "none",
@@ -5817,6 +5817,38 @@ var WorkersInfoCard = React13.forwardRef(
   }
 );
 WorkersInfoCard.displayName = "WorkersInfoCard";
+var InnerShadowCircle = ({ size, fill, dy, blur, alpha }) => {
+  const filterId = `inner-shadow-${React13.useId().replace(/:/g, "")}`;
+  const r = size / 2;
+  return /* @__PURE__ */ jsxRuntime.jsxs(Svg__default.default, { width: size, height: size, pointerEvents: "none", children: [
+    /* @__PURE__ */ jsxRuntime.jsx(Svg.Defs, { children: /* @__PURE__ */ jsxRuntime.jsxs(Svg.Filter, { id: filterId, x: "-10%", y: "-10%", width: "120%", height: "120%", children: [
+      /* @__PURE__ */ jsxRuntime.jsx(Svg.FeFlood, { floodOpacity: "0", result: "BackgroundImageFix" }),
+      /* @__PURE__ */ jsxRuntime.jsx(Svg.FeBlend, { mode: "normal", in: "SourceGraphic", in2: "BackgroundImageFix", result: "shape" }),
+      /* @__PURE__ */ jsxRuntime.jsx(
+        Svg.FeColorMatrix,
+        {
+          in: "SourceAlpha",
+          type: "matrix",
+          values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0",
+          result: "hardAlpha"
+        }
+      ),
+      /* @__PURE__ */ jsxRuntime.jsx(Svg.FeOffset, { dy }),
+      /* @__PURE__ */ jsxRuntime.jsx(Svg.FeGaussianBlur, { stdDeviation: blur }),
+      /* @__PURE__ */ jsxRuntime.jsx(Svg.FeComposite, { in2: "hardAlpha", operator: "arithmetic", k2: -1, k3: 1 }),
+      /* @__PURE__ */ jsxRuntime.jsx(
+        Svg.FeColorMatrix,
+        {
+          type: "matrix",
+          values: `0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ${alpha} 0`
+        }
+      ),
+      /* @__PURE__ */ jsxRuntime.jsx(Svg.FeBlend, { mode: "normal", in2: "shape", result: "effect_innerShadow" })
+    ] }) }),
+    /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx: r, cy: r, r, fill, filter: `url(#${filterId})` })
+  ] });
+};
+var SilhouetteBody = ({ xml }) => /* @__PURE__ */ jsxRuntime.jsx(Svg.SvgXml, { xml, width: "100%", height: "100%" });
 
 // src/components/StatusChart/ellipse5.data.ts
 var ELLIPSE_5_DATA_URL = "data:image/png;base64,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";
@@ -5926,7 +5958,7 @@ var StatusChartBackdrop = ({
     PROGRESS_MAX_SWEEP_DEG * clamped
   );
   return /* @__PURE__ */ jsxRuntime.jsxs(
-    Svg10__default.default,
+    Svg__default.default,
     {
       width,
       height,
@@ -5935,9 +5967,9 @@ var StatusChartBackdrop = ({
       overflow: extrapolate ? "visible" : void 0,
       style: extrapolate ? { overflow: "visible" } : void 0,
       children: [
-        /* @__PURE__ */ jsxRuntime.jsxs(Svg10.Defs, { children: [
+        /* @__PURE__ */ jsxRuntime.jsxs(Svg.Defs, { children: [
           /* @__PURE__ */ jsxRuntime.jsxs(
-            Svg10.LinearGradient,
+            Svg.LinearGradient,
             {
               id: silhouetteGradId,
               x1: 38.4836,
@@ -5946,13 +5978,13 @@ var StatusChartBackdrop = ({
               y2: 262.318,
               gradientUnits: "userSpaceOnUse",
               children: [
-                /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "0", stopColor: p.gradientFrom }),
-                /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "1", stopColor: p.gradientTo })
+                /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: p.gradientFrom }),
+                /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: p.gradientTo })
               ]
             }
           ),
           /* @__PURE__ */ jsxRuntime.jsxs(
-            Svg10.LinearGradient,
+            Svg.LinearGradient,
             {
               id: crescentGradId,
               x1: CRESCENT_X + 98.2529,
@@ -5961,14 +5993,14 @@ var StatusChartBackdrop = ({
               y2: CRESCENT_Y + 196.506,
               gradientUnits: "userSpaceOnUse",
               children: [
-                /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "0", stopColor: p.gradientFrom }),
-                /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "1", stopColor: p.gradientTo })
+                /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: p.gradientFrom }),
+                /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: p.gradientTo })
               ]
             }
           ),
-          /* @__PURE__ */ jsxRuntime.jsx(Svg10.ClipPath, { id: progressClipId, children: /* @__PURE__ */ jsxRuntime.jsx(Svg10.Path, { d: sectorD }) }),
+          /* @__PURE__ */ jsxRuntime.jsx(Svg.ClipPath, { id: progressClipId, children: /* @__PURE__ */ jsxRuntime.jsx(Svg.Path, { d: sectorD }) }),
           /* @__PURE__ */ jsxRuntime.jsxs(
-            Svg10.Filter,
+            Svg.Filter,
             {
               id: innerShadowId,
               x: "-10%",
@@ -5976,10 +6008,10 @@ var StatusChartBackdrop = ({
               width: "120%",
               height: "120%",
               children: [
-                /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeFlood, { floodOpacity: "0", result: "BackgroundImageFix" }),
-                /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeBlend, { mode: "normal", in: "SourceGraphic", in2: "BackgroundImageFix", result: "shape" }),
+                /* @__PURE__ */ jsxRuntime.jsx(Svg.FeFlood, { floodOpacity: "0", result: "BackgroundImageFix" }),
+                /* @__PURE__ */ jsxRuntime.jsx(Svg.FeBlend, { mode: "normal", in: "SourceGraphic", in2: "BackgroundImageFix", result: "shape" }),
                 /* @__PURE__ */ jsxRuntime.jsx(
-                  Svg10.FeColorMatrix,
+                  Svg.FeColorMatrix,
                   {
                     in: "SourceAlpha",
                     type: "matrix",
@@ -5987,24 +6019,24 @@ var StatusChartBackdrop = ({
                     result: "hardAlpha"
                   }
                 ),
-                /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeOffset, { dy: "2.08" }),
-                /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeGaussianBlur, { stdDeviation: "2.08" }),
-                /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeComposite, { in2: "hardAlpha", operator: "arithmetic", k2: -1, k3: 1 }),
+                /* @__PURE__ */ jsxRuntime.jsx(Svg.FeOffset, { dy: "2.08" }),
+                /* @__PURE__ */ jsxRuntime.jsx(Svg.FeGaussianBlur, { stdDeviation: "2.08" }),
+                /* @__PURE__ */ jsxRuntime.jsx(Svg.FeComposite, { in2: "hardAlpha", operator: "arithmetic", k2: -1, k3: 1 }),
                 /* @__PURE__ */ jsxRuntime.jsx(
-                  Svg10.FeColorMatrix,
+                  Svg.FeColorMatrix,
                   {
                     type: "matrix",
                     values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.9882 0"
                   }
                 ),
-                /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeBlend, { mode: "normal", in2: "shape", result: "effect_innerShadow" })
+                /* @__PURE__ */ jsxRuntime.jsx(Svg.FeBlend, { mode: "normal", in2: "shape", result: "effect_innerShadow" })
               ]
             }
           )
         ] }),
         layer === "lower" ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
           !extrapolate ? /* @__PURE__ */ jsxRuntime.jsx(
-            Svg10.Circle,
+            Svg.Circle,
             {
               cx: CENTER_X,
               cy: CENTER_Y,
@@ -6014,7 +6046,7 @@ var StatusChartBackdrop = ({
             }
           ) : null,
           /* @__PURE__ */ jsxRuntime.jsx(
-            Svg10.Circle,
+            Svg.Circle,
             {
               cx: CENTER_X,
               cy: CENTER_Y,
@@ -6025,7 +6057,7 @@ var StatusChartBackdrop = ({
           )
         ] }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
           /* @__PURE__ */ jsxRuntime.jsx(
-            Svg10.Circle,
+            Svg.Circle,
             {
               cx: CENTER_X,
               cy: CENTER_Y,
@@ -6034,9 +6066,9 @@ var StatusChartBackdrop = ({
               filter: `url(#${innerShadowId})`
             }
           ),
-          clamped > 0 ? /* @__PURE__ */ jsxRuntime.jsx(Svg10.G, { clipPath: `url(#${progressClipId})`, children: /* @__PURE__ */ jsxRuntime.jsx(Svg10.G, { transform: `translate(${CRESCENT_X} ${CRESCENT_Y})`, children: /* @__PURE__ */ jsxRuntime.jsx(Svg10.Path, { d: CRESCENT_PATH, fill: `url(#${crescentGradId})` }) }) }) : null,
+          clamped > 0 ? /* @__PURE__ */ jsxRuntime.jsx(Svg.G, { clipPath: `url(#${progressClipId})`, children: /* @__PURE__ */ jsxRuntime.jsx(Svg.G, { transform: `translate(${CRESCENT_X} ${CRESCENT_Y})`, children: /* @__PURE__ */ jsxRuntime.jsx(Svg.Path, { d: CRESCENT_PATH, fill: `url(#${crescentGradId})` }) }) }) : null,
           /* @__PURE__ */ jsxRuntime.jsx(
-            Svg10.Image,
+            Svg.Image,
             {
               x: ELLIPSE_5_X,
               y: ELLIPSE_5_Y,
@@ -6047,7 +6079,7 @@ var StatusChartBackdrop = ({
             }
           ),
           /* @__PURE__ */ jsxRuntime.jsx(
-            Svg10.Circle,
+            Svg.Circle,
             {
               cx: CENTER_X,
               cy: CENTER_Y,
@@ -6156,52 +6188,16 @@ var StatusChart = ({
               top: 202.64 - discDiameter / 2,
               overflow: "hidden"
             },
-            children: /* @__PURE__ */ jsxRuntime.jsxs(Svg10__default.default, { width: discDiameter, height: discDiameter, children: [
-              /* @__PURE__ */ jsxRuntime.jsx(Svg10.Defs, { children: /* @__PURE__ */ jsxRuntime.jsxs(
-                Svg10.Filter,
-                {
-                  id: "caminho4122-inner-shadow",
-                  x: "-10%",
-                  y: "-10%",
-                  width: "120%",
-                  height: "120%",
-                  children: [
-                    /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeFlood, { floodOpacity: "0", result: "BackgroundImageFix" }),
-                    /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeBlend, { mode: "normal", in: "SourceGraphic", in2: "BackgroundImageFix", result: "shape" }),
-                    /* @__PURE__ */ jsxRuntime.jsx(
-                      Svg10.FeColorMatrix,
-                      {
-                        in: "SourceAlpha",
-                        type: "matrix",
-                        values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0",
-                        result: "hardAlpha"
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeOffset, { dy: "2.08" }),
-                    /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeGaussianBlur, { stdDeviation: "2.08" }),
-                    /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeComposite, { in2: "hardAlpha", operator: "arithmetic", k2: -1, k3: 1 }),
-                    /* @__PURE__ */ jsxRuntime.jsx(
-                      Svg10.FeColorMatrix,
-                      {
-                        type: "matrix",
-                        values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.9882 0"
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeBlend, { mode: "normal", in2: "shape", result: "effect_innerShadow" })
-                  ]
-                }
-              ) }),
-              /* @__PURE__ */ jsxRuntime.jsx(
-                Svg10.Circle,
-                {
-                  cx: discDiameter / 2,
-                  cy: discDiameter / 2,
-                  r: discDiameter / 2,
-                  fill: theme2.surface.standard,
-                  filter: "url(#caminho4122-inner-shadow)"
-                }
-              )
-            ] })
+            children: /* @__PURE__ */ jsxRuntime.jsx(
+              InnerShadowCircle,
+              {
+                size: discDiameter,
+                fill: theme2.surface.standard,
+                dy: 2.08,
+                blur: 2.08,
+                alpha: 0.9882
+              }
+            )
           }
         ) : null,
         /* @__PURE__ */ jsxRuntime.jsx(reactNative.View, { style: { position: "absolute", inset: 0 }, children: /* @__PURE__ */ jsxRuntime.jsx(
@@ -6251,7 +6247,7 @@ var StatusChart = ({
               width: 76.967,
               height: 262.318
             },
-            children: /* @__PURE__ */ jsxRuntime.jsx(Svg10.SvgXml, { xml: silhouetteXml, width: "100%", height: "100%" })
+            children: /* @__PURE__ */ jsxRuntime.jsx(SilhouetteBody, { xml: silhouetteXml })
           }
         ),
         renderHeartStatus ? /* @__PURE__ */ jsxRuntime.jsx(
@@ -6300,66 +6296,14 @@ var StatusChart = ({
                     },
                     BUTTON_CONTAINER_DROP_SHADOW
                   ],
-                  children: /* @__PURE__ */ jsxRuntime.jsxs(
-                    Svg10__default.default,
+                  children: /* @__PURE__ */ jsxRuntime.jsx(
+                    InnerShadowCircle,
                     {
-                      width: BUTTON_CONTAINER_SIZE,
-                      height: BUTTON_CONTAINER_SIZE,
-                      pointerEvents: "none",
-                      children: [
-                        /* @__PURE__ */ jsxRuntime.jsx(Svg10.Defs, { children: /* @__PURE__ */ jsxRuntime.jsxs(
-                          Svg10.Filter,
-                          {
-                            id: "elipse34-inner-shadow",
-                            x: "-10%",
-                            y: "-10%",
-                            width: "120%",
-                            height: "120%",
-                            children: [
-                              /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeFlood, { floodOpacity: "0", result: "BackgroundImageFix" }),
-                              /* @__PURE__ */ jsxRuntime.jsx(
-                                Svg10.FeBlend,
-                                {
-                                  mode: "normal",
-                                  in: "SourceGraphic",
-                                  in2: "BackgroundImageFix",
-                                  result: "shape"
-                                }
-                              ),
-                              /* @__PURE__ */ jsxRuntime.jsx(
-                                Svg10.FeColorMatrix,
-                                {
-                                  in: "SourceAlpha",
-                                  type: "matrix",
-                                  values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0",
-                                  result: "hardAlpha"
-                                }
-                              ),
-                              /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeOffset, { dy: "2.18" }),
-                              /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeGaussianBlur, { stdDeviation: "2.18" }),
-                              /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeComposite, { in2: "hardAlpha", operator: "arithmetic", k2: -1, k3: 1 }),
-                              /* @__PURE__ */ jsxRuntime.jsx(
-                                Svg10.FeColorMatrix,
-                                {
-                                  type: "matrix",
-                                  values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6314 0"
-                                }
-                              ),
-                              /* @__PURE__ */ jsxRuntime.jsx(Svg10.FeBlend, { mode: "normal", in2: "shape", result: "effect_innerShadow" })
-                            ]
-                          }
-                        ) }),
-                        /* @__PURE__ */ jsxRuntime.jsx(
-                          Svg10.Circle,
-                          {
-                            cx: BUTTON_CONTAINER_R,
-                            cy: BUTTON_CONTAINER_R,
-                            r: BUTTON_CONTAINER_R,
-                            fill: theme2.surface.standard,
-                            filter: "url(#elipse34-inner-shadow)"
-                          }
-                        )
-                      ]
+                      size: BUTTON_CONTAINER_SIZE,
+                      fill: theme2.surface.standard,
+                      dy: 2.18,
+                      blur: 2.18,
+                      alpha: 0.6314
                     }
                   )
                 }
@@ -6508,12 +6452,12 @@ var stateFor = (stepNum, current) => {
   if (stepNum === current) return "current";
   return "default";
 };
-var GradientConnector = () => /* @__PURE__ */ jsxRuntime.jsx(GradientTrack, { children: /* @__PURE__ */ jsxRuntime.jsxs(Svg10__default.default, { width: "100%", height: "100%", viewBox: "0 0 100 4", preserveAspectRatio: "none", children: [
-  /* @__PURE__ */ jsxRuntime.jsx(Svg10.Defs, { children: /* @__PURE__ */ jsxRuntime.jsxs(Svg10.LinearGradient, { id: "stepbar-reached", x1: "0", y1: "0", x2: "100", y2: "0", gradientUnits: "userSpaceOnUse", children: [
-    /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "0%", stopColor: "#8AD2E2" }),
-    /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "100%", stopColor: "#62BB81" })
+var GradientConnector = () => /* @__PURE__ */ jsxRuntime.jsx(GradientTrack, { children: /* @__PURE__ */ jsxRuntime.jsxs(Svg__default.default, { width: "100%", height: "100%", viewBox: "0 0 100 4", preserveAspectRatio: "none", children: [
+  /* @__PURE__ */ jsxRuntime.jsx(Svg.Defs, { children: /* @__PURE__ */ jsxRuntime.jsxs(Svg.LinearGradient, { id: "stepbar-reached", x1: "0", y1: "0", x2: "100", y2: "0", gradientUnits: "userSpaceOnUse", children: [
+    /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0%", stopColor: "#8AD2E2" }),
+    /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "100%", stopColor: "#62BB81" })
   ] }) }),
-  /* @__PURE__ */ jsxRuntime.jsx(Svg10.Rect, { x: 0, y: 0, width: 100, height: 4, fill: "url(#stepbar-reached)" })
+  /* @__PURE__ */ jsxRuntime.jsx(Svg.Rect, { x: 0, y: 0, width: 100, height: 4, fill: "url(#stepbar-reached)" })
 ] }) });
 var StepBar = ({ total, current, testID, accessibilityLabel }) => /* @__PURE__ */ jsxRuntime.jsx(
   Container19,
@@ -6731,17 +6675,17 @@ var SuccessBadge = ({
       accessibilityRole: accessibilityLabel ? "image" : void 0,
       children: [
         /* @__PURE__ */ jsxRuntime.jsxs(
-          Svg10__default.default,
+          Svg__default.default,
           {
             width: size,
             height: size,
             style: { position: "absolute", top: 0, left: 0 },
             children: [
-              /* @__PURE__ */ jsxRuntime.jsx(Svg10.Defs, { children: /* @__PURE__ */ jsxRuntime.jsxs(Svg10.LinearGradient, { id: gradientId, x1: "0", y1: "0", x2: "0", y2: "1", children: [
-                /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "0", stopColor: c1 }),
-                /* @__PURE__ */ jsxRuntime.jsx(Svg10.Stop, { offset: "1", stopColor: c2 })
+              /* @__PURE__ */ jsxRuntime.jsx(Svg.Defs, { children: /* @__PURE__ */ jsxRuntime.jsxs(Svg.LinearGradient, { id: gradientId, x1: "0", y1: "0", x2: "0", y2: "1", children: [
+                /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "0", stopColor: c1 }),
+                /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: "1", stopColor: c2 })
               ] }) }),
-              /* @__PURE__ */ jsxRuntime.jsx(Svg10.Circle, { cx: size / 2, cy: size / 2, r: size / 2, fill: `url(#${gradientId})` })
+              /* @__PURE__ */ jsxRuntime.jsx(Svg.Circle, { cx: size / 2, cy: size / 2, r: size / 2, fill: `url(#${gradientId})` })
             ]
           }
         ),

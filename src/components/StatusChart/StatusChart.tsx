@@ -6,22 +6,12 @@ import {
   View,
   type ViewStyle,
 } from 'react-native';
-import Svg, {
-  Circle,
-  Defs,
-  FeBlend,
-  FeColorMatrix,
-  FeComposite,
-  FeFlood,
-  FeGaussianBlur,
-  FeOffset,
-  Filter,
-  SvgXml,
-} from 'react-native-svg';
 import { useTheme } from '../../theme';
 import { BackgroundDotsGrid } from '../BackgroundDotsGrid';
 import { HeartStatus } from '../HeartStatus';
 import { Icon } from '../Icon';
+import { InnerShadowCircle } from './InnerShadowCircle';
+import { SilhouetteBody } from './SilhouetteBody';
 import { StatusChartBackdrop } from './StatusChartBackdrop';
 import {
   HEART_RATE_BUTTON,
@@ -157,41 +147,13 @@ export const StatusChart = ({
             overflow: 'hidden',
           }}
         >
-          <Svg width={discDiameter} height={discDiameter}>
-            <Defs>
-              <Filter
-                id="caminho4122-inner-shadow"
-                x="-10%"
-                y="-10%"
-                width="120%"
-                height="120%"
-              >
-                <FeFlood floodOpacity="0" result="BackgroundImageFix" />
-                <FeBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-                <FeColorMatrix
-                  in="SourceAlpha"
-                  type="matrix"
-                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                  result="hardAlpha"
-                />
-                <FeOffset dy="2.08" />
-                <FeGaussianBlur stdDeviation="2.08" />
-                <FeComposite in2="hardAlpha" operator="arithmetic" k2={-1} k3={1} />
-                <FeColorMatrix
-                  type="matrix"
-                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.9882 0"
-                />
-                <FeBlend mode="normal" in2="shape" result="effect_innerShadow" />
-              </Filter>
-            </Defs>
-            <Circle
-              cx={discDiameter / 2}
-              cy={discDiameter / 2}
-              r={discDiameter / 2}
-              fill={theme.surface.standard}
-              filter="url(#caminho4122-inner-shadow)"
-            />
-          </Svg>
+          <InnerShadowCircle
+            size={discDiameter}
+            fill={theme.surface.standard}
+            dy={2.08}
+            blur={2.08}
+            alpha={0.9882}
+          />
         </View>
       ) : null}
 
@@ -257,7 +219,7 @@ export const StatusChart = ({
           height: 262.318,
         }}
       >
-        <SvgXml xml={silhouetteXml} width="100%" height="100%" />
+        <SilhouetteBody xml={silhouetteXml} />
       </View>
 
       {/* Heart-status badge over the chest. Skipped when consumer passes
@@ -322,50 +284,13 @@ export const StatusChart = ({
             BUTTON_CONTAINER_DROP_SHADOW,
           ]}
         >
-          <Svg
-            width={BUTTON_CONTAINER_SIZE}
-            height={BUTTON_CONTAINER_SIZE}
-            pointerEvents="none"
-          >
-            <Defs>
-              <Filter
-                id="elipse34-inner-shadow"
-                x="-10%"
-                y="-10%"
-                width="120%"
-                height="120%"
-              >
-                <FeFlood floodOpacity="0" result="BackgroundImageFix" />
-                <FeBlend
-                  mode="normal"
-                  in="SourceGraphic"
-                  in2="BackgroundImageFix"
-                  result="shape"
-                />
-                <FeColorMatrix
-                  in="SourceAlpha"
-                  type="matrix"
-                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                  result="hardAlpha"
-                />
-                <FeOffset dy="2.18" />
-                <FeGaussianBlur stdDeviation="2.18" />
-                <FeComposite in2="hardAlpha" operator="arithmetic" k2={-1} k3={1} />
-                <FeColorMatrix
-                  type="matrix"
-                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6314 0"
-                />
-                <FeBlend mode="normal" in2="shape" result="effect_innerShadow" />
-              </Filter>
-            </Defs>
-            <Circle
-              cx={BUTTON_CONTAINER_R}
-              cy={BUTTON_CONTAINER_R}
-              r={BUTTON_CONTAINER_R}
-              fill={theme.surface.standard}
-              filter="url(#elipse34-inner-shadow)"
-            />
-          </Svg>
+          <InnerShadowCircle
+            size={BUTTON_CONTAINER_SIZE}
+            fill={theme.surface.standard}
+            dy={2.18}
+            blur={2.18}
+            alpha={0.6314}
+          />
         </View>
 
         {/* Inner glossy shadow — Figma: inset 0px 2.178px 4.356px rgba(0,0,0,0.59). */}

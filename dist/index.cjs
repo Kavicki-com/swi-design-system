@@ -785,6 +785,14 @@ var iconPaths = {
     viewBox: "0 0 18 20",
     d: "M2 20C1.45 20 0.979167 19.8042 0.5875 19.4125C0.195833 19.0208 0 18.55 0 18V4C0 3.45 0.195833 2.97917 0.5875 2.5875C0.979167 2.19583 1.45 2 2 2H6.2C6.41667 1.4 6.77917 0.916667 7.2875 0.55C7.79583 0.183333 8.36667 0 9 0C9.63333 0 10.2042 0.183333 10.7125 0.55C11.2208 0.916667 11.5833 1.4 11.8 2H16C16.55 2 17.0208 2.19583 17.4125 2.5875C17.8042 2.97917 18 3.45 18 4V18C18 18.55 17.8042 19.0208 17.4125 19.4125C17.0208 19.8042 16.55 20 16 20H2ZM4 16H11V14H4V16ZM4 12H14V10H4V12ZM4 8H14V6H4V8ZM9.5375 3.0375C9.67917 2.89583 9.75 2.71667 9.75 2.5C9.75 2.28333 9.67917 2.10417 9.5375 1.9625C9.39583 1.82083 9.21667 1.75 9 1.75C8.78333 1.75 8.60417 1.82083 8.4625 1.9625C8.32083 2.10417 8.25 2.28333 8.25 2.5C8.25 2.71667 8.32083 2.89583 8.4625 3.0375C8.60417 3.17917 8.78333 3.25 9 3.25C9.21667 3.25 9.39583 3.17917 9.5375 3.0375Z"
   },
+  assignment_filled: {
+    // MESMO export Figma do `report_filled` acima (raw/material/assignment.svg,
+    // clipboard preenchido) — alias pro item Tarefas da sidebar (decisão do
+    // designer 2026-07-24). A igualdade dos dois paths é travada por teste
+    // (paths.test.ts); editar um exige editar o outro.
+    viewBox: "0 0 18 20",
+    d: "M2 20C1.45 20 0.979167 19.8042 0.5875 19.4125C0.195833 19.0208 0 18.55 0 18V4C0 3.45 0.195833 2.97917 0.5875 2.5875C0.979167 2.19583 1.45 2 2 2H6.2C6.41667 1.4 6.77917 0.916667 7.2875 0.55C7.79583 0.183333 8.36667 0 9 0C9.63333 0 10.2042 0.183333 10.7125 0.55C11.2208 0.916667 11.5833 1.4 11.8 2H16C16.55 2 17.0208 2.19583 17.4125 2.5875C17.8042 2.97917 18 3.45 18 4V18C18 18.55 17.8042 19.0208 17.4125 19.4125C17.0208 19.8042 16.55 20 16 20H2ZM4 16H11V14H4V16ZM4 12H14V10H4V12ZM4 8H14V6H4V8ZM9.5375 3.0375C9.67917 2.89583 9.75 2.71667 9.75 2.5C9.75 2.28333 9.67917 2.10417 9.5375 1.9625C9.39583 1.82083 9.21667 1.75 9 1.75C8.78333 1.75 8.60417 1.82083 8.4625 1.9625C8.32083 2.10417 8.25 2.28333 8.25 2.5C8.25 2.71667 8.32083 2.89583 8.4625 3.0375C8.60417 3.17917 8.78333 3.25 9 3.25C9.21667 3.25 9.39583 3.17917 9.5375 3.0375Z"
+  },
   video_camera_filled: {
     // Canonical Figma export from raw/material/video_camera_back.svg.
     viewBox: "0 0 20 16",
@@ -1381,6 +1389,7 @@ var ActivitiesOverviewCard = React13.forwardRef(
     locationIcon = "location_on",
     onPress,
     onLocationPress,
+    locationAccessibilityLabel,
     fullWidth = false,
     accessibilityLabel,
     testID
@@ -1430,7 +1439,7 @@ var ActivitiesOverviewCard = React13.forwardRef(
               {
                 onPress: onLocationPress,
                 accessibilityRole: onLocationPress ? "button" : void 0,
-                accessibilityLabel: onLocationPress ? "Open location" : void 0,
+                accessibilityLabel: onLocationPress ? locationAccessibilityLabel ?? "Open location" : void 0,
                 children: /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: locationIcon, size: 24, color: contentColor })
               }
             ) : null
@@ -2394,6 +2403,7 @@ var DonutChart = React13.forwardRef(
     labelWeight,
     onLocationPress,
     locationIcon = "location_on_filled",
+    locationAccessibilityLabel,
     accessibilityLabel,
     testID
   }, ref) => {
@@ -2418,7 +2428,7 @@ var DonutChart = React13.forwardRef(
                 $size: dims.locationButton,
                 onPress: onLocationPress,
                 accessibilityRole: "button",
-                accessibilityLabel: "Open location",
+                accessibilityLabel: locationAccessibilityLabel ?? "Open location",
                 ...{ dataSet: { donutLocBtn: "true" } },
                 children: /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: locationIcon, size: 20, color: theme2.content.dark })
               }

@@ -45,6 +45,7 @@ export const DonutChart = forwardRef<View, DonutChartProps>(
       labelWeight,
       onLocationPress,
       locationIcon = 'location_on_filled',
+      locationAccessibilityLabel,
       accessibilityLabel,
       testID,
     },
@@ -74,7 +75,7 @@ export const DonutChart = forwardRef<View, DonutChartProps>(
               $size={dims.locationButton}
               onPress={onLocationPress}
               accessibilityRole="button"
-              accessibilityLabel="Open location"
+              accessibilityLabel={locationAccessibilityLabel ?? 'Open location'}
               // dataSet is RN-Web specific (becomes data-* attrs on the DOM);
               // styled(Pressable) drops it from the public type so we cast.
               {...({ dataSet: { donutLocBtn: 'true' } } as Record<string, unknown>)}

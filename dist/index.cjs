@@ -4958,6 +4958,15 @@ var rainy_default = "./rainy-XY2B4BD3.png";
 
 // src/icons/raw/cloudly.png
 var cloudly_default = "./cloudly-4BBCLYKM.png";
+
+// src/icons/raw/clear-night.png
+var clear_night_default = "./clear-night-7JCGO2QJ.png";
+
+// src/icons/raw/rainy-night.png
+var rainy_night_default = "./rainy-night-ZDQ52LTL.png";
+
+// src/icons/raw/cloudly-night.png
+var cloudly_night_default = "./cloudly-night-W4SODEDY.png";
 var SIZE_MAP2 = {
   s: 32,
   m: 48,
@@ -4968,14 +4977,20 @@ var SOURCE_BY_CONDITION = {
   rainy: rainy_default,
   "partly-cloudy": cloudly_default
 };
+var NIGHT_SOURCE_BY_CONDITION = {
+  sunny: clear_night_default,
+  rainy: rainy_night_default,
+  "partly-cloudy": cloudly_night_default
+};
 var WeatherIcon = ({
   condition,
+  isNight = false,
   size = "m",
   testID,
   accessibilityLabel
 }) => {
   const px = SIZE_MAP2[size];
-  const source = SOURCE_BY_CONDITION[condition];
+  const source = (isNight ? NIGHT_SOURCE_BY_CONDITION : SOURCE_BY_CONDITION)[condition];
   return /* @__PURE__ */ jsxRuntime.jsx(
     reactNative.View,
     {
@@ -5048,7 +5063,7 @@ var IconRow = styled38__default.default(reactNative.View)`
   height: 64px;
 `;
 var WeatherTimelineEntry = React13.forwardRef(
-  ({ condition, time, label, accessibilityLabel, testID }, ref) => {
+  ({ condition, isNight, time, label, accessibilityLabel, testID }, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsxs(
       Stack,
       {
@@ -5056,7 +5071,7 @@ var WeatherTimelineEntry = React13.forwardRef(
         accessibilityLabel: accessibilityLabel ?? `${time} ${label}`,
         testID,
         children: [
-          /* @__PURE__ */ jsxRuntime.jsx(IconRow, { children: /* @__PURE__ */ jsxRuntime.jsx(WeatherIcon, { condition, size: "l" }) }),
+          /* @__PURE__ */ jsxRuntime.jsx(IconRow, { children: /* @__PURE__ */ jsxRuntime.jsx(WeatherIcon, { condition, isNight, size: "l" }) }),
           /* @__PURE__ */ jsxRuntime.jsx(WeatherEventChip, { time, label })
         ]
       }
@@ -5466,6 +5481,7 @@ var WeatherTimeline = React13.forwardRef(
         WeatherTimelineEntry,
         {
           condition: event.condition,
+          isNight: event.isNight,
           time: event.time,
           label: event.label
         }

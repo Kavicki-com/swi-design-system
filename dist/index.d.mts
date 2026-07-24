@@ -2008,13 +2008,19 @@ type WeatherCondition = 'sunny' | 'rainy' | 'partly-cloudy';
 type WeatherIconSize = 's' | 'm' | 'l';
 interface WeatherIconProps {
     condition: WeatherCondition;
+    /**
+     * Troca a ilustração pela variante noturna da mesma condição
+     * (sunny → lua, partly-cloudy → nuvem+lua, rainy → chuva com lua).
+     * A condição segue sendo a dimensão principal; noite é ortogonal.
+     */
+    isNight?: boolean;
     size?: WeatherIconSize;
     testID?: string;
     accessibilityLabel?: string;
 }
 
 declare const WeatherIcon: {
-    ({ condition, size, testID, accessibilityLabel, }: WeatherIconProps): react_jsx_runtime.JSX.Element;
+    ({ condition, isNight, size, testID, accessibilityLabel, }: WeatherIconProps): react_jsx_runtime.JSX.Element;
     displayName: string;
 };
 
@@ -2029,6 +2035,8 @@ declare const WeatherEventChip: React$1.ForwardRefExoticComponent<WeatherEventCh
 
 interface WeatherTimelineEntryProps {
     condition: WeatherCondition;
+    /** Variante noturna da ilustração (repassado ao WeatherIcon). */
+    isNight?: boolean;
     time: string;
     label: string;
     testID?: string;
@@ -2085,6 +2093,8 @@ declare const ReportCard: React$1.ForwardRefExoticComponent<ReportCardProps & Re
 interface WeatherTimelineEvent {
     id: string;
     condition: WeatherCondition;
+    /** Variante noturna da ilustração (repassado ao WeatherIcon via entry). */
+    isNight?: boolean;
     time: string;
     label: string;
     isNow?: boolean;

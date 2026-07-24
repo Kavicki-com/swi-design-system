@@ -3,6 +3,8 @@ import type { WeatherCondition } from '../WeatherIcon';
 export interface WeatherTimelineEvent {
   id: string;
   condition: WeatherCondition;
+  /** Variante noturna da ilustração (repassado ao WeatherIcon via entry). */
+  isNight?: boolean;
   time: string;
   label: string;
   isNow?: boolean;

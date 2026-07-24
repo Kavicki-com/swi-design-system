@@ -6,7 +6,7 @@ import { IconRow, Stack } from './WeatherTimelineEntry.styles';
 import type { WeatherTimelineEntryProps } from './WeatherTimelineEntry.types';
 
 export const WeatherTimelineEntry = forwardRef<View, WeatherTimelineEntryProps>(
-  ({ condition, time, label, accessibilityLabel, testID }, ref) => {
+  ({ condition, isNight, time, label, accessibilityLabel, testID }, ref) => {
     return (
       <Stack
         ref={ref}
@@ -14,7 +14,7 @@ export const WeatherTimelineEntry = forwardRef<View, WeatherTimelineEntryProps>(
         testID={testID}
       >
         <IconRow>
-          <WeatherIcon condition={condition} size="l" />
+          <WeatherIcon condition={condition} isNight={isNight} size="l" />
         </IconRow>
         <WeatherEventChip time={time} label={label} />
       </Stack>

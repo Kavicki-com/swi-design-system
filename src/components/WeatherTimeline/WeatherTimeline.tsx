@@ -180,6 +180,7 @@ export const WeatherTimeline = forwardRef<View, WeatherTimelineProps>(
             <EventColumn key={event.id}>
               <WeatherTimelineEntry
                 condition={event.condition}
+                isNight={event.isNight}
                 time={event.time}
                 label={event.label}
               />

@@ -34,6 +34,7 @@ export const ActivitiesOverviewCard = forwardRef<View, ActivitiesOverviewCardPro
       locationIcon = 'location_on',
       onPress,
       onLocationPress,
+      locationAccessibilityLabel,
       fullWidth = false,
       accessibilityLabel,
       testID,
@@ -87,7 +88,11 @@ export const ActivitiesOverviewCard = forwardRef<View, ActivitiesOverviewCardPro
             <LocationButton
               onPress={onLocationPress}
               accessibilityRole={onLocationPress ? 'button' : undefined}
-              accessibilityLabel={onLocationPress ? 'Open location' : undefined}
+              accessibilityLabel={
+                onLocationPress
+                  ? (locationAccessibilityLabel ?? 'Open location')
+                  : undefined
+              }
             >
               <Icon name={locationIcon} size={24} color={contentColor} />
             </LocationButton>

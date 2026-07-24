@@ -54,6 +54,11 @@ export interface DonutChartProps {
   labelWeight?: 'regular' | 'medium' | 'bold';
   onLocationPress?: () => void;
   locationIcon?: IconName;
+  /**
+   * Label acessível do pino de localização. Default 'Open location'
+   * (retrocompat) — hosts pt-BR devem sobrescrever.
+   */
+  locationAccessibilityLabel?: string;
   accessibilityLabel?: string;
   testID?: string;
 }

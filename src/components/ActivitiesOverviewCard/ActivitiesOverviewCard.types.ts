@@ -15,6 +15,11 @@ export interface ActivitiesOverviewCardProps {
   locationIcon?: IconName | null;
   onPress?: () => void;
   onLocationPress?: () => void;
+  /**
+   * Label acessível do pino de localização. Default 'Open location'
+   * (retrocompat) — hosts pt-BR devem sobrescrever.
+   */
+  locationAccessibilityLabel?: string;
   fullWidth?: boolean;
   accessibilityLabel?: string;
   testID?: string;

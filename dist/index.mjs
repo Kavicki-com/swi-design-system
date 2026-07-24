@@ -1381,6 +1381,7 @@ var ActivitiesOverviewCard = forwardRef(
     locationIcon = "location_on",
     onPress,
     onLocationPress,
+    locationAccessibilityLabel,
     fullWidth = false,
     accessibilityLabel,
     testID
@@ -1430,7 +1431,7 @@ var ActivitiesOverviewCard = forwardRef(
               {
                 onPress: onLocationPress,
                 accessibilityRole: onLocationPress ? "button" : void 0,
-                accessibilityLabel: onLocationPress ? "Open location" : void 0,
+                accessibilityLabel: onLocationPress ? locationAccessibilityLabel ?? "Open location" : void 0,
                 children: /* @__PURE__ */ jsx(Icon, { name: locationIcon, size: 24, color: contentColor })
               }
             ) : null
@@ -2394,6 +2395,7 @@ var DonutChart = forwardRef(
     labelWeight,
     onLocationPress,
     locationIcon = "location_on_filled",
+    locationAccessibilityLabel,
     accessibilityLabel,
     testID
   }, ref) => {
@@ -2418,7 +2420,7 @@ var DonutChart = forwardRef(
                 $size: dims.locationButton,
                 onPress: onLocationPress,
                 accessibilityRole: "button",
-                accessibilityLabel: "Open location",
+                accessibilityLabel: locationAccessibilityLabel ?? "Open location",
                 ...{ dataSet: { donutLocBtn: "true" } },
                 children: /* @__PURE__ */ jsx(Icon, { name: locationIcon, size: 20, color: theme2.content.dark })
               }

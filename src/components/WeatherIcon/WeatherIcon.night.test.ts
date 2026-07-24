@@ -13,7 +13,12 @@ import { join } from 'node:path';
 // porque o repo não tem harness de render RN.
 
 const RAW = join(__dirname, '..', '..', 'icons', 'raw');
-const NIGHT_ASSETS = ['clear-night.png', 'cloudly-night.png', 'rainy-night.png'];
+const NIGHT_ASSETS = [
+  'clear-night.png',
+  'cloudly-night.png',
+  'rainy-night.png',
+  'storm-night.png',
+];
 
 describe('WeatherIcon night assets', () => {
   it.each(NIGHT_ASSETS)('%s existe em icons/raw e não é um stub vazio', (file) => {
@@ -21,6 +26,24 @@ describe('WeatherIcon night assets', () => {
     expect(existsSync(path), `${file} ausente em src/icons/raw`).toBe(true);
     // Ilustração real tem alguns KB; um stub/placeholder não.
     expect(statSync(path).size).toBeGreaterThan(1024);
+  });
+});
+
+describe('WeatherIcon storm (0.1.116 — fim do colapso storm → rainy)', () => {
+  it('storm.png existe em icons/raw e não é um stub vazio', () => {
+    const path = join(RAW, 'storm.png');
+    expect(existsSync(path), 'storm.png ausente em src/icons/raw').toBe(true);
+    expect(statSync(path).size).toBeGreaterThan(1024);
+  });
+
+  it("WeatherCondition inclui 'storm'", () => {
+    const typesSrc = readFileSync(join(__dirname, 'WeatherIcon.types.ts'), 'utf8');
+    expect(typesSrc).toMatch(/'storm'/);
+  });
+
+  it('WeatherIcon importa o asset de tempestade', () => {
+    const iconSrc = readFileSync(join(__dirname, 'WeatherIcon.tsx'), 'utf8');
+    expect(iconSrc).toContain('storm.png');
   });
 });
 

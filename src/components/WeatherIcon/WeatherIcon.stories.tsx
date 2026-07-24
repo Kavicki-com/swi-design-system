@@ -10,7 +10,7 @@ const meta: Meta<typeof WeatherIcon> = {
   argTypes: {
     condition: {
       control: { type: 'inline-radio' },
-      options: ['sunny', 'rainy', 'partly-cloudy'],
+      options: ['sunny', 'rainy', 'partly-cloudy', 'storm'],
     },
     size: { control: { type: 'inline-radio' }, options: ['s', 'm', 'l'] },
     isNight: { control: { type: 'boolean' } },
@@ -49,7 +49,7 @@ export const Overview: Story = {
   parameters: { controls: { disable: true }, actions: { disable: true } },
   render: () => (
     <View style={{ gap: 24 }}>
-      {(['sunny', 'rainy', 'partly-cloudy'] as const).map((c) => (
+      {(['sunny', 'rainy', 'partly-cloudy', 'storm'] as const).map((c) => (
         <View key={c} style={{ gap: 8 }}>
           <Caption>{c}</Caption>
           <View style={{ flexDirection: 'row', gap: 24, alignItems: 'flex-end' }}>
@@ -68,7 +68,7 @@ export const OverviewNight: Story = {
   parameters: { controls: { disable: true }, actions: { disable: true } },
   render: () => (
     <View style={{ gap: 24 }}>
-      {(['sunny', 'rainy', 'partly-cloudy'] as const).map((c) => (
+      {(['sunny', 'rainy', 'partly-cloudy', 'storm'] as const).map((c) => (
         <View key={c} style={{ gap: 8 }}>
           <Caption>{`${c} — night`}</Caption>
           <View style={{ flexDirection: 'row', gap: 24, alignItems: 'flex-end' }}>

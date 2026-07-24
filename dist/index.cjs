@@ -4967,6 +4967,12 @@ var rainy_night_default = "./rainy-night-ZDQ52LTL.png";
 
 // src/icons/raw/cloudly-night.png
 var cloudly_night_default = "./cloudly-night-W4SODEDY.png";
+
+// src/icons/raw/storm.png
+var storm_default = "./storm-ZMU6MMKX.png";
+
+// src/icons/raw/storm-night.png
+var storm_night_default = "./storm-night-MXUXALOW.png";
 var SIZE_MAP2 = {
   s: 32,
   m: 48,
@@ -4975,12 +4981,14 @@ var SIZE_MAP2 = {
 var SOURCE_BY_CONDITION = {
   sunny: sunny_default,
   rainy: rainy_default,
-  "partly-cloudy": cloudly_default
+  "partly-cloudy": cloudly_default,
+  storm: storm_default
 };
 var NIGHT_SOURCE_BY_CONDITION = {
   sunny: clear_night_default,
   rainy: rainy_night_default,
-  "partly-cloudy": cloudly_night_default
+  "partly-cloudy": cloudly_night_default,
+  storm: storm_night_default
 };
 var WeatherIcon = ({
   condition,
@@ -5413,7 +5421,7 @@ var WeatherTimeline = React13.forwardRef(
       id: e.id,
       flex: 1,
       color: intensityColor(
-        e.condition === "rainy" ? "rain" : e.condition === "sunny" ? "sun" : "mild"
+        e.condition === "rainy" || e.condition === "storm" ? "rain" : e.condition === "sunny" ? "sun" : "mild"
       )
     }));
     const segments = intensitySegments ? intensitySegments.map((s) => ({ ...s, color: intensityColor(s.color) })) : fallbackSegments;

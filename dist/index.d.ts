@@ -2004,7 +2004,7 @@ interface ToggleProps {
 
 declare const Toggle: React$1.ForwardRefExoticComponent<ToggleProps & React$1.RefAttributes<View>>;
 
-type WeatherCondition = 'sunny' | 'rainy' | 'partly-cloudy';
+type WeatherCondition = 'sunny' | 'rainy' | 'partly-cloudy' | 'storm';
 type WeatherIconSize = 's' | 'm' | 'l';
 interface WeatherIconProps {
     condition: WeatherCondition;

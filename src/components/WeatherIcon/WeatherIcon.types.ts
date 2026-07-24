@@ -1,4 +1,4 @@
-export type WeatherCondition = 'sunny' | 'rainy' | 'partly-cloudy';
+export type WeatherCondition = 'sunny' | 'rainy' | 'partly-cloudy' | 'storm';
 export type WeatherIconSize = 's' | 'm' | 'l';
 
 export interface WeatherIconProps {

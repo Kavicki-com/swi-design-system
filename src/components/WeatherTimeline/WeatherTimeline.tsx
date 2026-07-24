@@ -89,7 +89,11 @@ export const WeatherTimeline = forwardRef<View, WeatherTimelineProps>(
       id: e.id,
       flex: 1,
       color: intensityColor(
-        e.condition === 'rainy' ? 'rain' : e.condition === 'sunny' ? 'sun' : 'mild',
+        e.condition === 'rainy' || e.condition === 'storm'
+          ? 'rain'
+          : e.condition === 'sunny'
+            ? 'sun'
+            : 'mild',
       ),
     }));
 

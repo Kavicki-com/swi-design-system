@@ -15,10 +15,14 @@ export const Card = styled(View)`
   gap: ${({ theme }) => theme.gap.m}px;
 `;
 
-// Cobre tudo menos o botão de localização. flex: 1 mantém o mesmo
-// enquadramento que o Card tinha quando ele próprio era o Pressable.
+// Cobre tudo menos o botão de localização. grow/shrink SEM basis 0: com
+// `flex: 1` (basis 0) o filho contribui ~0 pra largura intrínseca e, no modo
+// default (alignSelf flex-start, largura pelo conteúdo), o card colapsaria no
+// Yoga. Basis auto preserva o dimensionamento por conteúdo do card antigo e,
+// com fullWidth, cresce até preencher igual ao flex: 1.
 export const CardPressable = styled(Pressable)`
-  flex: 1;
+  flex-grow: 1;
+  flex-shrink: 1;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;

@@ -1,7 +1,8 @@
 import React, { forwardRef } from 'react';
 import { Image as RNImage, type View } from 'react-native';
 import { useTheme } from '../../theme';
-import { Frame } from './Avatar.styles';
+import { Frame, Initials } from './Avatar.styles';
+import { initialsFrom } from './Avatar.initials';
 import type { AvatarProps, AvatarSize } from './Avatar.types';
 
 const SIZE_MAP: Record<AvatarSize, number> = {
@@ -14,6 +15,7 @@ export const Avatar = forwardRef<View, AvatarProps>(
   (
     {
       uri,
+      name,
       size = 'm',
       customSize,
       bordered = false,
@@ -27,6 +29,9 @@ export const Avatar = forwardRef<View, AvatarProps>(
   ) => {
     const theme = useTheme();
     const px = customSize ?? SIZE_MAP[size];
+    // Vários call sites já passam o nome como accessibilityLabel; aceitar os
+    // dois evita ter que tocar em 21 arquivos do admin pra ganhar o fallback.
+    const initials = initialsFrom(name ?? accessibilityLabel);
     return (
       <Frame
         ref={ref}
@@ -44,6 +49,10 @@ export const Avatar = forwardRef<View, AvatarProps>(
             style={{ width: '100%', height: '100%' }}
             accessibilityRole="image"
           />
+        ) : initials ? (
+          // Sem foto, as iniciais são a única pista de QUEM é a linha — a
+          // moldura vazia virava um disco cinza igual pra todo mundo (0.1.120).
+          <Initials $size={px}>{initials}</Initials>
         ) : null}
       </Frame>
     );

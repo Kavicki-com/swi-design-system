@@ -1020,6 +1020,12 @@ type IconName = keyof typeof iconPaths;
 type AvatarSize = 's' | 'm' | 'l';
 interface AvatarProps {
     uri?: string;
+    /**
+     * Nome da pessoa, usado para as iniciais quando não há `uri`. Sem ele o
+     * fallback cai no `accessibilityLabel`; sem nenhum dos dois a moldura fica
+     * vazia (comportamento anterior a 0.1.120).
+     */
+    name?: string;
     size?: AvatarSize;
     customSize?: number;
     bordered?: boolean;

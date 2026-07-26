@@ -1,5 +1,5 @@
 import styled38, { css, useTheme as useTheme$1, ThemeProvider } from 'styled-components/native';
-import { Platform, View, Pressable, Image, TextInput, ScrollView, Text as Text$1, Modal, FlatList, PanResponder } from 'react-native';
+import { Platform, View, Pressable, Text, Image, TextInput, ScrollView, Modal, FlatList, PanResponder } from 'react-native';
 import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
 import React13, { forwardRef, useState, useCallback, memo, useMemo, useRef, useImperativeHandle, createContext, useEffect, useId, useContext, Fragment as Fragment$1 } from 'react';
 import Svg, { Defs, LinearGradient, Stop, Rect, Path, Circle, G, Filter, FeFlood, FeBlend, FeColorMatrix, FeOffset, FeGaussianBlur, FeComposite, ClipPath, Image as Image$1, SvgXml } from 'react-native-svg';
@@ -1063,7 +1063,31 @@ var Frame = styled38(View)`
   overflow: hidden;
   background-color: ${({ $bg }) => $bg};
   ${({ $bordered, $borderWidth, $borderColor }) => $bordered ? `border-width: ${$borderWidth}px; border-style: solid; border-color: ${$borderColor};` : ""};
+  align-items: center;
+  justify-content: center;
 `;
+var Initials = styled38(Text)`
+  font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
+  font-weight: 700;
+  font-size: ${({ $size }) => Math.round($size * 0.4)}px;
+  line-height: ${({ $size }) => Math.round($size * 0.4)}px;
+  color: ${({ theme: theme2 }) => theme2.content.dark};
+  text-align: center;
+`;
+
+// src/components/Avatar/Avatar.initials.ts
+var PARTICLES = /* @__PURE__ */ new Set(["da", "de", "di", "do", "du", "das", "dos", "e", "del", "van", "von"]);
+function initialsFrom(name) {
+  if (!name) return "";
+  const tokens = name.replace(/[([{].*?[)\]}]/g, " ").split(/[\s.]+/).map((t) => t.replace(/[^\p{L}]/gu, "")).filter((t) => t.length > 0);
+  const relevant = tokens.filter((t) => !PARTICLES.has(t.toLowerCase()));
+  const parts = relevant.length > 0 ? relevant : tokens;
+  if (parts.length === 0) return "";
+  const first = parts[0];
+  const last = parts[parts.length - 1];
+  const initials = parts.length === 1 ? first[0] : `${first[0]}${last[0]}`;
+  return initials.toLocaleUpperCase();
+}
 var SIZE_MAP = {
   s: 24,
   m: 40,
@@ -1072,6 +1096,7 @@ var SIZE_MAP = {
 var Avatar = forwardRef(
   ({
     uri,
+    name,
     size = "m",
     customSize,
     bordered = false,
@@ -1083,6 +1108,7 @@ var Avatar = forwardRef(
   }, ref) => {
     const theme2 = useTheme();
     const px = customSize ?? SIZE_MAP[size];
+    const initials = initialsFrom(name ?? accessibilityLabel);
     return /* @__PURE__ */ jsx(
       Frame,
       {
@@ -1101,6 +1127,10 @@ var Avatar = forwardRef(
             style: { width: "100%", height: "100%" },
             accessibilityRole: "image"
           }
+        ) : initials ? (
+          // Sem foto, as iniciais são a única pista de QUEM é a linha — a
+          // moldura vazia virava um disco cinza igual pra todo mundo (0.1.120).
+          /* @__PURE__ */ jsx(Initials, { $size: px, children: initials })
         ) : null
       }
     );
@@ -3095,7 +3125,7 @@ var Title2 = forwardRef(
     const styleDef = resolve(variant);
     const defaultColor = tone === "disabled" ? theme2.content.disable : tone === "light" ? theme2.content.light : theme2.content.dark;
     return /* @__PURE__ */ jsx(
-      Text$1,
+      Text,
       {
         ref,
         accessibilityRole: "header",
@@ -4662,14 +4692,14 @@ var resolve2 = (variant) => {
   const slot = typography[group];
   return slot?.[key] ?? typography.body.m;
 };
-var Text = forwardRef(
+var Text2 = forwardRef(
   ({ variant = "body.m", weight, italic, color, children, style, ...rest }, ref) => {
     const theme2 = useTheme();
     const { tone } = useSurfaceTone();
     const styleDef = resolve2(variant);
     const defaultColor = tone === "disabled" ? theme2.content.disable : tone === "light" ? theme2.content.light : theme2.content.dark;
     return /* @__PURE__ */ jsx(
-      Text$1,
+      Text,
       {
         ref,
         style: [
@@ -4691,7 +4721,7 @@ var Text = forwardRef(
     );
   }
 );
-Text.displayName = "Text";
+Text2.displayName = "Text";
 var Pill = styled38(View)`
   flex-direction: row;
   align-items: center;
@@ -4725,7 +4755,7 @@ var TimeStamp = forwardRef(
         accessibilityLabel: accessibilityLabel ?? time,
         children: [
           /* @__PURE__ */ jsx(Triangle, {}),
-          /* @__PURE__ */ jsx(Text, { variant: "caption.xs", color: theme2.content.light, children: time })
+          /* @__PURE__ */ jsx(Text2, { variant: "caption.xs", color: theme2.content.light, children: time })
         ]
       }
     );
@@ -4751,7 +4781,7 @@ var CaloriesTag = forwardRef(
         ref,
         testID,
         accessibilityLabel: accessibilityLabel ?? text,
-        children: /* @__PURE__ */ jsx(Text, { variant: "body.s", color: theme2.content.dark, children: text })
+        children: /* @__PURE__ */ jsx(Text2, { variant: "body.s", color: theme2.content.dark, children: text })
       }
     );
   }
@@ -6852,7 +6882,7 @@ var StatusIcon = ({ variant, color }) => /* @__PURE__ */ jsx(
       // futuro que registre ícones próprios.
       /* @__PURE__ */ jsx(Icon, { name: "info", size: 20, color })
     ) : /* @__PURE__ */ jsx(
-      Text$1,
+      Text,
       {
         style: {
           fontFamily: "Montserrat, system-ui, sans-serif",
@@ -7025,16 +7055,16 @@ var TopBar = forwardRef(
                 color: backColor
               }
             ),
-            /* @__PURE__ */ jsx(Text, { variant: "link.m", color: backColor, children: backLabel })
+            /* @__PURE__ */ jsx(Text2, { variant: "link.m", color: backColor, children: backLabel })
           ]
         }
       ) : null,
-      /* @__PURE__ */ jsx(TitleSlot, { children: /* @__PURE__ */ jsx(Text, { variant: "link.m", color: theme2.content.dark, children: title }) })
+      /* @__PURE__ */ jsx(TitleSlot, { children: /* @__PURE__ */ jsx(Text2, { variant: "link.m", color: theme2.content.dark, children: title }) })
     ] });
   }
 );
 TopBar.displayName = "TopBar";
 
-export { Accordion, ActivitiesOverviewCard, Avatar, AvatarGroup, BackgroundDotsGrid, BigNumbersCard, Button, CaloriesTag, ChatBubble, ChatSection, ChatUserCard, Checkbox, Chip, ChipGroup, Combobox, DonutChart, EmployeeOverviewCard, ExamInfoCard, GenderSelectionCard, GenderSelector, HEART_RATE_BUTTON, HEART_STATUS_OFFSET, Header2 as Header, HeaderUserInfo, HeartStatus, HeartrateStatus, HorizontalCard, Icon, Image2 as Image, ImageUploader, Input, JourneyTheme, LineCaloriesChart, LocationPin, Logo, MapControl, MenuItem, NowMarker, Pagination, ProgressBar, Radio, ReportCard, STATUS_CHART_CANVAS, SearchInput, SideMenu, Silhouette, SmartbandStatus, StatusChart, StatusTag, Step, StepBar, SuccessBadge, Surface, SwiThemeProvider, Tabs, Text, TimeStamp, Title2 as Title, Toast, Toggle, TopBar, WeatherEventChip, WeatherIcon, WeatherTimeline, WeatherTimelineEntry, WorkersInfoCard, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
+export { Accordion, ActivitiesOverviewCard, Avatar, AvatarGroup, BackgroundDotsGrid, BigNumbersCard, Button, CaloriesTag, ChatBubble, ChatSection, ChatUserCard, Checkbox, Chip, ChipGroup, Combobox, DonutChart, EmployeeOverviewCard, ExamInfoCard, GenderSelectionCard, GenderSelector, HEART_RATE_BUTTON, HEART_STATUS_OFFSET, Header2 as Header, HeaderUserInfo, HeartStatus, HeartrateStatus, HorizontalCard, Icon, Image2 as Image, ImageUploader, Input, JourneyTheme, LineCaloriesChart, LocationPin, Logo, MapControl, MenuItem, NowMarker, Pagination, ProgressBar, Radio, ReportCard, STATUS_CHART_CANVAS, SearchInput, SideMenu, Silhouette, SmartbandStatus, StatusChart, StatusTag, Step, StepBar, SuccessBadge, Surface, SwiThemeProvider, Tabs, Text2 as Text, TimeStamp, Title2 as Title, Toast, Toggle, TopBar, WeatherEventChip, WeatherIcon, WeatherTimeline, WeatherTimelineEntry, WorkersInfoCard, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
 //# sourceMappingURL=index.mjs.map
 //# sourceMappingURL=index.mjs.map

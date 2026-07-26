@@ -1,7 +1,11 @@
 import { Pressable, View } from 'react-native';
 import styled from 'styled-components/native';
 
-export const Card = styled(Pressable)`
+// O Card era um Pressable com o LocationButton (outro Pressable) dentro, o que
+// gera <button> aninhado no DOM: React loga validateDOMNesting e o clique no
+// ícone de localização borbulha, disparando as DUAS ações. Agora o Card é só o
+// contêiner visual e a área clicável é o CardPressable, IRMÃO do LocationButton.
+export const Card = styled(View)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -9,6 +13,17 @@ export const Card = styled(Pressable)`
   border-radius: ${({ theme }) => theme.border.radius.m}px;
   background-color: ${({ theme }) => theme.surface.standard};
   gap: ${({ theme }) => theme.gap.m}px;
+`;
+
+// Cobre tudo menos o botão de localização. flex: 1 mantém o mesmo
+// enquadramento que o Card tinha quando ele próprio era o Pressable.
+export const CardPressable = styled(Pressable)`
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: ${({ theme }) => theme.gap.m}px;
+  min-width: 0;
 `;
 
 export const LeftContent = styled(View)`

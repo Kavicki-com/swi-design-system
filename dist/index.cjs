@@ -1071,7 +1071,31 @@ var Frame = styled38__default.default(reactNative.View)`
   overflow: hidden;
   background-color: ${({ $bg }) => $bg};
   ${({ $bordered, $borderWidth, $borderColor }) => $bordered ? `border-width: ${$borderWidth}px; border-style: solid; border-color: ${$borderColor};` : ""};
+  align-items: center;
+  justify-content: center;
 `;
+var Initials = styled38__default.default(reactNative.Text)`
+  font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
+  font-weight: 700;
+  font-size: ${({ $size }) => Math.round($size * 0.4)}px;
+  line-height: ${({ $size }) => Math.round($size * 0.4)}px;
+  color: ${({ theme: theme2 }) => theme2.content.dark};
+  text-align: center;
+`;
+
+// src/components/Avatar/Avatar.initials.ts
+var PARTICLES = /* @__PURE__ */ new Set(["da", "de", "di", "do", "du", "das", "dos", "e", "del", "van", "von"]);
+function initialsFrom(name) {
+  if (!name) return "";
+  const tokens = name.replace(/[([{].*?[)\]}]/g, " ").split(/[\s.]+/).map((t) => t.replace(/[^\p{L}]/gu, "")).filter((t) => t.length > 0);
+  const relevant = tokens.filter((t) => !PARTICLES.has(t.toLowerCase()));
+  const parts = relevant.length > 0 ? relevant : tokens;
+  if (parts.length === 0) return "";
+  const first = parts[0];
+  const last = parts[parts.length - 1];
+  const initials = parts.length === 1 ? first[0] : `${first[0]}${last[0]}`;
+  return initials.toLocaleUpperCase();
+}
 var SIZE_MAP = {
   s: 24,
   m: 40,
@@ -1080,6 +1104,7 @@ var SIZE_MAP = {
 var Avatar = React13.forwardRef(
   ({
     uri,
+    name,
     size = "m",
     customSize,
     bordered = false,
@@ -1091,6 +1116,7 @@ var Avatar = React13.forwardRef(
   }, ref) => {
     const theme2 = useTheme();
     const px = customSize ?? SIZE_MAP[size];
+    const initials = initialsFrom(name ?? accessibilityLabel);
     return /* @__PURE__ */ jsxRuntime.jsx(
       Frame,
       {
@@ -1109,6 +1135,10 @@ var Avatar = React13.forwardRef(
             style: { width: "100%", height: "100%" },
             accessibilityRole: "image"
           }
+        ) : initials ? (
+          // Sem foto, as iniciais são a única pista de QUEM é a linha — a
+          // moldura vazia virava um disco cinza igual pra todo mundo (0.1.120).
+          /* @__PURE__ */ jsxRuntime.jsx(Initials, { $size: px, children: initials })
         ) : null
       }
     );
@@ -4670,7 +4700,7 @@ var resolve2 = (variant) => {
   const slot = typography[group];
   return slot?.[key] ?? typography.body.m;
 };
-var Text = React13.forwardRef(
+var Text2 = React13.forwardRef(
   ({ variant = "body.m", weight, italic, color, children, style, ...rest }, ref) => {
     const theme2 = useTheme();
     const { tone } = useSurfaceTone();
@@ -4699,7 +4729,7 @@ var Text = React13.forwardRef(
     );
   }
 );
-Text.displayName = "Text";
+Text2.displayName = "Text";
 var Pill = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
@@ -4733,7 +4763,7 @@ var TimeStamp = React13.forwardRef(
         accessibilityLabel: accessibilityLabel ?? time,
         children: [
           /* @__PURE__ */ jsxRuntime.jsx(Triangle, {}),
-          /* @__PURE__ */ jsxRuntime.jsx(Text, { variant: "caption.xs", color: theme2.content.light, children: time })
+          /* @__PURE__ */ jsxRuntime.jsx(Text2, { variant: "caption.xs", color: theme2.content.light, children: time })
         ]
       }
     );
@@ -4759,7 +4789,7 @@ var CaloriesTag = React13.forwardRef(
         ref,
         testID,
         accessibilityLabel: accessibilityLabel ?? text,
-        children: /* @__PURE__ */ jsxRuntime.jsx(Text, { variant: "body.s", color: theme2.content.dark, children: text })
+        children: /* @__PURE__ */ jsxRuntime.jsx(Text2, { variant: "body.s", color: theme2.content.dark, children: text })
       }
     );
   }
@@ -7033,11 +7063,11 @@ var TopBar = React13.forwardRef(
                 color: backColor
               }
             ),
-            /* @__PURE__ */ jsxRuntime.jsx(Text, { variant: "link.m", color: backColor, children: backLabel })
+            /* @__PURE__ */ jsxRuntime.jsx(Text2, { variant: "link.m", color: backColor, children: backLabel })
           ]
         }
       ) : null,
-      /* @__PURE__ */ jsxRuntime.jsx(TitleSlot, { children: /* @__PURE__ */ jsxRuntime.jsx(Text, { variant: "link.m", color: theme2.content.dark, children: title }) })
+      /* @__PURE__ */ jsxRuntime.jsx(TitleSlot, { children: /* @__PURE__ */ jsxRuntime.jsx(Text2, { variant: "link.m", color: theme2.content.dark, children: title }) })
     ] });
   }
 );
@@ -7098,7 +7128,7 @@ exports.SuccessBadge = SuccessBadge;
 exports.Surface = Surface;
 exports.SwiThemeProvider = SwiThemeProvider;
 exports.Tabs = Tabs;
-exports.Text = Text;
+exports.Text = Text2;
 exports.TimeStamp = TimeStamp;
 exports.Title = Title2;
 exports.Toast = Toast;

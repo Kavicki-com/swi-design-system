@@ -70,4 +70,16 @@ describe('compat com bundler web (swi-admin vite build)', () => {
     }
     expect(offenders).toEqual([]);
   });
+
+  // O gêmeo .web só protege quem consome o SOURCE (alias do vite no admin).
+  // O tsup resolvia o gêmeo NATIVO pro dist e o tgz vendorizado quebrava o
+  // `vite build` do admin no CI — mascarado até o lint ficar verde
+  // (2026-07-26). resolveExtensions no tsup.config prioriza .web; este teste
+  // trava o invariante no ARTEFATO, não só na convenção de arquivos.
+  it('dist/index.mjs não importa símbolo ausente no react-native-svg-web', () => {
+    const dist = join(__dirname, '..', 'dist', 'index.mjs');
+    if (!existsSync(dist)) return; // clone fresco sem build — o invariante roda no CI pós-build
+    const named = namedImportsFromRnSvg(readFileSync(dist, 'utf8'));
+    expect(named.filter((n) => WEB_MISSING.includes(n))).toEqual([]);
+  });
 });

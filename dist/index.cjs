@@ -1354,7 +1354,8 @@ var Card = styled38__default.default(reactNative.View)`
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
 `;
 var CardPressable = styled38__default.default(reactNative.Pressable)`
-  flex: 1;
+  flex-grow: 1;
+  flex-shrink: 1;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;

@@ -1306,7 +1306,7 @@ var ProgressBar = forwardRef(
   }
 );
 ProgressBar.displayName = "ProgressBar";
-var Card = styled38(Pressable)`
+var Card = styled38(View)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -1314,6 +1314,14 @@ var Card = styled38(Pressable)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
+`;
+var CardPressable = styled38(Pressable)`
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: ${({ theme: theme2 }) => theme2.gap.m}px;
+  min-width: 0;
 `;
 var LeftContent = styled38(View)`
   flex-direction: row;
@@ -1391,51 +1399,56 @@ var ActivitiesOverviewCard = forwardRef(
     return /* @__PURE__ */ jsxs(
       Card,
       {
-        ref,
-        onPress,
-        accessibilityRole: onPress ? "button" : void 0,
-        accessibilityLabel: accessibilityLabel ?? title,
         testID,
         style: fullWidth ? { alignSelf: "stretch", width: "100%" } : { alignSelf: "flex-start" },
         children: [
-          /* @__PURE__ */ jsxs(LeftContent, { children: [
-            /* @__PURE__ */ jsx(IconSlot, { children: /* @__PURE__ */ jsx(Icon, { name: icon, size: 18, color: contentColor }) }),
-            /* @__PURE__ */ jsx(Divider, {}),
-            /* @__PURE__ */ jsxs(InfoColumn, { children: [
-              /* @__PURE__ */ jsx(Title, { numberOfLines: 1, children: title }),
-              subtitle ? /* @__PURE__ */ jsx(Subtitle, { numberOfLines: 1, children: subtitle }) : null,
-              /* @__PURE__ */ jsx(ProgressSlot, { children: /* @__PURE__ */ jsx(
-                ProgressBar,
-                {
-                  value: progress,
-                  color: progressColor,
-                  trackColor: progressTrackColor,
-                  accessibilityLabel: `${title} progress`
-                }
-              ) })
-            ] })
-          ] }),
-          /* @__PURE__ */ jsxs(RightContent, { children: [
-            /* @__PURE__ */ jsx(
-              AvatarGroup,
-              {
-                avatars,
-                totalCount: totalAvatarsCount,
-                maxVisible: maxVisibleAvatars,
-                size: "m",
-                bordered: true
-              }
-            ),
-            locationIcon ? /* @__PURE__ */ jsx(
-              LocationButton,
-              {
-                onPress: onLocationPress,
-                accessibilityRole: onLocationPress ? "button" : void 0,
-                accessibilityLabel: onLocationPress ? locationAccessibilityLabel ?? "Open location" : void 0,
-                children: /* @__PURE__ */ jsx(Icon, { name: locationIcon, size: 24, color: contentColor })
-              }
-            ) : null
-          ] })
+          /* @__PURE__ */ jsxs(
+            CardPressable,
+            {
+              ref,
+              onPress,
+              accessibilityRole: onPress ? "button" : void 0,
+              accessibilityLabel: accessibilityLabel ?? title,
+              children: [
+                /* @__PURE__ */ jsxs(LeftContent, { children: [
+                  /* @__PURE__ */ jsx(IconSlot, { children: /* @__PURE__ */ jsx(Icon, { name: icon, size: 18, color: contentColor }) }),
+                  /* @__PURE__ */ jsx(Divider, {}),
+                  /* @__PURE__ */ jsxs(InfoColumn, { children: [
+                    /* @__PURE__ */ jsx(Title, { numberOfLines: 1, children: title }),
+                    subtitle ? /* @__PURE__ */ jsx(Subtitle, { numberOfLines: 1, children: subtitle }) : null,
+                    /* @__PURE__ */ jsx(ProgressSlot, { children: /* @__PURE__ */ jsx(
+                      ProgressBar,
+                      {
+                        value: progress,
+                        color: progressColor,
+                        trackColor: progressTrackColor,
+                        accessibilityLabel: `${title} progress`
+                      }
+                    ) })
+                  ] })
+                ] }),
+                /* @__PURE__ */ jsx(RightContent, { children: /* @__PURE__ */ jsx(
+                  AvatarGroup,
+                  {
+                    avatars,
+                    totalCount: totalAvatarsCount,
+                    maxVisible: maxVisibleAvatars,
+                    size: "m",
+                    bordered: true
+                  }
+                ) })
+              ]
+            }
+          ),
+          locationIcon ? /* @__PURE__ */ jsx(
+            LocationButton,
+            {
+              onPress: onLocationPress,
+              accessibilityRole: onLocationPress ? "button" : void 0,
+              accessibilityLabel: onLocationPress ? locationAccessibilityLabel ?? "Open location" : void 0,
+              children: /* @__PURE__ */ jsx(Icon, { name: locationIcon, size: 24, color: contentColor })
+            }
+          ) : null
         ]
       }
     );

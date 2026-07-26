@@ -1314,7 +1314,7 @@ var ProgressBar = React13.forwardRef(
   }
 );
 ProgressBar.displayName = "ProgressBar";
-var Card = styled38__default.default(reactNative.Pressable)`
+var Card = styled38__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -1322,6 +1322,14 @@ var Card = styled38__default.default(reactNative.Pressable)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
+`;
+var CardPressable = styled38__default.default(reactNative.Pressable)`
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: ${({ theme: theme2 }) => theme2.gap.m}px;
+  min-width: 0;
 `;
 var LeftContent = styled38__default.default(reactNative.View)`
   flex-direction: row;
@@ -1399,51 +1407,56 @@ var ActivitiesOverviewCard = React13.forwardRef(
     return /* @__PURE__ */ jsxRuntime.jsxs(
       Card,
       {
-        ref,
-        onPress,
-        accessibilityRole: onPress ? "button" : void 0,
-        accessibilityLabel: accessibilityLabel ?? title,
         testID,
         style: fullWidth ? { alignSelf: "stretch", width: "100%" } : { alignSelf: "flex-start" },
         children: [
-          /* @__PURE__ */ jsxRuntime.jsxs(LeftContent, { children: [
-            /* @__PURE__ */ jsxRuntime.jsx(IconSlot, { children: /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: icon, size: 18, color: contentColor }) }),
-            /* @__PURE__ */ jsxRuntime.jsx(Divider, {}),
-            /* @__PURE__ */ jsxRuntime.jsxs(InfoColumn, { children: [
-              /* @__PURE__ */ jsxRuntime.jsx(Title, { numberOfLines: 1, children: title }),
-              subtitle ? /* @__PURE__ */ jsxRuntime.jsx(Subtitle, { numberOfLines: 1, children: subtitle }) : null,
-              /* @__PURE__ */ jsxRuntime.jsx(ProgressSlot, { children: /* @__PURE__ */ jsxRuntime.jsx(
-                ProgressBar,
-                {
-                  value: progress,
-                  color: progressColor,
-                  trackColor: progressTrackColor,
-                  accessibilityLabel: `${title} progress`
-                }
-              ) })
-            ] })
-          ] }),
-          /* @__PURE__ */ jsxRuntime.jsxs(RightContent, { children: [
-            /* @__PURE__ */ jsxRuntime.jsx(
-              AvatarGroup,
-              {
-                avatars,
-                totalCount: totalAvatarsCount,
-                maxVisible: maxVisibleAvatars,
-                size: "m",
-                bordered: true
-              }
-            ),
-            locationIcon ? /* @__PURE__ */ jsxRuntime.jsx(
-              LocationButton,
-              {
-                onPress: onLocationPress,
-                accessibilityRole: onLocationPress ? "button" : void 0,
-                accessibilityLabel: onLocationPress ? locationAccessibilityLabel ?? "Open location" : void 0,
-                children: /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: locationIcon, size: 24, color: contentColor })
-              }
-            ) : null
-          ] })
+          /* @__PURE__ */ jsxRuntime.jsxs(
+            CardPressable,
+            {
+              ref,
+              onPress,
+              accessibilityRole: onPress ? "button" : void 0,
+              accessibilityLabel: accessibilityLabel ?? title,
+              children: [
+                /* @__PURE__ */ jsxRuntime.jsxs(LeftContent, { children: [
+                  /* @__PURE__ */ jsxRuntime.jsx(IconSlot, { children: /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: icon, size: 18, color: contentColor }) }),
+                  /* @__PURE__ */ jsxRuntime.jsx(Divider, {}),
+                  /* @__PURE__ */ jsxRuntime.jsxs(InfoColumn, { children: [
+                    /* @__PURE__ */ jsxRuntime.jsx(Title, { numberOfLines: 1, children: title }),
+                    subtitle ? /* @__PURE__ */ jsxRuntime.jsx(Subtitle, { numberOfLines: 1, children: subtitle }) : null,
+                    /* @__PURE__ */ jsxRuntime.jsx(ProgressSlot, { children: /* @__PURE__ */ jsxRuntime.jsx(
+                      ProgressBar,
+                      {
+                        value: progress,
+                        color: progressColor,
+                        trackColor: progressTrackColor,
+                        accessibilityLabel: `${title} progress`
+                      }
+                    ) })
+                  ] })
+                ] }),
+                /* @__PURE__ */ jsxRuntime.jsx(RightContent, { children: /* @__PURE__ */ jsxRuntime.jsx(
+                  AvatarGroup,
+                  {
+                    avatars,
+                    totalCount: totalAvatarsCount,
+                    maxVisible: maxVisibleAvatars,
+                    size: "m",
+                    bordered: true
+                  }
+                ) })
+              ]
+            }
+          ),
+          locationIcon ? /* @__PURE__ */ jsxRuntime.jsx(
+            LocationButton,
+            {
+              onPress: onLocationPress,
+              accessibilityRole: onLocationPress ? "button" : void 0,
+              accessibilityLabel: onLocationPress ? locationAccessibilityLabel ?? "Open location" : void 0,
+              children: /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: locationIcon, size: 24, color: contentColor })
+            }
+          ) : null
         ]
       }
     );

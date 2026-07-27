@@ -2279,6 +2279,20 @@ interface StatusChartProps {
      */
     extrapolate?: boolean;
     /**
+     * Render the decorative backdrop: card background + rounded corners, the two
+     * background discs, the dotted grid, the track ring, the deepest well and
+     * the "Ellipse 5" arc. Defaults to `true` (dashboard look).
+     *
+     * Pass `false` for a BARE chart — only the elements that are driven by
+     * `condition`: the silhouette, the heart badge and the colored crescent.
+     * Everything skipped is a fixed gray or a baked PNG, so it cannot express
+     * state; on a health screen, decoration that looks like an indicator is
+     * worse than nothing. Use it when the host screen already provides its own
+     * background (e.g. the app's my-stats, whose dot grid was duplicating the
+     * one this component draws).
+     */
+    backdrop?: boolean;
+    /**
      * Diameter (in logical px) of the outermost background-circle (Caminho 4122)
      * when `extrapolate=true`. Default is 456.714 (Figma spec). Pass a larger
      * value to make the disc visually bigger and extrapolate further beyond
@@ -2290,7 +2304,7 @@ interface StatusChartProps {
 }
 
 declare const StatusChart: {
-    ({ condition, progress, size, showActionButton, renderHeartStatus, onPressHeartRate, onPressSettings, extrapolate, discDiameter, testID, accessibilityLabel, }: StatusChartProps): react_jsx_runtime.JSX.Element;
+    ({ condition, backdrop, progress, size, showActionButton, renderHeartStatus, onPressHeartRate, onPressSettings, extrapolate, discDiameter, testID, accessibilityLabel, }: StatusChartProps): react_jsx_runtime.JSX.Element;
     displayName: string;
 };
 

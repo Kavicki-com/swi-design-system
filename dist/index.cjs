@@ -6046,6 +6046,7 @@ var StatusChartBackdrop = ({
   height,
   progress,
   layer = "upper",
+  backdrop = true,
   extrapolate = false
 }) => {
   const theme2 = useTheme();
@@ -6153,7 +6154,7 @@ var StatusChartBackdrop = ({
             }
           )
         ] }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntime.jsx(
+          backdrop ? /* @__PURE__ */ jsxRuntime.jsx(
             "circle",
             {
               cx: CENTER_X,
@@ -6162,9 +6163,9 @@ var StatusChartBackdrop = ({
               fill: theme2.surface.high,
               filter: `url(#${innerShadowId})`
             }
-          ),
+          ) : null,
           clamped > 0 ? /* @__PURE__ */ jsxRuntime.jsx("g", { clipPath: `url(#${progressClipId})`, children: /* @__PURE__ */ jsxRuntime.jsx("g", { transform: `translate(${CRESCENT_X} ${CRESCENT_Y})`, children: /* @__PURE__ */ jsxRuntime.jsx("path", { d: CRESCENT_PATH, fill: `url(#${crescentGradId})` }) }) }) : null,
-          /* @__PURE__ */ jsxRuntime.jsx(
+          backdrop ? /* @__PURE__ */ jsxRuntime.jsx(
             "image",
             {
               x: ELLIPSE_5_X,
@@ -6174,8 +6175,8 @@ var StatusChartBackdrop = ({
               href: ELLIPSE_5_DATA_URL,
               preserveAspectRatio: "xMidYMid meet"
             }
-          ),
-          /* @__PURE__ */ jsxRuntime.jsx(
+          ) : null,
+          backdrop ? /* @__PURE__ */ jsxRuntime.jsx(
             "circle",
             {
               cx: CENTER_X,
@@ -6184,7 +6185,7 @@ var StatusChartBackdrop = ({
               fill: theme2.background,
               filter: `url(#${innerShadowId})`
             }
-          )
+          ) : null
         ] })
       ]
     }
@@ -6233,6 +6234,7 @@ var BUTTON_CONTAINER_DROP_SHADOW = reactNative.Platform.select({
 var COMPACT_SCALE = 289.733 / STATUS_CHART_CANVAS.width;
 var StatusChart = ({
   condition = "good",
+  backdrop = true,
   progress = 1,
   size = "default",
   showActionButton = true,
@@ -6264,15 +6266,15 @@ var StatusChart = ({
         // fora do canvas 360×374 conforme Figma data (top -25.7, bottom +57,
         // sides ±48). Default false preserva comportamento card-like com
         // background + rounded corners (back-compat).
-        backgroundColor: extrapolate ? "transparent" : theme2.background,
-        borderRadius: extrapolate ? 0 : theme2.border.radius.l,
-        overflow: extrapolate ? "visible" : "hidden"
+        backgroundColor: !backdrop || extrapolate ? "transparent" : theme2.background,
+        borderRadius: !backdrop || extrapolate ? 0 : theme2.border.radius.l,
+        overflow: !backdrop || extrapolate ? "visible" : "hidden"
       },
       testID,
       accessibilityLabel: accessibilityLabel ?? `status chart ${conditionLabel2[condition]}`,
       accessibilityRole: "image",
       children: [
-        extrapolate ? /* @__PURE__ */ jsxRuntime.jsx(
+        extrapolate && backdrop ? /* @__PURE__ */ jsxRuntime.jsx(
           reactNative.View,
           {
             pointerEvents: "none",
@@ -6297,7 +6299,7 @@ var StatusChart = ({
             )
           }
         ) : null,
-        /* @__PURE__ */ jsxRuntime.jsx(reactNative.View, { style: { position: "absolute", inset: 0 }, children: /* @__PURE__ */ jsxRuntime.jsx(
+        backdrop ? /* @__PURE__ */ jsxRuntime.jsx(reactNative.View, { style: { position: "absolute", inset: 0 }, children: /* @__PURE__ */ jsxRuntime.jsx(
           StatusChartBackdrop,
           {
             layer: "lower",
@@ -6307,8 +6309,8 @@ var StatusChart = ({
             height: STATUS_CHART_CANVAS.height,
             extrapolate
           }
-        ) }),
-        /* @__PURE__ */ jsxRuntime.jsx(
+        ) }) : null,
+        backdrop ? /* @__PURE__ */ jsxRuntime.jsx(
           BackgroundDotsGrid,
           {
             color: p.backgroundTint,
@@ -6321,11 +6323,12 @@ var StatusChart = ({
               height: BG_GRID_HEIGHT
             }
           }
-        ),
+        ) : null,
         /* @__PURE__ */ jsxRuntime.jsx(reactNative.View, { style: { position: "absolute", inset: 0 }, children: /* @__PURE__ */ jsxRuntime.jsx(
           StatusChartBackdrop,
           {
             layer: "upper",
+            backdrop,
             condition,
             progress,
             width: STATUS_CHART_CANVAS.width,

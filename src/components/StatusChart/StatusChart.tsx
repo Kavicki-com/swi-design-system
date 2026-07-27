@@ -85,6 +85,7 @@ const COMPACT_SCALE = 289.733 / STATUS_CHART_CANVAS.width;
 
 export const StatusChart = ({
   condition = 'good',
+  backdrop = true,
   progress = 1,
   size = 'default',
   showActionButton = true,
@@ -121,9 +122,9 @@ export const StatusChart = ({
         // fora do canvas 360×374 conforme Figma data (top -25.7, bottom +57,
         // sides ±48). Default false preserva comportamento card-like com
         // background + rounded corners (back-compat).
-        backgroundColor: extrapolate ? 'transparent' : theme.background,
-        borderRadius: extrapolate ? 0 : theme.border.radius.l,
-        overflow: extrapolate ? 'visible' : 'hidden',
+        backgroundColor: !backdrop || extrapolate ? 'transparent' : theme.background,
+        borderRadius: !backdrop || extrapolate ? 0 : theme.border.radius.l,
+        overflow: !backdrop || extrapolate ? 'visible' : 'hidden',
       }}
       testID={testID}
       accessibilityLabel={accessibilityLabel ?? `status chart ${conditionLabel[condition]}`}
@@ -134,7 +135,7 @@ export const StatusChart = ({
           Figma spec). View com borderRadius bypassa o viewBox clipping do SVG.
           SVG overlay dentro renderiza inner shadow (Figma spec X=0 Y=2.08
           blur=4.16 #000 98.82%) via mesmo filter chain do StatusChartBackdrop. */}
-      {extrapolate ? (
+      {extrapolate && backdrop ? (
         <View
           pointerEvents="none"
           style={{
@@ -160,6 +161,7 @@ export const StatusChart = ({
       {/* Lower backdrop layers: background-circle + inner-background-circle.
           Quando extrapolate=true, o background-circle (Caminho 4122) já foi
           renderizado como View acima — StatusChartBackdrop pula esse layer. */}
+      {backdrop ? (
       <View style={{ position: 'absolute', inset: 0 } as ViewStyle}>
         <StatusChartBackdrop
           layer="lower"
@@ -170,6 +172,7 @@ export const StatusChart = ({
           extrapolate={extrapolate}
         />
       </View>
+      ) : null}
 
       {/* Dotted-grid background — UMA única instância estendida verticalmente
           pra cobrir do topo do Caminho 4122 extrapolado (y=-75) até a linha
@@ -178,6 +181,7 @@ export const StatusChart = ({
           continuando o fade do fundo. Z-order: dots aparecem SOBRE Caminho
           4122 e Elipse 98, mas FICAM ATRÁS de Elipse 99/100, crescent,
           Ellipse 5, silhouette e badges. */}
+      {backdrop ? (
       <BackgroundDotsGrid
         color={p.backgroundTint}
         rows={BG_GRID_ROWS}
@@ -189,11 +193,13 @@ export const StatusChart = ({
           height: BG_GRID_HEIGHT,
         }}
       />
+      ) : null}
 
       {/* Upper backdrop layers: track ring + crescent + inner well + silhouette */}
       <View style={{ position: 'absolute', inset: 0 } as ViewStyle}>
         <StatusChartBackdrop
           layer="upper"
+          backdrop={backdrop}
           condition={condition}
           progress={progress}
           width={STATUS_CHART_CANVAS.width}

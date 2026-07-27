@@ -1,7 +1,7 @@
 import styled38, { css, useTheme as useTheme$1, ThemeProvider } from 'styled-components/native';
 import { Platform, View, Pressable, Text, Image, TextInput, ScrollView, Modal, FlatList, PanResponder } from 'react-native';
 import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
-import React13, { forwardRef, useState, useCallback, memo, useMemo, useRef, useImperativeHandle, createContext, useEffect, useId, useContext, Fragment as Fragment$1 } from 'react';
+import React13, { forwardRef, useState, useCallback, useId, memo, useMemo, useRef, useImperativeHandle, createContext, useEffect, useContext, Fragment as Fragment$1 } from 'react';
 import Svg, { Defs, LinearGradient, Stop, Rect } from 'react-native-svg';
 
 // src/theme/ThemeProvider.tsx
@@ -1235,6 +1235,7 @@ var ProgressBar = forwardRef(
     const theme2 = useTheme();
     const pct = clamp(value, 0, 100);
     const useGradient = !disabled && gradient && gradient.length >= 2;
+    const gradientId = `pb-gradient-${useId().replace(/:/g, "")}`;
     const stops = (() => {
       if (!gradient) return [];
       if (gradientStops && gradientStops.length === gradient.length) {
@@ -1256,7 +1257,7 @@ var ProgressBar = forwardRef(
           /* @__PURE__ */ jsx(Defs, { children: /* @__PURE__ */ jsx(
             LinearGradient,
             {
-              id: "pb-gradient",
+              id: gradientId,
               x1: gradX1,
               y1: "0",
               x2: gradX2,
@@ -1279,7 +1280,7 @@ var ProgressBar = forwardRef(
               y: 0,
               width: 100,
               height: FILL_HEIGHT,
-              fill: "url(#pb-gradient)"
+              fill: `url(#${gradientId})`
             }
           )
         ]

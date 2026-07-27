@@ -53,12 +53,15 @@ interface BackdropProps {
   /** When true, only renders the lower layers (background-circle, inner-bg).
    * Used so the dotted-bars PNG can sit between the lower and upper passes. */
   layer?: 'lower' | 'upper';
-  /** Ver StatusChartProps.backdrop. `false` deixa só o crescente colorido. */
-  backdrop?: boolean;
   /** When true, sets the Svg overflow to 'visible' so the Caminho 4122
    * (background-circle, 456.714 dia) can extrapolate beyond the canvas
    * viewBox (360×374). Forwarded from StatusChart's `extrapolate` prop. */
   extrapolate?: boolean;
+  /** Pular o Caminho 4122. Duas origens distintas: o pai já o desenhou como
+   * View (`extrapolate`), ou o preset o oculta por design (`compact` — o nó
+   * Figma 342:9420 marca Caminho 4122 hidden). Separado de `extrapolate`
+   * porque no compact o círculo some SEM que nada extrapole o canvas. */
+  skipBackgroundCircle?: boolean;
 }
 
 const CENTER_X = 180;
@@ -124,8 +127,8 @@ export const StatusChartBackdrop = ({
   height,
   progress,
   layer = 'upper',
-  backdrop = true,
   extrapolate = false,
+  skipBackgroundCircle = false,
 }: BackdropProps) => {
   const theme = useTheme();
   const p = palette(theme, condition);
@@ -236,7 +239,7 @@ export const StatusChartBackdrop = ({
           {/* 1. background-circle (Caminho 4122) — Skipped quando extrapolate=true
              (renderizado como View nativa pelo StatusChart pai). Sem filter
              quando renderizado aqui (extrapolate=false case). */}
-          {!extrapolate ? (
+          {!skipBackgroundCircle ? (
             <Circle
               cx={CENTER_X}
               cy={CENTER_Y}
@@ -257,7 +260,6 @@ export const StatusChartBackdrop = ({
       ) : (
         <>
           {/* 4. status-bar-background (Elipse 99) — track ring + inner shadow. */}
-          {backdrop ? (
           <Circle
             cx={CENTER_X}
             cy={CENTER_Y}
@@ -265,7 +267,6 @@ export const StatusChartBackdrop = ({
             fill={theme.surface.high}
             filter={`url(#${innerShadowId})`}
           />
-          ) : null}
 
           {/* 5. status-condition-bar — colored crescent, clipped by progress sector. */}
           {clamped > 0 ? (
@@ -279,7 +280,6 @@ export const StatusChartBackdrop = ({
           {/* 5.5. Ellipse 5 — PNG asset embedded direto (Figma `295:2178`).
               Native size 109×65; posicionado em (180, 67) do canvas. Elemento
               decorativo no quadrante superior-direito do disco. */}
-          {backdrop ? (
           <SvgImage
             x={ELLIPSE_5_X}
             y={ELLIPSE_5_Y}
@@ -288,10 +288,8 @@ export const StatusChartBackdrop = ({
             href={{ uri: ELLIPSE_5_DATA_URL }}
             preserveAspectRatio="xMidYMid meet"
           />
-          ) : null}
 
           {/* 6. innner-background (Elipse 100) — deepest dark well + inner shadow. */}
-          {backdrop ? (
           <Circle
             cx={CENTER_X}
             cy={CENTER_Y}
@@ -299,7 +297,6 @@ export const StatusChartBackdrop = ({
             fill={theme.background}
             filter={`url(#${innerShadowId})`}
           />
-          ) : null}
 
           {/* 7. silhouette body — NÃO renderizado aqui. Foi movido pro
               StatusChart pai via SvgXml com Caminho 4123.svg embedded,

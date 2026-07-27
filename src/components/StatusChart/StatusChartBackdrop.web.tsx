@@ -15,10 +15,13 @@ interface BackdropProps {
   height: number;
   progress: number;
   layer?: 'lower' | 'upper';
-  /** Ver StatusChartProps.backdrop. `false` deixa só o crescente colorido. */
-  backdrop?: boolean;
   /** When true, sets SVG overflow:visible so Caminho 4122 extrapolates. */
   extrapolate?: boolean;
+  /** Pular o Caminho 4122. Duas origens distintas: o pai já o desenhou como
+   * View (`extrapolate`), ou o preset o oculta por design (`compact` — o nó
+   * Figma 342:9420 marca Caminho 4122 hidden). Separado de `extrapolate`
+   * porque no compact o círculo some SEM que nada extrapole o canvas. */
+  skipBackgroundCircle?: boolean;
 }
 
 const CENTER_X = 180;
@@ -69,8 +72,8 @@ export const StatusChartBackdrop = ({
   height,
   progress,
   layer = 'upper',
-  backdrop = true,
   extrapolate = false,
+  skipBackgroundCircle = false,
 }: BackdropProps) => {
   const theme = useTheme();
   const p = palette(theme, condition);
@@ -156,7 +159,7 @@ export const StatusChartBackdrop = ({
 
       {layer === 'lower' ? (
         <>
-          {!extrapolate ? (
+          {!skipBackgroundCircle ? (
             <circle
               cx={CENTER_X}
               cy={CENTER_Y}
@@ -175,7 +178,6 @@ export const StatusChartBackdrop = ({
         </>
       ) : (
         <>
-          {backdrop ? (
           <circle
             cx={CENTER_X}
             cy={CENTER_Y}
@@ -183,7 +185,6 @@ export const StatusChartBackdrop = ({
             fill={theme.surface.high}
             filter={`url(#${innerShadowId})`}
           />
-          ) : null}
 
           {clamped > 0 ? (
             <g clipPath={`url(#${progressClipId})`}>
@@ -194,7 +195,6 @@ export const StatusChartBackdrop = ({
           ) : null}
 
           {/* Ellipse 5 — PNG asset (109×65 natural) embedded direto. */}
-          {backdrop ? (
           <image
             x={ELLIPSE_5_X}
             y={ELLIPSE_5_Y}
@@ -203,9 +203,7 @@ export const StatusChartBackdrop = ({
             href={ELLIPSE_5_DATA_URL}
             preserveAspectRatio="xMidYMid meet"
           />
-          ) : null}
 
-          {backdrop ? (
           <circle
             cx={CENTER_X}
             cy={CENTER_Y}
@@ -213,7 +211,6 @@ export const StatusChartBackdrop = ({
             fill={theme.background}
             filter={`url(#${innerShadowId})`}
           />
-          ) : null}
 
           {/* silhouette body — movido pro StatusChart pai via SvgXml. */}
         </>

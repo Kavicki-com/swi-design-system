@@ -1243,6 +1243,7 @@ var ProgressBar = React13.forwardRef(
     const theme2 = useTheme();
     const pct = clamp(value, 0, 100);
     const useGradient = !disabled && gradient && gradient.length >= 2;
+    const gradientId = `pb-gradient-${React13.useId().replace(/:/g, "")}`;
     const stops = (() => {
       if (!gradient) return [];
       if (gradientStops && gradientStops.length === gradient.length) {
@@ -1264,7 +1265,7 @@ var ProgressBar = React13.forwardRef(
           /* @__PURE__ */ jsxRuntime.jsx(Svg.Defs, { children: /* @__PURE__ */ jsxRuntime.jsx(
             Svg.LinearGradient,
             {
-              id: "pb-gradient",
+              id: gradientId,
               x1: gradX1,
               y1: "0",
               x2: gradX2,
@@ -1287,7 +1288,7 @@ var ProgressBar = React13.forwardRef(
               y: 0,
               width: 100,
               height: FILL_HEIGHT,
-              fill: "url(#pb-gradient)"
+              fill: `url(#${gradientId})`
             }
           )
         ]

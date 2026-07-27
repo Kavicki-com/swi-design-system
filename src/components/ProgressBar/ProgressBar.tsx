@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useId } from 'react';
 import { View as RNView, type View } from 'react-native';
 import Svg, { Defs, LinearGradient as SvgLinearGradient, Rect, Stop } from 'react-native-svg';
 import { useTheme } from '../../theme';
@@ -30,6 +30,12 @@ export const ProgressBar = forwardRef<View, ProgressBarProps>(
     const pct = clamp(value, 0, 100);
     const useGradient = !disabled && gradient && gradient.length >= 2;
 
+    // Id por instância. Um id fixo colide quando duas barras coexistem (o Stack
+    // do expo-router mantém telas montadas, e listas renderizam N barras): o
+    // <Defs> de uma sobrescreve o da outra e o fill some/erra a cor. Mesmo
+    // padrão já usado em DonutArc e Icon. `:` do useId não é válido em url(#…).
+    const gradientId = `pb-gradient-${useId().replace(/:/g, '')}`;
+
     // Resolve stops: explicit array (validated to length match) or
     // auto-distribute evenly across gradient length.
     const stops = (() => {
@@ -55,7 +61,7 @@ export const ProgressBar = forwardRef<View, ProgressBarProps>(
         >
           <Defs>
             <SvgLinearGradient
-              id="pb-gradient"
+              id={gradientId}
               x1={gradX1}
               y1="0"
               x2={gradX2}
@@ -76,7 +82,7 @@ export const ProgressBar = forwardRef<View, ProgressBarProps>(
             y={0}
             width={100}
             height={FILL_HEIGHT}
-            fill="url(#pb-gradient)"
+            fill={`url(#${gradientId})`}
           />
         </Svg>
       </RNView>

@@ -4,11 +4,12 @@
  * Web build picks Icon.web.tsx instead. See that file for why the split
  * exists (react-native-svg ESM/CJS interop breaks Vite).
  */
-import React, { useId } from 'react';
+import React from 'react';
 import Svg, { Defs, LinearGradient as SvgLinearGradient, Path, Stop } from 'react-native-svg';
 import { iconPaths } from '../../icons';
 import type { IconPath } from '../../icons/paths';
 import type { IconProps } from './Icon.types';
+import { useSvgId } from '../../utils/svgId';
 
 export const Icon = ({
   name,
@@ -21,12 +22,11 @@ export const Icon = ({
   accessibilityLabel,
 }: IconProps) => {
   const icon: IconPath | undefined = iconPaths[name];
-  const rawId = useId();
   if (!icon) return null;
 
   const w = width ?? size;
   const h = height ?? size;
-  const gradId = `icon-grad-${rawId.replace(/:/g, '-')}`;
+  const gradId = useSvgId('icon-grad');
   const fill = gradient ? `url(#${gradId})` : color;
 
   return (

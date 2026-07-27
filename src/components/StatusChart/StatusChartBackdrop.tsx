@@ -19,7 +19,7 @@
  *
  * Web build picks StatusChartBackdrop.web.tsx instead.
  */
-import React, { useId } from 'react';
+import React from 'react';
 import Svg, {
   Circle,
   ClipPath,
@@ -42,6 +42,7 @@ import { useTheme } from '../../theme';
 import { palette } from './StatusChart.theme';
 import { STATUS_CHART_CANVAS, STATUS_GAUGE } from './StatusChart.paths';
 import type { StatusChartCondition } from './StatusChart.types';
+import { useSvgId } from '../../utils/svgId';
 
 interface BackdropProps {
   condition: StatusChartCondition;
@@ -129,7 +130,7 @@ export const StatusChartBackdrop = ({
   // co-existindo no DOM/tree (web: Expo Router Stack mantém telas anteriores
   // com `display:none`, fazendo `url(#...)` resolver pra def em SVG sem
   // bbox e silhueta invisível). Paridade web/native pra robustez.
-  const uid = useId().replace(/:/g, '');
+  const uid = useSvgId('id');
   const silhouetteGradId = `status-gauge-gradient-${condition}-${layer}-${uid}`;
   const crescentGradId = `status-crescent-gradient-${condition}-${layer}-${uid}`;
   const progressClipId = `status-progress-clip-${condition}-${layer}-${uid}`;

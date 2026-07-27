@@ -7,6 +7,7 @@ import { useTheme } from '../../theme';
 import { palette } from './StatusChart.theme';
 import { STATUS_CHART_CANVAS, STATUS_GAUGE } from './StatusChart.paths';
 import type { StatusChartCondition } from './StatusChart.types';
+import { useSvgId } from '../../utils/svgId';
 
 interface BackdropProps {
   condition: StatusChartCondition;
@@ -75,7 +76,7 @@ export const StatusChartBackdrop = ({
   // `display:none` no Expo Router Stack + my-stats visível). Sem `useId()`
   // o browser resolve `url(#...)` pra primeira def, que vive em SVG sem
   // bbox renderizado, deixando a silhueta invisível.
-  const uid = useId().replace(/:/g, '');
+  const uid = useSvgId('id');
   const silhouetteGradId = `status-gauge-gradient-${condition}-${layer}-${uid}`;
   const crescentGradId = `status-crescent-gradient-${condition}-${layer}-${uid}`;
   const progressClipId = `status-progress-clip-${condition}-${layer}-${uid}`;

@@ -2,7 +2,8 @@
  * Web InnerShadowCircle — mesma filter chain do nativo em SVG DOM puro.
  * Ver InnerShadowCircle.tsx pro breakdown dos primitivos.
  */
-import React, { useId } from 'react';
+import React from 'react';
+import { useSvgId } from '../../utils/svgId';
 
 // Interface duplicada do gêmeo nativo — manter os dois em sincronia.
 interface InnerShadowCircleProps {
@@ -14,7 +15,7 @@ interface InnerShadowCircleProps {
 }
 
 export const InnerShadowCircle = ({ size, fill, dy, blur, alpha }: InnerShadowCircleProps) => {
-  const filterId = `inner-shadow-${useId().replace(/:/g, '')}`;
+  const filterId = useSvgId('inner-shadow');
   const r = size / 2;
   return (
     <svg width={size} height={size} style={{ pointerEvents: 'none' }}>

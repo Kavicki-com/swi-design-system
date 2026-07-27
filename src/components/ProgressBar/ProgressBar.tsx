@@ -1,9 +1,10 @@
-import React, { forwardRef, useId } from 'react';
+import React, { forwardRef } from 'react';
 import { View as RNView, type View } from 'react-native';
 import Svg, { Defs, LinearGradient as SvgLinearGradient, Rect, Stop } from 'react-native-svg';
 import { useTheme } from '../../theme';
 import { Fill, Track } from './ProgressBar.styles';
 import type { ProgressBarProps } from './ProgressBar.types';
+import { useSvgId } from '../../utils/svgId';
 
 const clamp = (n: number, min: number, max: number) => Math.min(Math.max(n, min), max);
 
@@ -34,7 +35,7 @@ export const ProgressBar = forwardRef<View, ProgressBarProps>(
     // do expo-router mantém telas montadas, e listas renderizam N barras): o
     // <Defs> de uma sobrescreve o da outra e o fill some/erra a cor. Mesmo
     // padrão já usado em DonutArc e Icon. `:` do useId não é válido em url(#…).
-    const gradientId = `pb-gradient-${useId().replace(/:/g, '')}`;
+    const gradientId = useSvgId('pb-gradient');
 
     // Resolve stops: explicit array (validated to length match) or
     // auto-distribute evenly across gradient length.

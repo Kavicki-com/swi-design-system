@@ -2,8 +2,9 @@
  * Web DonutArc — plain DOM SVG, skips react-native-svg.
  * See DonutArc.tsx for the native version and why the split exists.
  */
-import React, { useId } from 'react';
+import React from 'react';
 import type { DonutArcProps } from './DonutChart.types';
+import { useSvgId } from '../../utils/svgId';
 
 const clamp = (n: number, min: number, max: number) => Math.min(Math.max(n, min), max);
 
@@ -40,7 +41,7 @@ export const DonutArc = ({
   const circumference = 2 * Math.PI * arcR;
   const dash = (pct / 100) * circumference;
 
-  const id = useId().replace(/:/g, '');
+  const id = useSvgId('id');
   const arcId = `donut-arc-${id}`;
   const [arcFrom, arcTo] = gradient;
   const isFlat = appearance === 'flat';

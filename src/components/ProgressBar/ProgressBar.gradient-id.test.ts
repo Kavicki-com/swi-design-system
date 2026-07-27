@@ -17,8 +17,12 @@ describe('ProgressBar — id do gradiente por instância', () => {
     expect(tsx).not.toMatch(/url\(#pb-gradient\)/);
   });
 
-  it('deriva o id do useId e sanitiza os ":" (inválidos em url(#…))', () => {
-    expect(tsx).toMatch(/useId\(\)\.replace\(\/:\/g, ''\)/);
+  // Sanitizar só ':' era a premissa do React 18; no 19 o useId devolve '«R0»'
+  // e o id saía inválido — o app iOS abortava na abertura (2026-07-27). A regra
+  // agora vive no useSvgId, que mantém apenas o que é seguro.
+  it('usa o useSvgId compartilhado, e não uma sanitização própria', () => {
+    expect(tsx).toMatch(/useSvgId\('pb-gradient'\)/);
+    expect(tsx).not.toMatch(/replace\(\/:\/g/);
   });
 
   it('o fill referencia o MESMO id declarado no <Defs> (nada de string solta)', () => {

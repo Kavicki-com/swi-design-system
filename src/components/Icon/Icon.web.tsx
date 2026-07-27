@@ -8,10 +8,11 @@
  *
  * Native build uses Icon.tsx (react-native-svg). API is identical.
  */
-import React, { useId } from 'react';
+import React from 'react';
 import { iconPaths } from '../../icons';
 import type { IconPath } from '../../icons/paths';
 import type { IconProps } from './Icon.types';
+import { useSvgId } from '../../utils/svgId';
 
 export const Icon = ({
   name,
@@ -24,12 +25,11 @@ export const Icon = ({
   accessibilityLabel,
 }: IconProps) => {
   const icon: IconPath | undefined = iconPaths[name];
-  const rawId = useId();
   if (!icon) return null;
 
   const w = width ?? size;
   const h = height ?? size;
-  const gradId = `icon-grad-${rawId.replace(/:/g, '-')}`;
+  const gradId = useSvgId('icon-grad');
   const fill = gradient ? `url(#${gradId})` : color;
 
   return (

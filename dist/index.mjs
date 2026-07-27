@@ -1,7 +1,7 @@
 import styled38, { css, useTheme as useTheme$1, ThemeProvider } from 'styled-components/native';
 import { Platform, View, Pressable, Text, Image, TextInput, ScrollView, Modal, FlatList, PanResponder } from 'react-native';
 import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
-import React13, { forwardRef, useState, useCallback, useId, memo, useMemo, useRef, useImperativeHandle, createContext, useEffect, useContext, Fragment as Fragment$1 } from 'react';
+import React12, { forwardRef, useState, useCallback, memo, useMemo, useRef, useImperativeHandle, createContext, useEffect, useId, useContext, Fragment as Fragment$1 } from 'react';
 import Svg, { Defs, LinearGradient, Stop, Rect } from 'react-native-svg';
 
 // src/theme/ThemeProvider.tsx
@@ -917,6 +917,9 @@ var iconPaths = {
     d: "M520-80q-50 0-85-35t-35-85h80q0 17 11.5 28.5T520-160q17 0 28.5-11.5T560-200q0-17-11.5-28.5T520-240H80v-80h440q50 0 85 35t35 85q0 50-35 85t-85 35ZM80-440v-80h600q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43h-80q0-58 41-99t99-41q58 0 99 41t41 99q0 58-41 99t-99 41H80Zm660-200q-50 0-85-35t-35-85h80q0 17 11.5 28.5T740-720q17 0 28.5-11.5T780-760q0-17-11.5-28.5T740-800H80v-80h660q50 0 85 35t35 85q0 50-35 85t-85 35Z"
   }
 };
+function useSvgId(prefix) {
+  return `${prefix}-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
+}
 var Icon = ({
   name,
   size = 24,
@@ -928,11 +931,10 @@ var Icon = ({
   accessibilityLabel
 }) => {
   const icon = iconPaths[name];
-  const rawId = useId();
   if (!icon) return null;
   const w = width ?? size;
   const h = height ?? size;
-  const gradId = `icon-grad-${rawId.replace(/:/g, "-")}`;
+  const gradId = useSvgId("icon-grad");
   const fill = gradient ? `url(#${gradId})` : color;
   return /* @__PURE__ */ jsxs(
     "svg",
@@ -1235,7 +1237,7 @@ var ProgressBar = forwardRef(
     const theme2 = useTheme();
     const pct = clamp(value, 0, 100);
     const useGradient = !disabled && gradient && gradient.length >= 2;
-    const gradientId = `pb-gradient-${useId().replace(/:/g, "")}`;
+    const gradientId = useSvgId("pb-gradient");
     const stops = (() => {
       if (!gradient) return [];
       if (gradientStops && gradientStops.length === gradient.length) {
@@ -2236,7 +2238,7 @@ var ChatSection = forwardRef(
                 fullWidth: true
               }
             );
-            return /* @__PURE__ */ jsx(React13.Fragment, { children: renderCard ? renderCard(card, user) : card }, user.id);
+            return /* @__PURE__ */ jsx(React12.Fragment, { children: renderCard ? renderCard(card, user) : card }, user.id);
           }) }) }),
           onExpand ? /* @__PURE__ */ jsx(
             Button,
@@ -2274,7 +2276,7 @@ var DonutArc = ({
   const arcR = appearance === "flat" ? outerR - arcStroke : outerR - ringBand / 2;
   const circumference = 2 * Math.PI * arcR;
   const dash = pct / 100 * circumference;
-  const id = useId().replace(/:/g, "");
+  const id = useSvgId("id");
   const arcId = `donut-arc-${id}`;
   const [arcFrom, arcTo] = gradient;
   const isFlat = appearance === "flat";
@@ -4873,7 +4875,7 @@ var LineCaloriesChart = forwardRef(
     const theme2 = useTheme();
     const laid = layoutPoints(points, width, height);
     const d = linePath(laid);
-    const gradId = `calories-stroke-${useId().replace(/:/g, "")}`;
+    const gradId = useSvgId("calories-stroke");
     return /* @__PURE__ */ jsxs(
       ChartFrame,
       {
@@ -4999,7 +5001,7 @@ var Toggle = forwardRef(
       }
     );
     if (!leftLabel && !rightLabel) {
-      return React13.cloneElement(track, { ref });
+      return React12.cloneElement(track, { ref });
     }
     return /* @__PURE__ */ jsxs(Row6, { ref, children: [
       leftLabel ? /* @__PURE__ */ jsx(SideLabel, { $active: !value, $disabled: disabled, children: leftLabel }) : null,
@@ -5902,7 +5904,7 @@ var WorkersInfoCard = forwardRef(
 );
 WorkersInfoCard.displayName = "WorkersInfoCard";
 var InnerShadowCircle = ({ size, fill, dy, blur, alpha }) => {
-  const filterId = `inner-shadow-${useId().replace(/:/g, "")}`;
+  const filterId = useSvgId("inner-shadow");
   const r = size / 2;
   return /* @__PURE__ */ jsxs("svg", { width: size, height: size, style: { pointerEvents: "none" }, children: [
     /* @__PURE__ */ jsx("defs", { children: /* @__PURE__ */ jsxs("filter", { id: filterId, x: "-10%", y: "-10%", width: "120%", height: "120%", children: [
@@ -6040,7 +6042,7 @@ var StatusChartBackdrop = ({
 }) => {
   const theme2 = useTheme();
   const p = palette(theme2, condition);
-  const uid = useId().replace(/:/g, "");
+  const uid = useSvgId("id");
   const silhouetteGradId = `status-gauge-gradient-${condition}-${layer}-${uid}`;
   const crescentGradId = `status-crescent-gradient-${condition}-${layer}-${uid}`;
   const progressClipId = `status-progress-clip-${condition}-${layer}-${uid}`;
@@ -6740,8 +6742,7 @@ var SuccessBadge = ({
   accessibilityLabel
 }) => {
   const theme2 = useTheme();
-  const rawId = useId();
-  const gradientId = `success-badge-grad-${rawId.replace(/:/g, "-")}`;
+  const gradientId = useSvgId("success-badge-grad");
   const resolvedIconSize = iconSize ?? Math.round(size * 0.583);
   const [c1, c2] = colors ?? [theme2.surface.primary, theme2.surface.secondary];
   const ic = iconColor ?? theme2.content.dark;

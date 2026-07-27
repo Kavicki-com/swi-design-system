@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import React from 'react';
 import Svg, {
   Circle,
   Defs,
@@ -10,6 +10,7 @@ import Svg, {
   FeOffset,
   Filter,
 } from 'react-native-svg';
+import { useSvgId } from '../../utils/svgId';
 
 // Interface duplicada no gêmeo .web.tsx (precedente StatusChartBackdrop) —
 // manter os dois em sincronia.
@@ -35,7 +36,7 @@ interface InnerShadowCircleProps {
 export const InnerShadowCircle = ({ size, fill, dy, blur, alpha }: InnerShadowCircleProps) => {
   // useId por instância: no mesmo chart coexistem o disco (Caminho 4122) e o
   // botão (Elipse 34) com params diferentes — ids fixos colidiriam no web.
-  const filterId = `inner-shadow-${useId().replace(/:/g, '')}`;
+  const filterId = useSvgId('inner-shadow');
   const r = size / 2;
   return (
     <Svg width={size} height={size} pointerEvents="none">

@@ -2,7 +2,7 @@
  * Web LineCaloriesChart — uses raw <svg> instead of react-native-svg
  * (same web/native split pattern as Icon and Silhouette).
  */
-import React, { forwardRef, useId } from 'react';
+import React, { forwardRef } from 'react';
 import { type View } from 'react-native';
 import { CaloriesTag } from '../CaloriesTag';
 import { TimeStamp } from '../TimeStamp';
@@ -21,6 +21,7 @@ import {
   layoutPoints,
   linePath,
 } from './LineCaloriesChart.utils';
+import { useSvgId } from '../../utils/svgId';
 
 const DEFAULT_WIDTH = 1013;
 const DEFAULT_HEIGHT = 110;
@@ -43,7 +44,7 @@ export const LineCaloriesChart = forwardRef<View, LineCaloriesChartProps>(
     const d = linePath(laid);
     // Unique gradient id per instance so multiple charts on the page don't
     // collide on the SVG def id.
-    const gradId = `calories-stroke-${useId().replace(/:/g, '')}`;
+    const gradId = useSvgId('calories-stroke');
 
     return (
       <ChartFrame

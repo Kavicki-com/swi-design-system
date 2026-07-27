@@ -5,13 +5,14 @@
  * react-native-svg has ESM/CJS interop quirks under Vite, so admin web uses
  * a plain <svg>/<path> path while native uses the RN SVG primitives.
  */
-import React, { useId } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 import Svg, { Circle, Defs, LinearGradient as SvgLinearGradient, Stop } from 'react-native-svg';
 import { elevation } from '../../tokens';
 import { useTheme } from '../../theme';
 import { Icon } from '../Icon';
 import type { SuccessBadgeProps } from './SuccessBadge.types';
+import { useSvgId } from '../../utils/svgId';
 
 export const SuccessBadge = ({
   size = 96,
@@ -23,8 +24,7 @@ export const SuccessBadge = ({
   accessibilityLabel,
 }: SuccessBadgeProps) => {
   const theme = useTheme();
-  const rawId = useId();
-  const gradientId = `success-badge-grad-${rawId.replace(/:/g, '-')}`;
+  const gradientId = useSvgId('success-badge-grad');
   const resolvedIconSize = iconSize ?? Math.round(size * 0.583);
   const [c1, c2] = colors ?? [theme.surface.primary, theme.surface.secondary];
   const ic = iconColor ?? theme.content.dark;

@@ -3,7 +3,7 @@
  * Web build picks DonutArc.web.tsx instead. Same reason as Icon.tsx:
  * react-native-svg's ESM/CJS interop breaks Vite's dev server.
  */
-import React, { useId } from 'react';
+import React from 'react';
 import Svg, {
   Circle,
   Defs,
@@ -12,6 +12,7 @@ import Svg, {
   Stop,
 } from 'react-native-svg';
 import type { DonutArcProps } from './DonutChart.types';
+import { useSvgId } from '../../utils/svgId';
 
 const clamp = (n: number, min: number, max: number) => Math.min(Math.max(n, min), max);
 
@@ -45,7 +46,7 @@ export const DonutArc = ({
   const circumference = 2 * Math.PI * arcR;
   const dash = (pct / 100) * circumference;
 
-  const id = useId().replace(/:/g, '');
+  const id = useSvgId('id');
   const arcId = `donut-arc-${id}`;
   const [arcFrom, arcTo] = gradient;
   const isFlat = appearance === 'flat';

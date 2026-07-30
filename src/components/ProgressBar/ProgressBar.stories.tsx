@@ -89,6 +89,52 @@ export const Overview: Story = {
   ),
 };
 
+// Modo inset: track sólido com o fill embutido, sem a moldura de 1px do
+// `bordered` e com raio próprio. Os números abaixo são o call site real do
+// menu de detalhes do usuário do painel (300×12, inset 2, raio 3).
+// `animated` cresce de 0 até o valor na montagem: recarregue a story pra ver.
+export const InsetAnimated: Story = {
+  name: 'Inset + animated (menu do painel)',
+  parameters: { controls: { disable: true }, actions: { disable: true } },
+  decorators: [
+    (StoryComp) => (
+      <View style={{ width: 320 }}>
+        <StoryComp />
+      </View>
+    ),
+  ],
+  render: () => (
+    <View style={{ flexDirection: 'column', gap: 24 }}>
+      <Group caption="inset — estático (72%)">
+        <View style={{ width: 300 }}>
+          <ProgressBar value={72} inset={2} trackHeight={12} trackRadius={3} />
+        </View>
+      </Group>
+      <Group caption="inset + animated (72%, 2s ease-out)">
+        <View style={{ width: 300 }}>
+          <ProgressBar value={72} inset={2} trackHeight={12} trackRadius={3} animated />
+        </View>
+      </Group>
+      <Group caption="inset — disabled">
+        <View style={{ width: 300 }}>
+          <ProgressBar value={72} inset={2} trackHeight={12} trackRadius={3} disabled />
+        </View>
+      </Group>
+      <Group caption="inset + gradient (o fill estica pros 8px)">
+        <View style={{ width: 300 }}>
+          <ProgressBar
+            value={72}
+            inset={2}
+            trackHeight={12}
+            trackRadius={3}
+            gradient={['#3eab2e', '#ef8600', '#f5667a']}
+          />
+        </View>
+      </Group>
+    </View>
+  ),
+};
+
 export const Playground: Story = {};
 
 export const Empty: Story = { args: { value: 0 } };

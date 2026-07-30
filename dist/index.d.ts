@@ -1685,6 +1685,32 @@ interface ProgressBarProps {
      * centered.
      */
     trackHeight?: number;
+    /**
+     * Solid inset track: track preenchido de `trackHeight` com o fill embutido
+     * `inset` px em todos os lados. Difere de `bordered` em tres pontos: sem
+     * borda, raio configuravel via `trackRadius` (nao pill) e fill que estica
+     * para `trackHeight - 2 * inset` em vez dos 6px fixos.
+     *
+     * Existe para o menu de detalhes do usuario do painel (QA cliente 1.1), que
+     * precisa de 300x12 com 2px de inset. Antes disso o admin mantinha um
+     * `AnimatedProgressBar.tsx` local, a mesma violacao que o mobile ja havia
+     * cometido com uma copia local do ProgressBar (ver o teste do gradient-id).
+     *
+     * Ignorado quando `bordered` esta ligado.
+     */
+    inset?: number;
+    /**
+     * Raio das quinas do track. Default: pill. So faz sentido com `inset`.
+     * O fill herda `trackRadius - inset`, que mantem as quinas concentricas.
+     */
+    trackRadius?: number;
+    /**
+     * Anima o fill de 0 ate `value` na montagem, e a cada mudanca de `value`.
+     * Default `false`, e sem ela o render sai identico ao de antes.
+     */
+    animated?: boolean;
+    /** Duracao da animacao em ms. Default 2000. So faz sentido com `animated`. */
+    animationDurationMs?: number;
     accessibilityLabel?: string;
     testID?: string;
 }

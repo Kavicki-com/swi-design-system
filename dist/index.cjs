@@ -1226,8 +1226,16 @@ var Fill = styled38__default.default(reactNative.View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   background-color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.medium : theme2.content.primary};
 `;
-var clamp = (n, min, max) => Math.min(Math.max(n, min), max);
+
+// src/components/ProgressBar/ProgressBar.geometry.ts
 var FILL_HEIGHT = 6;
+function insetGeometry(trackHeight, inset, outerRadius) {
+  return {
+    fillHeight: Math.max(0, trackHeight - inset * 2),
+    innerRadius: Math.max(0, outerRadius - inset)
+  };
+}
+var clamp = (n, min, max) => Math.min(Math.max(n, min), max);
 var ProgressBar = React12.forwardRef(
   ({
     value,
@@ -1239,6 +1247,10 @@ var ProgressBar = React12.forwardRef(
     gradientDirection = "ltr",
     bordered = false,
     trackHeight = 22,
+    inset,
+    trackRadius,
+    animated = false,
+    animationDurationMs = 2e3,
     accessibilityLabel,
     testID
   }, ref) => {
@@ -1256,52 +1268,111 @@ var ProgressBar = React12.forwardRef(
     })();
     const gradX1 = gradientDirection === "rtl" ? 100 : 0;
     const gradX2 = gradientDirection === "rtl" ? 0 : 100;
-    const fillNode = useGradient ? /* @__PURE__ */ jsxRuntime.jsx(reactNative.View, { style: { width: `${pct}%`, height: FILL_HEIGHT, overflow: "hidden" }, children: /* @__PURE__ */ jsxRuntime.jsxs(
-      Svg__default.default,
-      {
-        width: "100%",
-        height: "100%",
-        viewBox: `0 0 100 ${FILL_HEIGHT}`,
-        preserveAspectRatio: "none",
-        children: [
-          /* @__PURE__ */ jsxRuntime.jsx(Svg.Defs, { children: /* @__PURE__ */ jsxRuntime.jsx(
-            Svg.LinearGradient,
-            {
-              id: gradientId,
-              x1: gradX1,
-              y1: "0",
-              x2: gradX2,
-              y2: "0",
-              gradientUnits: "userSpaceOnUse",
-              children: gradient.map((stopColor, i) => /* @__PURE__ */ jsxRuntime.jsx(
-                Svg.Stop,
-                {
-                  offset: `${stops[i]}%`,
-                  stopColor
-                },
-                `${stopColor}-${i}`
-              ))
-            }
-          ) }),
-          /* @__PURE__ */ jsxRuntime.jsx(
-            Svg.Rect,
-            {
-              x: 0,
-              y: 0,
-              width: 100,
-              height: FILL_HEIGHT,
-              fill: `url(#${gradientId})`
-            }
-          )
-        ]
+    const anim = React12.useRef(new reactNative.Animated.Value(animated ? 0 : pct)).current;
+    React12.useEffect(() => {
+      if (!animated) {
+        anim.setValue(pct);
+        return;
       }
-    ) }) : /* @__PURE__ */ jsxRuntime.jsx(
+      const run = reactNative.Animated.timing(anim, {
+        toValue: pct,
+        duration: animationDurationMs,
+        easing: reactNative.Easing.out(reactNative.Easing.ease),
+        useNativeDriver: false
+      });
+      run.start();
+      return () => run.stop();
+    }, [anim, animated, animationDurationMs, pct]);
+    const animatedWidth = React12.useMemo(
+      () => anim.interpolate({ inputRange: [0, 100], outputRange: ["0%", "100%"] }),
+      [anim]
+    );
+    const gradientNode = (height) => /* @__PURE__ */ jsxRuntime.jsxs(Svg__default.default, { width: "100%", height: "100%", viewBox: `0 0 100 ${height}`, preserveAspectRatio: "none", children: [
+      /* @__PURE__ */ jsxRuntime.jsx(Svg.Defs, { children: /* @__PURE__ */ jsxRuntime.jsx(
+        Svg.LinearGradient,
+        {
+          id: gradientId,
+          x1: gradX1,
+          y1: "0",
+          x2: gradX2,
+          y2: "0",
+          gradientUnits: "userSpaceOnUse",
+          children: gradient.map((stopColor, i) => /* @__PURE__ */ jsxRuntime.jsx(Svg.Stop, { offset: `${stops[i]}%`, stopColor }, `${stopColor}-${i}`))
+        }
+      ) }),
+      /* @__PURE__ */ jsxRuntime.jsx(Svg.Rect, { x: 0, y: 0, width: 100, height, fill: `url(#${gradientId})` })
+    ] });
+    const fillNode = useGradient ? /* @__PURE__ */ jsxRuntime.jsx(
+      reactNative.Animated.View,
+      {
+        style: {
+          width: animated ? animatedWidth : `${pct}%`,
+          height: FILL_HEIGHT,
+          overflow: "hidden"
+        },
+        children: gradientNode(FILL_HEIGHT)
+      }
+    ) : animated ? (
+      // Fill é styled-component e não aceita Animated.Value; quando anima, o
+      // equivalente sai inline (mesma altura, mesmo raio, mesmas cores).
+      /* @__PURE__ */ jsxRuntime.jsx(
+        reactNative.Animated.View,
+        {
+          style: {
+            width: animatedWidth,
+            height: FILL_HEIGHT,
+            borderRadius: theme2.border.radius.pill,
+            backgroundColor: color ?? (disabled ? theme2.content.medium : theme2.content.primary)
+          }
+        }
+      )
+    ) : /* @__PURE__ */ jsxRuntime.jsx(
       Fill,
       {
         $disabled: disabled,
         style: { width: `${pct}%`, ...color ? { backgroundColor: color } : null }
       }
     );
+    if (inset !== void 0 && !bordered) {
+      const outerRadius = trackRadius ?? theme2.border.radius.pill;
+      const { fillHeight, innerRadius } = insetGeometry(trackHeight, inset, outerRadius);
+      return /* @__PURE__ */ jsxRuntime.jsx(
+        reactNative.View,
+        {
+          ref,
+          accessibilityRole: "progressbar",
+          accessibilityLabel,
+          accessibilityState: { disabled },
+          accessibilityValue: { min: 0, max: 100, now: pct },
+          testID,
+          style: {
+            height: trackHeight,
+            alignSelf: "stretch",
+            borderRadius: outerRadius,
+            backgroundColor: trackColor ?? (disabled ? theme2.content.disable : theme2.surface.secondaryLight),
+            padding: inset,
+            justifyContent: "center",
+            opacity: disabled ? 0.6 : 1,
+            overflow: "hidden"
+          },
+          children: /* @__PURE__ */ jsxRuntime.jsx(
+            reactNative.Animated.View,
+            {
+              style: {
+                width: animated ? animatedWidth : `${pct}%`,
+                height: fillHeight,
+                borderRadius: innerRadius,
+                overflow: "hidden",
+                ...useGradient ? null : {
+                  backgroundColor: color ?? (disabled ? theme2.content.medium : theme2.content.primary)
+                }
+              },
+              children: useGradient ? gradientNode(fillHeight) : null
+            }
+          )
+        }
+      );
+    }
     if (bordered) {
       const innerPad = Math.max(0, (trackHeight - FILL_HEIGHT) / 2);
       return /* @__PURE__ */ jsxRuntime.jsx(

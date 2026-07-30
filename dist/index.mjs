@@ -1,7 +1,7 @@
 import styled38, { css, useTheme as useTheme$1, ThemeProvider } from 'styled-components/native';
-import { Platform, View, Pressable, Text, Image, TextInput, ScrollView, Modal, FlatList, PanResponder } from 'react-native';
+import { Platform, View, Pressable, Text, Image, Animated, Easing, TextInput, ScrollView, Modal, FlatList, PanResponder } from 'react-native';
 import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
-import React12, { forwardRef, useState, useCallback, memo, useMemo, useRef, useImperativeHandle, createContext, useEffect, useId, useContext, Fragment as Fragment$1 } from 'react';
+import React12, { forwardRef, useState, useCallback, useRef, useEffect, useMemo, memo, useImperativeHandle, createContext, useId, useContext, Fragment as Fragment$1 } from 'react';
 import Svg, { Defs, LinearGradient, Stop, Rect } from 'react-native-svg';
 
 // src/theme/ThemeProvider.tsx
@@ -1218,8 +1218,16 @@ var Fill = styled38(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   background-color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.medium : theme2.content.primary};
 `;
-var clamp = (n, min, max) => Math.min(Math.max(n, min), max);
+
+// src/components/ProgressBar/ProgressBar.geometry.ts
 var FILL_HEIGHT = 6;
+function insetGeometry(trackHeight, inset, outerRadius) {
+  return {
+    fillHeight: Math.max(0, trackHeight - inset * 2),
+    innerRadius: Math.max(0, outerRadius - inset)
+  };
+}
+var clamp = (n, min, max) => Math.min(Math.max(n, min), max);
 var ProgressBar = forwardRef(
   ({
     value,
@@ -1231,6 +1239,10 @@ var ProgressBar = forwardRef(
     gradientDirection = "ltr",
     bordered = false,
     trackHeight = 22,
+    inset,
+    trackRadius,
+    animated = false,
+    animationDurationMs = 2e3,
     accessibilityLabel,
     testID
   }, ref) => {
@@ -1248,52 +1260,111 @@ var ProgressBar = forwardRef(
     })();
     const gradX1 = gradientDirection === "rtl" ? 100 : 0;
     const gradX2 = gradientDirection === "rtl" ? 0 : 100;
-    const fillNode = useGradient ? /* @__PURE__ */ jsx(View, { style: { width: `${pct}%`, height: FILL_HEIGHT, overflow: "hidden" }, children: /* @__PURE__ */ jsxs(
-      Svg,
-      {
-        width: "100%",
-        height: "100%",
-        viewBox: `0 0 100 ${FILL_HEIGHT}`,
-        preserveAspectRatio: "none",
-        children: [
-          /* @__PURE__ */ jsx(Defs, { children: /* @__PURE__ */ jsx(
-            LinearGradient,
-            {
-              id: gradientId,
-              x1: gradX1,
-              y1: "0",
-              x2: gradX2,
-              y2: "0",
-              gradientUnits: "userSpaceOnUse",
-              children: gradient.map((stopColor, i) => /* @__PURE__ */ jsx(
-                Stop,
-                {
-                  offset: `${stops[i]}%`,
-                  stopColor
-                },
-                `${stopColor}-${i}`
-              ))
-            }
-          ) }),
-          /* @__PURE__ */ jsx(
-            Rect,
-            {
-              x: 0,
-              y: 0,
-              width: 100,
-              height: FILL_HEIGHT,
-              fill: `url(#${gradientId})`
-            }
-          )
-        ]
+    const anim = useRef(new Animated.Value(animated ? 0 : pct)).current;
+    useEffect(() => {
+      if (!animated) {
+        anim.setValue(pct);
+        return;
       }
-    ) }) : /* @__PURE__ */ jsx(
+      const run = Animated.timing(anim, {
+        toValue: pct,
+        duration: animationDurationMs,
+        easing: Easing.out(Easing.ease),
+        useNativeDriver: false
+      });
+      run.start();
+      return () => run.stop();
+    }, [anim, animated, animationDurationMs, pct]);
+    const animatedWidth = useMemo(
+      () => anim.interpolate({ inputRange: [0, 100], outputRange: ["0%", "100%"] }),
+      [anim]
+    );
+    const gradientNode = (height) => /* @__PURE__ */ jsxs(Svg, { width: "100%", height: "100%", viewBox: `0 0 100 ${height}`, preserveAspectRatio: "none", children: [
+      /* @__PURE__ */ jsx(Defs, { children: /* @__PURE__ */ jsx(
+        LinearGradient,
+        {
+          id: gradientId,
+          x1: gradX1,
+          y1: "0",
+          x2: gradX2,
+          y2: "0",
+          gradientUnits: "userSpaceOnUse",
+          children: gradient.map((stopColor, i) => /* @__PURE__ */ jsx(Stop, { offset: `${stops[i]}%`, stopColor }, `${stopColor}-${i}`))
+        }
+      ) }),
+      /* @__PURE__ */ jsx(Rect, { x: 0, y: 0, width: 100, height, fill: `url(#${gradientId})` })
+    ] });
+    const fillNode = useGradient ? /* @__PURE__ */ jsx(
+      Animated.View,
+      {
+        style: {
+          width: animated ? animatedWidth : `${pct}%`,
+          height: FILL_HEIGHT,
+          overflow: "hidden"
+        },
+        children: gradientNode(FILL_HEIGHT)
+      }
+    ) : animated ? (
+      // Fill é styled-component e não aceita Animated.Value; quando anima, o
+      // equivalente sai inline (mesma altura, mesmo raio, mesmas cores).
+      /* @__PURE__ */ jsx(
+        Animated.View,
+        {
+          style: {
+            width: animatedWidth,
+            height: FILL_HEIGHT,
+            borderRadius: theme2.border.radius.pill,
+            backgroundColor: color ?? (disabled ? theme2.content.medium : theme2.content.primary)
+          }
+        }
+      )
+    ) : /* @__PURE__ */ jsx(
       Fill,
       {
         $disabled: disabled,
         style: { width: `${pct}%`, ...color ? { backgroundColor: color } : null }
       }
     );
+    if (inset !== void 0 && !bordered) {
+      const outerRadius = trackRadius ?? theme2.border.radius.pill;
+      const { fillHeight, innerRadius } = insetGeometry(trackHeight, inset, outerRadius);
+      return /* @__PURE__ */ jsx(
+        View,
+        {
+          ref,
+          accessibilityRole: "progressbar",
+          accessibilityLabel,
+          accessibilityState: { disabled },
+          accessibilityValue: { min: 0, max: 100, now: pct },
+          testID,
+          style: {
+            height: trackHeight,
+            alignSelf: "stretch",
+            borderRadius: outerRadius,
+            backgroundColor: trackColor ?? (disabled ? theme2.content.disable : theme2.surface.secondaryLight),
+            padding: inset,
+            justifyContent: "center",
+            opacity: disabled ? 0.6 : 1,
+            overflow: "hidden"
+          },
+          children: /* @__PURE__ */ jsx(
+            Animated.View,
+            {
+              style: {
+                width: animated ? animatedWidth : `${pct}%`,
+                height: fillHeight,
+                borderRadius: innerRadius,
+                overflow: "hidden",
+                ...useGradient ? null : {
+                  backgroundColor: color ?? (disabled ? theme2.content.medium : theme2.content.primary)
+                }
+              },
+              children: useGradient ? gradientNode(fillHeight) : null
+            }
+          )
+        }
+      );
+    }
     if (bordered) {
       const innerPad = Math.max(0, (trackHeight - FILL_HEIGHT) / 2);
       return /* @__PURE__ */ jsx(
@@ -6038,7 +6109,8 @@ var StatusChartBackdrop = ({
   height,
   progress,
   layer = "upper",
-  extrapolate = false
+  extrapolate = false,
+  skipBackgroundCircle = false
 }) => {
   const theme2 = useTheme();
   const p = palette(theme2, condition);
@@ -6124,7 +6196,7 @@ var StatusChartBackdrop = ({
           ] })
         ] }),
         layer === "lower" ? /* @__PURE__ */ jsxs(Fragment, { children: [
-          !extrapolate ? /* @__PURE__ */ jsx(
+          !skipBackgroundCircle ? /* @__PURE__ */ jsx(
             "circle",
             {
               cx: CENTER_X,
@@ -6242,7 +6314,9 @@ var StatusChart = ({
     () => silhouetteBodyXml(p.gradientFrom, p.gradientTo),
     [p.gradientFrom, p.gradientTo]
   );
-  const scale = size === "compact" ? COMPACT_SCALE : 1;
+  const isCompact = size === "compact";
+  const scale = isCompact ? COMPACT_SCALE : 1;
+  const skipBackgroundCircle = extrapolate || isCompact;
   const outerW = STATUS_CHART_CANVAS.width * scale;
   const outerH = STATUS_CHART_CANVAS.height * scale;
   const chartBody = /* @__PURE__ */ jsxs(
@@ -6256,15 +6330,15 @@ var StatusChart = ({
         // fora do canvas 360×374 conforme Figma data (top -25.7, bottom +57,
         // sides ±48). Default false preserva comportamento card-like com
         // background + rounded corners (back-compat).
-        backgroundColor: extrapolate ? "transparent" : theme2.background,
-        borderRadius: extrapolate ? 0 : theme2.border.radius.l,
-        overflow: extrapolate ? "visible" : "hidden"
+        backgroundColor: isCompact || extrapolate ? "transparent" : theme2.background,
+        borderRadius: isCompact || extrapolate ? 0 : theme2.border.radius.l,
+        overflow: isCompact || extrapolate ? "visible" : "hidden"
       },
       testID,
       accessibilityLabel: accessibilityLabel ?? `status chart ${conditionLabel2[condition]}`,
       accessibilityRole: "image",
       children: [
-        extrapolate ? /* @__PURE__ */ jsx(
+        extrapolate && !isCompact ? /* @__PURE__ */ jsx(
           View,
           {
             pointerEvents: "none",
@@ -6297,7 +6371,8 @@ var StatusChart = ({
             progress,
             width: STATUS_CHART_CANVAS.width,
             height: STATUS_CHART_CANVAS.height,
-            extrapolate
+            extrapolate,
+            skipBackgroundCircle
           }
         ) }),
         /* @__PURE__ */ jsx(
@@ -6322,7 +6397,8 @@ var StatusChart = ({
             progress,
             width: STATUS_CHART_CANVAS.width,
             height: STATUS_CHART_CANVAS.height,
-            extrapolate
+            extrapolate,
+            skipBackgroundCircle
           }
         ) }),
         /* @__PURE__ */ jsx(

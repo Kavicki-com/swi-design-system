@@ -17,6 +17,11 @@ interface BackdropProps {
   layer?: 'lower' | 'upper';
   /** When true, sets SVG overflow:visible so Caminho 4122 extrapolates. */
   extrapolate?: boolean;
+  /** Pular o Caminho 4122. Duas origens distintas: o pai já o desenhou como
+   * View (`extrapolate`), ou o preset o oculta por design (`compact` — o nó
+   * Figma 342:9420 marca Caminho 4122 hidden). Separado de `extrapolate`
+   * porque no compact o círculo some SEM que nada extrapole o canvas. */
+  skipBackgroundCircle?: boolean;
 }
 
 const CENTER_X = 180;
@@ -68,6 +73,7 @@ export const StatusChartBackdrop = ({
   progress,
   layer = 'upper',
   extrapolate = false,
+  skipBackgroundCircle = false,
 }: BackdropProps) => {
   const theme = useTheme();
   const p = palette(theme, condition);
@@ -153,7 +159,7 @@ export const StatusChartBackdrop = ({
 
       {layer === 'lower' ? (
         <>
-          {!extrapolate ? (
+          {!skipBackgroundCircle ? (
             <circle
               cx={CENTER_X}
               cy={CENTER_Y}

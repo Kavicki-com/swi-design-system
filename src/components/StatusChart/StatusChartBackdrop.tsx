@@ -57,6 +57,11 @@ interface BackdropProps {
    * (background-circle, 456.714 dia) can extrapolate beyond the canvas
    * viewBox (360×374). Forwarded from StatusChart's `extrapolate` prop. */
   extrapolate?: boolean;
+  /** Pular o Caminho 4122. Duas origens distintas: o pai já o desenhou como
+   * View (`extrapolate`), ou o preset o oculta por design (`compact` — o nó
+   * Figma 342:9420 marca Caminho 4122 hidden). Separado de `extrapolate`
+   * porque no compact o círculo some SEM que nada extrapole o canvas. */
+  skipBackgroundCircle?: boolean;
 }
 
 const CENTER_X = 180;
@@ -123,6 +128,7 @@ export const StatusChartBackdrop = ({
   progress,
   layer = 'upper',
   extrapolate = false,
+  skipBackgroundCircle = false,
 }: BackdropProps) => {
   const theme = useTheme();
   const p = palette(theme, condition);
@@ -233,7 +239,7 @@ export const StatusChartBackdrop = ({
           {/* 1. background-circle (Caminho 4122) — Skipped quando extrapolate=true
              (renderizado como View nativa pelo StatusChart pai). Sem filter
              quando renderizado aqui (extrapolate=false case). */}
-          {!extrapolate ? (
+          {!skipBackgroundCircle ? (
             <Circle
               cx={CENTER_X}
               cy={CENTER_Y}

@@ -107,7 +107,13 @@ export const StatusChart = ({
     [p.gradientFrom, p.gradientTo],
   );
 
-  const scale = size === 'compact' ? COMPACT_SCALE : 1;
+  const isCompact = size === 'compact';
+  const scale = isCompact ? COMPACT_SCALE : 1;
+  // Caminho 4122 (o discao de fundo) sai de cena por dois motivos distintos:
+  // com `extrapolate` o PAI o desenha como View nativa; no preset `compact` o
+  // no-fonte (Figma 342:9420) simplesmente o marca hidden. Nos dois casos o
+  // backdrop deve pular o circulo equivalente.
+  const skipBackgroundCircle = extrapolate || isCompact;
   const outerW = STATUS_CHART_CANVAS.width * scale;
   const outerH = STATUS_CHART_CANVAS.height * scale;
 
@@ -121,9 +127,9 @@ export const StatusChart = ({
         // fora do canvas 360×374 conforme Figma data (top -25.7, bottom +57,
         // sides ±48). Default false preserva comportamento card-like com
         // background + rounded corners (back-compat).
-        backgroundColor: extrapolate ? 'transparent' : theme.background,
-        borderRadius: extrapolate ? 0 : theme.border.radius.l,
-        overflow: extrapolate ? 'visible' : 'hidden',
+        backgroundColor: isCompact || extrapolate ? 'transparent' : theme.background,
+        borderRadius: isCompact || extrapolate ? 0 : theme.border.radius.l,
+        overflow: isCompact || extrapolate ? 'visible' : 'hidden',
       }}
       testID={testID}
       accessibilityLabel={accessibilityLabel ?? `status chart ${conditionLabel[condition]}`}
@@ -134,7 +140,7 @@ export const StatusChart = ({
           Figma spec). View com borderRadius bypassa o viewBox clipping do SVG.
           SVG overlay dentro renderiza inner shadow (Figma spec X=0 Y=2.08
           blur=4.16 #000 98.82%) via mesmo filter chain do StatusChartBackdrop. */}
-      {extrapolate ? (
+      {extrapolate && !isCompact ? (
         <View
           pointerEvents="none"
           style={{
@@ -168,6 +174,7 @@ export const StatusChart = ({
           width={STATUS_CHART_CANVAS.width}
           height={STATUS_CHART_CANVAS.height}
           extrapolate={extrapolate}
+          skipBackgroundCircle={skipBackgroundCircle}
         />
       </View>
 
@@ -199,6 +206,7 @@ export const StatusChart = ({
           width={STATUS_CHART_CANVAS.width}
           height={STATUS_CHART_CANVAS.height}
           extrapolate={extrapolate}
+          skipBackgroundCircle={skipBackgroundCircle}
         />
       </View>
 

@@ -91,6 +91,13 @@ export { LocationPin } from './components/LocationPin';
 export type { LocationPinProps, LocationPinStatus } from './components/LocationPin';
 export { MenuItem } from './components/MenuItem';
 export type { MenuItemProps } from './components/MenuItem';
+export { Popover, PopoverItem, PopoverSeparator } from './components/Popover';
+export type {
+  PopoverProps,
+  PopoverItemProps,
+  PopoverItemTone,
+  PopoverAlign,
+} from './components/Popover';
 export { SideMenu } from './components/SideMenu';
 export type { SideMenuProps, SideMenuItem } from './components/SideMenu';
 export { Silhouette } from './components/Silhouette';

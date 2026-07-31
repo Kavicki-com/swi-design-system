@@ -1,4 +1,4 @@
-import styled38, { css, useTheme as useTheme$1, ThemeProvider } from 'styled-components/native';
+import styled39, { css, useTheme as useTheme$1, ThemeProvider } from 'styled-components/native';
 import { Platform, View, Pressable, Text, Image, Animated, Easing, TextInput, ScrollView, Modal, FlatList, PanResponder } from 'react-native';
 import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
 import React12, { forwardRef, useState, useCallback, useRef, useEffect, useMemo, memo, useImperativeHandle, createContext, useId, useContext, Fragment as Fragment$1 } from 'react';
@@ -901,6 +901,12 @@ var iconPaths = {
     viewBox: MATERIAL_VIEWBOX,
     d: "M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"
   },
+  content_copy: {
+    // Material Symbols (fonte 2 do cabeçalho): conceito genérico, sem desenho
+    // do designer. Usado no item "Copiar" do Popover de ações da mensagem.
+    viewBox: MATERIAL_VIEWBOX,
+    d: "M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"
+  },
   border_color: {
     // Figma SVG export (não Material Symbols). Lápis sobre linha — usado no
     // Edit-float chip do Avatar em mobile Settings (Figma 348:10615 / 348:10373).
@@ -956,11 +962,11 @@ var Icon = ({
     }
   );
 };
-var Container = styled38(View)`
+var Container = styled39(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   overflow: hidden;
 `;
-var Header = styled38(Pressable)`
+var Header = styled39(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -971,7 +977,7 @@ var Header = styled38(Pressable)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var TitleText = styled38.Text`
+var TitleText = styled39.Text`
   flex: 1;
   min-width: 0;
   text-align: left;
@@ -980,7 +986,7 @@ var TitleText = styled38.Text`
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
 `;
-var Content = styled38(View)`
+var Content = styled39(View)`
   align-self: stretch;
   min-width: 0;
   margin-top: 2px;
@@ -988,14 +994,14 @@ var Content = styled38(View)`
   padding: ${({ theme: theme2 }) => theme2.padding.s}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
 `;
-var ContentText = styled38.Text`
+var ContentText = styled39.Text`
   min-width: 0;
   color: ${({ theme: theme2 }) => theme2.content.medium};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
 `;
-var ChevronWrap = styled38(View)`
+var ChevronWrap = styled39(View)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -1058,7 +1064,7 @@ var Accordion = forwardRef(
   }
 );
 Accordion.displayName = "Accordion";
-var Frame = styled38(View)`
+var Frame = styled39(View)`
   width: ${({ $size }) => $size}px;
   height: ${({ $size }) => $size}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -1068,7 +1074,7 @@ var Frame = styled38(View)`
   align-items: center;
   justify-content: center;
 `;
-var Initials = styled38(Text)`
+var Initials = styled39(Text)`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: 700;
   font-size: ${({ $size }) => Math.round($size * 0.4)}px;
@@ -1139,14 +1145,14 @@ var Avatar = forwardRef(
   }
 );
 Avatar.displayName = "Avatar";
-var Row = styled38(View)`
+var Row = styled39(View)`
   flex-direction: row;
   align-items: center;
 `;
-var AvatarSlot = styled38(View)`
+var AvatarSlot = styled39(View)`
   margin-left: ${({ $marginLeft }) => $marginLeft}px;
 `;
-var CountBadge = styled38(View)`
+var CountBadge = styled39(View)`
   width: ${({ $size }) => $size}px;
   height: ${({ $size }) => $size}px;
   margin-left: ${({ $marginLeft }) => $marginLeft}px;
@@ -1158,7 +1164,7 @@ var CountBadge = styled38(View)`
   align-items: center;
   justify-content: center;
 `;
-var CountText = styled38.Text`
+var CountText = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.s}px;
@@ -1205,7 +1211,7 @@ var AvatarGroup = forwardRef(
   }
 );
 AvatarGroup.displayName = "AvatarGroup";
-var Track = styled38(View)`
+var Track = styled39(View)`
   height: 6px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   background-color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.surface.secondaryLight};
@@ -1213,7 +1219,7 @@ var Track = styled38(View)`
   overflow: hidden;
   opacity: ${({ $disabled }) => $disabled ? 0.6 : 1};
 `;
-var Fill = styled38(View)`
+var Fill = styled39(View)`
   height: 6px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   background-color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.medium : theme2.content.primary};
@@ -1410,7 +1416,7 @@ var ProgressBar = forwardRef(
   }
 );
 ProgressBar.displayName = "ProgressBar";
-var Card = styled38(View)`
+var Card = styled39(View)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -1419,7 +1425,7 @@ var Card = styled38(View)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
 `;
-var CardPressable = styled38(Pressable)`
+var CardPressable = styled39(Pressable)`
   flex-grow: 1;
   flex-shrink: 1;
   flex-direction: row;
@@ -1428,52 +1434,52 @@ var CardPressable = styled38(Pressable)`
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
   min-width: 0;
 `;
-var LeftContent = styled38(View)`
+var LeftContent = styled39(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.l}px;
   flex-shrink: 1;
 `;
-var IconSlot = styled38(View)`
+var IconSlot = styled39(View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var Divider = styled38(View)`
+var Divider = styled39(View)`
   align-self: stretch;
   width: 1px;
   background-color: ${({ theme: theme2 }) => theme2.content.dark};
   opacity: 0.2;
 `;
-var InfoColumn = styled38(View)`
+var InfoColumn = styled39(View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
   flex-shrink: 1;
 `;
-var Title = styled38.Text`
+var Title = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var Subtitle = styled38.Text`
+var Subtitle = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var ProgressSlot = styled38(View)`
+var ProgressSlot = styled39(View)`
   width: 119px;
   margin-top: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var RightContent = styled38(View)`
+var RightContent = styled39(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
 `;
-var LocationButton = styled38(Pressable)`
+var LocationButton = styled39(Pressable)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -1633,7 +1639,7 @@ var BackgroundDotsGrid = memo(function BackgroundDotsGrid2({
   );
 });
 BackgroundDotsGrid.displayName = "BackgroundDotsGrid";
-var Card2 = styled38(View)`
+var Card2 = styled39(View)`
   flex-direction: column;
   align-self: flex-start;
   align-items: center;
@@ -1643,20 +1649,20 @@ var Card2 = styled38(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
 `;
-var IconSlot2 = styled38(View)`
+var IconSlot2 = styled39(View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var Value = styled38.Text`
+var Value = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.xxl}px;
   text-align: center;
 `;
-var Label = styled38.Text`
+var Label = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
@@ -1732,7 +1738,7 @@ var borderWidthPx = ($borderWidth, theme2) => {
   if ($borderWidth === "s") return theme2.border.size.s;
   return theme2.border.size.m;
 };
-var Container2 = styled38(Pressable)`
+var Container2 = styled39(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -1751,14 +1757,14 @@ var Container2 = styled38(Pressable)`
   box-shadow: ${({ $variant }) => $variant === "surface" ? "0px 4px 8px rgba(29, 29, 29, 0.16)" : "none"};
   ${({ $fullWidth }) => $fullWidth ? "align-self: stretch; width: 100%;" : ""};
 `;
-var HoverOverlay = styled38(View)`
+var HoverOverlay = styled39(View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ $shape, theme: theme2 }) => radius($shape, theme2)}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.hover};
   pointer-events: none;
 `;
-var PressedOverlay = styled38(View)`
+var PressedOverlay = styled39(View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ $shape, theme: theme2 }) => radius($shape, theme2)}px;
@@ -1788,14 +1794,14 @@ var labelTriplet = ($labelFamily, $labelWeight, theme2) => {
   const fontFamily2 = $labelFamily === "title" ? theme2.fontFamily.title : theme2.fontFamily.body;
   return { fontFamily: fontFamily2, fontWeight: fontWeight2, fontSize: theme2.fontSize.m };
 };
-var Label2 = styled38.Text`
+var Label2 = styled39.Text`
   font-family: ${({ $labelFamily, $labelWeight, theme: theme2 }) => labelTriplet($labelFamily, $labelWeight, theme2).fontFamily};
   font-weight: ${({ $labelFamily, $labelWeight, theme: theme2 }) => labelTriplet($labelFamily, $labelWeight, theme2).fontWeight};
   font-size: ${({ $labelFamily, $labelWeight, theme: theme2 }) => labelTriplet($labelFamily, $labelWeight, theme2).fontSize}px;
   color: ${(props) => labelColor(props)};
   ${({ $underline }) => $underline ? "text-decoration-line: underline;" : ""}
 `;
-var IconSlot3 = styled38(View)`
+var IconSlot3 = styled39(View)`
   align-items: center;
   justify-content: center;
 `;
@@ -1886,12 +1892,12 @@ var Button = forwardRef(
   }
 );
 Button.displayName = "Button";
-var Row2 = styled38(View)`
+var Row2 = styled39(View)`
   flex-direction: row;
   align-items: flex-end;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
 `;
-var Bubble = styled38(View)`
+var Bubble = styled39(View)`
   flex: 1;
   min-width: 0;
   flex-direction: column;
@@ -1904,18 +1910,18 @@ var Bubble = styled38(View)`
   padding-left: ${({ $position, theme: theme2 }) => $position === "left" ? theme2.padding.s : theme2.padding.m}px;
   padding-right: ${({ $position, theme: theme2 }) => $position === "left" ? theme2.padding.m : theme2.padding.s}px;
 `;
-var BubbleInner = styled38(View)`
+var BubbleInner = styled39(View)`
   flex-direction: column;
   gap: 10px;
   align-items: ${({ $position }) => $position === "left" ? "flex-end" : "flex-start"};
 `;
-var TopRow = styled38(View)`
+var TopRow = styled39(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   width: 100%;
 `;
-var MessageText = styled38.Text`
+var MessageText = styled39.Text`
   flex: 1;
   min-width: 0;
   color: ${({ theme: theme2 }) => theme2.content.dark};
@@ -1924,13 +1930,13 @@ var MessageText = styled38.Text`
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   text-align: ${({ $position }) => $position === "left" ? "right" : "left"};
 `;
-var MenuButton = styled38(Pressable)`
+var MenuButton = styled39(Pressable)`
   width: 16px;
   height: 16px;
   align-items: center;
   justify-content: center;
 `;
-var TimeText = styled38.Text`
+var TimeText = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.s}px;
@@ -1986,7 +1992,7 @@ var ChatBubble = forwardRef(
   }
 );
 ChatBubble.displayName = "ChatBubble";
-var Container3 = styled38(Pressable)`
+var Container3 = styled39(Pressable)`
   height: 60px;
   flex-direction: row;
   align-items: center;
@@ -1995,30 +2001,30 @@ var Container3 = styled38(Pressable)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
 `;
-var AvatarRow = styled38(View)`
+var AvatarRow = styled39(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   flex: 1;
   min-width: 0;
 `;
-var TextStack = styled38(View)`
+var TextStack = styled39(View)`
   flex: 1;
   min-width: 0;
 `;
-var Name = styled38.Text`
+var Name = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${typography.badge.s.fontFamily};
   font-size: ${typography.badge.s.fontSize}px;
   font-weight: ${typography.badge.s.fontWeight};
 `;
-var Subtitle2 = styled38.Text`
+var Subtitle2 = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
 `;
-var Badge = styled38(View)`
+var Badge = styled39(View)`
   width: 28px;
   height: 28px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -2026,7 +2032,7 @@ var Badge = styled38(View)`
   justify-content: center;
   background-color: ${({ theme: theme2 }) => theme2.surface.error};
 `;
-var BadgeText = styled38.Text`
+var BadgeText = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${typography.badge.s.fontFamily};
   font-size: ${typography.badge.s.fontSize}px;
@@ -2086,11 +2092,11 @@ var rowBackground = ({
   if ($hasValue) return theme2.surface.medium;
   return theme2.surface.standard;
 };
-var Container4 = styled38(View)`
+var Container4 = styled39(View)`
   flex-direction: column;
   align-self: stretch;
 `;
-var Row3 = styled38(Pressable)`
+var Row3 = styled39(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -2103,14 +2109,14 @@ var Row3 = styled38(Pressable)`
           border-color: ${theme2.content.disable};
         ` : ""};
 `;
-var HoverOverlay2 = styled38(View)`
+var HoverOverlay2 = styled39(View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.hover};
   pointer-events: none;
 `;
-styled38(View)`
+styled39(View)`
   position: absolute;
   top: -2px;
   left: -2px;
@@ -2121,7 +2127,7 @@ styled38(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m + 2}px;
   pointer-events: none;
 `;
-var StyledInput = styled38(TextInput)`
+var StyledInput = styled39(TextInput)`
   flex: 1;
   min-width: 0;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
@@ -2133,13 +2139,13 @@ var StyledInput = styled38(TextInput)`
   outline-width: 0;
   outline-style: none;
 `;
-var IconSlot4 = styled38(View)`
+var IconSlot4 = styled39(View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var IconButton = styled38(Pressable)`
+var IconButton = styled39(Pressable)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -2227,7 +2233,7 @@ var SearchInput = forwardRef(
   }
 );
 SearchInput.displayName = "SearchInput";
-var Container5 = styled38(View)`
+var Container5 = styled39(View)`
   flex-direction: column;
   align-items: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
@@ -2235,7 +2241,7 @@ var Container5 = styled38(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.background};
 `;
-var ListScroll = styled38(ScrollView)`
+var ListScroll = styled39(ScrollView)`
   align-self: stretch;
   max-height: 296px;
   /* Force the scrollbar gutter to always render (not just on overflow) so the
@@ -2263,7 +2269,7 @@ var ListScroll = styled38(ScrollView)`
   scrollbar-width: thin;
   scrollbar-color: ${({ theme: theme2 }) => theme2.surface.high} ${({ theme: theme2 }) => theme2.surface.medium};
 `;
-var ListInner = styled38(View)`
+var ListInner = styled39(View)`
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
 var ChatSection = forwardRef(
@@ -2413,7 +2419,7 @@ var DIMS = {
     locationButton: 36
   }
 };
-var Container6 = styled38(View)`
+var Container6 = styled39(View)`
   flex-direction: column;
   /* Both children (TitleText, DonutWrapper) are individually centered in
      the cross-axis. Reverted from 'stretch' on 2026-05-19 because wide titles
@@ -2425,21 +2431,21 @@ var Container6 = styled38(View)`
   justify-content: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var TitleText2 = styled38.Text`
+var TitleText2 = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ $size }) => $size}px;
   text-align: ${({ $align }) => $align ?? "center"};
 `;
-var DonutWrapper = styled38(View)`
+var DonutWrapper = styled39(View)`
   width: ${({ $size }) => $size}px;
   height: ${({ $size }) => $size}px;
   align-items: center;
   justify-content: center;
   position: relative;
 `;
-var ArcSlot = styled38(View)`
+var ArcSlot = styled39(View)`
   position: absolute;
   top: 0;
   left: 0;
@@ -2448,14 +2454,14 @@ var ArcSlot = styled38(View)`
   align-items: center;
   justify-content: center;
 `;
-var Center = styled38(View)`
+var Center = styled39(View)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
   width: 96px;
 `;
-var ValueText = styled38.Text`
+var ValueText = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
@@ -2467,21 +2473,21 @@ var resolveLabelWeight = ($w, theme2) => {
   if ($w === "bold") return theme2.fontWeight.bold;
   return theme2.fontWeight.medium;
 };
-var LabelText = styled38.Text`
+var LabelText = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ $weight, theme: theme2 }) => resolveLabelWeight($weight, theme2)};
   font-size: ${({ $size, theme: theme2 }) => $size ?? theme2.fontSize.sm}px;
   text-align: center;
 `;
-var Caption = styled38.Text`
+var Caption = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   text-align: center;
 `;
-var LocationButton2 = styled38(Pressable)`
+var LocationButton2 = styled39(Pressable)`
   position: absolute;
   top: 0;
   right: 0;
@@ -2580,7 +2586,7 @@ var DonutChart = forwardRef(
   }
 );
 DonutChart.displayName = "DonutChart";
-var Card3 = styled38(Pressable)`
+var Card3 = styled39(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -2590,7 +2596,7 @@ var Card3 = styled38(Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   ${({ $borderColor }) => $borderColor ? `border-width: 1px; border-color: ${$borderColor};` : ""}
 `;
-var LeftCluster = styled38(View)`
+var LeftCluster = styled39(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.l}px;
@@ -2601,7 +2607,7 @@ var LeftCluster = styled38(View)`
   flex: 1;
   min-width: 0;
 `;
-var UserInfo = styled38(View)`
+var UserInfo = styled39(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
@@ -2610,32 +2616,32 @@ var UserInfo = styled38(View)`
   flex: 1;
   min-width: 0;
 `;
-var TextStack2 = styled38(View)`
+var TextStack2 = styled39(View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var Name2 = styled38.Text`
+var Name2 = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var Sector = styled38.Text`
+var Sector = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var ProgressSlot2 = styled38(View)`
+var ProgressSlot2 = styled39(View)`
   width: 119px;
 `;
-var Divider2 = styled38(View)`
+var Divider2 = styled39(View)`
   width: 1px;
   align-self: stretch;
   background-color: ${({ theme: theme2 }) => theme2.content.medium};
 `;
-var HealthOverview = styled38(View)`
+var HealthOverview = styled39(View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
@@ -2644,12 +2650,12 @@ var HealthOverview = styled38(View)`
    * wrap to a second line. 110px comfortably holds icon + "999 Bpm". */
   width: 110px;
 `;
-var Stat = styled38(View)`
+var Stat = styled39(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
 `;
-var StatText = styled38.Text`
+var StatText = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
@@ -2658,7 +2664,7 @@ var StatText = styled38.Text`
    * HealthOverview column is tighter than expected. Web-only. */
   white-space: nowrap;
 `;
-var LocationButton3 = styled38(Pressable)`
+var LocationButton3 = styled39(Pressable)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -2727,7 +2733,7 @@ var EmployeeOverviewCard = forwardRef(
   }
 );
 EmployeeOverviewCard.displayName = "EmployeeOverviewCard";
-var Card4 = styled38(View)`
+var Card4 = styled39(View)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -2744,13 +2750,13 @@ var Card4 = styled38(View)`
   return theme2.gap.m;
 }}px;
 `;
-var YearText = styled38.Text`
+var YearText = styled39.Text`
   color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.dark};
   font-family: ${({ theme: theme2, $mobile }) => $mobile ? theme2.fontFamily.body : theme2.fontFamily.title};
   font-weight: ${({ theme: theme2, $future }) => $future ? theme2.fontWeight.regular : theme2.fontWeight.bold};
   font-size: ${({ theme: theme2, $mobile }) => $mobile ? theme2.fontSize.m : theme2.fontSize.ms}px;
 `;
-var DateText = styled38.Text`
+var DateText = styled39.Text`
   color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2, $compact, $mobile }) => {
@@ -2768,7 +2774,7 @@ var DateText = styled38.Text`
     width: 240px;
   `}
 `;
-var ExamLink = styled38(Pressable)`
+var ExamLink = styled39(Pressable)`
   ${({ $compact }) => $compact ? `
     flex: 1;
     align-items: flex-start;
@@ -2779,7 +2785,7 @@ var ExamLink = styled38(Pressable)`
     justify-content: center;
   `}
 `;
-var ExamLinkText = styled38.Text`
+var ExamLinkText = styled39.Text`
   color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.secondary};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
@@ -2788,14 +2794,14 @@ var ExamLinkText = styled38.Text`
   text-decoration-line: ${({ $compact }) => $compact ? "none" : "underline"};
   text-decoration-color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.secondary};
 `;
-var CompactActionButton = styled38(Pressable)`
+var CompactActionButton = styled39(Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.primary};
   padding: ${({ theme: theme2, $mobile }) => $mobile ? `${theme2.padding.xs}px` : `${theme2.padding.s}px ${theme2.padding.sm}px`};
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   align-items: center;
   justify-content: center;
 `;
-var DownloadIconSlot = styled38(View)`
+var DownloadIconSlot = styled39(View)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -2895,12 +2901,12 @@ var ExamInfoCard = forwardRef(
   }
 );
 ExamInfoCard.displayName = "ExamInfoCard";
-var Row4 = styled38(View)`
+var Row4 = styled39(View)`
   flex-direction: row;
   align-items: center;
   align-self: flex-start;
 `;
-var VitalsCard = styled38(View)`
+var VitalsCard = styled39(View)`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
@@ -2915,29 +2921,29 @@ var VitalsCard = styled38(View)`
   border-bottom-left-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   margin-right: -32px;
 `;
-var StatsRow = styled38(View)`
+var StatsRow = styled39(View)`
   flex-direction: row;
   align-items: center;
   gap: 10px;
 `;
-var StatItem = styled38(View)`
+var StatItem = styled39(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var StatText2 = styled38.Text`
+var StatText2 = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
 `;
-var StatValueBold = styled38.Text`
+var StatValueBold = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
 `;
-var ProgressSlot3 = styled38(View)`
+var ProgressSlot3 = styled39(View)`
   width: 138px;
 `;
 var HeaderUserInfo = forwardRef(
@@ -3024,7 +3030,7 @@ var Logo = ({
   );
 };
 Logo.displayName = "Logo";
-var Bar = styled38(View)`
+var Bar = styled39(View)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -3224,7 +3230,7 @@ var Title2 = forwardRef(
   }
 );
 Title2.displayName = "Title";
-var Container7 = styled38(Pressable)`
+var Container7 = styled39(Pressable)`
   flex-direction: row;
   align-items: center;
   width: 100%;
@@ -3234,16 +3240,16 @@ var Container7 = styled38(Pressable)`
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var LeftSlot = styled38(View)`
+var LeftSlot = styled39(View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var LabelSlot = styled38(View)`
+var LabelSlot = styled39(View)`
   flex: 1;
 `;
-var RightSlot = styled38(View)`
+var RightSlot = styled39(View)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -3296,13 +3302,13 @@ var SIZE = {
   m: { ring: 24, border: 2, dot: 12 },
   s: { ring: 16, border: 1, dot: 8 }
 };
-var Container8 = styled38(Pressable)`
+var Container8 = styled39(Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var Ring = styled38(View)`
+var Ring = styled39(View)`
   width: ${({ $size }) => SIZE[$size].ring}px;
   height: ${({ $size }) => SIZE[$size].ring}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -3312,13 +3318,13 @@ var Ring = styled38(View)`
   justify-content: center;
   background-color: transparent;
 `;
-var Dot = styled38(View)`
+var Dot = styled39(View)`
   width: ${({ $size }) => SIZE[$size].dot}px;
   height: ${({ $size }) => SIZE[$size].dot}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   background-color: ${({ theme: theme2 }) => theme2.content.secondary};
 `;
-var Label3 = styled38.Text`
+var Label3 = styled39.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
@@ -3365,13 +3371,13 @@ var SIZE2 = {
   m: { box: 24, border: 2, check: 16, label: 14, labelWeight: "400" },
   s: { box: 16, border: 1, check: 12, label: 12, labelWeight: "500" }
 };
-var Container9 = styled38(Pressable)`
+var Container9 = styled39(Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var Box = styled38(View)`
+var Box = styled39(View)`
   width: ${({ $size }) => SIZE2[$size].box}px;
   height: ${({ $size }) => SIZE2[$size].box}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
@@ -3381,14 +3387,14 @@ var Box = styled38(View)`
   justify-content: center;
   background-color: transparent;
 `;
-var Check = styled38.Text`
+var Check = styled39.Text`
   font-size: ${({ $size }) => SIZE2[$size].check}px;
   line-height: ${({ $size }) => SIZE2[$size].check}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   color: ${({ theme: theme2 }) => theme2.content.secondary};
   text-align: center;
 `;
-var Label4 = styled38.Text`
+var Label4 = styled39.Text`
   flex: 1;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ $size }) => SIZE2[$size].label}px;
@@ -3448,7 +3454,7 @@ var rowBackground2 = ({ $focused, $hovered, $disabled, theme: theme2 }) => {
   if ($focused || $hovered) return theme2.surface.medium;
   return theme2.surface.standard;
 };
-var Container10 = styled38(View)`
+var Container10 = styled39(View)`
   flex-direction: column;
   align-self: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
@@ -3459,13 +3465,13 @@ var labelTriplet2 = ($weight, theme2) => {
   const fontWeight2 = weight === "regular" ? theme2.fontWeight.regular : theme2.fontWeight.medium;
   return { fontFamily: theme2.fontFamily.body, fontWeight: fontWeight2, fontSize: theme2.fontSize.m };
 };
-var Label5 = styled38.Text`
+var Label5 = styled39.Text`
   font-family: ${({ $weight, theme: theme2 }) => labelTriplet2($weight, theme2).fontFamily};
   font-weight: ${({ $weight, theme: theme2 }) => labelTriplet2($weight, theme2).fontWeight};
   font-size: ${({ $weight, theme: theme2 }) => labelTriplet2($weight, theme2).fontSize}px;
   color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
 `;
-var Row5 = styled38(Pressable)`
+var Row5 = styled39(Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
@@ -3477,14 +3483,14 @@ var Row5 = styled38(Pressable)`
           border-color: ${theme2.content.disable};
         ` : ""};
 `;
-var HoverOverlay3 = styled38(View)`
+var HoverOverlay3 = styled39(View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.hover};
   pointer-events: none;
 `;
-styled38(View)`
+styled39(View)`
   position: absolute;
   top: -2px;
   left: -2px;
@@ -3495,7 +3501,7 @@ styled38(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m + 2}px;
   pointer-events: none;
 `;
-var StyledInput2 = styled38(TextInput)`
+var StyledInput2 = styled39(TextInput)`
   flex: 1;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
@@ -3506,14 +3512,14 @@ var StyledInput2 = styled38(TextInput)`
   outline-width: 0;
   outline-style: none;
 `;
-var IconSlot5 = styled38(View)`
+var IconSlot5 = styled39(View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
   padding: ${({ theme: theme2 }) => theme2.padding.xs}px;
 `;
-var Description = styled38.Text`
+var Description = styled39.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -3651,18 +3657,18 @@ var triggerBackground = ({
   if ($focused || $hovered) return theme2.surface.medium;
   return theme2.surface.standard;
 };
-var Container11 = styled38(View)`
+var Container11 = styled39(View)`
   flex-direction: column;
   align-self: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var Label6 = styled38.Text`
+var Label6 = styled39.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
   color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
 `;
-var Trigger = styled38(Pressable)`
+var Trigger = styled39(Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
@@ -3670,7 +3676,7 @@ var Trigger = styled38(Pressable)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${(props) => triggerBackground(props)};
 `;
-var TriggerLabel = styled38.Text`
+var TriggerLabel = styled39.Text`
   flex: 1;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
@@ -3681,11 +3687,11 @@ var TriggerLabel = styled38.Text`
   return theme2.content.dark;
 }};
 `;
-styled38.Text`
+styled39.Text`
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
 `;
-var Panel = styled38(View)`
+var Panel = styled39(View)`
   /* Panel renderiza dentro de Modal — posicionamento absoluto vem do View
    * wrapper que computa coords via measureInWindow no Combobox.tsx. Aqui
    * fica só o visual: superfície + borda + padding + sombra. */
@@ -3697,11 +3703,11 @@ var Panel = styled38(View)`
   padding: ${({ theme: theme2 }) => theme2.padding.s}px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
 `;
-var OptionsList = styled38(View)`
+var OptionsList = styled39(View)`
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var OptionRow = styled38(Pressable)`
+var OptionRow = styled39(Pressable)`
   flex-direction: row;
   align-items: center;
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.s}px;
@@ -3710,13 +3716,13 @@ var OptionRow = styled38(Pressable)`
   border-top-color: ${({ theme: theme2 }) => theme2.content.medium};
   background-color: ${({ $hovered, theme: theme2 }) => $hovered ? theme2.surface.hover : "transparent"};
 `;
-var OptionLabel = styled38.Text`
+var OptionLabel = styled39.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
   color: ${({ theme: theme2 }) => theme2.content.dark};
 `;
-var Description2 = styled38.Text`
+var Description2 = styled39.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -3980,10 +3986,10 @@ var textColor = ({
   if ($state === "disable") return theme2.content.disable;
   return $colorScheme === "secondary" ? theme2.content.secondary : theme2.content.primary;
 };
-var Container12 = styled38(Pressable)`
+var Container12 = styled39(Pressable)`
   align-self: flex-start;
 `;
-var Body = styled38(View)`
+var Body = styled39(View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -3995,13 +4001,13 @@ var Body = styled38(View)`
   border-radius: ${({ $variant, theme: theme2 }) => $variant === "filled" ? theme2.border.radius.s : theme2.border.radius.m}px;
   overflow: hidden;
 `;
-var Label7 = styled38.Text`
+var Label7 = styled39.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   color: ${(props) => textColor(props)};
 `;
-var HoverOverlay4 = styled38(View)`
+var HoverOverlay4 = styled39(View)`
   position: absolute;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.05);
@@ -4133,7 +4139,7 @@ var Image2 = forwardRef(
   }
 );
 Image2.displayName = "Image";
-var Container13 = styled38(View)`
+var Container13 = styled39(View)`
   align-self: stretch;
   border-width: 1px;
   border-style: dashed;
@@ -4143,21 +4149,21 @@ var Container13 = styled38(View)`
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
   align-items: center;
 `;
-var HelperText = styled38.Text`
+var HelperText = styled39.Text`
   align-self: stretch;
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
 `;
-var PreviewSlot = styled38(View)`
+var PreviewSlot = styled39(View)`
   align-self: stretch;
   height: 56px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   overflow: hidden;
   background-color: ${({ theme: theme2 }) => theme2.surface.medium};
 `;
-var RemoveButton = styled38(Pressable)`
+var RemoveButton = styled39(Pressable)`
   position: absolute;
   top: 4px;
   right: 4px;
@@ -4254,7 +4260,7 @@ var ImageUploader = forwardRef(
   }
 );
 ImageUploader.displayName = "ImageUploader";
-var ExpandedBar = styled38(View)`
+var ExpandedBar = styled39(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
@@ -4263,27 +4269,27 @@ var ExpandedBar = styled38(View)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   align-self: flex-end;
 `;
-var TitleText3 = styled38.Text`
+var TitleText3 = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var Divider3 = styled38(View)`
+var Divider3 = styled39(View)`
   width: 1px;
   height: 40px;
   background-color: ${({ theme: theme2 }) => theme2.content.medium};
 `;
-var SearchSlot = styled38(View)`
+var SearchSlot = styled39(View)`
   width: 284px;
 `;
-var OptionsRow = styled38(View)`
+var OptionsRow = styled39(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
   padding: ${({ theme: theme2 }) => theme2.padding.sm}px;
 `;
-var TrailingButton = styled38(Pressable)`
+var TrailingButton = styled39(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -4291,7 +4297,7 @@ var TrailingButton = styled38(Pressable)`
   border-top-right-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   border-bottom-right-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
 `;
-var CollapsedButton = styled38(Pressable)`
+var CollapsedButton = styled39(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -4405,14 +4411,14 @@ var MapControl = forwardRef(
   }
 );
 MapControl.displayName = "MapControl";
-var Container14 = styled38(View)`
+var Container14 = styled39(View)`
   align-items: center;
   justify-content: flex-start;
 `;
-var TailWrapper = styled38(View)`
+var TailWrapper = styled39(View)`
   margin-top: -2px;
 `;
-var CameraBody = styled38(View)`
+var CameraBody = styled39(View)`
   ${({ $size, theme: theme2 }) => css`
     width: ${$size}px;
     height: ${$size}px;
@@ -4424,7 +4430,7 @@ var CameraBody = styled38(View)`
     justify-content: center;
   `}
 `;
-var BadgeBody = styled38(View)`
+var BadgeBody = styled39(View)`
   ${({ $size, $fill }) => css`
     width: ${$size}px;
     height: ${$size}px;
@@ -4533,7 +4539,7 @@ var dividerColor = ({
   }
   return accentColor({ $active, $hovered, $disabled, $variant, theme: theme2 });
 };
-var Container15 = styled38(Pressable)`
+var Container15 = styled39(Pressable)`
   height: ${({ $variant }) => $variant === "compact" ? "44px" : $variant === "minimal" ? "60px" : "60px"};
   flex-direction: row;
   align-items: center;
@@ -4545,25 +4551,25 @@ var Container15 = styled38(Pressable)`
   border-radius: ${({ $variant, theme: theme2 }) => $variant === "compact" ? "0px" : `${theme2.border.radius.m}px`};
   background-color: ${(props) => containerBackground2(props)};
 `;
-var HoverOverlay5 = styled38(View)`
+var HoverOverlay5 = styled39(View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ $variant, theme: theme2 }) => $variant === "compact" ? "0px" : `${theme2.border.radius.m}px`};
   background-color: ${({ theme: theme2 }) => theme2.surface.hover};
   pointer-events: none;
 `;
-var LabelGroup = styled38(View)`
+var LabelGroup = styled39(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var IconSlot6 = styled38(View)`
+var IconSlot6 = styled39(View)`
   width: 22px;
   height: 22px;
   align-items: center;
   justify-content: center;
 `;
-var Label8 = styled38.Text`
+var Label8 = styled39.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ $variant, theme: theme2 }) => $variant === "compact" ? `${theme2.fontSize.s}px` : `${theme2.fontSize.m}px`};
@@ -4571,13 +4577,13 @@ var Label8 = styled38.Text`
   text-transform: ${({ $variant }) => $variant === "compact" ? "uppercase" : "none"};
   letter-spacing: ${({ $variant }) => $variant === "compact" ? "0.6px" : "normal"};
 `;
-var Divider4 = styled38(View)`
+var Divider4 = styled39(View)`
   width: 2px;
   height: 100%;
   border-radius: 2px;
   background-color: ${(props) => dividerColor(props)};
 `;
-var BadgeOverlay = styled38(View)`
+var BadgeOverlay = styled39(View)`
   position: absolute;
   top: 0;
   left: ${({ $position }) => $position === "outside-left" ? "-14px" : "0"};
@@ -4590,7 +4596,7 @@ var BadgeOverlay = styled38(View)`
   padding: ${({ theme: theme2 }) => theme2.padding.s}px;
   z-index: 2;
 `;
-var BadgeText2 = styled38.Text`
+var BadgeText2 = styled39.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -4652,7 +4658,138 @@ var MenuItem = forwardRef(
   }
 );
 MenuItem.displayName = "MenuItem";
-var Container16 = styled38(View)`
+
+// src/components/Popover/Popover.placement.ts
+function panelOffsets(align, gap) {
+  const marginTop = Math.max(0, gap);
+  return align === "end" ? { top: "100%", marginTop, right: 0 } : { top: "100%", marginTop, left: 0 };
+}
+function shouldDismiss(target, panel, trigger) {
+  if (!target || !panel) return false;
+  const node = target;
+  if (panel.contains(node)) return false;
+  if (trigger?.contains(node)) return false;
+  return true;
+}
+var Anchor = styled39(View)`
+  position: relative;
+  align-self: flex-start;
+`;
+var Panel2 = styled39(View)`
+  position: absolute;
+  z-index: 100;
+  min-width: ${({ $minWidth }) => $minWidth}px;
+  background-color: ${({ theme: theme2 }) => theme2.surface.high};
+  border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
+  border-width: 1px;
+  border-color: ${({ theme: theme2 }) => theme2.content.medium};
+  padding: ${({ theme: theme2 }) => theme2.padding.s}px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
+`;
+var ItemList = styled39(View)`
+  flex-direction: column;
+  gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
+`;
+var ItemRow = styled39(Pressable)`
+  flex-direction: row;
+  align-items: center;
+  gap: ${({ theme: theme2 }) => theme2.gap.s}px;
+  padding-horizontal: ${({ theme: theme2 }) => theme2.padding.s}px;
+  padding-vertical: 10px;
+  border-radius: ${({ theme: theme2 }) => theme2.border.radius.xs}px;
+  background-color: ${({ $hovered, $disabled, theme: theme2 }) => $hovered && !$disabled ? theme2.surface.hover : "transparent"};
+`;
+var ItemLabel = styled39.Text`
+  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
+  font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
+  font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
+  color: ${({ $color }) => $color};
+`;
+var Separator = styled39(View)`
+  height: 1px;
+  background-color: ${({ theme: theme2 }) => theme2.content.medium};
+  margin-vertical: ${({ theme: theme2 }) => theme2.margin.xs}px;
+`;
+var Popover = forwardRef(
+  ({
+    visible,
+    onDismiss,
+    trigger,
+    align = "start",
+    gap = 4,
+    minWidth = 176,
+    children,
+    accessibilityLabel,
+    testID
+  }, ref) => {
+    const panelRef = useRef(null);
+    const triggerRef = useRef(null);
+    useEffect(() => {
+      if (Platform.OS !== "web" || !visible) return;
+      const onPointerDown = (event) => {
+        const asNode = (r) => r;
+        if (shouldDismiss(event.target, asNode(panelRef.current), asNode(triggerRef.current))) {
+          onDismiss();
+        }
+      };
+      const onKeyDown = (event) => {
+        if (event.key === "Escape") onDismiss();
+      };
+      document.addEventListener("pointerdown", onPointerDown, true);
+      document.addEventListener("keydown", onKeyDown, true);
+      return () => {
+        document.removeEventListener("pointerdown", onPointerDown, true);
+        document.removeEventListener("keydown", onKeyDown, true);
+      };
+    }, [visible, onDismiss]);
+    return /* @__PURE__ */ jsxs(Anchor, { ref, testID, children: [
+      /* @__PURE__ */ jsx(View, { ref: triggerRef, children: trigger }),
+      visible ? /* @__PURE__ */ jsx(
+        Panel2,
+        {
+          ref: panelRef,
+          $minWidth: minWidth,
+          style: panelOffsets(align, gap),
+          accessibilityRole: "menu",
+          accessibilityLabel,
+          testID: testID ? `${testID}-panel` : void 0,
+          children: /* @__PURE__ */ jsx(ItemList, { children })
+        }
+      ) : null
+    ] });
+  }
+);
+Popover.displayName = "Popover";
+var PopoverItem = forwardRef(
+  ({ label, icon, tone = "default", disabled = false, onPress, accessibilityLabel, testID }, ref) => {
+    const theme2 = useTheme();
+    const [hovered, setHovered] = useState(false);
+    const color = disabled ? theme2.content.disable : tone === "destructive" ? theme2.content.error : theme2.content.dark;
+    return /* @__PURE__ */ jsxs(
+      ItemRow,
+      {
+        ref,
+        $hovered: hovered,
+        $disabled: disabled,
+        disabled,
+        onPress: disabled ? void 0 : onPress,
+        onHoverIn: () => setHovered(true),
+        onHoverOut: () => setHovered(false),
+        accessibilityRole: "menuitem",
+        accessibilityLabel: accessibilityLabel ?? label,
+        accessibilityState: { disabled },
+        testID,
+        children: [
+          icon ? /* @__PURE__ */ jsx(Icon, { name: icon, size: 18, color }) : null,
+          /* @__PURE__ */ jsx(ItemLabel, { $color: color, children: label })
+        ]
+      }
+    );
+  }
+);
+PopoverItem.displayName = "PopoverItem";
+var PopoverSeparator = Separator;
+var Container16 = styled39(View)`
   flex-direction: column;
   align-items: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
@@ -4801,7 +4938,7 @@ var Text2 = forwardRef(
   }
 );
 Text2.displayName = "Text";
-var Pill = styled38(View)`
+var Pill = styled39(View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -4810,7 +4947,7 @@ var Pill = styled38(View)`
   background-color: ${({ theme: theme2 }) => theme2.surface.primaryLight};
   min-width: 40px;
 `;
-var Triangle = styled38(View)`
+var Triangle = styled39(View)`
   position: absolute;
   top: -9px;
   left: 50%;
@@ -4841,7 +4978,7 @@ var TimeStamp = forwardRef(
   }
 );
 TimeStamp.displayName = "TimeStamp";
-var Pill2 = styled38(View)`
+var Pill2 = styled39(View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -4866,23 +5003,23 @@ var CaloriesTag = forwardRef(
   }
 );
 CaloriesTag.displayName = "CaloriesTag";
-var ChartFrame = styled38(View)`
+var ChartFrame = styled39(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.medium};
 `;
-var Layer = styled38(View)`
+var Layer = styled39(View)`
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
 `;
-var KcalAnchor = styled38(View)`
+var KcalAnchor = styled39(View)`
   position: absolute;
   width: 0;
   align-items: center;
 `;
-var TimeAnchor = styled38(View)`
+var TimeAnchor = styled39(View)`
   position: absolute;
   width: 0;
   align-items: center;
@@ -5010,18 +5147,18 @@ var LineCaloriesChart = forwardRef(
   }
 );
 LineCaloriesChart.displayName = "LineCaloriesChart";
-var Row6 = styled38(View)`
+var Row6 = styled39(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var SideLabel = styled38.Text`
+var SideLabel = styled39.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   color: ${({ $active, $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : $active ? theme2.content.dark : theme2.content.medium};
 `;
-var Track2 = styled38(Pressable)`
+var Track2 = styled39(Pressable)`
   width: 32px;
   height: 16px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -5031,7 +5168,7 @@ var Track2 = styled38(Pressable)`
   justify-content: ${({ $on }) => $on ? "flex-end" : "flex-start"};
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var Thumb = styled38(View)`
+var Thumb = styled39(View)`
   width: 16px;
   height: 16px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -5151,24 +5288,24 @@ var WeatherIcon = ({
   );
 };
 WeatherIcon.displayName = "WeatherIcon";
-var Row7 = styled38(View)`
+var Row7 = styled39(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var TimePill = styled38(View)`
+var TimePill = styled39(View)`
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.s}px;
   padding-vertical: ${({ theme: theme2 }) => theme2.padding.xs}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
 `;
-var TimeText2 = styled38.Text`
+var TimeText2 = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.s}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
 `;
-var Label9 = styled38.Text`
+var Label9 = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -5191,12 +5328,12 @@ var WeatherEventChip = forwardRef(
   }
 );
 WeatherEventChip.displayName = "WeatherEventChip";
-var Stack = styled38(View)`
+var Stack = styled39(View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.l}px;
 `;
-var IconRow = styled38(View)`
+var IconRow = styled39(View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -5220,16 +5357,16 @@ var WeatherTimelineEntry = forwardRef(
   }
 );
 WeatherTimelineEntry.displayName = "WeatherTimelineEntry";
-var Stack2 = styled38(View)`
+var Stack2 = styled39(View)`
   flex-direction: row;
   align-items: flex-start;
 `;
-var Pole = styled38(View)`
+var Pole = styled39(View)`
   width: 3px;
   height: ${({ $height }) => $height}px;
   background-color: ${({ theme: theme2 }) => theme2.content.dark};
 `;
-var Flag = styled38(View)`
+var Flag = styled39(View)`
   width: 80px;
   height: 30px;
   background-color: ${({ theme: theme2 }) => theme2.content.dark};
@@ -5238,7 +5375,7 @@ var Flag = styled38(View)`
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
 `;
-var FlagText = styled38.Text`
+var FlagText = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.light};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -5277,7 +5414,7 @@ var surfaceForStatus = ({
       return theme2.surface.error;
   }
 };
-var Container17 = styled38(View)`
+var Container17 = styled39(View)`
   align-items: center;
   justify-content: center;
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.m}px;
@@ -5285,7 +5422,7 @@ var Container17 = styled38(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   background-color: ${(props) => surfaceForStatus(props)};
 `;
-var Label10 = styled38.Text`
+var Label10 = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.light};
   font-family: ${typography.badge.s.fontFamily};
   font-size: ${typography.badge.s.fontSize}px;
@@ -5321,7 +5458,7 @@ var StatusTag = forwardRef(
   }
 );
 StatusTag.displayName = "StatusTag";
-var Card5 = styled38(Pressable)`
+var Card5 = styled39(Pressable)`
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
@@ -5330,49 +5467,49 @@ var Card5 = styled38(Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   overflow: hidden;
 `;
-var Title3 = styled38.Text`
+var Title3 = styled39.Text`
   align-self: stretch;
   color: ${({ theme: theme2 }) => theme2.content.primary};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.ms}px;
 `;
-var Section = styled38(View)`
+var Section = styled39(View)`
   align-self: stretch;
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var SectionHeading = styled38.Text`
+var SectionHeading = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${typography.badge.s.fontFamily};
   font-weight: ${typography.badge.s.fontWeight};
   font-size: ${typography.badge.s.fontSize}px;
 `;
-var SectionBody = styled38.Text`
+var SectionBody = styled39.Text`
   align-self: stretch;
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var FooterRow = styled38(View)`
+var FooterRow = styled39(View)`
   align-self: stretch;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 `;
-var AuthorBlock = styled38(View)`
+var AuthorBlock = styled39(View)`
   flex: 1;
   min-width: 0;
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var AuthorRow = styled38(View)`
+var AuthorRow = styled39(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var AuthorName = styled38.Text`
+var AuthorName = styled39.Text`
   flex: 0 1 auto;
   max-width: 80px;
   color: ${({ theme: theme2 }) => theme2.content.dark};
@@ -5380,7 +5517,7 @@ var AuthorName = styled38.Text`
   font-weight: ${typography.badge.s.fontWeight};
   font-size: ${typography.badge.s.fontSize}px;
 `;
-var LocationLabel = styled38.Text`
+var LocationLabel = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.secondary};
   font-family: ${typography.badge.s.fontFamily};
   font-weight: ${typography.badge.s.fontWeight};
@@ -5445,11 +5582,11 @@ var ReportCard = forwardRef(
   }
 );
 ReportCard.displayName = "ReportCard";
-var Container18 = styled38(View)`
+var Container18 = styled39(View)`
   flex-direction: column;
   position: relative;
 `;
-var RulerRow = styled38(View)`
+var RulerRow = styled39(View)`
   position: absolute;
   top: 64px;
   left: 0;
@@ -5460,34 +5597,34 @@ var RulerRow = styled38(View)`
   height: 20px;
   z-index: 1;
 `;
-var RulerLine = styled38(View)`
+var RulerLine = styled39(View)`
   width: 1px;
   height: ${({ $major }) => $major ? 20 : 12}px;
   background-color: ${({ theme: theme2 }) => theme2.content.dark};
   opacity: 0.4;
 `;
-var EventsRow = styled38(View)`
+var EventsRow = styled39(View)`
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
 `;
-var EventColumn = styled38(View)`
+var EventColumn = styled39(View)`
   flex: 1;
   min-width: 200px;
   align-items: flex-start;
   position: relative;
 `;
-styled38(View)`
+styled39(View)`
   flex: 1;
   align-items: center;
   position: relative;
 `;
-var NowFloat = styled38(View)`
+var NowFloat = styled39(View)`
   position: absolute;
   top: 40px;
   z-index: 2;
 `;
-var IntensityRow = styled38(View)`
+var IntensityRow = styled39(View)`
   flex-direction: row;
   height: 12px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -5495,18 +5632,18 @@ var IntensityRow = styled38(View)`
   align-self: stretch;
   margin-top: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var IntensitySegmentView = styled38(View)`
+var IntensitySegmentView = styled39(View)`
   flex: ${({ $flex }) => $flex};
   background-color: ${({ $bg }) => $bg};
 `;
-var ScrollTrack = styled38(View)`
+var ScrollTrack = styled39(View)`
   height: 8px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.l}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.medium};
   margin-top: ${({ theme: theme2 }) => theme2.gap.m}px;
   flex-direction: row;
 `;
-var ScrollThumb = styled38(View)`
+var ScrollThumb = styled39(View)`
   height: 8px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.l}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.high};
@@ -5683,7 +5820,7 @@ var WeatherTimeline = forwardRef(
   }
 );
 WeatherTimeline.displayName = "WeatherTimeline";
-var Card6 = styled38(View)`
+var Card6 = styled39(View)`
   flex-direction: column;
   align-items: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
@@ -5693,85 +5830,85 @@ var Card6 = styled38(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
 `;
-var HeaderRow = styled38(Pressable)`
+var HeaderRow = styled39(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 `;
-var UserInfoCluster = styled38(View)`
+var UserInfoCluster = styled39(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xxl}px;
 `;
-var UserData = styled38(View)`
+var UserData = styled39(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var UserText = styled38(View)`
+var UserText = styled39(View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
   width: 145px;
 `;
-var NameAge = styled38(View)`
+var NameAge = styled39(View)`
   flex-direction: column;
 `;
-var NameText = styled38.Text`
+var NameText = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var AgeText = styled38.Text`
+var AgeText = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var BloodRow = styled38(View)`
+var BloodRow = styled39(View)`
   flex-direction: row;
   align-items: center;
   gap: 5px;
 `;
-var BloodText = styled38.Text`
+var BloodText = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.ms}px;
 `;
-var VerticalDivider = styled38(View)`
+var VerticalDivider = styled39(View)`
   width: 1px;
   height: 56px;
   background-color: ${({ theme: theme2 }) => theme2.content.medium};
 `;
-var HorizontalDivider = styled38(View)`
+var HorizontalDivider = styled39(View)`
   height: 1px;
   align-self: stretch;
   background-color: ${({ theme: theme2 }) => theme2.content.medium};
 `;
-var RoleStack = styled38(View)`
+var RoleStack = styled39(View)`
   flex-direction: column;
   width: 186px;
 `;
-var RolePrimary = styled38.Text`
+var RolePrimary = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var RoleSecondary = styled38.Text`
+var RoleSecondary = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var ActionsRow = styled38(View)`
+var ActionsRow = styled39(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var IconButton2 = styled38(Pressable)`
+var IconButton2 = styled39(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -5779,55 +5916,55 @@ var IconButton2 = styled38(Pressable)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.high};
 `;
-var ChevronWrap2 = styled38(View)`
+var ChevronWrap2 = styled39(View)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.xs}px;
   padding-vertical: ${({ theme: theme2 }) => theme2.padding.sm}px;
 `;
-var ExpandedRow = styled38(View)`
+var ExpandedRow = styled39(View)`
   flex-direction: row;
   align-items: center;
   gap: 51px;
 `;
-var AlertsList = styled38(View)`
+var AlertsList = styled39(View)`
   flex: 1;
   min-width: 0;
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
 `;
-var AlertItem = styled38(View)`
+var AlertItem = styled39(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   align-self: stretch;
 `;
-var AlertContent = styled38(View)`
+var AlertContent = styled39(View)`
   flex: 1;
   min-width: 0;
   flex-direction: column;
   gap: 5px;
 `;
-var AlertTitle = styled38.Text`
+var AlertTitle = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.ms}px;
 `;
-var AlertBody = styled38.Text`
+var AlertBody = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var ActionsColumn = styled38(View)`
+var ActionsColumn = styled39(View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
   width: 280px;
 `;
-var PauseButton = styled38(Pressable)`
+var PauseButton = styled39(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -5836,7 +5973,7 @@ var PauseButton = styled38(Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.accent};
   align-self: stretch;
 `;
-var PauseButtonLabel = styled38.Text`
+var PauseButtonLabel = styled39.Text`
   color: ${({ theme: theme2 }) => theme2.content.light};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
@@ -6564,7 +6701,7 @@ var dotBackground = ({ $state, theme: theme2 }) => {
   if ($state === "current" || $state === "done") return theme2.content.primary;
   return theme2.content.medium;
 };
-var Dot2 = styled38(View)`
+var Dot2 = styled39(View)`
   width: 20px;
   height: 20px;
   border-radius: 10px;
@@ -6572,7 +6709,7 @@ var Dot2 = styled38(View)`
   justify-content: center;
   background-color: ${dotBackground};
 `;
-var Label11 = styled38.Text`
+var Label11 = styled39.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ $state, theme: theme2 }) => $state === "current" ? theme2.fontWeight.bold : theme2.fontWeight.regular};
   font-size: 12px;
@@ -6595,18 +6732,18 @@ var Step = ({ state, number, testID, accessibilityLabel }) => /* @__PURE__ */ js
   }
 );
 Step.displayName = "Step";
-var Container19 = styled38(View)`
+var Container19 = styled39(View)`
   flex-direction: row;
   align-items: center;
   align-self: stretch;
 `;
-var Connector = styled38(View)`
+var Connector = styled39(View)`
   flex: 1;
   height: 4px;
   border-radius: 2px;
   background-color: ${({ $reached, theme: theme2 }) => $reached ? theme2.content.primary : theme2.content.medium};
 `;
-var GradientTrack = styled38(View)`
+var GradientTrack = styled39(View)`
   flex: 1;
   height: 4px;
   border-radius: 2px;
@@ -6642,7 +6779,7 @@ var StepBar = ({ total, current, testID, accessibilityLabel }) => /* @__PURE__ *
   }
 );
 StepBar.displayName = "StepBar";
-var Container20 = styled38(Pressable)`
+var Container20 = styled39(Pressable)`
   flex: 1;
   flex-direction: column;
   align-items: center;
@@ -6655,13 +6792,13 @@ var Container20 = styled38(Pressable)`
   border-width: ${({ $selected, theme: theme2 }) => $selected ? theme2.border.size.m : 0}px;
   border-color: ${({ theme: theme2 }) => theme2.content.primary};
 `;
-var IconSlot7 = styled38(View)`
+var IconSlot7 = styled39(View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var Label12 = styled38.Text`
+var Label12 = styled39.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: 12px;
@@ -6704,7 +6841,7 @@ var GenderSelectionCard = ({
   );
 };
 GenderSelectionCard.displayName = "GenderSelectionCard";
-var Row8 = styled38(View)`
+var Row8 = styled39(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
@@ -6737,18 +6874,18 @@ var GenderSelector = ({
   )
 ] });
 GenderSelector.displayName = "GenderSelector";
-var Container21 = styled38(View)`
+var Container21 = styled39(View)`
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
   align-self: stretch;
 `;
-var SyncRow = styled38(View)`
+var SyncRow = styled39(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   align-self: stretch;
 `;
-var SyncCell = styled38(View)`
+var SyncCell = styled39(View)`
   flex: 1;
   flex-direction: row;
   align-items: center;
@@ -6756,13 +6893,13 @@ var SyncCell = styled38(View)`
   padding: ${({ theme: theme2 }) => theme2.padding.m}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.xs}px;
 `;
-var IconSlot8 = styled38(View)`
+var IconSlot8 = styled39(View)`
   width: 56px;
   height: 56px;
   align-items: center;
   justify-content: center;
 `;
-var Value2 = styled38.Text`
+var Value2 = styled39.Text`
   flex: 1;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
@@ -6770,7 +6907,7 @@ var Value2 = styled38.Text`
   text-align: center;
   color: ${({ $active, theme: theme2 }) => $active ? theme2.content.dark : theme2.content.medium};
 `;
-var Message = styled38.Text`
+var Message = styled39.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: 12px;
@@ -6859,12 +6996,12 @@ var SuccessBadge = ({
   );
 };
 SuccessBadge.displayName = "SuccessBadge";
-var Container22 = styled38(View)`
+var Container22 = styled39(View)`
   flex-direction: row;
   align-items: center;
   ${({ $separated, theme: theme2 }) => $separated ? `gap: ${theme2.gap.s}px;` : ""};
 `;
-var Tab = styled38(Pressable)`
+var Tab = styled39(Pressable)`
   align-items: center;
   justify-content: center;
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.s}px;
@@ -6888,7 +7025,7 @@ var Tab = styled38(Pressable)`
   border-bottom-right-radius: ${({ $last, $separated, theme: theme2 }) => $separated || $last ? theme2.border.radius.m : 0}px;
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var TabLabel = styled38.Text`
+var TabLabel = styled39.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
@@ -7044,7 +7181,7 @@ var variantBackground = ({
       return theme2.surface.infoLight;
   }
 };
-var Container23 = styled38(View)`
+var Container23 = styled39(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
@@ -7052,24 +7189,24 @@ var Container23 = styled38(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${(props) => variantBackground(props)};
 `;
-var MessageContainer = styled38(View)`
+var MessageContainer = styled39(View)`
   flex: 1;
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var Title4 = styled38.Text`
+var Title4 = styled39.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   color: ${({ theme: theme2 }) => theme2.content.light};
 `;
-var Message2 = styled38.Text`
+var Message2 = styled39.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   color: ${({ theme: theme2 }) => theme2.content.light};
 `;
-var CloseButton = styled38(Pressable)`
+var CloseButton = styled39(Pressable)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -7107,14 +7244,14 @@ var Toast = forwardRef(
   }
 );
 Toast.displayName = "Toast";
-var Container24 = styled38(View)`
+var Container24 = styled39(View)`
   flex-direction: row;
   align-items: center;
   width: 100%;
   padding-top: ${({ theme: theme2 }) => theme2.padding.s}px;
   padding-bottom: ${({ theme: theme2 }) => theme2.padding.s}px;
 `;
-var BackSlot = styled38(Pressable)`
+var BackSlot = styled39(Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
@@ -7125,7 +7262,7 @@ var BackSlot = styled38(Pressable)`
   padding-bottom: ${({ theme: theme2 }) => theme2.padding.sm}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
 `;
-var TitleSlot = styled38(View)`
+var TitleSlot = styled39(View)`
   flex: 1;
   align-items: flex-end;
 `;
@@ -7160,6 +7297,6 @@ var TopBar = forwardRef(
 );
 TopBar.displayName = "TopBar";
 
-export { Accordion, ActivitiesOverviewCard, Avatar, AvatarGroup, BackgroundDotsGrid, BigNumbersCard, Button, CaloriesTag, ChatBubble, ChatSection, ChatUserCard, Checkbox, Chip, ChipGroup, Combobox, DonutChart, EmployeeOverviewCard, ExamInfoCard, GenderSelectionCard, GenderSelector, HEART_RATE_BUTTON, HEART_STATUS_OFFSET, Header2 as Header, HeaderUserInfo, HeartStatus, HeartrateStatus, HorizontalCard, Icon, Image2 as Image, ImageUploader, Input, JourneyTheme, LineCaloriesChart, LocationPin, Logo, MapControl, MenuItem, NowMarker, Pagination, ProgressBar, Radio, ReportCard, STATUS_CHART_CANVAS, SearchInput, SideMenu, Silhouette, SmartbandStatus, StatusChart, StatusTag, Step, StepBar, SuccessBadge, Surface, SwiThemeProvider, Tabs, Text2 as Text, TimeStamp, Title2 as Title, Toast, Toggle, TopBar, WeatherEventChip, WeatherIcon, WeatherTimeline, WeatherTimelineEntry, WorkersInfoCard, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
+export { Accordion, ActivitiesOverviewCard, Avatar, AvatarGroup, BackgroundDotsGrid, BigNumbersCard, Button, CaloriesTag, ChatBubble, ChatSection, ChatUserCard, Checkbox, Chip, ChipGroup, Combobox, DonutChart, EmployeeOverviewCard, ExamInfoCard, GenderSelectionCard, GenderSelector, HEART_RATE_BUTTON, HEART_STATUS_OFFSET, Header2 as Header, HeaderUserInfo, HeartStatus, HeartrateStatus, HorizontalCard, Icon, Image2 as Image, ImageUploader, Input, JourneyTheme, LineCaloriesChart, LocationPin, Logo, MapControl, MenuItem, NowMarker, Pagination, Popover, PopoverItem, PopoverSeparator, ProgressBar, Radio, ReportCard, STATUS_CHART_CANVAS, SearchInput, SideMenu, Silhouette, SmartbandStatus, StatusChart, StatusTag, Step, StepBar, SuccessBadge, Surface, SwiThemeProvider, Tabs, Text2 as Text, TimeStamp, Title2 as Title, Toast, Toggle, TopBar, WeatherEventChip, WeatherIcon, WeatherTimeline, WeatherTimelineEntry, WorkersInfoCard, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
 //# sourceMappingURL=index.mjs.map
 //# sourceMappingURL=index.mjs.map

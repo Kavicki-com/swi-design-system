@@ -2,6 +2,7 @@ import * as react_jsx_runtime from 'react/jsx-runtime';
 import React$1, { ReactNode } from 'react';
 import * as react_native from 'react-native';
 import { ViewStyle, View, StyleProp, PressableProps, TextInputProps, TextInput, ImageSourcePropType, Image as Image$1, TextProps as TextProps$1, Text as Text$1, GestureResponderEvent, ViewProps } from 'react-native';
+import * as styled_components_native_dist_types from 'styled-components/native/dist/types';
 
 /**
  * GENERATED FILE — do not edit by hand.
@@ -1006,6 +1007,10 @@ declare const iconPaths: {
         readonly viewBox: "0 -960 960 960";
         readonly d: "M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z";
     };
+    readonly content_copy: {
+        readonly viewBox: "0 -960 960 960";
+        readonly d: "M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z";
+    };
     readonly border_color: {
         readonly viewBox: "0 0 19 20";
         readonly d: "M0 20V16.3636H18.1818V20H0ZM3.63636 12.7273H4.90909L12 5.65909L10.7045 4.36364L3.63636 11.4545V12.7273ZM1.81818 14.5455V10.6818L12 0.522727C12.1667 0.356061 12.3598 0.227273 12.5795 0.136364C12.7992 0.0454546 13.0303 0 13.2727 0C13.5152 0 13.75 0.0454546 13.9773 0.136364C14.2045 0.227273 14.4091 0.363636 14.5909 0.545455L15.8409 1.81818C16.0227 1.98485 16.1553 2.18182 16.2386 2.40909C16.322 2.63636 16.3636 2.87121 16.3636 3.11364C16.3636 3.34091 16.322 3.56439 16.2386 3.78409C16.1553 4.00379 16.0227 4.20455 15.8409 4.38636L5.68182 14.5455H1.81818Z";
@@ -1934,6 +1939,92 @@ interface MenuItemProps {
 
 declare const MenuItem: React$1.ForwardRefExoticComponent<MenuItemProps & React$1.RefAttributes<View>>;
 
+type PopoverAlign = 'start' | 'end';
+
+interface PopoverProps {
+    /**
+     * Visibilidade CONTROLADA pelo consumidor, de proposito. Uma lista de
+     * mensagens tem um popover por bolha, e quem garante que so um fica aberto e
+     * quem conhece a lista, nao cada popover isolado.
+     */
+    visible: boolean;
+    /**
+     * Chamado quando o popover deve fechar por conta propria: clique fora ou
+     * Esc. NAO e chamado quando o proprio consumidor fecha.
+     *
+     * No nativo isso nao acontece: ver a nota de plataforma no Popover.tsx.
+     */
+    onDismiss: () => void;
+    /** O gatilho, renderizado sempre. O painel ancora nele. */
+    trigger: ReactNode;
+    /**
+     * Qual borda do gatilho alinha com a do painel. `start` fixa a esquerda,
+     * `end` fixa a direita. Escolha pelo lado em que o gatilho mora: gatilho na
+     * esquerda pede `start`, na direita pede `end`, e assim o painel cresce para
+     * dentro do conteudo em vez de vazar para fora.
+     */
+    align?: PopoverAlign;
+    /** Respiro entre gatilho e painel. Default 4. */
+    gap?: number;
+    /** Largura minima do painel. Default 176. */
+    minWidth?: number;
+    /**
+     * Conteudo do painel. Tipicamente `PopoverItem`, mas aceita qualquer no: e o
+     * que permite o painel trocar para uma confirmacao no mesmo lugar, em vez de
+     * abrir uma segunda camada por cima.
+     */
+    children: ReactNode;
+    accessibilityLabel?: string;
+    testID?: string;
+}
+/**
+ * `destructive` pinta o item com `content.error`. Existe porque uma acao que
+ * apaga precisa ser lida como diferente ANTES do clique, nao depois.
+ */
+type PopoverItemTone = 'default' | 'destructive';
+interface PopoverItemProps {
+    label: string;
+    icon?: IconName;
+    tone?: PopoverItemTone;
+    disabled?: boolean;
+    onPress?: () => void;
+    accessibilityLabel?: string;
+    testID?: string;
+}
+
+/**
+ * Menu flutuante ancorado num gatilho.
+ *
+ * POSICIONAMENTO — o painel e absoluto DENTRO do wrapper do gatilho, e nao
+ * dentro de um Modal como o dropdown do Combobox. A troca e deliberada: o
+ * Combobox mede o gatilho com `measureInWindow` para desenhar dentro de um
+ * Modal, e `measureInWindow` nao existe no jsdom. O resultado pratico e que
+ * nenhuma tela com Combobox consegue ser testada sem dublar o Combobox
+ * inteiro. Sem Modal e sem medicao, o comportamento deste componente fica sob
+ * teste de verdade no host.
+ *
+ * O preco: o painel obedece ao `overflow` dos ancestrais, entao quem usa
+ * precisa garantir que o container do gatilho nao recorta.
+ *
+ * PLATAFORMA — fechar no clique fora e no Esc depende de listener de
+ * documento, entao vale no web, inclusive react-native-web. No nativo os dois
+ * nao acontecem e o consumidor fecha por acao explicita. Cobrir o nativo pede
+ * a saida por Modal com backdrop, que entra quando o app mobile precisar.
+ */
+declare const Popover: React$1.ForwardRefExoticComponent<PopoverProps & React$1.RefAttributes<View>>;
+/**
+ * Linha de acao do Popover.
+ *
+ * Nao reusa `MenuItem` de proposito: aquele e cromo de navegacao, com largura
+ * fixa de 224px, divisores, badge de contagem e tinta cinza que fica verde no
+ * hover. Servir de linha de menu flutuante exigiria quatro props novas
+ * brigando entre si. Esta linha e modelada no `OptionRow` do Combobox, que ja
+ * e linha de painel flutuante.
+ */
+declare const PopoverItem: React$1.ForwardRefExoticComponent<PopoverItemProps & React$1.RefAttributes<View>>;
+/** Fio entre grupos de itens. Use antes de uma acao destrutiva. */
+declare const PopoverSeparator: styled_components_native_dist_types.IStyledComponentBase<"native", styled_components_native_dist_types.FastOmit<react_native.ViewProps & React$1.RefAttributes<View>, never> & Partial<Pick<react_native.ViewProps & React$1.RefAttributes<View>, never>>> & string;
+
 interface SideMenuItem {
     value: string;
     label: string;
@@ -2548,4 +2639,4 @@ interface TopBarProps {
  */
 declare const TopBar: React$1.ForwardRefExoticComponent<TopBarProps & React$1.RefAttributes<View>>;
 
-export { Accordion, type AccordionProps, ActivitiesOverviewCard, type ActivitiesOverviewCardProps, Avatar, AvatarGroup, type AvatarGroupItem, type AvatarGroupProps, type AvatarProps, type AvatarSize, BackgroundDotsGrid, type BackgroundDotsGridProps, BigNumbersCard, type BigNumbersCardProps, Button, type ButtonProps, CaloriesTag, type CaloriesTagProps, ChatBubble, type ChatBubblePosition, type ChatBubbleProps, ChatSection, type ChatSectionProps, type ChatSectionUser, ChatUserCard, type ChatUserCardProps, Checkbox, type CheckboxProps, type CheckboxSize, Chip, ChipGroup, type ChipGroupMode, type ChipGroupProps, type ChipProps, type ChipState, Combobox, type ComboboxOption, type ComboboxProps, DonutChart, type DonutChartProps, type DonutChartSize, type DonutGradient, EmployeeOverviewCard, type EmployeeOverviewCardEmployee, type EmployeeOverviewCardProps, ExamInfoCard, type ExamInfoCardProps, GenderSelectionCard, type GenderSelectionCardProps, GenderSelector, type GenderSelectorProps, type GenderValue, HEART_RATE_BUTTON, HEART_STATUS_OFFSET, Header, type HeaderProps, HeaderUserInfo, type HeaderUserInfoProps, HeartStatus, type HeartStatusCondition, type HeartStatusProps, HeartrateStatus, type HeartrateStatusCondition, type HeartrateStatusProps, HorizontalCard, type HorizontalCardProps, Icon, type IconName, type IconProps, Image, type ImageProps, type ImageResizeMode, ImageUploader, type ImageUploaderProps, type ImageUploaderValue, Input, type InputProps, type IntensityColor, type IntensitySegment, JourneyTheme, type JourneyThemeProps, LineCaloriesChart, type LineCaloriesChartProps, type LineCaloriesPoint, LocationPin, type LocationPinProps, type LocationPinStatus, Logo, type LogoProps, type LogoSize, type LogoType, MapControl, type MapControlOption, type MapControlProps, type MapControlVariant, MenuItem, type MenuItemProps, NowMarker, type NowMarkerProps, Pagination, type PaginationProps, ProgressBar, type ProgressBarProps, Radio, type RadioProps, type RadioSize, ReportCard, type ReportCardAuthor, type ReportCardProps, STATUS_CHART_CANVAS, SearchInput, type SearchInputProps, SideMenu, type SideMenuItem, type SideMenuProps, Silhouette, type SilhouetteGender, type SilhouetteProps, SmartbandStatus, type SmartbandStatusProps, StatusChart, type StatusChartCondition, type StatusChartProps, StatusTag, type StatusTagProps, type StatusTagStatus, Step, StepBar, type StepBarProps, type StepProps, type StepState, SuccessBadge, type SuccessBadgeProps, Surface, type SurfacePadding, type SurfaceProps, type SurfaceRadius, type SurfaceVariant, SwiThemeProvider, type SwiThemeProviderProps, type TabItem, Tabs, type TabsProps, Text, type TextProps, type TextVariant, type Theme, TimeStamp, type TimeStampProps, Title, type TitleProps, type TitleVariant, Toast, type ToastProps, type ToastVariant, Toggle, type ToggleProps, TopBar, type TopBarProps, type TypographyVariant, type WeatherCondition, WeatherEventChip, type WeatherEventChipProps, WeatherIcon, type WeatherIconProps, type WeatherIconSize, WeatherTimeline, WeatherTimelineEntry, type WeatherTimelineEntryProps, type WeatherTimelineEvent, type WeatherTimelineProps, WorkersInfoCard, type WorkersInfoCardAlert, type WorkersInfoCardEmployee, type WorkersInfoCardProps, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
+export { Accordion, type AccordionProps, ActivitiesOverviewCard, type ActivitiesOverviewCardProps, Avatar, AvatarGroup, type AvatarGroupItem, type AvatarGroupProps, type AvatarProps, type AvatarSize, BackgroundDotsGrid, type BackgroundDotsGridProps, BigNumbersCard, type BigNumbersCardProps, Button, type ButtonProps, CaloriesTag, type CaloriesTagProps, ChatBubble, type ChatBubblePosition, type ChatBubbleProps, ChatSection, type ChatSectionProps, type ChatSectionUser, ChatUserCard, type ChatUserCardProps, Checkbox, type CheckboxProps, type CheckboxSize, Chip, ChipGroup, type ChipGroupMode, type ChipGroupProps, type ChipProps, type ChipState, Combobox, type ComboboxOption, type ComboboxProps, DonutChart, type DonutChartProps, type DonutChartSize, type DonutGradient, EmployeeOverviewCard, type EmployeeOverviewCardEmployee, type EmployeeOverviewCardProps, ExamInfoCard, type ExamInfoCardProps, GenderSelectionCard, type GenderSelectionCardProps, GenderSelector, type GenderSelectorProps, type GenderValue, HEART_RATE_BUTTON, HEART_STATUS_OFFSET, Header, type HeaderProps, HeaderUserInfo, type HeaderUserInfoProps, HeartStatus, type HeartStatusCondition, type HeartStatusProps, HeartrateStatus, type HeartrateStatusCondition, type HeartrateStatusProps, HorizontalCard, type HorizontalCardProps, Icon, type IconName, type IconProps, Image, type ImageProps, type ImageResizeMode, ImageUploader, type ImageUploaderProps, type ImageUploaderValue, Input, type InputProps, type IntensityColor, type IntensitySegment, JourneyTheme, type JourneyThemeProps, LineCaloriesChart, type LineCaloriesChartProps, type LineCaloriesPoint, LocationPin, type LocationPinProps, type LocationPinStatus, Logo, type LogoProps, type LogoSize, type LogoType, MapControl, type MapControlOption, type MapControlProps, type MapControlVariant, MenuItem, type MenuItemProps, NowMarker, type NowMarkerProps, Pagination, type PaginationProps, Popover, type PopoverAlign, PopoverItem, type PopoverItemProps, type PopoverItemTone, type PopoverProps, PopoverSeparator, ProgressBar, type ProgressBarProps, Radio, type RadioProps, type RadioSize, ReportCard, type ReportCardAuthor, type ReportCardProps, STATUS_CHART_CANVAS, SearchInput, type SearchInputProps, SideMenu, type SideMenuItem, type SideMenuProps, Silhouette, type SilhouetteGender, type SilhouetteProps, SmartbandStatus, type SmartbandStatusProps, StatusChart, type StatusChartCondition, type StatusChartProps, StatusTag, type StatusTagProps, type StatusTagStatus, Step, StepBar, type StepBarProps, type StepProps, type StepState, SuccessBadge, type SuccessBadgeProps, Surface, type SurfacePadding, type SurfaceProps, type SurfaceRadius, type SurfaceVariant, SwiThemeProvider, type SwiThemeProviderProps, type TabItem, Tabs, type TabsProps, Text, type TextProps, type TextVariant, type Theme, TimeStamp, type TimeStampProps, Title, type TitleProps, type TitleVariant, Toast, type ToastProps, type ToastVariant, Toggle, type ToggleProps, TopBar, type TopBarProps, type TypographyVariant, type WeatherCondition, WeatherEventChip, type WeatherEventChipProps, WeatherIcon, type WeatherIconProps, type WeatherIconSize, WeatherTimeline, WeatherTimelineEntry, type WeatherTimelineEntryProps, type WeatherTimelineEvent, type WeatherTimelineProps, WorkersInfoCard, type WorkersInfoCardAlert, type WorkersInfoCardEmployee, type WorkersInfoCardProps, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };

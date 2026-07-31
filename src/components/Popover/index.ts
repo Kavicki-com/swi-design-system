@@ -5,4 +5,5 @@ export type {
   PopoverItemTone,
   PopoverAlign,
 } from './Popover.types';
-export { panelOffsets, shouldDismiss } from './Popover.placement';
+export { chooseSide, panelOffsets, shouldDismiss } from './Popover.placement';
+export type { PopoverSide, SideRect } from './Popover.placement';

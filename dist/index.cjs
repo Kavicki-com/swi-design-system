@@ -4668,9 +4668,18 @@ var MenuItem = React12.forwardRef(
 MenuItem.displayName = "MenuItem";
 
 // src/components/Popover/Popover.placement.ts
-function panelOffsets(align, gap) {
-  const marginTop = Math.max(0, gap);
-  return align === "end" ? { top: "100%", marginTop, right: 0 } : { top: "100%", marginTop, left: 0 };
+function panelOffsets(align, gap, side = "bottom") {
+  const respiro = Math.max(0, gap);
+  const horizontal = align === "end" ? { right: 0 } : { left: 0 };
+  return side === "top" ? { bottom: "100%", marginBottom: respiro, ...horizontal } : { top: "100%", marginTop: respiro, ...horizontal };
+}
+function chooseSide(trigger, container, panelHeight, gap) {
+  const respiro = Math.max(0, gap);
+  const espacoAbaixo = container.bottom - trigger.bottom - respiro;
+  const espacoAcima = trigger.top - container.top - respiro;
+  if (panelHeight <= espacoAbaixo) return "bottom";
+  if (panelHeight <= espacoAcima) return "top";
+  return espacoAcima > espacoAbaixo ? "top" : "bottom";
 }
 function shouldDismiss(target, panel, trigger) {
   if (!target || !panel) return false;
@@ -4718,6 +4727,18 @@ var Separator = styled39__default.default(reactNative.View)`
   background-color: ${({ theme: theme2 }) => theme2.content.medium};
   margin-vertical: ${({ theme: theme2 }) => theme2.margin.xs}px;
 `;
+var clippingBounds = (el) => {
+  let node = el.parentElement;
+  while (node) {
+    const { overflowY } = window.getComputedStyle(node);
+    if (overflowY === "auto" || overflowY === "scroll" || overflowY === "hidden") {
+      const rect = node.getBoundingClientRect();
+      return { top: rect.top, bottom: rect.bottom };
+    }
+    node = node.parentElement;
+  }
+  return { top: 0, bottom: window.innerHeight };
+};
 var Popover = React12.forwardRef(
   ({
     visible,
@@ -4732,6 +4753,26 @@ var Popover = React12.forwardRef(
   }, ref) => {
     const panelRef = React12.useRef(null);
     const triggerRef = React12.useRef(null);
+    const [side, setSide] = React12.useState("bottom");
+    React12.useLayoutEffect(() => {
+      if (reactNative.Platform.OS !== "web") return;
+      if (!visible) {
+        setSide("bottom");
+        return;
+      }
+      const panelEl = panelRef.current;
+      const triggerEl = triggerRef.current;
+      if (!panelEl || !triggerEl) return;
+      const rect = triggerEl.getBoundingClientRect();
+      setSide(
+        chooseSide(
+          { top: rect.top, bottom: rect.bottom },
+          clippingBounds(triggerEl),
+          panelEl.offsetHeight,
+          gap
+        )
+      );
+    }, [visible, gap]);
     React12.useEffect(() => {
       if (reactNative.Platform.OS !== "web" || !visible) return;
       const onPointerDown = (event) => {
@@ -4757,7 +4798,7 @@ var Popover = React12.forwardRef(
         {
           ref: panelRef,
           $minWidth: minWidth,
-          style: panelOffsets(align, gap),
+          style: panelOffsets(align, gap, side),
           accessibilityRole: "menu",
           accessibilityLabel,
           testID: testID ? `${testID}-panel` : void 0,

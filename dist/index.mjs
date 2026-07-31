@@ -1,7 +1,7 @@
 import styled39, { css, useTheme as useTheme$1, ThemeProvider } from 'styled-components/native';
 import { Platform, View, Pressable, Text, Image, Animated, Easing, TextInput, ScrollView, Modal, FlatList, PanResponder } from 'react-native';
 import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
-import React12, { forwardRef, useState, useCallback, useRef, useEffect, useMemo, memo, useImperativeHandle, createContext, useId, useContext, Fragment as Fragment$1 } from 'react';
+import React12, { forwardRef, useState, useCallback, useRef, useEffect, useMemo, memo, useImperativeHandle, createContext, useLayoutEffect, useId, useContext, Fragment as Fragment$1 } from 'react';
 import Svg, { Defs, LinearGradient, Stop, Rect } from 'react-native-svg';
 
 // src/theme/ThemeProvider.tsx
@@ -4660,9 +4660,18 @@ var MenuItem = forwardRef(
 MenuItem.displayName = "MenuItem";
 
 // src/components/Popover/Popover.placement.ts
-function panelOffsets(align, gap) {
-  const marginTop = Math.max(0, gap);
-  return align === "end" ? { top: "100%", marginTop, right: 0 } : { top: "100%", marginTop, left: 0 };
+function panelOffsets(align, gap, side = "bottom") {
+  const respiro = Math.max(0, gap);
+  const horizontal = align === "end" ? { right: 0 } : { left: 0 };
+  return side === "top" ? { bottom: "100%", marginBottom: respiro, ...horizontal } : { top: "100%", marginTop: respiro, ...horizontal };
+}
+function chooseSide(trigger, container, panelHeight, gap) {
+  const respiro = Math.max(0, gap);
+  const espacoAbaixo = container.bottom - trigger.bottom - respiro;
+  const espacoAcima = trigger.top - container.top - respiro;
+  if (panelHeight <= espacoAbaixo) return "bottom";
+  if (panelHeight <= espacoAcima) return "top";
+  return espacoAcima > espacoAbaixo ? "top" : "bottom";
 }
 function shouldDismiss(target, panel, trigger) {
   if (!target || !panel) return false;
@@ -4710,6 +4719,18 @@ var Separator = styled39(View)`
   background-color: ${({ theme: theme2 }) => theme2.content.medium};
   margin-vertical: ${({ theme: theme2 }) => theme2.margin.xs}px;
 `;
+var clippingBounds = (el) => {
+  let node = el.parentElement;
+  while (node) {
+    const { overflowY } = window.getComputedStyle(node);
+    if (overflowY === "auto" || overflowY === "scroll" || overflowY === "hidden") {
+      const rect = node.getBoundingClientRect();
+      return { top: rect.top, bottom: rect.bottom };
+    }
+    node = node.parentElement;
+  }
+  return { top: 0, bottom: window.innerHeight };
+};
 var Popover = forwardRef(
   ({
     visible,
@@ -4724,6 +4745,26 @@ var Popover = forwardRef(
   }, ref) => {
     const panelRef = useRef(null);
     const triggerRef = useRef(null);
+    const [side, setSide] = useState("bottom");
+    useLayoutEffect(() => {
+      if (Platform.OS !== "web") return;
+      if (!visible) {
+        setSide("bottom");
+        return;
+      }
+      const panelEl = panelRef.current;
+      const triggerEl = triggerRef.current;
+      if (!panelEl || !triggerEl) return;
+      const rect = triggerEl.getBoundingClientRect();
+      setSide(
+        chooseSide(
+          { top: rect.top, bottom: rect.bottom },
+          clippingBounds(triggerEl),
+          panelEl.offsetHeight,
+          gap
+        )
+      );
+    }, [visible, gap]);
     useEffect(() => {
       if (Platform.OS !== "web" || !visible) return;
       const onPointerDown = (event) => {
@@ -4749,7 +4790,7 @@ var Popover = forwardRef(
         {
           ref: panelRef,
           $minWidth: minWidth,
-          style: panelOffsets(align, gap),
+          style: panelOffsets(align, gap, side),
           accessibilityRole: "menu",
           accessibilityLabel,
           testID: testID ? `${testID}-panel` : void 0,

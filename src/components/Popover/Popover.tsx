@@ -1,8 +1,35 @@
-import React, { forwardRef, useEffect, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Platform, View } from 'react-native';
 import { Icon } from '../Icon';
 import { useTheme } from '../../theme';
-import { panelOffsets, shouldDismiss, type Containable } from './Popover.placement';
+import {
+  chooseSide,
+  panelOffsets,
+  shouldDismiss,
+  type Containable,
+  type PopoverSide,
+  type SideRect,
+} from './Popover.placement';
+
+/**
+ * Retangulo de quem recorta o gatilho: o ancestral mais proximo que nao deixa
+ * o conteudo escapar. Sem nenhum, o limite e a janela.
+ *
+ * Esta e a unica parte do posicionamento que toca no DOM. A decisao em si mora
+ * em `chooseSide`, que e pura e testada.
+ */
+const clippingBounds = (el: HTMLElement): SideRect => {
+  let node: HTMLElement | null = el.parentElement;
+  while (node) {
+    const { overflowY } = window.getComputedStyle(node);
+    if (overflowY === 'auto' || overflowY === 'scroll' || overflowY === 'hidden') {
+      const rect = node.getBoundingClientRect();
+      return { top: rect.top, bottom: rect.bottom };
+    }
+    node = node.parentElement;
+  }
+  return { top: 0, bottom: window.innerHeight };
+};
 import { Anchor, ItemLabel, ItemList, ItemRow, Panel, Separator } from './Popover.styles';
 import type { PopoverItemProps, PopoverProps } from './Popover.types';
 
@@ -42,6 +69,32 @@ export const Popover = forwardRef<View, PopoverProps>(
   ) => {
     const panelRef = useRef<View | null>(null);
     const triggerRef = useRef<View | null>(null);
+    const [side, setSide] = useState<PopoverSide>('bottom');
+
+    // Mede DEPOIS de montar e ANTES de pintar: o painel precisa existir para
+    // ter altura, e trocar de lado depois da pintura seria um salto visivel.
+    //
+    // Fecha voltando para baixo, senao a proxima abertura comeca decidida pelo
+    // que era verdade na anterior.
+    useLayoutEffect(() => {
+      if (Platform.OS !== 'web') return;
+      if (!visible) {
+        setSide('bottom');
+        return;
+      }
+      const panelEl = panelRef.current as unknown as HTMLElement | null;
+      const triggerEl = triggerRef.current as unknown as HTMLElement | null;
+      if (!panelEl || !triggerEl) return;
+      const rect = triggerEl.getBoundingClientRect();
+      setSide(
+        chooseSide(
+          { top: rect.top, bottom: rect.bottom },
+          clippingBounds(triggerEl),
+          panelEl.offsetHeight,
+          gap,
+        ),
+      );
+    }, [visible, gap]);
 
     useEffect(() => {
       if (Platform.OS !== 'web' || !visible) return;
@@ -75,7 +128,7 @@ export const Popover = forwardRef<View, PopoverProps>(
           <Panel
             ref={panelRef}
             $minWidth={minWidth}
-            style={panelOffsets(align, gap)}
+            style={panelOffsets(align, gap, side)}
             accessibilityRole="menu"
             accessibilityLabel={accessibilityLabel}
             testID={testID ? `${testID}-panel` : undefined}

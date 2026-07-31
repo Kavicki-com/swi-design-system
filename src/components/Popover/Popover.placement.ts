@@ -7,16 +7,27 @@
 // modulo, sob teste real. Mesmo padrao do ProgressBar.geometry.ts.
 
 export type PopoverAlign = 'start' | 'end';
+export type PopoverSide = 'bottom' | 'top';
 
 export interface PanelOffsets {
-  /** Sempre '100%': o painel comeca onde o wrapper do gatilho termina. */
-  top: '100%';
-  /** Respiro entre gatilho e painel. */
-  marginTop: number;
+  /** '100%' quando o painel abre para baixo: comeca onde o gatilho termina. */
+  top?: '100%';
+  /** Respiro entre gatilho e painel, abrindo para baixo. */
+  marginTop?: number;
+  /** '100%' quando o painel abre para cima: termina onde o gatilho comeca. */
+  bottom?: '100%';
+  /** Respiro entre gatilho e painel, abrindo para cima. */
+  marginBottom?: number;
   /** Presente so quando align === 'start'. */
   left?: number;
   /** Presente so quando align === 'end'. */
   right?: number;
+}
+
+/** So o eixo vertical importa para escolher o lado. */
+export interface SideRect {
+  top: number;
+  bottom: number;
 }
 
 /** Contrato minimo que o modulo precisa de um no: saber se contem outro. */
@@ -40,11 +51,48 @@ export interface Containable {
  * O `Math.max(0, gap)` nao e decorativo: gap negativo puxaria o painel para
  * cima do proprio gatilho, tapando o que a pessoa acabou de clicar.
  */
-export function panelOffsets(align: PopoverAlign, gap: number): PanelOffsets {
-  const marginTop = Math.max(0, gap);
-  return align === 'end'
-    ? { top: '100%', marginTop, right: 0 }
-    : { top: '100%', marginTop, left: 0 };
+export function panelOffsets(
+  align: PopoverAlign,
+  gap: number,
+  side: PopoverSide = 'bottom',
+): PanelOffsets {
+  const respiro = Math.max(0, gap);
+  const horizontal = align === 'end' ? { right: 0 } : { left: 0 };
+  return side === 'top'
+    ? { bottom: '100%', marginBottom: respiro, ...horizontal }
+    : { top: '100%', marginTop: respiro, ...horizontal };
+}
+
+/**
+ * Para que lado o painel abre.
+ *
+ * Nasceu de um bug medido: no chat, com a conversa rolada ate o fim, o painel
+ * da ultima mensagem caia por baixo da caixa de mensagens e sumia. Abrir
+ * sempre para cima trocaria o problema de lado, porque a primeira mensagem
+ * sumiria por cima.
+ *
+ * A regra prefere BAIXO e so inverte quando precisa: cabendo embaixo, fica
+ * embaixo. Nao cabendo embaixo mas cabendo em cima, sobe. Nao cabendo em lugar
+ * nenhum, escolhe o lado com mais espaco, que e o menos ruim.
+ *
+ * Empate cai em 'bottom' de proposito: em jsdom todo retangulo e zero, e um
+ * empate resolvido para cima faria todo teste de tela medir um painel
+ * invertido que o navegador nunca mostraria.
+ *
+ * Esta funcao nao toca no DOM: quem le os retangulos e o componente, no web.
+ */
+export function chooseSide(
+  trigger: SideRect,
+  container: SideRect,
+  panelHeight: number,
+  gap: number,
+): PopoverSide {
+  const respiro = Math.max(0, gap);
+  const espacoAbaixo = container.bottom - trigger.bottom - respiro;
+  const espacoAcima = trigger.top - container.top - respiro;
+  if (panelHeight <= espacoAbaixo) return 'bottom';
+  if (panelHeight <= espacoAcima) return 'top';
+  return espacoAcima > espacoAbaixo ? 'top' : 'bottom';
 }
 
 /**

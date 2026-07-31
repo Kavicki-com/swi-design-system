@@ -97,6 +97,7 @@ export type {
   PopoverItemProps,
   PopoverItemTone,
   PopoverAlign,
+  PopoverSide,
 } from './components/Popover';
 export { SideMenu } from './components/SideMenu';
 export type { SideMenuProps, SideMenuItem } from './components/SideMenu';

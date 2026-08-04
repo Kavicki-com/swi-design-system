@@ -1,5 +1,9 @@
 import { Pressable, View } from 'react-native';
 import styled, { type DefaultTheme } from 'styled-components/native';
+import {
+  descriptionColor,
+  type DescriptionVariant,
+} from '../../utils/descriptionColor';
 
 export interface TriggerProps {
   $focused: boolean;
@@ -99,9 +103,14 @@ export const OptionLabel = styled.Text`
   color: ${({ theme }) => theme.content.dark};
 `;
 
-export const Description = styled.Text<{ $disabled: boolean }>`
+export interface DescriptionProps {
+  $disabled: boolean;
+  $variant?: DescriptionVariant;
+}
+
+export const Description = styled.Text<DescriptionProps>`
   font-family: ${({ theme }) => theme.fontFamily.body};
   font-weight: ${({ theme }) => theme.fontWeight.medium};
   font-size: ${({ theme }) => theme.fontSize.sm}px;
-  color: ${({ $disabled, theme }) => ($disabled ? theme.content.disable : theme.content.dark)};
+  color: ${(props) => descriptionColor(props)};
 `;

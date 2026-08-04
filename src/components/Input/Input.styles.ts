@@ -1,6 +1,7 @@
 import { Pressable, TextInput, View } from 'react-native';
 import styled, { css, type DefaultTheme } from 'styled-components/native';
 import { typography } from '../../tokens';
+import { descriptionColor } from '../../utils/descriptionColor';
 import type { InputDescriptionVariant, InputLabelWeight } from './Input.types';
 
 export interface RowProps {
@@ -13,18 +14,6 @@ export interface DescriptionProps {
   $disabled: boolean;
   $variant: InputDescriptionVariant;
 }
-
-const descriptionColor = ({
-  $disabled,
-  $variant,
-  theme,
-}: DescriptionProps & { theme: DefaultTheme }) => {
-  if ($disabled) return theme.content.disable;
-  if ($variant === 'success') return theme.content.success;
-  if ($variant === 'error') return theme.content.error;
-  if ($variant === 'warning') return theme.content.warning;
-  return theme.content.dark;
-};
 
 const rowBackground = ({ $focused, $hovered, $disabled, theme }: RowProps & { theme: DefaultTheme }) => {
   if ($disabled) return theme.surface.disable;

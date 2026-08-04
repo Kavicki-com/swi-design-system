@@ -55,6 +55,8 @@ export { HorizontalCard } from './components/HorizontalCard';
 export type { HorizontalCardProps } from './components/HorizontalCard';
 export { Radio } from './components/Radio';
 export type { RadioProps, RadioSize } from './components/Radio';
+export { RadioGroup } from './components/RadioGroup';
+export type { RadioGroupProps, RadioGroupOption } from './components/RadioGroup';
 export { Checkbox } from './components/Checkbox';
 export type { CheckboxProps, CheckboxSize } from './components/Checkbox';
 export { Input } from './components/Input';

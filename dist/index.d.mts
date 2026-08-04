@@ -1542,6 +1542,46 @@ interface RadioProps extends Pick<PressableProps, 'disabled' | 'accessibilityLab
 
 declare const Radio: React$1.ForwardRefExoticComponent<RadioProps & React$1.RefAttributes<View>>;
 
+/**
+ * Variantes da legenda de um campo de formulario.
+ *
+ * Fonte unica pra Input, Combobox, GenderSelector e RadioGroup. Antes cada um
+ * declarava a sua, e a do Combobox ja tinha nascido incompleta.
+ */
+type DescriptionVariant = 'default' | 'success' | 'error' | 'warning';
+
+interface RadioGroupOption {
+    label: string;
+    value: string;
+}
+interface RadioGroupProps {
+    /** Pergunta do grupo, ex. "Pessoa com deficiência?". */
+    label?: string;
+    options: RadioGroupOption[];
+    /** `null` / `undefined` = nada escolhido ainda. */
+    value?: string | null;
+    onChange?: (value: string) => void;
+    /**
+     * Legenda do GRUPO. É aqui que mora a mensagem de obrigatório: o erro
+     * pertence à pergunta, não a uma das opções.
+     */
+    description?: string;
+    descriptionVariant?: DescriptionVariant;
+    size?: RadioSize;
+    disabled?: boolean;
+    accessibilityLabel?: string;
+    testID?: string;
+}
+
+/**
+ * Pergunta de escolha única com N opções.
+ *
+ * Existe porque o erro de um grupo pertence à PERGUNTA, não a uma das opções:
+ * pendurar a legenda num `Radio` deixaria o irmão sem, e a mensagem apareceria
+ * deslocada. Mesma relação de `ChipGroup` com `Chip`.
+ */
+declare const RadioGroup: React$1.ForwardRefExoticComponent<RadioGroupProps & React$1.RefAttributes<View>>;
+
 type CheckboxSize = 's' | 'm';
 interface CheckboxProps extends Pick<PressableProps, 'disabled' | 'accessibilityLabel' | 'accessibilityHint' | 'testID'> {
     checked: boolean;
@@ -1619,6 +1659,12 @@ interface ComboboxOption {
 interface ComboboxProps {
     label?: string;
     description?: string;
+    /**
+     * Cor da legenda. Mesma união do `Input`, e pelo mesmo motivo: sem isto um
+     * Combobox obrigatório em branco não tinha como sinalizar o erro, e a
+     * mensagem saía na cor neutra (QA Mobile #1, etapa 3 do cadastro).
+     */
+    descriptionVariant?: DescriptionVariant;
     placeholder?: string;
     options: ComboboxOption[];
     value?: string;
@@ -2493,6 +2539,12 @@ interface GenderSelectorProps {
     /** Currently selected gender, or `null` if nothing is selected yet. */
     value: GenderValue | null;
     onChange: (value: GenderValue) => void;
+    /**
+     * Legenda do grupo. Sem ela um seletor obrigatório em branco não tinha como
+     * dizer que faltava escolher (QA Mobile #1, etapa 3 do cadastro).
+     */
+    description?: string;
+    descriptionVariant?: DescriptionVariant;
     /** Custom labels for each card. Defaults match Figma. */
     femaleLabel?: string;
     maleLabel?: string;
@@ -2500,7 +2552,7 @@ interface GenderSelectorProps {
 }
 
 declare const GenderSelector: {
-    ({ value, onChange, femaleLabel, maleLabel, testID, }: GenderSelectorProps): react_jsx_runtime.JSX.Element;
+    ({ value, onChange, femaleLabel, maleLabel, description, descriptionVariant, testID, }: GenderSelectorProps): react_jsx_runtime.JSX.Element;
     displayName: string;
 };
 
@@ -2640,4 +2692,4 @@ interface TopBarProps {
  */
 declare const TopBar: React$1.ForwardRefExoticComponent<TopBarProps & React$1.RefAttributes<View>>;
 
-export { Accordion, type AccordionProps, ActivitiesOverviewCard, type ActivitiesOverviewCardProps, Avatar, AvatarGroup, type AvatarGroupItem, type AvatarGroupProps, type AvatarProps, type AvatarSize, BackgroundDotsGrid, type BackgroundDotsGridProps, BigNumbersCard, type BigNumbersCardProps, Button, type ButtonProps, CaloriesTag, type CaloriesTagProps, ChatBubble, type ChatBubblePosition, type ChatBubbleProps, ChatSection, type ChatSectionProps, type ChatSectionUser, ChatUserCard, type ChatUserCardProps, Checkbox, type CheckboxProps, type CheckboxSize, Chip, ChipGroup, type ChipGroupMode, type ChipGroupProps, type ChipProps, type ChipState, Combobox, type ComboboxOption, type ComboboxProps, DonutChart, type DonutChartProps, type DonutChartSize, type DonutGradient, EmployeeOverviewCard, type EmployeeOverviewCardEmployee, type EmployeeOverviewCardProps, ExamInfoCard, type ExamInfoCardProps, GenderSelectionCard, type GenderSelectionCardProps, GenderSelector, type GenderSelectorProps, type GenderValue, HEART_RATE_BUTTON, HEART_STATUS_OFFSET, Header, type HeaderProps, HeaderUserInfo, type HeaderUserInfoProps, HeartStatus, type HeartStatusCondition, type HeartStatusProps, HeartrateStatus, type HeartrateStatusCondition, type HeartrateStatusProps, HorizontalCard, type HorizontalCardProps, Icon, type IconName, type IconProps, Image, type ImageProps, type ImageResizeMode, ImageUploader, type ImageUploaderProps, type ImageUploaderValue, Input, type InputProps, type IntensityColor, type IntensitySegment, JourneyTheme, type JourneyThemeProps, LineCaloriesChart, type LineCaloriesChartProps, type LineCaloriesPoint, LocationPin, type LocationPinProps, type LocationPinStatus, Logo, type LogoProps, type LogoSize, type LogoType, MapControl, type MapControlOption, type MapControlProps, type MapControlVariant, MenuItem, type MenuItemProps, NowMarker, type NowMarkerProps, Pagination, type PaginationProps, Popover, type PopoverAlign, PopoverItem, type PopoverItemProps, type PopoverItemTone, type PopoverProps, PopoverSeparator, type PopoverSide, ProgressBar, type ProgressBarProps, Radio, type RadioProps, type RadioSize, ReportCard, type ReportCardAuthor, type ReportCardProps, STATUS_CHART_CANVAS, SearchInput, type SearchInputProps, SideMenu, type SideMenuItem, type SideMenuProps, Silhouette, type SilhouetteGender, type SilhouetteProps, SmartbandStatus, type SmartbandStatusProps, StatusChart, type StatusChartCondition, type StatusChartProps, StatusTag, type StatusTagProps, type StatusTagStatus, Step, StepBar, type StepBarProps, type StepProps, type StepState, SuccessBadge, type SuccessBadgeProps, Surface, type SurfacePadding, type SurfaceProps, type SurfaceRadius, type SurfaceVariant, SwiThemeProvider, type SwiThemeProviderProps, type TabItem, Tabs, type TabsProps, Text, type TextProps, type TextVariant, type Theme, TimeStamp, type TimeStampProps, Title, type TitleProps, type TitleVariant, Toast, type ToastProps, type ToastVariant, Toggle, type ToggleProps, TopBar, type TopBarProps, type TypographyVariant, type WeatherCondition, WeatherEventChip, type WeatherEventChipProps, WeatherIcon, type WeatherIconProps, type WeatherIconSize, WeatherTimeline, WeatherTimelineEntry, type WeatherTimelineEntryProps, type WeatherTimelineEvent, type WeatherTimelineProps, WorkersInfoCard, type WorkersInfoCardAlert, type WorkersInfoCardEmployee, type WorkersInfoCardProps, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
+export { Accordion, type AccordionProps, ActivitiesOverviewCard, type ActivitiesOverviewCardProps, Avatar, AvatarGroup, type AvatarGroupItem, type AvatarGroupProps, type AvatarProps, type AvatarSize, BackgroundDotsGrid, type BackgroundDotsGridProps, BigNumbersCard, type BigNumbersCardProps, Button, type ButtonProps, CaloriesTag, type CaloriesTagProps, ChatBubble, type ChatBubblePosition, type ChatBubbleProps, ChatSection, type ChatSectionProps, type ChatSectionUser, ChatUserCard, type ChatUserCardProps, Checkbox, type CheckboxProps, type CheckboxSize, Chip, ChipGroup, type ChipGroupMode, type ChipGroupProps, type ChipProps, type ChipState, Combobox, type ComboboxOption, type ComboboxProps, DonutChart, type DonutChartProps, type DonutChartSize, type DonutGradient, EmployeeOverviewCard, type EmployeeOverviewCardEmployee, type EmployeeOverviewCardProps, ExamInfoCard, type ExamInfoCardProps, GenderSelectionCard, type GenderSelectionCardProps, GenderSelector, type GenderSelectorProps, type GenderValue, HEART_RATE_BUTTON, HEART_STATUS_OFFSET, Header, type HeaderProps, HeaderUserInfo, type HeaderUserInfoProps, HeartStatus, type HeartStatusCondition, type HeartStatusProps, HeartrateStatus, type HeartrateStatusCondition, type HeartrateStatusProps, HorizontalCard, type HorizontalCardProps, Icon, type IconName, type IconProps, Image, type ImageProps, type ImageResizeMode, ImageUploader, type ImageUploaderProps, type ImageUploaderValue, Input, type InputProps, type IntensityColor, type IntensitySegment, JourneyTheme, type JourneyThemeProps, LineCaloriesChart, type LineCaloriesChartProps, type LineCaloriesPoint, LocationPin, type LocationPinProps, type LocationPinStatus, Logo, type LogoProps, type LogoSize, type LogoType, MapControl, type MapControlOption, type MapControlProps, type MapControlVariant, MenuItem, type MenuItemProps, NowMarker, type NowMarkerProps, Pagination, type PaginationProps, Popover, type PopoverAlign, PopoverItem, type PopoverItemProps, type PopoverItemTone, type PopoverProps, PopoverSeparator, type PopoverSide, ProgressBar, type ProgressBarProps, Radio, RadioGroup, type RadioGroupOption, type RadioGroupProps, type RadioProps, type RadioSize, ReportCard, type ReportCardAuthor, type ReportCardProps, STATUS_CHART_CANVAS, SearchInput, type SearchInputProps, SideMenu, type SideMenuItem, type SideMenuProps, Silhouette, type SilhouetteGender, type SilhouetteProps, SmartbandStatus, type SmartbandStatusProps, StatusChart, type StatusChartCondition, type StatusChartProps, StatusTag, type StatusTagProps, type StatusTagStatus, Step, StepBar, type StepBarProps, type StepProps, type StepState, SuccessBadge, type SuccessBadgeProps, Surface, type SurfacePadding, type SurfaceProps, type SurfaceRadius, type SurfaceVariant, SwiThemeProvider, type SwiThemeProviderProps, type TabItem, Tabs, type TabsProps, Text, type TextProps, type TextVariant, type Theme, TimeStamp, type TimeStampProps, Title, type TitleProps, type TitleVariant, Toast, type ToastProps, type ToastVariant, Toggle, type ToggleProps, TopBar, type TopBarProps, type TypographyVariant, type WeatherCondition, WeatherEventChip, type WeatherEventChipProps, WeatherIcon, type WeatherIconProps, type WeatherIconSize, WeatherTimeline, WeatherTimelineEntry, type WeatherTimelineEntryProps, type WeatherTimelineEvent, type WeatherTimelineProps, WorkersInfoCard, type WorkersInfoCardAlert, type WorkersInfoCardEmployee, type WorkersInfoCardProps, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };

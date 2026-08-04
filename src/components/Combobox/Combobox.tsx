@@ -38,6 +38,7 @@ export const Combobox = forwardRef<View, ComboboxProps>(
     {
       label,
       description,
+      descriptionVariant = 'default',
       placeholder = 'Select…',
       options,
       value,
@@ -214,7 +215,11 @@ export const Combobox = forwardRef<View, ComboboxProps>(
           </Pressable>
         </Modal>
 
-        {description ? <Description $disabled={disabled}>{description}</Description> : null}
+        {description ? (
+          <Description $disabled={disabled} $variant={descriptionVariant}>
+            {description}
+          </Description>
+        ) : null}
       </Container>
     );
   },

@@ -1,3 +1,5 @@
+import type { DescriptionVariant } from '../../utils/descriptionColor';
+
 export interface ComboboxOption {
   label: string;
   value: string;
@@ -6,6 +8,12 @@ export interface ComboboxOption {
 export interface ComboboxProps {
   label?: string;
   description?: string;
+  /**
+   * Cor da legenda. Mesma união do `Input`, e pelo mesmo motivo: sem isto um
+   * Combobox obrigatório em branco não tinha como sinalizar o erro, e a
+   * mensagem saía na cor neutra (QA Mobile #1, etapa 3 do cadastro).
+   */
+  descriptionVariant?: DescriptionVariant;
   placeholder?: string;
   options: ComboboxOption[];
   value?: string;

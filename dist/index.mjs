@@ -3520,6 +3520,17 @@ var Checkbox = forwardRef(
   }
 );
 Checkbox.displayName = "Checkbox";
+
+// src/components/Input/Input.counter.ts
+function shouldShowCounter(counter, maxLength) {
+  return counter === true && typeof maxLength === "number" && maxLength > 0;
+}
+function resolveLength(value, innerLength) {
+  return typeof value === "string" ? value.length : innerLength;
+}
+function counterText(length, maxLength) {
+  return `${length}/${maxLength}`;
+}
 var rowBackground2 = ({ $focused, $hovered, $disabled, theme: theme2 }) => {
   if ($disabled) return theme2.surface.disable;
   if ($focused || $hovered) return theme2.surface.medium;
@@ -3590,11 +3601,24 @@ var IconSlot5 = styled40(View)`
   justify-content: center;
   padding: ${({ theme: theme2 }) => theme2.padding.xs}px;
 `;
+var BottomRow = styled40(View)`
+  flex-direction: row;
+  align-items: flex-start;
+  gap: ${({ theme: theme2 }) => theme2.gap.m}px;
+`;
 var Description2 = styled40.Text`
+  flex-shrink: 1;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   color: ${(props) => descriptionColor(props)};
+`;
+var Counter = styled40.Text`
+  margin-left: auto;
+  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
+  font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
+  font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
+  color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.medium};
 `;
 var Input = forwardRef(
   ({
@@ -3604,6 +3628,11 @@ var Input = forwardRef(
     descriptionVariant = "default",
     iconRight,
     disabled = false,
+    counter = false,
+    value,
+    defaultValue,
+    maxLength,
+    onChangeText,
     onFocus,
     onBlur,
     ...textInputProps
@@ -3613,6 +3642,10 @@ var Input = forwardRef(
     useImperativeHandle(ref, () => innerRef.current, []);
     const [focused, setFocused] = useState(false);
     const [hovered, setHovered] = useState(false);
+    const [innerLength, setInnerLength] = useState(
+      typeof defaultValue === "string" ? defaultValue.length : 0
+    );
+    const counterLabel = shouldShowCounter(counter, maxLength) && maxLength != null ? counterText(resolveLength(value, innerLength), maxLength) : null;
     const focusInput = () => {
       if (disabled) return;
       innerRef.current?.focus();
@@ -3635,9 +3668,16 @@ var Input = forwardRef(
               {
                 ref: innerRef,
                 ...textInputProps,
+                value,
+                defaultValue,
+                maxLength,
                 $disabled: disabled,
                 editable: !disabled,
                 placeholderTextColor: disabled ? theme2.content.disable : theme2.content.medium,
+                onChangeText: (text) => {
+                  if (value === void 0) setInnerLength(text.length);
+                  onChangeText?.(text);
+                },
                 onFocus: (e) => {
                   setFocused(true);
                   onFocus?.(e);
@@ -3653,7 +3693,10 @@ var Input = forwardRef(
           ]
         }
       ),
-      description ? /* @__PURE__ */ jsx(Description2, { $disabled: disabled, $variant: descriptionVariant, children: description }) : null
+      description || counterLabel ? /* @__PURE__ */ jsxs(BottomRow, { children: [
+        description ? /* @__PURE__ */ jsx(Description2, { $disabled: disabled, $variant: descriptionVariant, children: description }) : null,
+        counterLabel ? /* @__PURE__ */ jsx(Counter, { $disabled: disabled, children: counterLabel }) : null
+      ] }) : null
     ] });
   }
 );

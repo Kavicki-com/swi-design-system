@@ -1614,6 +1614,16 @@ interface InputProps extends Omit<TextInputProps, 'editable' | 'style' | 'placeh
     descriptionVariant?: InputDescriptionVariant;
     iconRight?: ReactNode;
     disabled?: boolean;
+    /**
+     * Mostra o contador `usado/limite` (ex. `128/240`) abaixo do campo,
+     * alinhado a direita, na mesma linha da `description`. Exige `maxLength`;
+     * sem limite o contador nao aparece.
+     *
+     * Caveat (modo NAO controlado): `ref.current?.clear()` limpa o texto sem
+     * disparar onChangeText (comportamento do RN), entao o contador so zera na
+     * proxima digitacao. Controlado (`value`), o contador segue o value sempre.
+     */
+    counter?: boolean;
 }
 
 declare const Input: React$1.ForwardRefExoticComponent<InputProps & React$1.RefAttributes<TextInput>>;

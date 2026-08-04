@@ -106,9 +106,27 @@ export const IconSlot = styled(View)`
   padding: ${({ theme }) => theme.padding.xs}px;
 `;
 
+// Linha inferior compartilhada por legenda e contador: a legenda encolhe e
+// quebra linha; o contador nunca encolhe e vai pra direita por margin auto,
+// com ou sem legenda do lado.
+export const BottomRow = styled(View)`
+  flex-direction: row;
+  align-items: flex-start;
+  gap: ${({ theme }) => theme.gap.m}px;
+`;
+
 export const Description = styled.Text<DescriptionProps>`
+  flex-shrink: 1;
   font-family: ${({ theme }) => theme.fontFamily.body};
   font-weight: ${({ theme }) => theme.fontWeight.medium};
   font-size: ${({ theme }) => theme.fontSize.sm}px;
   color: ${(props) => descriptionColor(props)};
+`;
+
+export const Counter = styled.Text<{ $disabled: boolean }>`
+  margin-left: auto;
+  font-family: ${({ theme }) => theme.fontFamily.body};
+  font-weight: ${({ theme }) => theme.fontWeight.medium};
+  font-size: ${({ theme }) => theme.fontSize.sm}px;
+  color: ${({ $disabled, theme }) => ($disabled ? theme.content.disable : theme.content.medium)};
 `;

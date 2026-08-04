@@ -97,6 +97,18 @@ export const Overview: Story = {
       <Group caption="with trailing icon">
         <Input label="label" defaultValue="input-text" iconRight={<PlaceholderIcon />} />
       </Group>
+      <Group caption="with counter (needs maxLength)">
+        <Input label="label" defaultValue="input-text" maxLength={240} counter />
+      </Group>
+      <Group caption="description + counter share the bottom row">
+        <Input
+          label="label"
+          defaultValue="input-text"
+          description="description"
+          maxLength={240}
+          counter
+        />
+      </Group>
       <Group caption="no label">
         <Input placeholder="input-text" />
       </Group>
@@ -117,6 +129,9 @@ export const WithIcon: Story = {
   args: { value: 'input-text', iconRight: <PlaceholderIcon /> },
 };
 export const NoLabel: Story = { args: { label: undefined, placeholder: 'input-text' } };
+export const WithCounter: Story = {
+  args: { value: 'input-text', maxLength: 240, counter: true },
+};
 export const Disabled: Story = {
   args: { value: 'input-text', description: 'description', disabled: true },
 };

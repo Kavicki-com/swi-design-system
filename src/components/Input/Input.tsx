@@ -1,8 +1,11 @@
 import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { type TextInput as RNTextInput } from 'react-native';
 import { useTheme } from '../../theme';
+import { counterText, resolveLength, shouldShowCounter } from './Input.counter';
 import {
+  BottomRow,
   Container,
+  Counter,
   Description,
   HoverOverlay,
   IconSlot,
@@ -21,6 +24,11 @@ export const Input = forwardRef<RNTextInput, InputProps>(
       descriptionVariant = 'default',
       iconRight,
       disabled = false,
+      counter = false,
+      value,
+      defaultValue,
+      maxLength,
+      onChangeText,
       onFocus,
       onBlur,
       ...textInputProps
@@ -33,6 +41,16 @@ export const Input = forwardRef<RNTextInput, InputProps>(
 
     const [focused, setFocused] = useState(false);
     const [hovered, setHovered] = useState(false);
+
+    // Num Input nao controlado o RN nao reexpoe o texto atual; o contador
+    // depende de observar o onChangeText. Controlado, o `value` e a verdade.
+    const [innerLength, setInnerLength] = useState(
+      typeof defaultValue === 'string' ? defaultValue.length : 0,
+    );
+    const counterLabel =
+      shouldShowCounter(counter, maxLength) && maxLength != null
+        ? counterText(resolveLength(value, innerLength), maxLength)
+        : null;
 
     const focusInput = () => {
       if (disabled) return;
@@ -54,9 +72,18 @@ export const Input = forwardRef<RNTextInput, InputProps>(
           <StyledInput
             ref={innerRef}
             {...textInputProps}
+            value={value}
+            defaultValue={defaultValue}
+            maxLength={maxLength}
             $disabled={disabled}
             editable={!disabled}
             placeholderTextColor={disabled ? theme.content.disable : theme.content.medium}
+            onChangeText={(text) => {
+              // So no modo NAO controlado: controlado, resolveLength le o
+              // value e o update interno seria um render a toa por tecla.
+              if (value === undefined) setInnerLength(text.length);
+              onChangeText?.(text);
+            }}
             onFocus={(e) => {
               setFocused(true);
               onFocus?.(e);
@@ -69,10 +96,15 @@ export const Input = forwardRef<RNTextInput, InputProps>(
           {iconRight ? <IconSlot>{iconRight}</IconSlot> : null}
           {hovered && !focused && !disabled ? <HoverOverlay /> : null}
         </Row>
-        {description ? (
-          <Description $disabled={disabled} $variant={descriptionVariant}>
-            {description}
-          </Description>
+        {description || counterLabel ? (
+          <BottomRow>
+            {description ? (
+              <Description $disabled={disabled} $variant={descriptionVariant}>
+                {description}
+              </Description>
+            ) : null}
+            {counterLabel ? <Counter $disabled={disabled}>{counterLabel}</Counter> : null}
+          </BottomRow>
         ) : null}
       </Container>
     );

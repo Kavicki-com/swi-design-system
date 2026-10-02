@@ -19,6 +19,7 @@ import {
   UserInfo,
 } from './EmployeeOverviewCard.styles';
 import type { EmployeeOverviewCardProps } from './EmployeeOverviewCard.types';
+import { missingReadingLabel, readingText } from '../../utils/reading';
 
 export const EmployeeOverviewCard = forwardRef<View, EmployeeOverviewCardProps>(
   (
@@ -45,7 +46,9 @@ export const EmployeeOverviewCard = forwardRef<View, EmployeeOverviewCardProps>(
         ref={ref}
         onPress={onPress}
         accessibilityRole={onPress ? 'button' : undefined}
-        accessibilityLabel={accessibilityLabel ?? employee.name}
+        accessibilityLabel={
+          accessibilityLabel ?? missingReadingLabel(employee.name, [bpm, pressure]) ?? employee.name
+        }
         testID={testID}
         $borderColor={borderColor}
         style={
@@ -69,11 +72,13 @@ export const EmployeeOverviewCard = forwardRef<View, EmployeeOverviewCardProps>(
           <HealthOverview>
             <Stat>
               <Icon name="favorite_filled" size={24} color={theme.surface.error} />
-              <StatText>{`${bpm} ${bpmUnit}`}</StatText>
+              {/* Sem leitura a unidade continua ao lado ("-- Bpm"): o slot
+                  mantem a largura e o leitor ve que o campo e batimento. */}
+              <StatText>{`${readingText(bpm)} ${bpmUnit}`}</StatText>
             </Stat>
             <Stat>
               <Icon name="pressure_wheel_filled" size={24} color={theme.surface.primary} />
-              <StatText>{pressure}</StatText>
+              <StatText>{readingText(pressure)}</StatText>
             </Stat>
           </HealthOverview>
         </LeftCluster>

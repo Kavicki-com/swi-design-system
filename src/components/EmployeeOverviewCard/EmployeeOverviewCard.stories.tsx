@@ -48,6 +48,12 @@ export const Playground: Story = {};
 
 export const Default: Story = {};
 
+/** Sem leitura do aparelho: "--" no lugar do numero, nunca "0 Bpm". */
+export const NoReading: Story = {
+  name: 'Sem leitura',
+  args: { bpm: null, pressure: null, progress: 0 },
+};
+
 export const HighBpm: Story = {
   args: { bpm: 142, pressure: '14/9', progress: 92 },
 };

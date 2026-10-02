@@ -14,6 +14,7 @@ import {
   VitalsCard,
 } from './HeaderUserInfo.styles';
 import type { HeaderUserInfoProps } from './HeaderUserInfo.types';
+import { missingReadingLabel, readingProgress, readingText } from '../../utils/reading';
 
 export const HeaderUserInfo = forwardRef<View, HeaderUserInfoProps>(
   (
@@ -37,7 +38,7 @@ export const HeaderUserInfo = forwardRef<View, HeaderUserInfoProps>(
     return (
       <Row
         ref={ref}
-        accessibilityLabel={accessibilityLabel}
+        accessibilityLabel={accessibilityLabel ?? missingReadingLabel(undefined, [bpm, pressure])}
         testID={testID}
       >
         <VitalsCard>
@@ -45,17 +46,17 @@ export const HeaderUserInfo = forwardRef<View, HeaderUserInfoProps>(
             <StatItem>
               <Icon name={heartIconName} size={20} color={theme.content.dark} />
               <StatText>
-                <StatValueBold>{bpm} </StatValueBold>
+                <StatValueBold>{readingText(bpm)} </StatValueBold>
                 {bpmUnit}
               </StatText>
             </StatItem>
             <StatItem>
               <Icon name={pressureIconName} size={20} color={theme.content.dark} />
-              <StatValueBold>{pressure}</StatValueBold>
+              <StatValueBold>{readingText(pressure)}</StatValueBold>
             </StatItem>
           </StatsRow>
           <ProgressSlot>
-            <ProgressBar value={progress} />
+            <ProgressBar value={readingProgress(progress)} />
           </ProgressSlot>
         </VitalsCard>
         <Avatar uri={avatarUri} size="l" bordered={bordered} borderColor={borderColor} />

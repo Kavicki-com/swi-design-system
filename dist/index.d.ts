@@ -1381,8 +1381,10 @@ interface EmployeeOverviewCardEmployee {
 interface EmployeeOverviewCardProps {
     employee: EmployeeOverviewCardEmployee;
     progress?: number;
-    bpm: number;
-    pressure: string;
+    /** Batimento; null mostra "--" no lugar do numero (sem leitura). */
+    bpm: number | null;
+    /** Pressao ja formatada; null mostra "--" (sem medicao). */
+    pressure: string | null;
     bpmUnit?: string;
     onLocationPress?: () => void;
     onPress?: () => void;
@@ -1446,9 +1448,12 @@ interface ExamInfoCardProps {
 declare const ExamInfoCard: React$1.ForwardRefExoticComponent<ExamInfoCardProps & React$1.RefAttributes<View>>;
 
 interface HeaderUserInfoProps {
-    bpm: number;
-    pressure: string;
-    progress?: number;
+    /** Batimento; null mostra "--" no lugar do numero (sem leitura). */
+    bpm: number | null;
+    /** Pressao ja formatada; null mostra "--" (sem medicao). */
+    pressure: string | null;
+    /** Preenchimento da barra; null deixa a barra vazia. */
+    progress?: number | null;
     avatarUri?: string;
     bpmUnit?: string;
     accessibilityLabel?: string;
@@ -2154,7 +2159,11 @@ declare const CaloriesTag: React$1.ForwardRefExoticComponent<CaloriesTagProps & 
 
 interface LineCaloriesPoint {
     time: string;
-    kcal: number;
+    /**
+     * null = periodo sem medicao: o ponto ocupa o seu lugar no eixo do tempo,
+     * mas nao e desenhado, e a linha se interrompe ali em vez de atravessar.
+     */
+    kcal: number | null;
 }
 interface LineCaloriesChartProps {
     points: LineCaloriesPoint[];

@@ -49,6 +49,11 @@ export const Default: Story = {};
 export const LowProgress: Story = { args: { progress: 15 } };
 export const HighProgress: Story = { args: { progress: 90 } };
 export const HighBpm: Story = { args: { bpm: 142, pressure: '14/9', progress: 80 } };
+/** Sem aparelho pareado: "--" nos vitais e barra vazia. */
+export const NoReading: Story = {
+  name: 'Sem leitura',
+  args: { bpm: null, pressure: null, progress: null },
+};
 export const NoAvatar: Story = { args: { avatarUri: undefined } };
 
 export const FigmaIcons: Story = {

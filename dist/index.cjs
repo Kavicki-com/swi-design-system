@@ -2678,6 +2678,16 @@ var LocationButton3 = styled40__default.default(reactNative.Pressable)`
   align-items: center;
   justify-content: center;
 `;
+
+// src/utils/reading.ts
+var MISSING_READING = "--";
+var readingText = (value) => value === null || value === void 0 ? MISSING_READING : String(value);
+var readingProgress = (value) => value ?? 0;
+var missingReadingLabel = (base, values) => {
+  const missing = values.some((v) => v === null || v === void 0);
+  if (!missing) return void 0;
+  return base ? `${base}, sem leitura` : "Sem leitura";
+};
 var EmployeeOverviewCard = React12.forwardRef(
   ({
     employee,
@@ -2700,7 +2710,7 @@ var EmployeeOverviewCard = React12.forwardRef(
         ref,
         onPress,
         accessibilityRole: onPress ? "button" : void 0,
-        accessibilityLabel: accessibilityLabel ?? employee.name,
+        accessibilityLabel: accessibilityLabel ?? missingReadingLabel(employee.name, [bpm, pressure]) ?? employee.name,
         testID,
         $borderColor: borderColor2,
         style: fullWidth ? { alignSelf: "stretch", width: "100%" } : { alignSelf: "flex-start", width: 602 },
@@ -2718,11 +2728,11 @@ var EmployeeOverviewCard = React12.forwardRef(
             /* @__PURE__ */ jsxRuntime.jsxs(HealthOverview, { children: [
               /* @__PURE__ */ jsxRuntime.jsxs(Stat, { children: [
                 /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: "favorite_filled", size: 24, color: theme2.surface.error }),
-                /* @__PURE__ */ jsxRuntime.jsx(StatText, { children: `${bpm} ${bpmUnit}` })
+                /* @__PURE__ */ jsxRuntime.jsx(StatText, { children: `${readingText(bpm)} ${bpmUnit}` })
               ] }),
               /* @__PURE__ */ jsxRuntime.jsxs(Stat, { children: [
                 /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: "pressure_wheel_filled", size: 24, color: theme2.surface.primary }),
-                /* @__PURE__ */ jsxRuntime.jsx(StatText, { children: pressure })
+                /* @__PURE__ */ jsxRuntime.jsx(StatText, { children: readingText(pressure) })
               ] })
             ] })
           ] }),
@@ -2973,7 +2983,7 @@ var HeaderUserInfo = React12.forwardRef(
       Row4,
       {
         ref,
-        accessibilityLabel,
+        accessibilityLabel: accessibilityLabel ?? missingReadingLabel(void 0, [bpm, pressure]),
         testID,
         children: [
           /* @__PURE__ */ jsxRuntime.jsxs(VitalsCard, { children: [
@@ -2982,7 +2992,7 @@ var HeaderUserInfo = React12.forwardRef(
                 /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: heartIconName, size: 20, color: theme2.content.dark }),
                 /* @__PURE__ */ jsxRuntime.jsxs(StatText2, { children: [
                   /* @__PURE__ */ jsxRuntime.jsxs(StatValueBold, { children: [
-                    bpm,
+                    readingText(bpm),
                     " "
                   ] }),
                   bpmUnit
@@ -2990,10 +3000,10 @@ var HeaderUserInfo = React12.forwardRef(
               ] }),
               /* @__PURE__ */ jsxRuntime.jsxs(StatItem, { children: [
                 /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: pressureIconName, size: 20, color: theme2.content.dark }),
-                /* @__PURE__ */ jsxRuntime.jsx(StatValueBold, { children: pressure })
+                /* @__PURE__ */ jsxRuntime.jsx(StatValueBold, { children: readingText(pressure) })
               ] })
             ] }),
-            /* @__PURE__ */ jsxRuntime.jsx(ProgressSlot3, { children: /* @__PURE__ */ jsxRuntime.jsx(ProgressBar, { value: progress }) })
+            /* @__PURE__ */ jsxRuntime.jsx(ProgressSlot3, { children: /* @__PURE__ */ jsxRuntime.jsx(ProgressBar, { value: readingProgress(progress) }) })
           ] }),
           /* @__PURE__ */ jsxRuntime.jsx(Avatar, { uri: avatarUri, size: "l", bordered, borderColor: borderColor2 })
         ]
@@ -5198,21 +5208,33 @@ var TIMESTAMP_GAP = 10;
 var KCAL_TAG_HEIGHT = 20;
 var CURVE_TENSION = 0.35;
 var layoutPoints = (points, width, height) => {
-  if (points.length === 0) return [];
-  const kcals = points.map((p) => p.kcal);
+  const kcals = points.flatMap((p) => p.kcal === null ? [] : [p.kcal]);
+  if (kcals.length === 0) return [];
   const minKcal = Math.min(...kcals);
   const maxKcal = Math.max(...kcals);
   const range = maxKcal - minKcal || 1;
   const innerW = Math.max(0, width - CHART_PADDING_X * 2);
   const innerH = Math.max(0, height - CHART_PADDING_TOP - CHART_PADDING_BOTTOM);
-  return points.map((p, i) => {
+  return points.flatMap((p, i) => {
+    if (p.kcal === null) return [];
     const t = points.length === 1 ? 0.5 : i / (points.length - 1);
     const x = CHART_PADDING_X + t * innerW;
     const norm = (p.kcal - minKcal) / range;
     const y = CHART_PADDING_TOP + (1 - norm) * innerH;
-    return { index: i, x, y, time: p.time, kcal: p.kcal };
+    return [{ index: i, x, y, time: p.time, kcal: p.kcal }];
   });
 };
+var segmentsOf = (laid) => {
+  const segments = [];
+  for (const p of laid) {
+    const current = segments[segments.length - 1];
+    const prev = current?.[current.length - 1];
+    if (current && prev && p.index === prev.index + 1) current.push(p);
+    else segments.push([p]);
+  }
+  return segments;
+};
+var segmentedPath = (laid) => segmentsOf(laid).map(linePath).filter((d) => d !== "").join(" ");
 var linePath = (laid) => {
   if (laid.length === 0) return "";
   const head = laid[0];
@@ -5246,7 +5268,7 @@ var LineCaloriesChart = React12.forwardRef(
   }, ref) => {
     const theme2 = useTheme();
     const laid = layoutPoints(points, width, height);
-    const d = linePath(laid);
+    const d = segmentedPath(laid);
     const gradId = useSvgId("calories-stroke");
     return /* @__PURE__ */ jsxRuntime.jsxs(
       ChartFrame,

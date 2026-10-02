@@ -18,7 +18,7 @@ import {
   KCAL_TAG_HEIGHT,
   TIMESTAMP_GAP,
   layoutPoints,
-  linePath,
+  segmentedPath,
 } from './LineCaloriesChart.utils';
 
 const DEFAULT_WIDTH = 1013;
@@ -38,7 +38,7 @@ export const LineCaloriesChart = forwardRef<View, LineCaloriesChartProps>(
     ref,
   ) => {
     const laid = layoutPoints(points, width, height);
-    const d = linePath(laid);
+    const d = segmentedPath(laid);
 
     return (
       <ChartFrame

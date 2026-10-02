@@ -63,6 +63,21 @@ export const ShortDay: Story = {
   },
 };
 
+/** Periodo sem medicao no meio: a linha se interrompe, sem ponto inventado. */
+export const WithGap: Story = {
+  name: 'Com buraco (sem medicao)',
+  args: {
+    points: [
+      { time: '08:00', kcal: 30 },
+      { time: '10:00', kcal: 55 },
+      { time: '12:00', kcal: null },
+      { time: '14:00', kcal: null },
+      { time: '16:00', kcal: 42 },
+      { time: '18:00', kcal: 18 },
+    ],
+  },
+};
+
 export const FullWidth: Story = {
   args: { fullWidth: true },
   decorators: [(StoryComp) => <View style={{ width: 1100 }}><StoryComp /></View>],

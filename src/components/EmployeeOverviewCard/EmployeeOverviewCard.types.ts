@@ -9,8 +9,10 @@ export interface EmployeeOverviewCardEmployee {
 export interface EmployeeOverviewCardProps {
   employee: EmployeeOverviewCardEmployee;
   progress?: number;
-  bpm: number;
-  pressure: string;
+  /** Batimento; null mostra "--" no lugar do numero (sem leitura). */
+  bpm: number | null;
+  /** Pressao ja formatada; null mostra "--" (sem medicao). */
+  pressure: string | null;
   bpmUnit?: string;
   onLocationPress?: () => void;
   onPress?: () => void;

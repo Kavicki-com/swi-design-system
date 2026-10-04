@@ -2396,7 +2396,7 @@ interface TextProps extends TextProps$1 {
 
 declare const Text: React$1.ForwardRefExoticComponent<TextProps & React$1.RefAttributes<Text$1>>;
 
-type StatusChartCondition = 'good' | 'alert' | 'low';
+type StatusChartCondition = 'good' | 'alert' | 'low' | 'neutral';
 /**
  * StatusChart size preset:
  * - `default`: 360×374 canvas — the dashboard size, matches the original
@@ -2408,6 +2408,16 @@ type StatusChartCondition = 'good' | 'alert' | 'low';
  */
 type StatusChartSize = 'default' | 'compact';
 interface StatusChartProps {
+    /**
+     * Condição que colore a silhueta, a barra, o pontilhado, o ícone do botão
+     * de batimento e o selo do peito. Default `good`.
+     * - `good` | `alert` | `low`: há leitura, e a cor diz como ela está.
+     * - `neutral`: SEM LEITURA (sem aparelho, leitura velha, falha de rede).
+     *   Nenhuma cor de estado: a silhueta fica em cinza, a barra e o ícone em
+     *   `content.medium`, e o selo do peito não é desenhado, nem com
+     *   `renderHeartStatus` verdadeiro. Use no lugar de `good` quando não há
+     *   dado: pintar de verde sem leitura é afirmar um "bom" que ninguém mediu.
+     */
     condition?: StatusChartCondition;
     /**
      * Status condition bar fill, expressed as a value in [0, 1]. The bar
@@ -2435,6 +2445,7 @@ interface StatusChartProps {
      * multiply) on top of the silhouette WITHOUT colorizing the heart badge.
      * The consumer is then responsible for rendering `<HeartStatus>` manually
      * AFTER the overlay, using `HEART_STATUS_OFFSET` for positioning.
+     * Na condição `neutral` o selo nunca aparece, qualquer que seja este valor.
      */
     renderHeartStatus?: boolean;
     /**

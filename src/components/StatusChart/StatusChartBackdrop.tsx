@@ -190,6 +190,9 @@ export const StatusChartBackdrop = ({
           <Stop offset="1" stopColor={p.gradientTo} />
         </LinearGradient>
 
+        {/* Gradiente do crescente (status-condition-bar). Lê barFrom/barTo, que
+            em good, alert e low repetem os stops da silhueta; só a `neutral`
+            dá cor própria à barra. Manter igual ao gêmeo .web.tsx. */}
         <LinearGradient
           id={crescentGradId}
           x1={CRESCENT_X + 98.2529}
@@ -198,8 +201,8 @@ export const StatusChartBackdrop = ({
           y2={CRESCENT_Y + 196.506}
           gradientUnits="userSpaceOnUse"
         >
-          <Stop offset="0" stopColor={p.gradientFrom} />
-          <Stop offset="1" stopColor={p.gradientTo} />
+          <Stop offset="0" stopColor={p.barFrom} />
+          <Stop offset="1" stopColor={p.barTo} />
         </LinearGradient>
 
         <ClipPath id={progressClipId}>

@@ -216,7 +216,8 @@ export const StatusChart = ({
           Renderizado FORA do StatusChartBackdrop pra evitar problemas de
           interação entre gradient userSpaceOnUse e path transform em RN-SVG
           iOS. No `good`, match exato com my-stats SILHOUETTE_BODY_SVG;
-          alert/low trocam os stops via palette (Figma 304:2356). */}
+          alert/low trocam os stops via palette (Figma 304:2356), e a
+          `neutral` (sem leitura) usa stops neutros. */}
       <View
         pointerEvents="none"
         style={{
@@ -233,8 +234,10 @@ export const StatusChart = ({
       {/* Heart-status badge over the chest. Skipped when consumer passes
           `renderHeartStatus={false}` — the consumer is then expected to
           render `<HeartStatus>` manually after any post-silhouette overlay
-          (e.g. mix-blend-mode:multiply) using HEART_STATUS_OFFSET. */}
-      {renderHeartStatus ? (
+          (e.g. mix-blend-mode:multiply) using HEART_STATUS_OFFSET.
+          Na condição `neutral` a palette devolve heartStatus nulo e o selo
+          some: sem leitura não há o que o selo afirmar. */}
+      {renderHeartStatus && p.heartStatus !== null ? (
         <View
           style={{
             position: 'absolute',

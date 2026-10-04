@@ -26,8 +26,12 @@ export const STATUS_GAUGE = {
  *           o usuário pediu com o SVG raw)
  *   alert → surface.error→errorLight
  *   low   → surface.info→infoLight
- * Mesmos pares que o crescente (StatusChartBackdrop) já aplica — silhueta e
- * crescente andam juntos por variante, como no Figma.
+ *   neutral → surface.high→surface.grey (sem leitura; não tem variante no
+ *           Figma, é a good com cores neutras)
+ * Em good, alert e low são os mesmos pares que o crescente
+ * (StatusChartBackdrop) aplica: silhueta e crescente andam juntos por
+ * variante, como no Figma. Na neutral o crescente tem cor própria
+ * (palette.barFrom/barTo).
  */
 export const silhouetteBodyXml = (gradientFrom: string, gradientTo: string) =>
   `<svg width="77" height="263" viewBox="0 0 77 263" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="${STATUS_GAUGE.d}" fill="url(#paint0_linear_silhouette)"/><defs><linearGradient id="paint0_linear_silhouette" x1="38.4836" y1="0" x2="38.4836" y2="262.318" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${gradientFrom}"/><stop offset="1" stop-color="${gradientTo}"/></linearGradient></defs></svg>`;

@@ -6344,6 +6344,8 @@ var palette = (theme2, condition) => {
       return {
         gradientFrom: theme2.surface.error,
         gradientTo: theme2.surface.errorLight,
+        barFrom: theme2.surface.error,
+        barTo: theme2.surface.errorLight,
         accent: theme2.surface.error,
         backgroundTint: theme2.surface.errorLight,
         heartStatus: "alert"
@@ -6352,15 +6354,32 @@ var palette = (theme2, condition) => {
       return {
         gradientFrom: theme2.surface.info,
         gradientTo: theme2.surface.infoLight,
+        barFrom: theme2.surface.info,
+        barTo: theme2.surface.infoLight,
         accent: theme2.surface.info,
         backgroundTint: theme2.surface.infoLight,
         heartStatus: "low"
+      };
+    // Sem leitura: clone da good com as cores de estado trocadas por neutras
+    // e sem selo. Não tem variante no Figma; nasceu pra o app parar de pintar
+    // de verde (um falso "bom") quando não há dado.
+    case "neutral":
+      return {
+        gradientFrom: theme2.surface.high,
+        gradientTo: theme2.surface.grey,
+        barFrom: theme2.content.medium,
+        barTo: theme2.content.medium,
+        accent: theme2.content.medium,
+        backgroundTint: theme2.surface.grey,
+        heartStatus: null
       };
     case "good":
     default:
       return {
         gradientFrom: theme2.surface.success,
         gradientTo: theme2.surface.successLight,
+        barFrom: theme2.surface.success,
+        barTo: theme2.surface.successLight,
         accent: theme2.surface.success,
         backgroundTint: theme2.surface.successLight,
         heartStatus: "check"
@@ -6370,7 +6389,8 @@ var palette = (theme2, condition) => {
 var conditionLabel2 = {
   good: "good",
   alert: "alert",
-  low: "low"
+  low: "low",
+  neutral: "neutral"
 };
 
 // src/components/StatusChart/StatusChart.paths.ts
@@ -6479,8 +6499,8 @@ var StatusChartBackdrop = ({
               y2: CRESCENT_Y + 196.506,
               gradientUnits: "userSpaceOnUse",
               children: [
-                /* @__PURE__ */ jsx("stop", { offset: "0", stopColor: p.gradientFrom }),
-                /* @__PURE__ */ jsx("stop", { offset: "1", stopColor: p.gradientTo })
+                /* @__PURE__ */ jsx("stop", { offset: "0", stopColor: p.barFrom }),
+                /* @__PURE__ */ jsx("stop", { offset: "1", stopColor: p.barTo })
               ]
             }
           ),
@@ -6730,7 +6750,7 @@ var StatusChart = ({
             children: /* @__PURE__ */ jsx(SilhouetteBody, { xml: silhouetteXml })
           }
         ),
-        renderHeartStatus ? /* @__PURE__ */ jsx(
+        renderHeartStatus && p.heartStatus !== null ? /* @__PURE__ */ jsx(
           View,
           {
             style: {

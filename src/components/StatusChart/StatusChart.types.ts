@@ -1,6 +1,6 @@
 import type { GestureResponderEvent } from 'react-native';
 
-export type StatusChartCondition = 'good' | 'alert' | 'low';
+export type StatusChartCondition = 'good' | 'alert' | 'low' | 'neutral';
 
 /**
  * StatusChart size preset:
@@ -14,6 +14,16 @@ export type StatusChartCondition = 'good' | 'alert' | 'low';
 export type StatusChartSize = 'default' | 'compact';
 
 export interface StatusChartProps {
+  /**
+   * Condição que colore a silhueta, a barra, o pontilhado, o ícone do botão
+   * de batimento e o selo do peito. Default `good`.
+   * - `good` | `alert` | `low`: há leitura, e a cor diz como ela está.
+   * - `neutral`: SEM LEITURA (sem aparelho, leitura velha, falha de rede).
+   *   Nenhuma cor de estado: a silhueta fica em cinza, a barra e o ícone em
+   *   `content.medium`, e o selo do peito não é desenhado, nem com
+   *   `renderHeartStatus` verdadeiro. Use no lugar de `good` quando não há
+   *   dado: pintar de verde sem leitura é afirmar um "bom" que ninguém mediu.
+   */
   condition?: StatusChartCondition;
   /**
    * Status condition bar fill, expressed as a value in [0, 1]. The bar
@@ -41,6 +51,7 @@ export interface StatusChartProps {
    * multiply) on top of the silhouette WITHOUT colorizing the heart badge.
    * The consumer is then responsible for rendering `<HeartStatus>` manually
    * AFTER the overlay, using `HEART_STATUS_OFFSET` for positioning.
+   * Na condição `neutral` o selo nunca aparece, qualquer que seja este valor.
    */
   renderHeartStatus?: boolean;
   /**

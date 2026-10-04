@@ -8,7 +8,10 @@ const meta: Meta<typeof StatusChart> = {
   component: StatusChart,
   args: { condition: 'good', progress: 1 },
   argTypes: {
-    condition: { control: { type: 'inline-radio' }, options: ['good', 'alert', 'low'] },
+    condition: {
+      control: { type: 'inline-radio' },
+      options: ['good', 'alert', 'low', 'neutral'],
+    },
     progress: { control: { type: 'range', min: 0, max: 1, step: 0.01 } },
     accessibilityLabel: { control: 'text' },
     onPressHeartRate: { action: 'pressHeartRate' },
@@ -37,6 +40,8 @@ export const Playground: Story = {};
 export const Good: Story = { args: { condition: 'good' } };
 export const Alert: Story = { args: { condition: 'alert' } };
 export const Low: Story = { args: { condition: 'low' } };
+// Sem leitura: nenhuma cor de estado e sem selo no peito.
+export const Neutral: Story = { args: { condition: 'neutral' } };
 
 export const Overview: Story = {
   name: 'Overview — all conditions',
@@ -54,6 +59,10 @@ export const Overview: Story = {
       <View style={{ gap: 12 }}>
         <Caption>low</Caption>
         <StatusChart condition="low" />
+      </View>
+      <View style={{ gap: 12 }}>
+        <Caption>neutral (sem leitura)</Caption>
+        <StatusChart condition="neutral" />
       </View>
     </View>
   ),

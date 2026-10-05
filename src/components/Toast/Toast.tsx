@@ -1,8 +1,11 @@
 import React, { forwardRef } from 'react';
 import { type View } from 'react-native';
 import { useTheme } from '../../theme';
+import { Button } from '../Button';
+import { actionBackground } from './Toast.action';
 import { CloseIcon, StatusIcon } from './Toast.icons';
 import {
+  ActionSlot,
   CloseButton,
   Container,
   Message,
@@ -13,7 +16,7 @@ import type { ToastProps } from './Toast.types';
 
 export const Toast = forwardRef<View, ToastProps>(
   (
-    { variant = 'info', title, message, onClose, accessibilityLabel, testID },
+    { variant = 'info', title, message, action, onClose, accessibilityLabel, testID },
     ref,
   ) => {
     const theme = useTheme();
@@ -30,11 +33,23 @@ export const Toast = forwardRef<View, ToastProps>(
           <Title>{title}</Title>
           {message ? <Message>{message}</Message> : null}
         </MessageContainer>
+        {action ? (
+          <ActionSlot>
+            <Button
+              variant="contained"
+              elevation="lg"
+              label={action.label}
+              onPress={action.onPress}
+              accessibilityLabel={action.accessibilityLabel}
+              backgroundColor={actionBackground(variant, theme)}
+            />
+          </ActionSlot>
+        ) : null}
         {onClose ? (
           <CloseButton
             onPress={onClose}
             accessibilityRole="button"
-            accessibilityLabel="Close"
+            accessibilityLabel="Fechar"
           >
             <CloseIcon color={theme.content.light} />
           </CloseButton>

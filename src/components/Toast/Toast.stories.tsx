@@ -62,3 +62,39 @@ export const Warning: Story = { args: { variant: 'warning', title: 'Warning', on
 export const Info: Story = { args: { variant: 'info', title: 'Info', onClose: () => {} } };
 export const TitleOnly: Story = { args: { message: undefined, onClose: () => {} } };
 export const NoCloseButton: Story = { args: { onClose: undefined } };
+
+// Botão de ação no fim da faixa, como o alerta de chuva do painel (Figma
+// Desktop 103:10746). Lá o botão ocupa o lugar do fechar.
+export const WithAction: Story = {
+  decorators: [
+    (StoryComp) => (
+      <View style={{ width: 494 }}>
+        <StoryComp />
+      </View>
+    ),
+  ],
+  args: {
+    variant: 'error',
+    title: 'Alerta de Chuvas intensas',
+    message: 'O colaborador José Santos Setor f32 - está em risco',
+    action: { label: 'Evacuar área', onPress: () => {} },
+    onClose: undefined,
+  },
+};
+
+export const WithActionAndClose: Story = {
+  decorators: [
+    (StoryComp) => (
+      <View style={{ width: 494 }}>
+        <StoryComp />
+      </View>
+    ),
+  ],
+  args: {
+    variant: 'error',
+    title: 'Title',
+    message: 'A short helper message.',
+    action: { label: 'Action', onPress: () => {} },
+    onClose: () => {},
+  },
+};

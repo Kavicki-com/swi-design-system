@@ -1778,6 +1778,25 @@ var PressedOverlay = styled40__default.default(reactNative.View)`
   border-radius: ${({ $shape, theme: theme2 }) => radius($shape, theme2)}px;
   pointer-events: none;
 `;
+var Badge = styled40__default.default(reactNative.View)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 ${({ theme: theme2 }) => theme2.padding.xs}px;
+  border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
+  background-color: ${({ theme: theme2 }) => theme2.surface.error};
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+`;
+var BadgeText = styled40__default.default.Text`
+  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
+  font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
+  font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
+  color: ${({ theme: theme2 }) => theme2.content.light};
+`;
 var labelColor = ({
   $variant,
   $hovered,
@@ -1838,7 +1857,8 @@ var Button = React12.forwardRef(
     onLongPress,
     accessibilityLabel,
     accessibilityHint,
-    testID
+    testID,
+    badge
   }, ref) => {
     const [hovered, setHovered] = React12.useState(false);
     const [pressed, setPressed] = React12.useState(false);
@@ -1848,6 +1868,7 @@ var Button = React12.forwardRef(
     const showHoverOverlay = variant === "contained" && hovered && !pressed && !disabled;
     const showPressedOverlay = pressed && !disabled;
     const hasLabel = typeof label === "string" && label.length > 0;
+    const hasBadge = typeof badge === "string" && badge.length > 0;
     return /* @__PURE__ */ jsxRuntime.jsxs(
       Container2,
       {
@@ -1872,7 +1893,7 @@ var Button = React12.forwardRef(
         onHoverOut: () => setHovered(false),
         accessibilityRole: "button",
         accessibilityState: { disabled },
-        accessibilityLabel: accessibilityLabel ?? label,
+        accessibilityLabel: accessibilityLabel ?? (hasBadge ? [label, badge].filter(Boolean).join(", ") : label),
         accessibilityHint,
         testID,
         children: [
@@ -1893,7 +1914,8 @@ var Button = React12.forwardRef(
           ) : null,
           iconRight ? /* @__PURE__ */ jsxRuntime.jsx(IconSlot3, { children: iconRight }) : null,
           showHoverOverlay ? /* @__PURE__ */ jsxRuntime.jsx(HoverOverlay, { $shape: shape }) : null,
-          showPressedOverlay ? /* @__PURE__ */ jsxRuntime.jsx(PressedOverlay, { $shape: shape, style: elevation.negative }) : null
+          showPressedOverlay ? /* @__PURE__ */ jsxRuntime.jsx(PressedOverlay, { $shape: shape, style: elevation.negative }) : null,
+          hasBadge ? /* @__PURE__ */ jsxRuntime.jsx(Badge, { accessibilityElementsHidden: true, importantForAccessibility: "no-hide-descendants", children: /* @__PURE__ */ jsxRuntime.jsx(BadgeText, { numberOfLines: 1, children: badge }) }) : null
         ]
       }
     );
@@ -2032,7 +2054,7 @@ var Subtitle2 = styled40__default.default.Text`
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
 `;
-var Badge = styled40__default.default(reactNative.View)`
+var Badge2 = styled40__default.default(reactNative.View)`
   width: 28px;
   height: 28px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -2040,7 +2062,7 @@ var Badge = styled40__default.default(reactNative.View)`
   justify-content: center;
   background-color: ${({ theme: theme2 }) => theme2.surface.error};
 `;
-var BadgeText = styled40__default.default.Text`
+var BadgeText2 = styled40__default.default.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${typography.badge.s.fontFamily};
   font-size: ${typography.badge.s.fontSize}px;
@@ -2080,7 +2102,7 @@ var ChatUserCard = React12.forwardRef(
               subtitle ? /* @__PURE__ */ jsxRuntime.jsx(Subtitle2, { numberOfLines: 1, children: subtitle }) : null
             ] })
           ] }),
-          showBadge ? /* @__PURE__ */ jsxRuntime.jsx(Badge, { children: /* @__PURE__ */ jsxRuntime.jsx(BadgeText, { children: formatCount(unreadCount) }) }) : null
+          showBadge ? /* @__PURE__ */ jsxRuntime.jsx(Badge2, { children: /* @__PURE__ */ jsxRuntime.jsx(BadgeText2, { children: formatCount(unreadCount) }) }) : null
         ]
       }
     );
@@ -4729,7 +4751,7 @@ var BadgeOverlay = styled40__default.default(reactNative.View)`
   padding: ${({ theme: theme2 }) => theme2.padding.s}px;
   z-index: 2;
 `;
-var BadgeText2 = styled40__default.default.Text`
+var BadgeText3 = styled40__default.default.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -4784,7 +4806,7 @@ var MenuItem = React12.forwardRef(
           ] }),
           !isCompact && !isMinimal ? /* @__PURE__ */ jsxRuntime.jsx(Divider4, { ...stateProps }) : null,
           showHoverOverlay ? /* @__PURE__ */ jsxRuntime.jsx(HoverOverlay5, { $variant: variant }) : null,
-          badge !== void 0 ? /* @__PURE__ */ jsxRuntime.jsx(BadgeOverlay, { $position: badgePosition, children: /* @__PURE__ */ jsxRuntime.jsx(BadgeText2, { children: String(badge) }) }) : null
+          badge !== void 0 ? /* @__PURE__ */ jsxRuntime.jsx(BadgeOverlay, { $position: badgePosition, children: /* @__PURE__ */ jsxRuntime.jsx(BadgeText3, { children: String(badge) }) }) : null
         ]
       }
     );
@@ -7319,6 +7341,20 @@ var Tabs = React12.forwardRef(
   }
 );
 Tabs.displayName = "Tabs";
+
+// src/components/Toast/Toast.action.ts
+function actionBackground(variant, theme2) {
+  switch (variant) {
+    case "error":
+      return theme2.surface.error;
+    case "success":
+      return theme2.surface.success;
+    case "warning":
+      return theme2.surface.warning;
+    case "info":
+      return theme2.surface.info;
+  }
+}
 var SYMBOL = {
   error: "!",
   success: "\u2713",
@@ -7433,6 +7469,10 @@ var Message2 = styled40__default.default.Text`
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   color: ${({ theme: theme2 }) => theme2.content.light};
 `;
+var ActionSlot = styled40__default.default(reactNative.View)`
+  flex-shrink: 1;
+  max-width: 50%;
+`;
 var CloseButton = styled40__default.default(reactNative.Pressable)`
   width: 24px;
   height: 24px;
@@ -7440,7 +7480,7 @@ var CloseButton = styled40__default.default(reactNative.Pressable)`
   justify-content: center;
 `;
 var Toast = React12.forwardRef(
-  ({ variant = "info", title, message, onClose, accessibilityLabel, testID }, ref) => {
+  ({ variant = "info", title, message, action, onClose, accessibilityLabel, testID }, ref) => {
     const theme2 = useTheme();
     return /* @__PURE__ */ jsxRuntime.jsxs(
       Container25,
@@ -7456,12 +7496,23 @@ var Toast = React12.forwardRef(
             /* @__PURE__ */ jsxRuntime.jsx(Title4, { children: title }),
             message ? /* @__PURE__ */ jsxRuntime.jsx(Message2, { children: message }) : null
           ] }),
+          action ? /* @__PURE__ */ jsxRuntime.jsx(ActionSlot, { children: /* @__PURE__ */ jsxRuntime.jsx(
+            Button,
+            {
+              variant: "contained",
+              elevation: "lg",
+              label: action.label,
+              onPress: action.onPress,
+              accessibilityLabel: action.accessibilityLabel,
+              backgroundColor: actionBackground(variant, theme2)
+            }
+          ) }) : null,
           onClose ? /* @__PURE__ */ jsxRuntime.jsx(
             CloseButton,
             {
               onPress: onClose,
               accessibilityRole: "button",
-              accessibilityLabel: "Close",
+              accessibilityLabel: "Fechar",
               children: /* @__PURE__ */ jsxRuntime.jsx(CloseIcon, { color: theme2.content.light })
             }
           ) : null

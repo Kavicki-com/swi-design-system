@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { Text, View } from 'react-native';
+import { useTheme } from '../../theme';
+import { Icon } from '../Icon';
 import { Button } from './Button';
 
 const PlaceholderIcon = () => (
@@ -176,4 +178,23 @@ export const WithIconRight: Story = {
 
 export const WithBothIcons: Story = {
   args: { iconLeft: <PlaceholderIcon />, iconRight: <PlaceholderIcon /> },
+};
+
+// Sino com contador, como o notification-count-badge do app (Figma Mobile
+// 385:29174): botão contornado só com ícone e o número no canto.
+export const WithBadge: Story = {
+  args: {
+    label: undefined,
+    variant: 'outline',
+    size: 'large',
+    shape: 'pill',
+    badge: '4',
+    accessibilityLabel: 'Notificações, 4 não lidas',
+  },
+  render: function Render(args) {
+    const theme = useTheme();
+    return (
+      <Button {...args} iconLeft={<Icon name="notifications" size={24} color={theme.content.dark} />} />
+    );
+  },
 };

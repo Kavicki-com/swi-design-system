@@ -1,7 +1,15 @@
 import React, { forwardRef, useState } from 'react';
 import { type View } from 'react-native';
 import { elevation } from '../../tokens';
-import { Container, HoverOverlay, IconSlot, Label, PressedOverlay } from './Button.styles';
+import {
+  Badge,
+  BadgeText,
+  Container,
+  HoverOverlay,
+  IconSlot,
+  Label,
+  PressedOverlay,
+} from './Button.styles';
 import type { ButtonProps } from './Button.types';
 
 export const Button = forwardRef<View, ButtonProps>(
@@ -31,6 +39,7 @@ export const Button = forwardRef<View, ButtonProps>(
       accessibilityLabel,
       accessibilityHint,
       testID,
+      badge,
     },
     ref,
   ) => {
@@ -45,6 +54,7 @@ export const Button = forwardRef<View, ButtonProps>(
     const showHoverOverlay = variant === 'contained' && hovered && !pressed && !disabled;
     const showPressedOverlay = pressed && !disabled;
     const hasLabel = typeof label === 'string' && label.length > 0;
+    const hasBadge = typeof badge === 'string' && badge.length > 0;
 
     return (
       <Container
@@ -69,7 +79,9 @@ export const Button = forwardRef<View, ButtonProps>(
         onHoverOut={() => setHovered(false)}
         accessibilityRole="button"
         accessibilityState={{ disabled }}
-        accessibilityLabel={accessibilityLabel ?? label}
+        accessibilityLabel={
+          accessibilityLabel ?? (hasBadge ? [label, badge].filter(Boolean).join(', ') : label)
+        }
         accessibilityHint={accessibilityHint}
         testID={testID}
       >
@@ -92,6 +104,11 @@ export const Button = forwardRef<View, ButtonProps>(
         {showHoverOverlay ? <HoverOverlay $shape={shape} /> : null}
         {showPressedOverlay ? (
           <PressedOverlay $shape={shape} style={elevation.negative} />
+        ) : null}
+        {hasBadge ? (
+          <Badge accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+            <BadgeText numberOfLines={1}>{badge}</BadgeText>
+          </Badge>
         ) : null}
       </Container>
     );

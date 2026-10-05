@@ -129,4 +129,13 @@ export interface ButtonProps
    * `'regular'` / `'medium'` for lighter inline-link styles.
    */
   labelWeight?: ButtonLabelWeight;
+  /**
+   * Contador sobre o canto superior direito, como o `notification-count-badge`
+   * do sino do dashboard do app (Figma Mobile 385:29176): círculo de 24px em
+   * `surface.error`, número em Inter Bold 12 com `content.light`. Ausente ou
+   * vazio esconde o contador. Não captura o toque. O leitor de tela não lê o
+   * número solto: ele entra no rótulo do botão, a menos que `accessibilityLabel`
+   * seja passado, e aí cabe a quem usa incluir a contagem.
+   */
+  badge?: string;
 }

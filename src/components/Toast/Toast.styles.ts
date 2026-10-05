@@ -50,6 +50,13 @@ export const Message = styled.Text`
   color: ${({ theme }) => theme.content.light};
 `;
 
+// Rótulo longo encolhe o botão (o Label do Button corta em uma linha) em vez
+// de espremer o título e a mensagem.
+export const ActionSlot = styled(View)`
+  flex-shrink: 1;
+  max-width: 50%;
+`;
+
 export const CloseButton = styled(Pressable)`
   width: 24px;
   height: 24px;

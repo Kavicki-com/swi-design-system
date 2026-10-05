@@ -116,6 +116,30 @@ export const PressedOverlay = styled(View)<{ $shape: ButtonShape }>`
   pointer-events: none;
 `;
 
+// Contador sobre o canto do botão (notification-count-badge, Figma Mobile
+// 385:29176). Círculo de 24px com um ou dois caracteres; largura mínima, e não
+// fixa, para um texto maior virar pílula em vez de vazar.
+export const Badge = styled(View)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 ${({ theme }) => theme.padding.xs}px;
+  border-radius: ${({ theme }) => theme.border.radius.pill}px;
+  background-color: ${({ theme }) => theme.surface.error};
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+`;
+
+export const BadgeText = styled.Text`
+  font-family: ${({ theme }) => theme.fontFamily.body};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  font-size: ${({ theme }) => theme.fontSize.sm}px;
+  color: ${({ theme }) => theme.content.light};
+`;
+
 const labelColor = ({
   $variant,
   $hovered,

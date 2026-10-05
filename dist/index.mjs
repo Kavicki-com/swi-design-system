@@ -1770,6 +1770,25 @@ var PressedOverlay = styled40(View)`
   border-radius: ${({ $shape, theme: theme2 }) => radius($shape, theme2)}px;
   pointer-events: none;
 `;
+var Badge = styled40(View)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 ${({ theme: theme2 }) => theme2.padding.xs}px;
+  border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
+  background-color: ${({ theme: theme2 }) => theme2.surface.error};
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+`;
+var BadgeText = styled40.Text`
+  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
+  font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
+  font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
+  color: ${({ theme: theme2 }) => theme2.content.light};
+`;
 var labelColor = ({
   $variant,
   $hovered,
@@ -1830,7 +1849,8 @@ var Button = forwardRef(
     onLongPress,
     accessibilityLabel,
     accessibilityHint,
-    testID
+    testID,
+    badge
   }, ref) => {
     const [hovered, setHovered] = useState(false);
     const [pressed, setPressed] = useState(false);
@@ -1840,6 +1860,7 @@ var Button = forwardRef(
     const showHoverOverlay = variant === "contained" && hovered && !pressed && !disabled;
     const showPressedOverlay = pressed && !disabled;
     const hasLabel = typeof label === "string" && label.length > 0;
+    const hasBadge = typeof badge === "string" && badge.length > 0;
     return /* @__PURE__ */ jsxs(
       Container2,
       {
@@ -1864,7 +1885,7 @@ var Button = forwardRef(
         onHoverOut: () => setHovered(false),
         accessibilityRole: "button",
         accessibilityState: { disabled },
-        accessibilityLabel: accessibilityLabel ?? label,
+        accessibilityLabel: accessibilityLabel ?? (hasBadge ? [label, badge].filter(Boolean).join(", ") : label),
         accessibilityHint,
         testID,
         children: [
@@ -1885,7 +1906,8 @@ var Button = forwardRef(
           ) : null,
           iconRight ? /* @__PURE__ */ jsx(IconSlot3, { children: iconRight }) : null,
           showHoverOverlay ? /* @__PURE__ */ jsx(HoverOverlay, { $shape: shape }) : null,
-          showPressedOverlay ? /* @__PURE__ */ jsx(PressedOverlay, { $shape: shape, style: elevation.negative }) : null
+          showPressedOverlay ? /* @__PURE__ */ jsx(PressedOverlay, { $shape: shape, style: elevation.negative }) : null,
+          hasBadge ? /* @__PURE__ */ jsx(Badge, { accessibilityElementsHidden: true, importantForAccessibility: "no-hide-descendants", children: /* @__PURE__ */ jsx(BadgeText, { numberOfLines: 1, children: badge }) }) : null
         ]
       }
     );
@@ -2024,7 +2046,7 @@ var Subtitle2 = styled40.Text`
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
 `;
-var Badge = styled40(View)`
+var Badge2 = styled40(View)`
   width: 28px;
   height: 28px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -2032,7 +2054,7 @@ var Badge = styled40(View)`
   justify-content: center;
   background-color: ${({ theme: theme2 }) => theme2.surface.error};
 `;
-var BadgeText = styled40.Text`
+var BadgeText2 = styled40.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${typography.badge.s.fontFamily};
   font-size: ${typography.badge.s.fontSize}px;
@@ -2072,7 +2094,7 @@ var ChatUserCard = forwardRef(
               subtitle ? /* @__PURE__ */ jsx(Subtitle2, { numberOfLines: 1, children: subtitle }) : null
             ] })
           ] }),
-          showBadge ? /* @__PURE__ */ jsx(Badge, { children: /* @__PURE__ */ jsx(BadgeText, { children: formatCount(unreadCount) }) }) : null
+          showBadge ? /* @__PURE__ */ jsx(Badge2, { children: /* @__PURE__ */ jsx(BadgeText2, { children: formatCount(unreadCount) }) }) : null
         ]
       }
     );
@@ -4721,7 +4743,7 @@ var BadgeOverlay = styled40(View)`
   padding: ${({ theme: theme2 }) => theme2.padding.s}px;
   z-index: 2;
 `;
-var BadgeText2 = styled40.Text`
+var BadgeText3 = styled40.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -4776,7 +4798,7 @@ var MenuItem = forwardRef(
           ] }),
           !isCompact && !isMinimal ? /* @__PURE__ */ jsx(Divider4, { ...stateProps }) : null,
           showHoverOverlay ? /* @__PURE__ */ jsx(HoverOverlay5, { $variant: variant }) : null,
-          badge !== void 0 ? /* @__PURE__ */ jsx(BadgeOverlay, { $position: badgePosition, children: /* @__PURE__ */ jsx(BadgeText2, { children: String(badge) }) }) : null
+          badge !== void 0 ? /* @__PURE__ */ jsx(BadgeOverlay, { $position: badgePosition, children: /* @__PURE__ */ jsx(BadgeText3, { children: String(badge) }) }) : null
         ]
       }
     );
@@ -7311,6 +7333,20 @@ var Tabs = forwardRef(
   }
 );
 Tabs.displayName = "Tabs";
+
+// src/components/Toast/Toast.action.ts
+function actionBackground(variant, theme2) {
+  switch (variant) {
+    case "error":
+      return theme2.surface.error;
+    case "success":
+      return theme2.surface.success;
+    case "warning":
+      return theme2.surface.warning;
+    case "info":
+      return theme2.surface.info;
+  }
+}
 var SYMBOL = {
   error: "!",
   success: "\u2713",
@@ -7425,6 +7461,10 @@ var Message2 = styled40.Text`
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   color: ${({ theme: theme2 }) => theme2.content.light};
 `;
+var ActionSlot = styled40(View)`
+  flex-shrink: 1;
+  max-width: 50%;
+`;
 var CloseButton = styled40(Pressable)`
   width: 24px;
   height: 24px;
@@ -7432,7 +7472,7 @@ var CloseButton = styled40(Pressable)`
   justify-content: center;
 `;
 var Toast = forwardRef(
-  ({ variant = "info", title, message, onClose, accessibilityLabel, testID }, ref) => {
+  ({ variant = "info", title, message, action, onClose, accessibilityLabel, testID }, ref) => {
     const theme2 = useTheme();
     return /* @__PURE__ */ jsxs(
       Container25,
@@ -7448,12 +7488,23 @@ var Toast = forwardRef(
             /* @__PURE__ */ jsx(Title4, { children: title }),
             message ? /* @__PURE__ */ jsx(Message2, { children: message }) : null
           ] }),
+          action ? /* @__PURE__ */ jsx(ActionSlot, { children: /* @__PURE__ */ jsx(
+            Button,
+            {
+              variant: "contained",
+              elevation: "lg",
+              label: action.label,
+              onPress: action.onPress,
+              accessibilityLabel: action.accessibilityLabel,
+              backgroundColor: actionBackground(variant, theme2)
+            }
+          ) }) : null,
           onClose ? /* @__PURE__ */ jsx(
             CloseButton,
             {
               onPress: onClose,
               accessibilityRole: "button",
-              accessibilityLabel: "Close",
+              accessibilityLabel: "Fechar",
               children: /* @__PURE__ */ jsx(CloseIcon, { color: theme2.content.light })
             }
           ) : null

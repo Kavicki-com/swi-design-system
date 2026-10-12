@@ -23,6 +23,7 @@ export const HeaderUserInfo = forwardRef<View, HeaderUserInfoProps>(
       pressure,
       progress = 0,
       avatarUri,
+      name,
       bpmUnit = 'bpm',
       accessibilityLabel,
       testID,
@@ -59,7 +60,13 @@ export const HeaderUserInfo = forwardRef<View, HeaderUserInfoProps>(
             <ProgressBar value={readingProgress(progress)} />
           </ProgressSlot>
         </VitalsCard>
-        <Avatar uri={avatarUri} size="l" bordered={bordered} borderColor={borderColor} />
+        <Avatar
+          uri={avatarUri}
+          name={name}
+          size="l"
+          bordered={bordered}
+          borderColor={borderColor}
+        />
       </Row>
     );
   },

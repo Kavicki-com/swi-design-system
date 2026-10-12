@@ -8,6 +8,8 @@ export interface HeaderUserInfoProps {
   /** Preenchimento da barra; null deixa a barra vazia. */
   progress?: number | null;
   avatarUri?: string;
+  /** Nome de quem esta logado: sem foto, o Avatar mostra as iniciais. */
+  name?: string;
   bpmUnit?: string;
   accessibilityLabel?: string;
   testID?: string;

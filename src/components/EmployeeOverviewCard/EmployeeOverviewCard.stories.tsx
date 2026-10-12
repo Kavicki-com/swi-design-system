@@ -54,6 +54,12 @@ export const NoReading: Story = {
   args: { bpm: null, pressure: null, progress: 0 },
 };
 
+// Sem relógio pareado não há leitura: a frase toma a coluna de saúde.
+export const NoDevice: Story = {
+  name: 'Sem relógio pareado',
+  args: { bpm: null, pressure: null, progress: 0, absenceLabel: 'Sem relógio pareado' },
+};
+
 export const HighBpm: Story = {
   args: { bpm: 142, pressure: '14/9', progress: 92 },
 };

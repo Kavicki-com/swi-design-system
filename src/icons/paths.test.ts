@@ -28,6 +28,27 @@ describe('iconPaths.content_copy', () => {
   });
 });
 
+// delete_forever (0.1.136): o Modal de exclusao da biblioteca do Figma
+// (461:10263) usa o componente `delete-icon`, uma lixeira com um X dentro. O
+// `delete_icon` do registry e a lixeira do Material, sem o X, e ja aparece em
+// varias telas; por isso o glifo do Figma entra com nome proprio, do export
+// SVG do componente (viewBox 24x24), sem trocar o que ja existe.
+describe('iconPaths.delete_forever', () => {
+  it('registrado com o viewBox do export do Figma', () => {
+    expect(iconPaths.delete_forever).toBeDefined();
+    expect(iconPaths.delete_forever.viewBox).toBe('0 0 24 24');
+  });
+
+  it('o path e o do export, da lixeira ao X', () => {
+    expect(iconPaths.delete_forever.d.startsWith('M7 21C6.45 21 5.97934 20.8043')).toBe(true);
+    expect(iconPaths.delete_forever.d.endsWith('L12 13.9Z')).toBe(true);
+  });
+
+  it('nao mexe no delete_icon que as telas ja usam', () => {
+    expect(iconPaths.delete_icon.viewBox).toBe('0 -960 960 960');
+  });
+});
+
 describe('iconPaths.assignment_filled', () => {
   it('registrado e compartilha o path do export Figma (report_filled)', () => {
     expect(iconPaths.assignment_filled).toBeDefined();

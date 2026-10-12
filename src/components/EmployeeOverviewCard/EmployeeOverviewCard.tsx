@@ -5,6 +5,7 @@ import { Icon } from '../Icon';
 import { ProgressBar } from '../ProgressBar';
 import { useTheme } from '../../theme';
 import {
+  AbsenceText,
   Card,
   Divider,
   HealthOverview,
@@ -28,6 +29,7 @@ export const EmployeeOverviewCard = forwardRef<View, EmployeeOverviewCardProps>(
       progress = 0,
       bpm,
       pressure,
+      absenceLabel,
       bpmUnit = 'Bpm',
       onLocationPress,
       onPress,
@@ -47,7 +49,9 @@ export const EmployeeOverviewCard = forwardRef<View, EmployeeOverviewCardProps>(
         onPress={onPress}
         accessibilityRole={onPress ? 'button' : undefined}
         accessibilityLabel={
-          accessibilityLabel ?? missingReadingLabel(employee.name, [bpm, pressure]) ?? employee.name
+          accessibilityLabel ??
+          (absenceLabel ? `${employee.name}, ${absenceLabel}` : undefined) ??
+          missingReadingLabel(employee.name, [bpm, pressure]) ?? employee.name
         }
         testID={testID}
         $borderColor={borderColor}
@@ -70,16 +74,24 @@ export const EmployeeOverviewCard = forwardRef<View, EmployeeOverviewCardProps>(
           </UserInfo>
           <Divider />
           <HealthOverview>
-            <Stat>
-              <Icon name="favorite_filled" size={24} color={theme.surface.error} />
-              {/* Sem leitura a unidade continua ao lado ("-- Bpm"): o slot
-                  mantem a largura e o leitor ve que o campo e batimento. */}
-              <StatText>{`${readingText(bpm)} ${bpmUnit}`}</StatText>
-            </Stat>
-            <Stat>
-              <Icon name="pressure_wheel_filled" size={24} color={theme.surface.primary} />
-              <StatText>{readingText(pressure)}</StatText>
-            </Stat>
+            {/* Sem relogio nao ha leitura nenhuma: a frase toma a coluna em
+                vez de dois "--" que pareceriam uma falha momentanea. */}
+            {absenceLabel ? (
+              <AbsenceText numberOfLines={2}>{absenceLabel}</AbsenceText>
+            ) : (
+              <>
+                <Stat>
+                  <Icon name="favorite_filled" size={24} color={theme.surface.error} />
+                  {/* Sem leitura a unidade continua ao lado ("-- Bpm"): o slot
+                      mantem a largura e o leitor ve que o campo e batimento. */}
+                  <StatText>{`${readingText(bpm)} ${bpmUnit}`}</StatText>
+                </Stat>
+                <Stat>
+                  <Icon name="pressure_wheel_filled" size={24} color={theme.surface.primary} />
+                  <StatText>{readingText(pressure)}</StatText>
+                </Stat>
+              </>
+            )}
           </HealthOverview>
         </LeftCluster>
         {actionElement ?? (

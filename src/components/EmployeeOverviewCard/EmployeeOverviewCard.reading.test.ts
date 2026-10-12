@@ -20,7 +20,35 @@ describe('EmployeeOverviewCard: sem leitura', () => {
   });
 
   it('o rotulo de acessibilidade mantem o nome e diz sem leitura quando falta valor', () => {
-    expect(tsx).toMatch(/accessibilityLabel \?\? missingReadingLabel\(employee\.name/);
+    expect(tsx).toMatch(/missingReadingLabel\(employee\.name/);
     expect(tsx).toMatch(/\?\? employee\.name/);
+  });
+});
+
+// v0.1.136: sem relogio pareado nao ha leitura nenhuma a mostrar. A frase do
+// painel ("Sem relogio pareado") ocupa a coluna de saude no lugar dos dois
+// icones e das duas leituras, em ate duas linhas, no mesmo estilo de texto.
+describe('EmployeeOverviewCard: frase de ausencia', () => {
+  const types = readFileSync(join(__dirname, 'EmployeeOverviewCard.types.ts'), 'utf8');
+  const tsx = readFileSync(join(__dirname, 'EmployeeOverviewCard.tsx'), 'utf8');
+  const styles = readFileSync(join(__dirname, 'EmployeeOverviewCard.styles.ts'), 'utf8');
+
+  it('a frase e opcional', () => {
+    expect(types).toMatch(/absenceLabel\?: string;/);
+  });
+
+  it('com a frase, a coluna mostra so ela, em ate duas linhas', () => {
+    expect(tsx).toMatch(/\{absenceLabel \? \(\s*<AbsenceText numberOfLines=\{2\}>\{absenceLabel\}<\/AbsenceText>/);
+  });
+
+  it('a frase quebra linha: nao herda o nowrap das leituras', () => {
+    const block = /export const AbsenceText = styled\.Text`([^`]*)`/.exec(styles)?.[1] ?? '';
+    expect(block).toMatch(/theme\.content\.dark/);
+    expect(block).toMatch(/theme\.fontSize\.m/);
+    expect(block).not.toMatch(/white-space: nowrap/);
+  });
+
+  it('o leitor de tela ouve o nome e a frase', () => {
+    expect(tsx).toMatch(/absenceLabel \? `\$\{employee\.name\}, \$\{absenceLabel\}`/);
   });
 });

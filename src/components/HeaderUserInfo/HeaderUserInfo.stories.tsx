@@ -56,6 +56,12 @@ export const NoReading: Story = {
 };
 export const NoAvatar: Story = { args: { avatarUri: undefined } };
 
+// Sem foto, as iniciais do nome, como em Configurações.
+export const InitialsWithoutPhoto: Story = {
+  name: 'Iniciais sem foto',
+  args: { avatarUri: undefined, name: 'Ana Clara Mendonça' },
+};
+
 export const FigmaIcons: Story = {
   name: 'Figma icons (heart_filled + vitals_pulse)',
   args: {

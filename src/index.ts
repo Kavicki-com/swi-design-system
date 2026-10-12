@@ -11,6 +11,14 @@ export { Accordion } from './components/Accordion';
 export type { AccordionProps } from './components/Accordion';
 export { ActivitiesOverviewCard } from './components/ActivitiesOverviewCard';
 export type { ActivitiesOverviewCardProps } from './components/ActivitiesOverviewCard';
+export { AttachmentList } from './components/AttachmentList';
+export type {
+  AttachmentListProps,
+  AttachmentItem,
+  AttachmentAction,
+  AttachmentActionLabels,
+  AttachmentKind,
+} from './components/AttachmentList';
 export { Avatar } from './components/Avatar';
 export type { AvatarProps, AvatarSize } from './components/Avatar';
 export { AvatarGroup } from './components/AvatarGroup';
@@ -83,6 +91,8 @@ export { Logo } from './components/Logo';
 export type { LogoProps, LogoSize, LogoType } from './components/Logo';
 export { ImageUploader } from './components/ImageUploader';
 export type { ImageUploaderProps, ImageUploaderValue } from './components/ImageUploader';
+export { ImageViewer } from './components/ImageViewer';
+export type { ImageViewerProps } from './components/ImageViewer';
 export { MapControl } from './components/MapControl';
 export type {
   MapControlProps,
@@ -93,6 +103,8 @@ export { LocationPin } from './components/LocationPin';
 export type { LocationPinProps, LocationPinStatus } from './components/LocationPin';
 export { MenuItem } from './components/MenuItem';
 export type { MenuItemProps } from './components/MenuItem';
+export { Modal } from './components/Modal';
+export type { ModalProps, ModalValidation } from './components/Modal';
 export { Popover, PopoverItem, PopoverSeparator } from './components/Popover';
 export type {
   PopoverProps,
@@ -105,6 +117,8 @@ export { SideMenu } from './components/SideMenu';
 export type { SideMenuProps, SideMenuItem } from './components/SideMenu';
 export { Silhouette } from './components/Silhouette';
 export type { SilhouetteProps, SilhouetteGender } from './components/Silhouette';
+export { Skeleton, SkeletonList } from './components/Skeleton';
+export type { SkeletonProps, SkeletonListProps, SkeletonShape } from './components/Skeleton';
 export { TimeStamp } from './components/TimeStamp';
 export type { TimeStampProps } from './components/TimeStamp';
 export { CaloriesTag } from './components/CaloriesTag';

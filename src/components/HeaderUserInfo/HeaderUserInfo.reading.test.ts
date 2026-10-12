@@ -26,3 +26,19 @@ describe('HeaderUserInfo: sem leitura', () => {
     expect(tsx).toMatch(/accessibilityLabel \?\? missingReadingLabel\(/);
   });
 });
+
+// v0.1.136: sem foto, o cabecalho mostrava o circulo vazio enquanto
+// Configuracoes mostrava as iniciais. O Avatar ja faz iniciais desde a 0.1.120;
+// faltava o cabecalho repassar o nome.
+describe('HeaderUserInfo: iniciais sem foto', () => {
+  const types = readFileSync(join(__dirname, 'HeaderUserInfo.types.ts'), 'utf8');
+  const tsx = readFileSync(join(__dirname, 'HeaderUserInfo.tsx'), 'utf8');
+
+  it('aceita o nome de quem esta logado', () => {
+    expect(types).toMatch(/name\?: string;/);
+  });
+
+  it('repassa o nome ao Avatar, que desenha as iniciais quando falta a foto', () => {
+    expect(tsx).toMatch(/<Avatar[^>]*uri=\{avatarUri\}[^>]*name=\{name\}/);
+  });
+});

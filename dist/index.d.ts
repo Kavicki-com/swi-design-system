@@ -767,6 +767,10 @@ declare const iconPaths: {
         readonly viewBox: "0 -960 960 960";
         readonly d: "M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z";
     };
+    readonly delete_forever: {
+        readonly viewBox: "0 0 24 24";
+        readonly d: "M7 21C6.45 21 5.97934 20.8043 5.588 20.413C5.19667 20.0217 5.00067 19.5507 5 19V6C4.71667 6 4.47934 5.904 4.288 5.712C4.09667 5.52 4.00067 5.28267 4 5C3.99934 4.71733 4.09534 4.48 4.288 4.288C4.48067 4.096 4.718 4 5 4H9C9 3.71667 9.096 3.47933 9.288 3.288C9.48 3.09667 9.71734 3.00067 10 3H14C14.2833 3 14.521 3.096 14.713 3.288C14.905 3.48 15.0007 3.71733 15 4H19C19.2833 4 19.521 4.096 19.713 4.288C19.905 4.48 20.0007 4.71733 20 5C19.9993 5.28267 19.9033 5.52033 19.712 5.713C19.5207 5.90567 19.2833 6.00133 19 6V19C19 19.55 18.8043 20.021 18.413 20.413C18.0217 20.805 17.5507 21.0007 17 21H7ZM17 6H7V19H17V6ZM12 13.9L13.9 15.8C14.0833 15.9833 14.3167 16.075 14.6 16.075C14.8833 16.075 15.1167 15.9833 15.3 15.8C15.4833 15.6167 15.575 15.3833 15.575 15.1C15.575 14.8167 15.4833 14.5833 15.3 14.4L13.4 12.5L15.3 10.6C15.4833 10.4167 15.575 10.1833 15.575 9.9C15.575 9.61667 15.4833 9.38333 15.3 9.2C15.1167 9.01667 14.8833 8.925 14.6 8.925C14.3167 8.925 14.0833 9.01667 13.9 9.2L12 11.1L10.1 9.2C9.91667 9.01667 9.68334 8.925 9.4 8.925C9.11667 8.925 8.88334 9.01667 8.7 9.2C8.51667 9.38333 8.425 9.61667 8.425 9.9C8.425 10.1833 8.51667 10.4167 8.7 10.6L10.6 12.5L8.7 14.4C8.51667 14.5833 8.425 14.8167 8.425 15.1C8.425 15.3833 8.51667 15.6167 8.7 15.8C8.88334 15.9833 9.11667 16.075 9.4 16.075C9.68334 16.075 9.91667 15.9833 10.1 15.8L12 13.9Z";
+    };
     readonly directions_walk: {
         readonly viewBox: "0 0 13 22";
         readonly d: "M1 21.5L3.8 7.4L2 8.1V11.5H0V6.8L5.05 4.65C5.28333 4.55 5.52917 4.49167 5.7875 4.475C6.04583 4.45833 6.29167 4.49167 6.525 4.575C6.75833 4.65833 6.97917 4.775 7.1875 4.925C7.39583 5.075 7.56667 5.26667 7.7 5.5L8.7 7.1C9.13333 7.8 9.72083 8.375 10.4625 8.825C11.2042 9.275 12.05 9.5 13 9.5V11.5C11.8333 11.5 10.7917 11.2583 9.875 10.775C8.95833 10.2917 8.175 9.675 7.525 8.925L6.9 12L9 14V21.5H7V15L4.9 13.4L3.1 21.5H1ZM6.0875 3.4125C5.69583 3.02083 5.5 2.55 5.5 2C5.5 1.45 5.69583 0.979167 6.0875 0.5875C6.47917 0.195833 6.95 0 7.5 0C8.05 0 8.52083 0.195833 8.9125 0.5875C9.30417 0.979167 9.5 1.45 9.5 2C9.5 2.55 9.30417 3.02083 8.9125 3.4125C8.52083 3.80417 8.05 4 7.5 4C6.95 4 6.47917 3.80417 6.0875 3.4125Z";
@@ -1090,6 +1094,55 @@ interface ActivitiesOverviewCardProps {
 
 declare const ActivitiesOverviewCard: React$1.ForwardRefExoticComponent<ActivitiesOverviewCardProps & React$1.RefAttributes<View>>;
 
+/** Imagem mostra a miniatura; arquivo (ex.: PDF de exame) mostra o clipe. */
+type AttachmentKind = 'image' | 'file';
+/** Botões da linha, sempre nesta ordem: visualizar, baixar, excluir. */
+type AttachmentAction = 'view' | 'download' | 'remove';
+interface AttachmentItem {
+    /** Identidade estável da linha (chave e testID). */
+    id: string;
+    /** Nome do arquivo, em uma linha, cortado no fim. */
+    name: string;
+    kind: AttachmentKind;
+    /** Miniatura de uma imagem. Sem ela, a linha mostra o clipe. */
+    thumbnailUri?: string;
+    /**
+     * Ações que este item aceita. Ausente, valem todas as que a lista oferece.
+     * Ex.: um arquivo que ainda não foi enviado não tem o que baixar.
+     */
+    actions?: ReadonlyArray<AttachmentAction>;
+}
+interface AttachmentActionLabels {
+    view: string;
+    download: string;
+    remove: string;
+}
+interface AttachmentListProps {
+    items: ReadonlyArray<AttachmentItem>;
+    /** Sem o handler, o botão some de todas as linhas. */
+    onView?: (item: AttachmentItem) => void;
+    onDownload?: (item: AttachmentItem) => void;
+    onRemove?: (item: AttachmentItem) => void;
+    /** Itens com ação em andamento (ex.: excluindo): os botões da linha ficam desabilitados. */
+    busyIds?: ReadonlyArray<string>;
+    /** Verbos dos rótulos de acessibilidade. Padrão Visualizar, Baixar, Excluir. */
+    actionLabels?: Partial<AttachmentActionLabels>;
+    /** Frase quando não há item. Sem ela, a lista vazia não desenha nada. */
+    emptyLabel?: string;
+    /** Rótulo da lista. Padrão "Anexos". */
+    accessibilityLabel?: string;
+    testID?: string;
+}
+
+/**
+ * Lista de anexos: uma linha por arquivo, no molde do exame compacto do Figma
+ * (159:15646). Miniatura de 56 (imagem) ou clipe (arquivo), nome em uma
+ * linha e botões só de ícone, contidos e pequenos como o baixar do exame:
+ * visualizar, baixar e excluir. Abrir, baixar e confirmar a exclusão são do
+ * host; a lista só avisa qual item e qual ação.
+ */
+declare function AttachmentList({ items, onView, onDownload, onRemove, busyIds, actionLabels, emptyLabel, accessibilityLabel, testID, }: AttachmentListProps): react_jsx_runtime.JSX.Element | null;
+
 interface BackgroundDotsGridProps {
     /** Quantidade de colunas verticais. Default 27 (Figma `Repetição de grade 4`). */
     columns?: number;
@@ -1394,6 +1447,12 @@ interface EmployeeOverviewCardProps {
     bpm: number | null;
     /** Pressao ja formatada; null mostra "--" (sem medicao). */
     pressure: string | null;
+    /**
+     * Frase que ocupa a coluna de saude no lugar dos dois icones e das duas
+     * leituras, em ate duas linhas (ex.: "Sem relogio pareado"). Com ela,
+     * `bpm` e `pressure` nao aparecem.
+     */
+    absenceLabel?: string;
     bpmUnit?: string;
     onLocationPress?: () => void;
     onPress?: () => void;
@@ -1464,6 +1523,8 @@ interface HeaderUserInfoProps {
     /** Preenchimento da barra; null deixa a barra vazia. */
     progress?: number | null;
     avatarUri?: string;
+    /** Nome de quem esta logado: sem foto, o Avatar mostra as iniciais. */
+    name?: string;
     bpmUnit?: string;
     accessibilityLabel?: string;
     testID?: string;
@@ -1928,6 +1989,32 @@ interface ImageUploaderProps {
 
 declare const ImageUploader: React$1.ForwardRefExoticComponent<ImageUploaderProps & React$1.RefAttributes<View>>;
 
+interface ImageViewerProps {
+    visible: boolean;
+    /** URL da imagem. `null` deixa o palco vazio (ex.: enquanto nada foi escolhido). */
+    uri: string | null;
+    /** Nome do arquivo, no topo do cartão e no rótulo de acessibilidade. */
+    title: string;
+    /** Fechar (X), Esc e clique fora. */
+    onClose: () => void;
+    /** Sem ele o botão Baixar não aparece. Baixar é do host: o DS não toca em arquivo. */
+    onDownload?: () => void;
+    /** Padrão "Baixar". */
+    downloadLabel?: string;
+    /** Rótulo do X e do fundo clicável. Padrão "Fechar". */
+    closeAccessibilityLabel?: string;
+    /** Frase no lugar da imagem quando ela não carrega. Padrão "Não foi possível abrir a imagem." */
+    errorLabel?: string;
+    testID?: string;
+}
+
+/**
+ * Imagem em tamanho grande, no molde do Modal da biblioteca do Figma
+ * (461:10263): mesmo cartão, largo, com o nome do arquivo e o X no topo, a
+ * imagem inteira no palco e o Baixar embaixo. Esc e clique fora fecham.
+ */
+declare function ImageViewer({ visible, uri, title, onClose, onDownload, downloadLabel, closeAccessibilityLabel, errorLabel, testID, }: ImageViewerProps): react_jsx_runtime.JSX.Element;
+
 type MapControlVariant = 'operators' | 'heatmap' | 'cameras';
 interface MapControlOption {
     id: string;
@@ -2008,6 +2095,45 @@ interface MenuItemProps {
 }
 
 declare const MenuItem: React$1.ForwardRefExoticComponent<MenuItemProps & React$1.RefAttributes<View>>;
+
+/**
+ * Variante do Modal da biblioteca do Figma (461:10263):
+ * - `error`: confirmação de ação irreversível ("EXCLUIR", Sim e Não).
+ * - `success`: aviso de conclusão ("sucesso!", Continuar).
+ */
+type ModalValidation = 'error' | 'success';
+interface ModalProps {
+    visible: boolean;
+    /** Padrão `error`, como o Figma. */
+    validation?: ModalValidation;
+    title: string;
+    description?: string;
+    /** Ícone acima do título. Padrão: lixeira no erro, check no sucesso. */
+    icon?: IconName;
+    /** Padrão: "Sim" no erro, "Continuar" no sucesso. */
+    confirmLabel?: string;
+    /** Rótulo do botão fantasma do erro. Padrão "Não". O sucesso não tem cancelar. */
+    cancelLabel?: string;
+    onConfirm: () => void;
+    /**
+     * Não no erro. Esc e clique fora chamam o mesmo handler; no erro sem ele,
+     * fechar por fora não faz nada, para não confirmar sem querer. No sucesso,
+     * fechar por fora cai no `onConfirm` quando este não vem.
+     */
+    onCancel?: () => void;
+    testID?: string;
+}
+
+/**
+ * Modal da biblioteca do Figma (461:10263): ícone, título e descrição
+ * centralizados e os botões embaixo. `error` confirma uma ação irreversível
+ * (Sim pinta de surface.error, Não é o botão fantasma); `success` avisa que
+ * algo terminou (Continuar em surface.success, largura toda).
+ *
+ * Os rótulos dos botões são Montserrat Bold 14, como no Figma; o "Não" é
+ * branco (content.dark), não o verde-claro padrão do Button fantasma.
+ */
+declare function Modal({ visible, validation, title, description, icon, confirmLabel, cancelLabel, onConfirm, onCancel, testID, }: ModalProps): react_jsx_runtime.JSX.Element;
 
 type PopoverAlign = 'start' | 'end';
 type PopoverSide = 'bottom' | 'top';
@@ -2148,6 +2274,44 @@ declare const Silhouette: {
     ({ gender, height, showHeart, heatGradient, testID, accessibilityLabel, }: SilhouetteProps): react_jsx_runtime.JSX.Element;
     displayName: string;
 };
+
+type SkeletonShape = 'rect' | 'circle';
+interface SkeletonProps {
+    /** Largura do retângulo. Padrão '100%'. O círculo ignora: o diâmetro é a altura. */
+    width?: number | `${number}%`;
+    /** Altura; no círculo, o diâmetro. Padrão 14, a altura de uma linha de body.m. */
+    height?: number;
+    shape?: SkeletonShape;
+    /** Pulso da opacidade. Padrão true; quem pediu menos movimento no sistema vê parado. */
+    animated?: boolean;
+    testID?: string;
+}
+interface SkeletonListProps {
+    /** Quantas linhas de espera. Padrão 3. */
+    rows?: number;
+    /** Linhas de texto por linha da lista, de 1 a 4. Padrão 2. */
+    lines?: number;
+    /** Diâmetro do círculo do avatar. Padrão 56; `null` tira o círculo. */
+    avatarSize?: number | null;
+    animated?: boolean;
+    /** O que o leitor de tela anuncia. Padrão "Carregando". */
+    accessibilityLabel?: string;
+    testID?: string;
+}
+
+/**
+ * Bloco de espera: ocupa o lugar de um conteúdo que ainda não chegou, com a
+ * opacidade pulsando devagar. Fica fora da árvore de acessibilidade; quem
+ * anuncia a espera é o container (ver `SkeletonList`).
+ */
+declare function Skeleton({ width, height, shape, animated, testID, }: SkeletonProps): react_jsx_runtime.JSX.Element;
+
+/**
+ * Espera de uma lista: linhas no formato do cartão das listas do painel, com
+ * o círculo do avatar e linhas de texto encurtando. O leitor de tela ouve uma
+ * vez que está carregando, não cada bloco.
+ */
+declare function SkeletonList({ rows, lines, avatarSize, animated, accessibilityLabel, testID, }: SkeletonListProps): react_jsx_runtime.JSX.Element;
 
 interface TimeStampProps {
     time: string;
@@ -2742,4 +2906,4 @@ interface TopBarProps {
  */
 declare const TopBar: React$1.ForwardRefExoticComponent<TopBarProps & React$1.RefAttributes<View>>;
 
-export { Accordion, type AccordionProps, ActivitiesOverviewCard, type ActivitiesOverviewCardProps, Avatar, AvatarGroup, type AvatarGroupItem, type AvatarGroupProps, type AvatarProps, type AvatarSize, BackgroundDotsGrid, type BackgroundDotsGridProps, BigNumbersCard, type BigNumbersCardProps, Button, type ButtonProps, CaloriesTag, type CaloriesTagProps, ChatBubble, type ChatBubblePosition, type ChatBubbleProps, ChatSection, type ChatSectionProps, type ChatSectionUser, ChatUserCard, type ChatUserCardProps, Checkbox, type CheckboxProps, type CheckboxSize, Chip, ChipGroup, type ChipGroupMode, type ChipGroupProps, type ChipProps, type ChipState, Combobox, type ComboboxOption, type ComboboxProps, DonutChart, type DonutChartProps, type DonutChartSize, type DonutGradient, EmployeeOverviewCard, type EmployeeOverviewCardEmployee, type EmployeeOverviewCardProps, ExamInfoCard, type ExamInfoCardProps, GenderSelectionCard, type GenderSelectionCardProps, GenderSelector, type GenderSelectorProps, type GenderValue, HEART_RATE_BUTTON, HEART_STATUS_OFFSET, Header, type HeaderProps, HeaderUserInfo, type HeaderUserInfoProps, HeartStatus, type HeartStatusCondition, type HeartStatusProps, HeartrateStatus, type HeartrateStatusCondition, type HeartrateStatusProps, HorizontalCard, type HorizontalCardProps, Icon, type IconName, type IconProps, Image, type ImageProps, type ImageResizeMode, ImageUploader, type ImageUploaderProps, type ImageUploaderValue, Input, type InputProps, type IntensityColor, type IntensitySegment, JourneyTheme, type JourneyThemeProps, LineCaloriesChart, type LineCaloriesChartProps, type LineCaloriesPoint, LocationPin, type LocationPinProps, type LocationPinStatus, Logo, type LogoProps, type LogoSize, type LogoType, MapControl, type MapControlOption, type MapControlProps, type MapControlVariant, MenuItem, type MenuItemProps, NowMarker, type NowMarkerProps, Pagination, type PaginationProps, Popover, type PopoverAlign, PopoverItem, type PopoverItemProps, type PopoverItemTone, type PopoverProps, PopoverSeparator, type PopoverSide, ProgressBar, type ProgressBarProps, Radio, RadioGroup, type RadioGroupOption, type RadioGroupProps, type RadioProps, type RadioSize, ReportCard, type ReportCardAuthor, type ReportCardProps, STATUS_CHART_CANVAS, SearchInput, type SearchInputProps, SideMenu, type SideMenuItem, type SideMenuProps, Silhouette, type SilhouetteGender, type SilhouetteProps, SmartbandStatus, type SmartbandStatusProps, StatusChart, type StatusChartCondition, type StatusChartProps, StatusTag, type StatusTagProps, type StatusTagStatus, Step, StepBar, type StepBarProps, type StepProps, type StepState, SuccessBadge, type SuccessBadgeProps, Surface, type SurfacePadding, type SurfaceProps, type SurfaceRadius, type SurfaceVariant, SwiThemeProvider, type SwiThemeProviderProps, type TabItem, Tabs, type TabsProps, Text, type TextProps, type TextVariant, type Theme, TimeStamp, type TimeStampProps, Title, type TitleProps, type TitleVariant, Toast, type ToastAction, type ToastProps, type ToastVariant, Toggle, type ToggleProps, TopBar, type TopBarProps, type TypographyVariant, type WeatherCondition, WeatherEventChip, type WeatherEventChipProps, WeatherIcon, type WeatherIconProps, type WeatherIconSize, WeatherTimeline, WeatherTimelineEntry, type WeatherTimelineEntryProps, type WeatherTimelineEvent, type WeatherTimelineProps, WorkersInfoCard, type WorkersInfoCardAlert, type WorkersInfoCardEmployee, type WorkersInfoCardProps, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
+export { Accordion, type AccordionProps, ActivitiesOverviewCard, type ActivitiesOverviewCardProps, type AttachmentAction, type AttachmentActionLabels, type AttachmentItem, type AttachmentKind, AttachmentList, type AttachmentListProps, Avatar, AvatarGroup, type AvatarGroupItem, type AvatarGroupProps, type AvatarProps, type AvatarSize, BackgroundDotsGrid, type BackgroundDotsGridProps, BigNumbersCard, type BigNumbersCardProps, Button, type ButtonProps, CaloriesTag, type CaloriesTagProps, ChatBubble, type ChatBubblePosition, type ChatBubbleProps, ChatSection, type ChatSectionProps, type ChatSectionUser, ChatUserCard, type ChatUserCardProps, Checkbox, type CheckboxProps, type CheckboxSize, Chip, ChipGroup, type ChipGroupMode, type ChipGroupProps, type ChipProps, type ChipState, Combobox, type ComboboxOption, type ComboboxProps, DonutChart, type DonutChartProps, type DonutChartSize, type DonutGradient, EmployeeOverviewCard, type EmployeeOverviewCardEmployee, type EmployeeOverviewCardProps, ExamInfoCard, type ExamInfoCardProps, GenderSelectionCard, type GenderSelectionCardProps, GenderSelector, type GenderSelectorProps, type GenderValue, HEART_RATE_BUTTON, HEART_STATUS_OFFSET, Header, type HeaderProps, HeaderUserInfo, type HeaderUserInfoProps, HeartStatus, type HeartStatusCondition, type HeartStatusProps, HeartrateStatus, type HeartrateStatusCondition, type HeartrateStatusProps, HorizontalCard, type HorizontalCardProps, Icon, type IconName, type IconProps, Image, type ImageProps, type ImageResizeMode, ImageUploader, type ImageUploaderProps, type ImageUploaderValue, ImageViewer, type ImageViewerProps, Input, type InputProps, type IntensityColor, type IntensitySegment, JourneyTheme, type JourneyThemeProps, LineCaloriesChart, type LineCaloriesChartProps, type LineCaloriesPoint, LocationPin, type LocationPinProps, type LocationPinStatus, Logo, type LogoProps, type LogoSize, type LogoType, MapControl, type MapControlOption, type MapControlProps, type MapControlVariant, MenuItem, type MenuItemProps, Modal, type ModalProps, type ModalValidation, NowMarker, type NowMarkerProps, Pagination, type PaginationProps, Popover, type PopoverAlign, PopoverItem, type PopoverItemProps, type PopoverItemTone, type PopoverProps, PopoverSeparator, type PopoverSide, ProgressBar, type ProgressBarProps, Radio, RadioGroup, type RadioGroupOption, type RadioGroupProps, type RadioProps, type RadioSize, ReportCard, type ReportCardAuthor, type ReportCardProps, STATUS_CHART_CANVAS, SearchInput, type SearchInputProps, SideMenu, type SideMenuItem, type SideMenuProps, Silhouette, type SilhouetteGender, type SilhouetteProps, Skeleton, SkeletonList, type SkeletonListProps, type SkeletonProps, type SkeletonShape, SmartbandStatus, type SmartbandStatusProps, StatusChart, type StatusChartCondition, type StatusChartProps, StatusTag, type StatusTagProps, type StatusTagStatus, Step, StepBar, type StepBarProps, type StepProps, type StepState, SuccessBadge, type SuccessBadgeProps, Surface, type SurfacePadding, type SurfaceProps, type SurfaceRadius, type SurfaceVariant, SwiThemeProvider, type SwiThemeProviderProps, type TabItem, Tabs, type TabsProps, Text, type TextProps, type TextVariant, type Theme, TimeStamp, type TimeStampProps, Title, type TitleProps, type TitleVariant, Toast, type ToastAction, type ToastProps, type ToastVariant, Toggle, type ToggleProps, TopBar, type TopBarProps, type TypographyVariant, type WeatherCondition, WeatherEventChip, type WeatherEventChipProps, WeatherIcon, type WeatherIconProps, type WeatherIconSize, WeatherTimeline, WeatherTimelineEntry, type WeatherTimelineEntryProps, type WeatherTimelineEvent, type WeatherTimelineProps, WorkersInfoCard, type WorkersInfoCardAlert, type WorkersInfoCardEmployee, type WorkersInfoCardProps, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };

@@ -91,6 +91,15 @@ export const StatText = styled.Text`
   white-space: nowrap;
 `;
 
+/* Frase de ausência no lugar das leituras: mesmo estilo do StatText, mas
+   quebrando linha dentro da coluna de 110 (o numberOfLines corta em duas). */
+export const AbsenceText = styled.Text`
+  color: ${({ theme }) => theme.content.dark};
+  font-family: ${({ theme }) => theme.fontFamily.body};
+  font-weight: ${({ theme }) => theme.fontWeight.regular};
+  font-size: ${({ theme }) => theme.fontSize.m}px;
+`;
+
 export const LocationButton = styled(Pressable)`
   width: 24px;
   height: 24px;

@@ -13,6 +13,12 @@ export interface EmployeeOverviewCardProps {
   bpm: number | null;
   /** Pressao ja formatada; null mostra "--" (sem medicao). */
   pressure: string | null;
+  /**
+   * Frase que ocupa a coluna de saude no lugar dos dois icones e das duas
+   * leituras, em ate duas linhas (ex.: "Sem relogio pareado"). Com ela,
+   * `bpm` e `pressure` nao aparecem.
+   */
+  absenceLabel?: string;
   bpmUnit?: string;
   onLocationPress?: () => void;
   onPress?: () => void;

@@ -110,6 +110,14 @@ export const CompactActionButton = styled(Pressable)<{ $mobile?: boolean }>`
   justify-content: center;
 `;
 
+/* Cluster de ações só-ícone (visualizar, baixar, excluir) no lugar do botão
+   único de baixar. Mesmo gap da lista de anexos. */
+export const ActionsCluster = styled(View)`
+  flex-direction: row;
+  align-items: center;
+  gap: ${({ theme }) => theme.gap.s}px;
+`;
+
 /* Inner 24×24 slot wrapping the 16×16 download icon when mobile.
    Replica `download-icon` container (Figma 342:9908;62:13498;118:897)
    pra fechar botão 32×32 (4 padding + 24 slot + 4 padding). */

@@ -3062,6 +3062,11 @@ var CompactActionButton = styled44__default.default(reactNative.Pressable)`
   align-items: center;
   justify-content: center;
 `;
+var ActionsCluster = styled44__default.default(reactNative.View)`
+  flex-direction: row;
+  align-items: center;
+  gap: ${({ theme: theme2 }) => theme2.gap.s}px;
+`;
 var DownloadIconSlot = styled44__default.default(reactNative.View)`
   width: 24px;
   height: 24px;
@@ -3077,6 +3082,14 @@ var ExamInfoCard = React15.forwardRef(
     actionLabel = "Baixar exame",
     onActionPress,
     actionDisabled = false,
+    actions,
+    onView,
+    onDownload,
+    onRemove,
+    actionsBusy = false,
+    viewAccessibilityLabel,
+    downloadAccessibilityLabel,
+    removeAccessibilityLabel,
     fullWidth = false,
     compact = false,
     past = false,
@@ -3085,6 +3098,18 @@ var ExamInfoCard = React15.forwardRef(
     accessibilityLabel,
     testID
   }, ref) => {
+    const theme2 = useTheme();
+    const actionHandlers = {
+      view: onView,
+      download: onDownload,
+      remove: onRemove
+    };
+    const actionLabels = {
+      view: viewAccessibilityLabel ?? `Visualizar ${examName}`,
+      download: downloadAccessibilityLabel ?? `Baixar ${examName}`,
+      remove: removeAccessibilityLabel ?? `Excluir ${examName}`
+    };
+    const clusterActions = actions && actions.length > 0 ? visibleActions({ actions }, actionHandlers) : [];
     return /* @__PURE__ */ jsxRuntime.jsxs(
       Card4,
       {
@@ -3135,7 +3160,19 @@ var ExamInfoCard = React15.forwardRef(
               )
             }
           ),
-          compact ? /* @__PURE__ */ jsxRuntime.jsx(
+          clusterActions.length > 0 ? /* @__PURE__ */ jsxRuntime.jsx(ActionsCluster, { children: clusterActions.map((action) => /* @__PURE__ */ jsxRuntime.jsx(
+            Button,
+            {
+              size: "small",
+              variant: "contained",
+              iconLeft: /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: ACTION_ICON[action], size: 24, color: theme2.content.light }),
+              backgroundColor: actionBackground(action, theme2),
+              disabled: actionsBusy,
+              onPress: () => actionHandlers[action]?.(),
+              accessibilityLabel: actionLabels[action]
+            },
+            action
+          )) }) : compact ? /* @__PURE__ */ jsxRuntime.jsx(
             CompactActionButton,
             {
               $mobile: mobile,

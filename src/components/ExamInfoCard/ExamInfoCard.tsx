@@ -2,8 +2,15 @@ import React, { forwardRef } from 'react';
 import { type View } from 'react-native';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
+import {
+  ACTION_ICON,
+  actionBackground,
+  visibleActions,
+} from '../AttachmentList/AttachmentList.actions';
+import { useTheme } from '../../theme';
 import { elevation } from '../../tokens';
 import {
+  ActionsCluster,
   Card,
   CompactActionButton,
   DateText,
@@ -12,7 +19,7 @@ import {
   ExamLinkText,
   YearText,
 } from './ExamInfoCard.styles';
-import type { ExamInfoCardProps } from './ExamInfoCard.types';
+import type { ExamAction, ExamInfoCardProps } from './ExamInfoCard.types';
 
 export const ExamInfoCard = forwardRef<View, ExamInfoCardProps>(
   (
@@ -24,6 +31,14 @@ export const ExamInfoCard = forwardRef<View, ExamInfoCardProps>(
       actionLabel = 'Baixar exame',
       onActionPress,
       actionDisabled = false,
+      actions,
+      onView,
+      onDownload,
+      onRemove,
+      actionsBusy = false,
+      viewAccessibilityLabel,
+      downloadAccessibilityLabel,
+      removeAccessibilityLabel,
       fullWidth = false,
       compact = false,
       past = false,
@@ -34,6 +49,20 @@ export const ExamInfoCard = forwardRef<View, ExamInfoCardProps>(
     },
     ref,
   ) => {
+    const theme = useTheme();
+    const actionHandlers: Record<ExamAction, (() => void) | undefined> = {
+      view: onView,
+      download: onDownload,
+      remove: onRemove,
+    };
+    const actionLabels: Record<ExamAction, string | undefined> = {
+      view: viewAccessibilityLabel ?? `Visualizar ${examName}`,
+      download: downloadAccessibilityLabel ?? `Baixar ${examName}`,
+      remove: removeAccessibilityLabel ?? `Excluir ${examName}`,
+    };
+    const clusterActions =
+      actions && actions.length > 0 ? visibleActions({ actions }, actionHandlers) : [];
+
     return (
       <Card
         ref={ref}
@@ -79,7 +108,22 @@ export const ExamInfoCard = forwardRef<View, ExamInfoCardProps>(
             {examName}
           </ExamLinkText>
         </ExamLink>
-        {compact ? (
+        {clusterActions.length > 0 ? (
+          <ActionsCluster>
+            {clusterActions.map((action) => (
+              <Button
+                key={action}
+                size="small"
+                variant="contained"
+                iconLeft={<Icon name={ACTION_ICON[action]} size={24} color={theme.content.light} />}
+                backgroundColor={actionBackground(action, theme)}
+                disabled={actionsBusy}
+                onPress={() => actionHandlers[action]?.()}
+                accessibilityLabel={actionLabels[action]}
+              />
+            ))}
+          </ActionsCluster>
+        ) : compact ? (
           <CompactActionButton
             $mobile={mobile}
             onPress={actionDisabled ? undefined : onActionPress}

@@ -47,7 +47,7 @@ export type {
   EmployeeOverviewCardEmployee,
 } from './components/EmployeeOverviewCard';
 export { ExamInfoCard } from './components/ExamInfoCard';
-export type { ExamInfoCardProps } from './components/ExamInfoCard';
+export type { ExamInfoCardProps, ExamAction } from './components/ExamInfoCard';
 export { Header } from './components/Header';
 export type { HeaderProps } from './components/Header';
 export { HeaderUserInfo } from './components/HeaderUserInfo';

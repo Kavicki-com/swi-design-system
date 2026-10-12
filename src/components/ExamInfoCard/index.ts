@@ -1,2 +1,2 @@
 export { ExamInfoCard } from './ExamInfoCard';
-export type { ExamInfoCardProps } from './ExamInfoCard.types';
+export type { ExamInfoCardProps, ExamAction } from './ExamInfoCard.types';

@@ -162,3 +162,36 @@ export const CompactMobile: Story = {
     </View>
   ),
 };
+
+// v0.1.137: cluster de ações (visualizar, baixar, excluir) no lugar do botão
+// único, para os exames do cadastro de usuário.
+export const WithActions: Story = {
+  name: 'Ações (visualizar, baixar, excluir)',
+  args: {
+    year: 2027,
+    date: '05 Mar',
+    examName: 'Exame admissional',
+    compact: true,
+    fullWidth: true,
+    actions: ['view', 'download', 'remove'],
+    onView: () => {},
+    onDownload: () => {},
+    onRemove: () => {},
+  },
+};
+
+// Exame escolhido mas ainda não enviado (cadastro novo): dá para visualizar e
+// excluir, mas não baixar (não subiu).
+export const PendingActions: Story = {
+  name: 'Ações do pendente (sem baixar)',
+  args: {
+    year: 2027,
+    date: '05 Mar',
+    examName: 'Exame admissional (pendente)',
+    compact: true,
+    fullWidth: true,
+    actions: ['view', 'remove'],
+    onView: () => {},
+    onRemove: () => {},
+  },
+};

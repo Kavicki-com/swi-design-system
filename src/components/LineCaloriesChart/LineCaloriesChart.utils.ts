@@ -72,6 +72,15 @@ export const segmentedPath = (laid: LayoutPoint[]): string =>
     .join(' ');
 
 /**
+ * Caminho da linha segundo a escolha de quem usa: `connectAcrossGaps` liga os
+ * pontos por cima das horas sem medicao (uma linha so, a tendencia que o painel
+ * pede), enquanto o padrao quebra a linha no buraco. Sem buraco, os dois dao o
+ * mesmo caminho.
+ */
+export const chartLinePath = (laid: LayoutPoint[], connectAcrossGaps: boolean): string =>
+  connectAcrossGaps ? linePath(laid) : segmentedPath(laid);
+
+/**
  * Catmull-Rom-to-Bezier smoothing. Uses each point plus its neighbours to
  * choose tangent directions, producing a curve that flows through every
  * point without the kinks the previous "horizontal-tangent" cubic produced

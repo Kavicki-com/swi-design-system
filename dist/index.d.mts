@@ -1190,6 +1190,21 @@ interface BigNumbersCardProps {
 
 declare const BigNumbersCard: React$1.ForwardRefExoticComponent<BigNumbersCardProps & React$1.RefAttributes<View>>;
 
+type TooltipSide = 'top' | 'bottom' | 'left' | 'right';
+interface TooltipProps {
+    /** Texto do balao. Vazio ou `disabled` nao mostra nada. */
+    label: string;
+    /** O gatilho. O balao aparece no hover (so web; no touch nao ha hover). */
+    children: ReactNode;
+    /** Lado do gatilho onde o balao aparece. Padrao `top`. */
+    side?: TooltipSide;
+    /** Respiro entre o gatilho e o balao. Padrao 6. */
+    gap?: number;
+    /** Desliga o balao sem tirar o gatilho. */
+    disabled?: boolean;
+    testID?: string;
+}
+
 /**
  * Button variants:
  * - `contained`: primary CTA — green `surface.primary` bg, dark text. The
@@ -1313,6 +1328,15 @@ interface ButtonProps extends Pick<PressableProps, 'onPress' | 'onLongPress' | '
      * seja passado, e aí cabe a quem usa incluir a contagem.
      */
     badge?: string;
+    /**
+     * Dica no hover (so web): mostra o nome da acao num balao quando o ponteiro
+     * para sobre o botao. Util em botoes so de icone, como os controles do mapa
+     * (Figma 32:2488). No touch nao ha hover, entao continue passando
+     * `accessibilityLabel` para o leitor de tela.
+     */
+    tooltip?: string;
+    /** Lado onde o balao da dica aparece. Padrao `top`. */
+    tooltipSide?: TooltipSide;
 }
 
 declare const Button: React$1.ForwardRefExoticComponent<ButtonProps & React$1.RefAttributes<View>>;
@@ -1718,6 +1742,14 @@ interface InputProps extends Omit<TextInputProps, 'editable' | 'style' | 'placeh
      * proxima digitacao. Controlado (`value`), o contador segue o value sempre.
      */
     counter?: boolean;
+    /**
+     * Campo de senha com olho de visibilidade embutido. O Input gere o estado
+     * de visibilidade: forca `secureTextEntry` enquanto oculto e mostra, no slot
+     * `iconRight`, um olho que alterna mostrar/ocultar. Dispensa o olho decorativo
+     * passado por fora e mantem o icone alinhado a linha de texto. Quando ligado,
+     * tem prioridade sobre `iconRight` e sobre um `secureTextEntry` passado a mao.
+     */
+    passwordToggle?: boolean;
 }
 
 declare const Input: React$1.ForwardRefExoticComponent<InputProps & React$1.RefAttributes<TextInput>>;
@@ -1875,8 +1907,13 @@ declare const ProgressBar: React$1.ForwardRefExoticComponent<ProgressBarProps & 
 interface PaginationProps {
     /** Current 1-indexed page. */
     currentPage: number;
-    /** Total number of pages to render as numbered buttons. Defaults to 4. */
+    /** Total number of pages. The strip hides itself when this is 1 or less. Defaults to 4. */
     pageCount?: number;
+    /**
+     * Quantidade maxima de botoes numerados na janela visivel. Acima disso a
+     * tira desliza ao redor da pagina atual e mostra "...". Padrao 4 (Figma).
+     */
+    maxButtons?: number;
     /** Called when the user taps a numbered button or the next-page chevron. */
     onPageChange: (page: number) => void;
     /** Called when the user taps the overflow "..." button. */
@@ -1886,12 +1923,16 @@ interface PaginationProps {
 
 /**
  * Bottom pagination strip — ghost number buttons + overflow + next-page
- * chevron. Used by mobile reports list (Figma 461:10196) and FAQ
- * (Figma 361:12705). The numbered buttons render as ghost regardless
- * of `currentPage` — selection-state styling is not yet specified
- * in the design.
+ * chevron. Used by mobile reports list (Figma 461:10196), FAQ
+ * (Figma 361:12705) and the desktop employees list (Figma 53:5786).
+ *
+ * A pagina atual fica em `content.primary` (verde) e as outras em
+ * `content.primaryLight`, como na Figma. Quando a lista e longa a tira mostra
+ * so uma janela de `maxButtons` numeros ao redor da atual, com "..." enquanto
+ * ha paginas depois. O chevron de avancar trava na ultima pagina, e a tira
+ * inteira some quando so existe uma pagina.
  */
-declare function Pagination({ currentPage, pageCount, onPageChange, onOverflowPress, testID, }: PaginationProps): react_jsx_runtime.JSX.Element;
+declare function Pagination({ currentPage, pageCount, maxButtons, onPageChange, onOverflowPress, testID, }: PaginationProps): react_jsx_runtime.JSX.Element | null;
 
 type ChipState = 'default' | 'active' | 'disable';
 /**
@@ -2053,6 +2094,13 @@ interface MapControlProps {
     onOptionChange?: (id: string, checked: boolean) => void;
     testID?: string;
     accessibilityLabel?: string;
+    /**
+     * Dica no hover do botao recolhido (so web). Sem valor, usa o titulo da
+     * variante, para o icone sozinho sempre mostrar o nome da acao (MEL-05).
+     */
+    tooltip?: string;
+    /** Lado do balao da dica. Padrao `left` (botoes na beira direita do mapa). */
+    tooltipSide?: TooltipSide;
 }
 
 declare const MapControl: React$1.ForwardRefExoticComponent<MapControlProps & React$1.RefAttributes<View>>;
@@ -2349,6 +2397,26 @@ interface CaloriesTagProps {
 
 declare const CaloriesTag: React$1.ForwardRefExoticComponent<CaloriesTagProps & React$1.RefAttributes<View>>;
 
+interface CarouselProps {
+    /** Itens do carrossel. Cada filho vira um slot de largura minima. */
+    children: ReactNode;
+    /** Largura minima de cada item, em px. Padrao 240. */
+    itemMinWidth?: number;
+    /** Respiro entre os itens. Padrao 12. */
+    gap?: number;
+    /** Rotulo do carrossel para o leitor de tela. */
+    accessibilityLabel?: string;
+    testID?: string;
+}
+
+/**
+ * Carrossel horizontal: os itens mantem uma largura minima e o excesso rola de
+ * lado, no lugar de espremer tudo numa linha so (MEL-18/19). Cada filho
+ * vira um slot de largura minima que nao encolhe. A barra de rolagem aparece
+ * no web; no touch rola com o dedo.
+ */
+declare function Carousel({ children, itemMinWidth, gap, accessibilityLabel, testID, }: CarouselProps): react_jsx_runtime.JSX.Element;
+
 interface LineCaloriesPoint {
     time: string;
     /**
@@ -2363,6 +2431,12 @@ interface LineCaloriesChartProps {
     width?: number;
     height?: number;
     fullWidth?: boolean;
+    /**
+     * Liga os pontos numa linha continua por cima das horas sem medicao, em vez
+     * de quebrar a linha no buraco. O painel usa `true` para mostrar a tendencia
+     * (MEL-06); o padrao `false` mantem o buraco, como no app.
+     */
+    connectAcrossGaps?: boolean;
     testID?: string;
     accessibilityLabel?: string;
 }
@@ -2904,6 +2978,17 @@ interface ToastProps {
 
 declare const Toast: React$1.ForwardRefExoticComponent<ToastProps & React$1.RefAttributes<View>>;
 
+/**
+ * Balao de dica no hover do gatilho.
+ *
+ * PLATAFORMA — hover so existe no ponteiro (web, inclusive react-native-web).
+ * No touch nao ha hover, entao o balao nunca aparece no app; por isso o gatilho
+ * deve carregar seu proprio `accessibilityLabel`, e o balao e so reforco visual
+ * no desktop. O wrapper e uma View (nao Pressable) para nao aninhar um botao
+ * dentro do botao do gatilho; o hover vem de onPointerEnter/onPointerLeave.
+ */
+declare function Tooltip({ label, children, side, gap, disabled, testID, }: TooltipProps): react_jsx_runtime.JSX.Element;
+
 interface TopBarProps {
     /** Page title shown right-aligned, content.dark. Required. */
     title: string;
@@ -2925,4 +3010,4 @@ interface TopBarProps {
  */
 declare const TopBar: React$1.ForwardRefExoticComponent<TopBarProps & React$1.RefAttributes<View>>;
 
-export { Accordion, type AccordionProps, ActivitiesOverviewCard, type ActivitiesOverviewCardProps, type AttachmentAction, type AttachmentActionLabels, type AttachmentItem, type AttachmentKind, AttachmentList, type AttachmentListProps, Avatar, AvatarGroup, type AvatarGroupItem, type AvatarGroupProps, type AvatarProps, type AvatarSize, BackgroundDotsGrid, type BackgroundDotsGridProps, BigNumbersCard, type BigNumbersCardProps, Button, type ButtonProps, CaloriesTag, type CaloriesTagProps, ChatBubble, type ChatBubblePosition, type ChatBubbleProps, ChatSection, type ChatSectionProps, type ChatSectionUser, ChatUserCard, type ChatUserCardProps, Checkbox, type CheckboxProps, type CheckboxSize, Chip, ChipGroup, type ChipGroupMode, type ChipGroupProps, type ChipProps, type ChipState, Combobox, type ComboboxOption, type ComboboxProps, DonutChart, type DonutChartProps, type DonutChartSize, type DonutGradient, EmployeeOverviewCard, type EmployeeOverviewCardEmployee, type EmployeeOverviewCardProps, type ExamAction, ExamInfoCard, type ExamInfoCardProps, GenderSelectionCard, type GenderSelectionCardProps, GenderSelector, type GenderSelectorProps, type GenderValue, HEART_RATE_BUTTON, HEART_STATUS_OFFSET, Header, type HeaderProps, HeaderUserInfo, type HeaderUserInfoProps, HeartStatus, type HeartStatusCondition, type HeartStatusProps, HeartrateStatus, type HeartrateStatusCondition, type HeartrateStatusProps, HorizontalCard, type HorizontalCardProps, Icon, type IconName, type IconProps, Image, type ImageProps, type ImageResizeMode, ImageUploader, type ImageUploaderProps, type ImageUploaderValue, ImageViewer, type ImageViewerProps, Input, type InputProps, type IntensityColor, type IntensitySegment, JourneyTheme, type JourneyThemeProps, LineCaloriesChart, type LineCaloriesChartProps, type LineCaloriesPoint, LocationPin, type LocationPinProps, type LocationPinStatus, Logo, type LogoProps, type LogoSize, type LogoType, MapControl, type MapControlOption, type MapControlProps, type MapControlVariant, MenuItem, type MenuItemProps, Modal, type ModalProps, type ModalValidation, NowMarker, type NowMarkerProps, Pagination, type PaginationProps, Popover, type PopoverAlign, PopoverItem, type PopoverItemProps, type PopoverItemTone, type PopoverProps, PopoverSeparator, type PopoverSide, ProgressBar, type ProgressBarProps, Radio, RadioGroup, type RadioGroupOption, type RadioGroupProps, type RadioProps, type RadioSize, ReportCard, type ReportCardAuthor, type ReportCardProps, STATUS_CHART_CANVAS, SearchInput, type SearchInputProps, SideMenu, type SideMenuItem, type SideMenuProps, Silhouette, type SilhouetteGender, type SilhouetteProps, Skeleton, SkeletonList, type SkeletonListProps, type SkeletonProps, type SkeletonShape, SmartbandStatus, type SmartbandStatusProps, StatusChart, type StatusChartCondition, type StatusChartProps, StatusTag, type StatusTagProps, type StatusTagStatus, Step, StepBar, type StepBarProps, type StepProps, type StepState, SuccessBadge, type SuccessBadgeProps, Surface, type SurfacePadding, type SurfaceProps, type SurfaceRadius, type SurfaceVariant, SwiThemeProvider, type SwiThemeProviderProps, type TabItem, Tabs, type TabsProps, Text, type TextProps, type TextVariant, type Theme, TimeStamp, type TimeStampProps, Title, type TitleProps, type TitleVariant, Toast, type ToastAction, type ToastProps, type ToastVariant, Toggle, type ToggleProps, TopBar, type TopBarProps, type TypographyVariant, type WeatherCondition, WeatherEventChip, type WeatherEventChipProps, WeatherIcon, type WeatherIconProps, type WeatherIconSize, WeatherTimeline, WeatherTimelineEntry, type WeatherTimelineEntryProps, type WeatherTimelineEvent, type WeatherTimelineProps, WorkersInfoCard, type WorkersInfoCardAlert, type WorkersInfoCardEmployee, type WorkersInfoCardProps, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
+export { Accordion, type AccordionProps, ActivitiesOverviewCard, type ActivitiesOverviewCardProps, type AttachmentAction, type AttachmentActionLabels, type AttachmentItem, type AttachmentKind, AttachmentList, type AttachmentListProps, Avatar, AvatarGroup, type AvatarGroupItem, type AvatarGroupProps, type AvatarProps, type AvatarSize, BackgroundDotsGrid, type BackgroundDotsGridProps, BigNumbersCard, type BigNumbersCardProps, Button, type ButtonProps, CaloriesTag, type CaloriesTagProps, Carousel, type CarouselProps, ChatBubble, type ChatBubblePosition, type ChatBubbleProps, ChatSection, type ChatSectionProps, type ChatSectionUser, ChatUserCard, type ChatUserCardProps, Checkbox, type CheckboxProps, type CheckboxSize, Chip, ChipGroup, type ChipGroupMode, type ChipGroupProps, type ChipProps, type ChipState, Combobox, type ComboboxOption, type ComboboxProps, DonutChart, type DonutChartProps, type DonutChartSize, type DonutGradient, EmployeeOverviewCard, type EmployeeOverviewCardEmployee, type EmployeeOverviewCardProps, type ExamAction, ExamInfoCard, type ExamInfoCardProps, GenderSelectionCard, type GenderSelectionCardProps, GenderSelector, type GenderSelectorProps, type GenderValue, HEART_RATE_BUTTON, HEART_STATUS_OFFSET, Header, type HeaderProps, HeaderUserInfo, type HeaderUserInfoProps, HeartStatus, type HeartStatusCondition, type HeartStatusProps, HeartrateStatus, type HeartrateStatusCondition, type HeartrateStatusProps, HorizontalCard, type HorizontalCardProps, Icon, type IconName, type IconProps, Image, type ImageProps, type ImageResizeMode, ImageUploader, type ImageUploaderProps, type ImageUploaderValue, ImageViewer, type ImageViewerProps, Input, type InputProps, type IntensityColor, type IntensitySegment, JourneyTheme, type JourneyThemeProps, LineCaloriesChart, type LineCaloriesChartProps, type LineCaloriesPoint, LocationPin, type LocationPinProps, type LocationPinStatus, Logo, type LogoProps, type LogoSize, type LogoType, MapControl, type MapControlOption, type MapControlProps, type MapControlVariant, MenuItem, type MenuItemProps, Modal, type ModalProps, type ModalValidation, NowMarker, type NowMarkerProps, Pagination, type PaginationProps, Popover, type PopoverAlign, PopoverItem, type PopoverItemProps, type PopoverItemTone, type PopoverProps, PopoverSeparator, type PopoverSide, ProgressBar, type ProgressBarProps, Radio, RadioGroup, type RadioGroupOption, type RadioGroupProps, type RadioProps, type RadioSize, ReportCard, type ReportCardAuthor, type ReportCardProps, STATUS_CHART_CANVAS, SearchInput, type SearchInputProps, SideMenu, type SideMenuItem, type SideMenuProps, Silhouette, type SilhouetteGender, type SilhouetteProps, Skeleton, SkeletonList, type SkeletonListProps, type SkeletonProps, type SkeletonShape, SmartbandStatus, type SmartbandStatusProps, StatusChart, type StatusChartCondition, type StatusChartProps, StatusTag, type StatusTagProps, type StatusTagStatus, Step, StepBar, type StepBarProps, type StepProps, type StepState, SuccessBadge, type SuccessBadgeProps, Surface, type SurfacePadding, type SurfaceProps, type SurfaceRadius, type SurfaceVariant, SwiThemeProvider, type SwiThemeProviderProps, type TabItem, Tabs, type TabsProps, Text, type TextProps, type TextVariant, type Theme, TimeStamp, type TimeStampProps, Title, type TitleProps, type TitleVariant, Toast, type ToastAction, type ToastProps, type ToastVariant, Toggle, type ToggleProps, Tooltip, type TooltipProps, type TooltipSide, TopBar, type TopBarProps, type TypographyVariant, type WeatherCondition, WeatherEventChip, type WeatherEventChipProps, WeatherIcon, type WeatherIconProps, type WeatherIconSize, WeatherTimeline, WeatherTimelineEntry, type WeatherTimelineEntryProps, type WeatherTimelineEvent, type WeatherTimelineProps, WorkersInfoCard, type WorkersInfoCardAlert, type WorkersInfoCardEmployee, type WorkersInfoCardProps, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };

@@ -109,6 +109,9 @@ export const Overview: Story = {
           counter
         />
       </Group>
+      <Group caption="password (olho alterna mostrar/ocultar)">
+        <Input label="Senha" defaultValue="segredo123" passwordToggle />
+      </Group>
       <Group caption="no label">
         <Input placeholder="input-text" />
       </Group>
@@ -134,4 +137,7 @@ export const WithCounter: Story = {
 };
 export const Disabled: Story = {
   args: { value: 'input-text', description: 'description', disabled: true },
+};
+export const Password: Story = {
+  args: { label: 'Senha', value: 'segredo123', passwordToggle: true },
 };

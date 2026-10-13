@@ -10,6 +10,7 @@ import {
   Label,
   PressedOverlay,
 } from './Button.styles';
+import { Tooltip } from '../Tooltip';
 import type { ButtonProps } from './Button.types';
 
 export const Button = forwardRef<View, ButtonProps>(
@@ -40,6 +41,8 @@ export const Button = forwardRef<View, ButtonProps>(
       accessibilityHint,
       testID,
       badge,
+      tooltip,
+      tooltipSide,
     },
     ref,
   ) => {
@@ -56,7 +59,7 @@ export const Button = forwardRef<View, ButtonProps>(
     const hasLabel = typeof label === 'string' && label.length > 0;
     const hasBadge = typeof badge === 'string' && badge.length > 0;
 
-    return (
+    const button = (
       <Container
         ref={ref}
         $variant={variant}
@@ -111,6 +114,14 @@ export const Button = forwardRef<View, ButtonProps>(
           </Badge>
         ) : null}
       </Container>
+    );
+
+    return tooltip ? (
+      <Tooltip label={tooltip} side={tooltipSide}>
+        {button}
+      </Tooltip>
+    ) : (
+      button
     );
   },
 );

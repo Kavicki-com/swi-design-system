@@ -1,25 +1,41 @@
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 import { useTheme } from '../../theme';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
+import {
+  isNextDisabled,
+  isPaginationVisible,
+  paginationPages,
+  showOverflow,
+} from './Pagination.logic';
 import type { PaginationProps } from './Pagination.types';
 
 /**
  * Bottom pagination strip — ghost number buttons + overflow + next-page
- * chevron. Used by mobile reports list (Figma 461:10196) and FAQ
- * (Figma 361:12705). The numbered buttons render as ghost regardless
- * of `currentPage` — selection-state styling is not yet specified
- * in the design.
+ * chevron. Used by mobile reports list (Figma 461:10196), FAQ
+ * (Figma 361:12705) and the desktop employees list (Figma 53:5786).
+ *
+ * A pagina atual fica em `content.primary` (verde) e as outras em
+ * `content.primaryLight`, como na Figma. Quando a lista e longa a tira mostra
+ * so uma janela de `maxButtons` numeros ao redor da atual, com "..." enquanto
+ * ha paginas depois. O chevron de avancar trava na ultima pagina, e a tira
+ * inteira some quando so existe uma pagina.
  */
 export function Pagination({
   currentPage,
   pageCount = 4,
+  maxButtons = 4,
   onPageChange,
   onOverflowPress,
   testID,
 }: PaginationProps) {
   const theme = useTheme();
-  const pages = Array.from({ length: pageCount }, (_, i) => i + 1);
+
+  if (!isPaginationVisible(pageCount)) return null;
+
+  const pages = paginationPages(currentPage, pageCount, maxButtons);
+  const overflow = showOverflow(pages, pageCount);
+  const nextDisabled = isNextDisabled(currentPage, pageCount);
 
   return (
     <View
@@ -36,25 +52,38 @@ export function Pagination({
           <Button
             variant="ghost"
             label={String(n)}
-            labelColor={theme.content.primaryLight}
+            labelColor={n === currentPage ? theme.content.primary : theme.content.primaryLight}
             accessibilityLabel={`Página ${n}`}
             onPress={() => onPageChange(n)}
           />
         </View>
       ))}
-      <View style={{ flex: 1 }}>
-        <Button
-          variant="ghost"
-          label="..."
-          labelColor={theme.content.primaryLight}
-          accessibilityLabel="Mais páginas"
-          onPress={onOverflowPress}
-        />
-      </View>
+      {overflow ? (
+        onOverflowPress ? (
+          <View style={{ flex: 1 }}>
+            <Button
+              variant="ghost"
+              label="..."
+              labelColor={theme.content.primaryLight}
+              accessibilityLabel="Mais páginas"
+              onPress={onOverflowPress}
+            />
+          </View>
+        ) : (
+          <View
+            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+            accessibilityElementsHidden
+            importantForAccessibility="no-hide-descendants"
+          >
+            <Text style={{ color: theme.content.primaryLight }}>...</Text>
+          </View>
+        )
+      ) : null}
       <View style={{ flex: 1 }}>
         <Button
           variant="contained"
           backgroundColor={theme.surface.primary}
+          disabled={nextDisabled}
           accessibilityLabel="Próxima página"
           onPress={() => onPageChange(currentPage + 1)}
           iconLeft={

@@ -1,7 +1,9 @@
 import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
-import { type TextInput as RNTextInput } from 'react-native';
+import { Pressable, type TextInput as RNTextInput } from 'react-native';
 import { useTheme } from '../../theme';
+import { Icon } from '../Icon';
 import { counterText, resolveLength, shouldShowCounter } from './Input.counter';
+import { passwordEyeIcon, passwordEyeLabel } from './Input.password';
 import {
   BottomRow,
   Container,
@@ -25,6 +27,8 @@ export const Input = forwardRef<RNTextInput, InputProps>(
       iconRight,
       disabled = false,
       counter = false,
+      passwordToggle = false,
+      secureTextEntry,
       value,
       defaultValue,
       maxLength,
@@ -41,6 +45,27 @@ export const Input = forwardRef<RNTextInput, InputProps>(
 
     const [focused, setFocused] = useState(false);
     const [hovered, setHovered] = useState(false);
+    const [passwordVisible, setPasswordVisible] = useState(false);
+
+    // Com o olho embutido o Input manda no segredo; senao respeita o que veio.
+    const secure = passwordToggle ? !passwordVisible : secureTextEntry;
+    const rightSlot = passwordToggle ? (
+      <Pressable
+        accessibilityRole="button"
+        accessibilityLabel={passwordEyeLabel(passwordVisible)}
+        disabled={disabled}
+        onPress={() => setPasswordVisible((v) => !v)}
+        hitSlop={8}
+      >
+        <Icon
+          name={passwordEyeIcon(passwordVisible)}
+          size={20}
+          color={disabled ? theme.content.disable : theme.content.dark}
+        />
+      </Pressable>
+    ) : (
+      iconRight
+    );
 
     // Num Input nao controlado o RN nao reexpoe o texto atual; o contador
     // depende de observar o onChangeText. Controlado, o `value` e a verdade.
@@ -72,6 +97,7 @@ export const Input = forwardRef<RNTextInput, InputProps>(
           <StyledInput
             ref={innerRef}
             {...textInputProps}
+            secureTextEntry={secure}
             value={value}
             defaultValue={defaultValue}
             maxLength={maxLength}
@@ -93,7 +119,7 @@ export const Input = forwardRef<RNTextInput, InputProps>(
               onBlur?.(e);
             }}
           />
-          {iconRight ? <IconSlot>{iconRight}</IconSlot> : null}
+          {rightSlot ? <IconSlot>{rightSlot}</IconSlot> : null}
           {hovered && !focused && !disabled ? <HoverOverlay /> : null}
         </Row>
         {description || counterLabel ? (

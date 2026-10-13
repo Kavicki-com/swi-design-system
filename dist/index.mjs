@@ -1,7 +1,7 @@
-import styled44, { css, useTheme as useTheme$1, ThemeProvider } from 'styled-components/native';
+import styled45, { css, useTheme as useTheme$1, ThemeProvider } from 'styled-components/native';
 import { Platform, View, Pressable, Text, Image as Image$1, Animated, Easing, TextInput, ScrollView, Modal, FlatList, PanResponder, useWindowDimensions, AccessibilityInfo } from 'react-native';
 import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
-import React15, { forwardRef, useState, useCallback, useRef, useEffect, useMemo, createContext, memo, useImperativeHandle, useLayoutEffect, useId, useContext, Fragment as Fragment$1 } from 'react';
+import React16, { forwardRef, useState, useCallback, useRef, useEffect, useMemo, createContext, memo, useImperativeHandle, useLayoutEffect, useId, useContext, Children, isValidElement, Fragment as Fragment$1 } from 'react';
 import Svg, { Defs, LinearGradient, Stop, Rect } from 'react-native-svg';
 
 // src/theme/ThemeProvider.tsx
@@ -970,11 +970,11 @@ var Icon = ({
     }
   );
 };
-var Container = styled44(View)`
+var Container = styled45(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   overflow: hidden;
 `;
-var Header = styled44(Pressable)`
+var Header = styled45(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -985,7 +985,7 @@ var Header = styled44(Pressable)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var TitleText = styled44.Text`
+var TitleText = styled45.Text`
   flex: 1;
   min-width: 0;
   text-align: left;
@@ -994,7 +994,7 @@ var TitleText = styled44.Text`
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
 `;
-var Content = styled44(View)`
+var Content = styled45(View)`
   align-self: stretch;
   min-width: 0;
   margin-top: 2px;
@@ -1002,14 +1002,14 @@ var Content = styled44(View)`
   padding: ${({ theme: theme2 }) => theme2.padding.s}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
 `;
-var ContentText = styled44.Text`
+var ContentText = styled45.Text`
   min-width: 0;
   color: ${({ theme: theme2 }) => theme2.content.medium};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
 `;
-var ChevronWrap = styled44(View)`
+var ChevronWrap = styled45(View)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -1072,7 +1072,7 @@ var Accordion = forwardRef(
   }
 );
 Accordion.displayName = "Accordion";
-var Frame = styled44(View)`
+var Frame = styled45(View)`
   width: ${({ $size }) => $size}px;
   height: ${({ $size }) => $size}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -1082,7 +1082,7 @@ var Frame = styled44(View)`
   align-items: center;
   justify-content: center;
 `;
-var Initials = styled44(Text)`
+var Initials = styled45(Text)`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: 700;
   font-size: ${({ $size }) => Math.round($size * 0.4)}px;
@@ -1153,14 +1153,14 @@ var Avatar = forwardRef(
   }
 );
 Avatar.displayName = "Avatar";
-var Row = styled44(View)`
+var Row = styled45(View)`
   flex-direction: row;
   align-items: center;
 `;
-var AvatarSlot = styled44(View)`
+var AvatarSlot = styled45(View)`
   margin-left: ${({ $marginLeft }) => $marginLeft}px;
 `;
-var CountBadge = styled44(View)`
+var CountBadge = styled45(View)`
   width: ${({ $size }) => $size}px;
   height: ${({ $size }) => $size}px;
   margin-left: ${({ $marginLeft }) => $marginLeft}px;
@@ -1172,7 +1172,7 @@ var CountBadge = styled44(View)`
   align-items: center;
   justify-content: center;
 `;
-var CountText = styled44.Text`
+var CountText = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.s}px;
@@ -1219,7 +1219,7 @@ var AvatarGroup = forwardRef(
   }
 );
 AvatarGroup.displayName = "AvatarGroup";
-var Track = styled44(View)`
+var Track = styled45(View)`
   height: 6px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   background-color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.surface.secondaryLight};
@@ -1227,7 +1227,7 @@ var Track = styled44(View)`
   overflow: hidden;
   opacity: ${({ $disabled }) => $disabled ? 0.6 : 1};
 `;
-var Fill = styled44(View)`
+var Fill = styled45(View)`
   height: 6px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   background-color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.medium : theme2.content.primary};
@@ -1424,7 +1424,7 @@ var ProgressBar = forwardRef(
   }
 );
 ProgressBar.displayName = "ProgressBar";
-var Card = styled44(View)`
+var Card = styled45(View)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -1433,7 +1433,7 @@ var Card = styled44(View)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
 `;
-var CardPressable = styled44(Pressable)`
+var CardPressable = styled45(Pressable)`
   flex-grow: 1;
   flex-shrink: 1;
   flex-direction: row;
@@ -1442,52 +1442,52 @@ var CardPressable = styled44(Pressable)`
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
   min-width: 0;
 `;
-var LeftContent = styled44(View)`
+var LeftContent = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.l}px;
   flex-shrink: 1;
 `;
-var IconSlot = styled44(View)`
+var IconSlot = styled45(View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var Divider = styled44(View)`
+var Divider = styled45(View)`
   align-self: stretch;
   width: 1px;
   background-color: ${({ theme: theme2 }) => theme2.content.dark};
   opacity: 0.2;
 `;
-var InfoColumn = styled44(View)`
+var InfoColumn = styled45(View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
   flex-shrink: 1;
 `;
-var Title = styled44.Text`
+var Title = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var Subtitle = styled44.Text`
+var Subtitle = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var ProgressSlot = styled44(View)`
+var ProgressSlot = styled45(View)`
   width: 119px;
   margin-top: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var RightContent = styled44(View)`
+var RightContent = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
 `;
-var LocationButton = styled44(Pressable)`
+var LocationButton = styled45(Pressable)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -1616,7 +1616,7 @@ var borderWidthPx = ($borderWidth, theme2) => {
   if ($borderWidth === "s") return theme2.border.size.s;
   return theme2.border.size.m;
 };
-var Container2 = styled44(Pressable)`
+var Container2 = styled45(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -1635,20 +1635,20 @@ var Container2 = styled44(Pressable)`
   box-shadow: ${({ $variant }) => $variant === "surface" ? "0px 4px 8px rgba(29, 29, 29, 0.16)" : "none"};
   ${({ $fullWidth }) => $fullWidth ? "align-self: stretch; width: 100%;" : ""};
 `;
-var HoverOverlay = styled44(View)`
+var HoverOverlay = styled45(View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ $shape, theme: theme2 }) => radius($shape, theme2)}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.hover};
   pointer-events: none;
 `;
-var PressedOverlay = styled44(View)`
+var PressedOverlay = styled45(View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ $shape, theme: theme2 }) => radius($shape, theme2)}px;
   pointer-events: none;
 `;
-var Badge = styled44(View)`
+var Badge = styled45(View)`
   position: absolute;
   top: 0;
   right: 0;
@@ -1661,7 +1661,7 @@ var Badge = styled44(View)`
   justify-content: center;
   pointer-events: none;
 `;
-var BadgeText = styled44.Text`
+var BadgeText = styled45.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -1691,17 +1691,79 @@ var labelTriplet = ($labelFamily, $labelWeight, theme2) => {
   const fontFamily2 = $labelFamily === "title" ? theme2.fontFamily.title : theme2.fontFamily.body;
   return { fontFamily: fontFamily2, fontWeight: fontWeight2, fontSize: theme2.fontSize.m };
 };
-var Label = styled44.Text`
+var Label = styled45.Text`
   font-family: ${({ $labelFamily, $labelWeight, theme: theme2 }) => labelTriplet($labelFamily, $labelWeight, theme2).fontFamily};
   font-weight: ${({ $labelFamily, $labelWeight, theme: theme2 }) => labelTriplet($labelFamily, $labelWeight, theme2).fontWeight};
   font-size: ${({ $labelFamily, $labelWeight, theme: theme2 }) => labelTriplet($labelFamily, $labelWeight, theme2).fontSize}px;
   color: ${(props) => labelColor(props)};
   ${({ $underline }) => $underline ? "text-decoration-line: underline;" : ""}
 `;
-var IconSlot2 = styled44(View)`
+var IconSlot2 = styled45(View)`
   align-items: center;
   justify-content: center;
 `;
+var Anchor = styled45(View)`
+  position: relative;
+  align-self: flex-start;
+`;
+var Bubble = styled45(View)`
+  max-width: 220px;
+  padding: ${({ theme: theme2 }) => theme2.padding.xs}px ${({ theme: theme2 }) => theme2.padding.sm}px;
+  border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
+  background-color: ${({ theme: theme2 }) => theme2.surface.standard};
+`;
+var BubbleText = styled45.Text`
+  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
+  font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
+  font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
+  color: ${({ theme: theme2 }) => theme2.content.dark};
+`;
+
+// src/components/Tooltip/Tooltip.position.ts
+var tooltipBubbleStyle = (side, gap) => {
+  switch (side) {
+    case "top":
+      return { position: "absolute", bottom: "100%", left: 0, marginBottom: gap };
+    case "bottom":
+      return { position: "absolute", top: "100%", left: 0, marginTop: gap };
+    case "left":
+      return { position: "absolute", right: "100%", top: 0, marginRight: gap };
+    case "right":
+      return { position: "absolute", left: "100%", top: 0, marginLeft: gap };
+  }
+};
+function Tooltip({
+  label,
+  children,
+  side = "top",
+  gap = 6,
+  disabled = false,
+  testID
+}) {
+  const [hovered, setHovered] = useState(false);
+  const show = hovered && !disabled && label.length > 0;
+  return /* @__PURE__ */ jsxs(
+    Anchor,
+    {
+      onPointerEnter: () => setHovered(true),
+      onPointerLeave: () => setHovered(false),
+      testID,
+      children: [
+        children,
+        show ? /* @__PURE__ */ jsx(
+          Bubble,
+          {
+            style: [tooltipBubbleStyle(side, gap), elevation.md],
+            pointerEvents: "none",
+            accessibilityElementsHidden: true,
+            importantForAccessibility: "no-hide-descendants",
+            children: /* @__PURE__ */ jsx(BubbleText, { numberOfLines: 1, children: label })
+          }
+        ) : null
+      ]
+    }
+  );
+}
 var Button = forwardRef(
   ({
     label,
@@ -1728,7 +1790,9 @@ var Button = forwardRef(
     accessibilityLabel,
     accessibilityHint,
     testID,
-    badge
+    badge,
+    tooltip,
+    tooltipSide
   }, ref) => {
     const [hovered, setHovered] = useState(false);
     const [pressed, setPressed] = useState(false);
@@ -1739,7 +1803,7 @@ var Button = forwardRef(
     const showPressedOverlay = pressed && !disabled;
     const hasLabel = typeof label === "string" && label.length > 0;
     const hasBadge = typeof badge === "string" && badge.length > 0;
-    return /* @__PURE__ */ jsxs(
+    const button = /* @__PURE__ */ jsxs(
       Container2,
       {
         ref,
@@ -1789,6 +1853,7 @@ var Button = forwardRef(
         ]
       }
     );
+    return tooltip ? /* @__PURE__ */ jsx(Tooltip, { label: tooltip, side: tooltipSide, children: button }) : button;
   }
 );
 Button.displayName = "Button";
@@ -1926,10 +1991,10 @@ function actionAccessibilityLabel(action, name, labels) {
 function actionBackground(action, theme2) {
   return action === "remove" ? theme2.surface.error : theme2.surface.primary;
 }
-var List = styled44(View)`
+var List = styled45(View)`
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var Row2 = styled44(View)`
+var Row2 = styled45(View)`
   flex-direction: row;
   align-items: center;
   padding: ${({ theme: theme2 }) => theme2.padding.xs}px ${({ theme: theme2 }) => theme2.padding.sm}px;
@@ -1937,7 +2002,7 @@ var Row2 = styled44(View)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var Thumb = styled44(View)`
+var Thumb = styled45(View)`
   width: 56px;
   height: 56px;
   align-items: center;
@@ -1946,11 +2011,11 @@ var Thumb = styled44(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.high};
 `;
-var NameSlot = styled44(View)`
+var NameSlot = styled45(View)`
   flex: 1;
   min-width: 0;
 `;
-var Actions = styled44(View)`
+var Actions = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
@@ -2071,7 +2136,7 @@ var BackgroundDotsGrid = memo(function BackgroundDotsGrid2({
   );
 });
 BackgroundDotsGrid.displayName = "BackgroundDotsGrid";
-var Card2 = styled44(View)`
+var Card2 = styled45(View)`
   flex-direction: column;
   align-self: flex-start;
   align-items: center;
@@ -2081,20 +2146,20 @@ var Card2 = styled44(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
 `;
-var IconSlot3 = styled44(View)`
+var IconSlot3 = styled45(View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var Value = styled44.Text`
+var Value = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.xxl}px;
   text-align: center;
 `;
-var Label2 = styled44.Text`
+var Label2 = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
@@ -2128,12 +2193,12 @@ var BigNumbersCard = forwardRef(
   }
 );
 BigNumbersCard.displayName = "BigNumbersCard";
-var Row3 = styled44(View)`
+var Row3 = styled45(View)`
   flex-direction: row;
   align-items: flex-end;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
 `;
-var Bubble = styled44(View)`
+var Bubble2 = styled45(View)`
   flex: 1;
   min-width: 0;
   flex-direction: column;
@@ -2146,18 +2211,18 @@ var Bubble = styled44(View)`
   padding-left: ${({ $position, theme: theme2 }) => $position === "left" ? theme2.padding.s : theme2.padding.m}px;
   padding-right: ${({ $position, theme: theme2 }) => $position === "left" ? theme2.padding.m : theme2.padding.s}px;
 `;
-var BubbleInner = styled44(View)`
+var BubbleInner = styled45(View)`
   flex-direction: column;
   gap: 10px;
   align-items: ${({ $position }) => $position === "left" ? "flex-end" : "flex-start"};
 `;
-var TopRow = styled44(View)`
+var TopRow = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   width: 100%;
 `;
-var MessageText = styled44.Text`
+var MessageText = styled45.Text`
   flex: 1;
   min-width: 0;
   color: ${({ theme: theme2 }) => theme2.content.dark};
@@ -2166,13 +2231,13 @@ var MessageText = styled44.Text`
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   text-align: ${({ $position }) => $position === "left" ? "right" : "left"};
 `;
-var MenuButton = styled44(Pressable)`
+var MenuButton = styled45(Pressable)`
   width: 16px;
   height: 16px;
   align-items: center;
   justify-content: center;
 `;
-var TimeText = styled44.Text`
+var TimeText = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.s}px;
@@ -2211,7 +2276,7 @@ var ChatBubble = forwardRef(
         testID,
         children: [
           !isLeft ? avatar : null,
-          /* @__PURE__ */ jsx(Bubble, { $position: position, style: elevation.md, children: /* @__PURE__ */ jsxs(BubbleInner, { $position: position, children: [
+          /* @__PURE__ */ jsx(Bubble2, { $position: position, style: elevation.md, children: /* @__PURE__ */ jsxs(BubbleInner, { $position: position, children: [
             /* @__PURE__ */ jsx(TopRow, { children: !isLeft ? /* @__PURE__ */ jsxs(Fragment, { children: [
               /* @__PURE__ */ jsx(MessageText, { $position: position, children: message }),
               menu
@@ -2228,7 +2293,7 @@ var ChatBubble = forwardRef(
   }
 );
 ChatBubble.displayName = "ChatBubble";
-var Container3 = styled44(Pressable)`
+var Container3 = styled45(Pressable)`
   height: 60px;
   flex-direction: row;
   align-items: center;
@@ -2237,30 +2302,30 @@ var Container3 = styled44(Pressable)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
 `;
-var AvatarRow = styled44(View)`
+var AvatarRow = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   flex: 1;
   min-width: 0;
 `;
-var TextStack = styled44(View)`
+var TextStack = styled45(View)`
   flex: 1;
   min-width: 0;
 `;
-var Name = styled44.Text`
+var Name = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${typography.badge.s.fontFamily};
   font-size: ${typography.badge.s.fontSize}px;
   font-weight: ${typography.badge.s.fontWeight};
 `;
-var Subtitle2 = styled44.Text`
+var Subtitle2 = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
 `;
-var Badge2 = styled44(View)`
+var Badge2 = styled45(View)`
   width: 28px;
   height: 28px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -2268,7 +2333,7 @@ var Badge2 = styled44(View)`
   justify-content: center;
   background-color: ${({ theme: theme2 }) => theme2.surface.error};
 `;
-var BadgeText2 = styled44.Text`
+var BadgeText2 = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${typography.badge.s.fontFamily};
   font-size: ${typography.badge.s.fontSize}px;
@@ -2328,11 +2393,11 @@ var rowBackground = ({
   if ($hasValue) return theme2.surface.medium;
   return theme2.surface.standard;
 };
-var Container4 = styled44(View)`
+var Container4 = styled45(View)`
   flex-direction: column;
   align-self: stretch;
 `;
-var Row4 = styled44(Pressable)`
+var Row4 = styled45(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -2345,14 +2410,14 @@ var Row4 = styled44(Pressable)`
           border-color: ${theme2.content.disable};
         ` : ""};
 `;
-var HoverOverlay2 = styled44(View)`
+var HoverOverlay2 = styled45(View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.hover};
   pointer-events: none;
 `;
-styled44(View)`
+styled45(View)`
   position: absolute;
   top: -2px;
   left: -2px;
@@ -2363,7 +2428,7 @@ styled44(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m + 2}px;
   pointer-events: none;
 `;
-var StyledInput = styled44(TextInput)`
+var StyledInput = styled45(TextInput)`
   flex: 1;
   min-width: 0;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
@@ -2375,13 +2440,13 @@ var StyledInput = styled44(TextInput)`
   outline-width: 0;
   outline-style: none;
 `;
-var IconSlot4 = styled44(View)`
+var IconSlot4 = styled45(View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var IconButton = styled44(Pressable)`
+var IconButton = styled45(Pressable)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -2469,7 +2534,7 @@ var SearchInput = forwardRef(
   }
 );
 SearchInput.displayName = "SearchInput";
-var Container5 = styled44(View)`
+var Container5 = styled45(View)`
   flex-direction: column;
   align-items: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
@@ -2477,7 +2542,7 @@ var Container5 = styled44(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.background};
 `;
-var ListScroll = styled44(ScrollView)`
+var ListScroll = styled45(ScrollView)`
   align-self: stretch;
   max-height: 296px;
   /* Force the scrollbar gutter to always render (not just on overflow) so the
@@ -2505,7 +2570,7 @@ var ListScroll = styled44(ScrollView)`
   scrollbar-width: thin;
   scrollbar-color: ${({ theme: theme2 }) => theme2.surface.high} ${({ theme: theme2 }) => theme2.surface.medium};
 `;
-var ListInner = styled44(View)`
+var ListInner = styled45(View)`
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
 var ChatSection = forwardRef(
@@ -2551,7 +2616,7 @@ var ChatSection = forwardRef(
                 fullWidth: true
               }
             );
-            return /* @__PURE__ */ jsx(React15.Fragment, { children: renderCard ? renderCard(card, user) : card }, user.id);
+            return /* @__PURE__ */ jsx(React16.Fragment, { children: renderCard ? renderCard(card, user) : card }, user.id);
           }) }) }),
           onExpand ? /* @__PURE__ */ jsx(
             Button,
@@ -2655,7 +2720,7 @@ var DIMS = {
     locationButton: 36
   }
 };
-var Container6 = styled44(View)`
+var Container6 = styled45(View)`
   flex-direction: column;
   /* Both children (TitleText, DonutWrapper) are individually centered in
      the cross-axis. Reverted from 'stretch' on 2026-05-19 because wide titles
@@ -2667,21 +2732,21 @@ var Container6 = styled44(View)`
   justify-content: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var TitleText2 = styled44.Text`
+var TitleText2 = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ $size }) => $size}px;
   text-align: ${({ $align }) => $align ?? "center"};
 `;
-var DonutWrapper = styled44(View)`
+var DonutWrapper = styled45(View)`
   width: ${({ $size }) => $size}px;
   height: ${({ $size }) => $size}px;
   align-items: center;
   justify-content: center;
   position: relative;
 `;
-var ArcSlot = styled44(View)`
+var ArcSlot = styled45(View)`
   position: absolute;
   top: 0;
   left: 0;
@@ -2690,14 +2755,14 @@ var ArcSlot = styled44(View)`
   align-items: center;
   justify-content: center;
 `;
-var Center = styled44(View)`
+var Center = styled45(View)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
   width: 96px;
 `;
-var ValueText = styled44.Text`
+var ValueText = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
@@ -2709,21 +2774,21 @@ var resolveLabelWeight = ($w, theme2) => {
   if ($w === "bold") return theme2.fontWeight.bold;
   return theme2.fontWeight.medium;
 };
-var LabelText = styled44.Text`
+var LabelText = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ $weight, theme: theme2 }) => resolveLabelWeight($weight, theme2)};
   font-size: ${({ $size, theme: theme2 }) => $size ?? theme2.fontSize.sm}px;
   text-align: center;
 `;
-var Caption = styled44.Text`
+var Caption = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   text-align: center;
 `;
-var LocationButton2 = styled44(Pressable)`
+var LocationButton2 = styled45(Pressable)`
   position: absolute;
   top: 0;
   right: 0;
@@ -2822,7 +2887,7 @@ var DonutChart = forwardRef(
   }
 );
 DonutChart.displayName = "DonutChart";
-var Card3 = styled44(Pressable)`
+var Card3 = styled45(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -2832,7 +2897,7 @@ var Card3 = styled44(Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   ${({ $borderColor }) => $borderColor ? `border-width: 1px; border-color: ${$borderColor};` : ""}
 `;
-var LeftCluster = styled44(View)`
+var LeftCluster = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.l}px;
@@ -2843,7 +2908,7 @@ var LeftCluster = styled44(View)`
   flex: 1;
   min-width: 0;
 `;
-var UserInfo = styled44(View)`
+var UserInfo = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
@@ -2852,32 +2917,32 @@ var UserInfo = styled44(View)`
   flex: 1;
   min-width: 0;
 `;
-var TextStack2 = styled44(View)`
+var TextStack2 = styled45(View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var Name2 = styled44.Text`
+var Name2 = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var Sector = styled44.Text`
+var Sector = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var ProgressSlot2 = styled44(View)`
+var ProgressSlot2 = styled45(View)`
   width: 119px;
 `;
-var Divider2 = styled44(View)`
+var Divider2 = styled45(View)`
   width: 1px;
   align-self: stretch;
   background-color: ${({ theme: theme2 }) => theme2.content.medium};
 `;
-var HealthOverview = styled44(View)`
+var HealthOverview = styled45(View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
@@ -2886,12 +2951,12 @@ var HealthOverview = styled44(View)`
    * wrap to a second line. 110px comfortably holds icon + "999 Bpm". */
   width: 110px;
 `;
-var Stat = styled44(View)`
+var Stat = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
 `;
-var StatText = styled44.Text`
+var StatText = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
@@ -2900,13 +2965,13 @@ var StatText = styled44.Text`
    * HealthOverview column is tighter than expected. Web-only. */
   white-space: nowrap;
 `;
-var AbsenceText = styled44.Text`
+var AbsenceText = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var LocationButton3 = styled44(Pressable)`
+var LocationButton3 = styled45(Pressable)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -2986,7 +3051,7 @@ var EmployeeOverviewCard = forwardRef(
   }
 );
 EmployeeOverviewCard.displayName = "EmployeeOverviewCard";
-var Card4 = styled44(View)`
+var Card4 = styled45(View)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -3003,13 +3068,13 @@ var Card4 = styled44(View)`
   return theme2.gap.m;
 }}px;
 `;
-var YearText = styled44.Text`
+var YearText = styled45.Text`
   color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.dark};
   font-family: ${({ theme: theme2, $mobile }) => $mobile ? theme2.fontFamily.body : theme2.fontFamily.title};
   font-weight: ${({ theme: theme2, $future }) => $future ? theme2.fontWeight.regular : theme2.fontWeight.bold};
   font-size: ${({ theme: theme2, $mobile }) => $mobile ? theme2.fontSize.m : theme2.fontSize.ms}px;
 `;
-var DateText = styled44.Text`
+var DateText = styled45.Text`
   color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2, $compact, $mobile }) => {
@@ -3027,7 +3092,7 @@ var DateText = styled44.Text`
     width: 240px;
   `}
 `;
-var ExamLink = styled44(Pressable)`
+var ExamLink = styled45(Pressable)`
   ${({ $compact }) => $compact ? `
     flex: 1;
     align-items: flex-start;
@@ -3038,7 +3103,7 @@ var ExamLink = styled44(Pressable)`
     justify-content: center;
   `}
 `;
-var ExamLinkText = styled44.Text`
+var ExamLinkText = styled45.Text`
   color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.secondary};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
@@ -3047,19 +3112,19 @@ var ExamLinkText = styled44.Text`
   text-decoration-line: ${({ $compact }) => $compact ? "none" : "underline"};
   text-decoration-color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.secondary};
 `;
-var CompactActionButton = styled44(Pressable)`
+var CompactActionButton = styled45(Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.primary};
   padding: ${({ theme: theme2, $mobile }) => $mobile ? `${theme2.padding.xs}px` : `${theme2.padding.s}px ${theme2.padding.sm}px`};
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   align-items: center;
   justify-content: center;
 `;
-var ActionsCluster = styled44(View)`
+var ActionsCluster = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var DownloadIconSlot = styled44(View)`
+var DownloadIconSlot = styled45(View)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -3191,12 +3256,12 @@ var ExamInfoCard = forwardRef(
   }
 );
 ExamInfoCard.displayName = "ExamInfoCard";
-var Row5 = styled44(View)`
+var Row5 = styled45(View)`
   flex-direction: row;
   align-items: center;
   align-self: flex-start;
 `;
-var VitalsCard = styled44(View)`
+var VitalsCard = styled45(View)`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
@@ -3211,29 +3276,29 @@ var VitalsCard = styled44(View)`
   border-bottom-left-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   margin-right: -32px;
 `;
-var StatsRow = styled44(View)`
+var StatsRow = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: 10px;
 `;
-var StatItem = styled44(View)`
+var StatItem = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var StatText2 = styled44.Text`
+var StatText2 = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
 `;
-var StatValueBold = styled44.Text`
+var StatValueBold = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
 `;
-var ProgressSlot3 = styled44(View)`
+var ProgressSlot3 = styled45(View)`
   width: 138px;
 `;
 var HeaderUserInfo = forwardRef(
@@ -3330,7 +3395,7 @@ var Logo = ({
   );
 };
 Logo.displayName = "Logo";
-var Bar = styled44(View)`
+var Bar = styled45(View)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -3495,7 +3560,7 @@ var Title2 = forwardRef(
   }
 );
 Title2.displayName = "Title";
-var Container7 = styled44(Pressable)`
+var Container7 = styled45(Pressable)`
   flex-direction: row;
   align-items: center;
   width: 100%;
@@ -3505,16 +3570,16 @@ var Container7 = styled44(Pressable)`
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var LeftSlot = styled44(View)`
+var LeftSlot = styled45(View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var LabelSlot = styled44(View)`
+var LabelSlot = styled45(View)`
   flex: 1;
 `;
-var RightSlot = styled44(View)`
+var RightSlot = styled45(View)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -3567,13 +3632,13 @@ var SIZE = {
   m: { ring: 24, border: 2, dot: 12 },
   s: { ring: 16, border: 1, dot: 8 }
 };
-var Container8 = styled44(Pressable)`
+var Container8 = styled45(Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var Ring = styled44(View)`
+var Ring = styled45(View)`
   width: ${({ $size }) => SIZE[$size].ring}px;
   height: ${({ $size }) => SIZE[$size].ring}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -3583,13 +3648,13 @@ var Ring = styled44(View)`
   justify-content: center;
   background-color: transparent;
 `;
-var Dot = styled44(View)`
+var Dot = styled45(View)`
   width: ${({ $size }) => SIZE[$size].dot}px;
   height: ${({ $size }) => SIZE[$size].dot}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   background-color: ${({ theme: theme2 }) => theme2.content.secondary};
 `;
-var Label3 = styled44.Text`
+var Label3 = styled45.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
@@ -3654,23 +3719,23 @@ var descriptionColor = ({
 };
 
 // src/components/RadioGroup/RadioGroup.styles.ts
-var Container9 = styled44(View)`
+var Container9 = styled45(View)`
   flex-direction: column;
   align-self: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var Label4 = styled44.Text`
+var Label4 = styled45.Text`
   font-family: ${typography.label.m.fontFamily};
   font-weight: ${typography.label.m.fontWeight};
   font-size: ${typography.label.m.fontSize}px;
   color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
 `;
-var Options = styled44(View)`
+var Options = styled45(View)`
   flex-direction: row;
   flex-wrap: wrap;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
 `;
-var Description = styled44.Text`
+var Description = styled45.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -3718,13 +3783,13 @@ var SIZE2 = {
   m: { box: 24, border: 2, check: 16, label: 14, labelWeight: "400" },
   s: { box: 16, border: 1, check: 12, label: 12, labelWeight: "500" }
 };
-var Container10 = styled44(Pressable)`
+var Container10 = styled45(Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var Box = styled44(View)`
+var Box = styled45(View)`
   width: ${({ $size }) => SIZE2[$size].box}px;
   height: ${({ $size }) => SIZE2[$size].box}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
@@ -3734,14 +3799,14 @@ var Box = styled44(View)`
   justify-content: center;
   background-color: transparent;
 `;
-var Check = styled44.Text`
+var Check = styled45.Text`
   font-size: ${({ $size }) => SIZE2[$size].check}px;
   line-height: ${({ $size }) => SIZE2[$size].check}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   color: ${({ theme: theme2 }) => theme2.content.secondary};
   text-align: center;
 `;
-var Label5 = styled44.Text`
+var Label5 = styled45.Text`
   flex: 1;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ $size }) => SIZE2[$size].label}px;
@@ -3796,12 +3861,16 @@ function resolveLength(value, innerLength) {
 function counterText(length, maxLength) {
   return `${length}/${maxLength}`;
 }
+
+// src/components/Input/Input.password.ts
+var passwordEyeIcon = (visible) => visible ? "visibility_off" : "visibility";
+var passwordEyeLabel = (visible) => visible ? "Ocultar senha" : "Mostrar senha";
 var rowBackground2 = ({ $focused, $hovered, $disabled, theme: theme2 }) => {
   if ($disabled) return theme2.surface.disable;
   if ($focused || $hovered) return theme2.surface.medium;
   return theme2.surface.standard;
 };
-var Container11 = styled44(View)`
+var Container11 = styled45(View)`
   flex-direction: column;
   align-self: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
@@ -3812,13 +3881,13 @@ var labelTriplet2 = ($weight, theme2) => {
   const fontWeight2 = weight === "regular" ? theme2.fontWeight.regular : theme2.fontWeight.medium;
   return { fontFamily: theme2.fontFamily.body, fontWeight: fontWeight2, fontSize: theme2.fontSize.m };
 };
-var Label6 = styled44.Text`
+var Label6 = styled45.Text`
   font-family: ${({ $weight, theme: theme2 }) => labelTriplet2($weight, theme2).fontFamily};
   font-weight: ${({ $weight, theme: theme2 }) => labelTriplet2($weight, theme2).fontWeight};
   font-size: ${({ $weight, theme: theme2 }) => labelTriplet2($weight, theme2).fontSize}px;
   color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
 `;
-var Row6 = styled44(Pressable)`
+var Row6 = styled45(Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
@@ -3830,14 +3899,14 @@ var Row6 = styled44(Pressable)`
           border-color: ${theme2.content.disable};
         ` : ""};
 `;
-var HoverOverlay3 = styled44(View)`
+var HoverOverlay3 = styled45(View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.hover};
   pointer-events: none;
 `;
-styled44(View)`
+styled45(View)`
   position: absolute;
   top: -2px;
   left: -2px;
@@ -3848,7 +3917,7 @@ styled44(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m + 2}px;
   pointer-events: none;
 `;
-var StyledInput2 = styled44(TextInput)`
+var StyledInput2 = styled45(TextInput)`
   flex: 1;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
@@ -3859,26 +3928,26 @@ var StyledInput2 = styled44(TextInput)`
   outline-width: 0;
   outline-style: none;
 `;
-var IconSlot5 = styled44(View)`
+var IconSlot5 = styled45(View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
   padding: ${({ theme: theme2 }) => theme2.padding.xs}px;
 `;
-var BottomRow = styled44(View)`
+var BottomRow = styled45(View)`
   flex-direction: row;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
 `;
-var Description2 = styled44.Text`
+var Description2 = styled45.Text`
   flex-shrink: 1;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   color: ${(props) => descriptionColor(props)};
 `;
-var Counter = styled44.Text`
+var Counter = styled45.Text`
   margin-left: auto;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
@@ -3894,6 +3963,8 @@ var Input = forwardRef(
     iconRight,
     disabled = false,
     counter = false,
+    passwordToggle = false,
+    secureTextEntry,
     value,
     defaultValue,
     maxLength,
@@ -3907,6 +3978,26 @@ var Input = forwardRef(
     useImperativeHandle(ref, () => innerRef.current, []);
     const [focused, setFocused] = useState(false);
     const [hovered, setHovered] = useState(false);
+    const [passwordVisible, setPasswordVisible] = useState(false);
+    const secure = passwordToggle ? !passwordVisible : secureTextEntry;
+    const rightSlot = passwordToggle ? /* @__PURE__ */ jsx(
+      Pressable,
+      {
+        accessibilityRole: "button",
+        accessibilityLabel: passwordEyeLabel(passwordVisible),
+        disabled,
+        onPress: () => setPasswordVisible((v) => !v),
+        hitSlop: 8,
+        children: /* @__PURE__ */ jsx(
+          Icon,
+          {
+            name: passwordEyeIcon(passwordVisible),
+            size: 20,
+            color: disabled ? theme2.content.disable : theme2.content.dark
+          }
+        )
+      }
+    ) : iconRight;
     const [innerLength, setInnerLength] = useState(
       typeof defaultValue === "string" ? defaultValue.length : 0
     );
@@ -3933,6 +4024,7 @@ var Input = forwardRef(
               {
                 ref: innerRef,
                 ...textInputProps,
+                secureTextEntry: secure,
                 value,
                 defaultValue,
                 maxLength,
@@ -3953,7 +4045,7 @@ var Input = forwardRef(
                 }
               }
             ),
-            iconRight ? /* @__PURE__ */ jsx(IconSlot5, { children: iconRight }) : null,
+            rightSlot ? /* @__PURE__ */ jsx(IconSlot5, { children: rightSlot }) : null,
             hovered && !focused && !disabled ? /* @__PURE__ */ jsx(HoverOverlay3, {}) : null
           ]
         }
@@ -4036,18 +4128,18 @@ var triggerBackground = ({
   if ($focused || $hovered) return theme2.surface.medium;
   return theme2.surface.standard;
 };
-var Container12 = styled44(View)`
+var Container12 = styled45(View)`
   flex-direction: column;
   align-self: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var Label7 = styled44.Text`
+var Label7 = styled45.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
   color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
 `;
-var Trigger = styled44(Pressable)`
+var Trigger = styled45(Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
@@ -4055,7 +4147,7 @@ var Trigger = styled44(Pressable)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${(props) => triggerBackground(props)};
 `;
-var TriggerLabel = styled44.Text`
+var TriggerLabel = styled45.Text`
   flex: 1;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
@@ -4066,11 +4158,11 @@ var TriggerLabel = styled44.Text`
   return theme2.content.dark;
 }};
 `;
-styled44.Text`
+styled45.Text`
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
 `;
-var Panel = styled44(View)`
+var Panel = styled45(View)`
   /* Panel renderiza dentro de Modal — posicionamento absoluto vem do View
    * wrapper que computa coords via measureInWindow no Combobox.tsx. Aqui
    * fica só o visual: superfície + borda + padding + sombra. */
@@ -4082,11 +4174,11 @@ var Panel = styled44(View)`
   padding: ${({ theme: theme2 }) => theme2.padding.s}px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
 `;
-var OptionsList = styled44(View)`
+var OptionsList = styled45(View)`
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var OptionRow = styled44(Pressable)`
+var OptionRow = styled45(Pressable)`
   flex-direction: row;
   align-items: center;
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.s}px;
@@ -4095,13 +4187,13 @@ var OptionRow = styled44(Pressable)`
   border-top-color: ${({ theme: theme2 }) => theme2.content.medium};
   background-color: ${({ $hovered, theme: theme2 }) => $hovered ? theme2.surface.hover : "transparent"};
 `;
-var OptionLabel = styled44.Text`
+var OptionLabel = styled45.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
   color: ${({ theme: theme2 }) => theme2.content.dark};
 `;
-var Description3 = styled44.Text`
+var Description3 = styled45.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -4265,15 +4357,35 @@ var Combobox = forwardRef(
   }
 );
 Combobox.displayName = "Combobox";
+
+// src/components/Pagination/Pagination.logic.ts
+var paginationPages = (currentPage, pageCount, maxButtons = 4) => {
+  const count = Math.max(1, pageCount);
+  const size = Math.min(maxButtons, count);
+  const half = Math.floor(size / 2);
+  const lastStart = count - size + 1;
+  const start = Math.max(1, Math.min(currentPage - half, lastStart));
+  return Array.from({ length: size }, (_, i) => start + i);
+};
+var showOverflow = (pages, pageCount) => {
+  const last = pages[pages.length - 1];
+  return last != null && last < pageCount;
+};
+var isNextDisabled = (currentPage, pageCount) => currentPage >= Math.max(1, pageCount);
+var isPaginationVisible = (pageCount) => pageCount > 1;
 function Pagination({
   currentPage,
   pageCount = 4,
+  maxButtons = 4,
   onPageChange,
   onOverflowPress,
   testID
 }) {
   const theme2 = useTheme();
-  const pages = Array.from({ length: pageCount }, (_, i) => i + 1);
+  if (!isPaginationVisible(pageCount)) return null;
+  const pages = paginationPages(currentPage, pageCount, maxButtons);
+  const overflow = showOverflow(pages, pageCount);
+  const nextDisabled = isNextDisabled(currentPage, pageCount);
   return /* @__PURE__ */ jsxs(
     View,
     {
@@ -4290,12 +4402,12 @@ function Pagination({
           {
             variant: "ghost",
             label: String(n),
-            labelColor: theme2.content.primaryLight,
+            labelColor: n === currentPage ? theme2.content.primary : theme2.content.primaryLight,
             accessibilityLabel: `P\xE1gina ${n}`,
             onPress: () => onPageChange(n)
           }
         ) }, n)),
-        /* @__PURE__ */ jsx(View, { style: { flex: 1 }, children: /* @__PURE__ */ jsx(
+        overflow ? onOverflowPress ? /* @__PURE__ */ jsx(View, { style: { flex: 1 }, children: /* @__PURE__ */ jsx(
           Button,
           {
             variant: "ghost",
@@ -4304,12 +4416,21 @@ function Pagination({
             accessibilityLabel: "Mais p\xE1ginas",
             onPress: onOverflowPress
           }
-        ) }),
+        ) }) : /* @__PURE__ */ jsx(
+          View,
+          {
+            style: { flex: 1, alignItems: "center", justifyContent: "center" },
+            accessibilityElementsHidden: true,
+            importantForAccessibility: "no-hide-descendants",
+            children: /* @__PURE__ */ jsx(Text, { style: { color: theme2.content.primaryLight }, children: "..." })
+          }
+        ) : null,
         /* @__PURE__ */ jsx(View, { style: { flex: 1 }, children: /* @__PURE__ */ jsx(
           Button,
           {
             variant: "contained",
             backgroundColor: theme2.surface.primary,
+            disabled: nextDisabled,
             accessibilityLabel: "Pr\xF3xima p\xE1gina",
             onPress: () => onPageChange(currentPage + 1),
             iconLeft: /* @__PURE__ */ jsx(
@@ -4366,10 +4487,10 @@ var textColor = ({
   if ($state === "disable") return theme2.content.disable;
   return $colorScheme === "secondary" ? theme2.content.secondary : theme2.content.primary;
 };
-var Container13 = styled44(Pressable)`
+var Container13 = styled45(Pressable)`
   align-self: flex-start;
 `;
-var Body = styled44(View)`
+var Body = styled45(View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -4381,13 +4502,13 @@ var Body = styled44(View)`
   border-radius: ${({ $variant, theme: theme2 }) => $variant === "filled" ? theme2.border.radius.s : theme2.border.radius.m}px;
   overflow: hidden;
 `;
-var Label8 = styled44.Text`
+var Label8 = styled45.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   color: ${(props) => textColor(props)};
 `;
-var HoverOverlay4 = styled44(View)`
+var HoverOverlay4 = styled45(View)`
   position: absolute;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.05);
@@ -4479,7 +4600,7 @@ var ChipGroup = ({
     option
   )) });
 };
-var Container14 = styled44(View)`
+var Container14 = styled45(View)`
   align-self: stretch;
   border-width: 1px;
   border-style: dashed;
@@ -4489,21 +4610,21 @@ var Container14 = styled44(View)`
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
   align-items: center;
 `;
-var HelperText = styled44.Text`
+var HelperText = styled45.Text`
   align-self: stretch;
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
 `;
-var PreviewSlot = styled44(View)`
+var PreviewSlot = styled45(View)`
   align-self: stretch;
   height: 56px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   overflow: hidden;
   background-color: ${({ theme: theme2 }) => theme2.surface.medium};
 `;
-var RemoveButton = styled44(Pressable)`
+var RemoveButton = styled45(Pressable)`
   position: absolute;
   top: 4px;
   right: 4px;
@@ -4600,32 +4721,32 @@ var ImageUploader = forwardRef(
   }
 );
 ImageUploader.displayName = "ImageUploader";
-var Scrim = styled44(Pressable)`
+var Scrim = styled45(Pressable)`
   flex: 1;
   align-items: center;
   justify-content: center;
   padding: ${({ theme: theme2 }) => theme2.padding.l}px;
 `;
-var Card5 = styled44(Pressable)`
+var Card5 = styled45(Pressable)`
   max-width: 100%;
   padding: ${({ theme: theme2 }) => theme2.padding.m}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.l}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
 `;
-var Content2 = styled44(View)`
+var Content2 = styled45(View)`
   width: 227px;
   max-width: 100%;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
 `;
-var Actions2 = styled44(View)`
+var Actions2 = styled45(View)`
   flex-direction: row;
   align-items: center;
   align-self: stretch;
   gap: ${({ theme: theme2 }) => theme2.padding.xxl}px;
 `;
-var ActionSlot = styled44(View)`
+var ActionSlot = styled45(View)`
   flex: 1;
 `;
 var absorb = () => {
@@ -4677,25 +4798,25 @@ function viewerLayout(window2, chrome) {
   );
   return { cardWidth, stageWidth, stageHeight };
 }
-var Header3 = styled44(View)`
+var Header3 = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var CloseButton = styled44(Pressable)`
+var CloseButton = styled45(Pressable)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var Stage = styled44(View)`
+var Stage = styled45(View)`
   align-items: center;
   justify-content: center;
   overflow: hidden;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.background};
 `;
-var Footer = styled44(View)`
+var Footer = styled45(View)`
   flex-direction: row;
   justify-content: flex-end;
 `;
@@ -4774,7 +4895,7 @@ function ImageViewer({
     }
   );
 }
-var ExpandedBar = styled44(View)`
+var ExpandedBar = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
@@ -4783,27 +4904,27 @@ var ExpandedBar = styled44(View)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   align-self: flex-end;
 `;
-var TitleText3 = styled44.Text`
+var TitleText3 = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var Divider3 = styled44(View)`
+var Divider3 = styled45(View)`
   width: 1px;
   height: 40px;
   background-color: ${({ theme: theme2 }) => theme2.content.medium};
 `;
-var SearchSlot = styled44(View)`
+var SearchSlot = styled45(View)`
   width: 284px;
 `;
-var OptionsRow = styled44(View)`
+var OptionsRow = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
   padding: ${({ theme: theme2 }) => theme2.padding.sm}px;
 `;
-var TrailingButton = styled44(Pressable)`
+var TrailingButton = styled45(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -4811,7 +4932,7 @@ var TrailingButton = styled44(Pressable)`
   border-top-right-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   border-bottom-right-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
 `;
-var CollapsedButton = styled44(Pressable)`
+var CollapsedButton = styled45(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -4848,7 +4969,9 @@ var MapControl = forwardRef(
     options,
     onOptionChange,
     accessibilityLabel,
-    testID
+    testID,
+    tooltip,
+    tooltipSide = "left"
   }, ref) => {
     const theme2 = useTheme();
     const isExpandedControlled = controlledExpanded !== void 0;
@@ -4863,7 +4986,7 @@ var MapControl = forwardRef(
     const resolvedTitle = title ?? DEFAULT_TITLE[variant];
     const resolvedPlaceholder = searchPlaceholder ?? DEFAULT_PLACEHOLDER[variant];
     if (!expanded) {
-      return /* @__PURE__ */ jsx(
+      return /* @__PURE__ */ jsx(Tooltip, { label: tooltip ?? resolvedTitle, side: tooltipSide, children: /* @__PURE__ */ jsx(
         CollapsedButton,
         {
           ref,
@@ -4874,7 +4997,7 @@ var MapControl = forwardRef(
           style: elevation.md,
           children: /* @__PURE__ */ jsx(Icon, { name: iconName, size: 24, color: theme2.content.dark })
         }
-      );
+      ) });
     }
     const renderCenter = () => {
       if (variant === "heatmap") {
@@ -4925,14 +5048,14 @@ var MapControl = forwardRef(
   }
 );
 MapControl.displayName = "MapControl";
-var Container15 = styled44(View)`
+var Container15 = styled45(View)`
   align-items: center;
   justify-content: flex-start;
 `;
-var TailWrapper = styled44(View)`
+var TailWrapper = styled45(View)`
   margin-top: -2px;
 `;
-var CameraBody = styled44(View)`
+var CameraBody = styled45(View)`
   ${({ $size, theme: theme2 }) => css`
     width: ${$size}px;
     height: ${$size}px;
@@ -4944,7 +5067,7 @@ var CameraBody = styled44(View)`
     justify-content: center;
   `}
 `;
-var BadgeBody = styled44(View)`
+var BadgeBody = styled45(View)`
   ${({ $size, $fill }) => css`
     width: ${$size}px;
     height: ${$size}px;
@@ -5053,7 +5176,7 @@ var dividerColor = ({
   }
   return accentColor({ $active, $hovered, $disabled, $variant, theme: theme2 });
 };
-var Container16 = styled44(Pressable)`
+var Container16 = styled45(Pressable)`
   height: ${({ $variant }) => $variant === "compact" ? "44px" : $variant === "minimal" ? "60px" : "60px"};
   flex-direction: row;
   align-items: center;
@@ -5065,25 +5188,25 @@ var Container16 = styled44(Pressable)`
   border-radius: ${({ $variant, theme: theme2 }) => $variant === "compact" ? "0px" : `${theme2.border.radius.m}px`};
   background-color: ${(props) => containerBackground2(props)};
 `;
-var HoverOverlay5 = styled44(View)`
+var HoverOverlay5 = styled45(View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ $variant, theme: theme2 }) => $variant === "compact" ? "0px" : `${theme2.border.radius.m}px`};
   background-color: ${({ theme: theme2 }) => theme2.surface.hover};
   pointer-events: none;
 `;
-var LabelGroup = styled44(View)`
+var LabelGroup = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var IconSlot6 = styled44(View)`
+var IconSlot6 = styled45(View)`
   width: 22px;
   height: 22px;
   align-items: center;
   justify-content: center;
 `;
-var Label9 = styled44.Text`
+var Label9 = styled45.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ $variant, theme: theme2 }) => $variant === "compact" ? `${theme2.fontSize.s}px` : `${theme2.fontSize.m}px`};
@@ -5091,13 +5214,13 @@ var Label9 = styled44.Text`
   text-transform: ${({ $variant }) => $variant === "compact" ? "uppercase" : "none"};
   letter-spacing: ${({ $variant }) => $variant === "compact" ? "0.6px" : "normal"};
 `;
-var Divider4 = styled44(View)`
+var Divider4 = styled45(View)`
   width: 2px;
   height: 100%;
   border-radius: 2px;
   background-color: ${(props) => dividerColor(props)};
 `;
-var BadgeOverlay = styled44(View)`
+var BadgeOverlay = styled45(View)`
   position: absolute;
   top: 0;
   left: ${({ $position }) => $position === "outside-left" ? "-14px" : "0"};
@@ -5110,7 +5233,7 @@ var BadgeOverlay = styled44(View)`
   padding: ${({ theme: theme2 }) => theme2.padding.s}px;
   z-index: 2;
 `;
-var BadgeText3 = styled44.Text`
+var BadgeText3 = styled45.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -5263,11 +5386,11 @@ function shouldDismiss(target, panel, trigger) {
   if (trigger?.contains(node)) return false;
   return true;
 }
-var Anchor = styled44(View)`
+var Anchor2 = styled45(View)`
   position: relative;
   align-self: flex-start;
 `;
-var Panel2 = styled44(View)`
+var Panel2 = styled45(View)`
   position: absolute;
   z-index: 100;
   min-width: ${({ $minWidth }) => $minWidth}px;
@@ -5278,11 +5401,11 @@ var Panel2 = styled44(View)`
   padding: ${({ theme: theme2 }) => theme2.padding.s}px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
 `;
-var ItemList = styled44(View)`
+var ItemList = styled45(View)`
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var ItemRow = styled44(Pressable)`
+var ItemRow = styled45(Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
@@ -5291,13 +5414,13 @@ var ItemRow = styled44(Pressable)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.xs}px;
   background-color: ${({ $hovered, $disabled, theme: theme2 }) => $hovered && !$disabled ? theme2.surface.hover : "transparent"};
 `;
-var ItemLabel = styled44.Text`
+var ItemLabel = styled45.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
   color: ${({ $color }) => $color};
 `;
-var Separator = styled44(View)`
+var Separator = styled45(View)`
   height: 1px;
   background-color: ${({ theme: theme2 }) => theme2.content.medium};
   margin-vertical: ${({ theme: theme2 }) => theme2.margin.xs}px;
@@ -5366,7 +5489,7 @@ var Popover = forwardRef(
         document.removeEventListener("keydown", onKeyDown, true);
       };
     }, [visible, onDismiss]);
-    return /* @__PURE__ */ jsxs(Anchor, { ref, testID, children: [
+    return /* @__PURE__ */ jsxs(Anchor2, { ref, testID, children: [
       /* @__PURE__ */ jsx(View, { ref: triggerRef, children: trigger }),
       visible ? /* @__PURE__ */ jsx(
         Panel2,
@@ -5413,7 +5536,7 @@ var PopoverItem = forwardRef(
 );
 PopoverItem.displayName = "PopoverItem";
 var PopoverSeparator = Separator;
-var Container17 = styled44(View)`
+var Container17 = styled45(View)`
   flex-direction: column;
   align-items: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
@@ -5539,14 +5662,14 @@ function skeletonLineWidths(lines) {
 function clampRows(rows) {
   return Math.max(1, Math.floor(rows));
 }
-var Block = styled44(Animated.View)`
+var Block = styled45(Animated.View)`
   background-color: ${({ theme: theme2 }) => theme2.surface.high};
   border-radius: ${({ theme: theme2, $shape }) => $shape === "circle" ? theme2.border.radius.pill : theme2.border.radius.s}px;
 `;
-var List2 = styled44(View)`
+var List2 = styled45(View)`
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
 `;
-var ListRow = styled44(View)`
+var ListRow = styled45(View)`
   flex-direction: row;
   align-items: center;
   padding: ${({ theme: theme2 }) => theme2.padding.sm}px ${({ theme: theme2 }) => theme2.padding.m}px;
@@ -5554,7 +5677,7 @@ var ListRow = styled44(View)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var Lines = styled44(View)`
+var Lines = styled45(View)`
   flex: 1;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
@@ -5625,7 +5748,7 @@ function SkeletonList({
     /* @__PURE__ */ jsx(Lines, { children: widths.map((width, line) => /* @__PURE__ */ jsx(Skeleton, { width, height: theme2.fontSize.m, animated }, line)) })
   ] }, row)) });
 }
-var Pill = styled44(View)`
+var Pill = styled45(View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -5634,7 +5757,7 @@ var Pill = styled44(View)`
   background-color: ${({ theme: theme2 }) => theme2.surface.primaryLight};
   min-width: 40px;
 `;
-var Triangle = styled44(View)`
+var Triangle = styled45(View)`
   position: absolute;
   top: -9px;
   left: 50%;
@@ -5665,7 +5788,7 @@ var TimeStamp = forwardRef(
   }
 );
 TimeStamp.displayName = "TimeStamp";
-var Pill2 = styled44(View)`
+var Pill2 = styled45(View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -5690,23 +5813,50 @@ var CaloriesTag = forwardRef(
   }
 );
 CaloriesTag.displayName = "CaloriesTag";
-var ChartFrame = styled44(View)`
+
+// src/components/Carousel/Carousel.item.ts
+var carouselItemStyle = (minWidth) => ({
+  minWidth,
+  flexShrink: 0
+});
+function Carousel({
+  children,
+  itemMinWidth = 240,
+  gap = 12,
+  accessibilityLabel,
+  testID
+}) {
+  const itemStyle = carouselItemStyle(itemMinWidth);
+  const items = Children.toArray(children).filter(isValidElement);
+  return /* @__PURE__ */ jsx(
+    ScrollView,
+    {
+      horizontal: true,
+      showsHorizontalScrollIndicator: true,
+      accessibilityLabel,
+      testID,
+      contentContainerStyle: { flexDirection: "row", gap },
+      children: items.map((child, index) => /* @__PURE__ */ jsx(View, { style: itemStyle, children: child }, child.key ?? index))
+    }
+  );
+}
+var ChartFrame = styled45(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.medium};
 `;
-var Layer = styled44(View)`
+var Layer = styled45(View)`
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
 `;
-var KcalAnchor = styled44(View)`
+var KcalAnchor = styled45(View)`
   position: absolute;
   width: 0;
   align-items: center;
 `;
-var TimeAnchor = styled44(View)`
+var TimeAnchor = styled45(View)`
   position: absolute;
   width: 0;
   align-items: center;
@@ -5748,6 +5898,7 @@ var segmentsOf = (laid) => {
   return segments;
 };
 var segmentedPath = (laid) => segmentsOf(laid).map(linePath).filter((d) => d !== "").join(" ");
+var chartLinePath = (laid, connectAcrossGaps) => connectAcrossGaps ? linePath(laid) : segmentedPath(laid);
 var linePath = (laid) => {
   if (laid.length === 0) return "";
   const head = laid[0];
@@ -5776,12 +5927,13 @@ var LineCaloriesChart = forwardRef(
     width = DEFAULT_WIDTH,
     height = DEFAULT_HEIGHT,
     fullWidth = false,
+    connectAcrossGaps = false,
     accessibilityLabel,
     testID
   }, ref) => {
     const theme2 = useTheme();
     const laid = layoutPoints(points, width, height);
-    const d = segmentedPath(laid);
+    const d = chartLinePath(laid, connectAcrossGaps);
     const gradId = useSvgId("calories-stroke");
     return /* @__PURE__ */ jsxs(
       ChartFrame,
@@ -5846,18 +5998,18 @@ var LineCaloriesChart = forwardRef(
   }
 );
 LineCaloriesChart.displayName = "LineCaloriesChart";
-var Row7 = styled44(View)`
+var Row7 = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var SideLabel = styled44.Text`
+var SideLabel = styled45.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   color: ${({ $active, $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : $active ? theme2.content.dark : theme2.content.medium};
 `;
-var Track2 = styled44(Pressable)`
+var Track2 = styled45(Pressable)`
   width: 32px;
   height: 16px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -5867,7 +6019,7 @@ var Track2 = styled44(Pressable)`
   justify-content: ${({ $on }) => $on ? "flex-end" : "flex-start"};
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var Thumb2 = styled44(View)`
+var Thumb2 = styled45(View)`
   width: 16px;
   height: 16px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -5908,7 +6060,7 @@ var Toggle = forwardRef(
       }
     );
     if (!leftLabel && !rightLabel) {
-      return React15.cloneElement(track, { ref });
+      return React16.cloneElement(track, { ref });
     }
     return /* @__PURE__ */ jsxs(Row7, { ref, children: [
       leftLabel ? /* @__PURE__ */ jsx(SideLabel, { $active: !value, $disabled: disabled, children: leftLabel }) : null,
@@ -5987,24 +6139,24 @@ var WeatherIcon = ({
   );
 };
 WeatherIcon.displayName = "WeatherIcon";
-var Row8 = styled44(View)`
+var Row8 = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var TimePill = styled44(View)`
+var TimePill = styled45(View)`
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.s}px;
   padding-vertical: ${({ theme: theme2 }) => theme2.padding.xs}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
 `;
-var TimeText2 = styled44.Text`
+var TimeText2 = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.s}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
 `;
-var Label10 = styled44.Text`
+var Label10 = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -6027,12 +6179,12 @@ var WeatherEventChip = forwardRef(
   }
 );
 WeatherEventChip.displayName = "WeatherEventChip";
-var Stack = styled44(View)`
+var Stack = styled45(View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.l}px;
 `;
-var IconRow = styled44(View)`
+var IconRow = styled45(View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -6056,16 +6208,16 @@ var WeatherTimelineEntry = forwardRef(
   }
 );
 WeatherTimelineEntry.displayName = "WeatherTimelineEntry";
-var Stack2 = styled44(View)`
+var Stack2 = styled45(View)`
   flex-direction: row;
   align-items: flex-start;
 `;
-var Pole = styled44(View)`
+var Pole = styled45(View)`
   width: 3px;
   height: ${({ $height }) => $height}px;
   background-color: ${({ theme: theme2 }) => theme2.content.dark};
 `;
-var Flag = styled44(View)`
+var Flag = styled45(View)`
   width: 80px;
   height: 30px;
   background-color: ${({ theme: theme2 }) => theme2.content.dark};
@@ -6074,7 +6226,7 @@ var Flag = styled44(View)`
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
 `;
-var FlagText = styled44.Text`
+var FlagText = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.light};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -6113,7 +6265,7 @@ var surfaceForStatus = ({
       return theme2.surface.error;
   }
 };
-var Container18 = styled44(View)`
+var Container18 = styled45(View)`
   align-items: center;
   justify-content: center;
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.m}px;
@@ -6121,7 +6273,7 @@ var Container18 = styled44(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   background-color: ${(props) => surfaceForStatus(props)};
 `;
-var Label11 = styled44.Text`
+var Label11 = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.light};
   font-family: ${typography.badge.s.fontFamily};
   font-size: ${typography.badge.s.fontSize}px;
@@ -6157,7 +6309,7 @@ var StatusTag = forwardRef(
   }
 );
 StatusTag.displayName = "StatusTag";
-var Card6 = styled44(Pressable)`
+var Card6 = styled45(Pressable)`
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
@@ -6166,49 +6318,49 @@ var Card6 = styled44(Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   overflow: hidden;
 `;
-var Title3 = styled44.Text`
+var Title3 = styled45.Text`
   align-self: stretch;
   color: ${({ theme: theme2 }) => theme2.content.primary};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.ms}px;
 `;
-var Section = styled44(View)`
+var Section = styled45(View)`
   align-self: stretch;
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var SectionHeading = styled44.Text`
+var SectionHeading = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${typography.badge.s.fontFamily};
   font-weight: ${typography.badge.s.fontWeight};
   font-size: ${typography.badge.s.fontSize}px;
 `;
-var SectionBody = styled44.Text`
+var SectionBody = styled45.Text`
   align-self: stretch;
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var FooterRow = styled44(View)`
+var FooterRow = styled45(View)`
   align-self: stretch;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 `;
-var AuthorBlock = styled44(View)`
+var AuthorBlock = styled45(View)`
   flex: 1;
   min-width: 0;
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var AuthorRow = styled44(View)`
+var AuthorRow = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var AuthorName = styled44.Text`
+var AuthorName = styled45.Text`
   flex: 0 1 auto;
   max-width: 80px;
   color: ${({ theme: theme2 }) => theme2.content.dark};
@@ -6216,7 +6368,7 @@ var AuthorName = styled44.Text`
   font-weight: ${typography.badge.s.fontWeight};
   font-size: ${typography.badge.s.fontSize}px;
 `;
-var LocationLabel = styled44.Text`
+var LocationLabel = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.secondary};
   font-family: ${typography.badge.s.fontFamily};
   font-weight: ${typography.badge.s.fontWeight};
@@ -6281,11 +6433,11 @@ var ReportCard = forwardRef(
   }
 );
 ReportCard.displayName = "ReportCard";
-var Container19 = styled44(View)`
+var Container19 = styled45(View)`
   flex-direction: column;
   position: relative;
 `;
-var RulerRow = styled44(View)`
+var RulerRow = styled45(View)`
   position: absolute;
   top: 64px;
   left: 0;
@@ -6296,34 +6448,34 @@ var RulerRow = styled44(View)`
   height: 20px;
   z-index: 1;
 `;
-var RulerLine = styled44(View)`
+var RulerLine = styled45(View)`
   width: 1px;
   height: ${({ $major }) => $major ? 20 : 12}px;
   background-color: ${({ theme: theme2 }) => theme2.content.dark};
   opacity: 0.4;
 `;
-var EventsRow = styled44(View)`
+var EventsRow = styled45(View)`
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
 `;
-var EventColumn = styled44(View)`
+var EventColumn = styled45(View)`
   flex: 1;
   min-width: 200px;
   align-items: flex-start;
   position: relative;
 `;
-styled44(View)`
+styled45(View)`
   flex: 1;
   align-items: center;
   position: relative;
 `;
-var NowFloat = styled44(View)`
+var NowFloat = styled45(View)`
   position: absolute;
   top: 40px;
   z-index: 2;
 `;
-var IntensityRow = styled44(View)`
+var IntensityRow = styled45(View)`
   flex-direction: row;
   height: 12px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -6331,18 +6483,18 @@ var IntensityRow = styled44(View)`
   align-self: stretch;
   margin-top: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var IntensitySegmentView = styled44(View)`
+var IntensitySegmentView = styled45(View)`
   flex: ${({ $flex }) => $flex};
   background-color: ${({ $bg }) => $bg};
 `;
-var ScrollTrack = styled44(View)`
+var ScrollTrack = styled45(View)`
   height: 8px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.l}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.medium};
   margin-top: ${({ theme: theme2 }) => theme2.gap.m}px;
   flex-direction: row;
 `;
-var ScrollThumb = styled44(View)`
+var ScrollThumb = styled45(View)`
   height: 8px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.l}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.high};
@@ -6519,7 +6671,7 @@ var WeatherTimeline = forwardRef(
   }
 );
 WeatherTimeline.displayName = "WeatherTimeline";
-var Card7 = styled44(View)`
+var Card7 = styled45(View)`
   flex-direction: column;
   align-items: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
@@ -6529,85 +6681,85 @@ var Card7 = styled44(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
 `;
-var HeaderRow = styled44(Pressable)`
+var HeaderRow = styled45(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 `;
-var UserInfoCluster = styled44(View)`
+var UserInfoCluster = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xxl}px;
 `;
-var UserData = styled44(View)`
+var UserData = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var UserText = styled44(View)`
+var UserText = styled45(View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
   width: 145px;
 `;
-var NameAge = styled44(View)`
+var NameAge = styled45(View)`
   flex-direction: column;
 `;
-var NameText = styled44.Text`
+var NameText = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var AgeText = styled44.Text`
+var AgeText = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var BloodRow = styled44(View)`
+var BloodRow = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: 5px;
 `;
-var BloodText = styled44.Text`
+var BloodText = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.ms}px;
 `;
-var VerticalDivider = styled44(View)`
+var VerticalDivider = styled45(View)`
   width: 1px;
   height: 56px;
   background-color: ${({ theme: theme2 }) => theme2.content.medium};
 `;
-var HorizontalDivider = styled44(View)`
+var HorizontalDivider = styled45(View)`
   height: 1px;
   align-self: stretch;
   background-color: ${({ theme: theme2 }) => theme2.content.medium};
 `;
-var RoleStack = styled44(View)`
+var RoleStack = styled45(View)`
   flex-direction: column;
   width: 186px;
 `;
-var RolePrimary = styled44.Text`
+var RolePrimary = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var RoleSecondary = styled44.Text`
+var RoleSecondary = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var ActionsRow = styled44(View)`
+var ActionsRow = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var IconButton2 = styled44(Pressable)`
+var IconButton2 = styled45(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -6615,55 +6767,55 @@ var IconButton2 = styled44(Pressable)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.high};
 `;
-var ChevronWrap2 = styled44(View)`
+var ChevronWrap2 = styled45(View)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.xs}px;
   padding-vertical: ${({ theme: theme2 }) => theme2.padding.sm}px;
 `;
-var ExpandedRow = styled44(View)`
+var ExpandedRow = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: 51px;
 `;
-var AlertsList = styled44(View)`
+var AlertsList = styled45(View)`
   flex: 1;
   min-width: 0;
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
 `;
-var AlertItem = styled44(View)`
+var AlertItem = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   align-self: stretch;
 `;
-var AlertContent = styled44(View)`
+var AlertContent = styled45(View)`
   flex: 1;
   min-width: 0;
   flex-direction: column;
   gap: 5px;
 `;
-var AlertTitle = styled44.Text`
+var AlertTitle = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.ms}px;
 `;
-var AlertBody = styled44.Text`
+var AlertBody = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var ActionsColumn = styled44(View)`
+var ActionsColumn = styled45(View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
   width: 280px;
 `;
-var PauseButton = styled44(Pressable)`
+var PauseButton = styled45(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -6672,7 +6824,7 @@ var PauseButton = styled44(Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.accent};
   align-self: stretch;
 `;
-var PauseButtonLabel = styled44.Text`
+var PauseButtonLabel = styled45.Text`
   color: ${({ theme: theme2 }) => theme2.content.light};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
@@ -7420,7 +7572,7 @@ var dotBackground = ({ $state, theme: theme2 }) => {
   if ($state === "current" || $state === "done") return theme2.content.primary;
   return theme2.content.medium;
 };
-var Dot2 = styled44(View)`
+var Dot2 = styled45(View)`
   width: 20px;
   height: 20px;
   border-radius: 10px;
@@ -7428,7 +7580,7 @@ var Dot2 = styled44(View)`
   justify-content: center;
   background-color: ${dotBackground};
 `;
-var Label12 = styled44.Text`
+var Label12 = styled45.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ $state, theme: theme2 }) => $state === "current" ? theme2.fontWeight.bold : theme2.fontWeight.regular};
   font-size: 12px;
@@ -7451,18 +7603,18 @@ var Step = ({ state, number, testID, accessibilityLabel }) => /* @__PURE__ */ js
   }
 );
 Step.displayName = "Step";
-var Container20 = styled44(View)`
+var Container20 = styled45(View)`
   flex-direction: row;
   align-items: center;
   align-self: stretch;
 `;
-var Connector = styled44(View)`
+var Connector = styled45(View)`
   flex: 1;
   height: 4px;
   border-radius: 2px;
   background-color: ${({ $reached, theme: theme2 }) => $reached ? theme2.content.primary : theme2.content.medium};
 `;
-var GradientTrack = styled44(View)`
+var GradientTrack = styled45(View)`
   flex: 1;
   height: 4px;
   border-radius: 2px;
@@ -7498,7 +7650,7 @@ var StepBar = ({ total, current, testID, accessibilityLabel }) => /* @__PURE__ *
   }
 );
 StepBar.displayName = "StepBar";
-var Container21 = styled44(Pressable)`
+var Container21 = styled45(Pressable)`
   flex: 1;
   flex-direction: column;
   align-items: center;
@@ -7511,13 +7663,13 @@ var Container21 = styled44(Pressable)`
   border-width: ${({ $selected, theme: theme2 }) => $selected ? theme2.border.size.m : 0}px;
   border-color: ${({ theme: theme2 }) => theme2.content.primary};
 `;
-var IconSlot7 = styled44(View)`
+var IconSlot7 = styled45(View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var Label13 = styled44.Text`
+var Label13 = styled45.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: 12px;
@@ -7560,18 +7712,18 @@ var GenderSelectionCard = ({
   );
 };
 GenderSelectionCard.displayName = "GenderSelectionCard";
-var Row9 = styled44(View)`
+var Row9 = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   align-self: stretch;
 `;
-var Container22 = styled44(View)`
+var Container22 = styled45(View)`
   flex-direction: column;
   align-self: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var Description4 = styled44.Text`
+var Description4 = styled45.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -7614,18 +7766,18 @@ var GenderSelector = ({
   ] })
 );
 GenderSelector.displayName = "GenderSelector";
-var Container23 = styled44(View)`
+var Container23 = styled45(View)`
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
   align-self: stretch;
 `;
-var SyncRow = styled44(View)`
+var SyncRow = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   align-self: stretch;
 `;
-var SyncCell = styled44(View)`
+var SyncCell = styled45(View)`
   flex: 1;
   flex-direction: row;
   align-items: center;
@@ -7633,13 +7785,13 @@ var SyncCell = styled44(View)`
   padding: ${({ theme: theme2 }) => theme2.padding.m}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.xs}px;
 `;
-var IconSlot8 = styled44(View)`
+var IconSlot8 = styled45(View)`
   width: 56px;
   height: 56px;
   align-items: center;
   justify-content: center;
 `;
-var Value2 = styled44.Text`
+var Value2 = styled45.Text`
   flex: 1;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
@@ -7647,7 +7799,7 @@ var Value2 = styled44.Text`
   text-align: center;
   color: ${({ $active, theme: theme2 }) => $active ? theme2.content.dark : theme2.content.medium};
 `;
-var Message = styled44.Text`
+var Message = styled45.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: 12px;
@@ -7736,12 +7888,12 @@ var SuccessBadge = ({
   );
 };
 SuccessBadge.displayName = "SuccessBadge";
-var Container24 = styled44(View)`
+var Container24 = styled45(View)`
   flex-direction: row;
   align-items: center;
   ${({ $separated, theme: theme2 }) => $separated ? `gap: ${theme2.gap.s}px;` : ""};
 `;
-var Tab = styled44(Pressable)`
+var Tab = styled45(Pressable)`
   align-items: center;
   justify-content: center;
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.s}px;
@@ -7765,7 +7917,7 @@ var Tab = styled44(Pressable)`
   border-bottom-right-radius: ${({ $last, $separated, theme: theme2 }) => $separated || $last ? theme2.border.radius.m : 0}px;
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var TabLabel = styled44.Text`
+var TabLabel = styled45.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
@@ -7935,7 +8087,7 @@ var variantBackground = ({
       return theme2.surface.infoLight;
   }
 };
-var Container25 = styled44(View)`
+var Container25 = styled45(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
@@ -7943,28 +8095,28 @@ var Container25 = styled44(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${(props) => variantBackground(props)};
 `;
-var MessageContainer = styled44(View)`
+var MessageContainer = styled45(View)`
   flex: 1;
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var Title4 = styled44.Text`
+var Title4 = styled45.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   color: ${({ theme: theme2 }) => theme2.content.light};
 `;
-var Message2 = styled44.Text`
+var Message2 = styled45.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   color: ${({ theme: theme2 }) => theme2.content.light};
 `;
-var ActionSlot2 = styled44(View)`
+var ActionSlot2 = styled45(View)`
   flex-shrink: 1;
   max-width: 50%;
 `;
-var CloseButton2 = styled44(Pressable)`
+var CloseButton2 = styled45(Pressable)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -8013,14 +8165,14 @@ var Toast = forwardRef(
   }
 );
 Toast.displayName = "Toast";
-var Container26 = styled44(View)`
+var Container26 = styled45(View)`
   flex-direction: row;
   align-items: center;
   width: 100%;
   padding-top: ${({ theme: theme2 }) => theme2.padding.s}px;
   padding-bottom: ${({ theme: theme2 }) => theme2.padding.s}px;
 `;
-var BackSlot = styled44(Pressable)`
+var BackSlot = styled45(Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
@@ -8031,7 +8183,7 @@ var BackSlot = styled44(Pressable)`
   padding-bottom: ${({ theme: theme2 }) => theme2.padding.sm}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
 `;
-var TitleSlot = styled44(View)`
+var TitleSlot = styled45(View)`
   flex: 1;
   align-items: flex-end;
 `;
@@ -8066,6 +8218,6 @@ var TopBar = forwardRef(
 );
 TopBar.displayName = "TopBar";
 
-export { Accordion, ActivitiesOverviewCard, AttachmentList, Avatar, AvatarGroup, BackgroundDotsGrid, BigNumbersCard, Button, CaloriesTag, ChatBubble, ChatSection, ChatUserCard, Checkbox, Chip, ChipGroup, Combobox, DonutChart, EmployeeOverviewCard, ExamInfoCard, GenderSelectionCard, GenderSelector, HEART_RATE_BUTTON, HEART_STATUS_OFFSET, Header2 as Header, HeaderUserInfo, HeartStatus, HeartrateStatus, HorizontalCard, Icon, Image, ImageUploader, ImageViewer, Input, JourneyTheme, LineCaloriesChart, LocationPin, Logo, MapControl, MenuItem, Modal2 as Modal, NowMarker, Pagination, Popover, PopoverItem, PopoverSeparator, ProgressBar, Radio, RadioGroup, ReportCard, STATUS_CHART_CANVAS, SearchInput, SideMenu, Silhouette, Skeleton, SkeletonList, SmartbandStatus, StatusChart, StatusTag, Step, StepBar, SuccessBadge, Surface, SwiThemeProvider, Tabs, Text2 as Text, TimeStamp, Title2 as Title, Toast, Toggle, TopBar, WeatherEventChip, WeatherIcon, WeatherTimeline, WeatherTimelineEntry, WorkersInfoCard, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
+export { Accordion, ActivitiesOverviewCard, AttachmentList, Avatar, AvatarGroup, BackgroundDotsGrid, BigNumbersCard, Button, CaloriesTag, Carousel, ChatBubble, ChatSection, ChatUserCard, Checkbox, Chip, ChipGroup, Combobox, DonutChart, EmployeeOverviewCard, ExamInfoCard, GenderSelectionCard, GenderSelector, HEART_RATE_BUTTON, HEART_STATUS_OFFSET, Header2 as Header, HeaderUserInfo, HeartStatus, HeartrateStatus, HorizontalCard, Icon, Image, ImageUploader, ImageViewer, Input, JourneyTheme, LineCaloriesChart, LocationPin, Logo, MapControl, MenuItem, Modal2 as Modal, NowMarker, Pagination, Popover, PopoverItem, PopoverSeparator, ProgressBar, Radio, RadioGroup, ReportCard, STATUS_CHART_CANVAS, SearchInput, SideMenu, Silhouette, Skeleton, SkeletonList, SmartbandStatus, StatusChart, StatusTag, Step, StepBar, SuccessBadge, Surface, SwiThemeProvider, Tabs, Text2 as Text, TimeStamp, Title2 as Title, Toast, Toggle, Tooltip, TopBar, WeatherEventChip, WeatherIcon, WeatherTimeline, WeatherTimelineEntry, WorkersInfoCard, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
 //# sourceMappingURL=index.mjs.map
 //# sourceMappingURL=index.mjs.map

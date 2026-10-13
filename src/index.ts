@@ -123,6 +123,8 @@ export { TimeStamp } from './components/TimeStamp';
 export type { TimeStampProps } from './components/TimeStamp';
 export { CaloriesTag } from './components/CaloriesTag';
 export type { CaloriesTagProps } from './components/CaloriesTag';
+export { Carousel } from './components/Carousel';
+export type { CarouselProps } from './components/Carousel';
 export { LineCaloriesChart } from './components/LineCaloriesChart';
 export type {
   LineCaloriesChartProps,
@@ -179,5 +181,7 @@ export { Tabs } from './components/Tabs';
 export type { TabsProps, TabItem } from './components/Tabs';
 export { Toast } from './components/Toast';
 export type { ToastProps, ToastVariant, ToastAction } from './components/Toast';
+export { Tooltip } from './components/Tooltip';
+export type { TooltipProps, TooltipSide } from './components/Tooltip';
 export { TopBar } from './components/TopBar';
 export type { TopBarProps } from './components/TopBar';

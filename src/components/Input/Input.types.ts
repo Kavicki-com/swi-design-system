@@ -36,4 +36,12 @@ export interface InputProps
    * proxima digitacao. Controlado (`value`), o contador segue o value sempre.
    */
   counter?: boolean;
+  /**
+   * Campo de senha com olho de visibilidade embutido. O Input gere o estado
+   * de visibilidade: forca `secureTextEntry` enquanto oculto e mostra, no slot
+   * `iconRight`, um olho que alterna mostrar/ocultar. Dispensa o olho decorativo
+   * passado por fora e mantem o icone alinhado a linha de texto. Quando ligado,
+   * tem prioridade sobre `iconRight` e sobre um `secureTextEntry` passado a mao.
+   */
+  passwordToggle?: boolean;
 }

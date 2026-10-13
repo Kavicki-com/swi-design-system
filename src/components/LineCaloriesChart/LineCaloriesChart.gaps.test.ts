@@ -1,7 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { layoutPoints, linePath, segmentedPath, segmentsOf } from './LineCaloriesChart.utils';
+import {
+  chartLinePath,
+  layoutPoints,
+  linePath,
+  segmentedPath,
+  segmentsOf,
+} from './LineCaloriesChart.utils';
 
 // Periodo sem medicao e buraco no grafico, nunca zero e nunca uma linha reta
 // ligando os vizinhos por cima do vazio: a linha seria um dado inventado.
@@ -88,8 +94,34 @@ describe('LineCaloriesChart: renderizacao', () => {
     expect(types).toMatch(/kcal: number \| null/);
   });
 
-  it('nativo e web desenham por trechos', () => {
-    expect(native).toMatch(/segmentedPath\(laid\)/);
-    expect(web).toMatch(/segmentedPath\(laid\)/);
+  it('nativo e web escolhem o caminho por chartLinePath', () => {
+    expect(native).toMatch(/chartLinePath\(laid, connectAcrossGaps\)/);
+    expect(web).toMatch(/chartLinePath\(laid, connectAcrossGaps\)/);
+  });
+});
+
+describe('chartLinePath', () => {
+  const laid = layoutPoints(
+    [
+      { time: '1', kcal: 1 },
+      { time: '2', kcal: 2 },
+      { time: '3', kcal: null },
+      { time: '4', kcal: 4 },
+      { time: '5', kcal: 5 },
+    ],
+    W,
+    H,
+  );
+
+  it('padrao: quebra no buraco (igual ao segmentedPath)', () => {
+    const d = chartLinePath(laid, false);
+    expect(d).toBe(segmentedPath(laid));
+    expect(d.match(/M /g)).toHaveLength(2);
+  });
+
+  it('connectAcrossGaps: liga os pontos numa linha so (igual ao linePath)', () => {
+    const d = chartLinePath(laid, true);
+    expect(d).toBe(linePath(laid));
+    expect(d.match(/M /g)).toHaveLength(1);
   });
 });

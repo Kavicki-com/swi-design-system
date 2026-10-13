@@ -13,6 +13,12 @@ export interface LineCaloriesChartProps {
   width?: number;
   height?: number;
   fullWidth?: boolean;
+  /**
+   * Liga os pontos numa linha continua por cima das horas sem medicao, em vez
+   * de quebrar a linha no buraco. O painel usa `true` para mostrar a tendencia
+   * (MEL-06); o padrao `false` mantem o buraco, como no app.
+   */
+  connectAcrossGaps?: boolean;
   testID?: string;
   accessibilityLabel?: string;
 }

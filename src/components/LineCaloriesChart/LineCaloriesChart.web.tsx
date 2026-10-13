@@ -18,8 +18,8 @@ import {
   KCAL_TAG_GAP,
   KCAL_TAG_HEIGHT,
   TIMESTAMP_GAP,
+  chartLinePath,
   layoutPoints,
-  segmentedPath,
 } from './LineCaloriesChart.utils';
 import { useSvgId } from '../../utils/svgId';
 
@@ -34,6 +34,7 @@ export const LineCaloriesChart = forwardRef<View, LineCaloriesChartProps>(
       width = DEFAULT_WIDTH,
       height = DEFAULT_HEIGHT,
       fullWidth = false,
+      connectAcrossGaps = false,
       accessibilityLabel,
       testID,
     },
@@ -41,7 +42,7 @@ export const LineCaloriesChart = forwardRef<View, LineCaloriesChartProps>(
   ) => {
     const theme = useTheme();
     const laid = layoutPoints(points, width, height);
-    const d = segmentedPath(laid);
+    const d = chartLinePath(laid, connectAcrossGaps);
     // Unique gradient id per instance so multiple charts on the page don't
     // collide on the SVG def id.
     const gradId = useSvgId('calories-stroke');

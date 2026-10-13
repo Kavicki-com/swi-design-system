@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import type { PressableProps } from 'react-native';
+import type { TooltipSide } from '../Tooltip/Tooltip.types';
 
 /**
  * Button variants:
@@ -138,4 +139,13 @@ export interface ButtonProps
    * seja passado, e aí cabe a quem usa incluir a contagem.
    */
   badge?: string;
+  /**
+   * Dica no hover (so web): mostra o nome da acao num balao quando o ponteiro
+   * para sobre o botao. Util em botoes so de icone, como os controles do mapa
+   * (Figma 32:2488). No touch nao ha hover, entao continue passando
+   * `accessibilityLabel` para o leitor de tela.
+   */
+  tooltip?: string;
+  /** Lado onde o balao da dica aparece. Padrao `top`. */
+  tooltipSide?: TooltipSide;
 }

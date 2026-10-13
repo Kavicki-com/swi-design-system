@@ -3,6 +3,7 @@ import { type View } from 'react-native';
 import { Checkbox } from '../Checkbox';
 import { Icon } from '../Icon';
 import { SearchInput } from '../SearchInput';
+import { Tooltip } from '../Tooltip';
 import { useTheme } from '../../theme';
 import { elevation } from '../../tokens';
 import type { IconName } from '../../icons';
@@ -50,6 +51,8 @@ export const MapControl = forwardRef<View, MapControlProps>(
       onOptionChange,
       accessibilityLabel,
       testID,
+      tooltip,
+      tooltipSide = 'left',
     },
     ref,
   ) => {
@@ -70,16 +73,18 @@ export const MapControl = forwardRef<View, MapControlProps>(
 
     if (!expanded) {
       return (
-        <CollapsedButton
-          ref={ref}
-          onPress={toggleExpanded}
-          accessibilityRole="button"
-          accessibilityLabel={accessibilityLabel ?? resolvedTitle}
-          testID={testID}
-          style={elevation.md}
-        >
-          <Icon name={iconName} size={24} color={theme.content.dark} />
-        </CollapsedButton>
+        <Tooltip label={tooltip ?? resolvedTitle} side={tooltipSide}>
+          <CollapsedButton
+            ref={ref}
+            onPress={toggleExpanded}
+            accessibilityRole="button"
+            accessibilityLabel={accessibilityLabel ?? resolvedTitle}
+            testID={testID}
+            style={elevation.md}
+          >
+            <Icon name={iconName} size={24} color={theme.content.dark} />
+          </CollapsedButton>
+        </Tooltip>
       );
     }
 

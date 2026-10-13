@@ -1202,6 +1202,12 @@ interface TooltipProps {
     gap?: number;
     /** Desliga o balao sem tirar o gatilho. */
     disabled?: boolean;
+    /**
+     * Faz o wrapper ocupar toda a largura do pai, em vez de encolher ao gatilho.
+     * Util quando o gatilho ja estica (item de menu em coluna), para o balao nao
+     * quebrar o layout.
+     */
+    fullWidth?: boolean;
     testID?: string;
 }
 
@@ -2987,7 +2993,7 @@ declare const Toast: React$1.ForwardRefExoticComponent<ToastProps & React$1.RefA
  * no desktop. O wrapper e uma View (nao Pressable) para nao aninhar um botao
  * dentro do botao do gatilho; o hover vem de onPointerEnter/onPointerLeave.
  */
-declare function Tooltip({ label, children, side, gap, disabled, testID, }: TooltipProps): react_jsx_runtime.JSX.Element;
+declare function Tooltip({ label, children, side, gap, disabled, fullWidth, testID, }: TooltipProps): react_jsx_runtime.JSX.Element;
 
 interface TopBarProps {
     /** Page title shown right-aligned, content.dark. Required. */

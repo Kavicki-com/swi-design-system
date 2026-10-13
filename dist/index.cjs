@@ -1746,6 +1746,7 @@ function Tooltip({
   side = "top",
   gap = 6,
   disabled = false,
+  fullWidth = false,
   testID
 }) {
   const [hovered, setHovered] = React16.useState(false);
@@ -1753,6 +1754,7 @@ function Tooltip({
   return /* @__PURE__ */ jsxRuntime.jsxs(
     Anchor,
     {
+      style: fullWidth ? { alignSelf: "stretch", width: "100%" } : void 0,
       onPointerEnter: () => setHovered(true),
       onPointerLeave: () => setHovered(false),
       testID,
@@ -5549,6 +5551,12 @@ var Container17 = styled45__default.default(reactNative.View)`
   align-items: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
+
+// src/components/SideMenu/SideMenu.logic.ts
+var itemTooltip = (item, menuVariant) => {
+  const variant = item.variant ?? menuVariant;
+  return variant === "minimal" ? item.label : null;
+};
 var SideMenu = React16.forwardRef(
   ({
     items,
@@ -5582,22 +5590,25 @@ var SideMenu = React16.forwardRef(
         accessibilityRole: "menu",
         accessibilityLabel,
         testID,
-        children: items.map((item) => /* @__PURE__ */ jsxRuntime.jsx(
-          MenuItem,
-          {
-            label: item.label,
-            icon: item.icon,
-            active: item.value === value,
-            disabled: item.disabled,
-            variant: item.variant ?? variant,
-            badge: item.badge,
-            iconSize,
-            badgePosition,
-            onPress: () => handlePress(item.value),
-            fullWidth: true
-          },
-          item.value
-        ))
+        children: items.map((item) => {
+          const tip = itemTooltip(item, variant);
+          const menuItem = /* @__PURE__ */ jsxRuntime.jsx(
+            MenuItem,
+            {
+              label: item.label,
+              icon: item.icon,
+              active: item.value === value,
+              disabled: item.disabled,
+              variant: item.variant ?? variant,
+              badge: item.badge,
+              iconSize,
+              badgePosition,
+              onPress: () => handlePress(item.value),
+              fullWidth: true
+            }
+          );
+          return tip ? /* @__PURE__ */ jsxRuntime.jsx(Tooltip, { label: tip, side: "right", fullWidth: true, children: menuItem }, item.value) : /* @__PURE__ */ jsxRuntime.jsx(React16__default.default.Fragment, { children: menuItem }, item.value);
+        })
       }
     );
   }

@@ -13,5 +13,11 @@ export interface TooltipProps {
   gap?: number;
   /** Desliga o balao sem tirar o gatilho. */
   disabled?: boolean;
+  /**
+   * Faz o wrapper ocupar toda a largura do pai, em vez de encolher ao gatilho.
+   * Util quando o gatilho ja estica (item de menu em coluna), para o balao nao
+   * quebrar o layout.
+   */
+  fullWidth?: boolean;
   testID?: string;
 }

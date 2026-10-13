@@ -19,6 +19,7 @@ export function Tooltip({
   side = 'top',
   gap = 6,
   disabled = false,
+  fullWidth = false,
   testID,
 }: TooltipProps) {
   const [hovered, setHovered] = useState(false);
@@ -26,6 +27,7 @@ export function Tooltip({
 
   return (
     <Anchor
+      style={fullWidth ? { alignSelf: 'stretch', width: '100%' } : undefined}
       onPointerEnter={() => setHovered(true)}
       onPointerLeave={() => setHovered(false)}
       testID={testID}

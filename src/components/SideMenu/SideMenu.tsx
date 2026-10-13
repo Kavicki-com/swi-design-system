@@ -1,7 +1,9 @@
 import React, { forwardRef, useCallback, useState } from 'react';
 import { type View } from 'react-native';
 import { MenuItem } from '../MenuItem';
+import { Tooltip } from '../Tooltip';
 import { Container } from './SideMenu.styles';
+import { itemTooltip } from './SideMenu.logic';
 import type { SideMenuProps } from './SideMenu.types';
 
 export const SideMenu = forwardRef<View, SideMenuProps>(
@@ -46,21 +48,32 @@ export const SideMenu = forwardRef<View, SideMenuProps>(
         accessibilityLabel={accessibilityLabel}
         testID={testID}
       >
-        {items.map((item) => (
-          <MenuItem
-            key={item.value}
-            label={item.label}
-            icon={item.icon}
-            active={item.value === value}
-            disabled={item.disabled}
-            variant={item.variant ?? variant}
-            badge={item.badge}
-            iconSize={iconSize}
-            badgePosition={badgePosition}
-            onPress={() => handlePress(item.value)}
-            fullWidth
-          />
-        ))}
+        {items.map((item) => {
+          const tip = itemTooltip(item, variant);
+          const menuItem = (
+            <MenuItem
+              label={item.label}
+              icon={item.icon}
+              active={item.value === value}
+              disabled={item.disabled}
+              variant={item.variant ?? variant}
+              badge={item.badge}
+              iconSize={iconSize}
+              badgePosition={badgePosition}
+              onPress={() => handlePress(item.value)}
+              fullWidth
+            />
+          );
+          // Item icone-sozinho ganha o nome da acao no hover (so web). O menu
+          // mora na borda esquerda, entao o balao cresce para a direita.
+          return tip ? (
+            <Tooltip key={item.value} label={tip} side="right" fullWidth>
+              {menuItem}
+            </Tooltip>
+          ) : (
+            <React.Fragment key={item.value}>{menuItem}</React.Fragment>
+          );
+        })}
       </Container>
     );
   },

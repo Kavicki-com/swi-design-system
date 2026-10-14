@@ -198,3 +198,29 @@ export const WithBadge: Story = {
     );
   },
 };
+
+// FAB redondo so-icone de diametro exato (Home FAB do app, Figma 348:10334):
+// miolo claro, anel escuro de 10,2857px e circulo de 71,4286px. O `diameter`
+// trava o tamanho, que os tokens de padding nao alcancam.
+export const HomeFab: Story = {
+  name: 'Home FAB — diameter',
+  args: {
+    label: undefined,
+    shape: 'pill',
+    diameter: 71.4286,
+    borderWidth: 10.2857,
+    elevation: 'md',
+    accessibilityLabel: 'Voltar para a dashboard',
+  },
+  render: function Render(args) {
+    const theme = useTheme();
+    return (
+      <Button
+        {...args}
+        backgroundColor={theme.content.dark}
+        borderColor={theme.content.disable}
+        iconLeft={<Icon name="home" width={28.286} height={25.458} color={theme.content.light} />}
+      />
+    );
+  },
+};

@@ -16,6 +16,7 @@ export const StatusTag = forwardRef<View, StatusTagProps>(
       status = 'canceled',
       label,
       fullWidth = false,
+      numberOfLines = 1,
       accessibilityLabel,
       testID,
     },
@@ -35,7 +36,7 @@ export const StatusTag = forwardRef<View, StatusTagProps>(
         accessibilityLabel={accessibilityLabel ?? text}
         testID={testID}
       >
-        <Label numberOfLines={1}>{text}</Label>
+        <Label numberOfLines={numberOfLines}>{text}</Label>
       </Container>
     );
   },

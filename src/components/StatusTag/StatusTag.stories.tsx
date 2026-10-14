@@ -14,6 +14,7 @@ const meta: Meta<typeof StatusTag> = {
     status: { control: { type: 'inline-radio' }, options: ['canceled', 'pending', 'accept'] },
     label: { control: 'text' },
     fullWidth: { control: 'boolean' },
+    numberOfLines: { control: { type: 'number', min: 1, max: 4 } },
   },
 };
 
@@ -47,6 +48,17 @@ export const CustomLabel: Story = {
 export const FullWidth: Story = {
   args: { fullWidth: true },
   decorators: [(StoryComp) => <View style={{ width: 240 }}><StoryComp /></View>],
+};
+
+export const MultilineConfirmation: Story = {
+  name: 'Multiline — accept (ponto de encontro)',
+  args: {
+    status: 'accept',
+    fullWidth: true,
+    numberOfLines: 2,
+    label: 'Presença confirmada no ponto de encontro',
+  },
+  decorators: [(StoryComp) => <View style={{ width: 328 }}><StoryComp /></View>],
 };
 
 export const Overview: Story = {

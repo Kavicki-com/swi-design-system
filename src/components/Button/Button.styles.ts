@@ -16,6 +16,7 @@ export interface StateProps {
   $backgroundColor?: string;
   $borderColor?: string;
   $borderWidth?: 's' | 'm' | number;
+  $diameter?: number;
   $hovered: boolean;
   $pressed: boolean;
   $disabled: boolean;
@@ -99,6 +100,13 @@ export const Container = styled(Pressable)<StateProps>`
     $variant === 'surface' ? '0px 4px 8px rgba(29, 29, 29, 0.16)' : 'none'};
   ${({ $fullWidth }) =>
     $fullWidth ? 'align-self: stretch; width: 100%;' : ''};
+  /* FAB redondo so-icone: quadrado de diametro exato, padding zerado. Vem por
+     ultimo para vencer o padding por token acima; a borda desenha por dentro
+     (RN e border-box), entao o anel grosso cabe no circulo. */
+  ${({ $diameter }) =>
+    $diameter != null
+      ? `width: ${$diameter}px; height: ${$diameter}px; padding: 0px;`
+      : ''};
 `;
 
 export const HoverOverlay = styled(View)<{ $shape: ButtonShape }>`

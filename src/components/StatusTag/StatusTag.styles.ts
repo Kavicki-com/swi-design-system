@@ -37,4 +37,5 @@ export const Label = styled.Text`
   font-family: ${typography.badge.s.fontFamily};
   font-size: ${typography.badge.s.fontSize}px;
   font-weight: ${typography.badge.s.fontWeight};
+  text-align: center;
 `;

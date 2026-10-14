@@ -20,6 +20,7 @@ export const Button = forwardRef<View, ButtonProps>(
       variant = 'contained',
       size = 'default',
       shape = 'rounded',
+      diameter,
       elevation: elevationProp = 'sm',
       backgroundColor,
       borderColor,
@@ -65,6 +66,7 @@ export const Button = forwardRef<View, ButtonProps>(
         $variant={variant}
         $size={size}
         $shape={shape}
+        $diameter={diameter}
         $backgroundColor={backgroundColor}
         $borderColor={borderColor}
         $borderWidth={borderWidth}

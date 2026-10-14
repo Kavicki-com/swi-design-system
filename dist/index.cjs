@@ -1642,6 +1642,10 @@ var Container2 = styled45__default.default(reactNative.Pressable)`
      visually off unpredictable backgrounds (satellite maps, photos, etc.). */
   box-shadow: ${({ $variant }) => $variant === "surface" ? "0px 4px 8px rgba(29, 29, 29, 0.16)" : "none"};
   ${({ $fullWidth }) => $fullWidth ? "align-self: stretch; width: 100%;" : ""};
+  /* FAB redondo so-icone: quadrado de diametro exato, padding zerado. Vem por
+     ultimo para vencer o padding por token acima; a borda desenha por dentro
+     (RN e border-box), entao o anel grosso cabe no circulo. */
+  ${({ $diameter }) => $diameter != null ? `width: ${$diameter}px; height: ${$diameter}px; padding: 0px;` : ""};
 `;
 var HoverOverlay = styled45__default.default(reactNative.View)`
   position: absolute;
@@ -1780,6 +1784,7 @@ var Button = React16.forwardRef(
     variant = "contained",
     size = "default",
     shape = "rounded",
+    diameter,
     elevation: elevationProp = "sm",
     backgroundColor: backgroundColor2,
     borderColor: borderColor2,
@@ -1820,6 +1825,7 @@ var Button = React16.forwardRef(
         $variant: variant,
         $size: size,
         $shape: shape,
+        $diameter: diameter,
         $backgroundColor: backgroundColor2,
         $borderColor: borderColor2,
         $borderWidth: borderWidth,
@@ -6297,6 +6303,7 @@ var Label11 = styled45__default.default.Text`
   font-family: ${typography.badge.s.fontFamily};
   font-size: ${typography.badge.s.fontSize}px;
   font-weight: ${typography.badge.s.fontWeight};
+  text-align: center;
 `;
 var DEFAULT_LABELS = {
   canceled: "Cancelado",
@@ -6309,6 +6316,7 @@ var StatusTag = React16.forwardRef(
     status = "canceled",
     label,
     fullWidth = false,
+    numberOfLines = 1,
     accessibilityLabel,
     testID
   }, ref) => {
@@ -6322,7 +6330,7 @@ var StatusTag = React16.forwardRef(
         accessibilityRole: "text",
         accessibilityLabel: accessibilityLabel ?? text,
         testID,
-        children: /* @__PURE__ */ jsxRuntime.jsx(Label11, { numberOfLines: 1, children: text })
+        children: /* @__PURE__ */ jsxRuntime.jsx(Label11, { numberOfLines, children: text })
       }
     );
   }

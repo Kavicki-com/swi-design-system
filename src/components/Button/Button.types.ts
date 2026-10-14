@@ -70,6 +70,15 @@ export interface ButtonProps
   size?: ButtonSize;
   shape?: ButtonShape;
   /**
+   * Diametro exato, em pixels, de um FAB redondo so-icone. Quando passado, o
+   * container vira um quadrado `diameter`x`diameter` com padding zerado, e o
+   * icone centraliza; a borda desenha por dentro (RN e border-box), entao um
+   * `borderWidth` grosso forma o anel sem estourar o circulo. Use com
+   * `shape="pill"` para os FABs redondos do app (Home/Chat, Figma `348:10334`:
+   * 71,4286px com anel de 10,2857px). Sem ele, o tamanho sai de `size`+padding.
+   */
+  diameter?: number;
+  /**
    * Drop-shadow elevation token. Defaults to `'sm'` for `variant === 'contained'`
    * (current behavior). Use `'lg'` for prominent CTAs (Dashboard Location/Chat/Help)
    * or `'none'` to disable. Outline/ghost variants ignore this.

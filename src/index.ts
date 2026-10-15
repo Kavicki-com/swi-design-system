@@ -93,6 +93,8 @@ export { ImageUploader } from './components/ImageUploader';
 export type { ImageUploaderProps, ImageUploaderValue } from './components/ImageUploader';
 export { ImageViewer } from './components/ImageViewer';
 export type { ImageViewerProps } from './components/ImageViewer';
+export { MediaPlayer } from './components/MediaPlayer';
+export type { MediaKind, MediaPlayerProps } from './components/MediaPlayer';
 export { MapControl } from './components/MapControl';
 export type {
   MapControlProps,

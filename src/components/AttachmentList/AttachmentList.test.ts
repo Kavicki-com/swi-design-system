@@ -9,6 +9,7 @@ import {
   DEFAULT_ACTION_LABELS,
   actionAccessibilityLabel,
   actionBackground,
+  thumbIcon,
   visibleActions,
 } from './AttachmentList.actions';
 
@@ -73,6 +74,20 @@ describe('rotulos, icones e cores', () => {
   });
 });
 
+// v0.1.141: anexo multimidia do relatorio. Video e audio ganham icone proprio
+// na miniatura (Material Symbols videocam e audio_file); documento segue com
+// o clipe, e imagem sem miniatura tambem.
+describe('thumbIcon', () => {
+  it.each([
+    ['image', 'attach_file'],
+    ['file', 'attach_file'],
+    ['video', 'videocam'],
+    ['audio', 'audio_file'],
+  ] as const)('%s mostra %s', (kind, icon) => {
+    expect(thumbIcon(kind)).toBe(icon);
+  });
+});
+
 describe('AttachmentList: ligacao', () => {
   const tsx = readFileSync(join(__dirname, 'AttachmentList.tsx'), 'utf8');
   const styles = readFileSync(join(__dirname, 'AttachmentList.styles.ts'), 'utf8');
@@ -87,14 +102,14 @@ describe('AttachmentList: ligacao', () => {
     expect(row).toMatch(/theme\.gap\.s/);
   });
 
-  it('a miniatura tem 56 e a imagem cobre o quadro; arquivo sem miniatura mostra o clipe', () => {
+  it('a miniatura tem 56 e a imagem cobre o quadro; sem miniatura mostra o icone do tipo', () => {
     const thumb = /export const Thumb = styled\(View\)`([^`]*)`/.exec(styles)?.[1] ?? '';
     expect(thumb).toMatch(/width: 56px;/);
     expect(thumb).toMatch(/height: 56px;/);
     // surface.medium sumiria sobre a linha (surface.standard).
     expect(thumb).toMatch(/theme\.surface\.high/);
     expect(tsx).toMatch(/resizeMode="cover"/);
-    expect(tsx).toMatch(/name="attach_file"/);
+    expect(tsx).toMatch(/<Icon name=\{thumbIcon\(item\.kind\)\} size=\{24\}/);
   });
 
   it('cada botao e o Button contido pequeno so com icone de 24', () => {
@@ -114,7 +129,7 @@ describe('AttachmentList: ligacao', () => {
   });
 
   it('props: itens com id, nome, tipo, miniatura e acoes; handlers opcionais', () => {
-    expect(types).toMatch(/export type AttachmentKind = 'image' \| 'file';/);
+    expect(types).toMatch(/export type AttachmentKind = 'image' \| 'file' \| 'video' \| 'audio';/);
     expect(types).toMatch(/id: string;/);
     expect(types).toMatch(/name: string;/);
     expect(types).toMatch(/kind: AttachmentKind;/);

@@ -9,6 +9,8 @@ const PHOTO = 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?w=20
 const ITEMS: AttachmentItem[] = [
   { id: 'a', name: 'inspecao-escavadeira-930E.jpg', kind: 'image', thumbnailUri: PHOTO },
   { id: 'b', name: 'exame-admissional-2026.pdf', kind: 'file' },
+  { id: 'v', name: 'Vídeo 1', kind: 'video' },
+  { id: 'u', name: 'Áudio 1', kind: 'audio' },
   {
     id: 'c',
     name: 'foto-com-um-nome-de-arquivo-muito-comprido-que-precisa-cortar-no-fim.png',
@@ -32,7 +34,7 @@ const meta: Meta<typeof AttachmentList> = {
       description: {
         component:
           'Uma linha por anexo, no molde do exame compacto do Figma (159:15646): miniatura ' +
-          'de 56 ou clipe, nome em uma linha e botões só de ícone (visualizar, baixar, ' +
+          'de 56 ou ícone do tipo (clipe, vídeo, áudio), nome em uma linha e botões só de ícone (visualizar, baixar, ' +
           'excluir). Cada botão só aparece com o handler; o item pode restringir as ações.',
       },
     },

@@ -847,6 +847,14 @@ declare const iconPaths: {
         readonly viewBox: "0 0 18.1307 22";
         readonly d: "M17.7199 10.7783C17.1829 10.2412 16.1983 10.4797 15.5419 11.4694C12.827 14.627 12.6581 15.5343 12.652 11.8562C12.6506 11.0368 12.7224 10.2151 12.8094 9.40019C13.0236 7.39834 13.2395 6.62392 13.4945 4.62616C13.5827 3.93487 14.294 0.439407 12.6265 1.47518C12.0255 1.84843 11.7069 2.57055 11.4907 3.2129C11.0929 4.39402 10.6159 8.14163 10.13 9.24825C9.89279 9.78907 9.58103 9.77447 9.53063 9.10187C9.418 7.59848 9.18747 3.87862 9.05614 2.4582C8.70918 -1.2935 6.90367 0.0633752 6.90367 1.23486C6.90367 2.29283 6.91404 3.36892 6.98782 4.41842C7.07766 5.69553 7.17203 6.98563 7.09183 8.26581C7.07883 8.47384 7.04786 9.82092 6.61967 9.5641C6.43414 9.45278 5.77981 4.40425 5.64395 2.83263C5.52445 1.44859 3.71499 1.09345 3.79783 3.81142C3.87993 6.50836 4.5344 10.6013 4.22864 10.6488C3.76379 10.721 3.32961 9.51574 2.86111 8.6563C2.37901 7.77144 1.92395 6.63371 0.885843 6.26878C-0.527418 5.77208 0.0949197 7.71374 0.422304 8.30715C0.815867 9.02036 1.71431 11.363 2.43614 13.6566C3.00559 15.4664 2.29852 15.6253 3.16176 18.2606C3.49645 19.2819 4.53557 21.2021 5.52284 21.6561C7.03062 22.3498 8.81422 21.7907 10.4015 21.7238C11.1776 21.6909 12.0144 21.6892 12.7212 21.3226C13.4163 20.9621 13.8132 20.2901 14.1257 19.5997C14.4464 18.891 14.8558 16.0886 17.332 13.6566C18.2867 12.5981 18.3459 11.166 17.7199 10.7783Z";
     };
+    readonly videocam: {
+        readonly viewBox: "0 -960 960 960";
+        readonly d: "M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h480q33 0 56.5 23.5T720-720v180l160-160v440L720-420v180q0 33-23.5 56.5T640-160H160Zm0-80h480v-480H160v480Zm0 0v-480 480Z";
+    };
+    readonly audio_file: {
+        readonly viewBox: "0 -960 960 960";
+        readonly d: "M430-200q38 0 64-26t26-64v-150h120v-80H480v155q-11-8-23.5-11.5T430-380q-38 0-64 26t-26 64q0 38 26 64t64 26ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z";
+    };
     readonly attach_file: {
         readonly viewBox: "0 0 12.5 20";
         readonly d: "M12.5 13.75C12.5 15.4833 11.8917 16.9583 10.675 18.175C9.45833 19.3917 7.98333 20 6.25 20C4.51667 20 3.04167 19.3917 1.825 18.175C0.608333 16.9583 0 15.4833 0 13.75V4.5C0 3.25 0.4375 2.1875 1.3125 1.3125C2.1875 0.4375 3.25 0 4.5 0C5.75 0 6.8125 0.4375 7.6875 1.3125C8.5625 2.1875 9 3.25 9 4.5V13.25C9 14.0167 8.73333 14.6667 8.2 15.2C7.66667 15.7333 7.01667 16 6.25 16C5.48333 16 4.83333 15.7333 4.3 15.2C3.76667 14.6667 3.5 14.0167 3.5 13.25V4H5.5V13.25C5.5 13.4667 5.57083 13.6458 5.7125 13.7875C5.85417 13.9292 6.03333 14 6.25 14C6.46667 14 6.64583 13.9292 6.7875 13.7875C6.92917 13.6458 7 13.4667 7 13.25V4.5C6.98333 3.8 6.7375 3.20833 6.2625 2.725C5.7875 2.24167 5.2 2 4.5 2C3.8 2 3.20833 2.24167 2.725 2.725C2.24167 3.20833 2 3.8 2 4.5V13.75C1.98333 14.9333 2.39167 15.9375 3.225 16.7625C4.05833 17.5875 5.06667 18 6.25 18C7.41667 18 8.40833 17.5875 9.225 16.7625C10.0417 15.9375 10.4667 14.9333 10.5 13.75V4H12.5V13.75Z";
@@ -1094,8 +1102,11 @@ interface ActivitiesOverviewCardProps {
 
 declare const ActivitiesOverviewCard: React$1.ForwardRefExoticComponent<ActivitiesOverviewCardProps & React$1.RefAttributes<View>>;
 
-/** Imagem mostra a miniatura; arquivo (ex.: PDF de exame) mostra o clipe. */
-type AttachmentKind = 'image' | 'file';
+/**
+ * Imagem mostra a miniatura; arquivo (ex.: PDF de exame) mostra o clipe;
+ * vídeo e áudio (anexo de relatório) mostram o ícone do tipo.
+ */
+type AttachmentKind = 'image' | 'file' | 'video' | 'audio';
 /** Botões da linha, sempre nesta ordem: visualizar, baixar, excluir. */
 type AttachmentAction = 'view' | 'download' | 'remove';
 interface AttachmentItem {
@@ -1136,7 +1147,8 @@ interface AttachmentListProps {
 
 /**
  * Lista de anexos: uma linha por arquivo, no molde do exame compacto do Figma
- * (159:15646). Miniatura de 56 (imagem) ou clipe (arquivo), nome em uma
+ * (159:15646). Miniatura de 56 (imagem) ou ícone do tipo (clipe para
+ * arquivo, câmera para vídeo, nota para áudio), nome em uma
  * linha e botões só de ícone, contidos e pequenos como o baixar do exame:
  * visualizar, baixar e excluir. Abrir, baixar e confirmar a exclusão são do
  * host; a lista só avisa qual item e qual ação.
@@ -2090,6 +2102,27 @@ interface ImageViewerProps {
  */
 declare function ImageViewer({ visible, uri, title, onClose, onDownload, downloadLabel, closeAccessibilityLabel, errorLabel, testID, }: ImageViewerProps): react_jsx_runtime.JSX.Element;
 
+type MediaKind = 'video' | 'audio';
+interface MediaPlayerProps {
+    kind: MediaKind;
+    /** URL do arquivo (no SWI, a URL assinada do anexo). */
+    uri: string;
+    /** Nome do anexo, acima do player e no rótulo de acessibilidade. */
+    title: string;
+    /**
+     * Só no nativo: o app não tem player embutido, então o botão entrega ao
+     * host a abertura (ex.: navegador interno). Sem ele, o botão não aparece.
+     */
+    onOpenExternal?: () => void;
+    /** Rótulo do botão do nativo. Padrão "Reproduzir". */
+    openLabel?: string;
+    /** Frase no lugar do player quando o navegador não reproduz o arquivo. */
+    errorLabel?: string;
+    testID?: string;
+}
+
+declare function MediaPlayer({ kind, title, onOpenExternal, openLabel, testID, }: MediaPlayerProps): react_jsx_runtime.JSX.Element;
+
 type MapControlVariant = 'operators' | 'heatmap' | 'cameras';
 interface MapControlOption {
     id: string;
@@ -3032,4 +3065,4 @@ interface TopBarProps {
  */
 declare const TopBar: React$1.ForwardRefExoticComponent<TopBarProps & React$1.RefAttributes<View>>;
 
-export { Accordion, type AccordionProps, ActivitiesOverviewCard, type ActivitiesOverviewCardProps, type AttachmentAction, type AttachmentActionLabels, type AttachmentItem, type AttachmentKind, AttachmentList, type AttachmentListProps, Avatar, AvatarGroup, type AvatarGroupItem, type AvatarGroupProps, type AvatarProps, type AvatarSize, BackgroundDotsGrid, type BackgroundDotsGridProps, BigNumbersCard, type BigNumbersCardProps, Button, type ButtonProps, CaloriesTag, type CaloriesTagProps, Carousel, type CarouselProps, ChatBubble, type ChatBubblePosition, type ChatBubbleProps, ChatSection, type ChatSectionProps, type ChatSectionUser, ChatUserCard, type ChatUserCardProps, Checkbox, type CheckboxProps, type CheckboxSize, Chip, ChipGroup, type ChipGroupMode, type ChipGroupProps, type ChipProps, type ChipState, Combobox, type ComboboxOption, type ComboboxProps, DonutChart, type DonutChartProps, type DonutChartSize, type DonutGradient, EmployeeOverviewCard, type EmployeeOverviewCardEmployee, type EmployeeOverviewCardProps, type ExamAction, ExamInfoCard, type ExamInfoCardProps, GenderSelectionCard, type GenderSelectionCardProps, GenderSelector, type GenderSelectorProps, type GenderValue, HEART_RATE_BUTTON, HEART_STATUS_OFFSET, Header, type HeaderProps, HeaderUserInfo, type HeaderUserInfoProps, HeartStatus, type HeartStatusCondition, type HeartStatusProps, HeartrateStatus, type HeartrateStatusCondition, type HeartrateStatusProps, HorizontalCard, type HorizontalCardProps, Icon, type IconName, type IconProps, Image, type ImageProps, type ImageResizeMode, ImageUploader, type ImageUploaderProps, type ImageUploaderValue, ImageViewer, type ImageViewerProps, Input, type InputProps, type IntensityColor, type IntensitySegment, JourneyTheme, type JourneyThemeProps, LineCaloriesChart, type LineCaloriesChartProps, type LineCaloriesPoint, LocationPin, type LocationPinProps, type LocationPinStatus, Logo, type LogoProps, type LogoSize, type LogoType, MapControl, type MapControlOption, type MapControlProps, type MapControlVariant, MenuItem, type MenuItemProps, Modal, type ModalProps, type ModalValidation, NowMarker, type NowMarkerProps, Pagination, type PaginationProps, Popover, type PopoverAlign, PopoverItem, type PopoverItemProps, type PopoverItemTone, type PopoverProps, PopoverSeparator, type PopoverSide, ProgressBar, type ProgressBarProps, Radio, RadioGroup, type RadioGroupOption, type RadioGroupProps, type RadioProps, type RadioSize, ReportCard, type ReportCardAuthor, type ReportCardProps, STATUS_CHART_CANVAS, SearchInput, type SearchInputProps, SideMenu, type SideMenuItem, type SideMenuProps, Silhouette, type SilhouetteGender, type SilhouetteProps, Skeleton, SkeletonList, type SkeletonListProps, type SkeletonProps, type SkeletonShape, SmartbandStatus, type SmartbandStatusProps, StatusChart, type StatusChartCondition, type StatusChartProps, StatusTag, type StatusTagProps, type StatusTagStatus, Step, StepBar, type StepBarProps, type StepProps, type StepState, SuccessBadge, type SuccessBadgeProps, Surface, type SurfacePadding, type SurfaceProps, type SurfaceRadius, type SurfaceVariant, SwiThemeProvider, type SwiThemeProviderProps, type TabItem, Tabs, type TabsProps, Text, type TextProps, type TextVariant, type Theme, TimeStamp, type TimeStampProps, Title, type TitleProps, type TitleVariant, Toast, type ToastAction, type ToastProps, type ToastVariant, Toggle, type ToggleProps, Tooltip, type TooltipProps, type TooltipSide, TopBar, type TopBarProps, type TypographyVariant, type WeatherCondition, WeatherEventChip, type WeatherEventChipProps, WeatherIcon, type WeatherIconProps, type WeatherIconSize, WeatherTimeline, WeatherTimelineEntry, type WeatherTimelineEntryProps, type WeatherTimelineEvent, type WeatherTimelineProps, WorkersInfoCard, type WorkersInfoCardAlert, type WorkersInfoCardEmployee, type WorkersInfoCardProps, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
+export { Accordion, type AccordionProps, ActivitiesOverviewCard, type ActivitiesOverviewCardProps, type AttachmentAction, type AttachmentActionLabels, type AttachmentItem, type AttachmentKind, AttachmentList, type AttachmentListProps, Avatar, AvatarGroup, type AvatarGroupItem, type AvatarGroupProps, type AvatarProps, type AvatarSize, BackgroundDotsGrid, type BackgroundDotsGridProps, BigNumbersCard, type BigNumbersCardProps, Button, type ButtonProps, CaloriesTag, type CaloriesTagProps, Carousel, type CarouselProps, ChatBubble, type ChatBubblePosition, type ChatBubbleProps, ChatSection, type ChatSectionProps, type ChatSectionUser, ChatUserCard, type ChatUserCardProps, Checkbox, type CheckboxProps, type CheckboxSize, Chip, ChipGroup, type ChipGroupMode, type ChipGroupProps, type ChipProps, type ChipState, Combobox, type ComboboxOption, type ComboboxProps, DonutChart, type DonutChartProps, type DonutChartSize, type DonutGradient, EmployeeOverviewCard, type EmployeeOverviewCardEmployee, type EmployeeOverviewCardProps, type ExamAction, ExamInfoCard, type ExamInfoCardProps, GenderSelectionCard, type GenderSelectionCardProps, GenderSelector, type GenderSelectorProps, type GenderValue, HEART_RATE_BUTTON, HEART_STATUS_OFFSET, Header, type HeaderProps, HeaderUserInfo, type HeaderUserInfoProps, HeartStatus, type HeartStatusCondition, type HeartStatusProps, HeartrateStatus, type HeartrateStatusCondition, type HeartrateStatusProps, HorizontalCard, type HorizontalCardProps, Icon, type IconName, type IconProps, Image, type ImageProps, type ImageResizeMode, ImageUploader, type ImageUploaderProps, type ImageUploaderValue, ImageViewer, type ImageViewerProps, Input, type InputProps, type IntensityColor, type IntensitySegment, JourneyTheme, type JourneyThemeProps, LineCaloriesChart, type LineCaloriesChartProps, type LineCaloriesPoint, LocationPin, type LocationPinProps, type LocationPinStatus, Logo, type LogoProps, type LogoSize, type LogoType, MapControl, type MapControlOption, type MapControlProps, type MapControlVariant, type MediaKind, MediaPlayer, type MediaPlayerProps, MenuItem, type MenuItemProps, Modal, type ModalProps, type ModalValidation, NowMarker, type NowMarkerProps, Pagination, type PaginationProps, Popover, type PopoverAlign, PopoverItem, type PopoverItemProps, type PopoverItemTone, type PopoverProps, PopoverSeparator, type PopoverSide, ProgressBar, type ProgressBarProps, Radio, RadioGroup, type RadioGroupOption, type RadioGroupProps, type RadioProps, type RadioSize, ReportCard, type ReportCardAuthor, type ReportCardProps, STATUS_CHART_CANVAS, SearchInput, type SearchInputProps, SideMenu, type SideMenuItem, type SideMenuProps, Silhouette, type SilhouetteGender, type SilhouetteProps, Skeleton, SkeletonList, type SkeletonListProps, type SkeletonProps, type SkeletonShape, SmartbandStatus, type SmartbandStatusProps, StatusChart, type StatusChartCondition, type StatusChartProps, StatusTag, type StatusTagProps, type StatusTagStatus, Step, StepBar, type StepBarProps, type StepProps, type StepState, SuccessBadge, type SuccessBadgeProps, Surface, type SurfacePadding, type SurfaceProps, type SurfaceRadius, type SurfaceVariant, SwiThemeProvider, type SwiThemeProviderProps, type TabItem, Tabs, type TabsProps, Text, type TextProps, type TextVariant, type Theme, TimeStamp, type TimeStampProps, Title, type TitleProps, type TitleVariant, Toast, type ToastAction, type ToastProps, type ToastVariant, Toggle, type ToggleProps, Tooltip, type TooltipProps, type TooltipSide, TopBar, type TopBarProps, type TypographyVariant, type WeatherCondition, WeatherEventChip, type WeatherEventChipProps, WeatherIcon, type WeatherIconProps, type WeatherIconSize, WeatherTimeline, WeatherTimelineEntry, type WeatherTimelineEntryProps, type WeatherTimelineEvent, type WeatherTimelineProps, WorkersInfoCard, type WorkersInfoCardAlert, type WorkersInfoCardEmployee, type WorkersInfoCardProps, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };

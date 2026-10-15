@@ -1,4 +1,4 @@
-import styled45, { css, useTheme as useTheme$1, ThemeProvider } from 'styled-components/native';
+import styled46, { css, useTheme as useTheme$1, ThemeProvider } from 'styled-components/native';
 import { Platform, View, Pressable, Text, Image as Image$1, Animated, Easing, TextInput, ScrollView, Modal, FlatList, PanResponder, useWindowDimensions, AccessibilityInfo } from 'react-native';
 import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
 import React16, { forwardRef, useState, useCallback, useRef, useEffect, useMemo, createContext, memo, useImperativeHandle, useLayoutEffect, useId, useContext, Children, isValidElement, Fragment as Fragment$1 } from 'react';
@@ -702,6 +702,18 @@ var iconPaths = {
     viewBox: "0 0 18.1307 22",
     d: "M17.7199 10.7783C17.1829 10.2412 16.1983 10.4797 15.5419 11.4694C12.827 14.627 12.6581 15.5343 12.652 11.8562C12.6506 11.0368 12.7224 10.2151 12.8094 9.40019C13.0236 7.39834 13.2395 6.62392 13.4945 4.62616C13.5827 3.93487 14.294 0.439407 12.6265 1.47518C12.0255 1.84843 11.7069 2.57055 11.4907 3.2129C11.0929 4.39402 10.6159 8.14163 10.13 9.24825C9.89279 9.78907 9.58103 9.77447 9.53063 9.10187C9.418 7.59848 9.18747 3.87862 9.05614 2.4582C8.70918 -1.2935 6.90367 0.0633752 6.90367 1.23486C6.90367 2.29283 6.91404 3.36892 6.98782 4.41842C7.07766 5.69553 7.17203 6.98563 7.09183 8.26581C7.07883 8.47384 7.04786 9.82092 6.61967 9.5641C6.43414 9.45278 5.77981 4.40425 5.64395 2.83263C5.52445 1.44859 3.71499 1.09345 3.79783 3.81142C3.87993 6.50836 4.5344 10.6013 4.22864 10.6488C3.76379 10.721 3.32961 9.51574 2.86111 8.6563C2.37901 7.77144 1.92395 6.63371 0.885843 6.26878C-0.527418 5.77208 0.0949197 7.71374 0.422304 8.30715C0.815867 9.02036 1.71431 11.363 2.43614 13.6566C3.00559 15.4664 2.29852 15.6253 3.16176 18.2606C3.49645 19.2819 4.53557 21.2021 5.52284 21.6561C7.03062 22.3498 8.81422 21.7907 10.4015 21.7238C11.1776 21.6909 12.0144 21.6892 12.7212 21.3226C13.4163 20.9621 13.8132 20.2901 14.1257 19.5997C14.4464 18.891 14.8558 16.0886 17.332 13.6566C18.2867 12.5981 18.3459 11.166 17.7199 10.7783Z"
   },
+  videocam: {
+    // Material Symbols `videocam` (outline). Conceito genérico, sem desenho
+    // próprio no Figma: miniatura do anexo de vídeo do relatório (v0.1.141).
+    viewBox: MATERIAL_VIEWBOX,
+    d: "M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h480q33 0 56.5 23.5T720-720v180l160-160v440L720-420v180q0 33-23.5 56.5T640-160H160Zm0-80h480v-480H160v480Zm0 0v-480 480Z"
+  },
+  audio_file: {
+    // Material Symbols `audio_file` (outline). Conceito genérico, sem desenho
+    // próprio no Figma: miniatura do anexo de áudio do relatório (v0.1.141).
+    viewBox: MATERIAL_VIEWBOX,
+    d: "M430-200q38 0 64-26t26-64v-150h120v-80H480v155q-11-8-23.5-11.5T430-380q-38 0-64 26t-26 64q0 38 26 64t64 26ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z"
+  },
   attach_file: {
     viewBox: "0 0 12.5 20",
     d: "M12.5 13.75C12.5 15.4833 11.8917 16.9583 10.675 18.175C9.45833 19.3917 7.98333 20 6.25 20C4.51667 20 3.04167 19.3917 1.825 18.175C0.608333 16.9583 0 15.4833 0 13.75V4.5C0 3.25 0.4375 2.1875 1.3125 1.3125C2.1875 0.4375 3.25 0 4.5 0C5.75 0 6.8125 0.4375 7.6875 1.3125C8.5625 2.1875 9 3.25 9 4.5V13.25C9 14.0167 8.73333 14.6667 8.2 15.2C7.66667 15.7333 7.01667 16 6.25 16C5.48333 16 4.83333 15.7333 4.3 15.2C3.76667 14.6667 3.5 14.0167 3.5 13.25V4H5.5V13.25C5.5 13.4667 5.57083 13.6458 5.7125 13.7875C5.85417 13.9292 6.03333 14 6.25 14C6.46667 14 6.64583 13.9292 6.7875 13.7875C6.92917 13.6458 7 13.4667 7 13.25V4.5C6.98333 3.8 6.7375 3.20833 6.2625 2.725C5.7875 2.24167 5.2 2 4.5 2C3.8 2 3.20833 2.24167 2.725 2.725C2.24167 3.20833 2 3.8 2 4.5V13.75C1.98333 14.9333 2.39167 15.9375 3.225 16.7625C4.05833 17.5875 5.06667 18 6.25 18C7.41667 18 8.40833 17.5875 9.225 16.7625C10.0417 15.9375 10.4667 14.9333 10.5 13.75V4H12.5V13.75Z"
@@ -970,11 +982,11 @@ var Icon = ({
     }
   );
 };
-var Container = styled45(View)`
+var Container = styled46(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   overflow: hidden;
 `;
-var Header = styled45(Pressable)`
+var Header = styled46(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -985,7 +997,7 @@ var Header = styled45(Pressable)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var TitleText = styled45.Text`
+var TitleText = styled46.Text`
   flex: 1;
   min-width: 0;
   text-align: left;
@@ -994,7 +1006,7 @@ var TitleText = styled45.Text`
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
 `;
-var Content = styled45(View)`
+var Content = styled46(View)`
   align-self: stretch;
   min-width: 0;
   margin-top: 2px;
@@ -1002,14 +1014,14 @@ var Content = styled45(View)`
   padding: ${({ theme: theme2 }) => theme2.padding.s}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
 `;
-var ContentText = styled45.Text`
+var ContentText = styled46.Text`
   min-width: 0;
   color: ${({ theme: theme2 }) => theme2.content.medium};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
 `;
-var ChevronWrap = styled45(View)`
+var ChevronWrap = styled46(View)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -1072,7 +1084,7 @@ var Accordion = forwardRef(
   }
 );
 Accordion.displayName = "Accordion";
-var Frame = styled45(View)`
+var Frame = styled46(View)`
   width: ${({ $size }) => $size}px;
   height: ${({ $size }) => $size}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -1082,7 +1094,7 @@ var Frame = styled45(View)`
   align-items: center;
   justify-content: center;
 `;
-var Initials = styled45(Text)`
+var Initials = styled46(Text)`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: 700;
   font-size: ${({ $size }) => Math.round($size * 0.4)}px;
@@ -1153,14 +1165,14 @@ var Avatar = forwardRef(
   }
 );
 Avatar.displayName = "Avatar";
-var Row = styled45(View)`
+var Row = styled46(View)`
   flex-direction: row;
   align-items: center;
 `;
-var AvatarSlot = styled45(View)`
+var AvatarSlot = styled46(View)`
   margin-left: ${({ $marginLeft }) => $marginLeft}px;
 `;
-var CountBadge = styled45(View)`
+var CountBadge = styled46(View)`
   width: ${({ $size }) => $size}px;
   height: ${({ $size }) => $size}px;
   margin-left: ${({ $marginLeft }) => $marginLeft}px;
@@ -1172,7 +1184,7 @@ var CountBadge = styled45(View)`
   align-items: center;
   justify-content: center;
 `;
-var CountText = styled45.Text`
+var CountText = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.s}px;
@@ -1219,7 +1231,7 @@ var AvatarGroup = forwardRef(
   }
 );
 AvatarGroup.displayName = "AvatarGroup";
-var Track = styled45(View)`
+var Track = styled46(View)`
   height: 6px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   background-color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.surface.secondaryLight};
@@ -1227,7 +1239,7 @@ var Track = styled45(View)`
   overflow: hidden;
   opacity: ${({ $disabled }) => $disabled ? 0.6 : 1};
 `;
-var Fill = styled45(View)`
+var Fill = styled46(View)`
   height: 6px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   background-color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.medium : theme2.content.primary};
@@ -1424,7 +1436,7 @@ var ProgressBar = forwardRef(
   }
 );
 ProgressBar.displayName = "ProgressBar";
-var Card = styled45(View)`
+var Card = styled46(View)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -1433,7 +1445,7 @@ var Card = styled45(View)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
 `;
-var CardPressable = styled45(Pressable)`
+var CardPressable = styled46(Pressable)`
   flex-grow: 1;
   flex-shrink: 1;
   flex-direction: row;
@@ -1442,52 +1454,52 @@ var CardPressable = styled45(Pressable)`
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
   min-width: 0;
 `;
-var LeftContent = styled45(View)`
+var LeftContent = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.l}px;
   flex-shrink: 1;
 `;
-var IconSlot = styled45(View)`
+var IconSlot = styled46(View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var Divider = styled45(View)`
+var Divider = styled46(View)`
   align-self: stretch;
   width: 1px;
   background-color: ${({ theme: theme2 }) => theme2.content.dark};
   opacity: 0.2;
 `;
-var InfoColumn = styled45(View)`
+var InfoColumn = styled46(View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
   flex-shrink: 1;
 `;
-var Title = styled45.Text`
+var Title = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var Subtitle = styled45.Text`
+var Subtitle = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var ProgressSlot = styled45(View)`
+var ProgressSlot = styled46(View)`
   width: 119px;
   margin-top: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var RightContent = styled45(View)`
+var RightContent = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
 `;
-var LocationButton = styled45(Pressable)`
+var LocationButton = styled46(Pressable)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -1616,7 +1628,7 @@ var borderWidthPx = ($borderWidth, theme2) => {
   if ($borderWidth === "s") return theme2.border.size.s;
   return theme2.border.size.m;
 };
-var Container2 = styled45(Pressable)`
+var Container2 = styled46(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -1639,20 +1651,20 @@ var Container2 = styled45(Pressable)`
      (RN e border-box), entao o anel grosso cabe no circulo. */
   ${({ $diameter }) => $diameter != null ? `width: ${$diameter}px; height: ${$diameter}px; padding: 0px;` : ""};
 `;
-var HoverOverlay = styled45(View)`
+var HoverOverlay = styled46(View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ $shape, theme: theme2 }) => radius($shape, theme2)}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.hover};
   pointer-events: none;
 `;
-var PressedOverlay = styled45(View)`
+var PressedOverlay = styled46(View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ $shape, theme: theme2 }) => radius($shape, theme2)}px;
   pointer-events: none;
 `;
-var Badge = styled45(View)`
+var Badge = styled46(View)`
   position: absolute;
   top: 0;
   right: 0;
@@ -1665,7 +1677,7 @@ var Badge = styled45(View)`
   justify-content: center;
   pointer-events: none;
 `;
-var BadgeText = styled45.Text`
+var BadgeText = styled46.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -1695,28 +1707,28 @@ var labelTriplet = ($labelFamily, $labelWeight, theme2) => {
   const fontFamily2 = $labelFamily === "title" ? theme2.fontFamily.title : theme2.fontFamily.body;
   return { fontFamily: fontFamily2, fontWeight: fontWeight2, fontSize: theme2.fontSize.m };
 };
-var Label = styled45.Text`
+var Label = styled46.Text`
   font-family: ${({ $labelFamily, $labelWeight, theme: theme2 }) => labelTriplet($labelFamily, $labelWeight, theme2).fontFamily};
   font-weight: ${({ $labelFamily, $labelWeight, theme: theme2 }) => labelTriplet($labelFamily, $labelWeight, theme2).fontWeight};
   font-size: ${({ $labelFamily, $labelWeight, theme: theme2 }) => labelTriplet($labelFamily, $labelWeight, theme2).fontSize}px;
   color: ${(props) => labelColor(props)};
   ${({ $underline }) => $underline ? "text-decoration-line: underline;" : ""}
 `;
-var IconSlot2 = styled45(View)`
+var IconSlot2 = styled46(View)`
   align-items: center;
   justify-content: center;
 `;
-var Anchor = styled45(View)`
+var Anchor = styled46(View)`
   position: relative;
   align-self: flex-start;
 `;
-var Bubble = styled45(View)`
+var Bubble = styled46(View)`
   max-width: 220px;
   padding: ${({ theme: theme2 }) => theme2.padding.xs}px ${({ theme: theme2 }) => theme2.padding.sm}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
 `;
-var BubbleText = styled45.Text`
+var BubbleText = styled46.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -1996,13 +2008,18 @@ function visibleActions(item, offered) {
 function actionAccessibilityLabel(action, name, labels) {
   return `${labels[action]} ${name}`;
 }
+function thumbIcon(kind) {
+  if (kind === "video") return "videocam";
+  if (kind === "audio") return "audio_file";
+  return "attach_file";
+}
 function actionBackground(action, theme2) {
   return action === "remove" ? theme2.surface.error : theme2.surface.primary;
 }
-var List = styled45(View)`
+var List = styled46(View)`
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var Row2 = styled45(View)`
+var Row2 = styled46(View)`
   flex-direction: row;
   align-items: center;
   padding: ${({ theme: theme2 }) => theme2.padding.xs}px ${({ theme: theme2 }) => theme2.padding.sm}px;
@@ -2010,7 +2027,7 @@ var Row2 = styled45(View)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var Thumb = styled45(View)`
+var Thumb = styled46(View)`
   width: 56px;
   height: 56px;
   align-items: center;
@@ -2019,11 +2036,11 @@ var Thumb = styled45(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.high};
 `;
-var NameSlot = styled45(View)`
+var NameSlot = styled46(View)`
   flex: 1;
   min-width: 0;
 `;
-var Actions = styled45(View)`
+var Actions = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
@@ -2052,7 +2069,7 @@ function AttachmentList({
   return /* @__PURE__ */ jsx(List, { accessibilityRole: "list", accessibilityLabel, testID, children: items.map((item) => {
     const busy = busyIds?.includes(item.id) ?? false;
     return /* @__PURE__ */ jsxs(Row2, { testID: testID ? `${testID}-item-${item.id}` : void 0, children: [
-      /* @__PURE__ */ jsx(Thumb, { children: item.kind === "image" && item.thumbnailUri ? /* @__PURE__ */ jsx(Image, { source: item.thumbnailUri, width: 56, height: 56, resizeMode: "cover" }) : /* @__PURE__ */ jsx(Icon, { name: "attach_file", size: 24, color: theme2.content.dark }) }),
+      /* @__PURE__ */ jsx(Thumb, { children: item.kind === "image" && item.thumbnailUri ? /* @__PURE__ */ jsx(Image, { source: item.thumbnailUri, width: 56, height: 56, resizeMode: "cover" }) : /* @__PURE__ */ jsx(Icon, { name: thumbIcon(item.kind), size: 24, color: theme2.content.dark }) }),
       /* @__PURE__ */ jsx(NameSlot, { children: /* @__PURE__ */ jsx(Text2, { variant: "body.s", color: theme2.content.secondary, numberOfLines: 1, children: item.name }) }),
       /* @__PURE__ */ jsx(Actions, { children: visibleActions(item, handlers).map((action) => /* @__PURE__ */ jsx(
         Button,
@@ -2144,7 +2161,7 @@ var BackgroundDotsGrid = memo(function BackgroundDotsGrid2({
   );
 });
 BackgroundDotsGrid.displayName = "BackgroundDotsGrid";
-var Card2 = styled45(View)`
+var Card2 = styled46(View)`
   flex-direction: column;
   align-self: flex-start;
   align-items: center;
@@ -2154,20 +2171,20 @@ var Card2 = styled45(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
 `;
-var IconSlot3 = styled45(View)`
+var IconSlot3 = styled46(View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var Value = styled45.Text`
+var Value = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.xxl}px;
   text-align: center;
 `;
-var Label2 = styled45.Text`
+var Label2 = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
@@ -2201,12 +2218,12 @@ var BigNumbersCard = forwardRef(
   }
 );
 BigNumbersCard.displayName = "BigNumbersCard";
-var Row3 = styled45(View)`
+var Row3 = styled46(View)`
   flex-direction: row;
   align-items: flex-end;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
 `;
-var Bubble2 = styled45(View)`
+var Bubble2 = styled46(View)`
   flex: 1;
   min-width: 0;
   flex-direction: column;
@@ -2219,18 +2236,18 @@ var Bubble2 = styled45(View)`
   padding-left: ${({ $position, theme: theme2 }) => $position === "left" ? theme2.padding.s : theme2.padding.m}px;
   padding-right: ${({ $position, theme: theme2 }) => $position === "left" ? theme2.padding.m : theme2.padding.s}px;
 `;
-var BubbleInner = styled45(View)`
+var BubbleInner = styled46(View)`
   flex-direction: column;
   gap: 10px;
   align-items: ${({ $position }) => $position === "left" ? "flex-end" : "flex-start"};
 `;
-var TopRow = styled45(View)`
+var TopRow = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   width: 100%;
 `;
-var MessageText = styled45.Text`
+var MessageText = styled46.Text`
   flex: 1;
   min-width: 0;
   color: ${({ theme: theme2 }) => theme2.content.dark};
@@ -2239,13 +2256,13 @@ var MessageText = styled45.Text`
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   text-align: ${({ $position }) => $position === "left" ? "right" : "left"};
 `;
-var MenuButton = styled45(Pressable)`
+var MenuButton = styled46(Pressable)`
   width: 16px;
   height: 16px;
   align-items: center;
   justify-content: center;
 `;
-var TimeText = styled45.Text`
+var TimeText = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.s}px;
@@ -2301,7 +2318,7 @@ var ChatBubble = forwardRef(
   }
 );
 ChatBubble.displayName = "ChatBubble";
-var Container3 = styled45(Pressable)`
+var Container3 = styled46(Pressable)`
   height: 60px;
   flex-direction: row;
   align-items: center;
@@ -2310,30 +2327,30 @@ var Container3 = styled45(Pressable)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
 `;
-var AvatarRow = styled45(View)`
+var AvatarRow = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   flex: 1;
   min-width: 0;
 `;
-var TextStack = styled45(View)`
+var TextStack = styled46(View)`
   flex: 1;
   min-width: 0;
 `;
-var Name = styled45.Text`
+var Name = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${typography.badge.s.fontFamily};
   font-size: ${typography.badge.s.fontSize}px;
   font-weight: ${typography.badge.s.fontWeight};
 `;
-var Subtitle2 = styled45.Text`
+var Subtitle2 = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
 `;
-var Badge2 = styled45(View)`
+var Badge2 = styled46(View)`
   width: 28px;
   height: 28px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -2341,7 +2358,7 @@ var Badge2 = styled45(View)`
   justify-content: center;
   background-color: ${({ theme: theme2 }) => theme2.surface.error};
 `;
-var BadgeText2 = styled45.Text`
+var BadgeText2 = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${typography.badge.s.fontFamily};
   font-size: ${typography.badge.s.fontSize}px;
@@ -2401,11 +2418,11 @@ var rowBackground = ({
   if ($hasValue) return theme2.surface.medium;
   return theme2.surface.standard;
 };
-var Container4 = styled45(View)`
+var Container4 = styled46(View)`
   flex-direction: column;
   align-self: stretch;
 `;
-var Row4 = styled45(Pressable)`
+var Row4 = styled46(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -2418,14 +2435,14 @@ var Row4 = styled45(Pressable)`
           border-color: ${theme2.content.disable};
         ` : ""};
 `;
-var HoverOverlay2 = styled45(View)`
+var HoverOverlay2 = styled46(View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.hover};
   pointer-events: none;
 `;
-styled45(View)`
+styled46(View)`
   position: absolute;
   top: -2px;
   left: -2px;
@@ -2436,7 +2453,7 @@ styled45(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m + 2}px;
   pointer-events: none;
 `;
-var StyledInput = styled45(TextInput)`
+var StyledInput = styled46(TextInput)`
   flex: 1;
   min-width: 0;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
@@ -2448,13 +2465,13 @@ var StyledInput = styled45(TextInput)`
   outline-width: 0;
   outline-style: none;
 `;
-var IconSlot4 = styled45(View)`
+var IconSlot4 = styled46(View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var IconButton = styled45(Pressable)`
+var IconButton = styled46(Pressable)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -2542,7 +2559,7 @@ var SearchInput = forwardRef(
   }
 );
 SearchInput.displayName = "SearchInput";
-var Container5 = styled45(View)`
+var Container5 = styled46(View)`
   flex-direction: column;
   align-items: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
@@ -2550,7 +2567,7 @@ var Container5 = styled45(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.background};
 `;
-var ListScroll = styled45(ScrollView)`
+var ListScroll = styled46(ScrollView)`
   align-self: stretch;
   max-height: 296px;
   /* Force the scrollbar gutter to always render (not just on overflow) so the
@@ -2578,7 +2595,7 @@ var ListScroll = styled45(ScrollView)`
   scrollbar-width: thin;
   scrollbar-color: ${({ theme: theme2 }) => theme2.surface.high} ${({ theme: theme2 }) => theme2.surface.medium};
 `;
-var ListInner = styled45(View)`
+var ListInner = styled46(View)`
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
 var ChatSection = forwardRef(
@@ -2728,7 +2745,7 @@ var DIMS = {
     locationButton: 36
   }
 };
-var Container6 = styled45(View)`
+var Container6 = styled46(View)`
   flex-direction: column;
   /* Both children (TitleText, DonutWrapper) are individually centered in
      the cross-axis. Reverted from 'stretch' on 2026-05-19 because wide titles
@@ -2740,21 +2757,21 @@ var Container6 = styled45(View)`
   justify-content: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var TitleText2 = styled45.Text`
+var TitleText2 = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ $size }) => $size}px;
   text-align: ${({ $align }) => $align ?? "center"};
 `;
-var DonutWrapper = styled45(View)`
+var DonutWrapper = styled46(View)`
   width: ${({ $size }) => $size}px;
   height: ${({ $size }) => $size}px;
   align-items: center;
   justify-content: center;
   position: relative;
 `;
-var ArcSlot = styled45(View)`
+var ArcSlot = styled46(View)`
   position: absolute;
   top: 0;
   left: 0;
@@ -2763,14 +2780,14 @@ var ArcSlot = styled45(View)`
   align-items: center;
   justify-content: center;
 `;
-var Center = styled45(View)`
+var Center = styled46(View)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
   width: 96px;
 `;
-var ValueText = styled45.Text`
+var ValueText = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
@@ -2782,21 +2799,21 @@ var resolveLabelWeight = ($w, theme2) => {
   if ($w === "bold") return theme2.fontWeight.bold;
   return theme2.fontWeight.medium;
 };
-var LabelText = styled45.Text`
+var LabelText = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ $weight, theme: theme2 }) => resolveLabelWeight($weight, theme2)};
   font-size: ${({ $size, theme: theme2 }) => $size ?? theme2.fontSize.sm}px;
   text-align: center;
 `;
-var Caption = styled45.Text`
+var Caption = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   text-align: center;
 `;
-var LocationButton2 = styled45(Pressable)`
+var LocationButton2 = styled46(Pressable)`
   position: absolute;
   top: 0;
   right: 0;
@@ -2895,7 +2912,7 @@ var DonutChart = forwardRef(
   }
 );
 DonutChart.displayName = "DonutChart";
-var Card3 = styled45(Pressable)`
+var Card3 = styled46(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -2905,7 +2922,7 @@ var Card3 = styled45(Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   ${({ $borderColor }) => $borderColor ? `border-width: 1px; border-color: ${$borderColor};` : ""}
 `;
-var LeftCluster = styled45(View)`
+var LeftCluster = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.l}px;
@@ -2916,7 +2933,7 @@ var LeftCluster = styled45(View)`
   flex: 1;
   min-width: 0;
 `;
-var UserInfo = styled45(View)`
+var UserInfo = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
@@ -2925,32 +2942,32 @@ var UserInfo = styled45(View)`
   flex: 1;
   min-width: 0;
 `;
-var TextStack2 = styled45(View)`
+var TextStack2 = styled46(View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var Name2 = styled45.Text`
+var Name2 = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var Sector = styled45.Text`
+var Sector = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var ProgressSlot2 = styled45(View)`
+var ProgressSlot2 = styled46(View)`
   width: 119px;
 `;
-var Divider2 = styled45(View)`
+var Divider2 = styled46(View)`
   width: 1px;
   align-self: stretch;
   background-color: ${({ theme: theme2 }) => theme2.content.medium};
 `;
-var HealthOverview = styled45(View)`
+var HealthOverview = styled46(View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
@@ -2959,12 +2976,12 @@ var HealthOverview = styled45(View)`
    * wrap to a second line. 110px comfortably holds icon + "999 Bpm". */
   width: 110px;
 `;
-var Stat = styled45(View)`
+var Stat = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
 `;
-var StatText = styled45.Text`
+var StatText = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
@@ -2973,13 +2990,13 @@ var StatText = styled45.Text`
    * HealthOverview column is tighter than expected. Web-only. */
   white-space: nowrap;
 `;
-var AbsenceText = styled45.Text`
+var AbsenceText = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var LocationButton3 = styled45(Pressable)`
+var LocationButton3 = styled46(Pressable)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -3059,7 +3076,7 @@ var EmployeeOverviewCard = forwardRef(
   }
 );
 EmployeeOverviewCard.displayName = "EmployeeOverviewCard";
-var Card4 = styled45(View)`
+var Card4 = styled46(View)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -3076,13 +3093,13 @@ var Card4 = styled45(View)`
   return theme2.gap.m;
 }}px;
 `;
-var YearText = styled45.Text`
+var YearText = styled46.Text`
   color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.dark};
   font-family: ${({ theme: theme2, $mobile }) => $mobile ? theme2.fontFamily.body : theme2.fontFamily.title};
   font-weight: ${({ theme: theme2, $future }) => $future ? theme2.fontWeight.regular : theme2.fontWeight.bold};
   font-size: ${({ theme: theme2, $mobile }) => $mobile ? theme2.fontSize.m : theme2.fontSize.ms}px;
 `;
-var DateText = styled45.Text`
+var DateText = styled46.Text`
   color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2, $compact, $mobile }) => {
@@ -3100,7 +3117,7 @@ var DateText = styled45.Text`
     width: 240px;
   `}
 `;
-var ExamLink = styled45(Pressable)`
+var ExamLink = styled46(Pressable)`
   ${({ $compact }) => $compact ? `
     flex: 1;
     align-items: flex-start;
@@ -3111,7 +3128,7 @@ var ExamLink = styled45(Pressable)`
     justify-content: center;
   `}
 `;
-var ExamLinkText = styled45.Text`
+var ExamLinkText = styled46.Text`
   color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.secondary};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
@@ -3120,19 +3137,19 @@ var ExamLinkText = styled45.Text`
   text-decoration-line: ${({ $compact }) => $compact ? "none" : "underline"};
   text-decoration-color: ${({ theme: theme2, $past }) => $past ? theme2.content.medium : theme2.content.secondary};
 `;
-var CompactActionButton = styled45(Pressable)`
+var CompactActionButton = styled46(Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.primary};
   padding: ${({ theme: theme2, $mobile }) => $mobile ? `${theme2.padding.xs}px` : `${theme2.padding.s}px ${theme2.padding.sm}px`};
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   align-items: center;
   justify-content: center;
 `;
-var ActionsCluster = styled45(View)`
+var ActionsCluster = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var DownloadIconSlot = styled45(View)`
+var DownloadIconSlot = styled46(View)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -3264,12 +3281,12 @@ var ExamInfoCard = forwardRef(
   }
 );
 ExamInfoCard.displayName = "ExamInfoCard";
-var Row5 = styled45(View)`
+var Row5 = styled46(View)`
   flex-direction: row;
   align-items: center;
   align-self: flex-start;
 `;
-var VitalsCard = styled45(View)`
+var VitalsCard = styled46(View)`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
@@ -3284,29 +3301,29 @@ var VitalsCard = styled45(View)`
   border-bottom-left-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   margin-right: -32px;
 `;
-var StatsRow = styled45(View)`
+var StatsRow = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: 10px;
 `;
-var StatItem = styled45(View)`
+var StatItem = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var StatText2 = styled45.Text`
+var StatText2 = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
 `;
-var StatValueBold = styled45.Text`
+var StatValueBold = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
 `;
-var ProgressSlot3 = styled45(View)`
+var ProgressSlot3 = styled46(View)`
   width: 138px;
 `;
 var HeaderUserInfo = forwardRef(
@@ -3403,7 +3420,7 @@ var Logo = ({
   );
 };
 Logo.displayName = "Logo";
-var Bar = styled45(View)`
+var Bar = styled46(View)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -3568,7 +3585,7 @@ var Title2 = forwardRef(
   }
 );
 Title2.displayName = "Title";
-var Container7 = styled45(Pressable)`
+var Container7 = styled46(Pressable)`
   flex-direction: row;
   align-items: center;
   width: 100%;
@@ -3578,16 +3595,16 @@ var Container7 = styled45(Pressable)`
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var LeftSlot = styled45(View)`
+var LeftSlot = styled46(View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var LabelSlot = styled45(View)`
+var LabelSlot = styled46(View)`
   flex: 1;
 `;
-var RightSlot = styled45(View)`
+var RightSlot = styled46(View)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -3640,13 +3657,13 @@ var SIZE = {
   m: { ring: 24, border: 2, dot: 12 },
   s: { ring: 16, border: 1, dot: 8 }
 };
-var Container8 = styled45(Pressable)`
+var Container8 = styled46(Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var Ring = styled45(View)`
+var Ring = styled46(View)`
   width: ${({ $size }) => SIZE[$size].ring}px;
   height: ${({ $size }) => SIZE[$size].ring}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -3656,13 +3673,13 @@ var Ring = styled45(View)`
   justify-content: center;
   background-color: transparent;
 `;
-var Dot = styled45(View)`
+var Dot = styled46(View)`
   width: ${({ $size }) => SIZE[$size].dot}px;
   height: ${({ $size }) => SIZE[$size].dot}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
   background-color: ${({ theme: theme2 }) => theme2.content.secondary};
 `;
-var Label3 = styled45.Text`
+var Label3 = styled46.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
@@ -3727,23 +3744,23 @@ var descriptionColor = ({
 };
 
 // src/components/RadioGroup/RadioGroup.styles.ts
-var Container9 = styled45(View)`
+var Container9 = styled46(View)`
   flex-direction: column;
   align-self: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var Label4 = styled45.Text`
+var Label4 = styled46.Text`
   font-family: ${typography.label.m.fontFamily};
   font-weight: ${typography.label.m.fontWeight};
   font-size: ${typography.label.m.fontSize}px;
   color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
 `;
-var Options = styled45(View)`
+var Options = styled46(View)`
   flex-direction: row;
   flex-wrap: wrap;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
 `;
-var Description = styled45.Text`
+var Description = styled46.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -3791,13 +3808,13 @@ var SIZE2 = {
   m: { box: 24, border: 2, check: 16, label: 14, labelWeight: "400" },
   s: { box: 16, border: 1, check: 12, label: 12, labelWeight: "500" }
 };
-var Container10 = styled45(Pressable)`
+var Container10 = styled46(Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var Box = styled45(View)`
+var Box = styled46(View)`
   width: ${({ $size }) => SIZE2[$size].box}px;
   height: ${({ $size }) => SIZE2[$size].box}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
@@ -3807,14 +3824,14 @@ var Box = styled45(View)`
   justify-content: center;
   background-color: transparent;
 `;
-var Check = styled45.Text`
+var Check = styled46.Text`
   font-size: ${({ $size }) => SIZE2[$size].check}px;
   line-height: ${({ $size }) => SIZE2[$size].check}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   color: ${({ theme: theme2 }) => theme2.content.secondary};
   text-align: center;
 `;
-var Label5 = styled45.Text`
+var Label5 = styled46.Text`
   flex: 1;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ $size }) => SIZE2[$size].label}px;
@@ -3878,7 +3895,7 @@ var rowBackground2 = ({ $focused, $hovered, $disabled, theme: theme2 }) => {
   if ($focused || $hovered) return theme2.surface.medium;
   return theme2.surface.standard;
 };
-var Container11 = styled45(View)`
+var Container11 = styled46(View)`
   flex-direction: column;
   align-self: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
@@ -3889,13 +3906,13 @@ var labelTriplet2 = ($weight, theme2) => {
   const fontWeight2 = weight === "regular" ? theme2.fontWeight.regular : theme2.fontWeight.medium;
   return { fontFamily: theme2.fontFamily.body, fontWeight: fontWeight2, fontSize: theme2.fontSize.m };
 };
-var Label6 = styled45.Text`
+var Label6 = styled46.Text`
   font-family: ${({ $weight, theme: theme2 }) => labelTriplet2($weight, theme2).fontFamily};
   font-weight: ${({ $weight, theme: theme2 }) => labelTriplet2($weight, theme2).fontWeight};
   font-size: ${({ $weight, theme: theme2 }) => labelTriplet2($weight, theme2).fontSize}px;
   color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
 `;
-var Row6 = styled45(Pressable)`
+var Row6 = styled46(Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
@@ -3907,14 +3924,14 @@ var Row6 = styled45(Pressable)`
           border-color: ${theme2.content.disable};
         ` : ""};
 `;
-var HoverOverlay3 = styled45(View)`
+var HoverOverlay3 = styled46(View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.hover};
   pointer-events: none;
 `;
-styled45(View)`
+styled46(View)`
   position: absolute;
   top: -2px;
   left: -2px;
@@ -3925,7 +3942,7 @@ styled45(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m + 2}px;
   pointer-events: none;
 `;
-var StyledInput2 = styled45(TextInput)`
+var StyledInput2 = styled46(TextInput)`
   flex: 1;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
@@ -3936,26 +3953,26 @@ var StyledInput2 = styled45(TextInput)`
   outline-width: 0;
   outline-style: none;
 `;
-var IconSlot5 = styled45(View)`
+var IconSlot5 = styled46(View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
   padding: ${({ theme: theme2 }) => theme2.padding.xs}px;
 `;
-var BottomRow = styled45(View)`
+var BottomRow = styled46(View)`
   flex-direction: row;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
 `;
-var Description2 = styled45.Text`
+var Description2 = styled46.Text`
   flex-shrink: 1;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   color: ${(props) => descriptionColor(props)};
 `;
-var Counter = styled45.Text`
+var Counter = styled46.Text`
   margin-left: auto;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
@@ -4136,18 +4153,18 @@ var triggerBackground = ({
   if ($focused || $hovered) return theme2.surface.medium;
   return theme2.surface.standard;
 };
-var Container12 = styled45(View)`
+var Container12 = styled46(View)`
   flex-direction: column;
   align-self: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var Label7 = styled45.Text`
+var Label7 = styled46.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
   color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
 `;
-var Trigger = styled45(Pressable)`
+var Trigger = styled46(Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
@@ -4155,7 +4172,7 @@ var Trigger = styled45(Pressable)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${(props) => triggerBackground(props)};
 `;
-var TriggerLabel = styled45.Text`
+var TriggerLabel = styled46.Text`
   flex: 1;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
@@ -4166,11 +4183,11 @@ var TriggerLabel = styled45.Text`
   return theme2.content.dark;
 }};
 `;
-styled45.Text`
+styled46.Text`
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   color: ${({ $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : theme2.content.dark};
 `;
-var Panel = styled45(View)`
+var Panel = styled46(View)`
   /* Panel renderiza dentro de Modal — posicionamento absoluto vem do View
    * wrapper que computa coords via measureInWindow no Combobox.tsx. Aqui
    * fica só o visual: superfície + borda + padding + sombra. */
@@ -4182,11 +4199,11 @@ var Panel = styled45(View)`
   padding: ${({ theme: theme2 }) => theme2.padding.s}px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
 `;
-var OptionsList = styled45(View)`
+var OptionsList = styled46(View)`
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var OptionRow = styled45(Pressable)`
+var OptionRow = styled46(Pressable)`
   flex-direction: row;
   align-items: center;
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.s}px;
@@ -4195,13 +4212,13 @@ var OptionRow = styled45(Pressable)`
   border-top-color: ${({ theme: theme2 }) => theme2.content.medium};
   background-color: ${({ $hovered, theme: theme2 }) => $hovered ? theme2.surface.hover : "transparent"};
 `;
-var OptionLabel = styled45.Text`
+var OptionLabel = styled46.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
   color: ${({ theme: theme2 }) => theme2.content.dark};
 `;
-var Description3 = styled45.Text`
+var Description3 = styled46.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -4495,10 +4512,10 @@ var textColor = ({
   if ($state === "disable") return theme2.content.disable;
   return $colorScheme === "secondary" ? theme2.content.secondary : theme2.content.primary;
 };
-var Container13 = styled45(Pressable)`
+var Container13 = styled46(Pressable)`
   align-self: flex-start;
 `;
-var Body = styled45(View)`
+var Body = styled46(View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -4510,13 +4527,13 @@ var Body = styled45(View)`
   border-radius: ${({ $variant, theme: theme2 }) => $variant === "filled" ? theme2.border.radius.s : theme2.border.radius.m}px;
   overflow: hidden;
 `;
-var Label8 = styled45.Text`
+var Label8 = styled46.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   color: ${(props) => textColor(props)};
 `;
-var HoverOverlay4 = styled45(View)`
+var HoverOverlay4 = styled46(View)`
   position: absolute;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.05);
@@ -4608,7 +4625,7 @@ var ChipGroup = ({
     option
   )) });
 };
-var Container14 = styled45(View)`
+var Container14 = styled46(View)`
   align-self: stretch;
   border-width: 1px;
   border-style: dashed;
@@ -4618,21 +4635,21 @@ var Container14 = styled45(View)`
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
   align-items: center;
 `;
-var HelperText = styled45.Text`
+var HelperText = styled46.Text`
   align-self: stretch;
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
 `;
-var PreviewSlot = styled45(View)`
+var PreviewSlot = styled46(View)`
   align-self: stretch;
   height: 56px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   overflow: hidden;
   background-color: ${({ theme: theme2 }) => theme2.surface.medium};
 `;
-var RemoveButton = styled45(Pressable)`
+var RemoveButton = styled46(Pressable)`
   position: absolute;
   top: 4px;
   right: 4px;
@@ -4729,32 +4746,32 @@ var ImageUploader = forwardRef(
   }
 );
 ImageUploader.displayName = "ImageUploader";
-var Scrim = styled45(Pressable)`
+var Scrim = styled46(Pressable)`
   flex: 1;
   align-items: center;
   justify-content: center;
   padding: ${({ theme: theme2 }) => theme2.padding.l}px;
 `;
-var Card5 = styled45(Pressable)`
+var Card5 = styled46(Pressable)`
   max-width: 100%;
   padding: ${({ theme: theme2 }) => theme2.padding.m}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.l}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
 `;
-var Content2 = styled45(View)`
+var Content2 = styled46(View)`
   width: 227px;
   max-width: 100%;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
 `;
-var Actions2 = styled45(View)`
+var Actions2 = styled46(View)`
   flex-direction: row;
   align-items: center;
   align-self: stretch;
   gap: ${({ theme: theme2 }) => theme2.padding.xxl}px;
 `;
-var ActionSlot = styled45(View)`
+var ActionSlot = styled46(View)`
   flex: 1;
 `;
 var absorb = () => {
@@ -4806,25 +4823,25 @@ function viewerLayout(window2, chrome) {
   );
   return { cardWidth, stageWidth, stageHeight };
 }
-var Header3 = styled45(View)`
+var Header3 = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var CloseButton = styled45(Pressable)`
+var CloseButton = styled46(Pressable)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var Stage = styled45(View)`
+var Stage = styled46(View)`
   align-items: center;
   justify-content: center;
   overflow: hidden;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.background};
 `;
-var Footer = styled45(View)`
+var Footer = styled46(View)`
   flex-direction: row;
   justify-content: flex-end;
 `;
@@ -4903,7 +4920,83 @@ function ImageViewer({
     }
   );
 }
-var ExpandedBar = styled45(View)`
+
+// src/components/MediaPlayer/MediaPlayer.logic.ts
+var MEDIA_ICON = {
+  video: "videocam",
+  audio: "audio_file"
+};
+var KIND_LABEL = {
+  video: "V\xEDdeo",
+  audio: "\xC1udio"
+};
+function mediaAccessibilityLabel(kind, title) {
+  return `${KIND_LABEL[kind]} ${title}`;
+}
+var DEFAULT_ERROR_LABEL = "N\xE3o foi poss\xEDvel reproduzir este arquivo aqui. Use Baixar.";
+var Card6 = styled46(View)`
+  gap: ${({ theme: theme2 }) => theme2.gap.s}px;
+  padding: ${({ theme: theme2 }) => theme2.padding.sm}px;
+  border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
+  background-color: ${({ theme: theme2 }) => theme2.surface.standard};
+`;
+var Row7 = styled46(View)`
+  flex-direction: row;
+  align-items: center;
+  gap: ${({ theme: theme2 }) => theme2.gap.s}px;
+`;
+var TitleSlot = styled46(View)`
+  flex: 1;
+  min-width: 0;
+`;
+var VIDEO_MAX_HEIGHT = 360;
+function MediaPlayer({
+  kind,
+  uri,
+  title,
+  errorLabel = DEFAULT_ERROR_LABEL,
+  testID
+}) {
+  const theme2 = useTheme();
+  const [failed, setFailed] = useState(false);
+  const label = mediaAccessibilityLabel(kind, title);
+  const player = kind === "video" ? /* @__PURE__ */ jsx(
+    "video",
+    {
+      src: uri,
+      controls: true,
+      preload: "metadata",
+      "aria-label": label,
+      "data-testid": testID ? `${testID}-video` : void 0,
+      onError: () => setFailed(true),
+      style: {
+        width: "100%",
+        maxHeight: VIDEO_MAX_HEIGHT,
+        borderRadius: theme2.border.radius.m,
+        backgroundColor: theme2.surface.standard
+      }
+    }
+  ) : /* @__PURE__ */ jsx(
+    "audio",
+    {
+      src: uri,
+      controls: true,
+      preload: "metadata",
+      "aria-label": label,
+      "data-testid": testID ? `${testID}-audio` : void 0,
+      onError: () => setFailed(true),
+      style: { width: "100%" }
+    }
+  );
+  return /* @__PURE__ */ jsxs(Card6, { accessibilityLabel: label, testID, children: [
+    /* @__PURE__ */ jsxs(Row7, { children: [
+      /* @__PURE__ */ jsx(Icon, { name: MEDIA_ICON[kind], size: 24, color: theme2.content.dark }),
+      /* @__PURE__ */ jsx(TitleSlot, { children: /* @__PURE__ */ jsx(Text2, { variant: "body.s", color: theme2.content.secondary, numberOfLines: 1, children: title }) })
+    ] }),
+    failed ? /* @__PURE__ */ jsx(Text2, { variant: "body.s", color: theme2.content.medium, children: errorLabel }) : player
+  ] });
+}
+var ExpandedBar = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
@@ -4912,27 +5005,27 @@ var ExpandedBar = styled45(View)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   align-self: flex-end;
 `;
-var TitleText3 = styled45.Text`
+var TitleText3 = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var Divider3 = styled45(View)`
+var Divider3 = styled46(View)`
   width: 1px;
   height: 40px;
   background-color: ${({ theme: theme2 }) => theme2.content.medium};
 `;
-var SearchSlot = styled45(View)`
+var SearchSlot = styled46(View)`
   width: 284px;
 `;
-var OptionsRow = styled45(View)`
+var OptionsRow = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
   padding: ${({ theme: theme2 }) => theme2.padding.sm}px;
 `;
-var TrailingButton = styled45(Pressable)`
+var TrailingButton = styled46(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -4940,7 +5033,7 @@ var TrailingButton = styled45(Pressable)`
   border-top-right-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   border-bottom-right-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
 `;
-var CollapsedButton = styled45(Pressable)`
+var CollapsedButton = styled46(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -5056,14 +5149,14 @@ var MapControl = forwardRef(
   }
 );
 MapControl.displayName = "MapControl";
-var Container15 = styled45(View)`
+var Container15 = styled46(View)`
   align-items: center;
   justify-content: flex-start;
 `;
-var TailWrapper = styled45(View)`
+var TailWrapper = styled46(View)`
   margin-top: -2px;
 `;
-var CameraBody = styled45(View)`
+var CameraBody = styled46(View)`
   ${({ $size, theme: theme2 }) => css`
     width: ${$size}px;
     height: ${$size}px;
@@ -5075,7 +5168,7 @@ var CameraBody = styled45(View)`
     justify-content: center;
   `}
 `;
-var BadgeBody = styled45(View)`
+var BadgeBody = styled46(View)`
   ${({ $size, $fill }) => css`
     width: ${$size}px;
     height: ${$size}px;
@@ -5184,7 +5277,7 @@ var dividerColor = ({
   }
   return accentColor({ $active, $hovered, $disabled, $variant, theme: theme2 });
 };
-var Container16 = styled45(Pressable)`
+var Container16 = styled46(Pressable)`
   height: ${({ $variant }) => $variant === "compact" ? "44px" : $variant === "minimal" ? "60px" : "60px"};
   flex-direction: row;
   align-items: center;
@@ -5196,25 +5289,25 @@ var Container16 = styled45(Pressable)`
   border-radius: ${({ $variant, theme: theme2 }) => $variant === "compact" ? "0px" : `${theme2.border.radius.m}px`};
   background-color: ${(props) => containerBackground2(props)};
 `;
-var HoverOverlay5 = styled45(View)`
+var HoverOverlay5 = styled46(View)`
   position: absolute;
   inset: 0;
   border-radius: ${({ $variant, theme: theme2 }) => $variant === "compact" ? "0px" : `${theme2.border.radius.m}px`};
   background-color: ${({ theme: theme2 }) => theme2.surface.hover};
   pointer-events: none;
 `;
-var LabelGroup = styled45(View)`
+var LabelGroup = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var IconSlot6 = styled45(View)`
+var IconSlot6 = styled46(View)`
   width: 22px;
   height: 22px;
   align-items: center;
   justify-content: center;
 `;
-var Label9 = styled45.Text`
+var Label9 = styled46.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ $variant, theme: theme2 }) => $variant === "compact" ? `${theme2.fontSize.s}px` : `${theme2.fontSize.m}px`};
@@ -5222,13 +5315,13 @@ var Label9 = styled45.Text`
   text-transform: ${({ $variant }) => $variant === "compact" ? "uppercase" : "none"};
   letter-spacing: ${({ $variant }) => $variant === "compact" ? "0.6px" : "normal"};
 `;
-var Divider4 = styled45(View)`
+var Divider4 = styled46(View)`
   width: 2px;
   height: 100%;
   border-radius: 2px;
   background-color: ${(props) => dividerColor(props)};
 `;
-var BadgeOverlay = styled45(View)`
+var BadgeOverlay = styled46(View)`
   position: absolute;
   top: 0;
   left: ${({ $position }) => $position === "outside-left" ? "-14px" : "0"};
@@ -5241,7 +5334,7 @@ var BadgeOverlay = styled45(View)`
   padding: ${({ theme: theme2 }) => theme2.padding.s}px;
   z-index: 2;
 `;
-var BadgeText3 = styled45.Text`
+var BadgeText3 = styled46.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -5394,11 +5487,11 @@ function shouldDismiss(target, panel, trigger) {
   if (trigger?.contains(node)) return false;
   return true;
 }
-var Anchor2 = styled45(View)`
+var Anchor2 = styled46(View)`
   position: relative;
   align-self: flex-start;
 `;
-var Panel2 = styled45(View)`
+var Panel2 = styled46(View)`
   position: absolute;
   z-index: 100;
   min-width: ${({ $minWidth }) => $minWidth}px;
@@ -5409,11 +5502,11 @@ var Panel2 = styled45(View)`
   padding: ${({ theme: theme2 }) => theme2.padding.s}px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
 `;
-var ItemList = styled45(View)`
+var ItemList = styled46(View)`
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var ItemRow = styled45(Pressable)`
+var ItemRow = styled46(Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
@@ -5422,13 +5515,13 @@ var ItemRow = styled45(Pressable)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.xs}px;
   background-color: ${({ $hovered, $disabled, theme: theme2 }) => $hovered && !$disabled ? theme2.surface.hover : "transparent"};
 `;
-var ItemLabel = styled45.Text`
+var ItemLabel = styled46.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
   color: ${({ $color }) => $color};
 `;
-var Separator = styled45(View)`
+var Separator = styled46(View)`
   height: 1px;
   background-color: ${({ theme: theme2 }) => theme2.content.medium};
   margin-vertical: ${({ theme: theme2 }) => theme2.margin.xs}px;
@@ -5544,7 +5637,7 @@ var PopoverItem = forwardRef(
 );
 PopoverItem.displayName = "PopoverItem";
 var PopoverSeparator = Separator;
-var Container17 = styled45(View)`
+var Container17 = styled46(View)`
   flex-direction: column;
   align-items: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
@@ -5679,14 +5772,14 @@ function skeletonLineWidths(lines) {
 function clampRows(rows) {
   return Math.max(1, Math.floor(rows));
 }
-var Block = styled45(Animated.View)`
+var Block = styled46(Animated.View)`
   background-color: ${({ theme: theme2 }) => theme2.surface.high};
   border-radius: ${({ theme: theme2, $shape }) => $shape === "circle" ? theme2.border.radius.pill : theme2.border.radius.s}px;
 `;
-var List2 = styled45(View)`
+var List2 = styled46(View)`
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
 `;
-var ListRow = styled45(View)`
+var ListRow = styled46(View)`
   flex-direction: row;
   align-items: center;
   padding: ${({ theme: theme2 }) => theme2.padding.sm}px ${({ theme: theme2 }) => theme2.padding.m}px;
@@ -5694,7 +5787,7 @@ var ListRow = styled45(View)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var Lines = styled45(View)`
+var Lines = styled46(View)`
   flex: 1;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
@@ -5765,7 +5858,7 @@ function SkeletonList({
     /* @__PURE__ */ jsx(Lines, { children: widths.map((width, line) => /* @__PURE__ */ jsx(Skeleton, { width, height: theme2.fontSize.m, animated }, line)) })
   ] }, row)) });
 }
-var Pill = styled45(View)`
+var Pill = styled46(View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -5774,7 +5867,7 @@ var Pill = styled45(View)`
   background-color: ${({ theme: theme2 }) => theme2.surface.primaryLight};
   min-width: 40px;
 `;
-var Triangle = styled45(View)`
+var Triangle = styled46(View)`
   position: absolute;
   top: -9px;
   left: 50%;
@@ -5805,7 +5898,7 @@ var TimeStamp = forwardRef(
   }
 );
 TimeStamp.displayName = "TimeStamp";
-var Pill2 = styled45(View)`
+var Pill2 = styled46(View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -5857,23 +5950,23 @@ function Carousel({
     }
   );
 }
-var ChartFrame = styled45(View)`
+var ChartFrame = styled46(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.medium};
 `;
-var Layer = styled45(View)`
+var Layer = styled46(View)`
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
 `;
-var KcalAnchor = styled45(View)`
+var KcalAnchor = styled46(View)`
   position: absolute;
   width: 0;
   align-items: center;
 `;
-var TimeAnchor = styled45(View)`
+var TimeAnchor = styled46(View)`
   position: absolute;
   width: 0;
   align-items: center;
@@ -6015,18 +6108,18 @@ var LineCaloriesChart = forwardRef(
   }
 );
 LineCaloriesChart.displayName = "LineCaloriesChart";
-var Row7 = styled45(View)`
+var Row8 = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var SideLabel = styled45.Text`
+var SideLabel = styled46.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   color: ${({ $active, $disabled, theme: theme2 }) => $disabled ? theme2.content.disable : $active ? theme2.content.dark : theme2.content.medium};
 `;
-var Track2 = styled45(Pressable)`
+var Track2 = styled46(Pressable)`
   width: 32px;
   height: 16px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -6036,7 +6129,7 @@ var Track2 = styled45(Pressable)`
   justify-content: ${({ $on }) => $on ? "flex-end" : "flex-start"};
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var Thumb2 = styled45(View)`
+var Thumb2 = styled46(View)`
   width: 16px;
   height: 16px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -6079,7 +6172,7 @@ var Toggle = forwardRef(
     if (!leftLabel && !rightLabel) {
       return React16.cloneElement(track, { ref });
     }
-    return /* @__PURE__ */ jsxs(Row7, { ref, children: [
+    return /* @__PURE__ */ jsxs(Row8, { ref, children: [
       leftLabel ? /* @__PURE__ */ jsx(SideLabel, { $active: !value, $disabled: disabled, children: leftLabel }) : null,
       track,
       rightLabel ? /* @__PURE__ */ jsx(SideLabel, { $active: value, $disabled: disabled, children: rightLabel }) : null
@@ -6156,24 +6249,24 @@ var WeatherIcon = ({
   );
 };
 WeatherIcon.displayName = "WeatherIcon";
-var Row8 = styled45(View)`
+var Row9 = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var TimePill = styled45(View)`
+var TimePill = styled46(View)`
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.s}px;
   padding-vertical: ${({ theme: theme2 }) => theme2.padding.xs}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
 `;
-var TimeText2 = styled45.Text`
+var TimeText2 = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.s}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
 `;
-var Label10 = styled45.Text`
+var Label10 = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -6182,7 +6275,7 @@ var Label10 = styled45.Text`
 var WeatherEventChip = forwardRef(
   ({ time, label, accessibilityLabel, testID }, ref) => {
     return /* @__PURE__ */ jsxs(
-      Row8,
+      Row9,
       {
         ref,
         accessibilityLabel: accessibilityLabel ?? `${time} ${label}`,
@@ -6196,12 +6289,12 @@ var WeatherEventChip = forwardRef(
   }
 );
 WeatherEventChip.displayName = "WeatherEventChip";
-var Stack = styled45(View)`
+var Stack = styled46(View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.l}px;
 `;
-var IconRow = styled45(View)`
+var IconRow = styled46(View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -6225,16 +6318,16 @@ var WeatherTimelineEntry = forwardRef(
   }
 );
 WeatherTimelineEntry.displayName = "WeatherTimelineEntry";
-var Stack2 = styled45(View)`
+var Stack2 = styled46(View)`
   flex-direction: row;
   align-items: flex-start;
 `;
-var Pole = styled45(View)`
+var Pole = styled46(View)`
   width: 3px;
   height: ${({ $height }) => $height}px;
   background-color: ${({ theme: theme2 }) => theme2.content.dark};
 `;
-var Flag = styled45(View)`
+var Flag = styled46(View)`
   width: 80px;
   height: 30px;
   background-color: ${({ theme: theme2 }) => theme2.content.dark};
@@ -6243,7 +6336,7 @@ var Flag = styled45(View)`
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
 `;
-var FlagText = styled45.Text`
+var FlagText = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.light};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -6282,7 +6375,7 @@ var surfaceForStatus = ({
       return theme2.surface.error;
   }
 };
-var Container18 = styled45(View)`
+var Container18 = styled46(View)`
   align-items: center;
   justify-content: center;
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.m}px;
@@ -6290,7 +6383,7 @@ var Container18 = styled45(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.s}px;
   background-color: ${(props) => surfaceForStatus(props)};
 `;
-var Label11 = styled45.Text`
+var Label11 = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.light};
   font-family: ${typography.badge.s.fontFamily};
   font-size: ${typography.badge.s.fontSize}px;
@@ -6328,7 +6421,7 @@ var StatusTag = forwardRef(
   }
 );
 StatusTag.displayName = "StatusTag";
-var Card6 = styled45(Pressable)`
+var Card7 = styled46(Pressable)`
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
@@ -6337,49 +6430,49 @@ var Card6 = styled45(Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
   overflow: hidden;
 `;
-var Title3 = styled45.Text`
+var Title3 = styled46.Text`
   align-self: stretch;
   color: ${({ theme: theme2 }) => theme2.content.primary};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.ms}px;
 `;
-var Section = styled45(View)`
+var Section = styled46(View)`
   align-self: stretch;
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var SectionHeading = styled45.Text`
+var SectionHeading = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${typography.badge.s.fontFamily};
   font-weight: ${typography.badge.s.fontWeight};
   font-size: ${typography.badge.s.fontSize}px;
 `;
-var SectionBody = styled45.Text`
+var SectionBody = styled46.Text`
   align-self: stretch;
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var FooterRow = styled45(View)`
+var FooterRow = styled46(View)`
   align-self: stretch;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 `;
-var AuthorBlock = styled45(View)`
+var AuthorBlock = styled46(View)`
   flex: 1;
   min-width: 0;
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var AuthorRow = styled45(View)`
+var AuthorRow = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var AuthorName = styled45.Text`
+var AuthorName = styled46.Text`
   flex: 0 1 auto;
   max-width: 80px;
   color: ${({ theme: theme2 }) => theme2.content.dark};
@@ -6387,7 +6480,7 @@ var AuthorName = styled45.Text`
   font-weight: ${typography.badge.s.fontWeight};
   font-size: ${typography.badge.s.fontSize}px;
 `;
-var LocationLabel = styled45.Text`
+var LocationLabel = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.secondary};
   font-family: ${typography.badge.s.fontFamily};
   font-weight: ${typography.badge.s.fontWeight};
@@ -6413,7 +6506,7 @@ var ReportCard = forwardRef(
     testID
   }, ref) => {
     return /* @__PURE__ */ jsxs(
-      Card6,
+      Card7,
       {
         ref,
         onPress,
@@ -6452,11 +6545,11 @@ var ReportCard = forwardRef(
   }
 );
 ReportCard.displayName = "ReportCard";
-var Container19 = styled45(View)`
+var Container19 = styled46(View)`
   flex-direction: column;
   position: relative;
 `;
-var RulerRow = styled45(View)`
+var RulerRow = styled46(View)`
   position: absolute;
   top: 64px;
   left: 0;
@@ -6467,34 +6560,34 @@ var RulerRow = styled45(View)`
   height: 20px;
   z-index: 1;
 `;
-var RulerLine = styled45(View)`
+var RulerLine = styled46(View)`
   width: 1px;
   height: ${({ $major }) => $major ? 20 : 12}px;
   background-color: ${({ theme: theme2 }) => theme2.content.dark};
   opacity: 0.4;
 `;
-var EventsRow = styled45(View)`
+var EventsRow = styled46(View)`
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
 `;
-var EventColumn = styled45(View)`
+var EventColumn = styled46(View)`
   flex: 1;
   min-width: 200px;
   align-items: flex-start;
   position: relative;
 `;
-styled45(View)`
+styled46(View)`
   flex: 1;
   align-items: center;
   position: relative;
 `;
-var NowFloat = styled45(View)`
+var NowFloat = styled46(View)`
   position: absolute;
   top: 40px;
   z-index: 2;
 `;
-var IntensityRow = styled45(View)`
+var IntensityRow = styled46(View)`
   flex-direction: row;
   height: 12px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.pill}px;
@@ -6502,18 +6595,18 @@ var IntensityRow = styled45(View)`
   align-self: stretch;
   margin-top: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var IntensitySegmentView = styled45(View)`
+var IntensitySegmentView = styled46(View)`
   flex: ${({ $flex }) => $flex};
   background-color: ${({ $bg }) => $bg};
 `;
-var ScrollTrack = styled45(View)`
+var ScrollTrack = styled46(View)`
   height: 8px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.l}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.medium};
   margin-top: ${({ theme: theme2 }) => theme2.gap.m}px;
   flex-direction: row;
 `;
-var ScrollThumb = styled45(View)`
+var ScrollThumb = styled46(View)`
   height: 8px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.l}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.high};
@@ -6690,7 +6783,7 @@ var WeatherTimeline = forwardRef(
   }
 );
 WeatherTimeline.displayName = "WeatherTimeline";
-var Card7 = styled45(View)`
+var Card8 = styled46(View)`
   flex-direction: column;
   align-items: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
@@ -6700,85 +6793,85 @@ var Card7 = styled45(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.standard};
 `;
-var HeaderRow = styled45(Pressable)`
+var HeaderRow = styled46(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 `;
-var UserInfoCluster = styled45(View)`
+var UserInfoCluster = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xxl}px;
 `;
-var UserData = styled45(View)`
+var UserData = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var UserText = styled45(View)`
+var UserText = styled46(View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
   width: 145px;
 `;
-var NameAge = styled45(View)`
+var NameAge = styled46(View)`
   flex-direction: column;
 `;
-var NameText = styled45.Text`
+var NameText = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var AgeText = styled45.Text`
+var AgeText = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var BloodRow = styled45(View)`
+var BloodRow = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: 5px;
 `;
-var BloodText = styled45.Text`
+var BloodText = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.ms}px;
 `;
-var VerticalDivider = styled45(View)`
+var VerticalDivider = styled46(View)`
   width: 1px;
   height: 56px;
   background-color: ${({ theme: theme2 }) => theme2.content.medium};
 `;
-var HorizontalDivider = styled45(View)`
+var HorizontalDivider = styled46(View)`
   height: 1px;
   align-self: stretch;
   background-color: ${({ theme: theme2 }) => theme2.content.medium};
 `;
-var RoleStack = styled45(View)`
+var RoleStack = styled46(View)`
   flex-direction: column;
   width: 186px;
 `;
-var RolePrimary = styled45.Text`
+var RolePrimary = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var RoleSecondary = styled45.Text`
+var RoleSecondary = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var ActionsRow = styled45(View)`
+var ActionsRow = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
 `;
-var IconButton2 = styled45(Pressable)`
+var IconButton2 = styled46(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -6786,55 +6879,55 @@ var IconButton2 = styled45(Pressable)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${({ theme: theme2 }) => theme2.surface.high};
 `;
-var ChevronWrap2 = styled45(View)`
+var ChevronWrap2 = styled46(View)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.xs}px;
   padding-vertical: ${({ theme: theme2 }) => theme2.padding.sm}px;
 `;
-var ExpandedRow = styled45(View)`
+var ExpandedRow = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: 51px;
 `;
-var AlertsList = styled45(View)`
+var AlertsList = styled46(View)`
   flex: 1;
   min-width: 0;
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
 `;
-var AlertItem = styled45(View)`
+var AlertItem = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   align-self: stretch;
 `;
-var AlertContent = styled45(View)`
+var AlertContent = styled46(View)`
   flex: 1;
   min-width: 0;
   flex-direction: column;
   gap: 5px;
 `;
-var AlertTitle = styled45.Text`
+var AlertTitle = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.ms}px;
 `;
-var AlertBody = styled45.Text`
+var AlertBody = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.dark};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.regular};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
 `;
-var ActionsColumn = styled45(View)`
+var ActionsColumn = styled46(View)`
   flex-direction: column;
   align-items: flex-start;
   gap: ${({ theme: theme2 }) => theme2.gap.sm}px;
   width: 280px;
 `;
-var PauseButton = styled45(Pressable)`
+var PauseButton = styled46(Pressable)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -6843,7 +6936,7 @@ var PauseButton = styled45(Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.accent};
   align-self: stretch;
 `;
-var PauseButtonLabel = styled45.Text`
+var PauseButtonLabel = styled46.Text`
   color: ${({ theme: theme2 }) => theme2.content.light};
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
@@ -6881,7 +6974,7 @@ var WorkersInfoCard = forwardRef(
       onExpandedChange?.(next);
     }, [expanded, isExpandedControlled, onExpandedChange]);
     return /* @__PURE__ */ jsxs(
-      Card7,
+      Card8,
       {
         ref,
         accessibilityLabel: accessibilityLabel ?? employee.name,
@@ -7591,7 +7684,7 @@ var dotBackground = ({ $state, theme: theme2 }) => {
   if ($state === "current" || $state === "done") return theme2.content.primary;
   return theme2.content.medium;
 };
-var Dot2 = styled45(View)`
+var Dot2 = styled46(View)`
   width: 20px;
   height: 20px;
   border-radius: 10px;
@@ -7599,7 +7692,7 @@ var Dot2 = styled45(View)`
   justify-content: center;
   background-color: ${dotBackground};
 `;
-var Label12 = styled45.Text`
+var Label12 = styled46.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ $state, theme: theme2 }) => $state === "current" ? theme2.fontWeight.bold : theme2.fontWeight.regular};
   font-size: 12px;
@@ -7622,18 +7715,18 @@ var Step = ({ state, number, testID, accessibilityLabel }) => /* @__PURE__ */ js
   }
 );
 Step.displayName = "Step";
-var Container20 = styled45(View)`
+var Container20 = styled46(View)`
   flex-direction: row;
   align-items: center;
   align-self: stretch;
 `;
-var Connector = styled45(View)`
+var Connector = styled46(View)`
   flex: 1;
   height: 4px;
   border-radius: 2px;
   background-color: ${({ $reached, theme: theme2 }) => $reached ? theme2.content.primary : theme2.content.medium};
 `;
-var GradientTrack = styled45(View)`
+var GradientTrack = styled46(View)`
   flex: 1;
   height: 4px;
   border-radius: 2px;
@@ -7669,7 +7762,7 @@ var StepBar = ({ total, current, testID, accessibilityLabel }) => /* @__PURE__ *
   }
 );
 StepBar.displayName = "StepBar";
-var Container21 = styled45(Pressable)`
+var Container21 = styled46(Pressable)`
   flex: 1;
   flex-direction: column;
   align-items: center;
@@ -7682,13 +7775,13 @@ var Container21 = styled45(Pressable)`
   border-width: ${({ $selected, theme: theme2 }) => $selected ? theme2.border.size.m : 0}px;
   border-color: ${({ theme: theme2 }) => theme2.content.primary};
 `;
-var IconSlot7 = styled45(View)`
+var IconSlot7 = styled46(View)`
   width: 24px;
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-var Label13 = styled45.Text`
+var Label13 = styled46.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: 12px;
@@ -7731,18 +7824,18 @@ var GenderSelectionCard = ({
   );
 };
 GenderSelectionCard.displayName = "GenderSelectionCard";
-var Row9 = styled45(View)`
+var Row10 = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   align-self: stretch;
 `;
-var Container22 = styled45(View)`
+var Container22 = styled46(View)`
   flex-direction: column;
   align-self: stretch;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var Description4 = styled45.Text`
+var Description4 = styled46.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
@@ -7761,7 +7854,7 @@ var GenderSelector = ({
   // tela lê a mensagem ("Selecione uma opção") como parte do mesmo grupo das
   // cards, e não como um texto solto depois delas.
   /* @__PURE__ */ jsxs(Container22, { testID, accessibilityRole: "radiogroup", children: [
-    /* @__PURE__ */ jsxs(Row9, { children: [
+    /* @__PURE__ */ jsxs(Row10, { children: [
       /* @__PURE__ */ jsx(
         GenderSelectionCard,
         {
@@ -7785,18 +7878,18 @@ var GenderSelector = ({
   ] })
 );
 GenderSelector.displayName = "GenderSelector";
-var Container23 = styled45(View)`
+var Container23 = styled46(View)`
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.m}px;
   align-self: stretch;
 `;
-var SyncRow = styled45(View)`
+var SyncRow = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
   align-self: stretch;
 `;
-var SyncCell = styled45(View)`
+var SyncCell = styled46(View)`
   flex: 1;
   flex-direction: row;
   align-items: center;
@@ -7804,13 +7897,13 @@ var SyncCell = styled45(View)`
   padding: ${({ theme: theme2 }) => theme2.padding.m}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.xs}px;
 `;
-var IconSlot8 = styled45(View)`
+var IconSlot8 = styled46(View)`
   width: 56px;
   height: 56px;
   align-items: center;
   justify-content: center;
 `;
-var Value2 = styled45.Text`
+var Value2 = styled46.Text`
   flex: 1;
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.title};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
@@ -7818,7 +7911,7 @@ var Value2 = styled45.Text`
   text-align: center;
   color: ${({ $active, theme: theme2 }) => $active ? theme2.content.dark : theme2.content.medium};
 `;
-var Message = styled45.Text`
+var Message = styled46.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: 12px;
@@ -7907,12 +8000,12 @@ var SuccessBadge = ({
   );
 };
 SuccessBadge.displayName = "SuccessBadge";
-var Container24 = styled45(View)`
+var Container24 = styled46(View)`
   flex-direction: row;
   align-items: center;
   ${({ $separated, theme: theme2 }) => $separated ? `gap: ${theme2.gap.s}px;` : ""};
 `;
-var Tab = styled45(Pressable)`
+var Tab = styled46(Pressable)`
   align-items: center;
   justify-content: center;
   padding-horizontal: ${({ theme: theme2 }) => theme2.padding.s}px;
@@ -7936,7 +8029,7 @@ var Tab = styled45(Pressable)`
   border-bottom-right-radius: ${({ $last, $separated, theme: theme2 }) => $separated || $last ? theme2.border.radius.m : 0}px;
   opacity: ${({ $disabled }) => $disabled ? 0.5 : 1};
 `;
-var TabLabel = styled45.Text`
+var TabLabel = styled46.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.bold};
@@ -8106,7 +8199,7 @@ var variantBackground = ({
       return theme2.surface.infoLight;
   }
 };
-var Container25 = styled45(View)`
+var Container25 = styled46(View)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.s}px;
@@ -8114,28 +8207,28 @@ var Container25 = styled45(View)`
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
   background-color: ${(props) => variantBackground(props)};
 `;
-var MessageContainer = styled45(View)`
+var MessageContainer = styled46(View)`
   flex: 1;
   flex-direction: column;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
 `;
-var Title4 = styled45.Text`
+var Title4 = styled46.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   color: ${({ theme: theme2 }) => theme2.content.light};
 `;
-var Message2 = styled45.Text`
+var Message2 = styled46.Text`
   font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
   font-weight: ${({ theme: theme2 }) => theme2.fontWeight.medium};
   font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
   color: ${({ theme: theme2 }) => theme2.content.light};
 `;
-var ActionSlot2 = styled45(View)`
+var ActionSlot2 = styled46(View)`
   flex-shrink: 1;
   max-width: 50%;
 `;
-var CloseButton2 = styled45(Pressable)`
+var CloseButton2 = styled46(Pressable)`
   width: 24px;
   height: 24px;
   align-items: center;
@@ -8184,14 +8277,14 @@ var Toast = forwardRef(
   }
 );
 Toast.displayName = "Toast";
-var Container26 = styled45(View)`
+var Container26 = styled46(View)`
   flex-direction: row;
   align-items: center;
   width: 100%;
   padding-top: ${({ theme: theme2 }) => theme2.padding.s}px;
   padding-bottom: ${({ theme: theme2 }) => theme2.padding.s}px;
 `;
-var BackSlot = styled45(Pressable)`
+var BackSlot = styled46(Pressable)`
   flex-direction: row;
   align-items: center;
   gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
@@ -8202,7 +8295,7 @@ var BackSlot = styled45(Pressable)`
   padding-bottom: ${({ theme: theme2 }) => theme2.padding.sm}px;
   border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
 `;
-var TitleSlot = styled45(View)`
+var TitleSlot2 = styled46(View)`
   flex: 1;
   align-items: flex-end;
 `;
@@ -8231,12 +8324,12 @@ var TopBar = forwardRef(
           ]
         }
       ) : null,
-      /* @__PURE__ */ jsx(TitleSlot, { children: /* @__PURE__ */ jsx(Text2, { variant: "link.m", color: theme2.content.dark, children: title }) })
+      /* @__PURE__ */ jsx(TitleSlot2, { children: /* @__PURE__ */ jsx(Text2, { variant: "link.m", color: theme2.content.dark, children: title }) })
     ] });
   }
 );
 TopBar.displayName = "TopBar";
 
-export { Accordion, ActivitiesOverviewCard, AttachmentList, Avatar, AvatarGroup, BackgroundDotsGrid, BigNumbersCard, Button, CaloriesTag, Carousel, ChatBubble, ChatSection, ChatUserCard, Checkbox, Chip, ChipGroup, Combobox, DonutChart, EmployeeOverviewCard, ExamInfoCard, GenderSelectionCard, GenderSelector, HEART_RATE_BUTTON, HEART_STATUS_OFFSET, Header2 as Header, HeaderUserInfo, HeartStatus, HeartrateStatus, HorizontalCard, Icon, Image, ImageUploader, ImageViewer, Input, JourneyTheme, LineCaloriesChart, LocationPin, Logo, MapControl, MenuItem, Modal2 as Modal, NowMarker, Pagination, Popover, PopoverItem, PopoverSeparator, ProgressBar, Radio, RadioGroup, ReportCard, STATUS_CHART_CANVAS, SearchInput, SideMenu, Silhouette, Skeleton, SkeletonList, SmartbandStatus, StatusChart, StatusTag, Step, StepBar, SuccessBadge, Surface, SwiThemeProvider, Tabs, Text2 as Text, TimeStamp, Title2 as Title, Toast, Toggle, Tooltip, TopBar, WeatherEventChip, WeatherIcon, WeatherTimeline, WeatherTimelineEntry, WorkersInfoCard, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
+export { Accordion, ActivitiesOverviewCard, AttachmentList, Avatar, AvatarGroup, BackgroundDotsGrid, BigNumbersCard, Button, CaloriesTag, Carousel, ChatBubble, ChatSection, ChatUserCard, Checkbox, Chip, ChipGroup, Combobox, DonutChart, EmployeeOverviewCard, ExamInfoCard, GenderSelectionCard, GenderSelector, HEART_RATE_BUTTON, HEART_STATUS_OFFSET, Header2 as Header, HeaderUserInfo, HeartStatus, HeartrateStatus, HorizontalCard, Icon, Image, ImageUploader, ImageViewer, Input, JourneyTheme, LineCaloriesChart, LocationPin, Logo, MapControl, MediaPlayer, MenuItem, Modal2 as Modal, NowMarker, Pagination, Popover, PopoverItem, PopoverSeparator, ProgressBar, Radio, RadioGroup, ReportCard, STATUS_CHART_CANVAS, SearchInput, SideMenu, Silhouette, Skeleton, SkeletonList, SmartbandStatus, StatusChart, StatusTag, Step, StepBar, SuccessBadge, Surface, SwiThemeProvider, Tabs, Text2 as Text, TimeStamp, Title2 as Title, Toast, Toggle, Tooltip, TopBar, WeatherEventChip, WeatherIcon, WeatherTimeline, WeatherTimelineEntry, WorkersInfoCard, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
 //# sourceMappingURL=index.mjs.map
 //# sourceMappingURL=index.mjs.map

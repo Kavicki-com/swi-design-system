@@ -9,6 +9,7 @@ import {
   DEFAULT_ACTION_LABELS,
   actionAccessibilityLabel,
   actionBackground,
+  thumbIcon,
   visibleActions,
 } from './AttachmentList.actions';
 import { Actions, List, NameSlot, Row, Thumb } from './AttachmentList.styles';
@@ -20,7 +21,8 @@ import type {
 
 /**
  * Lista de anexos: uma linha por arquivo, no molde do exame compacto do Figma
- * (159:15646). Miniatura de 56 (imagem) ou clipe (arquivo), nome em uma
+ * (159:15646). Miniatura de 56 (imagem) ou ícone do tipo (clipe para
+ * arquivo, câmera para vídeo, nota para áudio), nome em uma
  * linha e botões só de ícone, contidos e pequenos como o baixar do exame:
  * visualizar, baixar e excluir. Abrir, baixar e confirmar a exclusão são do
  * host; a lista só avisa qual item e qual ação.
@@ -62,7 +64,7 @@ export function AttachmentList({
               {item.kind === 'image' && item.thumbnailUri ? (
                 <Image source={item.thumbnailUri} width={56} height={56} resizeMode="cover" />
               ) : (
-                <Icon name="attach_file" size={24} color={theme.content.dark} />
+                <Icon name={thumbIcon(item.kind)} size={24} color={theme.content.dark} />
               )}
             </Thumb>
             <NameSlot>

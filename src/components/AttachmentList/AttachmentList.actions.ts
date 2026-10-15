@@ -4,6 +4,7 @@ import type {
   AttachmentAction,
   AttachmentActionLabels,
   AttachmentItem,
+  AttachmentKind,
 } from './AttachmentList.types';
 
 const ACTION_ORDER: ReadonlyArray<AttachmentAction> = ['view', 'download', 'remove'];
@@ -42,6 +43,17 @@ export function actionAccessibilityLabel(
   labels: AttachmentActionLabels,
 ): string {
   return `${labels[action]} ${name}`;
+}
+
+/**
+ * Ícone da miniatura quando não há imagem para mostrar. Vídeo e áudio têm o
+ * glifo do tipo, para o leitor bater o olho e saber o que vai abrir; documento
+ * e imagem sem miniatura ficam no clipe de sempre.
+ */
+export function thumbIcon(kind: AttachmentKind): IconName {
+  if (kind === 'video') return 'videocam';
+  if (kind === 'audio') return 'audio_file';
+  return 'attach_file';
 }
 
 /** Excluir em surface.error; visualizar e baixar no verde do baixar do exame compacto. */

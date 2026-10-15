@@ -1,5 +1,8 @@
-/** Imagem mostra a miniatura; arquivo (ex.: PDF de exame) mostra o clipe. */
-export type AttachmentKind = 'image' | 'file';
+/**
+ * Imagem mostra a miniatura; arquivo (ex.: PDF de exame) mostra o clipe;
+ * vídeo e áudio (anexo de relatório) mostram o ícone do tipo.
+ */
+export type AttachmentKind = 'image' | 'file' | 'video' | 'audio';
 
 /** Botões da linha, sempre nesta ordem: visualizar, baixar, excluir. */
 export type AttachmentAction = 'view' | 'download' | 'remove';

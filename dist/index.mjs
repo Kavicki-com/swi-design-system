@@ -7375,10 +7375,31 @@ var StatusChartBackdrop = ({
   );
 };
 StatusChartBackdrop.displayName = "StatusChartBackdrop";
-var BG_GRID_WIDTH = 425;
-var BG_GRID_ROWS = 20;
-var BG_GRID_HEIGHT = 258.069;
-var BG_GRID_LEFT = (STATUS_CHART_CANVAS.width - BG_GRID_WIDTH) / 2;
+
+// src/components/StatusChart/StatusChart.grid.ts
+var COMPACT_SCALE = 289.733 / STATUS_CHART_CANVAS.width;
+var BG_GRID_COLUMNS = 27;
+var BG_GRID_COL_WIDTH = 10.6228;
+var BG_GRID_COL_SPACING = 15.93;
+var gridWidth = (columns) => (columns - 1) * BG_GRID_COL_SPACING + BG_GRID_COL_WIDTH;
+var gridLeft = (columns) => (STATUS_CHART_CANVAS.width - gridWidth(columns)) / 2;
+var BG_GRID_NATURAL_HEIGHT = 157.829;
+var BG_GRID_EXTENDED_TOP = -75;
+var BG_GRID_EXTENDED_ROWS = 20;
+var BG_GRID_EXTENDED_HEIGHT = 258.069;
+var backgroundGridLayout = (size, columns = BG_GRID_COLUMNS) => size === "compact" ? { top: 0, left: gridLeft(columns), width: gridWidth(columns), height: BG_GRID_NATURAL_HEIGHT } : {
+  rows: BG_GRID_EXTENDED_ROWS,
+  top: BG_GRID_EXTENDED_TOP,
+  left: gridLeft(columns),
+  width: gridWidth(columns),
+  height: BG_GRID_EXTENDED_HEIGHT
+};
+var gridColumnsToCover = (windowWidth, scale) => Math.max(BG_GRID_COLUMNS, Math.ceil(windowWidth / (BG_GRID_COL_SPACING * scale)) + 2);
+var chartFrameStyle = (scale) => ({
+  width: STATUS_CHART_CANVAS.width * scale,
+  height: STATUS_CHART_CANVAS.height * scale,
+  overflow: "visible"
+});
 var SETTINGS_BADGE = {
   size: 31.392,
   // 23.544 icon + 2 × 3.924 padding
@@ -7414,11 +7435,11 @@ var BUTTON_CONTAINER_DROP_SHADOW = Platform.select({
   web: { boxShadow: "0px 2.18px 4.36px rgba(0,0,0,0.1608)" },
   default: {}
 });
-var COMPACT_SCALE = 289.733 / STATUS_CHART_CANVAS.width;
 var StatusChart = ({
   condition = "good",
   progress = 1,
   size = "default",
+  gridColumns,
   showActionButton = true,
   renderHeartStatus = true,
   onPressHeartRate,
@@ -7437,8 +7458,7 @@ var StatusChart = ({
   const isCompact = size === "compact";
   const scale = isCompact ? COMPACT_SCALE : 1;
   const skipBackgroundCircle = extrapolate || isCompact;
-  const outerW = STATUS_CHART_CANVAS.width * scale;
-  const outerH = STATUS_CHART_CANVAS.height * scale;
+  const grid = backgroundGridLayout(size, gridColumns);
   const chartBody = /* @__PURE__ */ jsxs(
     View,
     {
@@ -7499,13 +7519,14 @@ var StatusChart = ({
           BackgroundDotsGrid,
           {
             color: p.backgroundTint,
-            rows: BG_GRID_ROWS,
+            columns: gridColumns,
+            rows: grid.rows,
             style: {
               position: "absolute",
-              top: -75,
-              left: BG_GRID_LEFT,
-              width: BG_GRID_WIDTH,
-              height: BG_GRID_HEIGHT
+              top: grid.top,
+              left: grid.left,
+              width: grid.width,
+              height: grid.height
             }
           }
         ),
@@ -7666,7 +7687,7 @@ var StatusChart = ({
     }
   );
   if (scale === 1) return chartBody;
-  return /* @__PURE__ */ jsx(View, { style: { width: outerW, height: outerH, overflow: "hidden" }, children: /* @__PURE__ */ jsx(
+  return /* @__PURE__ */ jsx(View, { style: chartFrameStyle(scale), children: /* @__PURE__ */ jsx(
     View,
     {
       style: {
@@ -8330,6 +8351,6 @@ var TopBar = forwardRef(
 );
 TopBar.displayName = "TopBar";
 
-export { Accordion, ActivitiesOverviewCard, AttachmentList, Avatar, AvatarGroup, BackgroundDotsGrid, BigNumbersCard, Button, CaloriesTag, Carousel, ChatBubble, ChatSection, ChatUserCard, Checkbox, Chip, ChipGroup, Combobox, DonutChart, EmployeeOverviewCard, ExamInfoCard, GenderSelectionCard, GenderSelector, HEART_RATE_BUTTON, HEART_STATUS_OFFSET, Header2 as Header, HeaderUserInfo, HeartStatus, HeartrateStatus, HorizontalCard, Icon, Image, ImageUploader, ImageViewer, Input, JourneyTheme, LineCaloriesChart, LocationPin, Logo, MapControl, MediaPlayer, MenuItem, Modal2 as Modal, NowMarker, Pagination, Popover, PopoverItem, PopoverSeparator, ProgressBar, Radio, RadioGroup, ReportCard, STATUS_CHART_CANVAS, SearchInput, SideMenu, Silhouette, Skeleton, SkeletonList, SmartbandStatus, StatusChart, StatusTag, Step, StepBar, SuccessBadge, Surface, SwiThemeProvider, Tabs, Text2 as Text, TimeStamp, Title2 as Title, Toast, Toggle, Tooltip, TopBar, WeatherEventChip, WeatherIcon, WeatherTimeline, WeatherTimelineEntry, WorkersInfoCard, elevation, fontFamily, fontSize, fontWeight, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
+export { Accordion, ActivitiesOverviewCard, AttachmentList, Avatar, AvatarGroup, BackgroundDotsGrid, BigNumbersCard, Button, COMPACT_SCALE, CaloriesTag, Carousel, ChatBubble, ChatSection, ChatUserCard, Checkbox, Chip, ChipGroup, Combobox, DonutChart, EmployeeOverviewCard, ExamInfoCard, GenderSelectionCard, GenderSelector, HEART_RATE_BUTTON, HEART_STATUS_OFFSET, Header2 as Header, HeaderUserInfo, HeartStatus, HeartrateStatus, HorizontalCard, Icon, Image, ImageUploader, ImageViewer, Input, JourneyTheme, LineCaloriesChart, LocationPin, Logo, MapControl, MediaPlayer, MenuItem, Modal2 as Modal, NowMarker, Pagination, Popover, PopoverItem, PopoverSeparator, ProgressBar, Radio, RadioGroup, ReportCard, STATUS_CHART_CANVAS, SearchInput, SideMenu, Silhouette, Skeleton, SkeletonList, SmartbandStatus, StatusChart, StatusTag, Step, StepBar, SuccessBadge, Surface, SwiThemeProvider, Tabs, Text2 as Text, TimeStamp, Title2 as Title, Toast, Toggle, Tooltip, TopBar, WeatherEventChip, WeatherIcon, WeatherTimeline, WeatherTimelineEntry, WorkersInfoCard, elevation, fontFamily, fontSize, fontWeight, gridColumnsToCover, isLightBgVariant, primitive, semantic, theme, typography, useSurfaceTone, useTheme };
 //# sourceMappingURL=index.mjs.map
 //# sourceMappingURL=index.mjs.map

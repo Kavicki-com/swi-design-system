@@ -38,6 +38,12 @@ export interface StatusChartProps {
    */
   size?: StatusChartSize;
   /**
+   * Colunas da grade de pontos do fundo. Default 27 (Figma), que encosta nas
+   * bordas de um frame de 360. Para encostar em telas mais largas, use
+   * `gridColumnsToCover(windowWidth, scale)`.
+   */
+  gridColumns?: number;
+  /**
    * Render the bottom-right heart-rate action button (with its nested
    * settings sub-badge). Defaults to `true` — matches the dashboard variant
    * (Figma `245:23280`). Pass `false` on screens that omit the button,

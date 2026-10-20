@@ -13,6 +13,7 @@ import { Icon } from '../Icon';
 import { InnerShadowCircle } from './InnerShadowCircle';
 import { SilhouetteBody } from './SilhouetteBody';
 import { StatusChartBackdrop } from './StatusChartBackdrop';
+import { backgroundGridLayout, chartFrameStyle, COMPACT_SCALE } from './StatusChart.grid';
 import {
   HEART_RATE_BUTTON,
   HEART_STATUS_OFFSET,
@@ -21,16 +22,6 @@ import {
 } from './StatusChart.paths';
 import { conditionLabel, palette } from './StatusChart.theme';
 import type { StatusChartProps } from './StatusChart.types';
-
-const BG_GRID_WIDTH = 425;
-// Dots grid estendido verticalmente pra cobrir o Caminho 4122 extrapolado.
-// Natural Figma: 13 linhas em 157.829px (`245:23280`). Pra cobrir do topo
-// extrapolado (y=-75) até a linha do ombro (y≈158), precisa altura ≈233.
-// Adicionamos linhas (não escala dots) via prop `rows={20}` na grid:
-// 13 naturais + 7 extras (r=1.64, spacing=14.32) → altura intrínseca ≈258.07.
-const BG_GRID_ROWS = 20;
-const BG_GRID_HEIGHT = 258.069; // 156.189 + 7×14.32 + 1.64
-const BG_GRID_LEFT = (STATUS_CHART_CANVAS.width - BG_GRID_WIDTH) / 2;
 
 const SETTINGS_BADGE = {
   size: 31.392, // 23.544 icon + 2 × 3.924 padding
@@ -80,13 +71,12 @@ const BUTTON_CONTAINER_DROP_SHADOW = Platform.select<ViewStyle>({
   default: {},
 }) as ViewStyle;
 
-// Compact preset scale factor: 289.733 / 360 = 0.80481 (Figma 342:9420).
-const COMPACT_SCALE = 289.733 / STATUS_CHART_CANVAS.width;
 
 export const StatusChart = ({
   condition = 'good',
   progress = 1,
   size = 'default',
+  gridColumns,
   showActionButton = true,
   renderHeartStatus = true,
   onPressHeartRate,
@@ -114,8 +104,8 @@ export const StatusChart = ({
   // no-fonte (Figma 342:9420) simplesmente o marca hidden. Nos dois casos o
   // backdrop deve pular o circulo equivalente.
   const skipBackgroundCircle = extrapolate || isCompact;
-  const outerW = STATUS_CHART_CANVAS.width * scale;
-  const outerH = STATUS_CHART_CANVAS.height * scale;
+  // A grade de pontos muda de arranjo por preset (ver StatusChart.grid.ts).
+  const grid = backgroundGridLayout(size, gridColumns);
 
   const chartBody = (
     <View
@@ -178,22 +168,23 @@ export const StatusChart = ({
         />
       </View>
 
-      {/* Dotted-grid background — UMA única instância estendida verticalmente
-          pra cobrir do topo do Caminho 4122 extrapolado (y=-75) até a linha
-          do ombro da silhueta (y≈158). Usa prop `rows` pra adicionar linhas
-          sem distorcer dots — 13 naturais (Figma `245:23280`) + 7 extras
-          continuando o fade do fundo. Z-order: dots aparecem SOBRE Caminho
-          4122 e Elipse 98, mas FICAM ATRÁS de Elipse 99/100, crescent,
-          Ellipse 5, silhouette e badges. */}
+      {/* Dotted-grid background: UMA única instância. No default ela é
+          estendida verticalmente pra cobrir do topo do Caminho 4122
+          extrapolado (y=-75) até a linha do ombro da silhueta (y≈158), com
+          `rows` adicionando linhas sem distorcer dots. No compact é a grade
+          natural de 13 linhas encostada no topo, como no nó 342:9420.
+          Z-order: dots aparecem SOBRE Caminho 4122 e Elipse 98, mas FICAM
+          ATRÁS de Elipse 99/100, crescent, Ellipse 5, silhouette e badges. */}
       <BackgroundDotsGrid
         color={p.backgroundTint}
-        rows={BG_GRID_ROWS}
+        columns={gridColumns}
+        rows={grid.rows}
         style={{
           position: 'absolute',
-          top: -75,
-          left: BG_GRID_LEFT,
-          width: BG_GRID_WIDTH,
-          height: BG_GRID_HEIGHT,
+          top: grid.top,
+          left: grid.left,
+          width: grid.width,
+          height: grid.height,
         }}
       />
 
@@ -375,14 +366,15 @@ export const StatusChart = ({
   if (scale === 1) return chartBody;
 
   // Compact preset: outer box sized to scaled dimensions, inner 360×374
-  // chart body shrunk via transform with top-left origin so the visible
-  // footprint exactly matches the Figma 342:9420 compact canvas.
+  // chart body shrunk via transform with top-left origin so the layout
+  // footprint exactly matches the Figma 342:9420 compact canvas. A moldura
+  // não corta: a grade de pontos transborda 26 pra cada lado, como no nó.
   //
   // transformOrigin '0 0' (numeric, no unit) é silenciosamente ignorado pela
   // CSS parser do RN-web em 0.19 e cai pro default 'center center', clipando
   // a silhueta. 'top left' (CSS keyword) é parseado em ambas as plataformas.
   return (
-    <View style={{ width: outerW, height: outerH, overflow: 'hidden' }}>
+    <View style={chartFrameStyle(scale)}>
       <View
         style={
           {

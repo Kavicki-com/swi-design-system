@@ -1,9 +1,10 @@
-import React, { forwardRef, useCallback, useState } from 'react';
-import { ScrollView, type View } from 'react-native';
+import React, { forwardRef, useCallback, useEffect, useRef, useState } from 'react';
+import { Platform, ScrollView, type View } from 'react-native';
 import { Checkbox } from '../Checkbox';
 import { Icon } from '../Icon';
 import { SearchInput } from '../SearchInput';
 import { Tooltip } from '../Tooltip';
+import { shouldDismiss, type Containable } from '../Popover/Popover.placement';
 import { useTheme } from '../../theme';
 import { elevation } from '../../tokens';
 import type { IconName } from '../../icons';
@@ -76,6 +77,36 @@ export const MapControl = forwardRef<View, MapControlProps>(
       onExpandedChange?.(next);
     }, [expanded, isExpandedControlled, onExpandedChange]);
 
+    // Texto da busca no momento em que a lista foi fechada sem escolha.
+    const [dismissedFor, setDismissedFor] = useState<string | null>(null);
+    const anchorRef = useRef<View>(null);
+    // A variante `heatmap` não tem busca, logo nunca tem lista.
+    const shown =
+      !expanded || variant === 'heatmap'
+        ? null
+        : resultsToShow(results, searchValue, dismissedFor);
+    const listOpen = shown !== null;
+
+    // Esc ou clique fora do controle fecham a lista, como no Popover. Só na
+    // web: no nativo não há documento para ouvir.
+    useEffect(() => {
+      if (Platform.OS !== 'web' || !listOpen) return;
+      const dismiss = () => setDismissedFor(searchValue ?? '');
+      const onPointerDown = (event: Event) => {
+        const anchor = anchorRef.current as unknown as Containable | null;
+        if (shouldDismiss(event.target, anchor, null)) dismiss();
+      };
+      const onKeyDown = (event: KeyboardEvent) => {
+        if (event.key === 'Escape') dismiss();
+      };
+      document.addEventListener('pointerdown', onPointerDown, true);
+      document.addEventListener('keydown', onKeyDown, true);
+      return () => {
+        document.removeEventListener('pointerdown', onPointerDown, true);
+        document.removeEventListener('keydown', onKeyDown, true);
+      };
+    }, [listOpen, searchValue]);
+
     const iconName = ICON_BY_VARIANT[variant];
     const resolvedTitle = title ?? DEFAULT_TITLE[variant];
     const resolvedPlaceholder = searchPlaceholder ?? DEFAULT_PLACEHOLDER[variant];
@@ -124,11 +155,8 @@ export const MapControl = forwardRef<View, MapControlProps>(
       );
     };
 
-    // A variante `heatmap` não tem busca, logo nunca tem lista.
-    const shown = variant === 'heatmap' ? null : resultsToShow(results, searchValue);
-
     return (
-      <Anchor $raised={shown !== null}>
+      <Anchor ref={anchorRef} $raised={listOpen}>
         <ExpandedBar
           ref={ref}
           accessibilityLabel={accessibilityLabel ?? resolvedTitle}

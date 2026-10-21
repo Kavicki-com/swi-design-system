@@ -19,4 +19,10 @@ describe('resultsToShow', () => {
   it('texto igual ao único resultado fecha a lista (já escolhido)', () => {
     expect(resultsToShow([ana], 'Ana Souza')).toBeNull();
   });
+  it('fechada (Esc ou clique fora) com o texto atual, não mostra lista', () => {
+    expect(resultsToShow([ana, gabi], 'a', 'a')).toBeNull();
+  });
+  it('texto diferente do que estava ao fechar reabre a lista', () => {
+    expect(resultsToShow([ana, gabi], 'an', 'a')).toEqual([ana, gabi]);
+  });
 });

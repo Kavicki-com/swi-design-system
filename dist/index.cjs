@@ -5004,6 +5004,28 @@ function MediaPlayer({
     failed ? /* @__PURE__ */ jsxRuntime.jsx(Text2, { variant: "body.s", color: theme2.content.medium, children: errorLabel }) : player
   ] });
 }
+
+// src/components/Popover/Popover.placement.ts
+function panelOffsets(align, gap, side = "bottom") {
+  const respiro = Math.max(0, gap);
+  const horizontal = align === "end" ? { right: 0 } : { left: 0 };
+  return side === "top" ? { bottom: "100%", marginBottom: respiro, ...horizontal } : { top: "100%", marginTop: respiro, ...horizontal };
+}
+function chooseSide(trigger, container, panelHeight, gap) {
+  const respiro = Math.max(0, gap);
+  const espacoAbaixo = container.bottom - trigger.bottom - respiro;
+  const espacoAcima = trigger.top - container.top - respiro;
+  if (panelHeight <= espacoAbaixo) return "bottom";
+  if (panelHeight <= espacoAcima) return "top";
+  return espacoAcima > espacoAbaixo ? "top" : "bottom";
+}
+function shouldDismiss(target, panel, trigger) {
+  if (!target || !panel) return false;
+  const node = target;
+  if (panel.contains(node)) return false;
+  if (trigger?.contains(node)) return false;
+  return true;
+}
 var ExpandedBar = styled46__default.default(reactNative.View)`
   flex-direction: row;
   align-items: center;
@@ -5084,9 +5106,10 @@ var ResultDescription = styled46__default.default.Text`
 `;
 
 // src/components/MapControl/MapControl.logic.ts
-function resultsToShow(results, searchValue) {
+function resultsToShow(results, searchValue, dismissedFor) {
   const text = (searchValue ?? "").trim();
   if (!results || !text) return null;
+  if (dismissedFor != null && dismissedFor === searchValue) return null;
   if (results.length === 1 && results[0].label === text) return null;
   return results;
 }
@@ -5134,6 +5157,27 @@ var MapControl = React16.forwardRef(
       if (!isExpandedControlled) setUncontrolledExpanded(next);
       onExpandedChange?.(next);
     }, [expanded, isExpandedControlled, onExpandedChange]);
+    const [dismissedFor, setDismissedFor] = React16.useState(null);
+    const anchorRef = React16.useRef(null);
+    const shown = !expanded || variant === "heatmap" ? null : resultsToShow(results, searchValue, dismissedFor);
+    const listOpen = shown !== null;
+    React16.useEffect(() => {
+      if (reactNative.Platform.OS !== "web" || !listOpen) return;
+      const dismiss = () => setDismissedFor(searchValue ?? "");
+      const onPointerDown = (event) => {
+        const anchor = anchorRef.current;
+        if (shouldDismiss(event.target, anchor, null)) dismiss();
+      };
+      const onKeyDown = (event) => {
+        if (event.key === "Escape") dismiss();
+      };
+      document.addEventListener("pointerdown", onPointerDown, true);
+      document.addEventListener("keydown", onKeyDown, true);
+      return () => {
+        document.removeEventListener("pointerdown", onPointerDown, true);
+        document.removeEventListener("keydown", onKeyDown, true);
+      };
+    }, [listOpen, searchValue]);
     const iconName = ICON_BY_VARIANT[variant];
     const resolvedTitle = title ?? DEFAULT_TITLE[variant];
     const resolvedPlaceholder = searchPlaceholder ?? DEFAULT_PLACEHOLDER[variant];
@@ -5173,8 +5217,7 @@ var MapControl = React16.forwardRef(
         }
       ) });
     };
-    const shown = variant === "heatmap" ? null : resultsToShow(results, searchValue);
-    return /* @__PURE__ */ jsxRuntime.jsxs(Anchor2, { $raised: shown !== null, children: [
+    return /* @__PURE__ */ jsxRuntime.jsxs(Anchor2, { ref: anchorRef, $raised: listOpen, children: [
       /* @__PURE__ */ jsxRuntime.jsxs(
         ExpandedBar,
         {
@@ -5539,28 +5582,6 @@ function Modal2({
       ] })
     }
   );
-}
-
-// src/components/Popover/Popover.placement.ts
-function panelOffsets(align, gap, side = "bottom") {
-  const respiro = Math.max(0, gap);
-  const horizontal = align === "end" ? { right: 0 } : { left: 0 };
-  return side === "top" ? { bottom: "100%", marginBottom: respiro, ...horizontal } : { top: "100%", marginTop: respiro, ...horizontal };
-}
-function chooseSide(trigger, container, panelHeight, gap) {
-  const respiro = Math.max(0, gap);
-  const espacoAbaixo = container.bottom - trigger.bottom - respiro;
-  const espacoAcima = trigger.top - container.top - respiro;
-  if (panelHeight <= espacoAbaixo) return "bottom";
-  if (panelHeight <= espacoAcima) return "top";
-  return espacoAcima > espacoAbaixo ? "top" : "bottom";
-}
-function shouldDismiss(target, panel, trigger) {
-  if (!target || !panel) return false;
-  const node = target;
-  if (panel.contains(node)) return false;
-  if (trigger?.contains(node)) return false;
-  return true;
 }
 var Anchor3 = styled46__default.default(reactNative.View)`
   position: relative;

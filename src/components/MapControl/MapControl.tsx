@@ -1,5 +1,5 @@
 import React, { forwardRef, useCallback, useState } from 'react';
-import { type View } from 'react-native';
+import { ScrollView, type View } from 'react-native';
 import { Checkbox } from '../Checkbox';
 import { Icon } from '../Icon';
 import { SearchInput } from '../SearchInput';
@@ -8,14 +8,20 @@ import { useTheme } from '../../theme';
 import { elevation } from '../../tokens';
 import type { IconName } from '../../icons';
 import {
+  Anchor,
   CollapsedButton,
   Divider,
   ExpandedBar,
   OptionsRow,
+  ResultDescription,
+  ResultLabel,
+  ResultRow,
+  ResultsPanel,
   SearchSlot,
   TitleText,
   TrailingButton,
 } from './MapControl.styles';
+import { resultsToShow } from './MapControl.logic';
 import type { MapControlProps, MapControlVariant } from './MapControl.types';
 
 const ICON_BY_VARIANT: Record<MapControlVariant, IconName> = {
@@ -49,6 +55,9 @@ export const MapControl = forwardRef<View, MapControlProps>(
       onSearchChange,
       options,
       onOptionChange,
+      results,
+      onResultPress,
+      emptyResultsText = 'Nenhum resultado',
       accessibilityLabel,
       testID,
       tooltip,
@@ -115,25 +124,61 @@ export const MapControl = forwardRef<View, MapControlProps>(
       );
     };
 
+    // A variante `heatmap` não tem busca, logo nunca tem lista.
+    const shown = variant === 'heatmap' ? null : resultsToShow(results, searchValue);
+
     return (
-      <ExpandedBar
-        ref={ref}
-        accessibilityLabel={accessibilityLabel ?? resolvedTitle}
-        testID={testID}
-      >
-        <TitleText numberOfLines={1}>{resolvedTitle}</TitleText>
-        <Divider />
-        {renderCenter()}
-        <Divider />
-        <TrailingButton
-          onPress={toggleExpanded}
-          accessibilityRole="button"
-          accessibilityLabel="Recolher"
-          style={elevation.md}
+      <Anchor $raised={shown !== null}>
+        <ExpandedBar
+          ref={ref}
+          accessibilityLabel={accessibilityLabel ?? resolvedTitle}
+          testID={testID}
         >
-          <Icon name={iconName} size={24} color={theme.content.dark} />
-        </TrailingButton>
-      </ExpandedBar>
+          <TitleText numberOfLines={1}>{resolvedTitle}</TitleText>
+          <Divider />
+          {renderCenter()}
+          <Divider />
+          <TrailingButton
+            onPress={toggleExpanded}
+            accessibilityRole="button"
+            accessibilityLabel="Recolher"
+            style={elevation.md}
+          >
+            <Icon name={iconName} size={24} color={theme.content.dark} />
+          </TrailingButton>
+        </ExpandedBar>
+        {shown ? (
+          <ResultsPanel
+            style={elevation.md}
+            testID={testID ? `${testID}-results` : undefined}
+          >
+            <ScrollView keyboardShouldPersistTaps="handled">
+              {shown.length === 0 ? (
+                <ResultRow disabled>
+                  <ResultDescription>{emptyResultsText}</ResultDescription>
+                </ResultRow>
+              ) : (
+                shown.map((r) => (
+                  <ResultRow
+                    key={r.id}
+                    accessibilityRole="button"
+                    accessibilityLabel={r.label}
+                    testID={testID ? `${testID}-result-${r.id}` : undefined}
+                    onPress={() => onResultPress?.(r.id)}
+                  >
+                    <ResultLabel numberOfLines={1}>{r.label}</ResultLabel>
+                    {r.description ? (
+                      <ResultDescription numberOfLines={1}>
+                        {r.description}
+                      </ResultDescription>
+                    ) : null}
+                  </ResultRow>
+                ))
+              )}
+            </ScrollView>
+          </ResultsPanel>
+        ) : null}
+      </Anchor>
     );
   },
 );

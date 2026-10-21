@@ -5050,6 +5050,46 @@ var CollapsedButton = styled46__default.default(reactNative.Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.high};
   align-self: flex-end;
 `;
+var Anchor2 = styled46__default.default(reactNative.View)`
+  position: relative;
+  align-self: flex-end;
+  z-index: ${({ $raised }) => $raised ? 10 : 0};
+`;
+var ResultsPanel = styled46__default.default(reactNative.View)`
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: ${({ theme: theme2 }) => theme2.gap.xs}px;
+  width: 100%;
+  max-height: 240px;
+  border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
+  background-color: ${({ theme: theme2 }) => theme2.surface.standard};
+  overflow: hidden;
+  z-index: 1;
+`;
+var ResultRow = styled46__default.default(reactNative.Pressable)`
+  padding-vertical: ${({ theme: theme2 }) => theme2.padding.s}px;
+  padding-horizontal: ${({ theme: theme2 }) => theme2.padding.m}px;
+  gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
+`;
+var ResultLabel = styled46__default.default.Text`
+  color: ${({ theme: theme2 }) => theme2.content.dark};
+  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
+  font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
+`;
+var ResultDescription = styled46__default.default.Text`
+  color: ${({ theme: theme2 }) => theme2.content.medium};
+  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
+  font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
+`;
+
+// src/components/MapControl/MapControl.logic.ts
+function resultsToShow(results, searchValue) {
+  const text = (searchValue ?? "").trim();
+  if (!results || !text) return null;
+  if (results.length === 1 && results[0].label === text) return null;
+  return results;
+}
 var ICON_BY_VARIANT = {
   operators: "person_apron",
   heatmap: "mode_heat",
@@ -5077,6 +5117,9 @@ var MapControl = React16.forwardRef(
     onSearchChange,
     options,
     onOptionChange,
+    results,
+    onResultPress,
+    emptyResultsText = "Nenhum resultado",
     accessibilityLabel,
     testID,
     tooltip,
@@ -5130,30 +5173,54 @@ var MapControl = React16.forwardRef(
         }
       ) });
     };
-    return /* @__PURE__ */ jsxRuntime.jsxs(
-      ExpandedBar,
-      {
-        ref,
-        accessibilityLabel: accessibilityLabel ?? resolvedTitle,
-        testID,
-        children: [
-          /* @__PURE__ */ jsxRuntime.jsx(TitleText3, { numberOfLines: 1, children: resolvedTitle }),
-          /* @__PURE__ */ jsxRuntime.jsx(Divider3, {}),
-          renderCenter(),
-          /* @__PURE__ */ jsxRuntime.jsx(Divider3, {}),
-          /* @__PURE__ */ jsxRuntime.jsx(
-            TrailingButton,
+    const shown = variant === "heatmap" ? null : resultsToShow(results, searchValue);
+    return /* @__PURE__ */ jsxRuntime.jsxs(Anchor2, { $raised: shown !== null, children: [
+      /* @__PURE__ */ jsxRuntime.jsxs(
+        ExpandedBar,
+        {
+          ref,
+          accessibilityLabel: accessibilityLabel ?? resolvedTitle,
+          testID,
+          children: [
+            /* @__PURE__ */ jsxRuntime.jsx(TitleText3, { numberOfLines: 1, children: resolvedTitle }),
+            /* @__PURE__ */ jsxRuntime.jsx(Divider3, {}),
+            renderCenter(),
+            /* @__PURE__ */ jsxRuntime.jsx(Divider3, {}),
+            /* @__PURE__ */ jsxRuntime.jsx(
+              TrailingButton,
+              {
+                onPress: toggleExpanded,
+                accessibilityRole: "button",
+                accessibilityLabel: "Recolher",
+                style: elevation.md,
+                children: /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: iconName, size: 24, color: theme2.content.dark })
+              }
+            )
+          ]
+        }
+      ),
+      shown ? /* @__PURE__ */ jsxRuntime.jsx(
+        ResultsPanel,
+        {
+          style: elevation.md,
+          testID: testID ? `${testID}-results` : void 0,
+          children: /* @__PURE__ */ jsxRuntime.jsx(reactNative.ScrollView, { keyboardShouldPersistTaps: "handled", children: shown.length === 0 ? /* @__PURE__ */ jsxRuntime.jsx(ResultRow, { disabled: true, children: /* @__PURE__ */ jsxRuntime.jsx(ResultDescription, { children: emptyResultsText }) }) : shown.map((r) => /* @__PURE__ */ jsxRuntime.jsxs(
+            ResultRow,
             {
-              onPress: toggleExpanded,
               accessibilityRole: "button",
-              accessibilityLabel: "Recolher",
-              style: elevation.md,
-              children: /* @__PURE__ */ jsxRuntime.jsx(Icon, { name: iconName, size: 24, color: theme2.content.dark })
-            }
-          )
-        ]
-      }
-    );
+              accessibilityLabel: r.label,
+              testID: testID ? `${testID}-result-${r.id}` : void 0,
+              onPress: () => onResultPress?.(r.id),
+              children: [
+                /* @__PURE__ */ jsxRuntime.jsx(ResultLabel, { numberOfLines: 1, children: r.label }),
+                r.description ? /* @__PURE__ */ jsxRuntime.jsx(ResultDescription, { numberOfLines: 1, children: r.description }) : null
+              ]
+            },
+            r.id
+          )) })
+        }
+      ) : null
+    ] });
   }
 );
 MapControl.displayName = "MapControl";
@@ -5495,7 +5562,7 @@ function shouldDismiss(target, panel, trigger) {
   if (trigger?.contains(node)) return false;
   return true;
 }
-var Anchor2 = styled46__default.default(reactNative.View)`
+var Anchor3 = styled46__default.default(reactNative.View)`
   position: relative;
   align-self: flex-start;
 `;
@@ -5598,7 +5665,7 @@ var Popover = React16.forwardRef(
         document.removeEventListener("keydown", onKeyDown, true);
       };
     }, [visible, onDismiss]);
-    return /* @__PURE__ */ jsxRuntime.jsxs(Anchor2, { ref, testID, children: [
+    return /* @__PURE__ */ jsxRuntime.jsxs(Anchor3, { ref, testID, children: [
       /* @__PURE__ */ jsxRuntime.jsx(reactNative.View, { ref: triggerRef, children: trigger }),
       visible ? /* @__PURE__ */ jsxRuntime.jsx(
         Panel2,

@@ -3,4 +3,5 @@ export type {
   MapControlProps,
   MapControlVariant,
   MapControlOption,
+  MapControlResult,
 } from './MapControl.types';

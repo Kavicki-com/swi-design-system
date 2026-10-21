@@ -2,12 +2,29 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import { MapControl } from './MapControl';
-import type { MapControlOption } from './MapControl.types';
+import type { MapControlOption, MapControlResult } from './MapControl.types';
 
 const HEATMAP_OPTIONS: MapControlOption[] = [
   { id: 'productivity', label: 'Produtividade', checked: true },
   { id: 'alert', label: 'Zonas de alerta', checked: false },
 ];
+
+const OPERATORS: MapControlResult[] = [
+  { id: 'w1', label: 'Ana Souza', description: 'Soldadora' },
+  { id: 'w2', label: 'Bruno Antunes', description: 'Eletricista' },
+  { id: 'w3', label: 'Carla Medeiros', description: 'Operadora de ponte' },
+  { id: 'w4', label: 'Diego Nogueira', description: 'Mecânico' },
+  { id: 'w5', label: 'Gabriel Fernandes', description: 'Supervisor' },
+  { id: 'w6', label: 'Gabriela Lima', description: 'Técnica de segurança' },
+  { id: 'w7', label: 'Helena Prado', description: 'Inspetora' },
+  { id: 'w8', label: 'Ícaro Benício', description: 'Caldeireiro' },
+];
+
+const withoutAccents = (text: string) =>
+  text
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase();
 
 const meta: Meta<typeof MapControl> = {
   title: 'Components/MapControl',
@@ -87,6 +104,33 @@ export const Interactive: Story = {
   },
 };
 
+export const OperatorsWithResults: Story = {
+  name: 'Operators — busca com lista',
+  parameters: { controls: { disable: true }, actions: { disable: true } },
+  render: () => {
+    const [search, setSearch] = useState('');
+    const results = OPERATORS.filter((o) =>
+      withoutAccents(o.label).includes(withoutAccents(search)),
+    );
+    return (
+      <View style={{ gap: 16, alignItems: 'flex-start', minHeight: 320 }}>
+        <MapControl
+          variant="operators"
+          searchValue={search}
+          onSearchChange={setSearch}
+          results={results}
+          onResultPress={(id) => {
+            const picked = OPERATORS.find((o) => o.id === id);
+            if (picked) setSearch(picked.label);
+          }}
+        />
+        <MapControl variant="heatmap" options={HEATMAP_OPTIONS} />
+        <MapControl variant="cameras" expanded={false} />
+      </View>
+    );
+  },
+};
+
 export const Overview: Story = {
   name: 'Overview — all variants × states',
   parameters: { controls: { disable: true }, actions: { disable: true } },
@@ -111,6 +155,16 @@ export const Overview: Story = {
         <View style={{ flexDirection: 'row', gap: 16, alignItems: 'flex-start' }}>
           <MapControl variant="cameras" />
           <MapControl variant="cameras" expanded={false} />
+        </View>
+      </View>
+      <View style={{ gap: 8, minHeight: 240 }}>
+        <Caption>Operador com resultados</Caption>
+        <View style={{ alignItems: 'flex-start' }}>
+          <MapControl
+            variant="operators"
+            searchValue="ga"
+            results={OPERATORS.filter((o) => withoutAccents(o.label).includes('ga'))}
+          />
         </View>
       </View>
     </View>

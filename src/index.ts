@@ -100,6 +100,7 @@ export type {
   MapControlProps,
   MapControlVariant,
   MapControlOption,
+  MapControlResult,
 } from './components/MapControl';
 export { LocationPin } from './components/LocationPin';
 export type { LocationPinProps, LocationPinStatus } from './components/LocationPin';

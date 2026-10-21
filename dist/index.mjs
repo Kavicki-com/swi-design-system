@@ -5042,6 +5042,46 @@ var CollapsedButton = styled46(Pressable)`
   background-color: ${({ theme: theme2 }) => theme2.surface.high};
   align-self: flex-end;
 `;
+var Anchor2 = styled46(View)`
+  position: relative;
+  align-self: flex-end;
+  z-index: ${({ $raised }) => $raised ? 10 : 0};
+`;
+var ResultsPanel = styled46(View)`
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: ${({ theme: theme2 }) => theme2.gap.xs}px;
+  width: 100%;
+  max-height: 240px;
+  border-radius: ${({ theme: theme2 }) => theme2.border.radius.m}px;
+  background-color: ${({ theme: theme2 }) => theme2.surface.standard};
+  overflow: hidden;
+  z-index: 1;
+`;
+var ResultRow = styled46(Pressable)`
+  padding-vertical: ${({ theme: theme2 }) => theme2.padding.s}px;
+  padding-horizontal: ${({ theme: theme2 }) => theme2.padding.m}px;
+  gap: ${({ theme: theme2 }) => theme2.gap.xs}px;
+`;
+var ResultLabel = styled46.Text`
+  color: ${({ theme: theme2 }) => theme2.content.dark};
+  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
+  font-size: ${({ theme: theme2 }) => theme2.fontSize.m}px;
+`;
+var ResultDescription = styled46.Text`
+  color: ${({ theme: theme2 }) => theme2.content.medium};
+  font-family: ${({ theme: theme2 }) => theme2.fontFamily.body};
+  font-size: ${({ theme: theme2 }) => theme2.fontSize.sm}px;
+`;
+
+// src/components/MapControl/MapControl.logic.ts
+function resultsToShow(results, searchValue) {
+  const text = (searchValue ?? "").trim();
+  if (!results || !text) return null;
+  if (results.length === 1 && results[0].label === text) return null;
+  return results;
+}
 var ICON_BY_VARIANT = {
   operators: "person_apron",
   heatmap: "mode_heat",
@@ -5069,6 +5109,9 @@ var MapControl = forwardRef(
     onSearchChange,
     options,
     onOptionChange,
+    results,
+    onResultPress,
+    emptyResultsText = "Nenhum resultado",
     accessibilityLabel,
     testID,
     tooltip,
@@ -5122,30 +5165,54 @@ var MapControl = forwardRef(
         }
       ) });
     };
-    return /* @__PURE__ */ jsxs(
-      ExpandedBar,
-      {
-        ref,
-        accessibilityLabel: accessibilityLabel ?? resolvedTitle,
-        testID,
-        children: [
-          /* @__PURE__ */ jsx(TitleText3, { numberOfLines: 1, children: resolvedTitle }),
-          /* @__PURE__ */ jsx(Divider3, {}),
-          renderCenter(),
-          /* @__PURE__ */ jsx(Divider3, {}),
-          /* @__PURE__ */ jsx(
-            TrailingButton,
+    const shown = variant === "heatmap" ? null : resultsToShow(results, searchValue);
+    return /* @__PURE__ */ jsxs(Anchor2, { $raised: shown !== null, children: [
+      /* @__PURE__ */ jsxs(
+        ExpandedBar,
+        {
+          ref,
+          accessibilityLabel: accessibilityLabel ?? resolvedTitle,
+          testID,
+          children: [
+            /* @__PURE__ */ jsx(TitleText3, { numberOfLines: 1, children: resolvedTitle }),
+            /* @__PURE__ */ jsx(Divider3, {}),
+            renderCenter(),
+            /* @__PURE__ */ jsx(Divider3, {}),
+            /* @__PURE__ */ jsx(
+              TrailingButton,
+              {
+                onPress: toggleExpanded,
+                accessibilityRole: "button",
+                accessibilityLabel: "Recolher",
+                style: elevation.md,
+                children: /* @__PURE__ */ jsx(Icon, { name: iconName, size: 24, color: theme2.content.dark })
+              }
+            )
+          ]
+        }
+      ),
+      shown ? /* @__PURE__ */ jsx(
+        ResultsPanel,
+        {
+          style: elevation.md,
+          testID: testID ? `${testID}-results` : void 0,
+          children: /* @__PURE__ */ jsx(ScrollView, { keyboardShouldPersistTaps: "handled", children: shown.length === 0 ? /* @__PURE__ */ jsx(ResultRow, { disabled: true, children: /* @__PURE__ */ jsx(ResultDescription, { children: emptyResultsText }) }) : shown.map((r) => /* @__PURE__ */ jsxs(
+            ResultRow,
             {
-              onPress: toggleExpanded,
               accessibilityRole: "button",
-              accessibilityLabel: "Recolher",
-              style: elevation.md,
-              children: /* @__PURE__ */ jsx(Icon, { name: iconName, size: 24, color: theme2.content.dark })
-            }
-          )
-        ]
-      }
-    );
+              accessibilityLabel: r.label,
+              testID: testID ? `${testID}-result-${r.id}` : void 0,
+              onPress: () => onResultPress?.(r.id),
+              children: [
+                /* @__PURE__ */ jsx(ResultLabel, { numberOfLines: 1, children: r.label }),
+                r.description ? /* @__PURE__ */ jsx(ResultDescription, { numberOfLines: 1, children: r.description }) : null
+              ]
+            },
+            r.id
+          )) })
+        }
+      ) : null
+    ] });
   }
 );
 MapControl.displayName = "MapControl";
@@ -5487,7 +5554,7 @@ function shouldDismiss(target, panel, trigger) {
   if (trigger?.contains(node)) return false;
   return true;
 }
-var Anchor2 = styled46(View)`
+var Anchor3 = styled46(View)`
   position: relative;
   align-self: flex-start;
 `;
@@ -5590,7 +5657,7 @@ var Popover = forwardRef(
         document.removeEventListener("keydown", onKeyDown, true);
       };
     }, [visible, onDismiss]);
-    return /* @__PURE__ */ jsxs(Anchor2, { ref, testID, children: [
+    return /* @__PURE__ */ jsxs(Anchor3, { ref, testID, children: [
       /* @__PURE__ */ jsx(View, { ref: triggerRef, children: trigger }),
       visible ? /* @__PURE__ */ jsx(
         Panel2,
